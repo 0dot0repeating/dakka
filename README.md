@@ -18,12 +18,14 @@ streamlining things, and so on and so forth.
 * Arc system, though unused right now due to the Channeler not being reimplemented
 * HUD, though the color-changing parts of it are non-functional right now
 * Tracer system, cleaned up and much better at respecting your pitch
-* Fists and pistols
+* Fists, scrappers, pistols
 
 ## How long's it gonna take to add all the shit back in?
 
-All that was added back in within the span of three to four hours, so assuming
-all goes well, not actually that long!
+Hopefully not very long. All of this shit was coded before, so it's not like I
+have to redo fucking everything. I just need to untangle it as best I can, and
+where I can't, leave comments indicating where to look instead of just shit like
+"// and this one" with no other comments within like 50 lines. That was so dumb.
 
 
-README to be expanded as I think of what to add in this damn thing.
+*README to be expanded as I think of what to add in this damn thing.*
