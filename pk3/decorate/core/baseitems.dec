@@ -1,0 +1,121 @@
+actor Boolean: Inventory
+{
+    Inventory.MaxAmount 1
+    +UNDROPPABLE
+}
+
+actor Counter: Inventory
+{
+    Inventory.MaxAmount 0x7FFFFFFF
+    +UNDROPPABLE
+}
+
+actor Trigger: CustomInventory
+{
+    Inventory.Amount 1
+    Inventory.MaxAmount 0
+
+    +AUTOACTIVATE
+}
+
+actor Toggle: CustomInventory
+{
+    Inventory.Amount 1
+    Inventory.MaxAmount 1
+    +UNDROPPABLE
+
+    States
+    {
+      Spawn:
+        TNT1 A 0
+        stop
+    }
+}
+
+actor DakkaInfiniteAmmo: Boolean {}
+actor DakkaDoneAMap:     Boolean {}
+actor MainFired:         Boolean {}
+actor AltFired:          Boolean {}
+actor MainClicked:       Boolean {}
+actor AltClicked:        Boolean {}
+actor FireSSGAgain:      Boolean {}
+actor ReloadSSG:         Boolean {}
+actor GiveScrapCounter:  Counter {}
+actor GiveScrapCounter2: Counter {}
+actor GiveScrapCounter3: Counter {}
+actor HubTracker:        Boolean { +INTERHUBSTRIP }
+actor DakkaScoreItem:    Counter { +INTERHUBSTRIP }
+
+// HUD shit
+actor AbnormalHealth:   Boolean {}
+actor HealthUnder0:     Boolean {}
+actor HealthUnder25:    Boolean {}
+actor HealthUnder50:    Boolean {}
+actor HealthOver100:    Boolean {}
+actor HealthOver200:    Boolean {}
+
+actor AbnormalAmmo1:    Boolean {}
+actor Ammo1Under25:     Boolean {}
+actor Ammo1Empty:       Boolean {}
+
+actor AbnormalAmmo2:    Boolean {}
+actor Ammo2Under25:     Boolean {}
+actor Ammo2Empty:       Boolean {}
+
+actor GotScrapper:      Boolean {}
+actor GotBackpackItem:  Boolean {}
+
+actor HUD_IsDakkaguy:   Boolean {}
+
+actor HUD_Armor25:      Boolean {}
+actor HUD_Armor50:      Boolean {}
+actor HUD_Armor75:      Boolean {}
+actor HUD_Armor100:     Boolean {}
+
+actor HUD_KnownArmor:   Boolean {}
+actor HUD_GreenArmor:   Boolean {}
+actor HUD_BlueArmor:    Boolean {}
+actor HUD_SilverArmor:  Boolean {}
+actor HUD_GoldArmor:    Boolean {}
+actor HUD_TanArmor:     Boolean {}
+actor HUD_RedArmor:     Boolean {}
+
+actor HUD_AnyDoomKeys:  Boolean {}
+actor HUD_AnyCardKeys:  Boolean {}
+
+actor DakkaUnshootable: Trigger
+{
+    States
+    {
+      Use:
+        TNT1 A 0 A_ChangeFlag("SHOOTABLE", 0)
+        stop
+    }
+}
+
+actor DakkaShootable: Trigger
+{
+    States
+    {
+      Use:
+        TNT1 A 0 A_ChangeFlag("SHOOTABLE", 1)
+        stop
+    }
+}
+
+actor DakkaCurveballToken: Boolean {}
+
+actor DakkaCurveballChecker: Trigger
+{
+    States
+    {
+      Pickup:
+        TNT1 A 0 A_JumpIfTargetInLOS("CanSeeHim", 360)
+        TNT1 A 0 A_TakeInventory("DakkaCurveballToken")
+        stop
+
+      CanSeeHim:
+        TNT1 A 0 A_GiveInventory("DakkaCurveballToken")
+        stop
+    }
+}

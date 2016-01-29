@@ -1,0 +1,99 @@
+actor DakkaBullet_10mm: Ammo
+{
+    Inventory.Icon "CLIPA0"
+
+    Inventory.Amount    16
+    Inventory.MaxAmount 250
+    Ammo.BackpackAmount     64
+    Ammo.BackpackMaxAmount 500
+}
+
+actor DakkaBullet_5mm: Ammo
+{
+    Inventory.Icon "AMMOA0"
+
+    Inventory.Amount 25
+    Inventory.MaxAmount 500
+    Ammo.BackpackAmount     100
+    Ammo.BackpackMaxAmount  1000
+}
+
+actor DakkaShells: Ammo
+{
+    Inventory.Icon "SHELA0"
+
+    Inventory.Amount 4
+    Inventory.MaxAmount 100
+    Ammo.BackpackAmount 16
+    Ammo.BackpackMaxAmount 200
+}
+
+actor DakkaShotGrenades: Ammo
+{
+    Inventory.Icon "ROCKA0"
+
+    Inventory.Amount    2
+    Inventory.MaxAmount 20
+    Ammo.BackpackAmount 8
+    Ammo.BackpackMaxAmount 40
+}
+
+actor DakkaGyroShells: Ammo
+{
+    Inventory.Icon "SBOXA0"
+
+    Inventory.Amount 4
+    Inventory.MaxAmount 40
+    Ammo.BackpackAmount 8
+    Ammo.BackpackMaxAmount 80
+}
+
+actor DakkaRainGrenades: Ammo
+{
+    Inventory.Icon "CGRNA0"
+
+    Inventory.Amount 3
+    Inventory.MaxAmount 40
+    Ammo.BackpackAmount 6
+    Ammo.BackpackMaxAmount 80
+}
+
+actor DakkaFlamerFuel: Ammo
+{
+    Inventory.Icon "AGASA0"
+
+    Inventory.Amount 12
+    Inventory.MaxAmount 120
+    Ammo.BackpackAmount 24
+    Ammo.BackpackMaxAmount 240
+}
+
+actor DakkaRockets: Ammo
+{
+    Inventory.Icon "BROKA0"
+
+    Inventory.Amount 2
+    Inventory.MaxAmount 50
+    Ammo.BackpackAmount 10
+    Ammo.BackpackMaxAmount 100
+}
+
+actor DakkaCells: Ammo
+{
+    Inventory.Icon "CELLA0"
+
+    Inventory.Amount 20
+    Inventory.MaxAmount 400
+    Ammo.BackpackAmount 80
+    Ammo.BackpackMaxAmount 800
+}
+
+actor DakkaScrap: Ammo
+{
+    Inventory.Icon "SPAKA0"   // is dum
+
+    Inventory.Amount 16
+    Inventory.MaxAmount 240
+    Ammo.BackpackAmount 0
+    Ammo.BackpackMaxAmount 480
+}

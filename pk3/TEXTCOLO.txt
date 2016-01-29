@@ -1,0 +1,145 @@
+DHud_Health
+{
+    #B06060 #FFB0B0  0 240
+    #FFB0B0 #FFD0D0  241 255
+}
+
+DHud_Health50
+{
+    #B09090 #FFD8D8  0 240
+    #FFD8D8 #FFE8E8  241 255
+}
+
+DHud_Health25
+{
+    #906060 #C0A0A0  0 240
+    #C0A0A0 #D0A8A8  241 255
+}
+
+DHud_Health0
+{
+    #909090 #D8D8D8  0 240
+    #D8D8D8 #E8E8E8  241 255
+}
+
+DHud_Health200
+{
+    #B09060 #FFD0B0  0 240
+    #FFD0B0 #FFE0D0  241 255
+}
+
+DHud_Health300
+{
+    #9060B0 #D0B0FF  0 240
+    #D0B0FF #E0D0FF  241 255
+}
+
+
+DHud_Armor
+{
+    #60B060 #B0FFB0  0 240
+    #B0FFB0 #D0FFD0  241 255
+}
+
+DHud_ArmorBlue
+{
+    #6080B0 #B0D0FF  0 240
+    #B0D0FF #D0E8FF  241 255
+}
+
+DHud_ArmorSilver
+{
+    #B0B0B0 #E8E8E8  0 240
+    #E8E8E8 #FFFFFF  241 255
+}
+
+DHud_ArmorGold
+{
+    #B0A060 #FFD8B0  0 240
+    #FFD8B0 #FFE8D0  241 255
+}
+
+DHud_ArmorTan
+{
+    #B08860 #FFD0B0  0 240
+    #FFD0B0 #FFE8D0  241 255
+}
+
+DHud_ArmorRed
+{
+    #B06040 #FFB090  0 240
+    #FFB090 #FFD0B0  241 255
+}
+
+DHud_Armor150
+{
+    #60B0B0 #B0FFFF  0 240
+    #B0FFFF #D0FFFF  241 255
+}
+
+DHud_Ammo1
+{
+    #B0B060 #FFFFB0  0 240
+    #FFFFB0 #FFFFD0  241 255
+}
+
+DHud_Ammo2
+{
+    #B08860 #FFD0B0  0 240
+    #FFD0B0 #FFE8D0  241 255
+}
+
+DHud_AmmoGray
+{
+    #B0B0B0 #B0B0B0  0 255
+}
+
+/*
+DScore_White
+{
+    #B0B0B0 #FFFFFF 0   64
+    #404040 #606060 65 255
+}
+
+DScore_Gold
+{
+    #C0B020 #FFE030 0   64
+    #403010 #604020 65 255
+}
+*/
+
+DScore_White
+{
+    #404040 #606660 0  24
+    #C0C0C0 #FFFFFF 25 255
+}
+
+DScore_Gold
+{
+    #403010 #604020 0  24
+    #C0B020 #FFD030 25 255
+}
+
+DScore_Base
+{
+    #403010 #604020 0  24
+    #C0B020 #FFD030 25 255
+}
+
+DScore_Efficiency
+{
+    #402020 #603030 0  24
+    #C09090 #FF8080 25 255
+}
+
+DScore_Style
+{
+    #204010 #286014 0  24
+    #90C020 #B8FF30 25 255
+}
+
+DScore_Daring
+{
+    #402008 #603010 0  24
+    #C06020 #FF8030 25 255
+}

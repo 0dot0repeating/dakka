@@ -1,0 +1,18 @@
+// One easy to change place!
+const int SCORESCRIPT               = 476;
+const int DAKKA_UPDATE_SWITCHAROO   = 478;
+const int DAKKA_RECOIL              = 479;
+const int DAKKA_TRACER              = 480;
+
+
+
+const int DAKKA_DECORATE            = 464;
+const int DAKKA_DECORATE_CLIENT     = 465;
+
+
+// CDEC = clientside DECORATE
+const int CDEC_GETLESSEFFECTS       = 0;
+
+
+
+const int TRACE_BULLET  = 0;

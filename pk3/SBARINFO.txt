@@ -1,0 +1,1199 @@
+Base Doom;
+Height 0;
+MonospaceFonts false, "8";
+
+/*
+ * am bg:       107 , 189
+ * a1 bg:       321 , 181
+ * a2 bg:       325 , 162
+ * ar bg:       46  , 163
+ * hp bg:       46  , 181
+ *
+ * ar text:     96  , 168
+ * hp text:     96  , 186
+ *
+ * a1 text (r): 356 , 168
+ * a2 text (r): 356 , 186
+ *
+ * ammo               191
+ *
+ * 10mm:        124 ,  "
+ * shells:      147 ,  "
+ * grenades:    167 ,  "
+ * gyro shells: 185 ,  "
+ * 5mm:         215 ,  "
+ * rain nades:  235 ,  "
+ * flamer:      259 ,  "
+ * rockets:     283 ,  "
+ * cells:       307 ,  "
+ *
+ *
+ * left claw:  40  , 162
+ * right claw: 368 , 162
+ *
+ * scrap bar:  110 , 182
+ *
+ * red card:   110 , 175
+ *
+ * screen starts at x = 54
+ */
+
+StatusBar Normal, forcescaled
+{
+    InInventory AbnormalHealth
+    {
+        InInventory HealthOver200
+        {
+            DrawImage "HUD_HPB3", 0,  181;
+            DrawNumber 4, DK_HUDBIG, DHud_Health300, health, alignment(left), 12, 185;
+        }
+
+        InInventory HealthOver100
+        {
+            DrawImage "HUD_HPB2", 0,  181;
+            DrawNumber 4, DK_HUDBIG, DHud_Health200, health, alignment(left), 12, 185, 0;
+        }
+
+        InInventory HealthUnder50
+        {
+            DrawImage "HUD_HPB4", 0,  181;
+            DrawNumber 4, DK_HUDBIG, DHud_Health50, health, alignment(left), 12, 185, 0;
+        }
+
+        InInventory HealthUnder25
+        {
+            DrawImage "HUD_HPB5", 0,  181;
+            DrawNumber 4, DK_HUDBIG, DHud_Health25, health, alignment(left), 12, 185, 0;
+        }
+
+        InInventory HealthUnder0
+        {
+            DrawImage "HUD_HPB6", 0,  181;
+            DrawNumber 4, DK_HUDBIG, DHud_Health0, health, alignment(left), 12, 185, 0;
+        }
+    }
+    else
+    {
+        DrawImage "HUD_HPBG", 0,  181;
+        DrawNumber 4, DK_HUDBIG, DHud_Health, health, alignment(left), 12, 185, 0;
+    }
+
+
+    InInventory BasicArmor, 1
+    {
+        InInventory HUD_KnownArmor
+        {
+            InInventory HUD_GreenArmor
+            {
+                InInventory HUD_Armor25
+                {
+                    DrawImage "HUD_AR14", 0, 163;
+                    DrawNumber 4, DK_HUDBIG, DHud_Armor, armor, alignment(left), 12, 167;
+                }
+
+                InInventory HUD_Armor50
+                {
+                    DrawImage "HUD_AR13", 0, 163;
+                    DrawNumber 4, DK_HUDBIG, DHud_Armor, armor, alignment(left), 12, 167;
+                }
+
+                InInventory HUD_Armor75
+                {
+                    DrawImage "HUD_AR12", 0, 163;
+                    DrawNumber 4, DK_HUDBIG, DHud_Armor, armor, alignment(left), 12, 167;
+                }
+
+                InInventory HUD_Armor100
+                {
+                    DrawImage "HUD_AR11", 0, 163;
+                    DrawNumber 4, DK_HUDBIG, DHud_Armor, armor, alignment(left), 12, 167;
+                }
+            }
+
+            InInventory HUD_BlueArmor
+            {
+                InInventory HUD_Armor25
+                {
+                    DrawImage "HUD_AR24", 0, 163;
+                    DrawNumber 4, DK_HUDBIG, DHud_ArmorBlue, armor, alignment(left), 12, 167;
+                }
+
+                InInventory HUD_Armor50
+                {
+                    DrawImage "HUD_AR23", 0, 163;
+                    DrawNumber 4, DK_HUDBIG, DHud_ArmorBlue, armor, alignment(left), 12, 167;
+                }
+
+                InInventory HUD_Armor75
+                {
+                    DrawImage "HUD_AR22", 0, 163;
+                    DrawNumber 4, DK_HUDBIG, DHud_ArmorBlue, armor, alignment(left), 12, 167;
+                }
+
+                InInventory HUD_Armor100
+                {
+                    DrawImage "HUD_AR21", 0, 163;
+                    DrawNumber 4, DK_HUDBIG, DHud_ArmorBlue, armor, alignment(left), 12, 167;
+                }
+            }
+
+            InInventory HUD_SilverArmor
+            {
+                InInventory HUD_Armor25
+                {
+                    DrawImage "HUD_AR34", 0, 163;
+                    DrawNumber 3, DK_HUDBIG, DHud_ArmorSilver, armor, alignment(left), 12, 167;
+                }
+
+                InInventory HUD_Armor50
+                {
+                    DrawImage "HUD_AR33", 0, 163;
+                    DrawNumber 3, DK_HUDBIG, DHud_ArmorSilver, armor, alignment(left), 12, 167;
+                }
+
+                InInventory HUD_Armor75
+                {
+                    DrawImage "HUD_AR32", 0, 163;
+                    DrawNumber 3, DK_HUDBIG, DHud_ArmorSilver, armor, alignment(left), 12, 167;
+                }
+
+                InInventory HUD_Armor100
+                {
+                    DrawImage "HUD_AR31", 0, 163;
+                    DrawNumber 3, DK_HUDBIG, DHud_ArmorSilver, armor, alignment(left), 12, 167;
+                }
+            }
+
+            InInventory HUD_GoldArmor
+            {
+                InInventory HUD_Armor25
+                {
+                    DrawImage "HUD_AR44", 0, 163;
+                    DrawNumber 3, DK_HUDBIG, DHud_ArmorGold, armor, alignment(left), 12, 167;
+                }
+
+                InInventory HUD_Armor50
+                {
+                    DrawImage "HUD_AR43", 0, 163;
+                    DrawNumber 3, DK_HUDBIG, DHud_ArmorGold, armor, alignment(left), 12, 167;
+                }
+
+                InInventory HUD_Armor75
+                {
+                    DrawImage "HUD_AR42", 0, 163;
+                    DrawNumber 3, DK_HUDBIG, DHud_ArmorGold, armor, alignment(left), 12, 167;
+                }
+
+                InInventory HUD_Armor100
+                {
+                    DrawImage "HUD_AR41", 0, 163;
+                    DrawNumber 3, DK_HUDBIG, DHud_ArmorGold, armor, alignment(left), 12, 167;
+                }
+            }
+
+            InInventory HUD_TanArmor
+            {
+                InInventory HUD_Armor25
+                {
+                    DrawImage "HUD_AR54", 0, 163;
+                    DrawNumber 3, DK_HUDBIG, DHud_ArmorTan, armor, alignment(left), 12, 167;
+                }
+
+                InInventory HUD_Armor50
+                {
+                    DrawImage "HUD_AR53", 0, 163;
+                    DrawNumber 3, DK_HUDBIG, DHud_ArmorTan, armor, alignment(left), 12, 167;
+                }
+
+                InInventory HUD_Armor75
+                {
+                    DrawImage "HUD_AR52", 0, 163;
+                    DrawNumber 3, DK_HUDBIG, DHud_ArmorTan, armor, alignment(left), 12, 167;
+                }
+
+                InInventory HUD_Armor100
+                {
+                    DrawImage "HUD_AR51", 0, 163;
+                    DrawNumber 3, DK_HUDBIG, DHud_ArmorTan, armor, alignment(left), 12, 167;
+                }
+            }
+
+            InInventory HUD_RedArmor
+            {
+                InInventory HUD_Armor25
+                {
+                    DrawImage "HUD_AR64", 0, 163;
+                    DrawNumber 3, DK_HUDBIG, DHud_ArmorRed, armor, alignment(left), 12, 167;
+                }
+
+                InInventory HUD_Armor50
+                {
+                    DrawImage "HUD_AR63", 0, 163;
+                    DrawNumber 3, DK_HUDBIG, DHud_ArmorRed, armor, alignment(left), 12, 167;
+                }
+
+                InInventory HUD_Armor75
+                {
+                    DrawImage "HUD_AR62", 0, 163;
+                    DrawNumber 3, DK_HUDBIG, DHud_ArmorRed, armor, alignment(left), 12, 167;
+                }
+
+                InInventory HUD_Armor100
+                {
+                    DrawImage "HUD_AR61", 0, 163;
+                    DrawNumber 3, DK_HUDBIG, DHud_ArmorRed, armor, alignment(left), 12, 167;
+                }
+            }
+        }
+        else
+        {
+            DrawImage "HUD_AR11", 0, 163;
+            DrawNumber 4, DK_HUDBIG, DHud_Armor, armor, alignment(left), 12, 167;
+        }
+
+    }
+    else
+    {   
+        DrawImage "HUD_ARNO", 0, 163;
+    }
+
+    UsesAmmo
+    {
+        InInventory AbnormalAmmo1
+        {
+            InInventory Ammo1Under25
+            {
+                DrawImage "HUD_A1B2", 268, 181;
+                DrawNumber 4, DK_HUDBIG, DHud_Ammo1, ammo1, 307, 185;
+            }
+
+            InInventory Ammo1Empty
+            {
+                DrawImage "HUD_A1B3", 268, 181;
+                DrawNumber 4, DK_HUDBIG, DHud_Health0, ammo1, 307, 185;
+            }
+        }
+        else
+        {
+            DrawImage "HUD_A1BG", 268, 181;
+            DrawNumber 4, DK_HUDBIG, DHud_Ammo1, ammo1, 307, 185;
+        }
+        
+    }
+    else
+    {
+        DrawImage "HUD_A1NO", 268, 181;
+    }
+
+    UsesSecondaryAmmo
+    {
+        InInventory AbnormalAmmo2
+        {
+            InInventory Ammo2Under25
+            {
+                DrawImage "HUD_A2B2", 270, 163;
+                DrawNumber 4, DK_HUDBIG, DHud_Ammo2, ammo2, 307, 167;
+            }
+
+            InInventory Ammo2Empty
+            {
+                DrawImage "HUD_A2B3", 270, 163;
+                DrawNumber 4, DK_HUDBIG, DHud_Health0, ammo2, 307, 167;
+            }
+        }
+        else
+        {
+            DrawImage "HUD_A2BG", 270, 163;
+            DrawNumber 4, DK_HUDBIG, DHud_Ammo2, ammo2, 307, 167;
+        }
+        
+    }
+    else
+    {
+        DrawImage "HUD_A2NO", 270, 163;
+    }
+
+    DrawSelectedInventory centerbottom, DK_HUDSMALL, 301, 160, 310, 154, untranslated;
+
+    InInventory HUD_IsDakkaguy, 1
+    {
+        DrawImage "HUD_AMBR", 52,  190;
+
+        WeaponAmmo DakkaBullet_10mm
+        {
+            DrawImage "HUD_AMI1", 72,  191;
+            DrawNumber 3, DK_HUDSMALL, untranslated, DakkaBullet_10mm,  71,  191;
+        }
+        else
+        {
+            DrawNumber 3, DK_HUDSMALL, DHud_AmmoGray, DakkaBullet_10mm, 71,  191;
+        }
+
+        WeaponAmmo DakkaShells
+        {
+            DrawImage "HUD_AMI2", 95,  191;
+            DrawNumber 3, DK_HUDSMALL, untranslated, DakkaShells,  94,  191;
+        }
+        else
+        {
+            DrawNumber 3, DK_HUDSMALL, DHud_AmmoGray, DakkaShells, 94,  191;
+        }
+
+
+        WeaponAmmo DakkaShotGrenades
+        {
+            DrawImage "HUD_AMI3", 115, 191;
+            DrawNumber 3, DK_HUDSMALL, untranslated, DakkaShotGrenades,  114, 191;
+        }
+        else
+        {
+            DrawNumber 3, DK_HUDSMALL, DHud_AmmoGray, DakkaShotGrenades, 114, 191;
+        }
+
+        WeaponAmmo DakkaGyroShells
+        {
+            DrawImage "HUD_AMI4", 133, 191;
+            DrawNumber 3, DK_HUDSMALL, untranslated, DakkaGyroShells,   132, 191;
+        }
+        else
+        {
+            DrawNumber 3, DK_HUDSMALL, DHud_AmmoGray, DakkaGyroShells,  132, 191;
+        }
+
+        WeaponAmmo DakkaBullet_5mm
+        {
+            DrawImage "HUD_AMI5", 163, 191;
+            DrawNumber 4, DK_HUDSMALL, untranslated, DakkaBullet_5mm,   162, 191;
+        }
+        else
+        {
+            DrawNumber 4, DK_HUDSMALL, DHud_AmmoGray, DakkaBullet_5mm,  162, 191;
+        }
+
+        WeaponAmmo DakkaRainGrenades
+        {
+            DrawImage "HUD_AMI6", 183, 192;
+            DrawNumber 3, DK_HUDSMALL, untranslated, DakkaRainGrenades,  182, 191;
+        }
+        else
+        {
+            DrawNumber 3, DK_HUDSMALL, DHud_AmmoGray, DakkaRainGrenades, 182, 191;
+        }
+
+        WeaponAmmo DakkaFlamerFuel
+        {
+            DrawImage "HUD_AMI7", 207, 191;
+            DrawNumber 3, DK_HUDSMALL, untranslated, DakkaFlamerFuel,   206, 191;
+        }
+        else
+        {
+            DrawNumber 3, DK_HUDSMALL, DHud_AmmoGray, DakkaFlamerFuel,  206, 191;
+        }
+
+        WeaponAmmo DakkaRockets
+        {
+            DrawImage "HUD_AMI8", 231, 191;
+            DrawNumber 3, DK_HUDSMALL, untranslated, DakkaRockets,      230, 191;
+        }
+        else
+        {
+            DrawNumber 3, DK_HUDSMALL, DHud_AmmoGray, DakkaRockets,     230, 191;
+        }
+
+        WeaponAmmo DakkaCells
+        {
+            DrawImage "HUD_AMI9", 255, 192;
+            DrawNumber 3, DK_HUDSMALL, untranslated, DakkaCells,        254, 191;
+        }
+        else
+        {
+            DrawNumber 3, DK_HUDSMALL, DHud_AmmoGray, DakkaCells,       254, 191;
+        }
+
+
+        InInventory GotBackpackItem, 1
+        {
+            DrawBar "HUD_SCP4", "HUD_SCP3", DakkaScrap, horizontal, 59, 185;
+        }
+        InInventory not GotBackpackItem, 1
+        {
+            DrawBar "HUD_SCP2", "HUD_SCP3", DakkaScrap, horizontal, 59, 185;
+        }
+
+        DrawImage "HUD_WPBR", 224, 177;
+
+        InInventory DWep_Fist              { DrawImage "H_WEP1_1", 225, 181; }
+        InInventory DWep_Scrappers         { DrawImage "H_WEP1_2", 225, 178; }
+
+        InInventory DWep_Pistol            { DrawImage "H_WEP2_1", 231, 181; }
+        InInventory DWep_Pistols           { DrawImage "H_WEP2_2", 231, 178; }
+
+        InInventory DWep_Shotgun           { DrawImage "H_WEP3_1", 236, 181; }
+        InInventory DWep_SuperShotgun      { DrawImage "H_WEP3_2", 236, 178; }
+
+        InInventory DWep_Chaingun          { DrawImage "H_WEP4_1", 241, 181; }
+        InInventory DWep_Minigun           { DrawImage "H_WEP4_2", 241, 178; }
+
+        InInventory DWep_RocketLauncher    { DrawImage "H_WEP5_1", 246, 178; }
+
+        InInventory DWep_PlasmaRifle       { DrawImage "H_WEP6_1", 251, 181; }
+        InInventory DWep_Channeler         { DrawImage "H_WEP6_2", 251, 178; }
+
+        InInventory DWep_BFG9000           { DrawImage "H_WEP7_1", 256, 178; }
+
+        IsSelected "DWep_Fist"             { DrawImage "H_SELCT6", 225, 181; }
+        IsSelected "DWep_Scrappers"        { DrawImage "H_SELCT5", 225, 178; }
+
+        IsSelected "DWep_Pistol"           { DrawImage "H_SELCT3", 231, 181; }
+        IsSelected "DWep_Pistols"          { DrawImage "H_SELCT3", 231, 178; }
+
+        IsSelected "DWep_Shotgun"          { DrawImage "H_SELCT3", 236, 181; }
+        IsSelected "DWep_SuperShotgun"     { DrawImage "H_SELCT3", 236, 178; }
+
+        IsSelected "DWep_Chaingun"         { DrawImage "H_SELCT3", 241, 181; }
+        IsSelected "DWep_Minigun"          { DrawImage "H_SELCT3", 241, 178; }
+
+        IsSelected "DWep_RocketLauncher"   { DrawImage "H_SELCT4", 246, 178; }
+
+        IsSelected "DWep_PlasmaRifle"      { DrawImage "H_SELCT1", 251, 181; }
+        IsSelected "DWep_Channeler"        { DrawImage "H_SELCT1", 251, 178; }
+
+        IsSelected "DWep_BFG9000"          { DrawImage "H_SELCT7", 256, 178; }
+    }
+
+    InInventory HUD_AnyCardKeys
+    {
+        InInventory YellowCard  { DrawImage "HUD_YKY1", 2,  155; }
+        InInventory YellowSkull { DrawImage "HUD_YKY2", 2,  148; }
+        InInventory RedCard     { DrawImage "HUD_RKY1", 10,  155; }
+        InInventory RedSkull    { DrawImage "HUD_RKY2", 10,  148; }
+        InInventory BlueCard    { DrawImage "HUD_BKY1", 18,  155; }
+        InInventory BlueSkull   { DrawImage "HUD_BKY2", 18,  148; }
+    }
+    else
+    {
+        InInventory YellowCard  { DrawImage "HUD_YKY1", 2,   148; }
+        InInventory YellowSkull { DrawImage "HUD_YKY2", 2,   155; }
+        InInventory RedCard     { DrawImage "HUD_RKY1", 10,  148; }
+        InInventory RedSkull    { DrawImage "HUD_RKY2", 10,  155; }
+        InInventory BlueCard    { DrawImage "HUD_BKY1", 18,  148; }
+        InInventory BlueSkull   { DrawImage "HUD_BKY2", 18,  155; }
+    }
+
+    InInventory HUD_AnyDoomKeys
+    {
+        InInventory KeyYellow { DrawImage "HUD_YKY3", 2,  140; }
+        InInventory KeyGreen  { DrawImage "HUD_GKY1", 10, 141; }
+        InInventory KeyBlue   { DrawImage "HUD_BKY3", 18, 141; }
+    }
+    else
+    {
+        InInventory KeyYellow { DrawImage "HUD_YKY3", 2,  154; }
+        InInventory KeyGreen  { DrawImage "HUD_GKY1", 10, 155; }
+        InInventory KeyBlue   { DrawImage "HUD_BKY3", 18, 155; }
+    }
+}
+
+
+////////////////
+///////
+////
+///   FULLSCREEN
+////
+//////
+////////////////
+
+StatusBar Fullscreen, fullscreenoffsets
+{
+    InInventory AbnormalHealth
+    {
+        InInventory HealthOver200
+        {
+            DrawImage "HUD_HPB3", 0,  -19;
+            DrawNumber 4, DK_HUDBIG, DHud_Health300, health, alignment(left), 12, -15;
+        }
+
+        InInventory HealthOver100
+        {
+            DrawImage "HUD_HPB2", 0,  -19;
+            DrawNumber 4, DK_HUDBIG, DHud_Health200, health, alignment(left), 12, -15, 0;
+        }
+
+        InInventory HealthUnder50
+        {
+            DrawImage "HUD_HPB4", 0,  -19;
+            DrawNumber 4, DK_HUDBIG, DHud_Health50, health, alignment(left), 12, -15, 0;
+        }
+
+        InInventory HealthUnder25
+        {
+            DrawImage "HUD_HPB5", 0,  -19;
+            DrawNumber 4, DK_HUDBIG, DHud_Health25, health, alignment(left), 12, -15, 0;
+        }
+
+        InInventory HealthUnder0
+        {
+            DrawImage "HUD_HPB6", 0,  -19;
+            DrawNumber 4, DK_HUDBIG, DHud_Health0, health, alignment(left), 12, -15, 0;
+        }
+    }
+    else
+    {
+        DrawImage "HUD_HPBG", 0,  -19;
+        DrawNumber 4, DK_HUDBIG, DHud_Health, health, alignment(left), 12, -15, 0;
+    }
+
+
+    InInventory BasicArmor, 1
+    {
+        InInventory HUD_KnownArmor
+        {
+            InInventory HUD_GreenArmor
+            {
+                InInventory HUD_Armor25
+                {
+                    DrawImage "HUD_AR14", 0, -37;
+                    DrawNumber 4, DK_HUDBIG, DHud_Armor, armor, alignment(left), 12, -33;
+                }
+
+                InInventory HUD_Armor50
+                {
+                    DrawImage "HUD_AR13", 0, -37;
+                    DrawNumber 4, DK_HUDBIG, DHud_Armor, armor, alignment(left), 12, -33;
+                }
+
+                InInventory HUD_Armor75
+                {
+                    DrawImage "HUD_AR12", 0, -37;
+                    DrawNumber 4, DK_HUDBIG, DHud_Armor, armor, alignment(left), 12, -33;
+                }
+
+                InInventory HUD_Armor100
+                {
+                    DrawImage "HUD_AR11", 0, -37;
+                    DrawNumber 4, DK_HUDBIG, DHud_Armor, armor, alignment(left), 12, -33;
+                }
+            }
+
+            InInventory HUD_BlueArmor
+            {
+                InInventory HUD_Armor25
+                {
+                    DrawImage "HUD_AR24", 0, -37;
+                    DrawNumber 4, DK_HUDBIG, DHud_ArmorBlue, armor, alignment(left), 12, -33;
+                }
+
+                InInventory HUD_Armor50
+                {
+                    DrawImage "HUD_AR23", 0, -37;
+                    DrawNumber 4, DK_HUDBIG, DHud_ArmorBlue, armor, alignment(left), 12, -33;
+                }
+
+                InInventory HUD_Armor75
+                {
+                    DrawImage "HUD_AR22", 0, -37;
+                    DrawNumber 4, DK_HUDBIG, DHud_ArmorBlue, armor, alignment(left), 12, -33;
+                }
+
+                InInventory HUD_Armor100
+                {
+                    DrawImage "HUD_AR21", 0, -37;
+                    DrawNumber 4, DK_HUDBIG, DHud_ArmorBlue, armor, alignment(left), 12, -33;
+                }
+            }
+
+            InInventory HUD_SilverArmor
+            {
+                InInventory HUD_Armor25
+                {
+                    DrawImage "HUD_AR34", 0, -37;
+                    DrawNumber 3, DK_HUDBIG, DHud_ArmorSilver, armor, alignment(left), 12, -33;
+                }
+
+                InInventory HUD_Armor50
+                {
+                    DrawImage "HUD_AR33", 0, -37;
+                    DrawNumber 3, DK_HUDBIG, DHud_ArmorSilver, armor, alignment(left), 12, -33;
+                }
+
+                InInventory HUD_Armor75
+                {
+                    DrawImage "HUD_AR32", 0, -37;
+                    DrawNumber 3, DK_HUDBIG, DHud_ArmorSilver, armor, alignment(left), 12, -33;
+                }
+
+                InInventory HUD_Armor100
+                {
+                    DrawImage "HUD_AR31", 0, -37;
+                    DrawNumber 3, DK_HUDBIG, DHud_ArmorSilver, armor, alignment(left), 12, -33;
+                }
+            }
+
+            InInventory HUD_GoldArmor
+            {
+                InInventory HUD_Armor25
+                {
+                    DrawImage "HUD_AR44", 0, -37;
+                    DrawNumber 3, DK_HUDBIG, DHud_ArmorGold, armor, alignment(left), 12, -33;
+                }
+
+                InInventory HUD_Armor50
+                {
+                    DrawImage "HUD_AR43", 0, -37;
+                    DrawNumber 3, DK_HUDBIG, DHud_ArmorGold, armor, alignment(left), 12, -33;
+                }
+
+                InInventory HUD_Armor75
+                {
+                    DrawImage "HUD_AR42", 0, -37;
+                    DrawNumber 3, DK_HUDBIG, DHud_ArmorGold, armor, alignment(left), 12, -33;
+                }
+
+                InInventory HUD_Armor100
+                {
+                    DrawImage "HUD_AR41", 0, -37;
+                    DrawNumber 3, DK_HUDBIG, DHud_ArmorGold, armor, alignment(left), 12, -33;
+                }
+            }
+
+            InInventory HUD_TanArmor
+            {
+                InInventory HUD_Armor25
+                {
+                    DrawImage "HUD_AR54", 0, -37;
+                    DrawNumber 3, DK_HUDBIG, DHud_ArmorTan, armor, alignment(left), 12, -33;
+                }
+
+                InInventory HUD_Armor50
+                {
+                    DrawImage "HUD_AR53", 0, -37;
+                    DrawNumber 3, DK_HUDBIG, DHud_ArmorTan, armor, alignment(left), 12, -33;
+                }
+
+                InInventory HUD_Armor75
+                {
+                    DrawImage "HUD_AR52", 0, -37;
+                    DrawNumber 3, DK_HUDBIG, DHud_ArmorTan, armor, alignment(left), 12, -33;
+                }
+
+                InInventory HUD_Armor100
+                {
+                    DrawImage "HUD_AR51", 0, -37;
+                    DrawNumber 3, DK_HUDBIG, DHud_ArmorTan, armor, alignment(left), 12, -33;
+                }
+            }
+
+            InInventory HUD_RedArmor
+            {
+                InInventory HUD_Armor25
+                {
+                    DrawImage "HUD_AR64", 0, -37;
+                    DrawNumber 3, DK_HUDBIG, DHud_ArmorRed, armor, alignment(left), 12, -33;
+                }
+
+                InInventory HUD_Armor50
+                {
+                    DrawImage "HUD_AR63", 0, -37;
+                    DrawNumber 3, DK_HUDBIG, DHud_ArmorRed, armor, alignment(left), 12, -33;
+                }
+
+                InInventory HUD_Armor75
+                {
+                    DrawImage "HUD_AR62", 0, -37;
+                    DrawNumber 3, DK_HUDBIG, DHud_ArmorRed, armor, alignment(left), 12, -33;
+                }
+
+                InInventory HUD_Armor100
+                {
+                    DrawImage "HUD_AR61", 0, -37;
+                    DrawNumber 3, DK_HUDBIG, DHud_ArmorRed, armor, alignment(left), 12, -33;
+                }
+            }
+        }
+        else
+        {
+            DrawImage "HUD_AR11", 0, -37;
+            DrawNumber 4, DK_HUDBIG, DHud_Armor, armor, alignment(left), 12, -33;
+        }
+
+    }
+    else
+    {   
+        DrawImage "HUD_ARNO", 0, -37;
+    }
+
+    UsesAmmo
+    {
+        InInventory AbnormalAmmo1
+        {
+            InInventory Ammo1Under25
+            {
+                DrawImage "HUD_A1B2", -52, -19;
+                DrawNumber 4, DK_HUDBIG, DHud_Ammo1, ammo1, -13, -15;
+            }
+
+            InInventory Ammo1Empty
+            {
+                DrawImage "HUD_A1B3", -52, -19;
+                DrawNumber 4, DK_HUDBIG, DHud_Health0, ammo1, -13, -15;
+            }
+        }
+        else
+        {
+            DrawImage "HUD_A1BG", -52, -19;
+            DrawNumber 4, DK_HUDBIG, DHud_Ammo1, ammo1, -13, -15;
+        }
+        
+    }
+    else
+    {
+        DrawImage "HUD_A1NO", -52, -19;
+    }
+
+    UsesSecondaryAmmo
+    {
+        InInventory AbnormalAmmo2
+        {
+            InInventory Ammo2Under25
+            {
+                DrawImage "HUD_A2B2", -50, -37;
+                DrawNumber 4, DK_HUDBIG, DHud_Ammo2, ammo2, -13, -33;
+            }
+
+            InInventory Ammo2Empty
+            {
+                DrawImage "HUD_A2B3", -50, -37;
+                DrawNumber 4, DK_HUDBIG, DHud_Health0, ammo2, -13, -33;
+            }
+        }
+        else
+        {
+            DrawImage "HUD_A2BG", -50, -37;
+            DrawNumber 4, DK_HUDBIG, DHud_Ammo2, ammo2, -13, -33;
+        }
+    }
+    else
+    {
+        DrawImage "HUD_A2NO", -50, -37;
+    }
+
+    DrawSelectedInventory centerbottom, DK_HUDSMALL, -24, -50, -15, -56, untranslated;
+
+    InInventory HUD_IsDakkaguy, 1
+    {
+        DrawImage "HUD_FSAM", -83, -15;
+
+        WeaponAmmo DakkaBullet_10mm     { DrawImage "HUD_FSB1", -83, -12; }
+        WeaponAmmo DakkaShells          { DrawImage "HUD_FSB2", -80, -12; }
+        WeaponAmmo DakkaShotGrenades    { DrawImage "HUD_FSB3", -77, -12; }
+        WeaponAmmo DakkaGyroShells      { DrawImage "HUD_FSB4", -74, -12; }
+        WeaponAmmo DakkaBullet_5mm      { DrawImage "HUD_FSB5", -71, -12; }
+        WeaponAmmo DakkaRainGrenades    { DrawImage "HUD_FSB6", -68, -12; }
+        WeaponAmmo DakkaFlamerFuel      { DrawImage "HUD_FSB7", -65, -12; }
+        WeaponAmmo DakkaRockets         { DrawImage "HUD_FSB8", -62, -12; }
+        WeaponAmmo DakkaCells           { DrawImage "HUD_FSB9", -59, -12; }
+
+        WeaponAmmo DakkaScrap           { DrawImage "HUD_FSBS", -83, -15; }
+
+        DrawImage "HUD_WPBR", -42, -45;
+
+        DrawBar "HUD_FSA1", "HUD_FSE1", DakkaBullet_10mm,   vertical, -82, -11;
+        DrawBar "HUD_FSA2", "HUD_FSE1", DakkaShells,        vertical, -79, -11;
+        DrawBar "HUD_FSA3", "HUD_FSE1", DakkaShotGrenades,  vertical, -76, -11;
+        DrawBar "HUD_FSA4", "HUD_FSE1", DakkaGyroShells,    vertical, -73, -11;
+        DrawBar "HUD_FSA5", "HUD_FSE1", DakkaBullet_5mm,    vertical, -70, -11;
+        DrawBar "HUD_FSA6", "HUD_FSE1", DakkaRainGrenades,  vertical, -67, -11;
+        DrawBar "HUD_FSA7", "HUD_FSE1", DakkaFlamerFuel,    vertical, -64, -11;
+        DrawBar "HUD_FSA8", "HUD_FSE1", DakkaRockets,       vertical, -61, -11;
+        DrawBar "HUD_FSA9", "HUD_FSE1", DakkaCells,         vertical, -58, -11;
+
+        DrawBar "HUD_FSAS", "HUD_FSE2", DakkaScrap,         horizontal, -82, -14;
+
+        InInventory DWep_Fist              { DrawImage "H_WEP1_1", -41, -41; }
+        InInventory DWep_Scrappers         { DrawImage "H_WEP1_2", -41, -44; }
+                                           
+        InInventory DWep_Pistol            { DrawImage "H_WEP2_1", -35, -41; }
+        InInventory DWep_Pistols           { DrawImage "H_WEP2_2", -35, -44; }
+                                           
+        InInventory DWep_Shotgun           { DrawImage "H_WEP3_1", -30, -41; }
+        InInventory DWep_SuperShotgun      { DrawImage "H_WEP3_2", -30, -44; }
+                                           
+        InInventory DWep_Chaingun          { DrawImage "H_WEP4_1", -25, -41; }
+        InInventory DWep_Minigun           { DrawImage "H_WEP4_2", -25, -44; }
+                                            
+        InInventory DWep_RocketLauncher    { DrawImage "H_WEP5_1", -20, -44; }
+                                            
+        InInventory DWep_PlasmaRifle       { DrawImage "H_WEP6_1", -15, -41; }
+        InInventory DWep_Channeler         { DrawImage "H_WEP6_2", -15, -44; }
+                                           
+        InInventory DWep_BFG9000           { DrawImage "H_WEP7_1", -10, -44; }
+
+        IsSelected "DWep_Fist"              { DrawImage "H_SELCT6", -41, -41; }
+        IsSelected "DWep_Scrappers"         { DrawImage "H_SELCT5", -41, -44; }
+
+        IsSelected "DWep_Pistol"            { DrawImage "H_SELCT3", -35, -41; }
+        IsSelected "DWep_Pistols"           { DrawImage "H_SELCT3", -35, -44; }
+
+        IsSelected "DWep_Shotgun"           { DrawImage "H_SELCT3", -30, -41; }
+        IsSelected "DWep_SuperShotgun"      { DrawImage "H_SELCT3", -30, -44; }
+
+        IsSelected "DWep_Chaingun"          { DrawImage "H_SELCT3", -25, -41; }
+        IsSelected "DWep_Minigun"           { DrawImage "H_SELCT3", -25, -44; }
+
+        IsSelected "DWep_RocketLauncher"    { DrawImage "H_SELCT4", -20, -44; }
+
+        IsSelected "DWep_PlasmaRifle"       { DrawImage "H_SELCT1", -15, -41; }
+        IsSelected "DWep_Channeler"         { DrawImage "H_SELCT1", -15, -44; }
+
+        IsSelected "DWep_BFG9000"           { DrawImage "H_SELCT7", -10, -44; }
+    }
+
+    InInventory HUD_AnyCardKeys
+    {
+        InInventory YellowCard  { DrawImage "HUD_YKY1", 2,   -45; }
+        InInventory YellowSkull { DrawImage "HUD_YKY2", 2,   -52; }
+        InInventory RedCard     { DrawImage "HUD_RKY1", 10,  -45; }
+        InInventory RedSkull    { DrawImage "HUD_RKY2", 10,  -52; }
+        InInventory BlueCard    { DrawImage "HUD_BKY1", 18,  -45; }
+        InInventory BlueSkull   { DrawImage "HUD_BKY2", 18,  -52; }
+    }
+    else
+    {
+        InInventory YellowCard  { DrawImage "HUD_YKY1", 2,   -52; }
+        InInventory YellowSkull { DrawImage "HUD_YKY2", 2,   -45; }
+        InInventory RedCard     { DrawImage "HUD_RKY1", 10,  -52; }
+        InInventory RedSkull    { DrawImage "HUD_RKY2", 10,  -45; }
+        InInventory BlueCard    { DrawImage "HUD_BKY1", 18,  -52; }
+        InInventory BlueSkull   { DrawImage "HUD_BKY2", 18,  -45; }
+    }
+
+    InInventory HUD_AnyDoomKeys
+    {
+        InInventory KeyYellow { DrawImage "HUD_YKY3", 2,  -60; }
+        InInventory KeyGreen  { DrawImage "HUD_GKY1", 10, -59; }
+        InInventory KeyBlue   { DrawImage "HUD_BKY3", 18, -59; }
+    }
+    else
+    {
+        InInventory KeyYellow { DrawImage "HUD_YKY3", 2,  -46; }
+        InInventory KeyGreen  { DrawImage "HUD_GKY1", 10, -45; }
+        InInventory KeyBlue   { DrawImage "HUD_BKY3", 18, -45; }
+    }
+}
+
+////////////////
+///////
+////
+///   AUTOMAP
+////
+//////
+////////////////
+
+StatusBar Automap
+{
+
+    InInventory AbnormalHealth
+    {
+        InInventory HealthOver200
+        {
+            DrawImage "HUD_HPB3", 0,  181;
+            DrawNumber 4, DK_HUDBIG, DHud_Health300, health, alignment(left), 12, 185;
+        }
+
+        InInventory HealthOver100
+        {
+            DrawImage "HUD_HPB2", 0,  181;
+            DrawNumber 4, DK_HUDBIG, DHud_Health200, health, alignment(left), 12, 185, 0;
+        }
+
+        InInventory HealthUnder50
+        {
+            DrawImage "HUD_HPB4", 0,  181;
+            DrawNumber 4, DK_HUDBIG, DHud_Health50, health, alignment(left), 12, 185, 0;
+        }
+
+        InInventory HealthUnder25
+        {
+            DrawImage "HUD_HPB5", 0,  181;
+            DrawNumber 4, DK_HUDBIG, DHud_Health25, health, alignment(left), 12, 185, 0;
+        }
+
+        InInventory HealthUnder0
+        {
+            DrawImage "HUD_HPB6", 0,  181;
+            DrawNumber 4, DK_HUDBIG, DHud_Health0, health, alignment(left), 12, 185, 0;
+        }
+    }
+    else
+    {
+        DrawImage "HUD_HPBG", 0,  181;
+        DrawNumber 4, DK_HUDBIG, DHud_Health, health, alignment(left), 12, 185, 0;
+    }
+
+
+    InInventory BasicArmor, 1
+    {
+        InInventory HUD_KnownArmor
+        {
+            InInventory HUD_GreenArmor
+            {
+                InInventory HUD_Armor25
+                {
+                    DrawImage "HUD_AR14", 0, 163;
+                    DrawNumber 4, DK_HUDBIG, DHud_Armor, armor, alignment(left), 12, 167;
+                }
+
+                InInventory HUD_Armor50
+                {
+                    DrawImage "HUD_AR13", 0, 163;
+                    DrawNumber 4, DK_HUDBIG, DHud_Armor, armor, alignment(left), 12, 167;
+                }
+
+                InInventory HUD_Armor75
+                {
+                    DrawImage "HUD_AR12", 0, 163;
+                    DrawNumber 4, DK_HUDBIG, DHud_Armor, armor, alignment(left), 12, 167;
+                }
+
+                InInventory HUD_Armor100
+                {
+                    DrawImage "HUD_AR11", 0, 163;
+                    DrawNumber 4, DK_HUDBIG, DHud_Armor, armor, alignment(left), 12, 167;
+                }
+            }
+
+            InInventory HUD_BlueArmor
+            {
+                InInventory HUD_Armor25
+                {
+                    DrawImage "HUD_AR24", 0, 163;
+                    DrawNumber 4, DK_HUDBIG, DHud_ArmorBlue, armor, alignment(left), 12, 167;
+                }
+
+                InInventory HUD_Armor50
+                {
+                    DrawImage "HUD_AR23", 0, 163;
+                    DrawNumber 4, DK_HUDBIG, DHud_ArmorBlue, armor, alignment(left), 12, 167;
+                }
+
+                InInventory HUD_Armor75
+                {
+                    DrawImage "HUD_AR22", 0, 163;
+                    DrawNumber 4, DK_HUDBIG, DHud_ArmorBlue, armor, alignment(left), 12, 167;
+                }
+
+                InInventory HUD_Armor100
+                {
+                    DrawImage "HUD_AR21", 0, 163;
+                    DrawNumber 4, DK_HUDBIG, DHud_ArmorBlue, armor, alignment(left), 12, 167;
+                }
+            }
+
+            InInventory HUD_SilverArmor
+            {
+                InInventory HUD_Armor25
+                {
+                    DrawImage "HUD_AR34", 0, 163;
+                    DrawNumber 3, DK_HUDBIG, DHud_ArmorSilver, armor, alignment(left), 12, 167;
+                }
+
+                InInventory HUD_Armor50
+                {
+                    DrawImage "HUD_AR33", 0, 163;
+                    DrawNumber 3, DK_HUDBIG, DHud_ArmorSilver, armor, alignment(left), 12, 167;
+                }
+
+                InInventory HUD_Armor75
+                {
+                    DrawImage "HUD_AR32", 0, 163;
+                    DrawNumber 3, DK_HUDBIG, DHud_ArmorSilver, armor, alignment(left), 12, 167;
+                }
+
+                InInventory HUD_Armor100
+                {
+                    DrawImage "HUD_AR31", 0, 163;
+                    DrawNumber 3, DK_HUDBIG, DHud_ArmorSilver, armor, alignment(left), 12, 167;
+                }
+            }
+
+            InInventory HUD_GoldArmor
+            {
+                InInventory HUD_Armor25
+                {
+                    DrawImage "HUD_AR44", 0, 163;
+                    DrawNumber 3, DK_HUDBIG, DHud_ArmorGold, armor, alignment(left), 12, 167;
+                }
+
+                InInventory HUD_Armor50
+                {
+                    DrawImage "HUD_AR43", 0, 163;
+                    DrawNumber 3, DK_HUDBIG, DHud_ArmorGold, armor, alignment(left), 12, 167;
+                }
+
+                InInventory HUD_Armor75
+                {
+                    DrawImage "HUD_AR42", 0, 163;
+                    DrawNumber 3, DK_HUDBIG, DHud_ArmorGold, armor, alignment(left), 12, 167;
+                }
+
+                InInventory HUD_Armor100
+                {
+                    DrawImage "HUD_AR41", 0, 163;
+                    DrawNumber 3, DK_HUDBIG, DHud_ArmorGold, armor, alignment(left), 12, 167;
+                }
+            }
+
+            InInventory HUD_TanArmor
+            {
+                InInventory HUD_Armor25
+                {
+                    DrawImage "HUD_AR54", 0, 163;
+                    DrawNumber 3, DK_HUDBIG, DHud_ArmorTan, armor, alignment(left), 12, 167;
+                }
+
+                InInventory HUD_Armor50
+                {
+                    DrawImage "HUD_AR53", 0, 163;
+                    DrawNumber 3, DK_HUDBIG, DHud_ArmorTan, armor, alignment(left), 12, 167;
+                }
+
+                InInventory HUD_Armor75
+                {
+                    DrawImage "HUD_AR52", 0, 163;
+                    DrawNumber 3, DK_HUDBIG, DHud_ArmorTan, armor, alignment(left), 12, 167;
+                }
+
+                InInventory HUD_Armor100
+                {
+                    DrawImage "HUD_AR51", 0, 163;
+                    DrawNumber 3, DK_HUDBIG, DHud_ArmorTan, armor, alignment(left), 12, 167;
+                }
+            }
+
+            InInventory HUD_RedArmor
+            {
+                InInventory HUD_Armor25
+                {
+                    DrawImage "HUD_AR64", 0, 163;
+                    DrawNumber 3, DK_HUDBIG, DHud_ArmorRed, armor, alignment(left), 12, 167;
+                }
+
+                InInventory HUD_Armor50
+                {
+                    DrawImage "HUD_AR63", 0, 163;
+                    DrawNumber 3, DK_HUDBIG, DHud_ArmorRed, armor, alignment(left), 12, 167;
+                }
+
+                InInventory HUD_Armor75
+                {
+                    DrawImage "HUD_AR62", 0, 163;
+                    DrawNumber 3, DK_HUDBIG, DHud_ArmorRed, armor, alignment(left), 12, 167;
+                }
+
+                InInventory HUD_Armor100
+                {
+                    DrawImage "HUD_AR61", 0, 163;
+                    DrawNumber 3, DK_HUDBIG, DHud_ArmorRed, armor, alignment(left), 12, 167;
+                }
+            }
+        }
+        else
+        {
+            DrawImage "HUD_AR11", 0, 163;
+            DrawNumber 4, DK_HUDBIG, DHud_Armor, armor, alignment(left), 12, 167;
+        }
+
+    }
+    else
+    {   
+        DrawImage "HUD_ARNO", 0, 163;
+    }
+
+    UsesAmmo
+    {
+        InInventory AbnormalAmmo1
+        {
+            InInventory Ammo1Under25
+            {
+                DrawImage "HUD_A1B2", 268, 181;
+                DrawNumber 4, DK_HUDBIG, DHud_Ammo1, ammo1, 307, 185;
+            }
+
+            InInventory Ammo1Empty
+            {
+                DrawImage "HUD_A1B3", 268, 181;
+                DrawNumber 4, DK_HUDBIG, DHud_Health0, ammo1, 307, 185;
+            }
+        }
+        else
+        {
+            DrawImage "HUD_A1BG", 268, 181;
+            DrawNumber 4, DK_HUDBIG, DHud_Ammo1, ammo1, 307, 185;
+        }
+    }
+    else
+    {
+        DrawImage "HUD_A1NO", 268, 181;
+    }
+
+    UsesSecondaryAmmo
+    {
+        InInventory AbnormalAmmo2
+        {
+            InInventory Ammo2Under25
+            {
+                DrawImage "HUD_A2B2", 270, 163;
+                DrawNumber 4, DK_HUDBIG, DHud_Ammo2, ammo2, 307, 167;
+            }
+
+            InInventory Ammo2Empty
+            {
+                DrawImage "HUD_A2B3", 270, 163;
+                DrawNumber 4, DK_HUDBIG, DHud_Health0, ammo2, 307, 167;
+            }
+        }
+        else
+        {
+            DrawImage "HUD_A2BG", 270, 163;
+            DrawNumber 4, DK_HUDBIG, DHud_Ammo2, ammo2, 307, 167;
+        }
+    }
+    else
+    {
+        DrawImage "HUD_A2NO", 270, 163;
+    }
+
+    DrawSelectedInventory centerbottom, DK_HUDSMALL, 301, 160, 310, 154, untranslated;
+
+    InInventory HUD_AnyCardKeys
+    {
+        InInventory YellowCard  { DrawImage "HUD_YKY1", 2,  155; }
+        InInventory YellowSkull { DrawImage "HUD_YKY2", 2,  148; }
+        InInventory RedCard     { DrawImage "HUD_RKY1", 10,  155; }
+        InInventory RedSkull    { DrawImage "HUD_RKY2", 10,  148; }
+        InInventory BlueCard    { DrawImage "HUD_BKY1", 18,  155; }
+        InInventory BlueSkull   { DrawImage "HUD_BKY2", 18,  148; }
+    }
+    else
+    {
+        InInventory YellowCard  { DrawImage "HUD_YKY1", 2,   148; }
+        InInventory YellowSkull { DrawImage "HUD_YKY2", 2,   155; }
+        InInventory RedCard     { DrawImage "HUD_RKY1", 10,  148; }
+        InInventory RedSkull    { DrawImage "HUD_RKY2", 10,  155; }
+        InInventory BlueCard    { DrawImage "HUD_BKY1", 18,  148; }
+        InInventory BlueSkull   { DrawImage "HUD_BKY2", 18,  155; }
+    }
+
+    InInventory HUD_AnyDoomKeys
+    {
+        InInventory KeyYellow { DrawImage "HUD_YKY3", 2,  140; }
+        InInventory KeyGreen  { DrawImage "HUD_GKY1", 10, 141; }
+        InInventory KeyBlue   { DrawImage "HUD_BKY3", 18, 141; }
+    }
+    else
+    {
+        InInventory KeyYellow { DrawImage "HUD_YKY3", 2,  154; }
+        InInventory KeyGreen  { DrawImage "HUD_GKY1", 10, 155; }
+        InInventory KeyBlue   { DrawImage "HUD_BKY3", 18, 155; }
+    }
+}

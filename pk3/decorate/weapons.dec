@@ -1,0 +1,3 @@
+#include "decorate/weapons/10_fists.dec"
+#include "decorate/weapons/20_pistol.dec"
+#include "decorate/weapons/21_pistols.dec"

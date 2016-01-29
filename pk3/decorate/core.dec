@@ -1,0 +1,8 @@
+#include "decorate/core/scriptnums.dec"
+#include "decorate/core/baseitems.dec"
+#include "decorate/core/ammo.dec"
+#include "decorate/core/pickups.dec"
+#include "decorate/core/arc.dec"
+
+#include "decorate/core/puffs.dec"
+#include "decorate/core/dakkaguy.dec"

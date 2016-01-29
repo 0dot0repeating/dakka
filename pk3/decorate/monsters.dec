@@ -1,0 +1,3 @@
+#include "decorate/monsters/main.dec"
+#include "decorate/monsters/doom.dec"
+#include "decorate/monsters/heretic.dec"

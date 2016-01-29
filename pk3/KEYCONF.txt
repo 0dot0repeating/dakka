@@ -1,0 +1,17 @@
+addplayerclass Dakkaguy
+
+weaponsection Dakka
+
+addslotdefault 1 "DWep_Chainsaw"
+addslotdefault 1 "DWep_Fist"
+addslotdefault 1 "DWep_Scrappers"
+addslotdefault 2 "DWep_Pistol"
+addslotdefault 2 "DWep_Pistols"
+addslotdefault 3 "DWep_Shotgun"
+addslotdefault 3 "DWep_SuperShotgun"
+addslotdefault 4 "DWep_Chaingun"
+addslotdefault 4 "DWep_Minigun"
+addslotdefault 5 "DWep_RocketLauncher"
+addslotdefault 6 "DWep_PlasmaRifle"
+addslotdefault 6 "DWep_Channeler"
+addslotdefault 7 "DWep_BFG9000"
