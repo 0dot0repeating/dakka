@@ -24,6 +24,7 @@ int TempItems[TMPITEM_COUNT] =
 };
 
 
+
 function void Dakka_UpdateTemporaryItems(void)
 {
     TempChecks[TMP_LEFTFIRE]        = keyDown(BT_ATTACK);
@@ -34,8 +35,10 @@ function void Dakka_UpdateTemporaryItems(void)
     TempChecks[TMP_SSGAGAIN]        = false;
     TempChecks[TMP_RELOADSSG]       = false;
 
+    int classNum = Pickup_ClassNumber(0);
+
     TempChecks[TMP_INFINITEAMMO]    = GetCVar("sv_infiniteammo") || CheckInventory("PowerInfiniteAmmo");
-    TempChecks[TMP_CLASSITEM]       = Pickup_ClassNumber(0) == Cl_Dakkaguy;
+    TempChecks[TMP_CLASSITEM]       = classNum == Cl_Dakkaguy;
 
     int i;
 

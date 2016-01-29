@@ -34,17 +34,23 @@ actor Toggle: CustomInventory
 
 actor DakkaInfiniteAmmo: Boolean {}
 actor DakkaDoneAMap:     Boolean {}
+
 actor MainFired:         Boolean {}
 actor AltFired:          Boolean {}
 actor MainClicked:       Boolean {}
 actor AltClicked:        Boolean {}
+
 actor FireSSGAgain:      Boolean {}
 actor ReloadSSG:         Boolean {}
+
 actor GiveScrapCounter:  Counter {}
 actor GiveScrapCounter2: Counter {}
 actor GiveScrapCounter3: Counter {}
+
 actor HubTracker:        Boolean { +INTERHUBSTRIP }
 actor DakkaScoreItem:    Counter { +INTERHUBSTRIP }
+
+actor UpdatesSwitcharoo: Boolean {}
 
 // HUD shit
 actor AbnormalHealth:   Boolean {}

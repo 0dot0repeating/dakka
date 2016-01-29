@@ -9,6 +9,11 @@ function int SMult_WeaponSwitch(int pln, int myhp)
 {
     if (pln < 0 || pln >= PLAYERMAX) { return 0.0; }
 
+    int classNum = Pickup_ClassNumber(0);
+
+    // Can't use Switcharoo if we don't update Switcharoo
+    if (classNum == -1 || !SCORE_UpdatesSwitcharoo[classNum]) { return 0.0; }
+
     int maxtics = round(SWITCHAROO_TICSPER100HP * myhp * 0.01);
     maxtics = middle(SWITCHAROO_MINTICS, maxtics, SWITCHAROO_MAXTICS);
     int cutoff = Timer() - maxtics;
@@ -176,10 +181,29 @@ function int SMult_PointBlank(int mx, int my, int mz, int px, int py, int pz)
     return 0;
 }
 
+
+
+
 function int SMult_Efficiency(int pln)
 {
     int lastFireTime  = PlayerKills_LastFired[pln][0];
     int lastFireKills = PlayerKills_LastFired[pln][1];
+
+    int classNum = Pickup_ClassNumber(0);
+
+    // Switcharoo's updating script also resets PlayerKills_LastFired. If it's
+    //  not being called, we have to assume everything on a different tic does
+    //  not qualify for One Stone.
+    if (classNum == -1 || !SCORE_UpdatesSwitcharoo[classNum])
+    {
+        Log(s:"doesn't update");
+        if (lastFireTime != Timer())
+        {
+            Log(s:"clearing");
+            PlayerKills_LastFired[pln][1] = 0;
+            lastFireKills = 0;
+        }
+    }
 
     int killMult = EFFICIENCY_MULTINC * lastFireKills;
 
@@ -188,6 +212,8 @@ function int SMult_Efficiency(int pln)
 
     return min(EFFICIENCY_MULTMAX, killMult);
 }
+
+
 
 function int SMult_Infighter(void)
 {

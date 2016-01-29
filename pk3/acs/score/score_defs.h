@@ -70,6 +70,15 @@ int MapStart_AveragePoints  = 0;
 int MapStart_FullHealPoints = 0;
 
 
+// CLASSCOUNT_DEFINED is defined in pickup/pickup_classes.h
+//  This is used for Switcharoo and One Stone: Switcharoo checks it to see if
+//  it applies at all, and One Stone uses it to see if we can rely on last
+//  weapon fire time to actually be updated
+//  
+int SCORE_UpdatesSwitcharoo[CLASSCOUNT_DEFINED] =
+{
+    true,
+};
 
 #define KNOWNMELEE 15
 
