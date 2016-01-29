@@ -39,6 +39,12 @@
 #include "dakka_tempitems.h"
 
 
+// Gaussian distribution script, for spread that looks circular rather than a
+//  rectangle.
+#include "dakka_gaussian.h"
+
+
+
 // Tracers, for all sorts of things.
 #include "dakka_tracers.h"
 

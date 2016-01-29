@@ -21,6 +21,43 @@ $volume dakka/punchwall 0.5
 
 
 
+////////
+// SCRAPPERS
+///
+
+dakka/scrap1    sounds/scrapper/scrapperfire1.ogg
+dakka/scrap2    sounds/scrapper/scrapperfire2.ogg
+dakka/scrap3    sounds/scrapper/scrapperfire3.ogg
+dakka/scrap4    sounds/scrapper/scrapperfire4.ogg
+dakka/scrap5    sounds/scrapper/scrapperfire5.ogg
+
+dakka/scrap6    sounds/scrapper/scrapperfire6.ogg
+dakka/scrap7    sounds/scrapper/scrapperfire7.ogg
+dakka/scrap8    sounds/scrapper/scrapperfire8.ogg
+dakka/scrap10   sounds/scrapper/scrapperfire10.ogg
+$random dakka/scrapperfire          { dakka/scrap6 dakka/scrap7 dakka/scrap8 dakka/scrap10 }
+$random dakka/scrapperaltfire       { dakka/scrap1 dakka/scrap2 dakka/scrap3 dakka/scrap4 dakka/scrap5 }
+
+dakka/scrappersplit                     sounds/scrapper/scrappersplit.ogg
+dakka/scrapperdie                       sounds/scrapper/scrapperdie.ogg
+dakka/scrapfly                          sounds/scrapper/scrapfly.ogg
+
+
+$limit dakka/scrappersplit  0
+$limit dakka/scrapperdie    0
+$limit dakka/scrapperfly    0
+
+$volume  dakka/scrappersplit    0.25
+$rolloff dakka/scrappersplit    128     512
+
+$volume  dakka/scrapperdie      0.25
+$rolloff dakka/scrapperdie      128     512
+
+$volume  dakka/scrapfly      0.35
+$rolloff dakka/scrapfly      384     1024
+
+
+
 
 ////////
 // PISTOL(S)

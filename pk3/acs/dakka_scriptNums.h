@@ -15,3 +15,4 @@
 
 #define DAKKA_TRACER                480
 #define DAKKA_TRACER_CLIENT         481
+#define DAKKA_GAUSSIAN              482

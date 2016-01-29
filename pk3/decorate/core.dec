@@ -1,4 +1,4 @@
-#include "decorate/core/scriptnums.dec"
+#include "decorate/core/constants.dec"
 #include "decorate/core/baseitems.dec"
 #include "decorate/core/ammo.dec"
 #include "decorate/core/pickups.dec"
