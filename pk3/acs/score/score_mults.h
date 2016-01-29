@@ -196,10 +196,8 @@ function int SMult_Efficiency(int pln)
     //  not qualify for One Stone.
     if (classNum == -1 || !SCORE_UpdatesSwitcharoo[classNum])
     {
-        Log(s:"doesn't update");
         if (lastFireTime != Timer())
         {
-            Log(s:"clearing");
             PlayerKills_LastFired[pln][1] = 0;
             lastFireKills = 0;
         }
