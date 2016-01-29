@@ -1,0 +1,33 @@
+////////
+// FISTS
+///
+
+dakka/punch                 sounds/fists/punch.ogg
+dakka/punchwall             sounds/fists/fistwall.ogg
+
+dakka/slam1                 sounds/fists/hardpunch1.ogg
+dakka/slam2                 sounds/fists/hardpunch2.ogg
+dakka/slam3                 sounds/fists/hardpunch3.ogg
+dakka/slam4                 sounds/fists/hardpunch4.ogg
+$random dakka/slam          { dakka/slam1 dakka/slam2 dakka/slam3 dakka/slam4 }
+
+dakka/slamwall              sounds/fists/hardwall.ogg
+
+$limit dakka/punchwall 0
+$limit dakka/punch     0
+
+$volume dakka/punchwall 0.5
+
+
+
+
+
+////////
+// PISTOL(S)
+///
+
+dakka/pistolfire            sounds/pistols/pistol_fire.ogg
+dakka/pistolaltfire         sounds/pistols/pistol_altfire.ogg
+
+$limit dakka/pistolfire     0
+$limit dakka/pistolaltfire  0

@@ -1,0 +1,31 @@
+actor TargetPractice: Demon
+{
+    States
+    {
+      See:
+        SARG AABBCCDD 1 A_Chase("", "")
+        Loop
+        
+      Melee:
+        SARG EF 8 A_FaceTarget
+        SARG G 8 A_SargAttack
+        Goto See
+        
+      Pain:
+        SARG H 1 A_Pain
+        SARG H 0 HealThing(10000)
+        Goto See
+        
+      Death:
+        SARG I 8
+        SARG J 8 A_Scream
+        SARG K 4
+        SARG L 4 A_NoBlocking
+        SARG M 4
+        SARG N 35
+        stop
+
+      Raise:
+        stop
+    }
+}

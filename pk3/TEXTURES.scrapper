@@ -1,0 +1,449 @@
+/*
+ * Both are still
+ */
+
+sprite SCPRA0, 320, 200
+{
+    patch SCRAPR01, 24,  106 { FlipX }
+    patch SCRAPR01, 205, 106
+}
+
+
+/**
+ * 2. Right fires, left is still
+ **/
+
+sprite RSCPA0, 320, 200
+{
+    patch SCRAPR01, 24, 106 { FlipX }
+    patch SCRAPR02, 193, 88
+}
+
+sprite RSCPB0, 320, 200
+{
+    patch SCRAPR01, 24, 106 { FlipX }
+    patch SCRAPR03, 196, 91
+}
+
+sprite RSCPC0, 320, 200
+{
+    patch SCRAPR01, 24, 106 { FlipX }
+    patch SCRAPR04, 199, 94
+}
+
+sprite RSCPD0, 320, 200
+{
+    patch SCRAPR01, 24, 106 { FlipX }
+    patch SCRAPR05, 203, 100
+}
+
+sprite RSCPE0, 320, 200
+{
+    patch SCRAPR01, 24, 106 { FlipX }
+    patch SCRAPR05, 204, 101
+}
+
+sprite RSCPF0, 320, 200
+{
+    patch SCRAPR01, 24, 106 { FlipX }
+    patch SCRAPR06, 213, 121
+}
+
+/**
+ * 3. Right resets, left is still
+ **/
+
+sprite RSCPG0, 320, 200
+{
+    patch SCRAPR01, 24, 106 { FlipX }
+    patch SCRAPR07, 212, 119
+}
+
+sprite RSCPH0, 320, 200
+{
+    patch SCRAPR01, 24, 106 { FlipX }
+    patch SCRAPR08, 210, 116
+}
+
+sprite RSCPI0, 320, 200
+{
+    patch SCRAPR01, 24, 106 { FlipX }
+    patch SCRAPR09, 207, 111
+}
+
+sprite RSCPJ0, 320, 200
+{
+    patch SCRAPR01, 24, 106 { FlipX }
+    patch SCRAPR10, 205, 108
+}
+
+sprite RSCPK0, 320, 200
+{
+    patch SCRAPR01, 24, 106 { FlipX }
+    patch SCRAPR11, 205, 106
+}
+
+/**
+ * 4. Left fires, right is still
+ **/
+
+sprite LSCPA0, 320, 200
+{
+    patch SCRAPR02, 24,  88  { FlipX }  // A
+    patch SCRAPR01, 205, 106    // -
+}
+
+sprite LSCPB0, 320, 200
+{
+    patch SCRAPR03, 21,  91  { FlipX }  // B
+    patch SCRAPR01, 205, 106    // -
+}
+
+sprite LSCPC0, 320, 200
+{
+    patch SCRAPR04, 18,  94  { FlipX }  // C
+    patch SCRAPR01, 205, 106    // -
+}
+
+sprite LSCPD0, 320, 200
+{
+    patch SCRAPR05, 17,  100 { FlipX }  // D
+    patch SCRAPR01, 205, 106    // -
+}
+
+sprite LSCPE0, 320, 200
+{
+    patch SCRAPR05, 16,  101 { FlipX }  // E
+    patch SCRAPR01, 205, 106    // -
+}
+
+sprite LSCPF0, 320, 200
+{
+    patch SCRAPR06, 16,  121 { FlipX }  // F
+    patch SCRAPR01, 205, 106    // -
+}
+
+/**
+ * 5. Left resets, right is still
+ **/
+
+sprite LSCPG0, 320, 200
+{
+    patch SCRAPR07, 17,  119 { FlipX }  // G
+    patch SCRAPR01, 205, 106    // -
+}
+
+sprite LSCPH0, 320, 200
+{
+    patch SCRAPR08, 19,  116 { FlipX }  // H
+    patch SCRAPR01, 205, 106    // -
+}
+
+sprite LSCPI0, 320, 200
+{
+    patch SCRAPR09, 22,  111 { FlipX }  // I
+    patch SCRAPR01, 205, 106    // -
+}
+
+sprite LSCPJ0, 320, 200
+{
+    patch SCRAPR10, 24,  108 { FlipX }  // J
+    patch SCRAPR01, 205, 106    // -
+}
+
+sprite LSCPK0, 320, 200
+{
+    patch SCRAPR11, 24,  106 { FlipX }  // K
+    patch SCRAPR01, 205, 106    // -
+}
+
+/**
+ * 6. Right resets, left fires
+ **/
+
+sprite DSCPA0, 320, 200
+{
+    patch SCRAPR02, 24,  88  { FlipX }  // L:A
+    patch SCRAPR06, 213, 121    // R:F
+}
+
+sprite DSCPB0, 320, 200
+{
+    patch SCRAPR03, 21,  91  { FlipX }  // L:B
+    patch SCRAPR07, 212, 119    // R:G
+}
+
+sprite DSCPC0, 320, 200
+{
+    patch SCRAPR04, 18,  94  { FlipX }  // L:C
+    patch SCRAPR07, 212, 119    // R:G
+}
+
+sprite DSCPD0, 320, 200
+{
+    patch SCRAPR05, 17,  100 { FlipX }  // L:D
+    patch SCRAPR08, 210, 116    // R:H
+}
+
+sprite DSCPE0, 320, 200
+{
+    patch SCRAPR05, 16,  101 { FlipX }  // L:E
+    patch SCRAPR08, 210, 116    // R:H
+}
+
+sprite DSCPF0, 320, 200
+{
+    patch SCRAPR05, 16,  101 { FlipX }  // L:E
+    patch SCRAPR09, 207, 111    // R:I
+}
+
+sprite DSCPG0, 320, 200
+{
+    patch SCRAPR06, 16,  121 { FlipX }  // L:F
+    patch SCRAPR09, 207, 111    // R:I
+}
+
+sprite DSCPH0, 320, 200
+{
+    patch SCRAPR06, 16,  121 { FlipX }  // L:F
+    patch SCRAPR10, 205, 108    // R:J
+}
+
+sprite DSCPI0, 320, 200
+{
+    patch SCRAPR06, 16,  121 { FlipX }  // L:F
+    patch SCRAPR11, 205, 106    // R:K
+}
+
+/**
+ * 7. Right fires, left resets
+ **/
+
+sprite DSCPJ0, 320, 200
+{
+    patch SCRAPR06, 16,  121 { FlipX }  // L:F
+    patch SCRAPR02, 193, 88     // R:A
+}
+
+sprite DSCPK0, 320, 200
+{
+    patch SCRAPR07, 17,  119 { FlipX }  // L:G
+    patch SCRAPR03, 196, 91     // R:B
+}
+
+sprite DSCPL0, 320, 200
+{
+    patch SCRAPR07, 17,  119 { FlipX }  // L:G
+    patch SCRAPR04, 199, 94     // R:C
+}
+
+sprite DSCPM0, 320, 200
+{
+    patch SCRAPR08, 19,  116 { FlipX }  // L:H
+    patch SCRAPR05, 203, 100    // R:D
+}
+
+sprite DSCPN0, 320, 200
+{
+    patch SCRAPR08, 19,  116 { FlipX }  // L:H
+    patch SCRAPR05, 204, 101    // R:E
+}
+
+sprite DSCPO0, 320, 200
+{
+    patch SCRAPR09, 22,  111 { FlipX }  // L:I
+    patch SCRAPR05, 204, 101    // R:E
+}
+
+sprite DSCPP0, 320, 200
+{
+    patch SCRAPR09, 22,  111 { FlipX }  // L:I
+    patch SCRAPR06, 213, 121    // R:F
+}
+
+sprite DSCPQ0, 320, 200
+{
+    patch SCRAPR10, 24,  108 { FlipX }  // L:J
+    patch SCRAPR06, 213, 121    // R:F
+}
+
+sprite DSCPR0, 320, 200
+{
+    patch SCRAPR11, 24,  106 { FlipX }  // L:K
+    patch SCRAPR06, 213, 121    // R:F
+}
+
+
+/**
+ * 8. Alt-fire
+ **/
+
+sprite SCPRB0, 320, 200
+{
+    patch SCRAPR03, 21,  91  { FlipX }  // L:B
+    patch SCRAPR03, 196, 91     // R:B
+}
+
+sprite SCPRC0, 320, 200
+{
+    patch SCRALT01, 16,  96  { FlipX }  // L:L
+    patch SCRALT01, 201, 96     // R:L
+}
+
+sprite SCPRD0, 320, 200
+{
+    patch SCRALT02, 12,  100 { FlipX }  // L:M
+    patch SCRALT02, 205, 100    // R:M
+}
+
+sprite SCPRE0, 320, 200
+{
+    patch SCRALT03, 11,  106 { FlipX }  // L:N
+    patch SCRALT03, 209, 106    // R:N
+}
+
+sprite SCPRF0, 320, 200
+{
+    patch SCRALT03, 10,  107 { FlipX }  // L:O
+    patch SCRALT03, 210, 107    // R:O
+}
+
+sprite SCPRG0, 320, 200
+{
+    patch SCRALT04, 10,  120 { FlipX }  // L:P
+    patch SCRALT04, 219, 120    // R:P
+}
+
+sprite SCPRH0, 320, 200
+{
+    patch SCRALT05, 10,  120 { FlipX }  // L:Q
+    patch SCRALT05, 219, 120    // R:Q
+}
+
+sprite SCPRI0, 320, 200
+{
+    patch SCRALT06, 12,  119 { FlipX }  // L:R
+    patch SCRALT06, 217, 119    // R:R
+}
+
+sprite SCPRJ0, 320, 200
+{
+    patch SCRALT07, 14,  119 { FlipX }  // L:S
+    patch SCRALT07, 215, 119    // R:S
+}
+
+sprite SCPRK0, 320, 200
+{
+    patch SCRALT08, 17,  118 { FlipX }  // L:T
+    patch SCRALT08, 212, 118    // R:T
+}
+
+sprite SCPRL0, 320, 200
+{
+    patch SCRALT09, 20,  112 { FlipX }  // L:U
+    patch SCRALT09, 209, 112    // R:U
+}
+
+sprite SCPRM0, 320, 200
+{
+    patch SCRALT10, 22,  108 { FlipX }  // L:V
+    patch SCRALT10, 207, 108    // R:V
+}
+
+sprite SCPRN0, 320, 200
+{
+    patch SCRALT11, 23,  107 { FlipX }  // L:W
+    patch SCRALT11, 206, 107    // R:W
+}
+
+/**
+ * 9. Left half-done, right fires
+ **/
+
+sprite RSCPL0, 320, 200
+{
+    patch SCRAPR08, 19,  116 { FlipX }  // L:H
+    patch SCRAPR02, 193, 88     // R:A
+}
+
+sprite RSCPM0, 320, 200
+{
+    patch SCRAPR09, 22,  111 { FlipX }  // L:I
+    patch SCRAPR03, 196, 91     // R:B
+}
+
+sprite RSCPN0, 320, 200
+{
+    patch SCRAPR09, 22,  111 { FlipX }  // L:I
+    patch SCRAPR04, 199, 94     // R:C
+}
+
+sprite RSCPO0, 320, 200
+{
+    patch SCRAPR10, 24,  108 { FlipX }  // L:J
+    patch SCRAPR05, 203, 100    // R:D
+}
+
+sprite RSCPP0, 320, 200
+{
+    patch SCRAPR11, 24,  106 { FlipX }  // L:K
+    patch SCRAPR05, 204, 101    // R:E
+}
+
+sprite RSCPQ0, 320, 200
+{
+    patch SCRAPR01, 24,  106 { FlipX }  // L:-
+    patch SCRAPR05, 204, 101    // R:E
+}
+
+sprite RSCPR0, 320, 200
+{
+    patch SCRAPR01, 24,  106 { FlipX }  // L:-
+    patch SCRAPR06, 213, 121    // R:F
+}
+
+/**
+ * 10. Right half-done, left fires
+ **/
+
+sprite LSCPL0, 320, 200
+{
+    patch SCRAPR02, 24,  88  { FlipX }  // L:A
+    patch SCRAPR08, 210, 116    // R:H
+}
+
+sprite LSCPM0, 320, 200
+{
+    patch SCRAPR03, 21,  91  { FlipX }  // L:B
+    patch SCRAPR09, 207, 111    // R:I
+}
+
+sprite LSCPN0, 320, 200
+{
+    patch SCRAPR04, 18,  94  { FlipX }  // L:C
+    patch SCRAPR09, 207, 111    // R:I
+}
+
+sprite LSCPO0, 320, 200
+{
+    patch SCRAPR05, 17,  100 { FlipX }  // L:D
+    patch SCRAPR10, 205, 108    // R:J
+}
+
+sprite LSCPP0, 320, 200
+{
+    patch SCRAPR05, 16,  101 { FlipX }  // L:E
+    patch SCRAPR11, 205, 106    // R:K
+}
+
+sprite LSCPQ0, 320, 200
+{
+    patch SCRAPR05, 16,  101 { FlipX }  // L:E
+    patch SCRAPR01, 205, 106    // R:-
+}
+
+sprite LSCPR0, 320, 200
+{
+    patch SCRAPR06, 16,  121 { FlipX }  // L:F
+    patch SCRAPR01, 205, 106    // R:-
+}

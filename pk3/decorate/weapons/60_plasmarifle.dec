@@ -1,0 +1,342 @@
+actor PlasmaCounter: Ammo
+{
+    +IGNORESKILL
+    Inventory.Amount       1
+    Inventory.MaxAmount    15
+
+    Ammo.BackpackAmount    0
+    Ammo.BackpackMaxAmount 15
+
+    Inventory.Icon "CELLA0"
+}
+
+actor DWep_PlasmaRifle: DoomWeapon
+{
+    Tag "Plasma Rifle"
+
+    Weapon.SelectionOrder 100
+    Weapon.SlotPriority 0.1
+    Weapon.Kickback 0
+
+    Weapon.AmmoType1 "DakkaCells"
+    Weapon.AmmoType2 "DakkaCells"
+    Weapon.AmmoGive1 50
+    Weapon.AmmoUse1  1
+    Weapon.AmmoUse2  2
+
+    Inventory.PickupMessage "$DAKKA_PK_PLASMARIFLE"
+    Obituary "$DAKKA_MP_PLASMARIFLE_BEAM"
+    
+    +ALT_AMMO_OPTIONAL
+    +NOALERT
+
+    States
+    {
+      Ready:
+        PKPL A 1 A_WeaponReady
+        loop
+
+      Select:
+        PKPL AA 0 A_Raise
+        PKPL A 1 A_Raise
+        loop
+
+      Deselect:
+        PKPL AAA 0 A_Lower
+        PKPL A 1 A_Lower
+        loop
+
+      Fire:
+        "----" A 0 ACS_ExecuteWithResult(397, 8, 0)
+        PKPL A 0 A_AlertMonsters
+        PKPL A 0 A_GiveInventory("GiveScrapCounter2", 1000)
+        PKCG A 0 ACS_ExecuteAlways(467, 0, -75, 2, 6)
+        PKPL A 0 A_FireCustomMissile("DakkaPlasma")
+        PLSF A 2 bright A_Light2
+        PLSF B 1 bright A_Light1
+        PKPL B 0 A_ReFire
+        goto FireDone
+    
+      FireDone:
+        PKPL B 0 A_Light0
+        PKPL B 2 A_WeaponReady(WRF_NOBOB | WRF_NOFIRE)
+        PKPL C 1 A_WeaponReady(WRF_NOBOB | WRF_NOFIRE)
+        PKPL D 4 A_WeaponReady(WRF_NOBOB | WRF_NOFIRE)
+        PKPL D 2 A_WeaponReady(WRF_NOBOB | WRF_NOFIRE)
+        PKPL C 1 A_WeaponReady(WRF_NOBOB | WRF_NOFIRE)
+        PKPL BA 1 A_WeaponReady(WRF_NOBOB | WRF_NOFIRE)
+        goto Ready
+
+      AltFire:
+        PKPL A 0 A_JumpIfInventory("DakkaCells", 2, "ActualAlt")
+        goto NoFire
+
+      AltHold:
+        PKPL A 0 A_JumpIfInventory("DakkaCells", 2, "ActualAlt")
+        PKPL A 0 A_ClearRefire
+        goto Reload
+
+      ActualAlt:
+        "----" A 0 ACS_ExecuteWithResult(397, 8, 1)
+        PKPL A 0 A_GunFlash
+        PKPL A 0 A_AlertMonsters
+        PKPL A 0 A_PlaySound("dakka/plasmabeam", ACS_ExecuteWithResult(648))
+        PKPL A 0 A_FireBullets(1.5, 1.5, 3, 20, "DakkaPlasmaPuff", FBF_NORANDOM | FBF_USEAMMO)
+        PKPL A 0 A_GiveInventory("GiveScrapCounter2", 2000)
+        PKCG A 0 ACS_ExecuteAlways(467, 0, -135, 2, 7)
+        PKPL A 1 bright offset(0, 35)
+        PKPL A 2 bright offset(0, 36)
+        PKPL A 1 bright offset(0, 35)
+        PKPL A 1 bright offset(0, 34)
+        PKPL A 1 bright offset(0, 32)
+        PKPL B 0 A_ReFire
+        goto Reload
+
+      Reload:
+        PKPL B 2 A_WeaponReady(WRF_NOBOB | WRF_NOFIRE)
+        PKPL C 1 A_WeaponReady(WRF_NOBOB | WRF_NOFIRE)
+        PKPL D 5 A_WeaponReady(WRF_NOBOB | WRF_NOFIRE)
+        PKPL D 3 A_WeaponReady(WRF_NOBOB | WRF_NOFIRE)
+        PKPL C 2 A_WeaponReady(WRF_NOBOB | WRF_NOFIRE)
+        PKPL BA 1 A_WeaponReady(WRF_NOBOB | WRF_NOFIRE)
+        goto Ready
+
+      NoFire:
+        PKPL A 1 A_WeaponReady(WRF_NOSECONDARY)
+        goto Ready
+
+      Flash:
+        PLSF B 2 Bright A_Light1
+        PLSF A 3 Bright A_Light1
+        TNT1 A 1 Bright A_Light1
+        goto LightDone
+
+      Spawn:
+        BPLS A -1
+        stop
+    }
+}
+
+actor DakkaGottaClimb: PowerProtection
+{
+    DamageFactor "DakkaPlasma", 0
+}
+
+actor PlasmaDidSpawn: Boolean {}
+
+actor DakkaPlasma
+{
+    Radius 13
+    Height 8
+    Speed 50
+
+    Projectile
+    Damage (32)
+
+    +MTHRUSPECIES
+    +RANDOMIZE
+    +FORCERADIUSDMG
+    +DONTREFLECT
+    +NOTIMEFREEZE
+    +NOEXTREMEDEATH
+
+    DamageType "DakkaPlasma"
+
+    RenderStyle Add
+    Alpha 0.75
+    Decal PlasmaScorchNorm
+
+    DeathSound "dakka/plasmaexplode"
+    Obituary "$DAKKA_MP_PLASMARIFLE"
+
+    States
+    {
+      Spawn:
+        PLSS A 0 bright
+        PLSS A 0 A_PlaySound("dakka/plasmafire", CHAN_WEAPON)
+        PLSS A 0 A_GiveInventory("PlasmaDidSpawn")
+        PLSS A 0 A_ChangeFlag("NOTIMEFREEZE", 0)
+        goto Spawn2
+
+      Spawn2:
+        PLSS AAAABBBB 1 bright A_SpawnItemEx("PlasmaTrail", 0,0,0, momx,momy,momz, angle, SXF_ABSOLUTEVELOCITY | SXF_TRANSFERPITCH)
+        loop
+
+      Death:
+        PLSE A 0 A_JumpIfInventory("PlasmaDidSpawn", 1, 3)
+        PLSE A 0 A_PlaySound("dakka/plasmafire", CHAN_WEAPON)
+        PLSS A 0 A_ChangeFlag("NOTIMEFREEZE", 0)
+        PLSE A 0 A_GiveToTarget("DakkaGottaClimb")
+        PLSE A 0 A_ChangeFlag("PAINLESS", 1)
+        PLSE A 0 A_Explode(20, 32, 1, 0, 32)
+        PLSE A 0 A_Explode(8,  32, 0, 0, 32)
+        PLSE A 0 A_TakeFromTarget("DakkaGottaClimb")
+        PLSE AAAAA 0 A_SpawnItemEx("PlasmaDebris", 0,0,0, frandom(0, 5.0), 0, frandom(-1.5, 10), 180 + random(-80, 80))
+        PLSE ABCDE 4 bright
+        stop
+    }
+}
+
+actor PlasmaTrail
+{
+    +NOINTERACTION
+    +CLIENTSIDEONLY
+
+    States
+    {
+      Spawn:
+        TNT1 A 0
+        TNT1 A 0 A_SpawnItemEx("PlasmaTrail_CS2", -momx * 1.33, -momy * 1.33, -momz * 1.33, 0,0,0, 0, SXF_ABSOLUTEVELOCITY | SXF_TRANSFERPITCH)
+        TNT1 A 0 A_SpawnItemEx("PlasmaTrail_CS2", -momx * 1.67, -momy * 1.67, -momz * 1.67, 0,0,0, 0, SXF_ABSOLUTEVELOCITY | SXF_TRANSFERPITCH)
+        TNT1 A 0 A_SpawnItemEx("PlasmaTrail_CS2", -momx * 2.00, -momy * 2.00, -momz * 2.00, 0,0,0, 0, SXF_ABSOLUTEVELOCITY | SXF_TRANSFERPITCH)
+
+        TNT1 A 0 A_JumpIf(ACS_ExecuteWithResult(470, 0) == 1, "NoTrail")
+
+        TNT1 A 0 A_SpawnItemEx("PlasmaTrail_CS",  -momx * 1.33, -momy * 1.33, -momz * 1.33, 0,0,0, 0, SXF_ABSOLUTEVELOCITY | SXF_TRANSFERPITCH)
+        TNT1 A 0 A_SpawnItemEx("PlasmaTrail_CS",  -momx * 1.67, -momy * 1.67, -momz * 1.67, 0,0,0, 0, SXF_ABSOLUTEVELOCITY | SXF_TRANSFERPITCH)
+        TNT1 A 0 A_SpawnItemEx("PlasmaTrail_CS",  -momx * 2.00, -momy * 2.00, -momz * 2.00, 0,0,0, 0, SXF_ABSOLUTEVELOCITY | SXF_TRANSFERPITCH)
+        stop
+
+      NoTrail:
+        TNT1 A 0
+        stop
+    }
+}
+
+actor PlasmaTrail_CS
+{
+    +NOINTERACTION
+    +CLIENTSIDEONLY
+
+    Scale 0.5
+    RenderStyle Add
+    Alpha 0.125
+
+    States
+    {
+      Spawn:
+        PLSS B 4 bright
+        goto SpawnFade
+
+      SpawnFade:
+        PLSS AAAABBBB 1 A_FadeOut(0.025)
+        loop
+    }
+}
+
+actor PlasmaTrail_CS2: PlasmaTrail_CS
+{
+    Scale 1
+    Alpha 0.5
+
+    States
+    {
+      Spawn:
+        PLSS B 0 bright
+        goto SpawnFade
+
+      SpawnFade:
+        PLSS AAAABBBB 1 A_FadeOut(0.2)
+        loop
+    }
+}
+
+actor PlasmaDebris
+{
+    +CLIENTSIDEONLY
+
+    Scale 0.15
+    RenderStyle Add
+
+    Projectile
+
+    -NOGRAVITY
+    +DOOMBOUNCE
+    +THRUACTORS
+    +NOCLIP
+
+    Gravity 1
+    BounceFactor 0.25
+
+    States
+    {
+      Spawn:
+        PLSE A 0 bright
+        PLSE A 0 bright A_JumpIf(ACS_ExecuteWithResult(470, 0) == 1, "Die")
+        PLSE A 4 bright
+        goto Spawn2
+
+      Die:
+        PLSE A 0 bright
+        stop
+
+      Spawn2:
+        PLSE A 1 bright A_FadeOut(0.1)
+        loop
+      
+      Death:
+        PLSE A 1 A_FadeOut(0.1)
+        loop
+    }
+}
+
+
+actor DakkaPlasmaPuff: BulletPuff
+{
+    VSpeed 0
+
+    RenderStyle Add
+    Alpha 0.9
+    Scale 1
+
+    +PUFFGETSOWNER
+    +PUFFONACTORS
+    +ALWAYSPUFF
+    +NOTIMEFREEZE
+    +FORCEXYBILLBOARD
+    +BLOODLESSIMPACT
+    +NOEXTREMEDEATH
+
+    +FORCERADIUSDMG
+    DamageType "DakkaPlasma"
+
+    Decal PlasmaScorchBigger
+
+    Obituary "$DAKKA_MP_PLASMARIFLE_BEAM"
+
+    States
+    {
+      Spawn:
+        PLSE A 0 bright
+        PLSE A 0 A_GiveToTarget("DakkaGottaClimb")
+        PLSE A 0 A_ChangeFlag("PAINLESS", 1)
+        PLSE A 0 A_Explode(13,  16, 0, 0, 16)
+        PLSE A 0 A_Explode(7,   16, 1, 0, 16)
+        PLSE A 0 A_TakeFromTarget("DakkaGottaClimb")
+        PLSE A 0 ACS_ExecuteWithResult(455)
+        PLSE A 0 A_ChangeFlag("NOTIMEFREEZE", 0)
+        PLSE ABCDE 3 bright
+        stop
+    }
+}
+
+actor DakkaPlasmaTrail
+{
+    Radius 0
+    Height 0
+
+    +NOINTERACTION
+    +CLIENTSIDEONLY
+    +FORCEXYBILLBOARD
+
+    RenderStyle Add
+    Scale 0.65
+    Alpha 0.8
+
+    States
+    {
+      Spawn:
+        PLSS A 1 bright A_FadeOut(0.1)
+        loop
+    }
+}

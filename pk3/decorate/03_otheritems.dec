@@ -1,0 +1,5 @@
+actor DakkaInvulnerable: PowerInvulnerable
+{
+    Powerup.Duration -30
+    Powerup.Colormap 0.1,0.05,0, 1,0.67,0.25
+}

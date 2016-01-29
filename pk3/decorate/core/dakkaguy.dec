@@ -1,0 +1,99 @@
+actor Dakkaguy: PlayerPawn
+{
+    Health 100
+    Radius 16
+    Height 56
+    Mass 100
+    
+    Player.ColorRange 112, 127
+    
+    Player.DisplayName "Dakkaguy"
+    Player.JumpZ 8
+
+    Player.ForwardMove 1.2
+    Player.SideMove 1.25
+    
+    Player.HexenArmor 0, 50, 10, 30, 10
+    Player.HealRadiusType "Health"
+    
+    Player.StartItem "DakkaClassItem"
+    //Player.StartItem "Slot1Switch_FistFirst"
+    //Player.StartItem "Slot2Switch_PistolFirst"
+    //Player.StartItem "Slot3Switch_ShotgunFirst"
+    //Player.StartItem "Slot4Switch_ChaingunFirst"
+    //Player.StartItem "Slot6Switch_PlasmaFirst"
+    
+    Player.StartItem "DWep_Pistols"
+    Player.StartItem "DWep_Fist"
+    Player.StartItem "DWep_Pistol"
+    Player.StartItem "DakkaBullet_10mm", 100
+    
+    Player.CrouchSprite "DPLC"
+
+    // blame vincentprice for these
+    DamageFactor "Dakka_NoDamage",      0
+    DamageFactor "Dakka_RetreatSignal", 0
+
+    PainChance 255
+    
+    States
+    {
+      Spawn:
+        DPLY A -1
+        loop
+
+      See:
+        DPLY ABCD 4
+        loop
+
+      Missile:
+        DPLY E 12
+        goto Spawn
+
+      Melee:
+        DPLY F 6 BRIGHT
+        goto Missile
+
+      Pain:
+        DPLY G 4
+        DPLY G 4 A_Pain
+        goto Spawn
+
+      Pain.Dakka_RetreatSignal:
+        DPLY A 0
+        goto Spawn
+
+      Death:
+        DPLY H 10
+        DPLY I 10 A_PlayerScream
+        DPLY J 10 A_NoBlocking
+        DPLY KLM 10
+        DPLY N -1
+        stop
+
+      XDeath:
+        DPLY O 5
+        DPLY P 5 A_XScream
+        DPLY Q 5 A_NoBlocking
+        DPLY RSTUV 5
+        DPLY W -1
+        stop
+
+      AltSkinDeath:
+        DPLY H 6
+        DPLY I 6 A_PlayerScream
+        DPLY JK 6
+        DPLY L 6 A_NoBlocking
+        DPLY MNO 6
+        DPLY P -1
+        stop
+
+      AltSkinXDeath:
+        DPLY Q 5 A_PlayerScream
+        DPLY R 0 A_NoBlocking
+        DPLY R 5 A_SkullPop
+        DPLY STUVWX 5
+        DPLY Y -1
+        stop
+    }
+}

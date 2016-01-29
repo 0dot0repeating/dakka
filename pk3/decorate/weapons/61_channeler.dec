@@ -1,0 +1,444 @@
+actor DWep_Channeler: Weapon
+{
+    Weapon.SlotPriority 0
+    Tag "Channeler"
+
+    Weapon.SelectionOrder 100
+    Weapon.Kickback 0
+
+    Weapon.AmmoType1 "DakkaCells"
+    Weapon.AmmoType2 "DakkaCells"
+    Weapon.AmmoGive1 60
+    Weapon.AmmoUse1  3
+    Weapon.AmmoUse2  12
+
+    Inventory.PickupMessage "$DAKKA_PK_CHANNELER"
+    Obituary "$DAKKA_MP_CHANNELER"
+    
+    +ALT_AMMO_OPTIONAL
+    +NOALERT
+
+
+    States
+    {
+      Spawn:
+        PLZM E -1
+        stop
+
+      Select:
+        PLZM AA 0 A_Raise
+        PLZM A 1 A_Raise
+        loop
+
+      Deselect:
+        PLZM AA 0 A_Light0
+        goto Deselect2
+
+      Deselect2:
+        PLZM AA 0 A_Lower
+        PLZM A 1 A_Lower
+        loop
+
+      Ready:
+        PLZM A 1 A_WeaponReady
+        loop
+
+      Fire:
+        PLZM A 0 A_PlaySound("arc/fire", CHAN_WEAPON)
+        PLZM A 0 A_AlertMonsters
+        PLZM A 0 ACS_ExecuteWithResult(397, 10, 0)
+        PLZM A 0 A_GiveInventory("GiveScrapCounter2", 3000)
+        PLZM A 0 bright A_FireBullets(3, 3, 2, 0, "Channeler_PrimaryPuff", 1)
+        PLZM C 1 bright offset(0, 38) A_Light2
+        PLZM C 1 bright offset(0, 40)
+        PLZM D 2 bright offset(0, 40) A_Light1
+        PLZM A 0        offset(0, 40) A_Light0
+        PLZM A 1        offset(0, 40) A_WeaponReady(WRF_NOFIRE | WRF_NOBOB)
+        PLZM A 1        offset(0, 39) A_WeaponReady(WRF_NOFIRE | WRF_NOBOB)
+        PLZM A 1        offset(0, 37) A_WeaponReady(WRF_NOFIRE | WRF_NOBOB)
+        PLZM A 1        offset(0, 34) A_WeaponReady(WRF_NOFIRE | WRF_NOBOB)
+        PLZM A 1        offset(0, 33) A_WeaponReady(WRF_NOFIRE | WRF_NOBOB)
+        PLZM A 1        offset(0, 32) A_WeaponReady(WRF_NOFIRE | WRF_NOBOB)
+        goto Ready
+
+      AltFire:
+        PLZM A 0 A_PlaySound("arc/altfire", CHAN_WEAPON)
+        PLZM A 0 A_AlertMonsters
+        PLZM A 0 A_GiveInventory("GiveScrapCounter2", 12000)
+        PLZM A 0 bright A_FireCustomMissile("Channeler_SecondaryShot", 0, 1)
+        PLZM C 1 bright offset(0, 41) A_Light2
+        PLZM C 1 bright offset(0, 43)
+        PLZM D 2 bright offset(0, 44) A_Light1
+        PLZM A 0        offset(0, 44) A_Light0
+        PLZM A 4        offset(0, 44) A_WeaponReady(WRF_NOFIRE | WRF_NOBOB)
+        PLZM A 1        offset(0, 43) A_WeaponReady(WRF_NOFIRE | WRF_NOBOB)
+        PLZM A 1        offset(0, 41) A_WeaponReady(WRF_NOFIRE | WRF_NOBOB)
+        PLZM A 1        offset(0, 38) A_WeaponReady(WRF_NOFIRE | WRF_NOBOB)
+        PLZM A 1        offset(0, 36) A_WeaponReady(WRF_NOFIRE | WRF_NOBOB)
+        PLZM A 1        offset(0, 34) A_WeaponReady(WRF_NOFIRE | WRF_NOBOB)
+        PLZM A 1        offset(0, 33) A_WeaponReady(WRF_NOFIRE | WRF_NOBOB)
+        PLZM A 6        offset(0, 32) A_WeaponReady(WRF_NOFIRE | WRF_NOBOB)
+        goto Ready
+    }
+}
+
+actor Channeler_PrimaryCounter: Arc_Counter {}
+
+actor Channeler_PrimaryBase: Arc_Base
+{
+    States
+    {
+      Spawn:
+        TNT1 A 0
+        TNT1 A 0 A_TakeFromTarget("Channeler_PrimaryCounter")
+        TNT1 A 0 ACS_ExecuteWithResult(194, 1, 32, 16)
+        TNT1 A 0 A_SpawnItemEx("ChannelerBeamImpact")
+        TNT1 A 1 ACS_ExecuteWithResult(ARC_MAIN, 0)
+        stop
+
+      Arc_Spawn:
+        TNT1 A 0 ACS_ExecuteWithResult(194)
+        TNT1 A 1 ACS_ExecuteWithResult(ARC_MAIN, 0)
+        stop
+
+      Arc_Query:
+        TNT1 A 0 A_JumpIfInTargetInventory("Channeler_PrimaryCounter", 3, "Arc_StopArcing")
+        goto Arc_KeepArcing
+
+      Arc_FoundTarget:
+        TNT1 A 0 A_GiveToTarget("Channeler_PrimaryCounter")
+        TNT1 A 1 ACS_ExecuteWithResult(193, 40)
+        stop
+
+      Arc_NoTarget:
+        TNT1 A 0 A_JumpIfInTargetInventory("Channeler_PrimaryCounter", 3, "DoneDamaging")
+        TNT1 A 0 A_GiveToTarget("Channeler_PrimaryCounter")
+        TNT1 A 0 ACS_ExecuteWithResult(193, 15)
+        loop
+
+      DoneDamaging:
+        TNT1 A 0
+        stop
+    }
+}
+
+actor Channeler_PrimaryPuff: Channeler_PrimaryBase
+{
+    Speed 0
+    Radius 16
+    Height 16
+
+    RenderStyle Add
+
+    +PUFFGETSOWNER
+    +ALWAYSPUFF
+    +PUFFONACTORS
+    +BLOODLESSIMPACT
+
+    Radius 4
+    Height 4
+}
+
+actor ChannelerTrail
+{
+    +NOINTERACTION
+    +CLIENTSIDEONLY
+    +FORCEXYBILLBOARD
+    
+    Radius 0
+    Height 0
+    RenderStyle Add
+    Alpha 1
+    Scale 0.45
+
+    States
+    {
+      Spawn:
+        PLZM M 0
+        PLZM M 0 A_Jump(128, "N")
+        goto Spawn2
+
+      N:
+        PLZM N 0
+        goto Spawn2
+
+      Spawn2:
+        PLZM "#" 8 bright
+        PLZM "####################" 1 bright A_FadeOut(0.1)
+        stop
+    }
+}
+
+actor ChannelerBeamImpact
+{
+    +NOINTERACTION
+    +CLIENTSIDEONLY
+
+    States
+    {
+      Spawn:
+        TNT1 A 0
+        TNT1 AAAAA      0 A_SpawnItemEx("ChannelerBlobTrail2", 0,0,0, frandom(2,5), 0, frandom(-3, 3), random(0, 360))
+        TNT1 AAAAA      0 A_SpawnItemEx("ChannelerBlobTrail3", 0,0,0, frandom(3,6), 0, frandom(-4, 4), random(0, 360))
+        TNT1 AAAAAAAAAA 0 A_SpawnItemEx("ChannelerBlobTrail4", 0,0,0, frandom(3,7), 0, frandom(-4, 4), random(0, 360))
+        stop
+    }
+}
+
+actor Channeler_SecondaryZapCount: Counter {}
+
+actor Channeler_SecondaryShot
+{
+    Projectile
+    +SKYEXPLODE
+    -NOGRAVITY
+
+    Speed 35
+    Gravity 0.333
+
+    RenderStyle Add
+
+    Radius 8
+    Height 8
+
+    States
+    {
+      Spawn:
+        TNT1 A 0 
+        TNT1 A 0 ACS_ExecuteWithResult(397, 10, 1)
+        TNT1 A 0 A_SpawnItemEx("ChannelerBeamImpact", 0,0,0, momx,momy,momz, 0, SXF_ABSOLUTEVELOCITY)
+        goto Spawn2
+
+      Spawn2:
+        TNT1 AAAA 1 A_SpawnItemEx("ChannelerBlobTrail", 0,0,0, momx,momy,momz, 0, SXF_ABSOLUTEVELOCITY)
+        TNT1 A 0 A_SpawnItemEx("Channeler_SecondaryBase", 0,0,0, 0,0,0, 0,   SXF_TRANSFERPOINTERS)
+        TNT1 A 0 A_SpawnItemEx("Channeler_SecondaryBase", 0,0,0, 0,0,0, 180, SXF_TRANSFERPOINTERS)
+        TNT1 A 0 ACS_ExecuteWithResult(ARC_CLEAR)
+        loop
+
+      Death:
+        TNT1 A 1 A_SpawnItemEx("ChannelerBlobImpact")
+        TNT1 A 0 A_NoGravity
+        TNT1 A 0 A_Stop
+        TNT1 A 0 A_FaceTarget
+        goto ZapLoop
+
+      ZapLoop:
+        TNT1 A 0 A_SpawnItemEx("Channeler_SecondaryBase", 0,0,0, 0,0,0, 0,   SXF_TRANSFERPOINTERS)
+        TNT1 A 0 A_SpawnItemEx("Channeler_SecondaryBase", 0,0,0, 0,0,0, 120, SXF_TRANSFERPOINTERS)
+        TNT1 A 0 A_SpawnItemEx("Channeler_SecondaryBase", 0,0,0, 0,0,0, 240, SXF_TRANSFERPOINTERS)
+        TNT1 A 0 ACS_ExecuteWithResult(ARC_CLEAR)
+
+        TNT1 A 0 bright A_GiveInventory("Channeler_SecondaryZapCount")
+        TNT1 A 0 A_JumpIfInventory("Channeler_SecondaryZapCount", 6, "ZapDone")
+
+        // display stuff
+        TNT1 AAAAAAAA 1 A_SpawnItemEx("ChannelerBlobEmission")
+        loop
+
+      ZapDone:
+        TNT1 A 1 A_SpawnItemEx("ChannelerBlobExplode")
+        stop
+    }
+}
+
+actor Channeler_SecondaryCounter: Arc_Counter {}
+
+actor Channeler_SecondaryBase: Arc_Base
+{
+    States
+    {
+      Spawn:
+        TNT1 A 0
+        TNT1 A 0 A_TakeFromTarget("Channeler_SecondaryCounter")
+        TNT1 A 1 ACS_ExecuteWithResult(ARC_MAIN, 1)
+        stop
+
+      Arc_Spawn:
+        TNT1 A 0 ACS_ExecuteWithResult(194)
+        TNT1 A 1 ACS_ExecuteWithResult(ARC_MAIN, 1)
+        stop
+
+      Arc_Query:
+        TNT1 A 0 A_JumpIfInTargetInventory("Channeler_SecondaryCounter", 3, "Arc_StopArcing")
+        goto Arc_KeepArcing
+
+      Arc_FoundTarget:
+        TNT1 A 0 A_GiveToTarget("Channeler_SecondaryCounter")
+        TNT1 A 1 ACS_ExecuteWithResult(193, 30)
+        stop
+
+      Arc_NoTarget:
+        TNT1 A 0 A_JumpIfInTargetInventory("Channeler_SecondaryCounter", 3, "DoneDamaging")
+        TNT1 A 0 ACS_ExecuteWithResult(193, 10)
+        TNT1 A 0 A_GiveToTarget("Channeler_SecondaryCounter")
+        loop
+
+      DoneDamaging:
+        TNT1 A 0
+        stop
+    }
+}
+
+actor ChannelerBlobTrail
+{
+    +NOINTERACTION
+    +CLIENTSIDEONLY
+
+    States
+    {
+      Spawn:
+        TNT1 A 0
+        TNT1 A 0 A_SpawnItemEx("ChannelerBlobTrail2", momx * -1.000, momy * -1.000, momz * -1.000,  momx        + frandom(-2, 2),    momy        + frandom(-2, 2),   momz        + frandom(-2, 2),       0, SXF_ABSOLUTEPOSITION | SXF_ABSOLUTEVELOCITY)
+        TNT1 A 0 A_SpawnItemEx("ChannelerBlobTrail2", momx * -1.333, momy * -1.333, momz * -1.333,  momx        + frandom(-2, 2),    momy        + frandom(-2, 2),   momz        + frandom(-2, 2),       0, SXF_ABSOLUTEPOSITION | SXF_ABSOLUTEVELOCITY)
+        TNT1 A 0 A_SpawnItemEx("ChannelerBlobTrail2", momx * -1.667, momy * -1.667, momz * -1.667,  momx        + frandom(-2, 2),    momy        + frandom(-2, 2),   momz        + frandom(-2, 2),       0, SXF_ABSOLUTEPOSITION | SXF_ABSOLUTEVELOCITY)
+
+        TNT1 A 0 A_SpawnItemEx("ChannelerBlobTrail3", momx * -1.000, momy * -1.000, momz * -1.000, (momx * 0.5) + frandom(-2, 2),   (momy * 0.5) + frandom(-2, 2),  (momz * 0.5) + frandom(-2, 2),       0, SXF_ABSOLUTEPOSITION | SXF_ABSOLUTEVELOCITY)
+        TNT1 A 0 A_SpawnItemEx("ChannelerBlobTrail3", momx * -1.333, momy * -1.333, momz * -1.333, (momx * 0.5) + frandom(-2, 2),   (momy * 0.5) + frandom(-2, 2),  (momz * 0.5) + frandom(-2, 2),       0, SXF_ABSOLUTEPOSITION | SXF_ABSOLUTEVELOCITY)
+        TNT1 A 0 A_SpawnItemEx("ChannelerBlobTrail3", momx * -1.667, momy * -1.667, momz * -1.667, (momx * 0.5) + frandom(-2, 2),   (momy * 0.5) + frandom(-2, 2),  (momz * 0.5) + frandom(-2, 2),       0, SXF_ABSOLUTEPOSITION | SXF_ABSOLUTEVELOCITY)
+
+        TNT1 A 0 A_SpawnItemEx("ChannelerBlobTrail4", momx * -1.000, momy * -1.000, momz * -1.000,                frandom(-0.25, 0.25),            frandom(-0.25, 0.25),           frandom(-0.25, 0.25), 0, SXF_ABSOLUTEPOSITION | SXF_ABSOLUTEVELOCITY)
+        TNT1 A 0 A_SpawnItemEx("ChannelerBlobTrail4", momx * -1.333, momy * -1.333, momz * -1.333,                frandom(-0.25, 0.25),            frandom(-0.25, 0.25),           frandom(-0.25, 0.25), 0, SXF_ABSOLUTEPOSITION | SXF_ABSOLUTEVELOCITY)
+        TNT1 A 0 A_SpawnItemEx("ChannelerBlobTrail4", momx * -1.667, momy * -1.667, momz * -1.667,                frandom(-0.25, 0.25),            frandom(-0.25, 0.25),           frandom(-0.25, 0.25), 0, SXF_ABSOLUTEPOSITION | SXF_ABSOLUTEVELOCITY)
+
+        TNT1 A 0 A_SpawnItemEx("ChannelerBlobTrail4", momx * -1.000, momy * -1.000, momz * -1.000,                frandom(-1, 1),                  frandom(-1, 1),                 frandom(-1, 1),       0, SXF_ABSOLUTEPOSITION | SXF_ABSOLUTEVELOCITY)
+        TNT1 A 0 A_SpawnItemEx("ChannelerBlobTrail4", momx * -1.333, momy * -1.333, momz * -1.333,                frandom(-1, 1),                  frandom(-1, 1),                 frandom(-1, 1),       0, SXF_ABSOLUTEPOSITION | SXF_ABSOLUTEVELOCITY)
+        TNT1 A 0 A_SpawnItemEx("ChannelerBlobTrail4", momx * -1.667, momy * -1.667, momz * -1.667,                frandom(-1, 1),                  frandom(-1, 1),                 frandom(-1, 1),       0, SXF_ABSOLUTEPOSITION | SXF_ABSOLUTEVELOCITY)
+        stop
+    }
+}
+
+actor ChannelerBlobImpact
+{
+    +NOINTERACTION
+    +CLIENTSIDEONLY
+
+    States
+    {
+      Spawn:
+        TNT1 A 0
+        TNT1 AAAAA      0 A_SpawnItemEx("ChannelerBlobTrail2", 0,0,0, frandom(4,10), 0, frandom(-1, 4), random(0, 360))
+        TNT1 AAAAA      0 A_SpawnItemEx("ChannelerBlobTrail3", 0,0,0, frandom(4,12), 0, frandom(-1, 5), random(0, 360))
+        stop
+    }
+}
+
+actor ChannelerBlobExplode
+{
+    +NOINTERACTION
+    +CLIENTSIDEONLY
+
+    States
+    {
+      Spawn:
+        TNT1 A 0
+        TNT1 AAAAA      0 A_SpawnItemEx("ChannelerBlobTrail2", 0,0,0, frandom(4,10), 0, frandom(-1, 4), random(0, 360))
+        TNT1 AAAAA      0 A_SpawnItemEx("ChannelerBlobTrail3", 0,0,0, frandom(4,12), 0, frandom(-1, 5), random(0, 360))
+        TNT1 AAAAAAAAAA 0 A_SpawnItemEx("ChannelerBlobTrail4", 0,0,0, frandom(6,14), 0, frandom(-1, 5), random(0, 360))
+        stop
+    }
+}
+
+actor ChannelerBlobEmission
+{
+    +NOINTERACTION
+    +CLIENTSIDEONLY
+
+    States
+    {
+      Spawn:
+        TNT1 A 0
+        TNT1 AAAA 0 A_SpawnItemEx("ChannelerBlobTrail2", 0,0,0, frandom(1,6), 0, frandom(-4, 4), random(0, 360))
+        stop
+    }
+}
+
+actor ChannelerBlobTrail2
+{
+    +NOINTERACTION
+    +CLIENTSIDEONLY
+    +FORCEXYBILLBOARD
+
+    RenderStyle Add
+    Alpha 0.5
+    Scale 0.6
+
+    States
+    {
+      Spawn:
+        PLZM H 0 bright A_ScaleVelocity(0.8)
+        PLZM HH 1 bright A_FadeOut(0.05)
+        PLZM I 0 bright A_ScaleVelocity(0.8)
+        PLZM II 1 bright A_FadeOut(0.05)
+        PLZM J 0 bright A_ScaleVelocity(0.8)
+        PLZM JJ 1 bright A_FadeOut(0.05)
+        PLZM K 0 bright A_ScaleVelocity(0.8)
+        PLZM KK 1 bright A_FadeOut(0.05)
+        PLZM L 0 bright A_ScaleVelocity(0.8)
+        PLZM LLL 1 bright A_FadeOut(0.05)
+        stop
+    }
+}
+
+actor ChannelerBlobTrail3
+{
+    +NOINTERACTION
+    +CLIENTSIDEONLY
+    +FORCEXYBILLBOARD
+
+    RenderStyle Add
+    Alpha 0.3
+    Scale 0.5
+
+    States
+    {
+      Spawn:
+        PLZM H 0 bright A_ScaleVelocity(0.7)
+        PLZM HH 1 bright A_FadeOut(0.025)
+        PLZM H 0 bright A_ScaleVelocity(0.7)
+        PLZM HH 1 bright A_FadeOut(0.025)
+        PLZM I 0 bright A_ScaleVelocity(0.7)
+        PLZM II 1 bright A_FadeOut(0.025)
+        PLZM I 0 bright A_ScaleVelocity(0.7)
+        PLZM II 1 bright A_FadeOut(0.025)
+        PLZM J 0 bright A_ScaleVelocity(0.7)
+        PLZM JJ 1 bright A_FadeOut(0.025)
+        PLZM J 0 bright A_ScaleVelocity(0.7)
+        PLZM JJ 1 bright A_FadeOut(0.025)
+        PLZM K 0 bright A_ScaleVelocity(0.7)
+        PLZM KK 1 bright A_FadeOut(0.025)
+        PLZM K 0 bright A_ScaleVelocity(0.7)
+        PLZM KK 1 bright A_FadeOut(0.025)
+        PLZM L 0 bright A_ScaleVelocity(0.7)
+        PLZM LL 1 bright A_FadeOut(0.025)
+        PLZM L 0 bright A_ScaleVelocity(0.7)
+        PLZM LLL 1 bright A_FadeOut(0.025)
+        stop
+    }
+}
+
+actor ChannelerBlobTrail4
+{
+    +NOINTERACTION
+    +CLIENTSIDEONLY
+    +FORCEXYBILLBOARD
+
+    RenderStyle Add
+    Alpha 0.4
+    Scale 0.5
+
+    States
+    {
+      Spawn:
+        PLZM F  0 bright
+        PLZM FFGG 2 bright A_ScaleVelocity(0.7)
+        goto Spawn2
+    
+      Spawn2:
+        PLZM F 0 bright A_ScaleVelocity(0.7)
+        PLZM FFFF 1 bright A_FadeOut(0.005)
+        PLZM F 0 bright A_ScaleVelocity(0.7)
+        PLZM GGGG 1 bright A_FadeOut(0.005)
+        loop
+    }
+}

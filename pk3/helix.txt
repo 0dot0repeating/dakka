@@ -1,0 +1,53 @@
+c = cos
+s = sin
+a = angle
+p = pitch
+
+[[ca -sa 0]    [[ cp 0 sp]
+ [sa  ca 0]  *  [ 0  1 0]
+ [0   0  1]]    [-sp 0 cp]]
+
+
+  [[A B C]
+=  [D E F]
+   [G H I]]
+
+A = (ca)(cp) + (-sa)(0) + (0)(-sp)
+B = (ca)(0)  + (-sa)(1) + (0)(0)
+C = (ca)(sp) + (-sa)(0) + (0)(cp)
+
+D = (sa)(cp) + (ca)(0)  + (0)(-sp)
+E = (sa)(0)  + (ca)(1)  + (0)(0)
+F = (sa)(sp) + (ca)(0)  + (0)(cp)
+
+G = (0)(cp)  + (0)(0)   + (1)(-sp)
+H = (0)(0)   + (0)(1)   + (1)(0)
+I = (0)(sp)  + (0)(0)   + (1)(cp)
+
+
+A = (ca)(cp)
+B = -sa
+C = (ca)(sp)
+ 
+D = (sa)(cp)
+E = ca
+F = (sa)(sp)
+ 
+G = -sp
+H = 0
+I = cp
+
+
+
+[[(ca)(cp)   -sa   (ca)(sp)]    [[x]
+ [(sa)(cp)    ca   (sa)(sp)]  *  [y]
+ [-sp         0    cp]      ]    [z]]
+
+
+  [[x']
+=  [y']
+   [z']]
+
+x' = (ca)(cp)(x) + (-sa)(y) + (ca)(sp)(z)
+y' = (sa)(cp)(x) + (ca)(y)  + (sa)(sp)(z)
+z' = (-sp)(x)               + (cp)(z)

@@ -1,0 +1,191 @@
+actor TracerDummy
+{
+    +NOINTERACTION
+    Height 0
+    Radius 0
+
+    RenderStyle None
+
+    States
+    {
+      Spawn:
+        PLSS A 35
+        stop
+    }
+}
+
+actor NoBulletPuff: BulletPuff
+{
+    +BLOODLESSIMPACT
+    
+    States
+    {
+      Spawn:
+        TNT1 A 0
+        stop
+    }
+}
+
+actor DakkaPuff: BulletPuff
+{
+    +PUFFGETSOWNER
+    +ALWAYSPUFF
+    +PUFFONACTORS
+    +NOTIMEFREEZE
+
+    Radius 1
+    Height 1
+
+    States
+    {
+      Spawn:
+        TNT1 A 0
+        TNT1 A 0 A_FaceTarget
+        TNT1 A 0 A_JumpIf(z - floorz   < 8, "FloorHit")
+        TNT1 A 0 A_JumpIf(ceilingz - z < 8, "CeilingHit")
+        goto WallHit
+
+      FloorHit:
+        TNT1 A 0 A_SpawnItemEx("DakkaBulletSpark", 0,0,0, random(100, 160)/10.0, random(-50, 50)/10.0, random(25, 100)/10.0, 180+random(-30, 30))
+        TNT1 AAA 0 A_SpawnItemEx("DakkaBulletSpark2", 0,0,0, random(40, 140)/10.0, random(-30, 30)/10.0, random(5, 40)/10.0, 180+random(-15, 15))
+        TNT1 A 0 A_Jump(255, "Trace")
+        goto Trace
+
+      CeilingHit:
+        TNT1 A 0 A_SpawnItemEx("DakkaBulletSpark", 0,0,-4, random(100, 320)/10.0, random(-50, 50)/10.0, -random(15, 120)/10.0, 180+random(-30, 30))
+        TNT1 AAA 0 A_SpawnItemEx("DakkaBulletSpark2", 0,0,-4, random(40, 240)/10.0, random(-30, 30)/10.0, -random(5, 80)/10.0, 180+random(-15, 15))
+        TNT1 A 0 A_Jump(255, "Trace")
+        goto Trace
+
+      WallHit:
+        TNT1 A 0 A_SpawnItemEx("DakkaBulletSpark", 0,0,-4, random(30, 80)/10.0, random(-30, 30)/10.0, -random(-60, 60)/10.0, random(-30, 30))
+        TNT1 AAA 0 A_SpawnItemEx("DakkaBulletSpark2", 0,0,-4, random(20, 60)/10.0, random(-20, 20)/10.0, -random(-40, 40)/10.0, random(-15, 15))
+        TNT1 A 0 A_Jump(255, "Trace")
+        goto Trace
+
+      Trace:
+        TNT1 A 0 bright ACS_ExecuteWithResult(DAKKA_TRACER, TRACE_BULLET, 0, -6)
+        DPUF AB 4 bright
+        goto Melee
+        
+      Melee:
+        DPUF CD 4
+        Stop
+    }
+}
+
+actor DakkaPuff_Left: DakkaPuff
+{
+    States
+    {
+      Trace:
+        TNT1 A 0 bright ACS_ExecuteWithResult(DAKKA_TRACER, TRACE_BULLET, -2, -4)
+        DPUF AB 4 bright
+        goto Melee
+    }
+}
+
+actor DakkaPuff_Right: DakkaPuff
+{
+    States
+    {
+      Trace:
+        TNT1 A 0 bright ACS_ExecuteWithResult(DAKKA_TRACER, TRACE_BULLET,  2, -4)
+        DPUF AB 4 bright
+        goto Melee
+    }
+}
+    
+
+actor DakkaBulletSpark
+{
+    +CLIENTSIDEONLY
+
+    Radius 1
+    Height 1
+
+    Projectile
+    -NOGRAVITY
+    +THRUACTORS
+    +DOOMBOUNCE
+    +NOTIMEFREEZE
+    +DONTSPLASH
+
+    Gravity 0.5
+    BounceFactor 0.1
+
+    RenderStyle Add
+    Scale 0.25
+    
+    States
+    {
+      Spawn:
+        TNT1 A 0
+        DPUF A 0 A_JumpIf(ACS_ExecuteWithResult(DAKKA_DECORATE_CLIENT, CDEC_GETLESSEFFECTS) == 1, "Nah")
+        goto Spawn2
+
+      Nah:
+        TNT1 A 0
+        stop
+
+      Spawn2:
+        DPUF A 105 bright
+        stop
+
+      Death:
+        TNT1 A 0
+        stop
+    }
+}
+
+actor DakkaBulletSpark2: DakkaBulletSpark
+{
+    Scale 0.5
+}
+
+actor DakkaTracer
+{
+    +NOINTERACTION
+    +CLIENTSIDEONLY
+    +NOTIMEFREEZE
+    +DONTSPLASH
+
+    Radius 0
+    Height 0
+
+    RenderStyle Add
+    Scale 0.5
+    Alpha 0.5
+
+    States
+    {
+      Spawn:
+        DPUF A 1 bright A_FadeOut(0.1)
+        loop
+    }
+}
+
+actor DakkaTracerBright: DakkaTracer
+{
+    Alpha 1
+
+    States
+    {
+      Spawn:
+        DPUF A 1 bright A_FadeOut(0.2)
+        loop
+    }
+}
+
+actor AmmoWaster
+{
+    Projectile
+
+    States
+    {
+      Spawn:
+        TNT1 A 0
+        stop
+    }
+}
+

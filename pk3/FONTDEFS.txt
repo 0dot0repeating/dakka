@@ -1,0 +1,32 @@
+DK_HUDBIG
+{
+    0 HNUM_0B
+    1 HNUM_1B
+    2 HNUM_2B
+    3 HNUM_3B
+    4 HNUM_4B
+    5 HNUM_5B
+    6 HNUM_6B
+    7 HNUM_7B
+    8 HNUM_8B
+    9 HNUM_9B
+}
+
+DK_HUDSMALL
+{
+    0 HNUM_0S
+    1 HNUM_1S
+    2 HNUM_2S
+    3 HNUM_3S
+    4 HNUM_4S
+    5 HNUM_5S
+    6 HNUM_6S
+    7 HNUM_7S
+    8 HNUM_8S
+    9 HNUM_9S
+}
+
+DK_SCORE
+{
+    template DAKFN%03d
+}
