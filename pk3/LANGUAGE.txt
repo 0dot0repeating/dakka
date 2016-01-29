@@ -1,0 +1,71 @@
+[ enu default ]
+
+DAKKA_PK_FISTS              = "Two hands!";
+DAKKA_MP_FISTS              = "%k smacked down %o.";
+DAKKA_MP_FISTS_SLAM         = "%k smashed %o.";
+
+DAKKA_PK_CHAINSAW           = "Chainsaw!";
+DAKKA_MP_CHAINSAW           = "%k cut apart %o.";
+
+DAKKA_PK_SCRAPPER           = "Scrapper!";
+DAKKA_MP_SCRAPPER           = "%k scrapped %o.";
+
+DAKKA_PK_PISTOL             = "Pistol?";
+DAKKA_PK_PISTOLS            = "Pistols!";
+DAKKA_MP_PISTOL             = "%k picked off %o.";
+DAKKA_MP_PISTOLS            = "%k ventilated %o.";
+
+DAKKA_PK_SHOTGUN            = "Shotgun!";
+DAKKA_MP_SHOTGUN            = "%k hunted down %o.";
+DAKKA_MP_SHOTGUN_GRENADE    = "%k neutralized %o.";
+
+DAKKA_PK_SUPERSHOTGUN       = "Super shotgun!";
+DAKKA_MP_SUPERSHOTGUN       = "%k snapped %o in half.";
+DAKKA_MP_SUPERSHOTGUN_GYRO  = "%k liquefied %o.";
+
+DAKKA_PK_CHAINGUN           = "Chaingun!";
+DAKKA_MP_CHAINGUN           = "%k cut down %o.";
+DAKKA_MP_CHAINGUN_RAINNADE  = "%k rained on %o's parade.";
+
+DAKKA_PK_MINIGUN            = "Minigun!";
+DAKKA_MP_MINIGUN            = "%k minced %o.";
+DAKKA_MP_MINIGUN_FLAME      = "%k toasted %o.";
+
+DAKKA_PK_ROCKETLAUNCHER     = "Rocket launcher!";
+DAKKA_MP_ROCKETLAUNCHER     = "%k smeared %o.";
+
+DAKKA_PK_PLASMARIFLE        = "Plasma rifle!";
+DAKKA_MP_PLASMARIFLE        = "%k melted %o.";
+DAKKA_MP_PLASMARIFLE_BEAM   = "%k scorched %o.";
+
+DAKKA_PK_CHANNELER          = "Channeler!"
+DAKKA_MP_CHANNELER          = "%k overcharged %o.";
+
+DAKKA_PK_BFG9000            = "\caBig feffin' gun!";
+DAKKA_MP_BFG9000            = "%k annihilated %o.";
+DAKKA_MP_BFG9000_BLAST      = "%k pulverized %o.";
+
+OB_MPTELEFRAG               = "%k scrambled %o.";
+OB_RAILGUN                  = "%k punched some holes in %o.";
+
+OB_FRIENDLY1                = "Dammit, %k, that's not a demon!";
+OB_FRIENDLY2                = "%k has gone postal.";
+OB_FRIENDLY3                = "%k has become an equal-opportunity murderer.";
+OB_FRIENDLY4                = "%k forgot that his friends also have rocket launchers.";
+
+
+QUITMSG     = "But... why?";
+QUITMSG1    = "Play this with more levels?\nYeah, that's a great idea!";
+QUITMSG2    = "I sure hope you're leaving\nbecause everything else died.";
+QUITMSG3    = "Violence is always the answer.\nYour leaving is a question.";
+QUITMSG4    = "This button does not kill demons.";
+QUITMSG5    = "There's two ways to do this.\nBoth involve rocket launchers.";
+QUITMSG6    = "Hey, where are you going?\nYou've still got ammo left!";
+QUITMSG7    = "You are the \cf1 millionth viewer\c-\n\cf<\cg!\cf>\c- of this quit message! \cg<\cf!\cg>\n\cdLog in now\c- and claim your prize!";
+QUITMSG8    = "Bring back a pizza!";
+QUITMSG9    = "Hey\nI\nwonder\nhow\nlong\nthis\ncan\nget\nbefore\nit\nbugs\nout\nthe\ndisplay\nand\nruins\neverything\nthis\nis\na\nvery\ngood\nway\nto\nfind\nout\ndon't\nyou\nthink";
+QUITMSG10   = "Your \"n\" key has been rebound to \"y\".";
+QUITMSG11   = "What, not enough fortune cookies for you?";
+QUITMSG12   = "Think there's a way to work\nexplosions into the pistols?";
+QUITMSG13   = "And yet Chillax still isn't any fun.";
+QUITMSG14   = "Oh come on, you're not even\ntrying at this point.";

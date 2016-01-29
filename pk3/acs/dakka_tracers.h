@@ -105,7 +105,6 @@ script DAKKA_TRACER_CLIENT (int which, int startTID, int endTID) clientside
         break;
     }
 
-    Log(d:which);
     if (StrLen(particleType) == 0) { terminate; }
 
     // miraculously, this works on both ints and fixed

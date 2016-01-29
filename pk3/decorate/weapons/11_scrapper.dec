@@ -51,16 +51,16 @@ actor DWep_Scrappers: DoomWeapon
         goto RStart_LAlmost
 
       RStart_LStill:
-        "----" A 0 ACS_ExecuteWithResult(397, 1, 0)
+        "----" A 0 ACS_ExecuteWithResult(DAKKA_UPDATE_SWITCHAROO, 1, 0)
         RSCP A 0 A_AlertMonsters
         RSCP A 0 A_GiveInventory("ScrapperSide")
         RSCP A 0 A_TakeInventory("ScrapperAltTimer", 1)
-        RSCP AA 0 A_PlaySound("dakka/scrapperfire", ACS_ExecuteWithResult(648, 0, 4, 7))
+        RSCP AA 0 A_PlaySound("dakka/scrapperfire", ACS_ExecuteWithResult(DAKKA_DECORATE, DEC_ROTATESOUND))
         RSCP AAAAA 0 A_FireCustomMissile("ScrapperShot",
-                                    ACS_ExecuteWithResult(473, 50, 100) / 100.0, 0, 11,0,0,
-                                    ACS_ExecuteWithResult(473, 40, 70) / 100.0)
+                                    ACS_ExecuteWithResult(DAKKA_GAUSSIAN, 50, 100) / 100.0, 0, 11,0,0,
+                                    ACS_ExecuteWithResult(DAKKA_GAUSSIAN, 40, 70) / 100.0)
         RSCP A 0 A_FireCustomMissile("AmmoWaster")
-        RSCP A 0 ACS_ExecuteAlways(467, 0, 2, 3, 6)
+        RSCP A 0 ACS_ExecuteAlways(DAKKA_RECOIL, 0, 2, 3, 6)
         RSCP A 1 bright
         RSCP B 1 bright
         RSCP C 1 bright
@@ -74,16 +74,16 @@ actor DWep_Scrappers: DoomWeapon
         goto REnd_LStill
 
       RStill_LStart:
-        "----" A 0 ACS_ExecuteWithResult(397, 1, 0)
+        "----" A 0 ACS_ExecuteWithResult(DAKKA_UPDATE_SWITCHAROO, 1, 0)
         RSCP A 0 A_AlertMonsters
         RSCP A 0 A_TakeInventory("ScrapperSide")
         RSCP A 0 A_TakeInventory("ScrapperAltTimer", 1)
-        RSCP AA 0 A_PlaySound("dakka/scrapperfire", ACS_ExecuteWithResult(648, 0, 4, 7))
+        RSCP AA 0 A_PlaySound("dakka/scrapperfire", ACS_ExecuteWithResult(DAKKA_DECORATE, DEC_ROTATESOUND))
         RSCP AAAAA 0 A_FireCustomMissile("ScrapperShot",
-                                    ACS_ExecuteWithResult(473, 50, 100) / 100.0, 0, -11,0,0,
-                                    ACS_ExecuteWithResult(473, 40, 70) / 100.0)
+                                    ACS_ExecuteWithResult(DAKKA_GAUSSIAN, 50, 100) / 100.0, 0, -11,0,0,
+                                    ACS_ExecuteWithResult(DAKKA_GAUSSIAN, 40, 70) / 100.0)
         RSCP A 0 A_FireCustomMissile("AmmoWaster")
-        RSCP A 0 ACS_ExecuteAlways(467, 0, 2, 3, 6)
+        RSCP A 0 ACS_ExecuteAlways(DAKKA_RECOIL, 0, 2, 3, 6)
         LSCP A 1 bright
         LSCP B 1 bright
         LSCP C 1 bright
@@ -98,16 +98,16 @@ actor DWep_Scrappers: DoomWeapon
 
 
       RStart_LEnd:
-        "----" A 0 ACS_ExecuteWithResult(397, 1, 0)
+        "----" A 0 ACS_ExecuteWithResult(DAKKA_UPDATE_SWITCHAROO, 1, 0)
         RSCP A 0 A_AlertMonsters
         RSCP A 0 A_GiveInventory("ScrapperSide")
         RSCP A 0 A_TakeInventory("ScrapperAltTimer", 1)
-        RSCP AA 0 A_PlaySound("dakka/scrapperfire", ACS_ExecuteWithResult(648, 0, 4, 7))
+        RSCP AA 0 A_PlaySound("dakka/scrapperfire", ACS_ExecuteWithResult(DAKKA_DECORATE, DEC_ROTATESOUND))
         RSCP AAAAA 0 A_FireCustomMissile("ScrapperShot",
-                                    ACS_ExecuteWithResult(473, 50, 100) / 100.0, 0, 11,0,0,
-                                    ACS_ExecuteWithResult(473, 40, 70) / 100.0)
+                                    ACS_ExecuteWithResult(DAKKA_GAUSSIAN, 50, 100) / 100.0, 0, 11,0,0,
+                                    ACS_ExecuteWithResult(DAKKA_GAUSSIAN, 40, 70) / 100.0)
         RSCP A 0 A_FireCustomMissile("AmmoWaster")
-        RSCP A 0 ACS_ExecuteAlways(467, 0, 2, 3, 6)
+        RSCP A 0 ACS_ExecuteAlways(DAKKA_RECOIL, 0, 2, 3, 6)
         DSCP JKLM 1 bright
         DSCP NO 1 bright A_WeaponReady(WRF_NOBOB | WRF_NOFIRE)
         DSCP PQR 1 A_WeaponReady(WRF_NOBOB | WRF_NOFIRE)
@@ -118,16 +118,16 @@ actor DWep_Scrappers: DoomWeapon
         goto REnd_LStill
 
       REnd_LStart:
-        "----" A 0 ACS_ExecuteWithResult(397, 1, 0)
+        "----" A 0 ACS_ExecuteWithResult(DAKKA_UPDATE_SWITCHAROO, 1, 0)
         RSCP A 0 A_AlertMonsters
         RSCP A 0 A_TakeInventory("ScrapperSide")
         RSCP A 0 A_TakeInventory("ScrapperAltTimer", 1)
-        RSCP AA 0 A_PlaySound("dakka/scrapperfire", ACS_ExecuteWithResult(648, 0, 4, 7))
+        RSCP AA 0 A_PlaySound("dakka/scrapperfire", ACS_ExecuteWithResult(DAKKA_DECORATE, DEC_ROTATESOUND))
         RSCP AAAAA 0 A_FireCustomMissile("ScrapperShot",
-                                    ACS_ExecuteWithResult(473, 50, 100) / 100.0, 0, -11,0,0,
-                                    ACS_ExecuteWithResult(473, 40, 70) / 100.0)
+                                    ACS_ExecuteWithResult(DAKKA_GAUSSIAN, 50, 100) / 100.0, 0, -11,0,0,
+                                    ACS_ExecuteWithResult(DAKKA_GAUSSIAN, 40, 70) / 100.0)
         RSCP A 0 A_FireCustomMissile("AmmoWaster")
-        RSCP A 0 ACS_ExecuteAlways(467, 0, 2, 3, 6)
+        RSCP A 0 ACS_ExecuteAlways(DAKKA_RECOIL, 0, 2, 3, 6)
         DSCP ABCD 1 bright
         DSCP EF 1 bright A_WeaponReady(WRF_NOBOB | WRF_NOFIRE)
         DSCP GHI 1 A_WeaponReady(WRF_NOBOB | WRF_NOFIRE)
@@ -139,16 +139,16 @@ actor DWep_Scrappers: DoomWeapon
 
 
       RStart_LAlmost:
-        "----" A 0 ACS_ExecuteWithResult(397, 1, 0)
+        "----" A 0 ACS_ExecuteWithResult(DAKKA_UPDATE_SWITCHAROO, 1, 0)
         RSCP A 0 A_AlertMonsters
         RSCP A 0 A_GiveInventory("ScrapperSide")
         RSCP A 0 A_TakeInventory("ScrapperAltTimer", 1)
-        RSCP AA 0 A_PlaySound("dakka/scrapperfire", ACS_ExecuteWithResult(648, 0, 4, 7))
+        RSCP AA 0 A_PlaySound("dakka/scrapperfire", ACS_ExecuteWithResult(DAKKA_DECORATE, DEC_ROTATESOUND))
         RSCP AAAAA 0 A_FireCustomMissile("ScrapperShot",
-                                    ACS_ExecuteWithResult(473, 50, 100) / 100.0, 0, 11,0,0,
-                                    ACS_ExecuteWithResult(473, 40, 70) / 100.0)
+                                    ACS_ExecuteWithResult(DAKKA_GAUSSIAN, 50, 100) / 100.0, 0, 11,0,0,
+                                    ACS_ExecuteWithResult(DAKKA_GAUSSIAN, 40, 70) / 100.0)
         RSCP A 0 A_FireCustomMissile("AmmoWaster")
-        RSCP A 0 ACS_ExecuteAlways(467, 0, 2, 3, 6)
+        RSCP A 0 ACS_ExecuteAlways(DAKKA_RECOIL, 0, 2, 3, 6)
         RSCP LMNO 1 bright
         RSCP PQ 1 bright A_WeaponReady(WRF_NOBOB | WRF_NOFIRE)
         RSCP R 3 A_WeaponReady(WRF_NOBOB | WRF_NOFIRE)
@@ -159,16 +159,16 @@ actor DWep_Scrappers: DoomWeapon
         goto REnd_LStill
 
       RAlmost_LStart:
-        "----" A 0 ACS_ExecuteWithResult(397, 1, 0)
+        "----" A 0 ACS_ExecuteWithResult(DAKKA_UPDATE_SWITCHAROO, 1, 0)
         RSCP A 0 A_AlertMonsters
         LSCP A 0 A_TakeInventory("ScrapperSide")
         RSCP A 0 A_TakeInventory("ScrapperAltTimer", 1)
-        LSCP AA 0 A_PlaySound("dakka/scrapperfire", ACS_ExecuteWithResult(648, 0, 4, 7))
+        RSCP AA 0 A_PlaySound("dakka/scrapperfire", ACS_ExecuteWithResult(DAKKA_DECORATE, DEC_ROTATESOUND))
         RSCP AAAAA 0 A_FireCustomMissile("ScrapperShot",
-                                    ACS_ExecuteWithResult(473, 50, 100) / 100.0, 0, -11,0,0,
-                                    ACS_ExecuteWithResult(473, 40, 70) / 100.0)
+                                    ACS_ExecuteWithResult(DAKKA_GAUSSIAN, 50, 100) / 100.0, 0, -11,0,0,
+                                    ACS_ExecuteWithResult(DAKKA_GAUSSIAN, 40, 70) / 100.0)
         RSCP A 0 A_FireCustomMissile("AmmoWaster")
-        RSCP A 0 ACS_ExecuteAlways(467, 0, 2, 3, 6)
+        RSCP A 0 ACS_ExecuteAlways(DAKKA_RECOIL, 0, 2, 3, 6)
         LSCP LMNO 1 bright
         LSCP PQ 1 bright A_WeaponReady(WRF_NOBOB | WRF_NOFIRE)
         LSCP R 3 A_WeaponReady(WRF_NOBOB | WRF_NOFIRE)
@@ -227,15 +227,15 @@ actor DWep_Scrappers: DoomWeapon
         goto Fire // anyway
 
       AltFire:
-        "----" A 0 ACS_ExecuteWithResult(397, 1, 1)
+        "----" A 0 ACS_ExecuteWithResult(DAKKA_UPDATE_SWITCHAROO, 1, 1)
         RSCP A 0 A_AlertMonsters
         RSCP A 0 A_TakeInventory("ScrapperAltTimer")
         RSCP A 0 A_GiveInventory("ScrapperAltTimer", 2)
-        RSCP AA 0 A_PlaySound("dakka/scrapperaltfire", ACS_ExecuteWithResult(648, 0, 4, 7))
+        RSCP AA 0 A_PlaySound("dakka/scrapperaltfire", ACS_ExecuteWithResult(DAKKA_DECORATE, DEC_ROTATESOUND))
         RSCP A 0 A_FireCustomMissile("ScrapperGrenade", 0, 0, -11)
         RSCP A 0 A_FireCustomMissile("ScrapperGrenade", 0, 0,  11)
         RSCP A 0 A_FireCustomMissile("AmmoWaster")
-        RSCP A 0 ACS_ExecuteAlways(467, 0, 6, 4, 12)
+        RSCP A 0 ACS_ExecuteAlways(DAKKA_RECOIL, 0, 6, 4, 12)
         SCPR BCDEF 1 bright
         SCPR G 4
         SCPR HIJK 2
@@ -310,7 +310,6 @@ actor ScrapperShot
 
       TimeToDie:
         BAL1 C 0 A_SetTranslucent(1, 1)
-        BAL1 C 0 A_Stop
         SCRS A 0 bright A_Die
         goto Death
 
@@ -319,11 +318,11 @@ actor ScrapperShot
         SCRS A 0 A_ChangeFlag("PAINLESS", 1 - (random(0, 8) / 8))
         BAL1 C 0 A_Explode(2, 96, 0)
         BAL1 C 0 A_Explode(1, 96, 0)
-        // I am not doing 3D rotation in DECORATE.
-        //  Fuck that.
-        BAL1 CCC 0 A_SpawnItemEx("SplitScrap", 0,0,0, (ACS_ExecuteWithResult(648, 7) / 65536.0) * random(150,200)/10.0,
+        // No, I'm not going to do even remotely complicated calculations in DECORATE.
+        BAL1 CCC 0 A_SpawnItemEx("SplitScrap", 0,0,0, (ACS_ExecuteWithResult(DAKKA_DECORATE, DEC_SCRAP_XYVEL) / 65536.0) * frandom(15,20),
                                                       0,
-                                                      (ACS_ExecuteWithResult(648, 8) / 65536.0) + random(30,60)/10.0, random(-60, 60))
+                                                      (ACS_ExecuteWithResult(DAKKA_DECORATE, DEC_SCRAP_ZVEL) / 65536.0) + frandom(3,6),
+                                                      random(-60, 60))
         BAL1 C 0 A_SpawnItemEx("ScrapShotDeath")
         stop
     }
@@ -358,7 +357,7 @@ actor ScrapperTrail
     {
       Spawn:
         SCRT A 0 bright
-        SCRT A 4 bright A_JumpIf(ACS_ExecuteWithResult(470, 0), "Disappear")
+        SCRT A 4 bright A_JumpIf(ACS_ExecuteWithResult(DAKKA_DECORATE_CLIENT, CDEC_GETLESSEFFECTS), "Disappear")
         SCRT A 1 bright A_FadeOut(0.08)
         wait
 
@@ -447,7 +446,7 @@ actor ScrapperTrail2: ScrapperTrail
     {
       Spawn:
         SCRT A 0 bright
-        SCRT A 4 bright A_JumpIf(ACS_ExecuteWithResult(470, 0), "Disappear")
+        SCRT A 4 bright A_JumpIf(ACS_ExecuteWithResult(DAKKA_DECORATE_CLIENT, CDEC_GETLESSEFFECTS), "Disappear")
         SCRT A 1 bright A_FadeOut(0.04)
         wait
     }
@@ -462,7 +461,7 @@ actor ScrapperTrail3: ScrapperTrail
     {
       Spawn:
         SCRT A 0 bright
-        SCRT A 4 bright A_JumpIf(ACS_ExecuteWithResult(470, 0), "Disappear")
+        SCRT A 4 bright A_JumpIf(ACS_ExecuteWithResult(DAKKA_DECORATE_CLIENT, CDEC_GETLESSEFFECTS), "Disappear")
         SCRT A 1 bright A_FadeOut(0.04)
         wait
     }

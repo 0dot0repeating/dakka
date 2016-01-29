@@ -3,11 +3,19 @@ const int SCORESCRIPT               = 476;
 const int DAKKA_UPDATE_SWITCHAROO   = 478;
 const int DAKKA_RECOIL              = 479;
 const int DAKKA_TRACER              = 480;
+const int DAKKA_GAUSSIAN            = 482;
 
 
 
 const int DAKKA_DECORATE            = 464;
 const int DAKKA_DECORATE_CLIENT     = 465;
+
+
+// DEC = serverside DECORAET
+const int DEC_ROTATESOUND           = 0;
+const int DEC_SCRAP_XYVEL           = 1;
+const int DEC_SCRAP_ZVEL            = 2;
+
 
 
 // CDEC = clientside DECORATE
