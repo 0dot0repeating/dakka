@@ -561,6 +561,29 @@ function int strcmp(int str1, int str2)
     return 0;
 }
 
+function int strcmp_i(int str1, int str2)
+{
+    int i,j,k,l;
+    int len1 = StrLen(str1);
+    int len2 = StrLen(str2);
+    j = max(len1, len2);
+
+    for (i = 0; i < j; i++)
+    {
+        if (i >= len1) { return -1; }
+        if (i >= len2) { return  1; }
+        
+        k = GetChar(str1, i); l = GetChar(str2, i);
+
+        if (k > 64 && k < 91) { k += 32; } // upper to lower
+        if (l > 64 && l < 91) { l += 32; } // ditto
+
+        if (k > l) { return  1; }
+        if (k < l) { return -1; }
+    }
+    return 0;
+}
+
 function int strstr(int string, int substring)
 {
     return strstr_o(string, substring, 0);
