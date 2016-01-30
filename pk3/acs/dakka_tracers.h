@@ -90,6 +90,8 @@ script DAKKA_TRACER_CLIENT (int which, int startTID, int endTID) clientside
     switch (which)
     {
       case TRACE_BULLET:
+        if (GetCVar("dakka_cl_notracers") > 0) { break; }
+
         speed = 512.0;
 
         if (lesseffects)
