@@ -39,6 +39,10 @@
 #include "dakka_tempitems.h"
 
 
+// Scrap processing. For the scrapper.
+#include "dakka_scrap.h"
+
+
 // Gaussian distribution script, for spread that looks circular rather than a
 //  rectangle.
 #include "dakka_gaussian.h"
