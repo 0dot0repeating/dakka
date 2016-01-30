@@ -1,0 +1,96 @@
+decal PlasmaScorchNorm
+{
+    pic PLASMA1
+    shade "00 00 00"
+    x-scale 0.3
+    y-scale 0.3
+    randomflipx
+    randomflipy
+}
+
+decal PlasmaScorchBigger
+{
+    pic PLASMA1
+    shade "00 00 00"
+    x-scale 0.45
+    y-scale 0.45
+    randomflipx
+    randomflipy
+}
+
+decal BulletScorch
+{
+    pic SCORCH1
+    translucent 0.6
+    shade "00 00 00"
+    x-scale 0.25
+    y-scale 0.25
+    randomflipx
+    randomflipy
+}
+
+
+decal BFGScorchSmall1
+{
+	pic BFGSCRC1
+	shade "00 00 00"
+
+    x-scale 0.6 
+    y-scale 0.6 
+
+	randomflipx
+	randomflipy
+}
+
+decal BFGScorchSmall2
+{
+	pic BFGSCRC2
+	shade "00 00 00"
+
+    x-scale 0.6 
+    y-scale 0.6 
+
+	randomflipx
+	randomflipy
+}
+
+decalgroup BFGScorchSmall
+{
+	BFGScorchSmall1     1
+	BFGScorchSmall2     1
+}
+
+decal BFGLightningSmall1
+{
+	pic BFGLITE1
+	shade "80 ff 80"
+
+    x-scale 0.6 
+    y-scale 0.6 
+
+	fullbright
+	randomflipx
+	animator GoAway2
+	lowerdecal BFGScorchSmall
+}
+
+decal BFGLightningSmall2
+{
+	pic BFGLITE2
+	shade "80 ff 80"
+
+    x-scale 0.6 
+    y-scale 0.6 
+
+	fullbright
+	randomflipy
+	animator GoAway2
+	lowerdecal BFGScorchSmall
+}
+
+decalgroup BFGLightningSmall
+{
+	BFGLightningSmall1  1
+	BFGLightningSmall2  1
+}
+
