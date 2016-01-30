@@ -10,7 +10,7 @@ function int Armor_ArmorIndex(int armor)
 
     for (i = 0; i < ARMORCOUNT; i++)
     {
-        if (!strcmp(PKP_KnownArmors[i], armor))
+        if (!strcmp_i(PKP_KnownArmors[i], armor))
         {
             return i;
         }

@@ -164,6 +164,14 @@ script PICKUP_PICKUP (int index, int dropped)
     int classNum = Pickup_ClassNumber(0);
 
 
+    // Little extra convenience: if the first item entry in the pickup is
+    //  "Default", it'll use the default (unknown class) item entry instead.
+    if (!strcmp_i(PKP_ReceiveItems[index][classNum+1][0], "Default"))
+    {
+        classNum = -1;
+    }
+
+
     // So with the addition of pickup scripts being able to return a new index,
     //  we need to loop this until the chain of scripts stops returning new
     //  item numbers.

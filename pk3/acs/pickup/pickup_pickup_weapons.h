@@ -28,7 +28,7 @@ function int Weapon_WeaponIndex(int weapon)
 
     for (i = 0; i < WEAPONCOUNT; i++)
     {
-        if (!strcmp(PKP_KnownGuns[i][WEP_NAME], weapon))
+        if (!strcmp_i(PKP_KnownGuns[i][WEP_NAME], weapon))
         {
             return i;
         }

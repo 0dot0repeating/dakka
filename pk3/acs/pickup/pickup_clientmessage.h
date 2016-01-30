@@ -159,6 +159,13 @@ script PICKUP_SHOWMESSAGE (int mdata_index, int data1, int data2) clientside
     if (scriptIndex != -1)
     {
         message = ACS_ExecuteWithResult(snum, arg1, arg2, arg3);
+
+        // If the pickup script doesn't return a message, don't do pickup message behaviour.
+        if (message == 0 || StrLen(message) == 0)
+        {
+            CMSG_ClearPickupData(pln);
+            terminate;
+        }
     }
     else if (CMSG_MessageData[pln][MDATA_LOWHEALTH] > 0)
     {
