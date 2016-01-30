@@ -5,3 +5,4 @@
 #include "decorate/weapons/30_shotgun.dec"
 #include "decorate/weapons/31_supershotgun.dec"
 #include "decorate/weapons/40_chaingun.dec"
+#include "decorate/weapons/41_minigun.dec"
