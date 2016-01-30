@@ -15,6 +15,10 @@ const int DAKKA_DECORATE_CLIENT     = 465;
 const int DEC_ROTATESOUND           = 0;
 const int DEC_SCRAP_XYVEL           = 1;
 const int DEC_SCRAP_ZVEL            = 2;
+const int DEC_SSG_SHOTSLEFT         = 3;
+const int DEC_SSG_FIRED             = 4;
+const int DEC_SSG_BOTHCLICKED       = 5;
+const int DEC_SSG_REFIRE            = 6;
 
 
 
