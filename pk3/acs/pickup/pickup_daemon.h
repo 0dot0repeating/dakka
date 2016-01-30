@@ -10,8 +10,8 @@ script PICKUP_MAINLOOP open
 
     while (true)
     {
-        Pickup_UpdateClients();
-        Pickup_ActuallySend();
+        Sender_UpdateClients();
+        Sender_ActuallySend();
         Delay(1);
     }
 }
@@ -19,24 +19,49 @@ script PICKUP_MAINLOOP open
 script PICKUP_ENTER enter
 {
     int pln = PlayerNumber();
-    Pickup_ForceUpdateClient(pln);
+    int i;
+    Sender_ForceUpdateClient(pln);
 
     while (true)
     {
-        Pickup_SetData(pln, S2C_D_HEALTH,       GetActorProperty(0, APROP_Health));
-        Pickup_SetData(pln, S2C_D_CLASSNUM,     Pickup_ClassNumber(0));
-        Pickup_SetData(pln, S2C_D_CLIP,         CheckInventory("Clip"));
-        Pickup_SetData(pln, S2C_D_SHELL,        CheckInventory("Shell"));
-        Pickup_SetData(pln, S2C_D_ROCKET,       CheckInventory("RocketAmmo"));
-        Pickup_SetData(pln, S2C_D_CELL,         CheckInventory("Cell"));
+        Sender_SetData(pln, S2C_D_HEALTH,       GetActorProperty(0, APROP_Health));
+        Sender_SetData(pln, S2C_D_CLASSNUM,     Pickup_ClassNumber(0));
+        Sender_SetData(pln, S2C_D_CLIP,         CheckInventory("Clip"));
+        Sender_SetData(pln, S2C_D_SHELL,        CheckInventory("Shell"));
+        Sender_SetData(pln, S2C_D_ROCKET,       CheckInventory("RocketAmmo"));
+        Sender_SetData(pln, S2C_D_CELL,         CheckInventory("Cell"));
+
+// Debug shit
+/*
+        int time = Timer();
+
+        SetHudSize(640, 480, 1);
+        SetFont("CONFONT");
+
+        HudMessage(s:"T:", d:Timer(); HUDMSG_PLAIN, 13999, CR_YELLOW, 60.1, 48.0, 0.25);
+
+        for (i = 0; i < C2S_DATACOUNT; i++)
+        {
+            HudMessage(d:i, s:": ", d:CToS_ServerData[pln][i];
+                HUDMSG_PLAIN, 14000 + (i * 4), CR_WHITE, 60.1, 60.0 + (12.0 * i), 0.25);
+
+            if (CToS_LastReceiveTime[pln][i] - 1 == time)
+            {
+                HudMessage(s:"Ping!";
+                    HUDMSG_FADEOUT, 14001 + (i * 4), CR_GREEN,     50.2, 60.0 + (12.0 * i), 0.0, 1.0);
+                HudMessage(s:"Ping!";
+                    HUDMSG_PLAIN,   14002 + (i * 4), CR_DARKGRAY, 50.2, 60.0 + (12.0 * i), 1.0);
+            }
+        }
+// */
         Delay(1);
     }
 }
 
 script PICKUP_DISCONNECT (int pln) disconnect
 {
-    Pickup_ClearData(pln);
-    Pickup_ForceUpdateClient(pln);
+    Sender_ClearData(pln);
+    Sender_ForceUpdateClient(pln);
 }
 
 
@@ -46,6 +71,8 @@ script PICKUP_OPEN_CLIENT open clientside
     int cpln = ConsolePlayerNumber();
     int oldPickupState;
     int pickupState = -1;
+
+    CSender_ForceSendAll(cpln);
 
     while (true)
     {
@@ -81,18 +108,11 @@ script PICKUP_OPEN_CLIENT open clientside
             pickupState = cond(GetCvar("neverswitchonpickup"), 0, 2);
         }
 
-        if ((pickupState != oldPickupState) || (time % 350 == 0))
-        {
-            RequestScriptPuke(PICKUP_WEAPONSWITCH, pickupState,0,0);
-        }
+        CSender_SetData(cpln, C2S_D_SWITCHONPICKUP, pickupState);
+
+        CSender_UpdateServer(cpln);
+        CSender_ActuallySend(cpln);
 
         Delay(1);
     }
-}
-
-
-script PICKUP_WEAPONSWITCH (int pickupState) net
-{
-    int pln = PlayerNumber();
-    C2S_WeaponSwitchState[pln] = pickupState;
 }

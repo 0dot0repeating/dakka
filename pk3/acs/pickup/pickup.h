@@ -3,6 +3,11 @@
 //  but why the fuck would you?
 
 
+// This is a library dedicated to making pickups give different items to
+//  different classes. Theoretically, you could use it for just one class,
+//  but why the fuck would you?
+
+
 // What each file corresponds to:
 //
 //
@@ -80,6 +85,19 @@
 //  to the client are found. The system-critical S2C definitions are here too.
 //
 //
+//      == pickup_server_defs ==
+//
+// What pickup_client_defs is to server-to-client communication,
+//  pickup_server_defs is to client-to-server. If you just want to add slots to
+//  this, you should only need to go into here.
+//
+//      
+//      == pickup_server ==
+//
+// The client needs to keep the server in the loop on some things as well. That
+//  shit's handled here.
+//
+//
 //      == pickup_clientmessage ==
 //
 // When a pickup succeeds, the server sends the client some script calls, giving
@@ -112,6 +130,10 @@
 // Well, so long as you get rid of the script stuff.
 
 #include "pickup_const.h"
+#include "pickup_client_defs.h"
+#include "pickup_client.h"
+#include "pickup_server_defs.h"
+#include "pickup_server.h"
 #include "pickup_classes.h"
 #include "pickup_items.h"
 #include "pickup_items_pickup.h"
@@ -126,8 +148,6 @@
 #include "pickup_pickup_armor.h"
 #include "pickup_pickup_ammo.h"
 #include "pickup_pickup.h"
-#include "pickup_client_defs.h"
-#include "pickup_client.h"
 #include "pickup_clientmessage.h"
 #include "pickup_display.h"
 #include "pickup_daemon.h"

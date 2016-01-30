@@ -72,7 +72,7 @@ function int Pickup_IsZandronum(void)
 
 
 // Base function for setting server-to-client data.
-function void Pickup_SetData(int pln, int index, int value)
+function void Sender_SetData(int pln, int index, int value)
 {
     int oldval = SToC_ServerData[pln][index];
     if (oldval == value) { return; }
@@ -86,13 +86,13 @@ function void Pickup_SetData(int pln, int index, int value)
 // Clear all server-to-client data for the specified player number. This is
 //  called on disconnect to make sure no data propagates to the next client
 //  accidentally.
-function void Pickup_ClearData(int pln)
+function void Sender_ClearData(int pln)
 {
     int i;
 
     for (i = 0; i < S2C_DATACOUNT; i++)
     {
-        Pickup_SetData(pln, i, 0);
+        Sender_SetData(pln, i, 0);
     }
 }
 
@@ -105,7 +105,7 @@ function void Pickup_ClearData(int pln)
 //
 // This is to avoid dumb issues with scripts being last-in-first-out when it
 //  comes to executing.
-function void Pickup_SendData(int pln, int index)
+function void Sender_SendData(int pln, int index)
 {
     SToC_ToSend[pln][index] = true;
 }
@@ -113,7 +113,7 @@ function void Pickup_SendData(int pln, int index)
 
 
 // Check if we need to send any data to anyone, and if so, do so.
-function void Pickup_UpdateClients(void)
+function void Sender_UpdateClients(void)
 {
     int i, j;
 
@@ -132,7 +132,7 @@ function void Pickup_UpdateClients(void)
 
             if ((lastSend < 0) || (Timer() - lastSend > S2C_RESENDTIME))
             {
-                Pickup_SendData(i, j);
+                Sender_SendData(i, j);
             }
         }
     }
@@ -141,20 +141,20 @@ function void Pickup_UpdateClients(void)
 
 
 // Force a data send for a certain player number.
-function void Pickup_ForceUpdateClient(int pln)
+function void Sender_ForceUpdateClient(int pln)
 {
     int i;
 
     for (i = 0; i < S2C_DATACOUNT; i++)
     {
-        Pickup_SendData(pln, i);
+        Sender_SendData(pln, i);
     }
 }
 
 
 
 // Okay NOW send the crap. This should only ever be run by PICKUP_MAINLOOP.
-function void Pickup_ActuallySend(void)
+function void Sender_ActuallySend(void)
 {
     int i, j;
 
@@ -170,6 +170,9 @@ function void Pickup_ActuallySend(void)
 
                 // As of Zandronum 2.1.2, negative numbers between -1 and -128
                 //  come to the client as 256 + <val>. This is to hack around that.
+                //
+                // This issue is fixed in 3.0. The little hack won't be necessary
+                //  at that point, but it also won't cause any real harm.
                 if (data < 0) { data -= 128; }
 
                 if (useAlways)
@@ -193,7 +196,7 @@ function void Pickup_ActuallySend(void)
 
 // Ping back from the client to server, to let the server know you got the data
 //  properly. In single player/ZDoom at all, just set the value directly.
-function void Pickup_PingBack(int pln, int index, int value)
+function void Sender_PingBack(int pln, int index, int value)
 {
     if (Pickup_IsZandronum() && !IsServer)
     {
@@ -234,7 +237,7 @@ script PICKUP_SENDTOCLIENT (int pln, int index, int value) clientside
     // Don't send pingbacks for data that isn't ours.
     if (pln == cpln)
     {
-        Pickup_PingBack(pln, index, value);
+        Sender_PingBack(pln, index, value);
     }
 }
 
