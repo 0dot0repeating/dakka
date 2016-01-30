@@ -117,3 +117,16 @@ dakka/gyrojetexplode        sounds/ssg/gyrojet_explode.ogg
 $limit dakka/gyrojetexplode 0
 $volume dakka/gyrojetexplode 0.125
 $rolloff dakka/gyrojetexplode 32 1024
+
+
+
+
+////////
+// CHAINGUN
+///
+
+dakka/chaingunfire          sounds/chaingun/chaingun_fire.ogg
+dakka/chaingunaltfire       sounds/chaingun/chaingun_altfire.ogg
+dakka/chaingundetonate      sounds/chaingun/chaingun_detonate.ogg
+
+$alias dakka/rainexplode    dakka/gyrojetexplode
