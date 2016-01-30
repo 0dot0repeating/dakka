@@ -47,7 +47,7 @@ function void Dakka_ProcessScrap(void)
         itemCount   = CheckInventory(item);
         fullBatches = itemCount / needed;
 
-        GiveInventory("DakkaScrap", toGive * fullBatches);
+        GiveAmmo("DakkaScrap", toGive * fullBatches);
         TakeInventory(item,         needed * fullBatches);
     }
 }
