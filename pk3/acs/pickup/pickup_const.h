@@ -3,7 +3,6 @@
 #define PICKUP_ENTER        282
 #define PICKUP_DISCONNECT   283
 #define PICKUP_OPEN_CLIENT  284
-#define PICKUP_WEAPONSWITCH 285
 
 // Used in pickup_client.h
 #define PICKUP_SENDTOCLIENT 286
@@ -19,6 +18,10 @@
 // Used in pickup.c because of how small a script it is
 #define PICKUP_DROPPED      291
 
+// Used in pickup_server.h
+#define PICKUP_SENDTOSERVER 292
+#define PICKUP_PINGCLIENT   293
+
 
 
 // There's not much we can do to make client-specific display work in ZDoom
@@ -29,10 +32,3 @@ int IsZandronum = -1;
 
 // Also for Zandronum.
 int IsServer;
-
-
-// For weapon pickup.
-// - 0 means "never switch".
-// - 1 means "switch on better".
-// - 2 means "always switch".
-int C2S_WeaponSwitchState[PLAYERMAX];

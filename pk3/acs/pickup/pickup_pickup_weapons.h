@@ -156,7 +156,7 @@ function void Weapon_PickupWeapon(int wepIndex, int count, int dropped)
     {
         int doswitch = false;
 
-        switch (C2S_WeaponSwitchState[PlayerNumber()])
+        switch (CToS_ServerData[PlayerNumber()][C2S_D_SWITCHONPICKUP])
         {
           case 0:
             // Never switch
