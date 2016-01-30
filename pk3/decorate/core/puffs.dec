@@ -31,6 +31,7 @@ actor DakkaPuff: BulletPuff
     +PUFFGETSOWNER
     +ALWAYSPUFF
     +PUFFONACTORS
+    +FORCEXYBILLBOARD
     +NOTIMEFREEZE
 
     Radius 1
@@ -65,11 +66,11 @@ actor DakkaPuff: BulletPuff
 
       Trace:
         TNT1 A 0 bright ACS_ExecuteWithResult(DAKKA_TRACER, TRACE_BULLET, 0, -6)
-        DPUF AB 4 bright
+        DPUF AB 2 bright
         goto Melee
         
       Melee:
-        DPUF CD 4
+        DPUF CD 2
         Stop
     }
 }
@@ -109,6 +110,7 @@ actor DakkaBulletSpark
     +THRUACTORS
     +DOOMBOUNCE
     +NOTIMEFREEZE
+    +FORCEXYBILLBOARD
     +DONTSPLASH
 
     Gravity 0.5
@@ -148,6 +150,7 @@ actor DakkaTracer
     +NOINTERACTION
     +CLIENTSIDEONLY
     +NOTIMEFREEZE
+    +FORCEXYBILLBOARD
     +DONTSPLASH
 
     Radius 0
