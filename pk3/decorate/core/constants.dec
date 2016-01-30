@@ -11,7 +11,7 @@ const int DAKKA_DECORATE            = 464;
 const int DAKKA_DECORATE_CLIENT     = 465;
 
 
-// DEC = serverside DECORAET
+// DEC = serverside DECORATE
 const int DEC_ROTATESOUND           = 0;
 const int DEC_SCRAP_XYVEL           = 1;
 const int DEC_SCRAP_ZVEL            = 2;
