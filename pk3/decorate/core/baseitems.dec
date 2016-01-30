@@ -37,11 +37,9 @@ actor DakkaDoneAMap:     Boolean {}
 
 actor MainFired:         Boolean {}
 actor AltFired:          Boolean {}
+actor EitherClicked:     Boolean {}
 actor MainClicked:       Boolean {}
 actor AltClicked:        Boolean {}
-
-actor FireSSGAgain:      Boolean {}
-actor ReloadSSG:         Boolean {}
 
 actor GiveScrapCounter:  Counter {}
 actor GiveScrapCounter2: Counter {}
