@@ -19,7 +19,7 @@ streamlining things, and so on and so forth.
 * Recoil system, if anyone actually used that
 * HUD, though the color-changing parts of it are non-functional right now
 * Tracer system, cleaned up and much better at respecting your pitch
-* Fists, scrappers, pistols, shotgun
+* Fists, scrappers, pistols, shotgun, super shotgun
 
 ## How long's it gonna take to add all the shit back in?
 

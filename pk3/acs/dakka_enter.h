@@ -21,9 +21,15 @@ script DAKKA_SPAWN (int respawned)
         // This is in dakka_tempitems.h
         Dakka_UpdateTemporaryItems();
 
+        // In dakka_scrap.h
+        Dakka_ProcessScrap();
+
         oldScore = curScore;
         curScore = PlayerMapScores[pln];
 
+        // In score/score_display.h
+        // TODO: Move this to clientside display,
+        //       using the pickup client->server system
         Score_Update(pln);
         Delay(1);
     }
