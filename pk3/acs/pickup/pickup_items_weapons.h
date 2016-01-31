@@ -1,4 +1,4 @@
-#define WEAPONCOUNT    48
+#define WEAPONCOUNT    60
 #define REPLCOUNT   3
 
 #define WEP_NAME    0
@@ -12,7 +12,22 @@ int PKP_KnownGuns[WEAPONCOUNT][3] =
 {
 //  Name                        Ammo 1                      Ammo 2
 //
-    // DOOM                                                 
+    // DAKKA (12 weapons)
+    {"DWep_Fists",              "",                         ""},
+    {"DWep_Scrappers",          "DakkaScrap",               ""},
+    {"DWep_Pistol",             "DakkaBullet_10mm",         ""},
+    {"DWep_Pistols",            "DakkaBullet_10mm",         ""},
+    {"DWep_Shotgun",            "DakkaShells",              "DakkaShotGrenades"},
+    {"DWep_SuperShotgun",       "DakkaShells",              "DakkaGyroShells"},
+    {"DWep_Chaingun",           "DakkaBullet_5mm",          "DakkaRainGrenades"},
+    {"DWep_Minigun",            "DakkaBullet_5mm",          "DakkaFlamerFuel"},
+    {"DWep_RocketLauncher",     "DakkaRockets",             ""},
+    {"DWep_PlasmaRifle",        "DakkaCells",               ""},
+    {"DWep_Channeler",          "DakkaCells",               ""},
+    {"DWep_BFG9000",            "DakkaCells",               ""},
+
+
+    // DOOM (9 weapons)
     {"Fist",                    "",                         ""},
     {"Chainsaw",                "",                         ""},
     {"Pistol",                  "Clip",                     ""},
@@ -23,7 +38,7 @@ int PKP_KnownGuns[WEAPONCOUNT][3] =
     {"PlasmaRifle",             "Cell",                     ""},
     {"BFG9000",                 "Cell",                     ""},
 
-    // CHEX QUEST                                           
+    // CHEX QUEST (9 weapons)
     {"Bootspoon",               "",                         ""},
     {"SuperBootspork",          "",                         ""},
     {"MiniZorcher",             "Clip",                     ""},
@@ -34,7 +49,7 @@ int PKP_KnownGuns[WEAPONCOUNT][3] =
     {"PhasingZorcher",          "Cell",                     ""},
     {"LAZDevice",               "Cell",                     ""},
 
-    // HERETIC                                              
+    // HERETIC (8 weapons)
     {"Staff",                   "",                         ""},
     {"Gauntlets",               "",                         ""},
     {"GoldWand",                "GoldWandAmmo",             ""},
@@ -44,7 +59,7 @@ int PKP_KnownGuns[WEAPONCOUNT][3] =
     {"SkullRod",                "SkullRodAmmo",             ""},
     {"Mace",                    "MaceAmmo",                 ""},
 
-    // HEXEN
+    // HEXEN (16 weapons)
     {"FWeapFist",               "",                         ""},
     {"CWeapMace",               "",                         ""},
     {"MWeapWand",               "",                         ""},
@@ -58,7 +73,7 @@ int PKP_KnownGuns[WEAPONCOUNT][3] =
     {"CWeapWraithverge",        "Mana1",                    "Mana2"},
     {"MWeapBloodscourge",       "Mana1",                    "Mana2"},
 
-    // STRIFE                                               
+    // STRIFE (10 weapons)
     {"PunchDagger",             "",                         ""},
     {"StrifeCrossbow",          "ElectricBolts",            ""},
     {"StrifeCrossbow2",         "PoisonBolts",              ""},
@@ -77,6 +92,19 @@ int PKP_KnownGuns[WEAPONCOUNT][3] =
 
 int PKP_WeaponPriorities[WEAPONCOUNT] =
 {
+    3700,   // DWep_Fists
+    1100,   // DWep_Scrappers
+    1900,   // DWep_Pistol
+    1500,   // DWep_Pistols
+    1300,   // DWep_Shotgun
+    400,    // DWep_SuperShotgun
+    700,    // DWep_Chaingun
+    350,    // DWep_Minigun
+    300,    // DWep_RocketLauncher
+    100,    // DWep_PlasmaRifle
+    100,    // DWep_Channeler
+    1000,   // DWep_BFG9000
+
     3700,   // Fist
     2200,   // Chainsaw
     1900,   // Pistol

@@ -1,3 +1,4 @@
 #include "decorate/core.dec"
 #include "decorate/weapons.dec"
+#include "decorate/pickups.dec"
 #include "decorate/monsters.dec"
