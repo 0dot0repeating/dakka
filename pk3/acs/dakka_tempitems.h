@@ -1,4 +1,4 @@
-#define TMPITEM_COUNT       14
+#define TMPITEM_COUNT       20
 
 #define TMP_LEFTFIRE        0
 #define TMP_RIGHTFIRE       1
@@ -16,6 +16,14 @@
 
 #define TMP_DOOMKEYS        12
 #define TMP_CARDKEYS        13
+
+#define TMP_AMMO1_ABNORMAL  14
+#define TMP_AMMO1_25        15
+#define TMP_AMMO1_0         16
+
+#define TMP_AMMO2_ABNORMAL  17
+#define TMP_AMMO2_25        18
+#define TMP_AMMO2_0         19
 
 int TempChecks[TMPITEM_COUNT];
 
@@ -35,6 +43,12 @@ int TempItems[TMPITEM_COUNT] =
     "HealthUnder0",
     "HUD_AnyDoomKeys",
     "HUD_AnyCardKeys",
+    "AbnormalAmmo1",
+    "Ammo1Under25",
+    "Ammo1Empty",
+    "AbnormalAmmo2",
+    "Ammo2Under25",
+    "Ammo2Empty",
 };
 
 
@@ -65,6 +79,48 @@ function void Dakka_UpdateTemporaryItems(void)
 
     TempChecks[TMP_DOOMKEYS]        = gotCards || gotSkulls;
     TempChecks[TMP_CARDKEYS]        = gotCards;
+
+    // pickup/pickup_pickup_weapons.h
+    int wepIndex    = Weapon_CurrentWeaponIndex();
+    int ammo1Name   = PKP_KnownGuns[wepIndex][WEP_AMMO1];
+    int ammo2Name   = PKP_KnownGuns[wepIndex][WEP_AMMO2];
+
+    if (wepIndex == -1 || StrLen(ammo1Name) == 0)
+    {
+        TempChecks[TMP_AMMO1_ABNORMAL]  = false;
+        TempChecks[TMP_AMMO1_25]        = false;
+        TempChecks[TMP_AMMO1_0]         = false;
+    }
+    else
+    {
+        int ammo1Cur = CheckInventory(ammo1Name);
+        int ammo1Max = GetAmmoCapacity(ammo1Name);
+        int ammo1Percent = itof(ammo1Cur) / ammo1Max;
+
+        // note: 1 is actually 1.0 / 65536, do not get confused
+        TempChecks[TMP_AMMO1_ABNORMAL]  = ammo1Percent <= 0.25;
+        TempChecks[TMP_AMMO1_25]        = middle(1, ammo1Percent, 0.25) == ammo1Percent;
+        TempChecks[TMP_AMMO1_0]         = ammo1Percent <= 0;
+    }
+
+    if (wepIndex == -1 || StrLen(ammo2Name) == 0)
+    {
+        TempChecks[TMP_AMMO2_ABNORMAL]  = false;
+        TempChecks[TMP_AMMO2_25]        = false;
+        TempChecks[TMP_AMMO2_0]         = false;
+    }
+    else
+    {
+        int ammo2Cur = CheckInventory(ammo2Name);
+        int ammo2Max = GetAmmoCapacity(ammo2Name);
+        int ammo2Percent = itof(ammo2Cur) / ammo2Max;
+
+        // note: 1 is actually 1.0 / 65536, do not get confused
+        TempChecks[TMP_AMMO2_ABNORMAL]  = ammo2Percent <= 0.25;
+        TempChecks[TMP_AMMO2_25]        = middle(1, ammo2Percent, 0.25) == ammo2Percent;
+        TempChecks[TMP_AMMO2_0]         = ammo2Percent <= 0;
+    }
+
 
     int i;
 

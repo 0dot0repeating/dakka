@@ -1,14 +1,26 @@
-#define AMMOCOUNT   19
+#define AMMOCOUNT   29
 
 int PKP_KnownAmmo[AMMOCOUNT] = 
 {
-    // DOOM
+    // DAKKA (10)
+    "DakkaScrap",
+    "DakkaBullet_10mm",
+    "DakkaShells",
+    "DakkaShotGrenades",
+    "DakkaGyroShells",
+    "DakkaBullet_5mm",
+    "DakkaRainGrenades",
+    "DakkaFlamerFuel",
+    "DakkaRockets",
+    "DakkaCells",
+
+    // DOOM (4)
     "Clip",
     "Shell",
     "RocketAmmo",
     "Cell",
 
-    // HERETIC
+    // HERETIC (6)
     "GoldWandAmmo",
     "BlasterAmmo",
     "CrossbowAmmo",
@@ -16,11 +28,11 @@ int PKP_KnownAmmo[AMMOCOUNT] =
     "SkullRodAmmo",
     "MaceAmmo",
 
-    // HEXEN
+    // HEXEN (2)
     "Mana1",
     "Mana2",
 
-    // STRIFE
+    // STRIFE (7)
     "ClipOfBullets",
     "ElectricBolts",
     "PoisonBolts",

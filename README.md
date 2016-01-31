@@ -15,9 +15,9 @@ streamlining things, and so on and so forth.
 
 * Score system
 * Arc system
-* Pickup system, though not configured for Dakka yet
+* Pickup system, though only partially configured for Dakka yet
 * Recoil system, if anyone actually used that
-* HUD, though most of the color-changing parts of it are non-functional right now
+* HUD, though the armor color changing part is non-functional right now
 * Tracer system, cleaned up and much better at respecting your pitch
 * All of the guns
 
