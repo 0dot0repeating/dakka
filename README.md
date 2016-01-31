@@ -14,13 +14,13 @@ streamlining things, and so on and so forth.
 
 ## So what *is* in so far?
 
-* Score system
+* HUD
 * Arc system
-* Pickup system, though only partially configured for Dakka yet
-* Recoil system, if anyone actually used that
-* HUD, though the armor color changing part is non-functional right now
-* Tracer system, cleaned up and much better at respecting your pitch
+* Score system
 * All of the guns
+* Recoil system, if anyone actually used that
+* Pickup system, though only partially configured for Dakka yet
+* Tracer system, cleaned up and much better at respecting your pitch
 
 ## How long's it gonna take to add all the shit back in?
 

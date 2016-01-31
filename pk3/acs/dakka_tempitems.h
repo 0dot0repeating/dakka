@@ -1,4 +1,4 @@
-#define TMPITEM_COUNT       20
+#define TMPITEM_COUNT       25
 
 #define TMP_LEFTFIRE        0
 #define TMP_RIGHTFIRE       1
@@ -25,6 +25,12 @@
 #define TMP_AMMO2_25        18
 #define TMP_AMMO2_0         19
 
+#define TMP_KNOWNARMOR      20
+#define TMP_ARMOR100        21
+#define TMP_ARMOR75         22
+#define TMP_ARMOR50         23
+#define TMP_ARMOR25         24
+
 int TempChecks[TMPITEM_COUNT];
 
 int TempItems[TMPITEM_COUNT] =
@@ -49,12 +55,34 @@ int TempItems[TMPITEM_COUNT] =
     "AbnormalAmmo2",
     "Ammo2Under25",
     "Ammo2Empty",
+    "HUD_KnownArmor",
+    "HUD_Armor100",
+    "HUD_Armor75",
+    "HUD_Armor50",
+    "HUD_Armor25",
+};
+
+
+// Keep this in sync with armor items in pickup/pickup_items_armor.h.
+int TempArmorItems[ARMORCOUNT] =
+{
+    "HUD_GreenArmor",
+    "HUD_GreenArmor",
+    "HUD_BlueArmor",
+    "HUD_BlueArmor",
+    "HUD_SilverArmor",
+    "HUD_GoldArmor",
+    "HUD_TanArmor",
+    "HUD_SilverArmor",
+    "HUD_RedArmor",
 };
 
 
 
 function void Dakka_UpdateTemporaryItems(void)
 {
+    int i;
+
     TempChecks[TMP_LEFTFIRE]        = keyDown(BT_ATTACK);
     TempChecks[TMP_RIGHTFIRE]       = keyDown(BT_ALTATTACK);
     TempChecks[TMP_LEFTCLICK]       = keyPressed(BT_ATTACK);
@@ -64,6 +92,16 @@ function void Dakka_UpdateTemporaryItems(void)
 
     TempChecks[TMP_INFINITEAMMO]    = GetCVar("sv_infiniteammo") || CheckInventory("PowerInfiniteAmmo");
     TempChecks[TMP_CLASSITEM]       = classNum == Cl_Dakkaguy;
+    
+
+
+    int gotCards  = CheckInventory("BlueCard")  || CheckInventory("YellowCard")  || CheckInventory("RedCard");
+    int gotSkulls = CheckInventory("BlueSkull") || CheckInventory("YellowSkull") || CheckInventory("RedSkull");
+
+    TempChecks[TMP_DOOMKEYS]        = gotCards || gotSkulls;
+    TempChecks[TMP_CARDKEYS]        = gotCards;
+
+
 
     int health = GetActorProperty(0, APROP_Health);
 
@@ -73,12 +111,51 @@ function void Dakka_UpdateTemporaryItems(void)
     TempChecks[TMP_HEALTH50]        = middle( 25, health,  49) == health;
     TempChecks[TMP_HEALTH25]        = middle(  1, health,  24) == health;
     TempChecks[TMP_HEALTH0]         = health < 0;
-    
-    int gotCards  = CheckInventory("BlueCard")  || CheckInventory("YellowCard")  || CheckInventory("RedCard");
-    int gotSkulls = CheckInventory("BlueSkull") || CheckInventory("YellowSkull") || CheckInventory("RedSkull");
 
-    TempChecks[TMP_DOOMKEYS]        = gotCards || gotSkulls;
-    TempChecks[TMP_CARDKEYS]        = gotCards;
+
+
+    // pickup/pickup_pickup_armor.h
+    int armorIndex  = Armor_CurrentArmorIndex();
+
+    // I'd just use armorCount here, but ACS is case-insensitive...
+    //  fucking hate that.
+    int armorInv    = CheckInventory("BasicArmor");
+
+    if (armorIndex == -1)
+    {
+        TempChecks[TMP_KNOWNARMOR]  = false;
+
+        // ARMOR100/75/50/25 isn't used if we have an unknown armor.
+        //
+        // I'm lazy.
+
+        for (i = 0; i < ARMORCOUNT; i++)
+        {
+            SetInventory(TempArmorItems[i], 0);
+        }
+    }
+    else
+    {
+        TempChecks[TMP_KNOWNARMOR]  = true;
+
+        int armorHUDItem = TempArmorItems[armorIndex];
+
+        for (i = 0; i < ARMORCOUNT; i++)
+        {
+            int curItem = TempArmorItems[i];
+            SetInventory(curItem, strcmp_i(curItem, armorHUDItem) == 0);
+        }
+
+        int armorMax      = PKP_ArmorData[armorIndex][ARM_MAXPOINTS];
+        int armorQuadrant = (armorInv * 4) / armorMax;
+
+        TempChecks[TMP_ARMOR100] = armorQuadrant >= 3;
+        TempChecks[TMP_ARMOR75]  = armorQuadrant == 2;
+        TempChecks[TMP_ARMOR50]  = armorQuadrant == 1;
+        TempChecks[TMP_ARMOR25]  = armorQuadrant <= 0;
+    }
+
+
 
     // pickup/pickup_pickup_weapons.h
     int wepIndex    = Weapon_CurrentWeaponIndex();
@@ -122,15 +199,12 @@ function void Dakka_UpdateTemporaryItems(void)
     }
 
 
-    int i;
 
     for (i = 0; i < TMPITEM_COUNT; i++)
     {
         int item        = TempItems[i];
         int getItem     = TempChecks[i];
-        int haveItem    = CheckInventory(item);
 
-        if ( getItem && !haveItem) { GiveInventory(item, 1); }
-        if (!getItem &&  haveItem) { TakeInventory(item, 0x7FFFFFFF); }
+        SetInventory(item, getItem);
     }
 }
