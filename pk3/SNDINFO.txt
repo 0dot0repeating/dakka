@@ -152,3 +152,15 @@ dakka/firecrackle           sounds/minigun/minigun_firecrackle.ogg
 $volume dakka/minigun/flamestart    0.75
 $volume dakka/minigun/flamestop     0.75
 $volume dakka/minigun/flameloop     0.75
+
+
+
+
+////////
+// ROCKET LAUNCHER
+///
+
+
+dakka/rocketfire            sounds/rocketlauncher/rocket_fire.ogg
+dakka/rocketload            sounds/rocketlauncher/rocket_load.wav
+dakka/rocketaltfire         sounds/rocketlauncher/rocket_altfire.ogg
