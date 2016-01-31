@@ -26,6 +26,9 @@ script DAKKA_SPAWN (int respawned)
         // In dakka_scrap.h
         Dakka_ProcessScrap();
 
+        // In dakka_ssg.h
+        SSG_AutoReload();
+
         // In score/score_update.h
         Air_UpdateZHeight();
 
