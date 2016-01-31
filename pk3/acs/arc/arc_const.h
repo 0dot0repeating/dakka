@@ -64,5 +64,5 @@ str STR_ArcData[ARCTYPES][ARCDATA_STR] =
 int INT_ArcData[ARCTYPES][ARCDATA_INT] = 
 {
     {288.0, 0.75,  0.5, false, false, 8.0},
-    {192.0, 0.25,  0.0, false, true,  8.0},
+    {192.0, 0.25,  0.0, false, false, 8.0},
 };
