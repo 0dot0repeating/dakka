@@ -48,7 +48,7 @@ actor DWep_SuperShotgun: DoomWeapon
         goto Ready2
 
       Ready2:
-        DSSG A 69 A_WeaponReady
+        DSSG A 49 A_WeaponReady
         goto Ready3
 
       Ready3:
