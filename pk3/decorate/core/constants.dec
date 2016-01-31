@@ -19,6 +19,7 @@ const int DEC_SSG_SHOTSLEFT         = 3;
 const int DEC_SSG_FIRED             = 4;
 const int DEC_SSG_BOTHCLICKED       = 5;
 const int DEC_SSG_REFIRE            = 6;
+const int DEC_RL_ALTFIRE            = 7;
 
 
 

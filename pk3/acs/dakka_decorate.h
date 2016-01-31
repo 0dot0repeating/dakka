@@ -9,6 +9,7 @@ int RotatingSoundIndex[PLAYERMAX];
 #define DEC_SSG_FIRED       4
 #define DEC_SSG_BOTHCLICKED 5
 #define DEC_SSG_REFIRE      6
+#define DEC_RL_ALTFIRE      7
 
 script DAKKA_DECORATE (int mode, int a1, int a2)
 {
@@ -69,6 +70,11 @@ script DAKKA_DECORATE (int mode, int a1, int a2)
 
       case DEC_SSG_REFIRE:
         ret = keyPressed_any(BT_ATTACK | BT_ALTATTACK) && (CheckInventory("DakkaSSG_ShotsFired") < SSG_SHOTMAX);
+        break;
+
+      case DEC_RL_ALTFIRE:
+        ret = (CheckInventory("DakkaRockets") - CheckInventory("DakkaRocketsLoaded")) > 0;
+        ret |= CheckInventory("DakkaInfiniteAmmo");
         break;
     }
 
