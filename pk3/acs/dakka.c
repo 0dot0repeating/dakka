@@ -47,6 +47,10 @@
 #include "dakka_ssg.h"
 
 
+// BFG BEAM SON
+#include "dakka_bfg.h"
+
+
 // Gaussian distribution script, for spread that looks circular rather than a
 //  rectangle.
 #include "dakka_gaussian.h"

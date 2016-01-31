@@ -2,6 +2,9 @@
 #define TRACE_PLASMA        1
 #define TRACE_ARC_FIRER     2
 #define TRACE_ARC_MASTER    3
+#define TRACE_BFG           4
+#define TRACE_BFG_INSTANT   5
+#define TRACE_BFG_DELAYED   6
 
 
 // DakkaTracer is the tracer actor
@@ -45,6 +48,7 @@ script DAKKA_TRACER (int which, int yoff, int zoff)
 
       case TRACE_PLASMA:
       case TRACE_ARC_FIRER:
+      case TRACE_BFG:
         pointX = 20.0;
         break;
 
@@ -87,7 +91,19 @@ script DAKKA_TRACER (int which, int yoff, int zoff)
     SpawnForced("TracerDummy", spawnX, spawnY, spawnZ, tracerTID1);
     SpawnForced("TracerDummy",  shotX,  shotY,  shotZ, tracerTID2);
 
-    ACS_ExecuteAlways(DAKKA_TRACER_CLIENT, 0, which, tracerTID1, tracerTID2);
+
+    switch (which)
+    {
+      default:
+        ACS_ExecuteAlways(DAKKA_TRACER_CLIENT, 0, which, tracerTID1, tracerTID2);
+        break;
+
+      case TRACE_BFG:
+        // These will be in dakka_bfg.h
+        ACS_ExecuteWithResult(DAKKA_BFGTRACE_SERVER, tracerTID1, tracerTID2);
+        ACS_ExecuteAlways(DAKKA_BFGTRACE_CLIENT, 0, tracerTID1, tracerTID2);
+        break;
+    }
 }
 
 
