@@ -60,8 +60,16 @@ script DAKKA_DECORATE (int mode, int a1, int a2)
       case DEC_SSG_FIRED:
         if (a1 == 0) { a1 = 1; }
 
-        if (a1 < 0) { TakeInventory("DakkaSSG_ShotsFired", -a1); }
-        else        { GiveInventory("DakkaSSG_ShotsFired",  a1); }
+        if (a1 < 0)
+        {
+            TakeInventory("DakkaSSG_ShotsFired", -a1);
+            SSG_AutoReloadCooldown[pln] = 0;
+        }
+        else
+        {
+            GiveInventory("DakkaSSG_ShotsFired",  a1);
+            SSG_AutoReloadCooldown[pln] = 35;
+        }
         break;
 
       case DEC_SSG_BOTHCLICKED:

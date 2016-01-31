@@ -2,4 +2,6 @@
 
 int IsZand;
 
+int SSG_AutoReloadCooldown[PLAYERMAX];
+
 int PlayerTIDs[PLAYERMAX];

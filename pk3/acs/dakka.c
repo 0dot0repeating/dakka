@@ -43,6 +43,10 @@
 #include "dakka_scrap.h"
 
 
+// Auto-reload the SSG when it's in your pants.
+#include "dakka_ssg.h"
+
+
 // Gaussian distribution script, for spread that looks circular rather than a
 //  rectangle.
 #include "dakka_gaussian.h"
