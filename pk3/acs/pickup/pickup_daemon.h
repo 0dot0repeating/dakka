@@ -24,12 +24,8 @@ script PICKUP_ENTER enter
 
     while (true)
     {
-        Sender_SetData(pln, S2C_D_HEALTH,       GetActorProperty(0, APROP_Health));
-        Sender_SetData(pln, S2C_D_CLASSNUM,     Pickup_ClassNumber(0));
-        Sender_SetData(pln, S2C_D_CLIP,         CheckInventory("Clip"));
-        Sender_SetData(pln, S2C_D_SHELL,        CheckInventory("Shell"));
-        Sender_SetData(pln, S2C_D_ROCKET,       CheckInventory("RocketAmmo"));
-        Sender_SetData(pln, S2C_D_CELL,         CheckInventory("Cell"));
+        // Add 1 so that the the unknown class index is presented to the client as 0.
+        Sender_SetData(pln, S2C_D_CLASSNUM,     Pickup_ClassNumber(0) + 1);
 
 // Debug shit
 /*

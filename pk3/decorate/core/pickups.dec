@@ -56,6 +56,11 @@ actor ClassBasedPickup: CustomInventory
         TNT1 A -1
         stop
 
+      // Pickup script example. Arguments in order <item index>, <dropped>
+      Pickup:
+        TNT1 A 0 A_JumpIf(ACS_ExecuteWithResult(PICKUP_PICKUP, 0, 0) == 1, "PickedUp")
+        goto NotPickedUp
+
       PickedUp:
         // This is just here so that 'stop' actually works.
         TNT1 A 0 A_ChangeFlag("ROCKETTRAIL", 0)

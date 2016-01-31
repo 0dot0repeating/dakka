@@ -8,60 +8,8 @@
 int PKP_Messages[PICKUPCOUNT][CLASSCOUNT] = 
 {
     {
-        "Picked up a clip.",
-        "Picked up a clip.",
-    },
-    {
-        "Picked up a box of bullets.",
-        "Picked up a box of bullets.",
-    },
-    {
-        "Picked up 4 shotgun shells.",
-        "Picked up a clip.",
-    },
-    {
-        "Picked up a box of shotgun shells.",
-        "Picked up a box of bullets.",
-    },
-    {
-        "Picked up a rocket.",
-        "Picked up a clip.",
-    },
-    {
-        "Picked up a box of rockets.",
-        "Picked up a box of bullets.",
-    },
-    {
-        "Picked up an energy cell.",
-        "Picked up a clip.",
-    },
-    {
-        "Picked up an energy cell pack.",
-        "Picked up a box of bullets.",
-    },
-    {
-        "$GOTSTIM",
-        "$GOTSTIM",
-    },
-    {
-        "$GOTHTHBONUS",
-        "$GOTHTHBONUS",
-    },
-    {
-        "$GOTSHOTGUN",
-        "$GOTSHOTGUN",
-    },
-    {
-        "$GOTARMOR",
-        "$GOTARMOR",
-    },
-    {
-        "$GOTMEGA",
-        "$GOTMEGA",
-    },
-    {
-        "$GOTARMBONUS",
-        "$GOTARMBONUS",
+        "$GOTCHAINSAW",
+        "Scrappers!",
     },
 };
 
@@ -86,58 +34,6 @@ int PKP_PickupFlashes[PICKUPCOUNT][CLASSCOUNT][5] =
         {255, 255, 64, 0.1, 0.25},
         {255, 255, 64, 0.1, 0.25},
     },
-    {
-        {255, 255, 64, 0.1, 0.25},
-        {255, 255, 64, 0.1, 0.25},
-    },
-    {
-        {255, 255, 64, 0.1, 0.25},
-        {255, 255, 64, 0.1, 0.25},
-    },
-    {
-        {255, 255, 64, 0.1, 0.25},
-        {255, 255, 64, 0.1, 0.25},
-    },
-    {
-        {255, 255, 64, 0.1, 0.25},
-        {255, 255, 64, 0.1, 0.25},
-    },
-    {
-        {255, 255, 64, 0.1, 0.25},
-        {255, 255, 64, 0.1, 0.25},
-    },
-    {
-        {255, 255, 64, 0.1, 0.25},
-        {255, 255, 64, 0.1, 0.25},
-    },
-    {
-        {255, 255, 64, 0.1, 0.25},
-        {255, 255, 64, 0.1, 0.25},
-    },
-    {
-        {255, 255, 64, 0.1, 0.25},
-        {255, 255, 64, 0.1, 0.25},
-    },
-    {
-        {255, 255, 64, 0.1, 0.25},
-        {255, 255, 64, 0.1, 0.25},
-    },
-    {
-        {255, 255, 64, 0.1, 0.25},
-        {255, 255, 64, 0.1, 0.25},
-    },
-    {
-        {255, 255, 64, 0.1, 0.25},
-        {255, 255, 64, 0.1, 0.25},
-    },
-    {
-        {255, 255, 64, 0.1, 0.25},
-        {255, 255, 64, 0.1, 0.25},
-    },
-    {
-        {255, 255, 64, 0.1, 0.25},
-        {255, 255, 64, 0.1, 0.25},
-    },
 };
 
 
@@ -146,59 +42,7 @@ int PKP_PickupFlashes[PICKUPCOUNT][CLASSCOUNT][5] =
 int PKP_PickupSounds[PICKUPCOUNT][CLASSCOUNT] =
 {
     {
-        "misc/i_pkup",
-        "misc/i_pkup",
-    },
-    {
-        "misc/i_pkup",
-        "misc/i_pkup",
-    },
-    {
-        "misc/i_pkup",
-        "misc/i_pkup",
-    },
-    {
-        "misc/i_pkup",
-        "misc/i_pkup",
-    },
-    {
-        "misc/i_pkup",
-        "misc/i_pkup",
-    },
-    {
-        "misc/i_pkup",
-        "misc/i_pkup",
-    },
-    {
-        "misc/i_pkup",
-        "misc/i_pkup",
-    },
-    {
-        "misc/i_pkup",
-        "misc/i_pkup",
-    },
-    {
-        "misc/i_pkup",
-        "misc/i_pkup",
-    },
-    {
-        "misc/i_pkup",
-        "misc/i_pkup",
-    },
-    {
         "misc/w_pkup",
         "misc/w_pkup",
-    },
-    {
-        "misc/i_pkup",
-        "misc/i_pkup",
-    },
-    {
-        "misc/i_pkup",
-        "misc/i_pkup",
-    },
-    {
-        "misc/i_pkup",
-        "misc/i_pkup",
     },
 };
