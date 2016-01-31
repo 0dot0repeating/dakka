@@ -164,3 +164,18 @@ $volume dakka/minigun/flameloop     0.75
 dakka/rocketfire            sounds/rocketlauncher/rocket_fire.ogg
 dakka/rocketload            sounds/rocketlauncher/rocket_load.wav
 dakka/rocketaltfire         sounds/rocketlauncher/rocket_altfire.ogg
+
+
+
+
+////////
+// PLASMA RIFLE
+///
+
+
+dakka/plasmafire            sounds/plasmarifle/plasma_fire.ogg
+dakka/plasmabeam            sounds/plasmarifle/plasma_altfire.ogg
+dakka/plasmaexplode         sounds/plasmarifle/plasma_explode.ogg
+
+$limit dakka/plasmafire     0
+$limit dakka/plasmaexplode  0

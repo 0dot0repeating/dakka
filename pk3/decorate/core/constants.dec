@@ -29,3 +29,4 @@ const int CDEC_GETLESSEFFECTS       = 0;
 
 
 const int TRACE_BULLET  = 0;
+const int TRACE_PLASMA  = 1;

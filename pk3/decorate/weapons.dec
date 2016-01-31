@@ -7,3 +7,4 @@
 #include "decorate/weapons/40_chaingun.dec"
 #include "decorate/weapons/41_minigun.dec"
 #include "decorate/weapons/50_rocketlauncher.dec"
+#include "decorate/weapons/60_plasmarifle.dec"
