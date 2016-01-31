@@ -12,9 +12,9 @@ int Scrap_Items[SCRAPTYPES] =
 #define SCRAP_GIVE      1
 int Scrap_Batches[SCRAPTYPES][2] =
 {
-    {10,  1},
-    {200, 20},
-    {160, 16},
+    {10, 1},
+    {20, 20}, // Cells
+    {24, 16}, // Flamer
 };
 
 function void Dakka_ProcessScrap(void)
@@ -48,6 +48,6 @@ function void Dakka_ProcessScrap(void)
         fullBatches = itemCount / needed;
 
         GiveAmmo("DakkaScrap", toGive * fullBatches);
-        TakeInventory(item,         needed * fullBatches);
+        TakeInventory(item,    needed * fullBatches);
     }
 }
