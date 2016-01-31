@@ -196,3 +196,15 @@ arc/fire4 sounds/channeler/arcfire4.ogg
 $random arc/fire { arc/fire1 arc/fire2 arc/fire3 arc/fire4 }
 
 arc/altfire sounds/channeler/arc_altfire.ogg
+
+
+
+
+////////
+// BFG9000
+///
+
+
+dakka/bfgfire               sounds/bfg/bfg_fire.ogg
+dakka/bfg_altfire           sounds/bfg/bfg_altfire.ogg
+dakka/bfgexplode            sounds/bfg/bfg_explode.ogg

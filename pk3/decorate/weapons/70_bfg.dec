@@ -26,228 +26,156 @@ actor DWep_BFG9000: DoomWeapon
     States
     {
       Select:
-        BBFG AA 0 A_Raise
-        BBFG A 1 A_Raise
+        DBFG AA 0 A_Raise
+        DBFG A 1 A_Raise
         loop
 
       Deselect:
-        BBFG AAA 0 A_Lower
-        BBFG A 1 A_Lower
+        DBFG AAA 0 A_Lower
+        DBFG A 1 A_Lower
         loop
 
       Ready:
-        BBFG A 1 A_WeaponReady
+        DBFG A 1 A_WeaponReady
         loop
 
       Fire:
-        BBFG B 30 bright A_PlaySound("dakka/bfgfire", CHAN_WEAPON)
+        DBFG B 30 bright A_PlaySound("dakka/bfgfire", CHAN_WEAPON)
         "----" A 0 ACS_ExecuteWithResult(DAKKA_UPDATE_SWITCHAROO, 9, 0)
-        BBFG B 0 A_GunFlash
-        BBFG B 0 bright A_PlaySound("dakka/bfgexplode", 5)
-        BBFG B 0 A_FireCustomMissile("AmmoWaster")
-        BBFG B 0 A_SpawnItemEx("Dakka_BFGLaser", 0,0,32, 32767 * cos(pitch), 0, 32767 * -sin(pitch), angle, SXF_ABSOLUTEANGLE)
-        BBFG B 0 A_FireBullets(0, 0, 1, 0, "BFGLaserPuff", 0)
-        BBFG A 0 A_GiveInventory("GiveScrapCounter2", 80000)
-        BBFG A 0 ACS_ExecuteAlways(DAKKA_RECOIL, 0, 10, 4, 18)
-        BBFG B 0 A_JumpIfInventory("RuneSpread", 1, "Spread")
+        DBFG B 0 A_GunFlash
+        DBFG B 0 bright A_PlaySound("dakka/bfgexplode", 5)
+        DBFG B 0 A_FireCustomMissile("AmmoWaster")
+        DBFG B 0 A_SpawnItemEx("Dakka_BFGLaser", 0,0,32, 32767 * cos(pitch), 0, 32767 * -sin(pitch), angle, SXF_ABSOLUTEANGLE)
+        DBFG B 0 A_FireBullets(0, 0, 1, 0, "BFGLaserPuff", 0)
+        DBFG A 0 A_GiveInventory("GiveScrapCounter2", 80000)
+        DBFG A 0 ACS_ExecuteAlways(DAKKA_RECOIL, 0, 10, 4, 18)
+        DBFG B 0 A_JumpIfInventory("RuneSpread", 1, "Spread")
         goto Fire2
 
       Spread:
-        BBFG B 0 A_SpawnItemEx("Dakka_BFGLaser", 0,0,32, 32767 * cos(pitch), 0, 32767 * -sin(pitch), angle-15, SXF_ABSOLUTEANGLE)
-        BBFG B 0 A_SpawnItemEx("Dakka_BFGLaser", 0,0,32, 32767 * cos(pitch), 0, 32767 * -sin(pitch), angle+15, SXF_ABSOLUTEANGLE)
+        DBFG B 0 A_SpawnItemEx("Dakka_BFGLaser", 0,0,32, 32767 * cos(pitch), 0, 32767 * -sin(pitch), angle-15, SXF_ABSOLUTEANGLE)
+        DBFG B 0 A_SpawnItemEx("Dakka_BFGLaser", 0,0,32, 32767 * cos(pitch), 0, 32767 * -sin(pitch), angle+15, SXF_ABSOLUTEANGLE)
         goto Fire2
 
       Fire2:
-        BBFG B 2 bright offset(0, 38)
-        BBFG C 5 bright offset(0, 43)
-        BBFG C 2 bright offset(0, 41)
-        BBFG C 2 bright offset(0, 38)
-        BBFG C 2 bright offset(0, 35)
-        BBFG C 1 bright offset(0, 29)
-        BBFG C 1 bright offset(0, 29) A_ReFire
-        BBFG C 3 bright A_WeaponReady(WRF_NOBOB)
-        BBFG B 4 bright offset(0, 32) A_WeaponReady(WRF_NOBOB)
+        DBFG B 2 bright offset(0, 38)
+        DBFG C 5 bright offset(0, 43)
+        DBFG C 2 bright offset(0, 41)
+        DBFG C 2 bright offset(0, 38)
+        DBFG C 2 bright offset(0, 35)
+        DBFG C 1 bright offset(0, 29)
+        DBFG C 1 bright offset(0, 29) A_ReFire
+        DBFG C 3 bright A_WeaponReady(WRF_NOBOB)
+        DBFG B 4 bright offset(0, 32) A_WeaponReady(WRF_NOBOB)
         goto Ready
 
       Hold:
-        BBFG C 1 bright offset(0, 26) A_PlaySound("dakka/bfgfire", CHAN_WEAPON)
-        BBFG C 3 bright
-        BBFG B 4 bright offset(0, 32)
-        BBFG B 22 bright
+        DBFG C 1 bright offset(0, 26) A_PlaySound("dakka/bfgfire", CHAN_WEAPON)
+        DBFG C 3 bright
+        DBFG B 4 bright offset(0, 32)
+        DBFG B 22 bright
         goto Fire+1
 
       AltFire:
         "----" A 0 ACS_ExecuteWithResult(DAKKA_UPDATE_SWITCHAROO, 9, 1)
-        BBFG B 0 A_PlaySound("dakka/bfg_altfire", ACS_ExecuteWithResult(DAKKA_DECORATE, DEC_ROTATESOUND))
-        BBFG B 0 A_FireCustomMissile("Dakka_TinyBFGBall")
-        PKPL A 0 A_GiveInventory("GiveScrapCounter2", 8000)
-        BBFG A 0 ACS_ExecuteAlways(DAKKA_RECOIL, 0, 2, 4, 8)
-        BBFG B 1 bright offset(0, 37) A_GunFlash
-        BBFG C 2 bright offset(0, 29)
-        BBFG C 2 bright offset(0, 27)
-        BBFG B 1 offset(0, 34)
-        BBFG B 0 offset(0, 32) A_Refire
+        DBFG B 0 A_PlaySound("dakka/bfg_altfire", ACS_ExecuteWithResult(DAKKA_DECORATE, DEC_ROTATESOUND))
+        DBFG B 0 A_FireCustomMissile("Dakka_TinyBFGBall")
+        DBFG A 0 A_GiveInventory("GiveScrapCounter2", 8000)
+        DBFG A 0 ACS_ExecuteAlways(DAKKA_RECOIL, 0, 2, 4, 8)
+        DBFG B 1 bright offset(0, 37) A_GunFlash
+        DBFG C 2 bright offset(0, 29)
+        DBFG C 2 bright offset(0, 27)
+        DBFG B 1 offset(0, 34)
+        DBFG B 0 offset(0, 32) A_Refire
         goto Ready
 
       Flash:
-        BBFF B  8 bright A_Light2
-        BBFF A  7 bright A_Light1
-        BBFF C  6 bright A_Light1
-        BBFF DE 6 bright
+        DBFF B  8 bright A_Light2
+        DBFF A  7 bright A_Light1
+        DBFF C  6 bright A_Light1
+        DBFF DE 6 bright
         Goto LightDone
 
       Flash:
-        BBFF B  4 bright A_Light2
-        BBFF A  3 bright A_Light1
-        BBFF C  2 bright A_Light1
-        BBFF E  1 bright
+        DBFF B  4 bright A_Light2
+        DBFF A  3 bright A_Light1
+        DBFF C  2 bright A_Light1
+        DBFF E  1 bright
         Goto LightDone
 
       Spawn:
-        BBFG Z -1
+        DBFG Z -1
         stop
     }
 }
 
-actor DakkaBFGBestJumpan: PowerProtection
+actor DakkaBFGJumpan: PowerProtection
 {
     DamageFactor "DakkaBFG", 0.25
 }
 
-actor DakkaBFGNotBestJumpan: PowerProtection
-{
-    DamageFactor "DakkaBFG", 0.35
-}
-
-actor BetterBFGBall
+actor Dakka_TinyBFGBall
 {
     Radius 6
     Height 6
-    Speed 40
+    Speed 65
 
     Projectile
-    Damage (620)
+    Damage (100)
     DamageType "DakkaBFG"
 
     +MTHRUSPECIES
     +RANDOMIZE
-    +FORCERADIUSDMG
-    +NODAMAGETHRUST
     +EXTREMEDEATH
+    +FORCERADIUSDMG
+    +FOILINVUL
 
     Renderstyle Add
     Alpha 0.75
-    Decal BFGLightning
+    Scale 0.5
+    Decal "BFGLightningSmall"
 
     DeathSound "dakka/bfgexplode"
-    Obituary "$DAKKA_MP_BFG9000"
+    Obituary "$DAKKA_MP_BFG9000_BLAST"
 
     States
     {
       Spawn:
-        BBFP A 0        A_Explode(128, 128, 0)
-        BBFP A 0        A_SpawnItemEx("BFGTrail", 0, random(-18, 18), random(-18, 18), random(-2, 2), random(-2, 2), random(-2, 2))
-        BBFP A 1 bright A_SpawnItemEx("BFGTrail", 0, random(-18, 18), random(-18, 18), random(-2, 2), random(-2, 2), random(-2, 2))
-        BBFP A 0        A_Explode(128, 128, 0)
-        BBFP A 0        A_SpawnItemEx("BFGTrail", 0, random(-18, 18), random(-18, 18), random(-2, 2), random(-2, 2), random(-2, 2))
-        BBFP A 1 bright A_SpawnItemEx("BFGTrail", 0, random(-18, 18), random(-18, 18), random(-2, 2), random(-2, 2), random(-2, 2))
-        BBFP A 0        A_Explode(128, 128, 0)
-        BBFP A 0        A_SpawnItemEx("BFGTrail", 0, random(-18, 18), random(-18, 18), random(-2, 2), random(-2, 2), random(-2, 2))
-        BBFP A 1 bright A_SpawnItemEx("BFGTrail", 0, random(-18, 18), random(-18, 18), random(-2, 2), random(-2, 2), random(-2, 2))
-        BBFP A 0        A_Explode(128, 128, 0)
-        BBFP A 0        A_SpawnItemEx("BFGTrail", 0, random(-18, 18), random(-18, 18), random(-2, 2), random(-2, 2), random(-2, 2))
-        BBFP A 1 bright A_SpawnItemEx("BFGTrail", 0, random(-18, 18), random(-18, 18), random(-2, 2), random(-2, 2), random(-2, 2))
-        BBFP B 0        A_Explode(128, 128, 0)
-        BBFP B 0        A_SpawnItemEx("BFGTrail", 0, random(-18, 18), random(-18, 18), random(-2, 2), random(-2, 2), random(-2, 2))
-        BBFP B 1 bright A_SpawnItemEx("BFGTrail", 0, random(-18, 18), random(-18, 18), random(-2, 2), random(-2, 2), random(-2, 2))
-        BBFP B 0        A_Explode(128, 128, 0)
-        BBFP B 0        A_SpawnItemEx("BFGTrail", 0, random(-18, 18), random(-18, 18), random(-2, 2), random(-2, 2), random(-2, 2))
-        BBFP B 1 bright A_SpawnItemEx("BFGTrail", 0, random(-18, 18), random(-18, 18), random(-2, 2), random(-2, 2), random(-2, 2))
-        BBFP B 0        A_Explode(128, 128, 0)
-        BBFP B 0        A_SpawnItemEx("BFGTrail", 0, random(-18, 18), random(-18, 18), random(-2, 2), random(-2, 2), random(-2, 2))
-        BBFP B 1 bright A_SpawnItemEx("BFGTrail", 0, random(-18, 18), random(-18, 18), random(-2, 2), random(-2, 2), random(-2, 2))
-        BBFP B 0        A_Explode(128, 128, 0)
-        BBFP B 0        A_SpawnItemEx("BFGTrail", 0, random(-18, 18), random(-18, 18), random(-2, 2), random(-2, 2), random(-2, 2))
-        BBFP B 1 bright A_SpawnItemEx("BFGTrail", 0, random(-18, 18), random(-18, 18), random(-2, 2), random(-2, 2), random(-2, 2))
+        DBFP AAAABBBB 1 bright A_SpawnItemEx("TinyBFGTrail", 0, random(-9, 9), random(-9, 9), random(-1, 1), random(-1, 1), random(-1, 1))
         loop
 
       Death:
-        BBFP A 0 A_ChangeFlag("NODAMAGETHRUST", 0)
-        BBFP A 0 A_SpawnItemEx("BFGTrail", 0,0,0, 14.095389311788626,0,-1.3073361412148725, 0)
-        BBFP A 0 A_SpawnItemEx("BFGTrail", 0,0,0, 15.035081932574535,0,-1.3944918839625307, 20)
-        BBFP A 0 A_SpawnItemEx("BFGTrail", 0,0,0, 12.21600407021681,0,-1.1330246557195562, 40)
-        BBFP A 0 A_SpawnItemEx("BFGTrail", 0,0,0, 13.155696691002717,0,-1.2201803984672144, 60)
-        BBFP A 0 A_SpawnItemEx("BFGTrail", 0,0,0, 12.21600407021681,0,-1.1330246557195562, 80)
-        BBFP A 0 A_SpawnItemEx("BFGTrail", 0,0,0, 12.21600407021681,0,-1.1330246557195562, 100)
-        BBFP A 0 A_SpawnItemEx("BFGTrail", 0,0,0, 13.155696691002717,0,-1.2201803984672144, 120)
-        BBFP A 0 A_SpawnItemEx("BFGTrail", 0,0,0, 12.21600407021681,0,-1.1330246557195562, 140)
-        BBFP A 0 A_SpawnItemEx("BFGTrail", 0,0,0, 13.155696691002717,0,-1.2201803984672144, 160)
-        BBFP A 0 A_SpawnItemEx("BFGTrail", 0,0,0, 13.155696691002717,0,-1.2201803984672144, 180)
-        BBFP A 0 A_SpawnItemEx("BFGTrail", 0,0,0, 15.035081932574535,0,-1.3944918839625307, 200)
-        BBFP A 0 A_SpawnItemEx("BFGTrail", 0,0,0, 14.095389311788626,0,-1.3073361412148725, 220)
-        BBFP A 0 A_SpawnItemEx("BFGTrail", 0,0,0, 14.095389311788626,0,-1.3073361412148725, 240)
-        BBFP A 0 A_SpawnItemEx("BFGTrail", 0,0,0, 12.21600407021681,0,-1.1330246557195562, 260)
-        BBFP A 0 A_SpawnItemEx("BFGTrail", 0,0,0, 14.095389311788626,0,-1.3073361412148725, 280)
-        BBFP A 0 A_SpawnItemEx("BFGTrail", 0,0,0, 12.21600407021681,0,-1.1330246557195562, 300)
-        BBFP A 0 A_SpawnItemEx("BFGTrail", 0,0,0, 15.035081932574535,0,-1.3944918839625307, 320)
-        BBFP A 0 A_SpawnItemEx("BFGTrail", 0,0,0, 13.155696691002717,0,-1.2201803984672144, 340)
-        BBFP A 0 A_SpawnItemEx("BFGTrail", 0,0,0, 12.0,0,0.0, 0)
-        BBFP A 0 A_SpawnItemEx("BFGTrail", 0,0,0, 16.0,0,0.0, 20)
-        BBFP A 0 A_SpawnItemEx("BFGTrail", 0,0,0, 14.0,0,0.0, 40)
-        BBFP A 0 A_SpawnItemEx("BFGTrail", 0,0,0, 16.0,0,0.0, 60)
-        BBFP A 0 A_SpawnItemEx("BFGTrail", 0,0,0, 12.0,0,0.0, 80)
-        BBFP A 0 A_SpawnItemEx("BFGTrail", 0,0,0, 13.0,0,0.0, 100)
-        BBFP A 0 A_SpawnItemEx("BFGTrail", 0,0,0, 12.0,0,0.0, 120)
-        BBFP A 0 A_SpawnItemEx("BFGTrail", 0,0,0, 15.0,0,0.0, 140)
-        BBFP A 0 A_SpawnItemEx("BFGTrail", 0,0,0, 12.0,0,0.0, 160)
-        BBFP A 0 A_SpawnItemEx("BFGTrail", 0,0,0, 15.0,0,0.0, 180)
-        BBFP A 0 A_SpawnItemEx("BFGTrail", 0,0,0, 14.0,0,0.0, 200)
-        BBFP A 0 A_SpawnItemEx("BFGTrail", 0,0,0, 13.0,0,0.0, 220)
-        BBFP A 0 A_SpawnItemEx("BFGTrail", 0,0,0, 15.0,0,0.0, 240)
-        BBFP A 0 A_SpawnItemEx("BFGTrail", 0,0,0, 15.0,0,0.0, 260)
-        BBFP A 0 A_SpawnItemEx("BFGTrail", 0,0,0, 16.0,0,0.0, 280)
-        BBFP A 0 A_SpawnItemEx("BFGTrail", 0,0,0, 13.0,0,0.0, 300)
-        BBFP A 0 A_SpawnItemEx("BFGTrail", 0,0,0, 13.0,0,0.0, 320)
-        BBFP A 0 A_SpawnItemEx("BFGTrail", 0,0,0, 16.0,0,0.0, 340)
-        BBFP A 0 A_SpawnItemEx("BFGTrail", 0,0,0, 13.155696691002717,0,1.2201803984672144, 0)
-        BBFP A 0 A_SpawnItemEx("BFGTrail", 0,0,0, 11.276311449430901,0,1.045868912971898, 20)
-        BBFP A 0 A_SpawnItemEx("BFGTrail", 0,0,0, 11.276311449430901,0,1.045868912971898, 40)
-        BBFP A 0 A_SpawnItemEx("BFGTrail", 0,0,0, 11.276311449430901,0,1.045868912971898, 60)
-        BBFP A 0 A_SpawnItemEx("BFGTrail", 0,0,0, 13.155696691002717,0,1.2201803984672144, 80)
-        BBFP A 0 A_SpawnItemEx("BFGTrail", 0,0,0, 13.155696691002717,0,1.2201803984672144, 100)
-        BBFP A 0 A_SpawnItemEx("BFGTrail", 0,0,0, 13.155696691002717,0,1.2201803984672144, 120)
-        BBFP A 0 A_SpawnItemEx("BFGTrail", 0,0,0, 12.21600407021681,0,1.1330246557195562, 140)
-        BBFP A 0 A_SpawnItemEx("BFGTrail", 0,0,0, 14.095389311788626,0,1.3073361412148725, 160)
-        BBFP A 0 A_SpawnItemEx("BFGTrail", 0,0,0, 12.21600407021681,0,1.1330246557195562, 180)
-        BBFP A 0 A_SpawnItemEx("BFGTrail", 0,0,0, 13.155696691002717,0,1.2201803984672144, 200)
-        BBFP A 0 A_SpawnItemEx("BFGTrail", 0,0,0, 13.155696691002717,0,1.2201803984672144, 220)
-        BBFP A 0 A_SpawnItemEx("BFGTrail", 0,0,0, 12.21600407021681,0,1.1330246557195562, 240)
-        BBFP A 0 A_SpawnItemEx("BFGTrail", 0,0,0, 11.276311449430901,0,1.045868912971898, 260)
-        BBFP A 0 A_SpawnItemEx("BFGTrail", 0,0,0, 14.095389311788626,0,1.3073361412148725, 280)
-        BBFP A 0 A_SpawnItemEx("BFGTrail", 0,0,0, 11.276311449430901,0,1.045868912971898, 300)
-        BBFP A 0 A_SpawnItemEx("BFGTrail", 0,0,0, 13.155696691002717,0,1.2201803984672144, 320)
-        BBFP A 0 A_SpawnItemEx("BFGTrail", 0,0,0, 11.276311449430901,0,1.045868912971898, 340)
-        BBFP A 0 ACS_ExecuteWithResult(648, 2, 1)
-        BBFP C 0 A_GiveToTarget("DakkaBFGBestJumpan")
-        BBFP A 0 A_ChangeFlag("NODAMAGETHRUST", 0)
-        BBFP C 0 bright A_Explode(128, 160)
-        BBFP C 0 bright A_Explode(96, 256)
-        BBFP C 0 A_TakeFromTarget("DakkaBFGBestJumpan")
-        BBFP A 0 A_ChangeFlag("NODAMAGETHRUST", 1)
-        BBFP C 0 bright A_Explode(96, 256, 0)
-        BBFP C 0 bright A_Explode(256, 512, 0)
-        BBFP A 0 ACS_ExecuteWithResult(648, 2, 0)
+        DBFP A 0 A_SpawnItemEx("BFGTrail", 0,0,0, 2.0,0,0.0, 0)
+        DBFP A 0 A_SpawnItemEx("BFGTrail", 0,0,0, 6.0,0,0.0, 20)
+        DBFP A 0 A_SpawnItemEx("BFGTrail", 0,0,0, 4.0,0,0.0, 40)
+        DBFP A 0 A_SpawnItemEx("BFGTrail", 0,0,0, 6.0,0,0.0, 60)
+        DBFP A 0 A_SpawnItemEx("BFGTrail", 0,0,0, 2.0,0,0.0, 80)
+        DBFP A 0 A_SpawnItemEx("BFGTrail", 0,0,0, 3.0,0,0.0, 100)
+        DBFP A 0 A_SpawnItemEx("BFGTrail", 0,0,0, 2.0,0,0.0, 120)
+        DBFP A 0 A_SpawnItemEx("BFGTrail", 0,0,0, 5.0,0,0.0, 140)
+        DBFP A 0 A_SpawnItemEx("BFGTrail", 0,0,0, 2.0,0,0.0, 160)
+        DBFP A 0 A_SpawnItemEx("BFGTrail", 0,0,0, 5.0,0,0.0, 180)
+        DBFP A 0 A_SpawnItemEx("BFGTrail", 0,0,0, 4.0,0,0.0, 200)
+        DBFP A 0 A_SpawnItemEx("BFGTrail", 0,0,0, 3.0,0,0.0, 220)
+        DBFP A 0 A_SpawnItemEx("BFGTrail", 0,0,0, 5.0,0,0.0, 240)
+        DBFP A 0 A_SpawnItemEx("BFGTrail", 0,0,0, 5.0,0,0.0, 260)
+        DBFP A 0 A_SpawnItemEx("BFGTrail", 0,0,0, 6.0,0,0.0, 280)
+        DBFP A 0 A_SpawnItemEx("BFGTrail", 0,0,0, 3.0,0,0.0, 300)
+        DBFP A 0 A_SpawnItemEx("BFGTrail", 0,0,0, 3.0,0,0.0, 320)
+        DBFP A 0 A_SpawnItemEx("BFGTrail", 0,0,0, 6.0,0,0.0, 340)
 
-        BBFP C 4 bright A_BFGSpray("BetterBFGSplash", 15, 12)
-        BBFP D 4 bright
-        BBFP E 4 bright A_BFGSpray("BetterBFGSplash", 15, 12)
-        BBFP F 4 bright
-        BBFP G 8 bright A_BFGSpray("BetterBFGSplash", 15, 12)
-        BBFP H 8 bright A_BFGSpray("BetterBFGSplash", 15, 12)
-        BBFP H 4 bright A_BFGSpray("BetterBFGSplash", 15, 12)
+        DBFP C 0 A_GiveToTarget("DakkaBFGJumpan")
+        //DBFP A 0 ACS_ExecuteWithResult(648, 2, 1)
+        DBFP C 0 bright A_Explode(128, 160)
+        DBFP C 0 A_TakeFromTarget("DakkaBFGJumpan")
+        DBFP C 0 bright A_Explode(82, 160, 0)
+        //DBFP A 0 ACS_ExecuteWithResult(648, 2, 0)
+
+        DBFP CDEFGHH 2
         stop
     }
 }
+
 
 actor Dakka_BFGLaser: FastProjectile
 {
@@ -270,13 +198,15 @@ actor Dakka_BFGLaser: FastProjectile
         loop
 
       Death:
-        BBFP A 0 ACS_ExecuteWithResult(455, 1)
-        BBFP A 0 A_SpawnItemEx("DakkaBFGBeamEnd")
-        BBFP A 0 A_SpawnItemEx("DakkaBFGBeamEnd_Client")
+        DBFP A 0 ACS_ExecuteWithResult(DAKKA_TRACER, TRACE_BFG, 0, -14)
+        DBFP A 0 A_SpawnItemEx("DakkaBFGBeamEnd")
+        DBFP A 0 A_SpawnItemEx("DakkaBFGBeamEnd_Client")
         stop
     }
 }
 
+
+// This exists purely to make a decal on a wall.
 actor BFGLaserPuff: BulletPuff
 {
     +NOINTERACTION
@@ -295,79 +225,6 @@ actor BFGLaserPuff: BulletPuff
 }
 
 
-actor Dakka_TinyBFGBall: BetterBFGBall
-{
-    Radius 4
-    Height 4
-    Speed 65
-
-    Damage (100)
-
-    -NODAMAGETHRUST
-    +FORCERADIUSDMG
-    +FOILINVUL
-
-    Scale 0.5
-
-    DeathSound "dakka/bfgexplode"
-    Obituary "$DAKKA_MP_BFG9000_BLAST"
-
-    Decal "BFGLightningSmall"
-
-    States
-    {
-      Spawn:
-        BBFP AAAABBBB 1 bright A_SpawnItemEx("TinyBFGTrail", 0, random(-9, 9), random(-9, 9), random(-1, 1), random(-1, 1), random(-1, 1))
-        loop
-
-      Death:
-        BBFP A 0 A_SpawnItemEx("BFGTrail", 0,0,0, 2.0,0,0.0, 0)
-        BBFP A 0 A_SpawnItemEx("BFGTrail", 0,0,0, 6.0,0,0.0, 20)
-        BBFP A 0 A_SpawnItemEx("BFGTrail", 0,0,0, 4.0,0,0.0, 40)
-        BBFP A 0 A_SpawnItemEx("BFGTrail", 0,0,0, 6.0,0,0.0, 60)
-        BBFP A 0 A_SpawnItemEx("BFGTrail", 0,0,0, 2.0,0,0.0, 80)
-        BBFP A 0 A_SpawnItemEx("BFGTrail", 0,0,0, 3.0,0,0.0, 100)
-        BBFP A 0 A_SpawnItemEx("BFGTrail", 0,0,0, 2.0,0,0.0, 120)
-        BBFP A 0 A_SpawnItemEx("BFGTrail", 0,0,0, 5.0,0,0.0, 140)
-        BBFP A 0 A_SpawnItemEx("BFGTrail", 0,0,0, 2.0,0,0.0, 160)
-        BBFP A 0 A_SpawnItemEx("BFGTrail", 0,0,0, 5.0,0,0.0, 180)
-        BBFP A 0 A_SpawnItemEx("BFGTrail", 0,0,0, 4.0,0,0.0, 200)
-        BBFP A 0 A_SpawnItemEx("BFGTrail", 0,0,0, 3.0,0,0.0, 220)
-        BBFP A 0 A_SpawnItemEx("BFGTrail", 0,0,0, 5.0,0,0.0, 240)
-        BBFP A 0 A_SpawnItemEx("BFGTrail", 0,0,0, 5.0,0,0.0, 260)
-        BBFP A 0 A_SpawnItemEx("BFGTrail", 0,0,0, 6.0,0,0.0, 280)
-        BBFP A 0 A_SpawnItemEx("BFGTrail", 0,0,0, 3.0,0,0.0, 300)
-        BBFP A 0 A_SpawnItemEx("BFGTrail", 0,0,0, 3.0,0,0.0, 320)
-        BBFP A 0 A_SpawnItemEx("BFGTrail", 0,0,0, 6.0,0,0.0, 340)
-
-        BBFP C 0 A_GiveToTarget("DakkaBFGNotBestJumpan")
-        BBFP A 0 ACS_ExecuteWithResult(648, 2, 1)
-        BBFP C 0 bright A_Explode(128, 160)
-        BBFP C 0 A_TakeFromTarget("DakkaBFGNotBestJumpan")
-        BBFP C 0 bright A_Explode(82, 160, 0)
-        BBFP A 0 ACS_ExecuteWithResult(648, 2, 0)
-
-        BBFP CDEFGHH 2
-        stop
-    }
-}
-
-
-actor BetterBFGSplash
-{
-    +NOINTERACTION
-    +CLIENTSIDEONLY
-    RenderStyle Add
-    Alpha 0.75
-    
-    States
-    {
-      Spawn:
-        BBFE ABCD 4 bright
-        stop
-    }
-}
-
 actor BFGTrail
 {
     +NOINTERACTION
@@ -380,10 +237,11 @@ actor BFGTrail
     States
     {
       Spawn:
-        BBFE BBBBCCCC 1 bright A_FadeOut(0.03)
+        DBFE BBBBCCCC 1 bright A_FadeOut(0.03)
         loop
     }
 }
+
 
 actor TinyBFGTrail: BFGTrail
 {
@@ -391,37 +249,6 @@ actor TinyBFGTrail: BFGTrail
     Scale 0.375
 }
 
-actor DakkaBFGBeam_X: Counter {}
-actor DakkaBFGBeam_Y: Counter {}
-actor DakkaBFGBeam_Z: Counter {}
-
-actor DakkaBFGInstantBeam_Item: Trigger
-{
-    States
-    {
-      Use:
-        TNT1 A 0 A_SpawnItemEx("DakkaBFGInstantBeam",
-                                ACS_ExecuteWithResult(462, 0) / 65536.0 - x,
-                                ACS_ExecuteWithResult(462, 1) / 65536.0 - y,
-                                ACS_ExecuteWithResult(462, 2) / 65536.0 - z,
-                                0,0,0, 0, SXF_ABSOLUTEPOSITION | SXF_ABSOLUTEANGLE)
-        stop
-    }
-}
-
-actor DakkaBFGMainBeam_Item: Trigger
-{
-    States
-    {
-      Use:
-        TNT1 A 0 A_SpawnItemEx("DakkaBFGMainBeam",
-                                ACS_ExecuteWithResult(462, 0) / 65536.0 - x,
-                                ACS_ExecuteWithResult(462, 1) / 65536.0 - y,
-                                ACS_ExecuteWithResult(462, 2) / 65536.0 - z,
-                                0,0,0, 0, SXF_ABSOLUTEPOSITION | SXF_ABSOLUTEANGLE)
-        stop
-    }
-}
 
 actor DakkaBFGInstantBeam
 {
@@ -497,8 +324,8 @@ actor DakkaBFGBeamStart
     {
       Spawn:
         TNT1 A 0
-        BBFP C 0 bright A_Explode(128, 160, 0)
-        BBFP C 0 bright A_Explode(96, 256, 0)
+        DBFP C 0 bright A_Explode(128, 160, 0)
+        DBFP C 0 bright A_Explode(96, 256, 0)
         stop
     }
 }
@@ -512,7 +339,6 @@ actor DakkaBFGBeamEnd
     +SERVERSIDEONLY
     +PUFFGETSOWNER
     +FORCERADIUSDMG
-    +NODAMAGETHRUST
     +EXTREMEDEATH
     +FORCERADIUSDMG
 
@@ -524,14 +350,13 @@ actor DakkaBFGBeamEnd
     {
       Spawn:
         TNT1 A 0
-        BBFP C 0 A_GiveToTarget("DakkaBFGBestJumpan")
-        BBFP A 0 A_ChangeFlag("NODAMAGETHRUST", 0)
-        BBFP C 0 bright A_Explode(128, 160)
-        BBFP C 0 bright A_Explode(96, 256)
-        BBFP C 0 A_TakeFromTarget("DakkaBFGBestJumpan")
-        BBFP A 0 A_ChangeFlag("NODAMAGETHRUST", 1)
-        BBFP C 0 bright A_Explode(96, 256, 0)
-        BBFP C 0 bright A_Explode(256, 512, 0)
+        DBFP C 0 A_GiveToTarget("DakkaBFGJumpan")
+        DBFP C 0 bright A_Explode(128, 160)
+        DBFP C 0 bright A_Explode(96, 256)
+        DBFP C 0 A_TakeFromTarget("DakkaBFGJumpan")
+        DBFP A 0 A_ChangeFlag("NODAMAGETHRUST", 1)
+        DBFP C 0 bright A_Explode(96, 256, 0)
+        DBFP C 0 bright A_Explode(256, 512, 0)
         stop
     }
 }
@@ -552,15 +377,17 @@ actor DakkaBFGBeam_Client
     {
       Spawn:
         TNT1 A 0
-        BBFP AB 4 bright
+        DBFP AB 4 bright
         goto Spawn2
 
       Spawn2:
-        BBFP AAAABBBB 1 bright A_FadeOut(0.001)
+        DBFP AAAABBBB 1 bright A_FadeOut(0.001)
         loop
     }
 }
 
+
+// Used on the outside of the beam.
 actor DakkaBFGBeam_Helix
 {
     Radius 0
@@ -575,35 +402,14 @@ actor DakkaBFGBeam_Helix
     States
     {
       Spawn:
-        TNT1 A 0
-        BBFE A 0 ACS_ExecuteWithResult(464, 20, 40, 1)
-        goto Spawn2
-
-      Spawn2:
-        BBFE BBBBCCCC 1 bright A_FadeOut(0.015)
-        loop
-    }
-}
-
-actor BFGHelixTrail
-{
-    +NOINTERACTION
-    +CLIENTSIDEONLY
-
-    RenderStyle Add
-    Alpha 0.6
-    Scale 0.6
-
-    States
-    {
-      Spawn:
-        TNT1 A 0
-        BBFE BBBBCCCC 1 bright A_FadeOut(0.03)
+        DBFE B 0 bright
+        DBFE BBBBCCCC 1 bright A_FadeOut(0.015)
         loop
     }
 }
 
 
+// Used in the center of the beam.
 actor DakkaBFGBeam_HelixCenter
 {
     Radius 0
@@ -619,22 +425,41 @@ actor DakkaBFGBeam_HelixCenter
     {
       Spawn:
         TNT1 A 0
-        BBFP AA 0 A_SpawnItemEx("BFGHelixTrail", 0,0,0, random(-40,40)/10.0, 0, random(-40,40)/10.0, random(0,360))
-        BBFP AB 4 bright
+        DBFP AA 0 A_SpawnItemEx("BFGBeam_HelixCenter2", 0,0,0, random(-40,40)/10.0, 0, random(-40,40)/10.0, random(0,360))
+        DBFP AB 4 bright
         goto Spawn2
 
       Spawn2:
-        BBFP AAAABBBB 1 A_FadeOut(0.03)
+        DBFP AAAABBBB 1 A_FadeOut(0.03)
         loop
     }
 }
+
+actor BFGBeam_HelixCenter2
+{
+    +NOINTERACTION
+    +CLIENTSIDEONLY
+
+    RenderStyle Add
+    Alpha 0.6
+    Scale 0.6
+
+    States
+    {
+      Spawn:
+        TNT1 A 0
+        DBFE BBBBCCCC 1 bright A_FadeOut(0.03)
+        loop
+    }
+}
+
 
 actor DakkaBFGBeam_HelixCenter_LessEffects: DakkaBFGBeam_HelixCenter
 {
     States
     {
       Spawn:
-        BBFP AB 4 bright
+        DBFP AB 4 bright
         goto Spawn2
     }
 }
@@ -653,7 +478,7 @@ actor BFGEndTrail
     {
       Spawn:
         TNT1 A 0
-        BBFE BBBBCCCC 1 bright A_FadeOut(0.005)
+        DBFE BBBBCCCC 1 bright A_FadeOut(0.005)
         loop
     }
 }
@@ -670,64 +495,64 @@ actor DakkaBFGBeamEnd_Client
     States
     {
       Spawn:
-        BBFP A 0
-        BBFP A 0 A_SpawnItemEx("BFGTrail", 0,0,0, 14.095389311788626,0,-1.3073361412148725, 0)
-        BBFP A 0 A_SpawnItemEx("BFGTrail", 0,0,0, 15.035081932574535,0,-1.3944918839625307, 20)
-        BBFP A 0 A_SpawnItemEx("BFGTrail", 0,0,0, 12.21600407021681,0,-1.1330246557195562, 40)
-        BBFP A 0 A_SpawnItemEx("BFGTrail", 0,0,0, 13.155696691002717,0,-1.2201803984672144, 60)
-        BBFP A 0 A_SpawnItemEx("BFGTrail", 0,0,0, 12.21600407021681,0,-1.1330246557195562, 80)
-        BBFP A 0 A_SpawnItemEx("BFGTrail", 0,0,0, 12.21600407021681,0,-1.1330246557195562, 100)
-        BBFP A 0 A_SpawnItemEx("BFGTrail", 0,0,0, 13.155696691002717,0,-1.2201803984672144, 120)
-        BBFP A 0 A_SpawnItemEx("BFGTrail", 0,0,0, 12.21600407021681,0,-1.1330246557195562, 140)
-        BBFP A 0 A_SpawnItemEx("BFGTrail", 0,0,0, 13.155696691002717,0,-1.2201803984672144, 160)
-        BBFP A 0 A_SpawnItemEx("BFGTrail", 0,0,0, 13.155696691002717,0,-1.2201803984672144, 180)
-        BBFP A 0 A_SpawnItemEx("BFGTrail", 0,0,0, 15.035081932574535,0,-1.3944918839625307, 200)
-        BBFP A 0 A_SpawnItemEx("BFGTrail", 0,0,0, 14.095389311788626,0,-1.3073361412148725, 220)
-        BBFP A 0 A_SpawnItemEx("BFGTrail", 0,0,0, 14.095389311788626,0,-1.3073361412148725, 240)
-        BBFP A 0 A_SpawnItemEx("BFGTrail", 0,0,0, 12.21600407021681,0,-1.1330246557195562, 260)
-        BBFP A 0 A_SpawnItemEx("BFGTrail", 0,0,0, 14.095389311788626,0,-1.3073361412148725, 280)
-        BBFP A 0 A_SpawnItemEx("BFGTrail", 0,0,0, 12.21600407021681,0,-1.1330246557195562, 300)
-        BBFP A 0 A_SpawnItemEx("BFGTrail", 0,0,0, 15.035081932574535,0,-1.3944918839625307, 320)
-        BBFP A 0 A_SpawnItemEx("BFGTrail", 0,0,0, 13.155696691002717,0,-1.2201803984672144, 340)
-        BBFP A 0 A_SpawnItemEx("BFGTrail", 0,0,0, 12.0,0,0.0, 0)
-        BBFP A 0 A_SpawnItemEx("BFGTrail", 0,0,0, 16.0,0,0.0, 20)
-        BBFP A 0 A_SpawnItemEx("BFGTrail", 0,0,0, 14.0,0,0.0, 40)
-        BBFP A 0 A_SpawnItemEx("BFGTrail", 0,0,0, 16.0,0,0.0, 60)
-        BBFP A 0 A_SpawnItemEx("BFGTrail", 0,0,0, 12.0,0,0.0, 80)
-        BBFP A 0 A_SpawnItemEx("BFGTrail", 0,0,0, 13.0,0,0.0, 100)
-        BBFP A 0 A_SpawnItemEx("BFGTrail", 0,0,0, 12.0,0,0.0, 120)
-        BBFP A 0 A_SpawnItemEx("BFGTrail", 0,0,0, 15.0,0,0.0, 140)
-        BBFP A 0 A_SpawnItemEx("BFGTrail", 0,0,0, 12.0,0,0.0, 160)
-        BBFP A 0 A_SpawnItemEx("BFGTrail", 0,0,0, 15.0,0,0.0, 180)
-        BBFP A 0 A_SpawnItemEx("BFGTrail", 0,0,0, 14.0,0,0.0, 200)
-        BBFP A 0 A_SpawnItemEx("BFGTrail", 0,0,0, 13.0,0,0.0, 220)
-        BBFP A 0 A_SpawnItemEx("BFGTrail", 0,0,0, 15.0,0,0.0, 240)
-        BBFP A 0 A_SpawnItemEx("BFGTrail", 0,0,0, 15.0,0,0.0, 260)
-        BBFP A 0 A_SpawnItemEx("BFGTrail", 0,0,0, 16.0,0,0.0, 280)
-        BBFP A 0 A_SpawnItemEx("BFGTrail", 0,0,0, 13.0,0,0.0, 300)
-        BBFP A 0 A_SpawnItemEx("BFGTrail", 0,0,0, 13.0,0,0.0, 320)
-        BBFP A 0 A_SpawnItemEx("BFGTrail", 0,0,0, 16.0,0,0.0, 340)
-        BBFP A 0 A_SpawnItemEx("BFGTrail", 0,0,0, 13.155696691002717,0,1.2201803984672144, 0)
-        BBFP A 0 A_SpawnItemEx("BFGTrail", 0,0,0, 11.276311449430901,0,1.045868912971898, 20)
-        BBFP A 0 A_SpawnItemEx("BFGTrail", 0,0,0, 11.276311449430901,0,1.045868912971898, 40)
-        BBFP A 0 A_SpawnItemEx("BFGTrail", 0,0,0, 11.276311449430901,0,1.045868912971898, 60)
-        BBFP A 0 A_SpawnItemEx("BFGTrail", 0,0,0, 13.155696691002717,0,1.2201803984672144, 80)
-        BBFP A 0 A_SpawnItemEx("BFGTrail", 0,0,0, 13.155696691002717,0,1.2201803984672144, 100)
-        BBFP A 0 A_SpawnItemEx("BFGTrail", 0,0,0, 13.155696691002717,0,1.2201803984672144, 120)
-        BBFP A 0 A_SpawnItemEx("BFGTrail", 0,0,0, 12.21600407021681,0,1.1330246557195562, 140)
-        BBFP A 0 A_SpawnItemEx("BFGTrail", 0,0,0, 14.095389311788626,0,1.3073361412148725, 160)
-        BBFP A 0 A_SpawnItemEx("BFGTrail", 0,0,0, 12.21600407021681,0,1.1330246557195562, 180)
-        BBFP A 0 A_SpawnItemEx("BFGTrail", 0,0,0, 13.155696691002717,0,1.2201803984672144, 200)
-        BBFP A 0 A_SpawnItemEx("BFGTrail", 0,0,0, 13.155696691002717,0,1.2201803984672144, 220)
-        BBFP A 0 A_SpawnItemEx("BFGTrail", 0,0,0, 12.21600407021681,0,1.1330246557195562, 240)
-        BBFP A 0 A_SpawnItemEx("BFGTrail", 0,0,0, 11.276311449430901,0,1.045868912971898, 260)
-        BBFP A 0 A_SpawnItemEx("BFGTrail", 0,0,0, 14.095389311788626,0,1.3073361412148725, 280)
-        BBFP A 0 A_SpawnItemEx("BFGTrail", 0,0,0, 11.276311449430901,0,1.045868912971898, 300)
-        BBFP A 0 A_SpawnItemEx("BFGTrail", 0,0,0, 13.155696691002717,0,1.2201803984672144, 320)
-        BBFP A 0 A_SpawnItemEx("BFGTrail", 0,0,0, 11.276311449430901,0,1.045868912971898, 340)
+        DBFP A 0
+        DBFP A 0 A_SpawnItemEx("BFGTrail", 0,0,0, 14.095389311788626,0,-1.3073361412148725, 0)
+        DBFP A 0 A_SpawnItemEx("BFGTrail", 0,0,0, 15.035081932574535,0,-1.3944918839625307, 20)
+        DBFP A 0 A_SpawnItemEx("BFGTrail", 0,0,0, 12.21600407021681,0,-1.1330246557195562, 40)
+        DBFP A 0 A_SpawnItemEx("BFGTrail", 0,0,0, 13.155696691002717,0,-1.2201803984672144, 60)
+        DBFP A 0 A_SpawnItemEx("BFGTrail", 0,0,0, 12.21600407021681,0,-1.1330246557195562, 80)
+        DBFP A 0 A_SpawnItemEx("BFGTrail", 0,0,0, 12.21600407021681,0,-1.1330246557195562, 100)
+        DBFP A 0 A_SpawnItemEx("BFGTrail", 0,0,0, 13.155696691002717,0,-1.2201803984672144, 120)
+        DBFP A 0 A_SpawnItemEx("BFGTrail", 0,0,0, 12.21600407021681,0,-1.1330246557195562, 140)
+        DBFP A 0 A_SpawnItemEx("BFGTrail", 0,0,0, 13.155696691002717,0,-1.2201803984672144, 160)
+        DBFP A 0 A_SpawnItemEx("BFGTrail", 0,0,0, 13.155696691002717,0,-1.2201803984672144, 180)
+        DBFP A 0 A_SpawnItemEx("BFGTrail", 0,0,0, 15.035081932574535,0,-1.3944918839625307, 200)
+        DBFP A 0 A_SpawnItemEx("BFGTrail", 0,0,0, 14.095389311788626,0,-1.3073361412148725, 220)
+        DBFP A 0 A_SpawnItemEx("BFGTrail", 0,0,0, 14.095389311788626,0,-1.3073361412148725, 240)
+        DBFP A 0 A_SpawnItemEx("BFGTrail", 0,0,0, 12.21600407021681,0,-1.1330246557195562, 260)
+        DBFP A 0 A_SpawnItemEx("BFGTrail", 0,0,0, 14.095389311788626,0,-1.3073361412148725, 280)
+        DBFP A 0 A_SpawnItemEx("BFGTrail", 0,0,0, 12.21600407021681,0,-1.1330246557195562, 300)
+        DBFP A 0 A_SpawnItemEx("BFGTrail", 0,0,0, 15.035081932574535,0,-1.3944918839625307, 320)
+        DBFP A 0 A_SpawnItemEx("BFGTrail", 0,0,0, 13.155696691002717,0,-1.2201803984672144, 340)
+        DBFP A 0 A_SpawnItemEx("BFGTrail", 0,0,0, 12.0,0,0.0, 0)
+        DBFP A 0 A_SpawnItemEx("BFGTrail", 0,0,0, 16.0,0,0.0, 20)
+        DBFP A 0 A_SpawnItemEx("BFGTrail", 0,0,0, 14.0,0,0.0, 40)
+        DBFP A 0 A_SpawnItemEx("BFGTrail", 0,0,0, 16.0,0,0.0, 60)
+        DBFP A 0 A_SpawnItemEx("BFGTrail", 0,0,0, 12.0,0,0.0, 80)
+        DBFP A 0 A_SpawnItemEx("BFGTrail", 0,0,0, 13.0,0,0.0, 100)
+        DBFP A 0 A_SpawnItemEx("BFGTrail", 0,0,0, 12.0,0,0.0, 120)
+        DBFP A 0 A_SpawnItemEx("BFGTrail", 0,0,0, 15.0,0,0.0, 140)
+        DBFP A 0 A_SpawnItemEx("BFGTrail", 0,0,0, 12.0,0,0.0, 160)
+        DBFP A 0 A_SpawnItemEx("BFGTrail", 0,0,0, 15.0,0,0.0, 180)
+        DBFP A 0 A_SpawnItemEx("BFGTrail", 0,0,0, 14.0,0,0.0, 200)
+        DBFP A 0 A_SpawnItemEx("BFGTrail", 0,0,0, 13.0,0,0.0, 220)
+        DBFP A 0 A_SpawnItemEx("BFGTrail", 0,0,0, 15.0,0,0.0, 240)
+        DBFP A 0 A_SpawnItemEx("BFGTrail", 0,0,0, 15.0,0,0.0, 260)
+        DBFP A 0 A_SpawnItemEx("BFGTrail", 0,0,0, 16.0,0,0.0, 280)
+        DBFP A 0 A_SpawnItemEx("BFGTrail", 0,0,0, 13.0,0,0.0, 300)
+        DBFP A 0 A_SpawnItemEx("BFGTrail", 0,0,0, 13.0,0,0.0, 320)
+        DBFP A 0 A_SpawnItemEx("BFGTrail", 0,0,0, 16.0,0,0.0, 340)
+        DBFP A 0 A_SpawnItemEx("BFGTrail", 0,0,0, 13.155696691002717,0,1.2201803984672144, 0)
+        DBFP A 0 A_SpawnItemEx("BFGTrail", 0,0,0, 11.276311449430901,0,1.045868912971898, 20)
+        DBFP A 0 A_SpawnItemEx("BFGTrail", 0,0,0, 11.276311449430901,0,1.045868912971898, 40)
+        DBFP A 0 A_SpawnItemEx("BFGTrail", 0,0,0, 11.276311449430901,0,1.045868912971898, 60)
+        DBFP A 0 A_SpawnItemEx("BFGTrail", 0,0,0, 13.155696691002717,0,1.2201803984672144, 80)
+        DBFP A 0 A_SpawnItemEx("BFGTrail", 0,0,0, 13.155696691002717,0,1.2201803984672144, 100)
+        DBFP A 0 A_SpawnItemEx("BFGTrail", 0,0,0, 13.155696691002717,0,1.2201803984672144, 120)
+        DBFP A 0 A_SpawnItemEx("BFGTrail", 0,0,0, 12.21600407021681,0,1.1330246557195562, 140)
+        DBFP A 0 A_SpawnItemEx("BFGTrail", 0,0,0, 14.095389311788626,0,1.3073361412148725, 160)
+        DBFP A 0 A_SpawnItemEx("BFGTrail", 0,0,0, 12.21600407021681,0,1.1330246557195562, 180)
+        DBFP A 0 A_SpawnItemEx("BFGTrail", 0,0,0, 13.155696691002717,0,1.2201803984672144, 200)
+        DBFP A 0 A_SpawnItemEx("BFGTrail", 0,0,0, 13.155696691002717,0,1.2201803984672144, 220)
+        DBFP A 0 A_SpawnItemEx("BFGTrail", 0,0,0, 12.21600407021681,0,1.1330246557195562, 240)
+        DBFP A 0 A_SpawnItemEx("BFGTrail", 0,0,0, 11.276311449430901,0,1.045868912971898, 260)
+        DBFP A 0 A_SpawnItemEx("BFGTrail", 0,0,0, 14.095389311788626,0,1.3073361412148725, 280)
+        DBFP A 0 A_SpawnItemEx("BFGTrail", 0,0,0, 11.276311449430901,0,1.045868912971898, 300)
+        DBFP A 0 A_SpawnItemEx("BFGTrail", 0,0,0, 13.155696691002717,0,1.2201803984672144, 320)
+        DBFP A 0 A_SpawnItemEx("BFGTrail", 0,0,0, 11.276311449430901,0,1.045868912971898, 340)
 
-        BBFP AAAAAAAAAA 0 A_SpawnItemEx("BFGEndTrail", 0,0,0, random(-20,20)/10.0, 0, random(-20,20)/10.0, random(0,360))
-        BBFP CDEFGHH 8 bright
+        DBFP AAAAAAAAAA 0 A_SpawnItemEx("BFGEndTrail", 0,0,0, random(-20,20)/10.0, 0, random(-20,20)/10.0, random(0,360))
+        DBFP CDEFGHH 8 bright
         stop
     }
 }
