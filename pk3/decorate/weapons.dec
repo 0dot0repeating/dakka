@@ -9,3 +9,4 @@
 #include "decorate/weapons/50_rocketlauncher.dec"
 #include "decorate/weapons/60_plasmarifle.dec"
 #include "decorate/weapons/61_channeler.dec"
+#include "decorate/weapons/70_bfg.dec"

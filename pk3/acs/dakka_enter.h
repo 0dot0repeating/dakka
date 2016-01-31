@@ -18,11 +18,16 @@ script DAKKA_SPAWN (int respawned)
 
     while (true)
     {
+        PlayerTIDs[pln] = defaultTID(-1);
+
         // This is in dakka_tempitems.h
         Dakka_UpdateTemporaryItems();
 
         // In dakka_scrap.h
         Dakka_ProcessScrap();
+
+        // In score/score_update.h
+        Air_UpdateZHeight();
 
         oldScore = curScore;
         curScore = PlayerMapScores[pln];
