@@ -36,6 +36,8 @@ int ClassNames[CLASSCOUNT] =
 // This is the default state an item on display will jump to if it isn't
 //  scripted. It's used in pickup_display.h, but it's here to keep relevant
 //  data in the same place.
+//
+// If no class is found, it goes to "Unknown".
 
 int DISP_ClassStates[CLASSCOUNT_DEFINED] =
 {

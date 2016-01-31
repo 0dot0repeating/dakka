@@ -77,7 +77,8 @@ script PICKUP_DISPLAY (int index, int dropped) clientside
         if (ClassifyActor(0) & ACTOR_WORLD) { terminate; }
 
         oldClassNum = classNum;
-        classNum = SToC_ClientData[cpln][S2C_D_CLASSNUM];
+        // Subtract 1 so that the default value - 0 - means "unknown".
+        classNum = SToC_ClientData[cpln][S2C_D_CLASSNUM] - 1;
 
         // If class number changes, try to go back to the default display state.
         if (oldClassNum != classNum)
