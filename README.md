@@ -19,7 +19,7 @@ streamlining things, and so on and so forth.
 * Recoil system, if anyone actually used that
 * HUD, though the color-changing parts of it are non-functional right now
 * Tracer system, cleaned up and much better at respecting your pitch
-* Every gun but the channeler and BFG9000
+* Every gun but the BFG9000
 
 ## How long's it gonna take to add all the shit back in?
 
