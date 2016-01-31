@@ -6,8 +6,9 @@
 // Core arc script number. This is also in acs/arc_const.h, so be sure
 //  to change it there as well.
 
-const int ARC_MAIN  = 191;
-const int ARC_CLEAR = 192;
+// Included in decorate/main/constants.dec instead
+//const int ARC_MAIN  = 191;
+//const int ARC_CLEAR = 192;
 
 
 

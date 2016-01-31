@@ -1,5 +1,7 @@
-#define TRACE_BULLET    0
-#define TRACE_PLASMA    1
+#define TRACE_BULLET        0
+#define TRACE_PLASMA        1
+#define TRACE_ARC_FIRER     2
+#define TRACE_ARC_MASTER    3
 
 
 // DakkaTracer is the tracer actor
@@ -11,7 +13,18 @@ script DAKKA_TRACER (int which, int yoff, int zoff)
     int shotY = GetActorY(0);
     int shotZ = GetActorZ(0);
 
-    SetActivatorToTarget(0);
+    switch (which)
+    {
+      default:
+        SetActivatorToTarget(0);
+        break;
+
+      case TRACE_ARC_MASTER:
+        SetActivator(0, AAPTR_MASTER);
+        break;
+    }
+
+    if (ClassifyActor(0) & ACTOR_WORLD) { terminate; }
 
     int myTID = defaultTID(-1);
 
@@ -31,7 +44,12 @@ script DAKKA_TRACER (int which, int yoff, int zoff)
         break;
 
       case TRACE_PLASMA:
-        pointX = 16.0;
+      case TRACE_ARC_FIRER:
+        pointX = 20.0;
+        break;
+
+      case TRACE_ARC_MASTER:
+        pointX = 0;
         break;
     }
 
@@ -124,6 +142,12 @@ script DAKKA_TRACER_CLIENT (int which, int startTID, int endTID) clientside
         particleType = "DakkaPlasmaTrail";
         density      = cond(lesseffects, 36.0, 12.0);
         break;
+
+      case TRACE_ARC_FIRER:
+      case TRACE_ARC_MASTER:
+        speed = 0;
+        particleType = "ChannelerTrail";
+        density      = cond(lesseffects, 32.0, 8.0);
     }
 
     if (StrLen(particleType) == 0) { terminate; }

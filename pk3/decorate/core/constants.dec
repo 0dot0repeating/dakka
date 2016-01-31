@@ -11,6 +11,11 @@ const int DAKKA_DECORATE            = 464;
 const int DAKKA_DECORATE_CLIENT     = 465;
 
 
+
+const int ARC_MAIN                  = 191;
+const int ARC_CLEAR                 = 192;
+const int ARC_DAMAGE                = 193;
+
 // DEC = serverside DECORATE
 const int DEC_ROTATESOUND           = 0;
 const int DEC_SCRAP_XYVEL           = 1;
@@ -28,5 +33,7 @@ const int CDEC_GETLESSEFFECTS       = 0;
 
 
 
-const int TRACE_BULLET  = 0;
-const int TRACE_PLASMA  = 1;
+const int TRACE_BULLET      = 0;
+const int TRACE_PLASMA      = 1;
+const int TRACE_ARC_FIRER   = 2;
+const int TRACE_ARC_MASTER  = 3;

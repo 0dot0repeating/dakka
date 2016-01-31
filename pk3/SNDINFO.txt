@@ -179,3 +179,20 @@ dakka/plasmaexplode         sounds/plasmarifle/plasma_explode.ogg
 
 $limit dakka/plasmafire     0
 $limit dakka/plasmaexplode  0
+
+
+
+
+////////
+// CHANNELER
+///
+
+
+arc/fire1 sounds/channeler/arcfire1.ogg
+arc/fire2 sounds/channeler/arcfire2.ogg
+arc/fire3 sounds/channeler/arcfire3.ogg
+arc/fire4 sounds/channeler/arcfire4.ogg
+
+$random arc/fire { arc/fire1 arc/fire2 arc/fire3 arc/fire4 }
+
+arc/altfire sounds/channeler/arc_altfire.ogg
