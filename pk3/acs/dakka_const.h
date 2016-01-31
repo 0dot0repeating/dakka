@@ -1,3 +1,5 @@
+#define SSG_SHOTMAX     2
+
 int IsZand;
 
-#define SSG_SHOTMAX     2
+int PlayerTIDs[PLAYERMAX];

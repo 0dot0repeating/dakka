@@ -123,8 +123,8 @@ function int SMult_Air(int pln)
 {
     if (pln < 0 || pln >= PLAYERMAX) { return 0; }
 
-    int zvel  = PlayerZHeight[pln];
-    int zdiff = max(0, zvel - AIR_MINHEIGHT);
+    int jumpHeight  = Air_JumpHeight[pln];
+    int zdiff       = max(0, jumpHeight - AIR_MINHEIGHT);
 
     return min(AIR_MAXMULT, FixedMul(zdiff, AIR_MULT));
 }

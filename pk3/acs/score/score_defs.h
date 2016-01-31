@@ -33,8 +33,8 @@
 #define BONEDRY_MULTPERHP       0.02
 
 #define AIR_MINHEIGHT           64.0
-#define AIR_MULT                0.002
-#define AIR_MAXMULT             0.5
+#define AIR_MULT                0.005
+#define AIR_MAXMULT             2.0
 
 #define CURVEBALL_MULT          0.2
 
@@ -54,7 +54,14 @@ world int 54:PlayerMapScores[];
 int PlayerWeapons_LastFired[PLAYERMAX][SCOREWEPS][SCOREFIREMODES];
 int PlayerKills_LastFired[PLAYERMAX][2];
 int PlayerKillStreaks[PLAYERMAX][3];
-int PlayerZHeight[PLAYERMAX];
+
+
+// Air_JumpHeight stores the max height the player's current jump either has
+//  reached, or is predicted to reach
+int Air_JumpHeight[PLAYERMAX];
+
+// Air_FloorHeight stores his floor height the last time he was on the ground
+int Air_FloorHeight[PLAYERMAX];
 
 
 
