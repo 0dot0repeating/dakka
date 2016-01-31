@@ -49,7 +49,7 @@ actor DWep_PlasmaRifle: DoomWeapon
       Fire:
         "----" A 0 ACS_ExecuteWithResult(DAKKA_UPDATE_SWITCHAROO, 8, 0)
         DPLS A 0 A_AlertMonsters
-        DPLS A 0 A_GiveInventory("GiveScrapCounter2", 1000)
+        DPLS A 0 A_GiveInventory("GiveScrapCounter2", 1)
         DPLS A 0 ACS_ExecuteAlways(DAKKA_RECOIL, 0, -75, 2, 6)
         DPLS A 0 A_FireCustomMissile("DakkaPlasma")
         DPLS C 2 bright A_Light2
@@ -82,7 +82,7 @@ actor DWep_PlasmaRifle: DoomWeapon
         DPLS A 0 A_AlertMonsters
         DPLS A 0 A_PlaySound("dakka/plasmabeam", ACS_ExecuteWithResult(DAKKA_DECORATE, DEC_ROTATESOUND))
         DPLS A 0 A_FireBullets(1.5, 1.5, 3, 20, "DakkaPlasmaPuff", FBF_NORANDOM | FBF_USEAMMO)
-        DPLS A 0 A_GiveInventory("GiveScrapCounter2", 2000)
+        DPLS A 0 A_GiveInventory("GiveScrapCounter2", 2)
         PKCG A 0 ACS_ExecuteAlways(DAKKA_RECOIL, 0, -135, 2, 7)
         DPLS C 1 bright offset(0, 35)
         DPLS B 2 bright offset(0, 36)

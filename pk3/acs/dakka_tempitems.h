@@ -60,7 +60,6 @@ function void Dakka_UpdateTemporaryItems(void)
     TempChecks[TMP_HEALTH25]        = middle(  1, health,  24) == health;
     TempChecks[TMP_HEALTH0]         = health < 0;
     
-    
     int gotCards  = CheckInventory("BlueCard")  || CheckInventory("YellowCard")  || CheckInventory("RedCard");
     int gotSkulls = CheckInventory("BlueSkull") || CheckInventory("YellowSkull") || CheckInventory("RedSkull");
 

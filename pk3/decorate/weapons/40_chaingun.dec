@@ -42,7 +42,7 @@ actor DWep_Chaingun: DoomWeapon
         DCGN A 0 A_GunFlash("Flash")
         DCGN A 0 A_AlertMonsters
         DCGN A 0 A_PlaySound("dakka/chaingunfire", CHAN_WEAPON)
-        DCGN B 0 A_GiveInventory("GiveScrapCounter", 700)
+        DCGN B 0 A_GiveInventory("GiveScrapCounter", 7)
         DCGN A 0 ACS_ExecuteAlways(DAKKA_RECOIL, 0, -85, 3, 6)
         DCGN A 1 bright offset(0, 33) A_FireBullets(0.75, 0.75, -1, 20, "DakkaPuff", FBF_NORANDOM | FBF_USEAMMO)
         DCGN B 1 bright
@@ -55,7 +55,7 @@ actor DWep_Chaingun: DoomWeapon
         DCGN A 0 A_GunFlash("Flash2")
         DCGN A 0 A_AlertMonsters
         DCGN A 0 A_PlaySound("dakka/chaingunfire", CHAN_WEAPON)
-        DCGN B 0 A_GiveInventory("GiveScrapCounter", 700)
+        DCGN B 0 A_GiveInventory("GiveScrapCounter", 7)
         DCGN A 0 ACS_ExecuteAlways(DAKKA_RECOIL, 0, -85, 3, 6)
         DCGN A 1 bright offset(0, 33) A_FireBullets(0.75, 0.75, -1, 20, "DakkaPuff", FBF_NORANDOM | FBF_USEAMMO)
         DCGN C 1 bright
