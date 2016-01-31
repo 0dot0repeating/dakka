@@ -14,12 +14,12 @@ streamlining things, and so on and so forth.
 ## So what *is* in so far?
 
 * Score system
+* Arc system
 * Pickup system, though not configured for Dakka yet
-* Arc system, though unused right now due to the Channeler not being reimplemented
 * Recoil system, if anyone actually used that
-* HUD, though the color-changing parts of it are non-functional right now
+* HUD, though most of the color-changing parts of it are non-functional right now
 * Tracer system, cleaned up and much better at respecting your pitch
-* Every gun but the BFG9000
+* All of the guns
 
 ## How long's it gonna take to add all the shit back in?
 

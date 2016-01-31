@@ -1,4 +1,4 @@
-#define TMPITEM_COUNT       6
+#define TMPITEM_COUNT       12
 
 #define TMP_LEFTFIRE        0
 #define TMP_RIGHTFIRE       1
@@ -6,6 +6,13 @@
 #define TMP_RIGHTCLICK      3
 #define TMP_INFINITEAMMO    4
 #define TMP_CLASSITEM       5
+
+#define TMP_ABNORMALHEALTH  6
+#define TMP_HEALTH300       7
+#define TMP_HEALTH200       8
+#define TMP_HEALTH50        9
+#define TMP_HEALTH25        10
+#define TMP_HEALTH0         11
 
 int TempChecks[TMPITEM_COUNT];
 
@@ -17,6 +24,12 @@ int TempItems[TMPITEM_COUNT] =
     "AltClicked",
     "DakkaInfiniteAmmo",
     "HUD_IsDakkaguy",
+    "AbnormalHealth",
+    "HealthOver200",
+    "HealthOver100",
+    "HealthUnder50",
+    "HealthUnder25",
+    "HealthUnder0",
 };
 
 
@@ -32,6 +45,15 @@ function void Dakka_UpdateTemporaryItems(void)
 
     TempChecks[TMP_INFINITEAMMO]    = GetCVar("sv_infiniteammo") || CheckInventory("PowerInfiniteAmmo");
     TempChecks[TMP_CLASSITEM]       = classNum == Cl_Dakkaguy;
+
+    int health = GetActorProperty(0, APROP_Health);
+
+    TempChecks[TMP_ABNORMALHEALTH]  = middle(50, health, 100) != health;
+    TempChecks[TMP_HEALTH300]       = health > 200;
+    TempChecks[TMP_HEALTH200]       = middle(101, health, 200) == health;
+    TempChecks[TMP_HEALTH50]        = middle( 25, health,  49) == health;
+    TempChecks[TMP_HEALTH25]        = middle(  1, health,  24) == health;
+    TempChecks[TMP_HEALTH0]         = health < 0;
 
     int i;
 
