@@ -1,4 +1,5 @@
 #define TRACE_BULLET    0
+#define TRACE_PLASMA    1
 
 
 // DakkaTracer is the tracer actor
@@ -21,7 +22,18 @@ script DAKKA_TRACER (int which, int yoff, int zoff)
     int myAngle = GetActorAngle(0);
     int myPitch = GetActorPitch(0);
 
-    int pointX = 12.0;
+    int pointX;
+
+    switch (which)
+    {
+      default:
+        pointX = 12.0;
+        break;
+
+      case TRACE_PLASMA:
+        pointX = 16.0;
+        break;
+    }
 
     // Negative y should mean left, not right, dammit
     int pointY = -itof(yoff);
@@ -105,6 +117,13 @@ script DAKKA_TRACER_CLIENT (int which, int startTID, int endTID) clientside
             density      = 12.0;
         }
         break;
+
+      case TRACE_PLASMA:
+        speed = 0;
+
+        particleType = "DakkaPlasmaTrail";
+        density      = cond(lesseffects, 36.0, 12.0);
+        break;
     }
 
     if (StrLen(particleType) == 0) { terminate; }
@@ -125,8 +144,11 @@ script DAKKA_TRACER_CLIENT (int which, int startTID, int endTID) clientside
 
         ticDistance += density;
 
-        int ticWait = ticDistance / speed;
-        Delay(ticWait);
-        ticDistance -= (ticWait * speed);
+        if (speed > 0)
+        {
+            int ticWait = ticDistance / speed;
+            Delay(ticWait);
+            ticDistance -= (ticWait * speed);
+        }
     }
 }
