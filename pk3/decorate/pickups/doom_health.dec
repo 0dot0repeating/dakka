@@ -1,0 +1,79 @@
+actor Pickup_HealthBonus: ClassBasedPickup replaces HealthBonus
+{
+    States
+    {
+      Spawn:
+        TNT1 A 0 A_SetUserVar("user_index", It_HealthBonus)
+        TNT1 A 0 A_SetUserVar("user_dropped", 0)
+        goto DropCheck
+
+      Unknown:
+      Dakka:
+        BON1 ABCDCB 6
+        loop
+
+      Pickup:
+        TNT1 A 0 A_JumpIf(ACS_ExecuteWithResult(PICKUP_PICKUP, It_HealthBonus, false) == 1, "PickedUp")
+        goto NotPickedUp
+    }
+}
+
+actor Pickup_Stimpack: ClassBasedPickup replaces Stimpack
+{
+    States
+    {
+      Spawn:
+        TNT1 A 0 A_SetUserVar("user_index", It_Stimpack)
+        TNT1 A 0 A_SetUserVar("user_dropped", 0)
+        goto DropCheck
+
+      Unknown:
+      Dakka:
+        STIM A -1
+        stop
+
+      Pickup:
+        TNT1 A 0 A_JumpIf(ACS_ExecuteWithResult(PICKUP_PICKUP, It_Stimpack, false) == 1, "PickedUp")
+        goto NotPickedUp
+    }
+}
+
+actor Pickup_Medikit: ClassBasedPickup replaces Medikit
+{
+    States
+    {
+      Spawn:
+        TNT1 A 0 A_SetUserVar("user_index", It_Medikit)
+        TNT1 A 0 A_SetUserVar("user_dropped", 0)
+        goto DropCheck
+
+      Unknown:
+      Dakka:
+        MEDI A -1
+        stop
+
+      Pickup:
+        TNT1 A 0 A_JumpIf(ACS_ExecuteWithResult(PICKUP_PICKUP, It_Medikit, false) == 1, "PickedUp")
+        goto NotPickedUp
+    }
+}
+
+actor Pickup_Soulsphere: ClassBasedPickup replaces Soulsphere
+{
+    States
+    {
+      Spawn:
+        TNT1 A 0 A_SetUserVar("user_index", It_Soulsphere)
+        TNT1 A 0 A_SetUserVar("user_dropped", 0)
+        goto DropCheck
+
+      Unknown:
+      Dakka:
+        SOUL ABCDCB 6 bright
+        loop
+
+      Pickup:
+        TNT1 A 0 A_JumpIf(ACS_ExecuteWithResult(PICKUP_PICKUP, It_Soulsphere, false) == 1, "PickedUp")
+        goto NotPickedUp
+    }
+}
