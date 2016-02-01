@@ -43,23 +43,22 @@ actor ClassBasedPickup: CustomInventory
 
       DropCheck:
         TNT1 A 0 A_JumpIf(ACS_ExecuteWithResult(PICKUP_DROPPED) != 0, "Dropped")
-        goto Display
+        goto FirstDisplay
 
       Dropped:
-        goto Display
+        goto FirstDisplay
 
-      Display:
+      FirstDisplay:
+        TNT1 A 1 ACS_ExecuteAlways(PICKUP_DISPLAY, 0, user_index, user_dropped, true)
+        goto LoopDisplay
+
+      LoopDisplay:
         TNT1 A 35 ACS_ExecuteAlways(PICKUP_DISPLAY, 0, user_index, user_dropped)
         wait
 
       Unknown:
         TNT1 A -1
         stop
-
-      // Pickup script example. Arguments in order <item index>, <dropped>
-      Pickup:
-        TNT1 A 0 A_JumpIf(ACS_ExecuteWithResult(PICKUP_PICKUP, 0, 0) == 1, "PickedUp")
-        goto NotPickedUp
 
       PickedUp:
         // This is just here so that 'stop' actually works.
