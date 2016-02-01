@@ -30,8 +30,14 @@ const int It_GreenArmor       = 24;
 const int It_BlueArmor        = 25;
 const int It_Megasphere       = 26;
 
+const int It_Berserk          = 27;
+const int It_Blursphere       = 28;
+const int It_InvulnSphere     = 29;
+const int It_Backpack         = 30;
+
 
 #include "decorate/pickups/doom_weapons.dec"
 #include "decorate/pickups/doom_ammo.dec"
 #include "decorate/pickups/doom_health.dec"
 #include "decorate/pickups/doom_armor.dec"
+#include "decorate/pickups/doom_powerups.dec"

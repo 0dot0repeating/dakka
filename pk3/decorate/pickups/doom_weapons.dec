@@ -3,6 +3,7 @@ actor Pickup_Chainsaw: ClassBasedPickup replaces Chainsaw
     States
     {
       Spawn:
+        TNT1 A 0
         TNT1 A 0 A_SetUserVar("user_index", It_Chainsaw)
         TNT1 A 0 A_SetUserVar("user_dropped", 0)
         goto DropCheck
@@ -26,6 +27,7 @@ actor Pickup_Shotgun: ClassBasedPickup replaces Shotgun
     States
     {
       Spawn:
+        TNT1 A 0
         TNT1 A 0 A_SetUserVar("user_index", It_Shotgun)
         TNT1 A 0 A_SetUserVar("user_dropped", 0)
         goto DropCheck
@@ -49,6 +51,7 @@ actor Pickup_ShotgunDropped: ClassBasedPickup
     States
     {
       Spawn:
+        TNT1 A 0
         TNT1 A 0 A_SetUserVar("user_index", It_ShotgunDropped)
         TNT1 A 0 A_SetUserVar("user_dropped", 0)
         TNT1 A 0 A_ChangeFlag("DROPPED", true)
@@ -73,6 +76,7 @@ actor Pickup_SuperShotgun: ClassBasedPickup replaces SuperShotgun
     States
     {
       Spawn:
+        TNT1 A 0
         TNT1 A 0 A_SetUserVar("user_index", It_SuperShotgun)
         TNT1 A 0 A_SetUserVar("user_dropped", 0)
         goto DropCheck
@@ -96,6 +100,7 @@ actor Pickup_Chaingun: ClassBasedPickup replaces Chaingun
     States
     {
       Spawn:
+        TNT1 A 0
         TNT1 A 0 A_SetUserVar("user_index", It_Chaingun)
         TNT1 A 0 A_SetUserVar("user_dropped", 0)
         goto DropCheck
@@ -123,6 +128,7 @@ actor Pickup_ChaingunDropped: ClassBasedPickup
     States
     {
       Spawn:
+        TNT1 A 0
         TNT1 A 0 A_SetUserVar("user_index", It_ChaingunDropped)
         TNT1 A 0 A_SetUserVar("user_dropped", 0)
         TNT1 A 0 A_ChangeFlag("DROPPED", true)
@@ -147,6 +153,7 @@ actor Pickup_RocketLauncher: ClassBasedPickup replaces RocketLauncher
     States
     {
       Spawn:
+        TNT1 A 0
         TNT1 A 0 A_SetUserVar("user_index", It_RocketLauncher)
         TNT1 A 0 A_SetUserVar("user_dropped", 0)
         goto DropCheck
@@ -170,6 +177,7 @@ actor Pickup_PlasmaRifle: ClassBasedPickup replaces PlasmaRifle
     States
     {
       Spawn:
+        TNT1 A 0
         TNT1 A 0 A_SetUserVar("user_index", It_PlasmaRifle)
         TNT1 A 0 A_SetUserVar("user_dropped", 0)
         goto DropCheck
@@ -197,6 +205,7 @@ actor Pickup_BFG9000: ClassBasedPickup replaces BFG9000
     States
     {
       Spawn:
+        TNT1 A 0
         TNT1 A 0 A_SetUserVar("user_index", It_BFG9000)
         TNT1 A 0 A_SetUserVar("user_dropped", 0)
         goto DropCheck

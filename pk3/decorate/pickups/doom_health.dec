@@ -3,6 +3,7 @@ actor Pickup_HealthBonus: ClassBasedPickup replaces HealthBonus
     States
     {
       Spawn:
+        TNT1 A 0
         TNT1 A 0 A_SetUserVar("user_index", It_HealthBonus)
         TNT1 A 0 A_SetUserVar("user_dropped", 0)
         goto DropCheck
@@ -23,6 +24,7 @@ actor Pickup_Stimpack: ClassBasedPickup replaces Stimpack
     States
     {
       Spawn:
+        TNT1 A 0
         TNT1 A 0 A_SetUserVar("user_index", It_Stimpack)
         TNT1 A 0 A_SetUserVar("user_dropped", 0)
         goto DropCheck
@@ -43,6 +45,7 @@ actor Pickup_Medikit: ClassBasedPickup replaces Medikit
     States
     {
       Spawn:
+        TNT1 A 0
         TNT1 A 0 A_SetUserVar("user_index", It_Medikit)
         TNT1 A 0 A_SetUserVar("user_dropped", 0)
         goto DropCheck
@@ -63,6 +66,7 @@ actor Pickup_Soulsphere: ClassBasedPickup replaces Soulsphere
     States
     {
       Spawn:
+        TNT1 A 0
         TNT1 A 0 A_SetUserVar("user_index", It_Soulsphere)
         TNT1 A 0 A_SetUserVar("user_dropped", 0)
         goto DropCheck

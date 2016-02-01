@@ -48,7 +48,8 @@ actor GiveScrapCounter3: Counter {}
 actor HubTracker:        Boolean { +INTERHUBSTRIP }
 actor DakkaScoreItem:    Counter { +INTERHUBSTRIP }
 
-actor UpdatesSwitcharoo: Boolean {}
+// Used in the Blursphere's scripted pickup
+actor DakkaVisPulse:     Counter {}
 
 // HUD shit
 actor AbnormalHealth:   Boolean {}

@@ -3,6 +3,7 @@ actor Pickup_Clip: ClassBasedPickup replaces Clip
     States
     {
       Spawn:
+        TNT1 A 0
         TNT1 A 0 A_SetUserVar("user_index", It_Clip)
         TNT1 A 0 A_SetUserVar("user_dropped", 0)
         goto DropCheck
@@ -23,6 +24,7 @@ actor Pickup_ClipDropped: ClassBasedPickup
     States
     {
       Spawn:
+        TNT1 A 0
         TNT1 A 0 A_SetUserVar("user_index", It_Clip)
         TNT1 A 0 A_SetUserVar("user_dropped", 0)
         TNT1 A 0 A_ChangeFlag("DROPPED", true)
@@ -44,6 +46,7 @@ actor Pickup_Shell: ClassBasedPickup replaces Shell
     States
     {
       Spawn:
+        TNT1 A 0
         TNT1 A 0 A_SetUserVar("user_index", It_Shell)
         TNT1 A 0 A_SetUserVar("user_dropped", 0)
         goto DropCheck
@@ -64,6 +67,7 @@ actor Pickup_RocketAmmo: ClassBasedPickup replaces RocketAmmo
     States
     {
       Spawn:
+        TNT1 A 0
         TNT1 A 0 A_SetUserVar("user_index", It_RocketAmmo)
         TNT1 A 0 A_SetUserVar("user_dropped", 0)
         goto DropCheck
@@ -84,6 +88,7 @@ actor Pickup_Cell: ClassBasedPickup replaces Cell
     States
     {
       Spawn:
+        TNT1 A 0
         TNT1 A 0 A_SetUserVar("user_index", It_Cell)
         TNT1 A 0 A_SetUserVar("user_dropped", 0)
         goto DropCheck
@@ -104,6 +109,7 @@ actor Pickup_ClipBox: ClassBasedPickup replaces ClipBox
     States
     {
       Spawn:
+        TNT1 A 0
         TNT1 A 0 A_SetUserVar("user_index", It_ClipBox)
         TNT1 A 0 A_SetUserVar("user_dropped", 0)
         goto DropCheck
@@ -124,6 +130,7 @@ actor Pickup_ShellBox: ClassBasedPickup replaces ShellBox
     States
     {
       Spawn:
+        TNT1 A 0
         TNT1 A 0 A_SetUserVar("user_index", It_ShellBox)
         TNT1 A 0 A_SetUserVar("user_dropped", 0)
         goto DropCheck
@@ -144,6 +151,7 @@ actor Pickup_RocketBox: ClassBasedPickup replaces RocketBox
     States
     {
       Spawn:
+        TNT1 A 0
         TNT1 A 0 A_SetUserVar("user_index", It_RocketBox)
         TNT1 A 0 A_SetUserVar("user_dropped", 0)
         goto DropCheck
@@ -164,6 +172,7 @@ actor Pickup_CellPack: ClassBasedPickup replaces CellPack
     States
     {
       Spawn:
+        TNT1 A 0
         TNT1 A 0 A_SetUserVar("user_index", It_CellPack)
         TNT1 A 0 A_SetUserVar("user_dropped", 0)
         goto DropCheck
@@ -179,3 +188,24 @@ actor Pickup_CellPack: ClassBasedPickup replaces CellPack
     }
 }
 
+
+actor Pickup_Backpack: ClassBasedPickup replaces Backpack
+{
+    States
+    {
+      Spawn:
+        TNT1 A 0
+        TNT1 A 0 A_SetUserVar("user_index", It_Backpack)
+        TNT1 A 0 A_SetUserVar("user_dropped", 0)
+        goto DropCheck
+
+      Unknown:
+      Dakka:
+        BPAK A -1
+        stop
+
+      Pickup:
+        TNT1 A 0 A_JumpIf(ACS_ExecuteWithResult(PICKUP_PICKUP, It_Backpack, false) == 1, "PickedUp")
+        goto NotPickedUp
+    }
+}

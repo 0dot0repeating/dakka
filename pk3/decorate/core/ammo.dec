@@ -4,7 +4,7 @@ actor DakkaBullet_10mm: Ammo
 
     Inventory.Amount    16
     Inventory.MaxAmount 250
-    Ammo.BackpackAmount     64
+    Ammo.BackpackAmount     32
     Ammo.BackpackMaxAmount 500
 }
 
@@ -14,7 +14,7 @@ actor DakkaBullet_5mm: Ammo
 
     Inventory.Amount 25
     Inventory.MaxAmount 500
-    Ammo.BackpackAmount     100
+    Ammo.BackpackAmount     50
     Ammo.BackpackMaxAmount  1000
 }
 
@@ -24,7 +24,7 @@ actor DakkaShells: Ammo
 
     Inventory.Amount 4
     Inventory.MaxAmount 100
-    Ammo.BackpackAmount 16
+    Ammo.BackpackAmount 8
     Ammo.BackpackMaxAmount 200
 }
 
@@ -34,7 +34,7 @@ actor DakkaShotGrenades: Ammo
 
     Inventory.Amount    2
     Inventory.MaxAmount 20
-    Ammo.BackpackAmount 8
+    Ammo.BackpackAmount 4
     Ammo.BackpackMaxAmount 40
 }
 
@@ -44,7 +44,7 @@ actor DakkaGyroShells: Ammo
 
     Inventory.Amount 4
     Inventory.MaxAmount 40
-    Ammo.BackpackAmount 8
+    Ammo.BackpackAmount 4
     Ammo.BackpackMaxAmount 80
 }
 
@@ -54,7 +54,7 @@ actor DakkaRainGrenades: Ammo
 
     Inventory.Amount 3
     Inventory.MaxAmount 40
-    Ammo.BackpackAmount 6
+    Ammo.BackpackAmount 3
     Ammo.BackpackMaxAmount 80
 }
 
@@ -64,7 +64,7 @@ actor DakkaFlamerFuel: Ammo
 
     Inventory.Amount 12
     Inventory.MaxAmount 120
-    Ammo.BackpackAmount 24
+    Ammo.BackpackAmount 12
     Ammo.BackpackMaxAmount 240
 }
 
@@ -74,7 +74,7 @@ actor DakkaRockets: Ammo
 
     Inventory.Amount 2
     Inventory.MaxAmount 50
-    Ammo.BackpackAmount 10
+    Ammo.BackpackAmount 5
     Ammo.BackpackMaxAmount 100
 }
 
@@ -84,7 +84,7 @@ actor DakkaCells: Ammo
 
     Inventory.Amount 20
     Inventory.MaxAmount 400
-    Ammo.BackpackAmount 80
+    Ammo.BackpackAmount 40
     Ammo.BackpackMaxAmount 800
 }
 
