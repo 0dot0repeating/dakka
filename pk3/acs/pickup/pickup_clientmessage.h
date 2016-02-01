@@ -40,14 +40,16 @@ function int CMSG_AddPickupData(int pln, int index, int arg1, int arg2)
     CMSG_MessageData[pln][index]   = arg1;
     CMSG_MessageData[pln][index+1] = arg2;
 
-    CMSG_MessageDefined[pln][index]   = true;
-    CMSG_MessageDefined[pln][index+1] = true;
+    int time = Timer();
+
+    CMSG_MessageDefined[pln][index]   = time;
+    CMSG_MessageDefined[pln][index+1] = time;
 
     int i;
 
     for (i = 0; i < MDATA_SLOTS; i++)
     {
-        if (!CMSG_MessageDefined[pln][i]) { return false; }
+        if (CMSG_MessageDefined[pln][i] != time) { return false; }
     }
 
     return true;
