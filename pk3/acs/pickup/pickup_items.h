@@ -3,7 +3,7 @@
 
 // This is, quite simply, the amount of pickup types that this ACS is equipped
 //  to handle.
-#define PICKUPCOUNT     23
+#define PICKUPCOUNT     27
 
 
 // How many items can you get from each pickup?
@@ -37,6 +37,11 @@
 #define It_Stimpack         20
 #define It_Medikit          21
 #define It_Soulsphere       22
+
+#define It_ArmorBonus       23
+#define It_GreenArmor       24
+#define It_BlueArmor        25
+#define It_Megasphere       26
 
 
 // Here, you have the items that each pickup will give you. Each pickup can give
@@ -151,6 +156,24 @@ int PKP_ReceiveItems[PICKUPCOUNT][CLASSCOUNT][PK_RECEIVECOUNT] =
         {"HealthBonus"},
         {"DakkaSoulsphere"},
     },
+
+
+    {
+        {"ArmorBonus"},
+        {"ArmorBonus"},
+    },
+    {
+        {"GreenArmor"},
+        {"GreenArmor"},
+    },
+    {
+        {"BlueArmor"},
+        {"BlueArmor"},
+    },
+    {
+        {"MegasphereHealth", "BlueArmor"},
+        {"DakkaMegasphere",  "BlueArmor"},
+    },
 };
 
 
@@ -257,6 +280,25 @@ int PKP_ReceiveCount[PICKUPCOUNT][CLASSCOUNT][PK_RECEIVECOUNT] =
         {100},
         {50},
     },
+
+
+    // Armor
+    {
+        {1},
+        {2},
+    },
+    {
+        {1},
+        {1},
+    },
+    {
+        {1},
+        {1},
+    },
+    {
+        {1, 1},
+        {1, 1},
+    },
 };
 
 
@@ -356,6 +398,25 @@ int PKP_AlwaysPickup[PICKUPCOUNT][CLASSCOUNT] =
         true,
     },
     {
+        false,
+        false,
+    },
+    {
+        false,
+        false,
+    },
+    {
+        true,
+        true,
+    },
+
+
+    // Armor
+    {
+        true,
+        true,
+    },
+    { // 24
         false,
         false,
     },

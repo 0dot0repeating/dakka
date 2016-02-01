@@ -3,7 +3,7 @@
 //  any health pickup stuff in here, or the pickup system won't know how to
 //  handle it.
 
-#define HEALTHCOUNT 6
+#define HEALTHCOUNT 7
 
 // NOTE: These health items don't have to actually exist!
 //  So long as they're defined here, the pickup system will know what
@@ -14,6 +14,7 @@ int PKP_HealthTypes[HEALTHCOUNT] =
     "BaseHealth",
     "HealthBonus",
     "Medikit",
+    "MegasphereHealth",
     "DakkaHealthBonus",
     "DakkaSoulsphere",
     "DakkaMegasphere",
@@ -114,6 +115,14 @@ int PKP_HealingPoints[HEALTHCOUNT][HPOINT_COUNT][4] =
         {HSCALE_BLANK,  0,      0,                  0},
     },
 
+    // Megasphere health (200% class' max health)
+    {
+        {HSCALE_MULT,   2.0,    HTYPE_PERCENT,      2.0},
+        {HSCALE_BLANK,  0,      0,                  0},
+        {HSCALE_BLANK,  0,      0,                  0},
+        {HSCALE_BLANK,  0,      0,                  0},
+    },
+
     // Dakka health bonus (4hp to 50, 3hp to 100, 2hp to 200, 1hp to 300)
     {
         {HSCALE_MULT,   3.0,    HTYPE_CONSTANT,     1},
@@ -130,9 +139,9 @@ int PKP_HealingPoints[HEALTHCOUNT][HPOINT_COUNT][4] =
         {HSCALE_BLANK,  0,      0,                  0},
     },
 
-    // Dakka megasphere (1hp to 300)
+    // Dakka megasphere (300% class' max health)
     {
-        {HSCALE_MULT,   3.0,    HTYPE_CONSTANT,     1},
+        {HSCALE_MULT,   3.0,    HTYPE_PERCENT,      3.0},
         {HSCALE_BLANK,  0,      0,                  0},
         {HSCALE_BLANK,  0,      0,                  0},
         {HSCALE_BLANK,  0,      0,                  0},
