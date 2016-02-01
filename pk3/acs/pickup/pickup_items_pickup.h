@@ -86,6 +86,24 @@ int PKP_Messages[PICKUPCOUNT][CLASSCOUNT] =
         "$GOTCELLBOX",
         "Big cells",
     },
+
+
+    {
+        "$GOTHTHBONUS",
+        "Health bonus",
+    },
+    {
+        "$GOTSTIM",
+        "Stimpack",
+    },
+    {
+        "$GOTMEDIKIT",
+        "Medikit",
+    },
+    {
+        "$GOTSUPER",
+        "Soulsphere!",
+    },
 };
 
 
@@ -172,6 +190,25 @@ int PKP_PickupFlashes[PICKUPCOUNT][CLASSCOUNT][5] =
 
     // Ammo (big)
     {
+        {255, 255, 64, 0.1, 0.25},
+        {255, 255, 64, 0.1, 0.25},
+    },
+    {
+        {255, 255, 64, 0.1, 0.25},
+        {255, 255, 64, 0.1, 0.25},
+    },
+    {
+        {255, 255, 64, 0.1, 0.25},
+        {255, 255, 64, 0.1, 0.25},
+    },
+    {
+        {255, 255, 64, 0.1, 0.25},
+        {255, 255, 64, 0.1, 0.25},
+    },
+
+
+    // Health
+    { // 19
         {255, 255, 64, 0.1, 0.25},
         {255, 255, 64, 0.1, 0.25},
     },
@@ -275,5 +312,24 @@ int PKP_PickupSounds[PICKUPCOUNT][CLASSCOUNT] =
     {
         "misc/i_pkup",
         "misc/i_pkup",
+    },
+
+
+    // Health
+    { // 19
+        "misc/i_pkup",
+        "misc/i_pkup",
+    },
+    {
+        "misc/i_pkup",
+        "misc/i_pkup",
+    },
+    {
+        "misc/i_pkup",
+        "misc/i_pkup",
+    },
+    {
+        "misc/p_pkup",
+        "misc/p_pkup",
     },
 };

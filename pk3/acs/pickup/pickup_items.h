@@ -3,7 +3,7 @@
 
 // This is, quite simply, the amount of pickup types that this ACS is equipped
 //  to handle.
-#define PICKUPCOUNT     19
+#define PICKUPCOUNT     23
 
 
 // How many items can you get from each pickup?
@@ -32,6 +32,11 @@
 #define It_ShellBox         16
 #define It_RocketBox        17
 #define It_CellPack         18
+
+#define It_HealthBonus      19
+#define It_Stimpack         20
+#define It_Medikit          21
+#define It_Soulsphere       22
 
 
 // Here, you have the items that each pickup will give you. Each pickup can give
@@ -128,6 +133,24 @@ int PKP_ReceiveItems[PICKUPCOUNT][CLASSCOUNT][PK_RECEIVECOUNT] =
         {"Cell"},
         {"DakkaCells", "DakkaFlamerFuel"},
     },
+
+
+    {
+        {"HealthBonus"},
+        {"DakkaHealthBonus"},
+    },
+    {
+        {"BaseHealth"},
+        {"BaseHealth"},
+    },
+    {
+        {"Medikit"},
+        {"BaseHealth"},
+    },
+    {
+        {"HealthBonus"},
+        {"DakkaSoulsphere"},
+    },
 };
 
 
@@ -214,6 +237,25 @@ int PKP_ReceiveCount[PICKUPCOUNT][CLASSCOUNT][PK_RECEIVECOUNT] =
     {
         {100},
         {100, 12},
+    },
+
+
+    // Health
+    {
+        {1},
+        {1},
+    },
+    {
+        {10},
+        {10},
+    },
+    {
+        {25},
+        {25},
+    },
+    {
+        {100},
+        {50},
     },
 };
 
@@ -305,5 +347,24 @@ int PKP_AlwaysPickup[PICKUPCOUNT][CLASSCOUNT] =
     {
         false,
         false,
+    },
+
+
+    // Health
+    { // 19
+        true,
+        true,
+    },
+    {
+        false,
+        false,
+    },
+    {
+        false,
+        false,
+    },
+    {
+        true,
+        true,
     },
 };

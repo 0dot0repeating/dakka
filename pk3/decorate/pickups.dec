@@ -20,6 +20,12 @@ const int It_ShellBox         = 16;
 const int It_RocketBox        = 17;
 const int It_CellPack         = 18;
 
+const int It_HealthBonus      = 19;
+const int It_Stimpack         = 20;
+const int It_Medikit          = 21;
+const int It_Soulsphere       = 22;
+
 
 #include "decorate/pickups/doom_weapons.dec"
 #include "decorate/pickups/doom_ammo.dec"
+#include "decorate/pickups/doom_health.dec"
