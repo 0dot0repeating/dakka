@@ -30,7 +30,6 @@ streamlining things, and so on and so forth.
 * dakka_cl_moremessages (I miss it already)
 * dakka_scrapperstart and dakka_backpackstart
 * dakka_jumpmod (might not come back in, honestly)
-* Pickup definitions for health, armor, and powerups (minigun and channeler can't be found right now)
 * The dakka_rearm CVars
 * Score rewards
 
