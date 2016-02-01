@@ -511,7 +511,7 @@ int PKP_AlwaysPickup[PICKUPCOUNT][CLASSCOUNT] =
 
 
     { // Channeler
-        true,
-        true,
+        false,
+        false,
     },
 };
