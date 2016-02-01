@@ -10,11 +10,15 @@ script DAKKA_RESPAWN respawn
 }
 
 
+int DakkaEnterLocks[PLAYERMAX];
 
 script DAKKA_SPAWN (int respawned)
 {
     int pln = PlayerNumber();
     int oldScore, curScore;
+
+    if (DakkaEnterLocks[pln]) { terminate; }
+    DakkaEnterLocks[pln] = true;
 
     while (true)
     {
@@ -41,4 +45,10 @@ script DAKKA_SPAWN (int respawned)
         Score_Update(pln);
         Delay(1);
     }
+}
+
+
+script DAKKA_DISCONNECT (int pln) disconnect
+{
+    DakkaEnterLocks[pln] = false;
 }

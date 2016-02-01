@@ -112,7 +112,7 @@ int CMSG_ScriptedMessages[MSG_SCRIPTEDCOUNT][7] =
 //   chases a nonexistent item around.
 
 
-#define DISP_SCRIPTEDCOUNT  1
+#define DISP_SCRIPTEDCOUNT  2
 
 // Row 0 indicates which item index this is for.
 #define DISP_S_ITEMNUM      0
@@ -132,5 +132,6 @@ int CMSG_ScriptedMessages[MSG_SCRIPTEDCOUNT][7] =
 
 int DISP_ScriptedDisplays[DISP_SCRIPTEDCOUNT][6] =
 {
-    {-1, -1, -1, -1, -1, -1},
+    {It_Blursphere, Cl_Unknown,  493, 0, 0, 0}, // Defined in pickup/pickup.h
+    {It_Blursphere, Cl_Dakkaguy, 493, 0, 0, 0}, // because I'm a lazy bum
 };

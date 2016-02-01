@@ -6,3 +6,5 @@
 
 #include "decorate/core/puffs.dec"
 #include "decorate/core/dakkaguy.dec"
+
+#include "decorate/core/invuln.dec"

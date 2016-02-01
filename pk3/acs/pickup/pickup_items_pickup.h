@@ -122,6 +122,24 @@ int PKP_Messages[PICKUPCOUNT][CLASSCOUNT] =
         "$GOTMSPHERE",
         "Megasphere!",
     },
+
+
+    {
+        "$GOTBERSERK",
+        "Minigun!",
+    },
+    {
+        "$GOTINVIS",
+        "Blursphere!",
+    },
+    {
+        "$GOTINVUL",
+        "Invulnerability!",
+    },
+    {
+        "$GOTBACKPACK",
+        "Backpack!",
+    },
 };
 
 
@@ -261,6 +279,24 @@ int PKP_PickupFlashes[PICKUPCOUNT][CLASSCOUNT][5] =
         {255, 255, 64, 0.15, 0.15},
         {255, 255, 64, 0.15, 0.15},
     },
+
+
+    { // Berserk
+        {255, 255, 64, 0.15, 0.15},
+        {255, 255, 64, 0.15, 0.15},
+    },
+    { // Blursphere
+        {255, 255, 64, 0.15, 0.15},
+        {255, 255, 64, 0.15, 0.15},
+    },
+    { // (29) Invuln
+        {255, 255, 64, 0.15, 0.15},
+        {255, 255, 64, 0.15, 0.15},
+    },
+    { // Backpack
+        {255, 255, 64, 0.15, 0.15},
+        {255, 255, 64, 0.15, 0.15},
+    },
 };
 
 
@@ -386,5 +422,23 @@ int PKP_PickupSounds[PICKUPCOUNT][CLASSCOUNT] =
     {
         "misc/p_pkup",
         "misc/p_pkup",
+    },
+
+
+    { // Berserk
+        "misc/p_pkup",
+        "misc/w_pkup",
+    },
+    { // Blursphere
+        "misc/p_pkup",
+        "misc/p_pkup",
+    },
+    { // (29) Blursphere
+        "misc/p_pkup",
+        "misc/p_pkup",
+    },
+    { // Backpack
+        "misc/i_pkup",
+        "misc/i_pkup",
     },
 };

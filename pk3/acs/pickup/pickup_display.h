@@ -80,33 +80,48 @@ script PICKUP_DISPLAY (int index, int dropped) clientside
         // Subtract 1 so that the default value - 0 - means "unknown".
         classNum = SToC_ClientData[cpln][S2C_D_CLASSNUM] - 1;
 
-        // If class number changes, try to go back to the default display state.
+        oldScript = scriptIndex;
+        scriptIndex = Pickup_IsDisplayScripted(index, classNum);
+        
+        // Slight optimization.
+        if (oldScript != -1 || scriptIndex != -1)
+        {
+            Disp_ScriptArgs[DPASS_ITEMNUM]      = index;
+            Disp_ScriptArgs[DPASS_CLASSNUM]     = classNum;
+            Disp_ScriptArgs[DPASS_OLDCLASSNUM]  = oldClassNum;
+            Disp_ScriptArgs[DPASS_DROPPED]      = dropped;
+        }
+
+        // If class number changes, try to go back to the default display state,
+        //  then change pickup state.
         if (oldClassNum != classNum)
         {
             SetActorProperty(0, APROP_RenderStyle, STYLE_Normal);
             SetActorProperty(0, APROP_Alpha,       1.0);
-        }
 
-        oldScript = scriptIndex;
-        scriptIndex = Pickup_IsDisplayScripted(index, classNum);
+            if (classNum == -1)
+            {
+                SetActorState(0, "Unknown");
+            }
+            else
+            {
+                // DISP_ClassStates is in pickup_items.h.
+                SetActorState(0, DISP_ClassStates[classNum]);
+            }
 
-        Disp_ScriptArgs[DPASS_ITEMNUM]      = index;
-        Disp_ScriptArgs[DPASS_CLASSNUM]     = classNum;
-        Disp_ScriptArgs[DPASS_OLDCLASSNUM]  = oldClassNum;
-        Disp_ScriptArgs[DPASS_DROPPED]      = dropped;
+            // Let the old script do whatever cleanup it needs.
+            if (oldScript != -1)
+            {
+                Disp_ScriptArgs[DPASS_DOCLEANUP] = true;
 
-        // Let the old script that we're phasing out do cleanup.
-        if ((oldScript != scriptIndex) && (oldScript != -1))
-        {
-            Disp_ScriptArgs[DPASS_DOCLEANUP] = true;
+                snum = DISP_ScriptedDisplays[oldScript][DISP_S_SCRIPTNUM];
+                arg1 = DISP_ScriptedDisplays[oldScript][DISP_S_ARG1];
+                arg2 = DISP_ScriptedDisplays[oldScript][DISP_S_ARG2];
+                arg3 = DISP_ScriptedDisplays[oldScript][DISP_S_ARG3];
+                ACS_ExecuteWithResult(snum, arg1, arg2, arg3);
 
-            snum = DISP_ScriptedDisplays[oldScript][DISP_S_SCRIPTNUM];
-            arg1 = DISP_ScriptedDisplays[oldScript][DISP_S_ARG1];
-            arg2 = DISP_ScriptedDisplays[oldScript][DISP_S_ARG2];
-            arg3 = DISP_ScriptedDisplays[oldScript][DISP_S_ARG3];
-            ACS_ExecuteWithResult(snum, arg1, arg2, arg3);
-
-            Disp_ScriptArgs[DPASS_DOCLEANUP] = false;
+                Disp_ScriptArgs[DPASS_DOCLEANUP] = false;
+            }
         }
 
         // If we got a script, let it handle everything. If it wants to
@@ -119,18 +134,6 @@ script PICKUP_DISPLAY (int index, int dropped) clientside
             arg3 = DISP_ScriptedDisplays[scriptIndex][DISP_S_ARG3];
 
             ACS_ExecuteWithResult(snum, arg1, arg2, arg3);
-        }
-        else if (classNum != oldClassNum)
-        {
-            if (classNum == -1)
-            {
-                SetActorState(0, "Unknown");
-            }
-            else
-            {
-                // DISP_ClassStates is in pickup_items.h.
-                SetActorState(0, DISP_ClassStates[classNum]);
-            }
         }
 
         Delay(1);

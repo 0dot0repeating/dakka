@@ -3,7 +3,7 @@
 
 // This is, quite simply, the amount of pickup types that this ACS is equipped
 //  to handle.
-#define PICKUPCOUNT     27
+#define PICKUPCOUNT     31
 
 
 // How many items can you get from each pickup?
@@ -43,6 +43,10 @@
 #define It_BlueArmor        25
 #define It_Megasphere       26
 
+#define It_Berserk          27
+#define It_Blursphere       28
+#define It_InvulnSphere     29
+#define It_Backpack         30
 
 // Here, you have the items that each pickup will give you. Each pickup can give
 //  as many as PK_RECEIVECOUNT items.
@@ -174,6 +178,24 @@ int PKP_ReceiveItems[PICKUPCOUNT][CLASSCOUNT][PK_RECEIVECOUNT] =
         {"MegasphereHealth", "BlueArmor"},
         {"DakkaMegasphere",  "BlueArmor"},
     },
+
+
+    {
+        {"FullHealth", "PowerStrength", "SwitchToFist"},
+        {"DWep_Minigun"},
+    },
+    {
+        {"Blursphere"},
+        {"Blursphere"},
+    },
+    {
+        {"InvulnerabilitySphere"},
+        {"DakkaInvulnerable"},
+    },
+    {
+        {"Backpack"},
+        {"Backpack"},
+    },
 };
 
 
@@ -298,6 +320,27 @@ int PKP_ReceiveCount[PICKUPCOUNT][CLASSCOUNT][PK_RECEIVECOUNT] =
     {
         {1, 1},
         {1, 1},
+    },
+
+
+    { // Berserk
+        {1, 1, 1},
+        {1},
+    },
+
+    { // Blursphere
+        {1},
+        {1},
+    },
+
+    { // Invuln
+        {1},
+        {1},
+    },
+
+    { // Backpack
+        {1},
+        {1},
     },
 };
 
@@ -425,6 +468,28 @@ int PKP_AlwaysPickup[PICKUPCOUNT][CLASSCOUNT] =
         false,
     },
     {
+        true,
+        true,
+    },
+
+
+    
+    { // Berserk
+        true,
+        false,
+    },
+
+    { // Blursphere
+        true,
+        true,
+    },
+
+    { // (29) Invuln
+        true,
+        true,
+    },
+
+    { // Backpack
         true,
         true,
     },

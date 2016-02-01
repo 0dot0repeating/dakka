@@ -1,7 +1,8 @@
-#define DAKKA_OPEN                  472
-#define DAKKA_ENTER                 473
-#define DAKKA_RESPAWN               474
-#define DAKKA_SPAWN                 475
+#define DAKKA_OPEN                  471
+#define DAKKA_ENTER                 472
+#define DAKKA_RESPAWN               473
+#define DAKKA_SPAWN                 474
+#define DAKKA_DISCONNECT            475
 
 
 #define DAKKA_SCORE                 476
