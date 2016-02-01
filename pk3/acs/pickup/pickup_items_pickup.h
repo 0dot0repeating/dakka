@@ -8,8 +8,48 @@
 int PKP_Messages[PICKUPCOUNT][CLASSCOUNT] = 
 {
     {
+        "You got a pair of hands!",
+        "Two hands!",
+    },
+    {
         "$GOTCHAINSAW",
         "Scrappers!",
+    },
+    {
+        "Picked up a pistol.",
+        "Pistols!",
+    },
+    {
+        "$GOTSHOTGUN",
+        "Shotgun!",
+    },
+    {
+        "$GOTSHOTGUN2",
+        "Super shotgun!",
+    },
+    {
+        "$GOTCHAINGUN",
+        "Chaingun!",
+    },
+    {
+        "$GOTLAUNCHER",
+        "Rocket launcher!",
+    },
+    {
+        "$GOTPLASMA",
+        "Plasma rifle!",
+    },
+    {
+        "$GOTBFG9000",
+        "\caBig feffin' gun!",
+    },
+    {
+        "$GOTSHOTGUN",
+        "Shotgun!",
+    },
+    {
+        "$GOTCHAINGUN",
+        "Chaingun!",
     },
 };
 
@@ -30,6 +70,46 @@ int PKP_Messages[PICKUPCOUNT][CLASSCOUNT] =
 
 int PKP_PickupFlashes[PICKUPCOUNT][CLASSCOUNT][5] =
 {
+    { // 0
+        {255, 255, 64, 0.1, 0.25},
+        {255, 255, 64, 0.1, 0.25},
+    },
+    {
+        {255, 255, 64, 0.1, 0.25},
+        {255, 255, 64, 0.1, 0.25},
+    },
+    {
+        {255, 255, 64, 0.1, 0.25},
+        {255, 255, 64, 0.1, 0.25},
+    },
+    {
+        {255, 255, 64, 0.1, 0.25},
+        {255, 255, 64, 0.1, 0.25},
+    },
+    { // 4
+        {255, 255, 64, 0.1, 0.25},
+        {255, 255, 64, 0.1, 0.25},
+    },
+    {
+        {255, 255, 64, 0.1, 0.25},
+        {255, 255, 64, 0.1, 0.25},
+    },
+    {
+        {255, 255, 64, 0.1, 0.25},
+        {255, 255, 64, 0.1, 0.25},
+    },
+    {
+        {255, 255, 64, 0.1, 0.25},
+        {255, 255, 64, 0.1, 0.25},
+    },
+    {
+        {255, 255, 64, 0.1, 0.25},
+        {255, 255, 64, 0.1, 0.25},
+    },
+    { // 9
+        {255, 255, 64, 0.1, 0.25},
+        {255, 255, 64, 0.1, 0.25},
+    },
     {
         {255, 255, 64, 0.1, 0.25},
         {255, 255, 64, 0.1, 0.25},
@@ -41,6 +121,46 @@ int PKP_PickupFlashes[PICKUPCOUNT][CLASSCOUNT][5] =
 // Pickup sound? Not much to say here.
 int PKP_PickupSounds[PICKUPCOUNT][CLASSCOUNT] =
 {
+    { // 0
+        "misc/w_pkup",
+        "misc/w_pkup",
+    },
+    {
+        "misc/w_pkup",
+        "misc/w_pkup",
+    },
+    {
+        "misc/w_pkup",
+        "misc/w_pkup",
+    },
+    {
+        "misc/w_pkup",
+        "misc/w_pkup",
+    },
+    { // 4
+        "misc/w_pkup",
+        "misc/w_pkup",
+    },
+    {
+        "misc/w_pkup",
+        "misc/w_pkup",
+    },
+    {
+        "misc/w_pkup",
+        "misc/w_pkup",
+    },
+    {
+        "misc/w_pkup",
+        "misc/w_pkup",
+    },
+    {
+        "misc/w_pkup",
+        "misc/w_pkup",
+    },
+    { // 9
+        "misc/w_pkup",
+        "misc/w_pkup",
+    },
     {
         "misc/w_pkup",
         "misc/w_pkup",

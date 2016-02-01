@@ -1,1 +1,14 @@
+const int It_Fists            = 0;
+const int It_Chainsaw         = 1;
+const int It_Pistol           = 2;
+const int It_Shotgun          = 3;
+const int It_SuperShotgun     = 4;
+const int It_Chaingun         = 5;
+const int It_RocketLauncher   = 6;
+const int It_PlasmaRifle      = 7;
+const int It_BFG9000          = 8;
+
+const int It_ShotgunDropped   = 9;
+const int It_ChaingunDropped  = 10;
+
 #include "decorate/pickups/doom_weapons.dec"
