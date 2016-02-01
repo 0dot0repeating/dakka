@@ -11,3 +11,8 @@ function void Dakka_DoLevelStart(void)
         Log(s:"HAS PLASMA: ", d:hasPlasma);
     }
 }
+
+
+function void Dakka_DoDMStart(void)
+{
+}
