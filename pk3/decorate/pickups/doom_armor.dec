@@ -1,0 +1,81 @@
+actor Pickup_ArmorBonus: ClassBasedPickup replaces ArmorBonus
+{
+    States
+    {
+      Spawn:
+        TNT1 A 0 A_SetUserVar("user_index", It_ArmorBonus)
+        TNT1 A 0 A_SetUserVar("user_dropped", 0)
+        goto DropCheck
+
+      Unknown:
+      Dakka:
+        BON2 ABCDCB 6
+        loop
+
+      Pickup:
+        TNT1 A 0 A_JumpIf(ACS_ExecuteWithResult(PICKUP_PICKUP, It_ArmorBonus, false) == 1, "PickedUp")
+        goto NotPickedUp
+    }
+}
+
+actor Pickup_GreenArmor: ClassBasedPickup replaces GreenArmor
+{
+    States
+    {
+      Spawn:
+        TNT1 A 0 A_SetUserVar("user_index", It_GreenArmor)
+        TNT1 A 0 A_SetUserVar("user_dropped", 0)
+        goto DropCheck
+
+      Unknown:
+      Dakka:
+        ARM1 A 6
+        ARM1 B 7 bright
+        loop
+
+      Pickup:
+        TNT1 A 0 A_JumpIf(ACS_ExecuteWithResult(PICKUP_PICKUP, It_GreenArmor, false) == 1, "PickedUp")
+        goto NotPickedUp
+    }
+}
+
+actor Pickup_BlueArmor: ClassBasedPickup replaces BlueArmor
+{
+    States
+    {
+      Spawn:
+        TNT1 A 0 A_SetUserVar("user_index", It_BlueArmor)
+        TNT1 A 0 A_SetUserVar("user_dropped", 0)
+        goto DropCheck
+
+      Unknown:
+      Dakka:
+        ARM2 A 6
+        ARM2 B 7 bright
+        loop
+
+      Pickup:
+        TNT1 A 0 A_JumpIf(ACS_ExecuteWithResult(PICKUP_PICKUP, It_BlueArmor, false) == 1, "PickedUp")
+        goto NotPickedUp
+    }
+}
+
+actor Pickup_Megasphere: ClassBasedPickup replaces Megasphere
+{
+    States
+    {
+      Spawn:
+        TNT1 A 0 A_SetUserVar("user_index", It_Megasphere)
+        TNT1 A 0 A_SetUserVar("user_dropped", 0)
+        goto DropCheck
+
+      Unknown:
+      Dakka:
+        MEGA ABCD 6 bright
+        loop
+
+      Pickup:
+        TNT1 A 0 A_JumpIf(ACS_ExecuteWithResult(PICKUP_PICKUP, It_Megasphere, false) == 1, "PickedUp")
+        goto NotPickedUp
+    }
+}

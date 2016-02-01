@@ -25,7 +25,13 @@ const int It_Stimpack         = 20;
 const int It_Medikit          = 21;
 const int It_Soulsphere       = 22;
 
+const int It_ArmorBonus       = 23;
+const int It_GreenArmor       = 24;
+const int It_BlueArmor        = 25;
+const int It_Megasphere       = 26;
+
 
 #include "decorate/pickups/doom_weapons.dec"
 #include "decorate/pickups/doom_ammo.dec"
 #include "decorate/pickups/doom_health.dec"
+#include "decorate/pickups/doom_armor.dec"
