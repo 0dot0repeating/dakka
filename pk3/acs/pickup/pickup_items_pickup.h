@@ -51,6 +51,41 @@ int PKP_Messages[PICKUPCOUNT][CLASSCOUNT] =
         "$GOTCHAINGUN",
         "Chaingun!",
     },
+
+
+    {
+        "$GOTCLIP",
+        "Bullets",
+    },
+    {
+        "$GOTSHELL",
+        "Shells",
+    },
+    {
+        "$GOTROCKET",
+        "Rockets",
+    },
+    {
+        "$GOTCELL",
+        "Cells",
+    },
+
+    {
+        "$GOTCLIPBOX",
+        "Big bullets",
+    },
+    {
+        "$GOTSHELLBOX",
+        "Big shells",
+    },
+    {
+        "$GOTROCKBOX",
+        "Big rockets",
+    },
+    {
+        "$GOTCELLBOX",
+        "Big cells",
+    },
 };
 
 
@@ -70,6 +105,7 @@ int PKP_Messages[PICKUPCOUNT][CLASSCOUNT] =
 
 int PKP_PickupFlashes[PICKUPCOUNT][CLASSCOUNT][5] =
 {
+    // Weapons
     { // 0
         {255, 255, 64, 0.1, 0.25},
         {255, 255, 64, 0.1, 0.25},
@@ -107,6 +143,43 @@ int PKP_PickupFlashes[PICKUPCOUNT][CLASSCOUNT][5] =
         {255, 255, 64, 0.1, 0.25},
     },
     { // 9
+        {255, 255, 64, 0.1, 0.25},
+        {255, 255, 64, 0.1, 0.25},
+    },
+    {
+        {255, 255, 64, 0.1, 0.25},
+        {255, 255, 64, 0.1, 0.25},
+    },
+
+
+    // Ammo
+    {
+        {255, 255, 64, 0.1, 0.25},
+        {255, 255, 64, 0.1, 0.25},
+    },
+    {
+        {255, 255, 64, 0.1, 0.25},
+        {255, 255, 64, 0.1, 0.25},
+    },
+    {
+        {255, 255, 64, 0.1, 0.25},
+        {255, 255, 64, 0.1, 0.25},
+    },
+    { // 14
+        {255, 255, 64, 0.1, 0.25},
+        {255, 255, 64, 0.1, 0.25},
+    },
+
+    // Ammo (big)
+    {
+        {255, 255, 64, 0.1, 0.25},
+        {255, 255, 64, 0.1, 0.25},
+    },
+    {
+        {255, 255, 64, 0.1, 0.25},
+        {255, 255, 64, 0.1, 0.25},
+    },
+    {
         {255, 255, 64, 0.1, 0.25},
         {255, 255, 64, 0.1, 0.25},
     },
@@ -121,6 +194,7 @@ int PKP_PickupFlashes[PICKUPCOUNT][CLASSCOUNT][5] =
 // Pickup sound? Not much to say here.
 int PKP_PickupSounds[PICKUPCOUNT][CLASSCOUNT] =
 {
+    // Weapons
     { // 0
         "misc/w_pkup",
         "misc/w_pkup",
@@ -164,5 +238,42 @@ int PKP_PickupSounds[PICKUPCOUNT][CLASSCOUNT] =
     {
         "misc/w_pkup",
         "misc/w_pkup",
+    },
+
+    
+    // Ammo
+    {
+        "misc/i_pkup",
+        "misc/i_pkup",
+    },
+    {
+        "misc/i_pkup",
+        "misc/i_pkup",
+    },
+    {
+        "misc/i_pkup",
+        "misc/i_pkup",
+    },
+    { // 14
+        "misc/i_pkup",
+        "misc/i_pkup",
+    },
+
+    // Ammo (big)
+    {
+        "misc/i_pkup",
+        "misc/i_pkup",
+    },
+    {
+        "misc/i_pkup",
+        "misc/i_pkup",
+    },
+    {
+        "misc/i_pkup",
+        "misc/i_pkup",
+    },
+    {
+        "misc/i_pkup",
+        "misc/i_pkup",
     },
 };

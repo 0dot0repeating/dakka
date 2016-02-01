@@ -3,7 +3,7 @@
 
 // This is, quite simply, the amount of pickup types that this ACS is equipped
 //  to handle.
-#define PICKUPCOUNT     11
+#define PICKUPCOUNT     19
 
 
 // How many items can you get from each pickup?
@@ -23,6 +23,15 @@
 
 #define It_ShotgunDropped   9
 #define It_ChaingunDropped  10
+
+#define It_Clip             11
+#define It_Shell            12
+#define It_RocketAmmo       13
+#define It_Cell             14
+#define It_ClipBox          15
+#define It_ShellBox         16
+#define It_RocketBox        17
+#define It_CellPack         18
 
 
 // Here, you have the items that each pickup will give you. Each pickup can give
@@ -84,6 +93,41 @@ int PKP_ReceiveItems[PICKUPCOUNT][CLASSCOUNT][PK_RECEIVECOUNT] =
         {"Chaingun"},
         {"DWep_Chaingun"},
     },
+
+
+    {
+        {"Clip"},
+        {"DakkaBullet_10mm", "DakkaBullet_5mm"},
+    },
+    {
+        {"Shell"},
+        {"DakkaShells"},
+    },
+    {
+        {"RocketAmmo"},
+        {"DakkaRockets"},
+    },
+    {
+        {"Cell"},
+        {"DakkaCells"},
+    },
+
+    {
+        {"ClipBox"},
+        {"DakkaBullet_10mm", "DakkaBullet_5mm", "DakkaRainGrenades", "DakkaFlamerFuel"},
+    },
+    {
+        {"Shell"},
+        {"DakkaShells", "DakkaShotGrenades", "DakkaGyroShells"},
+    },
+    {
+        {"RocketAmmo"},
+        {"DakkaRockets", "DakkaShotGrenades", "DakkaGyroShells", "DakkaRainGrenades"},
+    },
+    {
+        {"Cell"},
+        {"DakkaCells", "DakkaFlamerFuel"},
+    },
 };
 
 
@@ -91,6 +135,7 @@ int PKP_ReceiveItems[PICKUPCOUNT][CLASSCOUNT][PK_RECEIVECOUNT] =
 // How many of those items are we going to get?
 int PKP_ReceiveCount[PICKUPCOUNT][CLASSCOUNT][PK_RECEIVECOUNT] =
 {
+    // Weapons
     {
         {1},
         {1},
@@ -135,6 +180,41 @@ int PKP_ReceiveCount[PICKUPCOUNT][CLASSCOUNT][PK_RECEIVECOUNT] =
         {1},
         {1},
     },
+
+
+    // Ammo
+    {
+        {10},
+        {16, 5},
+    },
+    {
+        {4},
+        {4},
+    },
+    {
+        {1},
+        {2},
+    },
+    {
+        {20},
+        {20},
+    },
+    {
+        {50},
+        {50, 100, 6, 12},
+    },
+    {
+        {20},
+        {20, 4, 8},
+    },
+    {
+        {5},
+        {10, 3, 6, 5},
+    },
+    {
+        {100},
+        {100, 12},
+    },
 };
 
 
@@ -144,6 +224,7 @@ int PKP_ReceiveCount[PICKUPCOUNT][CLASSCOUNT][PK_RECEIVECOUNT] =
 //  of the pickup. PARRAY_NOCONSUME will still block consumption, however.
 int PKP_AlwaysPickup[PICKUPCOUNT][CLASSCOUNT] =
 {
+    // Weapons
     { // 0
         false,
         false,
@@ -181,6 +262,43 @@ int PKP_AlwaysPickup[PICKUPCOUNT][CLASSCOUNT] =
         false,
     },
     { // 9
+        false,
+        false,
+    },
+    {
+        false,
+        false,
+    },
+
+
+    // Ammo
+    {
+        false,
+        false,
+    },
+    {
+        false,
+        false,
+    },
+    {
+        false,
+        false,
+    },
+    { // 14
+        false,
+        false,
+    },
+
+    // Ammo (big)
+    {
+        false,
+        false,
+    },
+    {
+        false,
+        false,
+    },
+    {
         false,
         false,
     },

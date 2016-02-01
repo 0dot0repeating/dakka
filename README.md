@@ -19,8 +19,21 @@ streamlining things, and so on and so forth.
 * Score system
 * All of the guns
 * Recoil system, if anyone actually used that
-* Pickup system, though only partially configured for Dakka yet
+* Pickup system, though with some pickups left to define
 * Tracer system, cleaned up and much better at respecting your pitch
+* dakka_cl_lesseffects
+
+
+## What's left?
+
+* dakka_startmode (big one)
+* dakka_cl_moremessages (I miss it already)
+* dakka_scrapperstart and dakka_backpackstart
+* dakka_jumpmod (might not come back in, honestly)
+* Pickup definitions for health, armor, and powerups (minigun and channeler can't be found right now)
+* The dakka_rearm CVars
+* Score rewards
+
 
 ## How long's it gonna take to add all the shit back in?
 

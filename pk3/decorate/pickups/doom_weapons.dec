@@ -1,4 +1,3 @@
-
 actor Pickup_Chainsaw: ClassBasedPickup replaces Chainsaw
 {
     States
