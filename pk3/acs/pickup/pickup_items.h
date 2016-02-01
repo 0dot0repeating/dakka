@@ -3,15 +3,26 @@
 
 // This is, quite simply, the amount of pickup types that this ACS is equipped
 //  to handle.
-#define PICKUPCOUNT     1
+#define PICKUPCOUNT     11
 
 
 // How many items can you get from each pickup?
-#define PK_RECEIVECOUNT 1
+#define PK_RECEIVECOUNT 5
 
 
 // Define item constants here. Because "item 0" doesn't mean shit.
-#define It_Chainsaw     0
+#define It_Fist             0
+#define It_Chainsaw         1
+#define It_Pistol           2
+#define It_Shotgun          3
+#define It_SuperShotgun     4
+#define It_Chaingun         5
+#define It_RocketLauncher   6
+#define It_PlasmaRifle      7
+#define It_BFG9000          8
+
+#define It_ShotgunDropped   9
+#define It_ChaingunDropped  10
 
 
 // Here, you have the items that each pickup will give you. Each pickup can give
@@ -30,8 +41,48 @@
 int PKP_ReceiveItems[PICKUPCOUNT][CLASSCOUNT][PK_RECEIVECOUNT] =
 {
     {
+        {"Fist"},
+        {"DWep_Fists"},
+    },
+    {
         {"Chainsaw"},
         {"DWep_Scrappers"},
+    },
+    {
+        {"Pistol"},
+        {"DWep_Pistol", "DWep_Pistols"},
+    },
+    {
+        {"Shotgun"},
+        {"DWep_Shotgun"},
+    },
+    {
+        {"SuperShotgun"},
+        {"DWep_SuperShotgun"},
+    },
+    {
+        {"Chaingun"},
+        {"DWep_Chaingun"},
+    },
+    {
+        {"RocketLauncher"},
+        {"DWep_RocketLauncher"},
+    },
+    {
+        {"PlasmaRifle"},
+        {"DWep_PlasmaRifle"},
+    },
+    {
+        {"BFG9000"},
+        {"DWep_BFG9000"},
+    },
+    { // Dropped
+        {"Shotgun"},
+        {"DWep_Shotgun"},
+    },
+    { // Dropped
+        {"Chaingun"},
+        {"DWep_Chaingun"},
     },
 };
 
@@ -43,7 +94,47 @@ int PKP_ReceiveCount[PICKUPCOUNT][CLASSCOUNT][PK_RECEIVECOUNT] =
     {
         {1},
         {1},
-    }
+    },
+    {
+        {1},
+        {1},
+    },
+    {
+        {1},
+        {1,1},
+    },
+    {
+        {1},
+        {1},
+    },
+    {
+        {1},
+        {1},
+    },
+    {
+        {1},
+        {1},
+    },
+    {
+        {1},
+        {1},
+    },
+    {
+        {1},
+        {1},
+    },
+    {
+        {1},
+        {1},
+    },
+    {
+        {1},
+        {1},
+    },
+    {
+        {1},
+        {1},
+    },
 };
 
 
@@ -53,6 +144,46 @@ int PKP_ReceiveCount[PICKUPCOUNT][CLASSCOUNT][PK_RECEIVECOUNT] =
 //  of the pickup. PARRAY_NOCONSUME will still block consumption, however.
 int PKP_AlwaysPickup[PICKUPCOUNT][CLASSCOUNT] =
 {
+    { // 0
+        false,
+        false,
+    },
+    {
+        false,
+        false,
+    },
+    {
+        false,
+        false,
+    },
+    {
+        false,
+        false,
+    },
+    { // 4
+        false,
+        false,
+    },
+    {
+        false,
+        false,
+    },
+    {
+        false,
+        false,
+    },
+    {
+        false,
+        false,
+    },
+    {
+        false,
+        false,
+    },
+    { // 9
+        false,
+        false,
+    },
     {
         false,
         false,
