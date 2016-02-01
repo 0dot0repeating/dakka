@@ -179,6 +179,11 @@ int BonusColors[BONUSCOUNT] =
     "DScore_Daring",
 };
 
+// Stores actual bonus value.
 int BonusValues[PLAYERMAX][BONUSCOUNT];
-int Bonus_LastSeen[PLAYERMAX][BONUSCOUNT];
+
+// Stores time bonus was last set.
 int LastBonus[PLAYERMAX][BONUSCOUNT];
+
+// Clientside. Stores the last value a bonus was seen with.
+int Bonus_LastSeen[PLAYERMAX][BONUSCOUNT];

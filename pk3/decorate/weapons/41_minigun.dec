@@ -350,6 +350,8 @@ actor MinigunFlame
     Alpha 0.5
 
     Obituary "$DAKKA_MP_MINIGUN_FLAME"
+
+    var int user_counter;
     
     States
     {
@@ -357,59 +359,71 @@ actor MinigunFlame
         DFLM E 0 bright
         TNT1 A 0 A_ScaleVelocity(random(90, 110) / 100.0)
         TNT1 A 0 A_ChangeFlag("PAINLESS", random(0, 6) > 0)
+        TNT1 A 0 A_SetUserVar("user_counter", 24)
         goto Spawn2
 
       Spawn2:
-        TNT1 A 0 A_Explode(2, 64, 0, 0, 32)
         TNT1 A 0 A_SpawnItemEx("MinigunFlameVisual_Main",        0,             0,             0, 0,0,random(0, 100)/50.0, 0, SXF_ABSOLUTEPOSITION)
         TNT1 A 0 A_SpawnItemEx("MinigunFlameVisual", (momx/3) * -1, (momy/3) * -1, (momz/3) * -1, 0,0,random(0, 100)/50.0, 0, SXF_ABSOLUTEPOSITION)
         TNT1 A 0 A_SpawnItemEx("MinigunFlameVisual", (momx/3) *  1, (momy/3) *  1, (momz/3) *  1, 0,0,random(0, 100)/50.0, 0, SXF_ABSOLUTEPOSITION)
-        TNT1 A 0 A_GiveInventory("MinigunFlameCounter")
-        TNT1 A 1 A_JumpIfInventory("MinigunFlameCounter", 24, "EndItAll")
-        loop
+        TNT1 A 1 A_Explode(2, 64, 0, 0, 32)
+        TNT1 A 1 A_SetUserVar("user_counter", user_counter - 1)
+        TNT1 A 0 A_JumpIf(user_counter > 0, "Spawn2")
+        goto EndItAll
 
       EndItAll:
-        TNT1 A 0
+        TNT1 A 1
         stop
 
       Death:
-        TNT1 A 0 A_JumpIfInventory("MinigunFlameCounter", 24, "EndItAll")
+        TNT1 A 0 A_JumpIf(user_counter > 0, 1)
+        goto EndItAll
+
         TNT1 A 0 A_SpawnItemEx("MinigunFlameVisual_Main",        0,             0,             0, 0,0,0, 0, SXF_ABSOLUTEPOSITION)
         TNT1 A 0 A_SpawnItemEx("MinigunFlameVisual", random(-150,150)/20.0, 0, random(-150,150)/20.0, random(-20,20)/20.0, 0, random(-20,20)/20.0, random(0,360))
         TNT1 A 0 A_SpawnItemEx("MinigunFlameVisual", random(-150,150)/10.0, 0, random(-150,150)/10.0, random(-20,20)/10.0, 0, random(-20,20)/10.0, random(0,360))
-        TNT1 A 1 A_Explode(2, 64, 0)
-        TNT1 A 0 A_GiveInventory("MinigunFlameCounter", 3)
+        TNT1 A 0 A_Explode(2, 64, 0)
+        TNT1 A 1 A_SetUserVar("user_counter", user_counter - 3)
         loop
     }
 }
 
 actor MinigunFlameV: MinigunFlame
 {
+    +CLIENTSIDEONLY
+
     States
     {
       Spawn:
         DFLM E 0 bright
+        DFLM E 0 bright A_JumpIf(ACS_ExecuteWithResult(DAKKA_DECORATE_CLIENT, CDEC_GETLESSEFFECTS), "NoFancy")
         TNT1 A 0 A_ScaleVelocity(random(90, 110) / 100.0)
-        goto Spawn2
+        TNT1 A 0 A_SetUserVar("user_counter", 24)
+        goto Fancy
 
-      Spawn2:
-        TNT1 A 0 A_SpawnItemEx("MinigunFlameVisual_Main",        0,             0,             0, 0,0,random(0, 100)/50.0, 0, SXF_ABSOLUTEPOSITION)
-        TNT1 A 0 A_SpawnItemEx("MinigunFlameVisual", (momx/3) * -1, (momy/3) * -1, (momz/3) * -1, 0,0,random(0, 100)/50.0, 0, SXF_ABSOLUTEPOSITION)
-        TNT1 A 0 A_SpawnItemEx("MinigunFlameVisual", (momx/3) *  1, (momy/3) *  1, (momz/3) *  1, 0,0,random(0, 100)/50.0, 0, SXF_ABSOLUTEPOSITION)
-        TNT1 A 0 A_GiveInventory("MinigunFlameCounter")
-        TNT1 A 1 A_JumpIfInventory("MinigunFlameCounter", 24, "EndItAll")
-        loop
-
-      EndItAll:
+      NoFancy:
         TNT1 A 0
         stop
 
+      Fancy:
+        TNT1 A 0 A_SpawnItemEx("MinigunFlameVisual_Main",        0,             0,             0, 0,0,random(0, 100)/50.0, 0, SXF_ABSOLUTEPOSITION)
+        TNT1 A 0 A_SpawnItemEx("MinigunFlameVisual", (momx/3) * -1, (momy/3) * -1, (momz/3) * -1, 0,0,random(0, 100)/50.0, 0, SXF_ABSOLUTEPOSITION)
+        TNT1 A 0 A_SpawnItemEx("MinigunFlameVisual", (momx/3) *  1, (momy/3) *  1, (momz/3) *  1, 0,0,random(0, 100)/50.0, 0, SXF_ABSOLUTEPOSITION)
+        TNT1 A 1 A_SetUserVar("user_counter", user_counter - 1)
+        TNT1 A 0 A_JumpIf(user_counter > 0, "Fancy")
+        goto EndItAll
+
+      EndItAll:
+        TNT1 A 1
+        stop
+
       Death:
-        TNT1 A 0 A_JumpIfInventory("MinigunFlameCounter", 24, "EndItAll")
+        TNT1 A 0 A_JumpIf(user_counter > 0, 1)
+        goto EndItAll
         TNT1 A 0 A_SpawnItemEx("MinigunFlameVisual_Main",        0,             0,             0, 0,0,0, 0, SXF_ABSOLUTEPOSITION)
         TNT1 A 0 A_SpawnItemEx("MinigunFlameVisual", random(-150,150)/20.0, 0, random(-150,150)/20.0, random(-20,20)/20.0, 0, random(-20,20)/20.0, random(0,360))
         TNT1 A 0 A_SpawnItemEx("MinigunFlameVisual", random(-150,150)/10.0, 0, random(-150,150)/10.0, random(-20,20)/10.0, 0, random(-20,20)/10.0, random(0,360))
-        TNT1 A 0 A_GiveInventory("MinigunFlameCounter", 3)
+        TNT1 A 1 A_SetUserVar("user_counter", user_counter - 3)
         loop
     }
 }

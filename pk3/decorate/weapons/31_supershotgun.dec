@@ -60,7 +60,6 @@ actor DWep_SuperShotgun: DoomWeapon
 
       Fire:
         "----" A 0 ACS_ExecuteWithResult(DAKKA_UPDATE_SWITCHAROO, 4, 0)
-        DSSG A 0 A_TakeInventory("DakkaSSG_PreferAlt")
         DSSG B 0 A_GiveInventory("GiveScrapCounter", 80)
         DSSG A 0 A_AlertMonsters
 
@@ -94,25 +93,25 @@ actor DWep_SuperShotgun: DoomWeapon
 
       Fire2:
         DSSG A 1 bright offset(0, 42)
-        DSSG A 1 bright offset(0, 46)           A_JumpIf(ACS_ExecuteWithResult(DAKKA_DECORATE, DEC_SSG_REFIRE) == 1, "RefireCheck")
-        DSSG A 1 bright offset(0, 46)           A_JumpIf(ACS_ExecuteWithResult(DAKKA_DECORATE, DEC_SSG_REFIRE) == 1, "RefireCheck")
+        DSSG A 1 bright offset(0, 46)           A_JumpIf(ACS_ExecuteWithResult(DAKKA_DECORATE, DEC_SSG_REFIRE) == 1, "Fire")
+        DSSG A 1 bright offset(0, 46)           A_JumpIf(ACS_ExecuteWithResult(DAKKA_DECORATE, DEC_SSG_REFIRE) == 1, "Fire")
         DSSG A 0 offset(0, 32) A_CheckReload 
-        DSSG A 1 bright offset(0, 44)           A_JumpIf(ACS_ExecuteWithResult(DAKKA_DECORATE, DEC_SSG_REFIRE) == 1, "RefireCheck")
-        DSSG A 0 bright offset(0, 41)           A_JumpIf(ACS_ExecuteWithResult(DAKKA_DECORATE, DEC_SSG_REFIRE) == 1, "RefireCheck")
+        DSSG A 1 bright offset(0, 44)           A_JumpIf(ACS_ExecuteWithResult(DAKKA_DECORATE, DEC_SSG_REFIRE) == 1, "Fire")
+        DSSG A 0 bright offset(0, 41)           A_JumpIf(ACS_ExecuteWithResult(DAKKA_DECORATE, DEC_SSG_REFIRE) == 1, "Fire")
         DSSG A 0 A_JumpIf(ACS_ExecuteWithResult(DAKKA_DECORATE, DEC_SSG_SHOTSLEFT) < 1, "ReloadSequence")
         DSSG A 0 A_WeaponReady(WRF_NOFIRE | WRF_NOBOB)
 
-        DSSG A 1 bright offset(0, 37)          A_JumpIf(ACS_ExecuteWithResult(DAKKA_DECORATE, DEC_SSG_REFIRE) == 1, "RefireCheck")
+        DSSG A 1 bright offset(0, 37)          A_JumpIf(ACS_ExecuteWithResult(DAKKA_DECORATE, DEC_SSG_REFIRE) == 1, "Fire")
         DSSG A 0 A_WeaponReady(WRF_NOFIRE | WRF_NOBOB)
-        DSSG A 1 bright offset(0, 37)          A_JumpIf(ACS_ExecuteWithResult(DAKKA_DECORATE, DEC_SSG_REFIRE) == 1, "RefireCheck")
-        DSSG A 0 A_WeaponReady(WRF_NOFIRE | WRF_NOBOB)
-
-        DSSG A 1 bright offset(0, 34)          A_JumpIf(ACS_ExecuteWithResult(DAKKA_DECORATE, DEC_SSG_REFIRE) == 1, "RefireCheck")
-        DSSG A 0 A_WeaponReady(WRF_NOFIRE | WRF_NOBOB)
-        DSSG A 1 bright offset(0, 34)          A_JumpIf(ACS_ExecuteWithResult(DAKKA_DECORATE, DEC_SSG_REFIRE) == 1, "RefireCheck")
+        DSSG A 1 bright offset(0, 37)          A_JumpIf(ACS_ExecuteWithResult(DAKKA_DECORATE, DEC_SSG_REFIRE) == 1, "Fire")
         DSSG A 0 A_WeaponReady(WRF_NOFIRE | WRF_NOBOB)
 
-        DSSG A 1 offset(0, 32) A_JumpIf(ACS_ExecuteWithResult(DAKKA_DECORATE, DEC_SSG_REFIRE), "RefireCheck")
+        DSSG A 1 bright offset(0, 34)          A_JumpIf(ACS_ExecuteWithResult(DAKKA_DECORATE, DEC_SSG_REFIRE) == 1, "Fire")
+        DSSG A 0 A_WeaponReady(WRF_NOFIRE | WRF_NOBOB)
+        DSSG A 1 bright offset(0, 34)          A_JumpIf(ACS_ExecuteWithResult(DAKKA_DECORATE, DEC_SSG_REFIRE) == 1, "Fire")
+        DSSG A 0 A_WeaponReady(WRF_NOFIRE | WRF_NOBOB)
+
+        DSSG A 1 offset(0, 32) A_JumpIf(ACS_ExecuteWithResult(DAKKA_DECORATE, DEC_SSG_REFIRE), "Fire")
         DSSG A 0 A_WeaponReady(WRF_NOFIRE | WRF_NOBOB)
         goto Ready
         
@@ -126,7 +125,6 @@ actor DWep_SuperShotgun: DoomWeapon
 
       ActualAltFire:
         "----" A 0 ACS_ExecuteWithResult(DAKKA_UPDATE_SWITCHAROO, 4, 1)
-        DSSG A 0 A_GiveInventory("DakkaSSG_PreferAlt")
         DSSG A 0 A_AlertMonsters
         DSSG A 0 ACS_ExecuteWithResult(DAKKA_DECORATE, DEC_SSG_FIRED)
         DSSG AAAAAAAAAAAAAAAAAAAA 0 A_FireCustomMissile("DakkaGyrojet", 
@@ -138,35 +136,31 @@ actor DWep_SuperShotgun: DoomWeapon
         DSSG AA 0 A_PlaySound("dakka/ssgaltfire", ACS_ExecuteWithResult(DAKKA_DECORATE, DEC_ROTATESOUND))
         DSSG A 0 A_GunFlash
         DSSG A 1 bright offset(0, 42)
-        DSSG A 1 bright offset(0, 46)           A_JumpIf(ACS_ExecuteWithResult(DAKKA_DECORATE, DEC_SSG_REFIRE) == 1, "RefireCheck")
-        DSSG A 1 bright offset(0, 46)           A_JumpIf(ACS_ExecuteWithResult(DAKKA_DECORATE, DEC_SSG_REFIRE) == 1, "RefireCheck")
+        DSSG A 1 bright offset(0, 46)           A_JumpIf(ACS_ExecuteWithResult(DAKKA_DECORATE, DEC_SSG_REFIRE) == 1, "AltFire")
+        DSSG A 1 bright offset(0, 46)           A_JumpIf(ACS_ExecuteWithResult(DAKKA_DECORATE, DEC_SSG_REFIRE) == 1, "AltFire")
         DSSG A 0 offset(0, 32) A_CheckReload 
-        DSSG A 1  bright offset(0, 44)          A_JumpIf(ACS_ExecuteWithResult(DAKKA_DECORATE, DEC_SSG_REFIRE) == 1, "RefireCheck")
-        DSSG A 1  bright offset(0, 41)          A_JumpIf(ACS_ExecuteWithResult(DAKKA_DECORATE, DEC_SSG_REFIRE) == 1, "RefireCheck")
+        DSSG A 1  bright offset(0, 44)          A_JumpIf(ACS_ExecuteWithResult(DAKKA_DECORATE, DEC_SSG_REFIRE) == 1, "AltFire")
+        DSSG A 1  bright offset(0, 41)          A_JumpIf(ACS_ExecuteWithResult(DAKKA_DECORATE, DEC_SSG_REFIRE) == 1, "AltFire")
         DSSG A 0 A_JumpIf(ACS_ExecuteWithResult(DAKKA_DECORATE, DEC_SSG_SHOTSLEFT) < 1, "ReloadSequence")
         DSSG A 0 A_WeaponReady(WRF_NOFIRE | WRF_NOBOB)
 
-        DSSG A 1 bright offset(0, 37)          A_JumpIf(ACS_ExecuteWithResult(DAKKA_DECORATE, DEC_SSG_REFIRE) == 1, "RefireCheck")
+        DSSG A 1 bright offset(0, 37)          A_JumpIf(ACS_ExecuteWithResult(DAKKA_DECORATE, DEC_SSG_REFIRE) == 1, "AltFire")
         DSSG A 0 A_WeaponReady(WRF_NOFIRE | WRF_NOBOB)
-        DSSG A 1 bright offset(0, 37)          A_JumpIf(ACS_ExecuteWithResult(DAKKA_DECORATE, DEC_SSG_REFIRE) == 1, "RefireCheck")
-        DSSG A 0 A_WeaponReady(WRF_NOFIRE | WRF_NOBOB)
-
-        DSSG A 1 bright offset(0, 34)          A_JumpIf(ACS_ExecuteWithResult(DAKKA_DECORATE, DEC_SSG_REFIRE) == 1, "RefireCheck")
-        DSSG A 0 A_WeaponReady(WRF_NOFIRE | WRF_NOBOB)
-        DSSG A 1 bright offset(0, 34)          A_JumpIf(ACS_ExecuteWithResult(DAKKA_DECORATE, DEC_SSG_REFIRE) == 1, "RefireCheck")
+        DSSG A 1 bright offset(0, 37)          A_JumpIf(ACS_ExecuteWithResult(DAKKA_DECORATE, DEC_SSG_REFIRE) == 1, "AltFire")
         DSSG A 0 A_WeaponReady(WRF_NOFIRE | WRF_NOBOB)
 
-        DSSG A 1 offset(0, 32) A_JumpIf(ACS_ExecuteWithResult(DAKKA_DECORATE, DEC_SSG_REFIRE) == 1, "RefireCheck")
+        DSSG A 1 bright offset(0, 34)          A_JumpIf(ACS_ExecuteWithResult(DAKKA_DECORATE, DEC_SSG_REFIRE) == 1, "AltFire")
+        DSSG A 0 A_WeaponReady(WRF_NOFIRE | WRF_NOBOB)
+        DSSG A 1 bright offset(0, 34)          A_JumpIf(ACS_ExecuteWithResult(DAKKA_DECORATE, DEC_SSG_REFIRE) == 1, "AltFire")
+        DSSG A 0 A_WeaponReady(WRF_NOFIRE | WRF_NOBOB)
+
+        DSSG A 1 offset(0, 32) A_JumpIf(ACS_ExecuteWithResult(DAKKA_DECORATE, DEC_SSG_REFIRE) == 1, "RefireAlt")
         DSSG A 0 A_WeaponReady(WRF_NOFIRE | WRF_NOBOB)
         goto Ready
 
       AltFail:
         DSSG A 1 A_WeaponReady(WRF_NOSECONDARY)
         goto Ready
-
-      RefireCheck:
-        DSSG A 0 A_JumpIfInventory("DakkaSSG_PreferAlt",  1, "RefireAlt")
-        goto RefireMain
 
 
       // The two states below exist so that the game actually takes the right ammo
@@ -178,6 +172,8 @@ actor DWep_SuperShotgun: DoomWeapon
       RefireAlt:
         DSSG A 1 A_WeaponReady(WRF_NOBOB | WRF_NOSWITCH | WRF_NOPRIMARY)
         goto Ready
+
+
 
       ReloadSequence:
         DSSG B 0 A_JumpIfInventory("DakkaShells",     2, "Reload2")

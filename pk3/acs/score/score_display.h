@@ -1,12 +1,13 @@
 function void Score_Update(int pln)
 {
-    int points = PlayerMapScores[pln];
+    int points      = SToC_ClientData[pln][S2C_D_SCORE];
+    int goalpoints  = SToC_ClientData[pln][S2C_D_GOALSCORE];
 
-    Score_Draw(points);
+    Score_Draw(points, goalpoints);
     Score_DrawBonuses(pln);
 }
 
-function void Score_Draw(int curPoints)
+function void Score_Draw(int curPoints, int goalPoints)
 {
     SetFont("DAKKAFON");
     SetHudSize(560, 420, 1);
@@ -15,13 +16,13 @@ function void Score_Draw(int curPoints)
 
     SetHudSize(480, 360, 1);
 
-    if (MapStart_FullHealPoints > 0)
+    if (goalPoints > 0)
     {
         SetFont("SCOREBAR");
         HudMessage(s:"A"; HUDMSG_FADEOUT, 24401, CR_UNTRANSLATED, 390.4, 52.0, 0.5, 0.25);
 
-        int pointstep = MapStart_FullHealPoints / 100;
-        int barpoints = curPoints % MapStart_FullHealPoints;
+        int pointstep = goalPoints / 100;
+        int barpoints = curPoints % goalPoints;
 
         for (int i = 0; i < 100; i++)
         {
@@ -67,23 +68,29 @@ function void Score_DrawBonuses(int pln)
 
     int redisplay = false;
 
+    int bonus;
+
     for (i = 0; i < BONUSCOUNT; i++)
     {
-        display = (BonusValues[pln][i] > Bonus_LastSeen[pln][i]);
+        bonus = SToC_ClientData[pln][S2C_D_BONUSSTART + i];
+        display = (bonus > Bonus_LastSeen[pln][i]);
+
         Tmp_BonusDisplay[i] = display;
 
         if (display) { redisplay = true; }
 
-        Bonus_LastSeen[pln][i] = BonusValues[pln][i];
+        Bonus_LastSeen[pln][i] = bonus;
     }
 
     if (!redisplay) { return; }
 
     for (i = 0; i < BONUSCOUNT; i++)
     {
+        bonus = SToC_ClientData[pln][S2C_D_BONUSSTART + i];
+
         name  = BonusNames[i];
         color = BonusColors[i];
-        score = BonusValues[pln][i];
+        score = bonus;
             
         if (score <= 0) { continue; }
 

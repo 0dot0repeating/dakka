@@ -15,7 +15,7 @@ int DakkaEnterLocks[PLAYERMAX];
 script DAKKA_SPAWN (int respawned)
 {
     int pln = PlayerNumber();
-    int oldScore, curScore;
+    int curScore;
 
     // DM does its own level start, since it needs to do things every spawn,
     //  and variables like dakka_startmode don't apply.
@@ -50,14 +50,8 @@ script DAKKA_SPAWN (int respawned)
 
         // In score/score_update.h
         Air_UpdateZHeight();
+        Score_UpdateClient(pln);
 
-        oldScore = curScore;
-        curScore = PlayerMapScores[pln];
-
-        // In score/score_display.h
-        // TODO: Move this to clientside display,
-        //       using the pickup client->server system
-        Score_Update(pln);
         Delay(1);
     }
 }
