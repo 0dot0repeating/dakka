@@ -11,4 +11,15 @@ const int It_BFG9000          = 8;
 const int It_ShotgunDropped   = 9;
 const int It_ChaingunDropped  = 10;
 
+const int It_Clip             = 11;
+const int It_Shell            = 12;
+const int It_RocketAmmo       = 13;
+const int It_Cell             = 14;
+const int It_ClipBox          = 15;
+const int It_ShellBox         = 16;
+const int It_RocketBox        = 17;
+const int It_CellPack         = 18;
+
+
 #include "decorate/pickups/doom_weapons.dec"
+#include "decorate/pickups/doom_ammo.dec"

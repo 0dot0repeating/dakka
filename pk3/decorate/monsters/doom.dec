@@ -1,5 +1,7 @@
 actor Dakka_Zombiedude: Zombieman replaces Zombieman
 {
+    DropItem "Pickup_ClipDropped"
+
     States
     {
       Death:
@@ -191,6 +193,8 @@ actor Dakka_Smartdude: SpiderMastermind replaces SpiderMastermind
 
 actor Dakka_Commiedude: WolfensteinSS replaces WolfensteinSS
 {
+    DropItem "Pickup_ClipDropped"
+
     States
     {
       Death:
