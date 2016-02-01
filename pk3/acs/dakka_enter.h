@@ -17,11 +17,23 @@ script DAKKA_SPAWN (int respawned)
     int pln = PlayerNumber();
     int oldScore, curScore;
 
+    // DM does its own level start, since it needs to do things every spawn,
+    //  and variables like dakka_startmode don't apply.
+    if (GameType() == GAME_NET_DEATHMATCH)
+    {
+        Dakka_DoDMStart();
+    }
+
     if (DakkaEnterLocks[pln]) { terminate; }
     DakkaEnterLocks[pln] = true;
 
     // Everything past this point will only be run by one script per player.
-    Dakka_DoLevelStart();
+
+    // Cooperative does standard level starts.
+    if (GameType() != GAME_NET_DEATHMATCH)
+    {
+        Dakka_DoLevelStart();
+    }
 
     while (true)
     {
