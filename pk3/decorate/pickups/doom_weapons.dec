@@ -31,10 +31,6 @@ actor Pickup_Shotgun: ClassBasedPickup replaces Shotgun
         TNT1 A 0 A_SetUserVar("user_dropped", 0)
         goto DropCheck
 
-      Dropped:
-        TNT1 A 1 A_SpawnItemEx("Pickup_ShotgunDropped")
-        stop
-
       Unknown:
         SHOT A -1
         stop
@@ -82,10 +78,6 @@ actor Pickup_SuperShotgun: ClassBasedPickup replaces SuperShotgun
         TNT1 A 0 A_SetUserVar("user_dropped", 0)
         goto DropCheck
 
-      Dropped:
-        TNT1 A 1 A_SpawnItemEx("Pickup_SuperShotgunDropped")
-        stop
-
       Unknown:
         SGN2 A -1
         stop
@@ -96,30 +88,6 @@ actor Pickup_SuperShotgun: ClassBasedPickup replaces SuperShotgun
 
       Pickup:
         TNT1 A 0 A_JumpIf(ACS_ExecuteWithResult(PICKUP_PICKUP, It_SuperShotgun, false) == 1, "PickedUp")
-        goto NotPickedUp
-    }
-}
-
-actor Pickup_SuperShotgunDropped: ClassBasedPickup
-{
-    States
-    {
-      Spawn:
-        TNT1 A 0 A_SetUserVar("user_index", It_SuperShotgun)
-        TNT1 A 0 A_SetUserVar("user_dropped", 0)
-        TNT1 A 0 A_ChangeFlag("DROPPED", true)
-        goto DropCheck
-
-      Unknown:
-        SGN2 A -1
-        stop
-
-      Dakka:
-        DSSG Z -1
-        stop
-
-      Pickup:
-        TNT1 A 0 A_JumpIf(ACS_ExecuteWithResult(PICKUP_PICKUP, It_SuperShotgun, true) == 1, "PickedUp")
         goto NotPickedUp
     }
 }
