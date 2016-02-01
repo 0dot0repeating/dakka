@@ -124,7 +124,7 @@ actor DWep_RocketLauncher: DoomWeapon
         DKRL G 0 A_PlaySound("dakka/rocketload", ACS_ExecuteWithResult(DAKKA_DECORATE, DEC_ROTATESOUND))
         DKRL G 2 A_WeaponReady(WRF_NOBOB | WRF_NOFIRE)
         DKRL F 1 A_WeaponReady(WRF_NOBOB | WRF_NOFIRE)
-        DKRL B 3 A_WeaponReady(WRF_NOBOB | WRF_NOFIRE)
+        DKRL B 4 A_WeaponReady(WRF_NOBOB | WRF_NOFIRE)
         DKRL A 0 A_GiveInventory("DakkaRocketsLoaded")
         DKRL E 3 A_WeaponReady(WRF_NOBOB | WRF_NOFIRE)
         DKRL F 2 A_WeaponReady(WRF_NOBOB | WRF_NOFIRE)
