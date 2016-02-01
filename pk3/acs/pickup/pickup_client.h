@@ -249,6 +249,4 @@ script PICKUP_PINGSERVER (int index, int value) net
 {
     int pln = PlayerNumber();
     SToC_LastClientResponse[pln][index] = value;
-
-    Log(s:"got ping back from player ", d:pln, s:" (name: ", n:pln+1, s:"\c-) (data: ", d:index, s:" = ", d:value, s:")");
 }
