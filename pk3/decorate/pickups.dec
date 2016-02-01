@@ -35,6 +35,8 @@ const int It_Blursphere       = 28;
 const int It_InvulnSphere     = 29;
 const int It_Backpack         = 30;
 
+const int It_Channeler        = 31;
+
 
 #include "decorate/pickups/doom_weapons.dec"
 #include "decorate/pickups/doom_ammo.dec"

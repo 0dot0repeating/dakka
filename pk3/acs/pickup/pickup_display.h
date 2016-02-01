@@ -46,7 +46,7 @@ function int Pickup_IsDisplayScripted(int index, int classNum)
 
 
 
-script PICKUP_DISPLAY (int index, int dropped) clientside
+script PICKUP_DISPLAY (int index, int dropped, int firstDisplay) clientside
 {
     int cpln     = ConsolePlayerNumber();
     // Don't do shit if we're somehow running on the server.
@@ -55,7 +55,11 @@ script PICKUP_DISPLAY (int index, int dropped) clientside
     // Only accept the first one of these. That way, the next fifty billion
     //  times the server polls the item, nothing happens and our item script
     //  doesn't break.
-    if (CheckInventory("Class_KickedToClientside")) { terminate; }
+    //
+    // Special case to handle item respawns: if this is the first display ping,
+    //  take away the KickedToClientside item, because the item hasn't been
+    //  kicked to clientside yet.
+    if (!firstDisplay && CheckInventory("Class_KickedToClientside")) { terminate; }
 
     // Intentionally break sync between client and server for display shit.
     //  This is kinda voodoo magic.

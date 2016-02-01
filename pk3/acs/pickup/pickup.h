@@ -152,32 +152,12 @@
 #include "pickup_display.h"
 #include "pickup_daemon.h"
 
+#include "dakka_vispulse.h"
+#include "dakka_channeler.h"
 
 // This is such a tiny script, it's a complete waste making a file for it. So
 //  here it is.
 script PICKUP_DROPPED (void)
 {
     SetResultValue(GetActorProperty(0, APROP_Dropped));
-}
-
-
-
-// This simulates VISIBILITYPULSE.
-script 493 (void)
-{
-    if (DISP_ScriptArgs[DPASS_DOCLEANUP])
-    {
-        TakeInventory("DakkaVisPulse", 0x7FFFFFFF);
-        terminate;
-    }
-
-    int timerPulse = CheckInventory("DakkaVisPulse") % 48;
-    GiveInventory("DakkaVisPulse", 1);
-
-    if (timerPulse > 24) { timerPulse = 48 - timerPulse; }
-
-    int newAlpha = 0.25 + ((1.0 / 24) * timerPulse);
-
-    SetActorProperty(0, APROP_RenderStyle,  STYLE_Translucent);
-    SetActorProperty(0, APROP_Alpha,        newAlpha);
 }

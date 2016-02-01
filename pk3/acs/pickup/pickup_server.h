@@ -108,6 +108,9 @@ function void CSender_ForceSendAll(int pln)
 
     for (i = 0; i < C2S_DATACOUNT; i++)
     {
+        // We do this so that the client will *keep* sending until it gets a
+        //  correct response.
+        CToS_LastServerResponse[pln][i] = CToS_ClientData[pln][i] - 1;
         CSender_SendData(pln, i);
     }
 }
