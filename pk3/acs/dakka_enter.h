@@ -20,6 +20,9 @@ script DAKKA_SPAWN (int respawned)
     if (DakkaEnterLocks[pln]) { terminate; }
     DakkaEnterLocks[pln] = true;
 
+    // Everything past this point will only be run by one script per player.
+    Dakka_DoLevelStart();
+
     while (true)
     {
         PlayerTIDs[pln] = defaultTID(-1);

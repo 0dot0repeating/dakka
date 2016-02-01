@@ -13,7 +13,7 @@ int PKP_Messages[PICKUPCOUNT][CLASSCOUNT] =
     },
     {
         "$GOTCHAINSAW",
-        "Scrappers!",
+        "Scrappers! Wait, what?",
     },
     {
         "Picked up a pistol.",
@@ -140,6 +140,12 @@ int PKP_Messages[PICKUPCOUNT][CLASSCOUNT] =
         "$GOTBACKPACK",
         "Backpack!",
     },
+
+
+    {
+        "$GOTPLASMA",
+        "Channeler!",
+    },
 };
 
 
@@ -149,7 +155,7 @@ int PKP_Messages[PICKUPCOUNT][CLASSCOUNT] =
 //
 // {red [0-255], green [0-255], blue [0-255], alpha [0-1.0], duration [seconds, fixed]}
 //
-// Normal pickup flash is {255, 255, 64, 0.1, 0.2}.
+// Normal pickup flash is {255, 255, 64, 0.15, 0.15}.
 
 #define PFLASH_RED      0
 #define PFLASH_GREEN    1
@@ -297,6 +303,12 @@ int PKP_PickupFlashes[PICKUPCOUNT][CLASSCOUNT][5] =
         {255, 255, 64, 0.15, 0.15},
         {255, 255, 64, 0.15, 0.15},
     },
+
+
+    { // Channeler
+        {255, 255, 64, 0.15, 0.15},
+        {255, 255, 64, 0.15, 0.15},
+    },
 };
 
 
@@ -440,5 +452,11 @@ int PKP_PickupSounds[PICKUPCOUNT][CLASSCOUNT] =
     { // Backpack
         "misc/i_pkup",
         "misc/i_pkup",
+    },
+
+
+    { // Channeler
+        "misc/w_pkup",
+        "misc/w_pkup",
     },
 };

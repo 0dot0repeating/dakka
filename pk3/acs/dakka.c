@@ -72,6 +72,10 @@
 #include "dakka_decorate_client.h"
 
 
+// Used in dakka_enter.h. Stuff that runs once, when the player spawns for the
+//  first time. Not sure how I'll handle competitive gamemodes just yet.
+#include "dakka_levelstart.h"
+
 
 // Each of these is for their respecting ACS script type.
 #include "dakka_open.h"
