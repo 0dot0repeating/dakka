@@ -21,3 +21,16 @@ function void Air_UpdateZHeight(void)
         Air_JumpHeight[pln] = max(Air_JumpHeight[pln], adjustedMax);
     }
 }
+
+
+function void Score_UpdateClient(int pln)
+{
+    Sender_SetData(pln, S2C_D_SCORE,     PlayerMapScores[pln]);
+    Sender_SetData(pln, S2C_D_GOALSCORE, MapStart_FullHealPoints);
+
+    int i;
+    for (i = 0; i < BONUSCOUNT; i++)
+    {
+        Sender_SetData(pln, S2C_D_BONUSSTART + i, BonusValues[pln][i]);
+    }
+}

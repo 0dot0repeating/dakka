@@ -6,7 +6,6 @@ function void ClearPoints(int pln, int bonustime)
         if (LastBonus[pln][i] == bonustime)
         {
             BonusValues[pln][i] = 0;
-            Bonus_LastSeen[pln][i] = 0;
         }
     }
 }

@@ -1,4 +1,5 @@
-#define DAKKA_OPEN                  471
+#define DAKKA_OPEN                  470
+#define DAKKA_OPEN_CLIENT           471
 #define DAKKA_ENTER                 472
 #define DAKKA_RESPAWN               473
 #define DAKKA_SPAWN                 474
