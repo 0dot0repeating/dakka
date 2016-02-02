@@ -29,10 +29,6 @@ int ALook_AngX, ALook_AngY, ALook_AngZ;
 
 function int Look_Loop(int arcType, int arcerTID)
 {
-    int bestTargetTID = 0;
-    int bestTargetScore = 0x7FFFFFFF;
-
-    int rangeStep = 0;
     int rangeMax  = INT_ArcData[arcType][ADATA_INT_MAXRANGE];
 
     // Precalculate to save cycles. It's used in Loop_CalcScore.
@@ -49,46 +45,71 @@ function int Look_Loop(int arcType, int arcerTID)
     ALook_AngY = FixedMul(sin(arcAngle), cos(arcPitch));
     ALook_AngZ =          sin(arcPitch);
 
+
+    int isDM          = (GameType() == GAME_NET_DEATHMATCH);
+    int checkingDM    = false;
+
+    // DM check loop - if we're in DM, switch friendiness and check after
+    //  the initial targets run out
     while (true)
     {
-        rangeStep += 32.0;
-        SetUserVariable(0, "user_lookDist", ftoi(min(rangeStep, rangeMax)));
+        int bestTargetTID = 0;
+        int bestTargetScore = 0x7FFFFFFF;
+        int rangeStep = 0;
 
         while (true)
         {
-            // Steps 5 and 6
-            SetActorState(0, "Arc_Look");
+            rangeStep += 32.0;
+            SetUserVariable(0, "user_lookDist", ftoi(min(rangeStep, rangeMax)));
 
-            // Step 7
-            if (CheckInventory("ArcItem_NoTarget")) { break; }
-
-            // Step 8
-            SetActivator(0, AAPTR_TRACER);
-
-            int targetTID   = defaultTID(-1);
-            int targetScore = Loop_CalcScore(arcType, arcerTID, targetTID, rangeMax, bestTargetScore);
-
-            TCheck_Add(targetTID);
-
-            // Step 9
-            if ((targetScore != -1) && (targetScore < bestTargetScore))
+            // Inner look loop - run twice in case of DM
+            while (true)
             {
-                bestTargetTID   = targetTID;
-                bestTargetScore = targetScore;
+                // Steps 5 and 6
+                SetActorState(0, "Arc_Look");
 
-                rangeMax  = targetScore;
-                rangeStep = min(rangeMax, rangeStep);
+                // Step 7
+                if (CheckInventory("ArcItem_NoTarget")) { break; }
 
-                // Saves a few cycles to just break it now.
-                //  And goddamn, every instruction saved is important.
-                if (rangeMax == rangeStep) { break; }
+                // Step 8
+                SetActivator(0, AAPTR_TRACER);
 
-                SetUserVariable(0, "user_lookDist", ftoi(rangeStep));
+                int targetTID   = defaultTID(-1);
+                int targetScore = Loop_CalcScore(arcType, arcerTID, targetTID, rangeMax, bestTargetScore);
+
+                TCheck_Add(targetTID);
+
+                // Step 9
+                if ((targetScore != -1) && (targetScore < bestTargetScore))
+                {
+                    bestTargetTID   = targetTID;
+                    bestTargetScore = targetScore;
+
+                    rangeMax  = targetScore;
+                    rangeStep = min(rangeMax, rangeStep);
+
+                    // Saves a few cycles to just break it now.
+                    //  And goddamn, every instruction saved is important.
+                    if (rangeMax == rangeStep) { break; }
+
+                    SetUserVariable(0, "user_lookDist", ftoi(rangeStep));
+                }
             }
+                    
+            if (rangeStep >= rangeMax)       { break; }
+            if (bestTargetScore < rangeStep) { break; }
         }
 
-        if (rangeStep >= rangeMax)       { break; }
-        if (bestTargetScore < rangeStep) { break; }
+        if (isDM && !checkingDM)
+        {
+            SetActorProperty(0, APROP_Friendly, false);
+            checkingDM = true;
+        }
+        else
+        {
+            SetActorProperty(0, APROP_Friendly, true);
+            break;
+        }
     }
 
     // Step 10
@@ -117,7 +138,7 @@ function int Loop_CalcScore(int arcType, int arcerTID, int targetTID, int maxRan
     // First off, we check off the quick-to-calculate stuff.
     
     // Gather firer and target info.
-    SetActivator(0, AAPTR_TARGET);
+    SetActivator(arcerTID, AAPTR_TARGET);
     int firerPln  = PlayerNumber();
     int firerTID  = ActivatorTID();
 

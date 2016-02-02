@@ -1,6 +1,5 @@
 #define T_ROWS 65536
 
-world int 43:T_FriendState[];
 world int 44:THit_TIDToRow[];
 
 int THit[T_ROWS];
@@ -14,15 +13,10 @@ int TCheck[T_ROWS];
 int TCheckCount = 0;
 
 
-function void T_SetFriend(int tid, int state)
+function void T_SetUnshootable(int tid, int state)
 {
-    int makeFriend  = (!!state) ^ T_FriendState[tid];
-    int friendState = GetActorProperty(tid, APROP_Friendly); 
-
-    if (friendState == makeFriend) { return; }
-
-    if (makeFriend) { GiveActorInventory(tid, "ArcFriendly",   1); }
-    else            { GiveActorInventory(tid, "ArcUnfriendly", 1); }
+    if (state)      { GiveActorInventory(tid, "ArcUnshootable", 1); }
+    else            { GiveActorInventory(tid, "ArcShootable",   1); }
 }
 
 function int THit_FindTID(int tid)
@@ -43,6 +37,7 @@ function int TCheck_FindTID(int tid)
 
 function int THit_Add(int tid)
 {
+    if (THit_FindTID(tid) != -1) { return -1; }
     int row = THitCount++;
 
     THit[row]           = tid;
@@ -52,13 +47,7 @@ function int THit_Add(int tid)
 
     if (otherRow == -1)
     {
-        T_FriendState[tid] = GetActorProperty(tid, APROP_Friendly);
-        T_SetFriend(tid, true);
-
-        if (T_FriendState[tid])
-        {
-            GiveActorInventory(tid, "ArcThingCountTest", 1);
-        }
+        T_SetUnshootable(tid, true);
     }
 
     return row;
@@ -66,6 +55,7 @@ function int THit_Add(int tid)
 
 function int TCheck_Add(int tid)
 {
+    if (TCheck_FindTID(tid) != -1) { return -1; }
     int row = TCheckCount++;
 
     TCheck[row]             = tid;
@@ -75,13 +65,7 @@ function int TCheck_Add(int tid)
 
     if (otherRow == -1)
     {
-        T_FriendState[tid] = GetActorProperty(tid, APROP_Friendly);
-        T_SetFriend(tid, true);
-
-        if (T_FriendState[tid])
-        {
-            GiveActorInventory(tid, "ArcThingCountTest", 1);
-        }
+        T_SetUnshootable(tid, true);
     }
     
     return row;
@@ -98,7 +82,7 @@ function void THit_Clear(void)
 
         if (otherRow == -1)
         {
-            T_SetFriend(tid, false);
+            T_SetUnshootable(tid, false);
 
             if (GetActorProperty(tid, APROP_Health) <= 0)
             {
@@ -123,7 +107,7 @@ function void TCheck_Clear(void)
 
         if (otherRow == -1)
         {
-            T_SetFriend(tid, false);
+            T_SetUnshootable(tid, false);
 
             if (GetActorProperty(tid, APROP_Health) <= 0)
             {

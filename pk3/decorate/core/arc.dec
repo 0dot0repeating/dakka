@@ -3,14 +3,6 @@
 
 
 
-// Core arc script number. This is also in acs/arc_const.h, so be sure
-//  to change it there as well.
-
-// Included in decorate/main/constants.dec instead
-//const int ARC_MAIN  = 191;
-//const int ARC_CLEAR = 192;
-
-
 
 // This is the class that every arcing actor should be based off of,
 //  so that the arc ACS works properly.
@@ -99,7 +91,6 @@ actor Arc_Base
     Projectile
 
     +NOINTERACTION
-    +NOTIMEFREEZE
     +SERVERSIDEONLY
     +LOOKALLAROUND
     +FRIENDLY
@@ -145,7 +136,7 @@ actor Arc_Base
     // Pointer states here:
     //  - Target: original firer
     //  - Master: previous arcer
-    //  - Tracer: previous target (if it didn't die)
+    //  - Tracer: unchanged
 
       Arc_Spawn:
         TNT1 A 1
@@ -339,7 +330,7 @@ actor ArcItem_NoTarget: Arc_Boolean {}
 //  target has flipped friendliness or not. It flips so that A_LookEx can
 //  find other targets without getting hung up on one forever.
 
-actor ArcFriendly: CustomInventory
+actor ArcUnshootable: CustomInventory
 {
     States
     {
@@ -348,12 +339,12 @@ actor ArcFriendly: CustomInventory
         stop
 
       Pickup:
-        TNT1 A 0 A_ChangeFlag("FRIENDLY", 1)
+        TNT1 A 0 A_ChangeFlag("SHOOTABLE", 0)
         stop
     }
 }
 
-actor ArcUnfriendly: CustomInventory
+actor ArcShootable: CustomInventory
 {
     States
     {
@@ -362,7 +353,7 @@ actor ArcUnfriendly: CustomInventory
         stop
 
       Pickup:
-        TNT1 A 0 A_ChangeFlag("FRIENDLY", 0)
+        TNT1 A 0 A_ChangeFlag("SHOOTABLE", 1)
         stop
     }
 }
