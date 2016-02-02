@@ -47,6 +47,10 @@
 #include "dakka_ssg.h"
 
 
+// Stuff for the Channeler that isn't handled by the arc code proper.
+#include "dakka_channeler.h"
+
+
 // BFG BEAM SON
 #include "dakka_bfg.h"
 
