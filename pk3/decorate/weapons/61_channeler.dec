@@ -213,8 +213,7 @@ actor Channeler_SecondaryShot
 
       Spawn2:
         TNT1 AAAA 1 A_SpawnItemEx("ChannelerBlobTrail", 0,0,0, momx,momy,momz, 0, SXF_ABSOLUTEVELOCITY)
-        TNT1 A 0 A_SpawnItemEx("Channeler_SecondaryBase", 0,0,0, 0,0,0, 0,   SXF_TRANSFERPOINTERS)
-        TNT1 A 0 A_SpawnItemEx("Channeler_SecondaryBase", 0,0,0, 0,0,0, 180, SXF_TRANSFERPOINTERS)
+        TNT1 A 0 ACS_ExecuteWithResult(ARC_ALTFIRE, 2, false)
         loop
 
       Death:
@@ -225,9 +224,7 @@ actor Channeler_SecondaryShot
         goto ZapLoop
 
       ZapLoop:
-        TNT1 A 0 A_SpawnItemEx("Channeler_SecondaryBase", 0,0,0, 0,0,0, 0,   SXF_TRANSFERPOINTERS)
-        TNT1 A 0 A_SpawnItemEx("Channeler_SecondaryBase", 0,0,0, 0,0,0, 120, SXF_TRANSFERPOINTERS)
-        TNT1 A 0 A_SpawnItemEx("Channeler_SecondaryBase", 0,0,0, 0,0,0, 240, SXF_TRANSFERPOINTERS)
+        TNT1 A 0 ACS_ExecuteWithResult(ARC_ALTFIRE, 3, false)
 
         TNT1 A 0 bright A_GiveInventory("Channeler_SecondaryZapCount")
         TNT1 A 0 A_JumpIfInventory("Channeler_SecondaryZapCount", 6, "ZapDone")

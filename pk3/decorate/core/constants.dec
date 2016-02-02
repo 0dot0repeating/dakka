@@ -15,6 +15,7 @@ const int DAKKA_DECORATE_CLIENT     = 465;
 const int ARC_MAIN                  = 191;
 const int ARC_CLEAR                 = 192;
 const int ARC_DAMAGE                = 193;
+const int ARC_ALTFIRE               = 194;
 
 // DEC = serverside DECORATE
 const int DEC_ROTATESOUND           = 0;
