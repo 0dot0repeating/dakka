@@ -22,11 +22,11 @@ streamlining things, and so on and so forth.
 * Pickup system, though with some pickups left to define
 * Tracer system, cleaned up and much better at respecting your pitch
 * dakka_cl_lesseffects
+* dakka_startmode (redone ad dakka_startmode_weapons and dakka_startmode_ammo)
 
 
 ## What's left?
 
-* dakka_startmode (big one)
 * dakka_cl_moremessages (I miss it already)
 * dakka_scrapperstart and dakka_backpackstart
 * dakka_jumpmod (might not come back in, honestly)

@@ -1,11 +1,12 @@
 server noarchive int dakka_usescvarinfo = 138973;
 
-server int dakka_scrapfactor        = 100;
-server int dakka_jumpmod            = 0;
-server int dakka_startmode          = 0;
-server int dakka_scrapperstart      = 0;
-server int dakka_backpackstart      = 0;
-server int dakka_2brutal            = 0;
+server int dakka_scrapfactor         = 100;
+server int dakka_jumpmod             = 0;
+server int dakka_startmode_weapons   = 0;
+server int dakka_startmode_ammo      = 1;
+server bool dakka_scrapperstart      = false;
+server bool dakka_backpackstart      = false;
+server bool dakka_2brutal            = false;
 
 server int dakka_rearm_10mm         = 0;
 server int dakka_rearm_shell        = 0;

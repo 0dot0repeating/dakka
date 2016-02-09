@@ -13,7 +13,7 @@ int PKP_KnownGuns[WEAPONCOUNT][3] =
 //  Name                        Ammo 1                      Ammo 2
 //
     // DAKKA (12 weapons)
-    {"DWep_Fists",              "",                         ""},
+    {"DWep_Fist",               "",                         ""},
     {"DWep_Scrappers",          "DakkaScrap",               ""},
     {"DWep_Pistol",             "DakkaBullet_10mm",         ""},
     {"DWep_Pistols",            "DakkaBullet_10mm",         ""},
@@ -157,5 +157,85 @@ int PKP_WeaponPriorities[WEAPONCOUNT] =
     2100,   // Flamethrower
     300,    // Mauler
     3300,   // Mauler2
+};
+
+
+
+// DAKKA EXTENSION
+//
+// dakka_startmode_weapons (see dakka_levelstart.h) has modes that automatically
+//  sets your weapon loadout based off of it. See the corresponding files for
+//  details (or the wiki eventually). The stuff for it is stored here.
+
+#define STARTWEAPONS    11
+
+// We can omit empty weapon slots due to commonFuncs.h holding a string
+//  explicitly to fill string slot 0
+
+int Start_Weapons[CLASSCOUNT][STARTWEAPONS] =
+{
+    // Doomguy
+    {
+        "Fist",
+        "Chainsaw",
+        "Pistol",
+        "Shotgun",
+        "SuperShotgun",
+        "Chaingun",
+        "RocketLauncher",
+        "PlasmaRifle",
+        "BFG9000",
+    },
+
+    // Dakkaguy
+    {
+        "DWep_Fists",
+        // Scrappers excluded - handled by dakka_scrapperstart
+        "DWep_Pistol",
+        "DWep_Pistols",
+        "DWep_Shotgun",
+        "DWep_SuperShotgun",
+        "DWep_Chaingun",
+        "DWep_Minigun",
+        "DWep_RocketLauncher",
+        "DWep_PlasmaRifle",
+        "DWep_Channeler",
+        "DWep_BFG9000",
+    }
+};
+
+// This is used to discriminate which weapons we should give. It doesn't
+//  correspond with weapon slot because that doesn't necessarily indicate
+//  the power of a weapon.
+int Start_WeaponPowers[CLASSCOUNT][STARTWEAPONS] =
+{
+    // Doomguy
+    {
+        1,
+        1,
+        1,
+        3,
+        5, // Super shotgun hits like a rocket launcher; it deserves this
+        4,
+        5,
+        6,
+        7
+    },
+
+    // Dakkaguy
+    {
+        1,
+        // Still no scrappers
+        1,
+        1,
+        3,
+        5, // 480 burst damage 2stonk
+        4,
+        6, // Minigun meets the plasma rifle for DPS
+        5,
+        6,
+        7, // Channeler might not have the *damage* of the BFG, but it's too good to just give away
+        7,
+    },
 };
 

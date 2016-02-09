@@ -162,7 +162,23 @@ function void Dakka_UpdateTemporaryItems(void)
     int ammo1Name   = PKP_KnownGuns[wepIndex][WEP_AMMO1];
     int ammo2Name   = PKP_KnownGuns[wepIndex][WEP_AMMO2];
 
-    if (wepIndex == -1 || StrLen(ammo1Name) == 0)
+    int hasAmmo1;
+    int hasAmmo2;
+
+    // ACS does not have operator short-circuiting.
+    // It really fucking needs operator short-circuiting.
+    if (wepIndex == -1)
+    {
+        hasAmmo1 = false;
+        hasAmmo2 = false;
+    }
+    else
+    {
+        hasAmmo1 = StrLen(ammo1Name) != 0;
+        hasAmmo2 = StrLen(ammo2Name) != 0;
+    }
+
+    if (!hasAmmo1)
     {
         TempChecks[TMP_AMMO1_ABNORMAL]  = false;
         TempChecks[TMP_AMMO1_25]        = false;
@@ -180,7 +196,7 @@ function void Dakka_UpdateTemporaryItems(void)
         TempChecks[TMP_AMMO1_0]         = ammo1Percent <= 0;
     }
 
-    if (wepIndex == -1 || StrLen(ammo2Name) == 0)
+    if (!hasAmmo2)
     {
         TempChecks[TMP_AMMO2_ABNORMAL]  = false;
         TempChecks[TMP_AMMO2_25]        = false;

@@ -1,18 +1,249 @@
-function void Dakka_DoLevelStart(void)
+// Weapon start modes:
+//  - 0: do nothing special
+//  - Anything above 0: Any weapon with a power rating at or below the value of
+//      dakka_startmode_weapons is given to you; anything else is taken away
+//  
+//      2 is the same as 1 effectively, so that you always have fists and pistols
+//
+// Note that this and dakka_startmode_ammo can only work with weapons defined in
+//  the pickup system.
+//
+// Start mode weapon and ammo data is stored in pickup/pickup_items_weapons.h
+//  and pickup_items_ammo.h to keep stuff like that together (unlike samsara)
+
+
+
+// We look up ammo types the weapon uses in Pickup_KnownGuns
+//  - in pickup/pickup_items_weapons.h
+//
+// If dakka_startmode_weapons > 0 and above, ammo types for any given weapons
+//  are kept, while all other ammo types are cleared out.
+//
+// ex. If you have dakka_startmode_weapons at 4 and you leave with 17 rockets,
+//  you enter the next map with no rockets, since you wouldn't get the rocket
+//  launcher.
+//
+// This can be further modified by dakka_startmode_ammo.
+//
+// AMMOCOUNT is in 'pickup/pickup_items_ammo.h'.
+int Start_AmmoToKeep[AMMOCOUNT];
+
+
+
+function void Dakka_StartMode_Weapons(int classNum, int entered, int lostWeapons)
 {
-    int pln       = PlayerNumber();
-    int classNum  = Pickup_ClassNumber(0);
+    // Do nothing on normal coop respawn
+    if (!(entered || lostWeapons)) { return; }
 
+    int startMode = GetCVar("dakka_startmode_weapons");
+    if (startMode <= 0) { return; }
 
-    if (classNum == Cl_Dakkaguy)
+    int i, j;
+
+    for (i = 0; i < AMMOCOUNT; i++)
     {
-        int hasPlasma = CheckInventory("DWep_PlasmaRifle");
-        Sender_SetData(pln, S2C_D_PLASMASTART, hasPlasma);
-        Log(s:"HAS PLASMA: ", d:hasPlasma);
+        Start_AmmoToKeep[i] = false;
+    }
+
+    for (i = 0; i < STARTWEAPONS; i++)
+    {
+        int wepName  = Start_Weapons[classNum+1][i];
+        int wepPower = Start_WeaponPowers[classNum+1][i];
+        int wepIndex = Weapon_WeaponIndex(wepName);
+
+        // Ignore any weapons we don't recognize
+        if (wepIndex == -1) { continue; }
+
+
+        // Weapon power rating too high
+        if (startMode < wepPower)
+        {
+            TakeInventory(wepName, 0x7FFFFFFF);
+            continue;
+        }
+
+
+        int ammo1Name = PKP_KnownGuns[wepIndex][WEP_AMMO1];
+        int ammo2Name = PKP_KnownGuns[wepIndex][WEP_AMMO2];
+
+        // Need the index to shove it in Start_AmmoToKeep
+        int ammo1Index = Ammo_AmmoIndex(ammo1Name);
+        int ammo2Index = Ammo_AmmoIndex(ammo2Name);
+
+        Start_AmmoToKeep[ammo1Index] = true;
+        Start_AmmoToKeep[ammo2Index] = true;
+
+        // Need this to keep ammo constant
+        int ammo1Count = CheckInventory(ammo1Name);
+        int ammo2Count = CheckInventory(ammo2Name);
+
+        GiveInventory(wepName, 1);
+
+        // Keep ammo constant
+        TakeInventory(ammo1Name, CheckInventory(ammo1Name) - ammo1Count);
+        TakeInventory(ammo2Name, CheckInventory(ammo2Name) - ammo2Count);
+    }
+
+
+    // Take away all ammo that we're not set to keep
+    for (i = 0; i < AMMOCOUNT; i++)
+    {
+        if (!Start_AmmoToKeep[i])
+        {
+            TakeInventory(PKP_KnownAmmo[i], 0x7FFFFFFF);
+        }
     }
 }
 
 
-function void Dakka_DoDMStart(void)
+
+// Ammo start modes:
+//  - 0: Do nothing with ammo.
+//
+//  - 1: Start every weapon you have with a small amount of default ammo,
+//          defined in 'pickup/pickup_items_ammo.h'.
+//
+//  - 2: Start every weapon you have with max ammo.
+//
+//  - 3: Start every weapon you have with a power rating below 3 with default
+//          ammo, and take away ammo for every other weapon.
+//
+//  - 4: Start every weapon you have with a power rating below 3 with max ammo,
+//          and take away ammo for every other weapon.
+
+function void Dakka_StartMode_Ammo(int classNum, int entered, int lostAmmo)
+{
+    // Do nothing on normal coop respawn
+    if (!(entered || lostAmmo)) { return; }
+
+    int startMode = GetCVar("dakka_startmode_ammo");
+    int i;
+
+    // Exit early because fuck it
+    if (startMode <= 0 || startMode > 3) { return; }
+
+    // These all basically use the same logic except for how much ammo you get,
+    //  and whether only pistol-class or lower weapons should get ammo.
+    for (i = 0; i < AMMOCOUNT; i++)
+    {
+        Start_AmmoToKeep[i] = false;
+    }
+
+    int giveMaxAmmo = (startMode == 2) || (startMode == 4);
+    int onlyPistols = (startMode == 3) || (startMode == 4);
+
+    // Determine which ammo should be given
+    for (i = 0; i < WEAPONCOUNT; i++)
+    {
+        int wepName   = PKP_KnownGuns[i][WEP_NAME];
+
+        // If we're only grabbing pistol start weapons, check power rating
+        if (onlyPistols)
+        {
+            int j;
+            int isPistol = false;
+
+            // Also we only give a crap about pistol start weapons
+            //  for *our* class
+            for (j = 0; j < STARTWEAPONS; j++)
+            {
+                int startWep    = Start_Weapons[classNum+1][j];
+                int startRating = Start_WeaponPowers[classNum+1][j];
+
+                if (startRating > 2) { continue; }
+
+                if (strcmp_i(wepName, startWep))
+                {
+                    isPistol = true;
+                    break;
+                }
+            }
+
+            // well shit
+            if (!isPistol) { continue; }
+        }
+
+        int ammo1Name = PKP_KnownGuns[i][WEP_AMMO1];
+        int ammo2Name = PKP_KnownGuns[i][WEP_AMMO2];
+
+        // Need the index to shove it in Start_AmmoToKeep
+        int ammo1Index = Ammo_AmmoIndex(ammo1Name);
+        int ammo2Index = Ammo_AmmoIndex(ammo2Name);
+
+        // Yeah we get this ammo
+        if (CheckInventory(wepName))
+        {
+            Start_AmmoToKeep[ammo1Index] = true;
+            Start_AmmoToKeep[ammo2Index] = true;
+        }
+    }
+
+    // Now distribute the ammo that should be given, and take the ammo
+    //  that shouldn't be given
+    for (i = 0; i < AMMOCOUNT; i++)
+    {
+        int ammoName = PKP_KnownAmmo[i];
+        TakeInventory(ammoName, 0x7FFFFFFF);
+
+        if (Start_AmmoToKeep[i])
+        {
+            if (giveMaxAmmo)
+            {
+                GiveInventory(ammoName, GetAmmoCapacity(ammoName));
+            }
+            else
+            {
+                GiveInventory(ammoName, PKP_DefaultAmmoCount[i]);
+            }
+        }
+    }
+}
+
+
+
+// Corresponds to dakka_scrapperstart. Should only be called for Dakkaguy.
+function void Dakka_ScrapperStart(void)
+{
+    if (CheckInventory("DWep_Scrappers") || GetCVar("dakka_scrapperstart") <= 0)
+    {
+        return;
+    }
+
+    int scrapBefore = CheckInventory("DakkaScrap");
+    GiveInventory("DWep_Scrappers", 1);
+    int scrapAfter = CheckInventory("DakkaScrap");
+
+    TakeInventory("DakkaScrap", scrapAfter-scrapBefore);
+}
+
+
+
+function void Dakka_DoLevelSpawn(int entered)
+{
+    int lostEverything  = !entered &&                    GetCVar("sv_coop_loseinventory");
+    int lostAmmo        = !entered && (lostEverything || GetCVar("sv_coop_loseammo"));
+    int lostWeapons     = !entered && (lostEverything || GetCVar("sv_coop_loseweapons"));
+
+    int pln       = PlayerNumber();
+    int classNum  = Pickup_ClassNumber(0);
+
+    Dakka_StartMode_Weapons(classNum, entered, lostWeapons);
+    Dakka_StartMode_Ammo(   classNum, entered, lostAmmo);
+
+    if (classNum == Cl_Dakkaguy)
+    {
+        Dakka_ScrapperStart();
+
+        if (entered)
+        {
+            int hasPlasma = CheckInventory("DWep_PlasmaRifle");
+            Sender_SetData(pln, S2C_D_PLASMASTART, hasPlasma);
+            Log(s:"HAS PLASMA: ", d:hasPlasma);
+        }
+    }
+}
+
+
+function void Dakka_DoDMSpawn(int entered)
 {
 }
