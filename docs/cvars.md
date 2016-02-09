@@ -1,4 +1,4 @@
-#CVars
+# CVars
 
 Dakka has a slew of CVars used to configure the game to your liking.
 
@@ -7,7 +7,7 @@ Dakka has a slew of CVars used to configure the game to your liking.
 * [dakka\_startmode\_weapons](cvars/dakka_startmode_weapons.md)
 * [dakka\_startmode\_ammo](cvars/dakka_startmode_ammo.md)
 * [dakka\_scrapperstart](cvars/dakka_scrapperstart.md)
-* [dakka\_scrapfactor](cvars/dakka_scrapfactor)
+* [dakka\_scrapfactor](cvars/dakka_scrapfactor.md)
 
 
 ## List of clientside CVars
