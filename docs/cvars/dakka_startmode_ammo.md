@@ -1,6 +1,6 @@
 # dakka\_startmode\_ammo
 
-**Related CVars:** [dakka_startmode_weapons.md](dakka\_startmode\_weapons)
+**Related CVars:** [dakka\_startmode\_weapons](dakka_startmode_weapons.md)
 
 **Related files:** `/pk3/acs/dakka_levelstart.h`, `/pk3/acs/pickup_items_weapons.h`, `/pk3/acs/pickup/pickup_items_ammo.h`
 
@@ -10,7 +10,7 @@
 
 ## Description
 
-`dakka_startmode_ammo` is a [../cvars.md](CVar) that determines the amount of ammo
+`dakka_startmode_ammo` is a [CVar](../cvars.md) that determines the amount of ammo
 you spawn with for each weapon in your inventory. The CVar `dakka_startmode_weapons`
 is processed immediately before this CVar is. There are five modes for this CVar.
 

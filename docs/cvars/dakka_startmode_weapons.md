@@ -1,6 +1,6 @@
 # dakka\_startmode\_weapons
 
-**Related CVars:** [dakka_startmode_ammo.md](dakka_startmode_ammo)
+**Related CVars:** [dakka\_startmode\_ammo](dakka_startmode_ammo.md)
 
 **Related files:** `/pk3/acs/dakka_levelstart.h`, `/pk3/acs/pickup/pickup_items_weapons.h`
 
@@ -10,7 +10,7 @@
 
 ## Description
 
-`dakka_startmode_weapons` is a [../cvars.md](CVar) that determines what types of
+`dakka_startmode_weapons` is a [CVar](../cvars.md) that determines what types of
 weapons you get when you enter a map, or respawn in a cooperative game mode if
 server settings cause you to lose your weapons on death. It has two modes.
 
