@@ -112,7 +112,7 @@ actor DWep_Pistols: DoomWeapon
         BPST F    0 A_FireBullets(10, 7, 4, 12, "DakkaPuff_Left", FBF_NORANDOM | FBF_USEAMMO)
         BPST F    0 A_FireBullets(10, 7, 4, 12, "DakkaPuff_Right", FBF_NORANDOM)
         BPST F    0 A_GiveInventory("GiveScrapCounter", 40)
-        BPST F    0 ACS_ExecuteAlways(DAKKA_RECOIL, 0, 5, 3, 11)
+        BPST F    0 ACS_ExecuteAlways(DAKKA_RECOIL, 0, 5, 2, 16)
         BPST FD 1 bright A_Light2
         BPST E 2 A_Light1
         BPST E 6 A_Light0
