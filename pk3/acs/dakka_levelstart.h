@@ -217,6 +217,57 @@ function void Dakka_ScrapperStart(void)
 }
 
 
+// Corresponds to dakka_backpackstart. 0 means "do nothing", 1 means "give backpack",
+//  -1 means "take all backpacks".
+//
+// Dakka_Backpacks is in dakka_const.h.
+int Backpack_AmmoBefore[AMMOCOUNT];
+
+function void Dakka_BackpackStart(void)
+{
+    int backpackStart = GetCVar("dakka_backpackstart");
+    if (backpackStart == 0) { return; }
+
+    int i, ammoName, ammoInv;
+
+    // Take backpack on new map
+    if (backpackStart < 0)
+    {
+        for (i = 0; i < BACKPACKCOUNT; i++)
+        {
+            TakeInventory(Dakka_BackpackItems[i], 0x7FFFFFFF);
+        }
+
+        // Cap ammo at new max ammo capacity
+        for (i = 0; i < AMMOCOUNT; i++)
+        {
+            ammoName = PKP_KnownAmmo[i];
+            ammoInv  = CheckInventory(ammoName);
+
+            TakeInventory(ammoName, ammoInv - GetAmmoCapacity(ammoName));
+        }
+
+        return;
+    }
+
+    // Give backpack
+    
+    for (i = 0; i < AMMOCOUNT; i++)
+    {
+        Backpack_AmmoBefore[i] = CheckInventory(PKP_KnownAmmo[i]);
+    }
+
+    GiveInventory("DakkaBackpackItem", 1);
+
+    for (i = 0; i < AMMOCOUNT; i++)
+    {
+        ammoName = PKP_KnownAmmo[i];
+        ammoInv  = CheckInventory(ammoName);
+
+        TakeInventory(ammoName, ammoInv - Backpack_AmmoBefore[i]);
+    }
+}
+
 
 function void Dakka_DoLevelSpawn(int entered)
 {
@@ -226,6 +277,8 @@ function void Dakka_DoLevelSpawn(int entered)
 
     int pln       = PlayerNumber();
     int classNum  = Pickup_ClassNumber(0);
+
+    Dakka_BackpackStart();
 
     Dakka_StartMode_Weapons(classNum, entered, lostWeapons);
     Dakka_StartMode_Ammo(   classNum, entered, lostAmmo);
