@@ -3,13 +3,15 @@
 
 
 // This is here because in Dakka (which had a similar pickup system to this),
-//  when you run over a stack of 500 chainguns and didn't pick up any of them,
+//  when you ran over a stack of 500 chainguns and didn't pick up any of them,
 //  things started lagging really fucking badly because it was running the
 //  pickup script 500 times a tic, for every tic you were moving over them.
 //
 // With this, if the pickup failed to do something, any future pickups on that
-//  slot for that player on that tic will just fail instantly, to same a damn
+//  slot for that player on that tic will just fail instantly, to save a damn
 //  lot of processor cycles.
+//
+// Dakka now uses this system, by the way.
 
 int PKP_RefusePickups[PLAYERMAX][PICKUPCOUNT];
 
@@ -140,20 +142,10 @@ function void Pickup_HandlePickups(int index, int classNum, int dropped)
 }
 
 
-
-script PICKUP_PICKUP (int index, int dropped)
+// Separated this out so that you can give class-based items in scripts without
+//  showing a pickup message, flash, whatever.
+function int Pickup_DoPickup(int index, int classNum, int dropped)
 {
-    // For some reason the pickup code likes to run on the client,
-    //  even when it shouldn't.
-    if (!IsServer) { terminate; }
-
-    // Has picking this item up this tic not done anything? Trying to pick it
-    //  up again won't change anything, so give up now.
-    int checkTimer  = Timer() + 1;
-    int pln         = PlayerNumber();
-
-    if (PKP_RefusePickups[pln][index] == checkTimer) { SetResultValue(0); terminate; }
-
     // Clear the pickup return array.
     int i;
 
@@ -168,11 +160,6 @@ script PICKUP_PICKUP (int index, int dropped)
         PKP_MessageData[i] = 0;
     }
 
-    // This is used in the end to tell the pickup whether it should disappear
-    //  or not.
-    int classNum = Pickup_ClassNumber(0);
-
-
     // Little extra convenience: if the first item entry in the pickup is
     //  "Default", it'll use the default (unknown class) item entry instead.
     if (!strcmp_i(PKP_ReceiveItems[index][classNum+1][0], "Default"))
@@ -180,24 +167,20 @@ script PICKUP_PICKUP (int index, int dropped)
         classNum = -1;
     }
 
-
     // So with the addition of pickup scripts being able to return a new index,
     //  we need to loop this until the chain of scripts stops returning new
     //  item numbers.
     
     int keepLooping = true;
 
-    // If the pickup fails, no matter what item index it ends up on, we want to
-    //  deny pickup on the pickup it started with for the tic. So we save the
-    //  original item index.
-
-    int originalIndex = index;
-
 
     // The only instance in which we want to do another loop around is:
     //  - The current item index has a pickup script attached to it
     //  - The script is set to return a new item index
     //  - The new item index is not the same as the current item index
+
+    PKP_PickupData[PDATA_CLASSNUM]  = classNum;
+    PKP_PickupData[PDATA_DROPPED]   = dropped;
 
     while (keepLooping)
     {
@@ -207,8 +190,6 @@ script PICKUP_PICKUP (int index, int dropped)
         int gotNewIndex = false;
 
         PKP_PickupData[PDATA_ITEMNUM]   = index;
-        PKP_PickupData[PDATA_CLASSNUM]  = classNum;
-        PKP_PickupData[PDATA_DROPPED]   = dropped;
 
         if (scriptIndex != -1)
         {
@@ -240,14 +221,39 @@ script PICKUP_PICKUP (int index, int dropped)
     // In case it changed.
     PKP_PickupData[PDATA_ITEMNUM] = index;
 
-
-
     if (scriptIndex == -1 || gotNewIndex)
     {
         Pickup_HandlePickups(index, classNum, dropped);
     }
 
+    // If the index changed, the PICKUP_PICKUP script needs to know.
+    return index;
+}
 
+
+
+script PICKUP_PICKUP (int index, int dropped)
+{
+    // For some reason the pickup code likes to run on the client,
+    //  even when it shouldn't.
+    if (!IsServer) { terminate; }
+
+    // Has picking this item up this tic not done anything? Trying to pick it
+    //  up again won't change anything, so give up now.
+    int checkTimer  = Timer() + 1;
+    int pln         = PlayerNumber();
+    int classNum    = Pickup_ClassNumber(0);
+
+    if (PKP_RefusePickups[pln][index] == checkTimer) { SetResultValue(0); terminate; }
+
+    // This handles the actual inventory-changing part of the pickup.
+    //  The stuff below this handles showing pickup messages, item flash, 
+    //  removing the pickup from the map, etc.
+    //
+    // If you want a script to give a class-based item, use Pickup_DoPickup
+    //  instead.
+
+    int newIndex = Pickup_DoPickup(index, classNum, dropped);
 
     // Get result values.
 
@@ -256,7 +262,7 @@ script PICKUP_PICKUP (int index, int dropped)
     int noconsume       = PKP_ReturnArray[PARRAY_NOCONSUME];
     int didSomething    = PKP_ReturnArray[PARRAY_DIDSOMETHING];
 
-    int forcePickup = PKP_AlwaysPickup[index][classNum+1];
+    int forcePickup = PKP_AlwaysPickup[newIndex][classNum+1];
 
     // What, the pickup did nothing? Don't care. Pick it up anyway.
     if (forcePickup)
@@ -269,7 +275,7 @@ script PICKUP_PICKUP (int index, int dropped)
     // Well this didn't do anything. Refuse to do it again this tic.
     if (!(didPickup || didSomething))
     {
-        PKP_RefusePickups[pln][originalIndex] = checkTimer;
+        PKP_RefusePickups[pln][index] = checkTimer;
     }
     
     // So we did the pickup; time to display the pickup message.
@@ -277,7 +283,7 @@ script PICKUP_PICKUP (int index, int dropped)
     if (didPickup)
     {
         PKP_MessageData[MDATA_CLASSNUM]     = classNum;
-        PKP_MessageData[MDATA_ITEMNUM]      = index;
+        PKP_MessageData[MDATA_ITEMNUM]      = newIndex;
         PKP_MessageData[MDATA_DROPPED]      = dropped;
         PKP_MessageData[MDATA_LOWHEALTH]    = PKP_ReturnArray[PARRAY_LOWHEALTH];
 

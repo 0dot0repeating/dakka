@@ -42,4 +42,54 @@ int PKP_KnownAmmo[AMMOCOUNT] =
     "EnergyPod",
 };
 
+
+// DAKKA EXTENSION
+// If dakka_startmode_ammo is set to a mode that resets your ammo to default
+//  for weapons you have, it reads the values from here to determine that
+//  default ammo count.
+
+int PKP_DefaultAmmoCount[AMMOCOUNT] =
+{
+    // DAKKA (10)
+    60,             // scrap
+    100,            // 10mm
+    16,             // shells
+    4,              // grenades
+    8,              // gyro
+    160,            // 5mm
+    8,              // rain
+    24,             // flamer
+    10,             // rockets
+    50,             // cells
+
+    // DOOM (4)
+    100,            // bullets
+    20,             // shells
+    10,             // rockets
+    80,             // cells
+
+    // HERETIC (6)
+    100,            // wand
+    100,            // blaster
+    20,             // crossbow
+    10,             // phoenix
+    100,            // hellstaff
+    50,             // firemace
+
+    // HEXEN (2)
+    90,             // mana 1
+    45,             // mana 2
+
+    // STRIFE (7)
+    //  (this will probably *never* come into play, since strife's one big hub)
+    100,            // bullets
+    20,             // electric
+    0,              // poison
+    20,             // missiles
+    6,              // HE
+    2,              // phosphorus
+    80,             // energy
+};
+
+
 // Yeah, that's... basically it.

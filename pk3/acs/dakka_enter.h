@@ -21,7 +21,8 @@ script DAKKA_SPAWN (int respawned)
     //  and variables like dakka_startmode don't apply.
     if (GameType() == GAME_NET_DEATHMATCH)
     {
-        Dakka_DoDMStart();
+        // These functions expect 'entered', not 'respawned'
+        Dakka_DoDMSpawn(!respawned);
     }
 
     if (DakkaEnterLocks[pln]) { terminate; }
@@ -32,7 +33,8 @@ script DAKKA_SPAWN (int respawned)
     // Cooperative does standard level starts.
     if (GameType() != GAME_NET_DEATHMATCH)
     {
-        Dakka_DoLevelStart();
+        // These functions expect 'entered', not 'respawned'
+        Dakka_DoLevelSpawn(!respawned);
     }
 
     while (true)
