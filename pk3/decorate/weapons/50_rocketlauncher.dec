@@ -39,7 +39,7 @@ actor DWep_RocketLauncher: DoomWeapon
         "----" A 0 ACS_ExecuteWithResult(DAKKA_UPDATE_SWITCHAROO, 7, 0)
         DKRL A 0 A_PlaySound("dakka/rocketfire", CHAN_WEAPON)
         DKRL A 0 A_FireCustomMissile("DakkaRocket")
-        DKRL A 0 ACS_ExecuteAlways(DAKKA_RECOIL, 0, 4, 4, 10)
+        DKRL A 0 ACS_ExecuteAlways(DAKKA_RECOIL, 0, 4, 3, 16)
         DKRL A 0 A_AlertMonsters
         DKRL A 2 bright offset(0, 38) A_GunFlash
         DKRL B 1 bright offset(0, 35)
@@ -88,7 +88,7 @@ actor DWep_RocketLauncher: DoomWeapon
       AltLaunchMany:
         DKRL A 0 A_FireCustomMissile("WhatTheFuckIsAPropellent", random(-10,10)/2.0, 1, 0,0, 0, random(-4, 4))
         DKRL A 0 A_TakeInventory("DakkaRocketsLoaded", 1)
-        DKRL A 0 ACS_ExecuteAlways(DAKKA_RECOIL, 0, 3, 4, 14)
+        DKRL A 0 ACS_ExecuteAlways(DAKKA_RECOIL, 0, 3, 3, 20)
         DKRL A 0 A_JumpIfInventory("DakkaRocketsLoaded", 1, "AltLaunchMany")
         goto AltDone
 
