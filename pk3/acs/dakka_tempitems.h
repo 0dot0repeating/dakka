@@ -1,4 +1,4 @@
-#define TMPITEM_COUNT       25
+#define TMPITEM_COUNT       26
 
 #define TMP_LEFTFIRE        0
 #define TMP_RIGHTFIRE       1
@@ -31,6 +31,8 @@
 #define TMP_ARMOR50         23
 #define TMP_ARMOR25         24
 
+#define TMP_GOTBACKPACK     25
+
 int TempChecks[TMPITEM_COUNT];
 
 int TempItems[TMPITEM_COUNT] =
@@ -60,6 +62,7 @@ int TempItems[TMPITEM_COUNT] =
     "HUD_Armor75",
     "HUD_Armor50",
     "HUD_Armor25",
+    "GotBackpackItem",
 };
 
 
@@ -214,6 +217,21 @@ function void Dakka_UpdateTemporaryItems(void)
         TempChecks[TMP_AMMO2_0]         = ammo2Percent <= 0;
     }
 
+
+    // Backpack check - backpack items in dakka_const.h
+
+    int hasBackpack = false;
+
+    for (i = 0; i < BACKPACKCOUNT; i++)
+    {
+        if (CheckInventory(Dakka_BackpackItems[i]))
+        {
+            hasBackpack = true;
+            break;
+        }
+    }
+
+    TempChecks[TMP_GOTBACKPACK] = hasBackpack;
 
 
     for (i = 0; i < TMPITEM_COUNT; i++)

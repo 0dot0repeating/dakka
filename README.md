@@ -21,16 +21,16 @@ streamlining things, and so on and so forth.
 * Recoil system, if anyone actually used that
 * Pickup system, though with some pickups left to define
 * Tracer system, cleaned up and much better at respecting your pitch
-* dakka_cl_lesseffects
-* dakka_startmode (redone ad dakka_startmode_weapons and dakka_startmode_ammo)
+* dakka\_cl\_lesseffects
+* dakka\_startmode (redone ad dakka\_startmode\_weapons and dakka\_startmode\_ammo)
+* dakka\_scrapperstart and dakka\_backpackstart
 
 
 ## What's left?
 
-* dakka_cl_moremessages (I miss it already)
-* dakka_scrapperstart and dakka_backpackstart
-* dakka_jumpmod (might not come back in, honestly)
-* The dakka_rearm CVars
+* dakka\_cl\_moremessages (I miss it already)
+* dakka\_jumpmod (might not come back in, honestly)
+* The dakka\_rearm CVars
 * Score rewards
 
 

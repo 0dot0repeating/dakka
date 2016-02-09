@@ -124,3 +124,5 @@ actor DakkaCurveballChecker: Trigger
         stop
     }
 }
+
+actor DakkaBackpackItem: BackpackItem {}
