@@ -283,6 +283,11 @@ function void Dakka_DoLevelSpawn(int entered)
     Dakka_StartMode_Weapons(classNum, entered, lostWeapons);
     Dakka_StartMode_Ammo(   classNum, entered, lostAmmo);
 
+    if (entered)
+    {
+        PlayerMapScores[pln] = 0;
+    }
+
     if (classNum == Cl_Dakkaguy)
     {
         Dakka_ScrapperStart();
