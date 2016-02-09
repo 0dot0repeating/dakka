@@ -1,6 +1,6 @@
 # dakka\_cl_jerkyrecoil
 
-**Related CVars:** `dakka_cl_recoil`
+**Related CVars:** [dakka\_cl\_recoil](dakka_cl_recoil.md)
 
 **Related files:** `/pk3/acs/dakka_recoil.h`
 
@@ -18,4 +18,4 @@ meant by that.
 
 Here, have a shitty comparison image:
 
-![the magic of brush tool](recoilimage.png "recoil comparison")
+![recoil comparison](recoilimage.png "the magic of brush tool")

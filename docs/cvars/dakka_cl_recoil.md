@@ -1,6 +1,6 @@
 # dakka\_cl_recoil
 
-**Related CVars:** `dakka_cl_jerkyrecoil`
+**Related CVars:** [dakka\_cl\_jerkyrecoil](dakka_cl_jerkyrecoil.md)
 
 **Related files:** `/pk3/acs/dakka_recoil.h`
 
