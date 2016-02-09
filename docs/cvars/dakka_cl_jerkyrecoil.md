@@ -16,6 +16,6 @@ than smoothly drop down. It's a holdover from Samsara, when this CVar was invert
 and called samsara_cl_sinerecoil instead. I don't think anyone understood what I
 meant by that.
 
-Here, have a shitty comparison image:
+Here, have a comparison image:
 
-![recoil comparison](recoilimage.png "the magic of brush tool")
+![recoil comparison](recoilimage.png "graaaaphs")
