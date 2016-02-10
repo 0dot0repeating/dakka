@@ -296,7 +296,6 @@ function void Dakka_DoLevelSpawn(int entered)
         {
             int hasPlasma = CheckInventory("DWep_PlasmaRifle");
             Sender_SetData(pln, S2C_D_PLASMASTART, hasPlasma);
-            Log(s:"HAS PLASMA: ", d:hasPlasma);
         }
     }
 }
