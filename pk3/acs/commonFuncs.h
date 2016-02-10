@@ -838,8 +838,7 @@ function void GiveAmmo(int type, int amount)
 {
     if (GetCVar("sv_doubleammo"))
     {
-        int m = GetAmmoCapacity(type);
-        int expected = min(m, CheckInventory(type) + amount);
+        int expected = CheckInventory(type) + amount;
 
         GiveInventory(type, amount);
         TakeInventory(type, CheckInventory(type) - expected);

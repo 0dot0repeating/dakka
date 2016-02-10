@@ -56,6 +56,8 @@ script DAKKA_SPAWN (int respawned)
 
         Delay(1);
     }
+
+    DakkaEnterLocks[pln] = false;
 }
 
 

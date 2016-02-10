@@ -202,7 +202,7 @@ function void Dakka_StartMode_Ammo(int classNum, int entered, int lostAmmo)
 
 
 // Corresponds to dakka_scrapperstart. Should only be called for Dakkaguy.
-function void Dakka_ScrapperStart(void)
+function void Dakka_ScrapperStart(int extraScrap)
 {
     if (CheckInventory("DWep_Scrappers") || GetCVar("dakka_scrapperstart") <= 0)
     {
@@ -213,7 +213,16 @@ function void Dakka_ScrapperStart(void)
     GiveInventory("DWep_Scrappers", 1);
     int scrapAfter = CheckInventory("DakkaScrap");
 
-    TakeInventory("DakkaScrap", scrapAfter-scrapBefore);
+    int targetScrap = (scrapBefore + extraScrap) - scrapAfter;
+
+    if (targetScrap < 0)
+    {
+        TakeInventory("DakkaScrap", -targetScrap);
+    }
+    else
+    {
+        GiveAmmo("DakkaScrap", targetScrap);
+    }
 }
 
 
@@ -290,7 +299,7 @@ function void Dakka_DoLevelSpawn(int entered)
 
     if (classNum == Cl_Dakkaguy)
     {
-        Dakka_ScrapperStart();
+        Dakka_ScrapperStart(0);
 
         if (entered)
         {
@@ -303,4 +312,15 @@ function void Dakka_DoLevelSpawn(int entered)
 
 function void Dakka_DoDMSpawn(int entered)
 {
+    int pln      = PlayerNumber();
+    int classNum = Pickup_ClassNumber(0);
+
+    PlayerMapScores[pln] = 0;
+
+    Dakka_BackpackStart();
+
+    if (classNum == Cl_Dakkaguy)
+    {
+        Dakka_ScrapperStart(60);
+    }
 }
