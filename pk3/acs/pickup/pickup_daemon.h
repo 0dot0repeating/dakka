@@ -2,6 +2,8 @@
 //  all the information they should have.
 
 
+// See DAKKA_OPEN in dakka_open.h instead
+/*
 script PICKUP_MAINLOOP open
 {
     // We're just interested in the side effect.
@@ -15,6 +17,7 @@ script PICKUP_MAINLOOP open
         Delay(1);
     }
 }
+*/
 
 script PICKUP_ENTER enter
 {

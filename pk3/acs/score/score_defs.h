@@ -186,4 +186,5 @@ int BonusValues[PLAYERMAX][BONUSCOUNT];
 int LastBonus[PLAYERMAX][BONUSCOUNT];
 
 // Clientside. Stores the last value a bonus was seen with.
+// (also make sure to add score definitions in pickup_client_defs.h
 int Bonus_LastSeen[PLAYERMAX][BONUSCOUNT];

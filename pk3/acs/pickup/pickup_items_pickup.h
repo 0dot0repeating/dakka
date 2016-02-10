@@ -146,6 +146,10 @@ int PKP_Messages[PICKUPCOUNT][CLASSCOUNT] =
         "$GOTPLASMA",
         "Channeler!",
     },
+    {
+        "$GOTPLASMA",
+        "Plasma rifle and channeler!",
+    },
 };
 
 
@@ -309,6 +313,10 @@ int PKP_PickupFlashes[PICKUPCOUNT][CLASSCOUNT][5] =
         {255, 255, 64, 0.15, 0.15},
         {255, 255, 64, 0.15, 0.15},
     },
+    { // Plasma+channeler
+        {255, 255, 64, 0.15, 0.15},
+        {255, 255, 64, 0.15, 0.15},
+    },
 };
 
 
@@ -456,6 +464,10 @@ int PKP_PickupSounds[PICKUPCOUNT][CLASSCOUNT] =
 
 
     { // Channeler
+        "misc/w_pkup",
+        "misc/w_pkup",
+    },
+    { // Plasma+channeler
         "misc/w_pkup",
         "misc/w_pkup",
     },

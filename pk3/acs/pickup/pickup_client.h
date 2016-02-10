@@ -119,7 +119,15 @@ function void Sender_UpdateClients(void)
 
     for (i = 0; i < PLAYERMAX; i++)
     {
-        if (!PlayerInGame(i)) { continue; }
+        // Zandyland has spectators too, and they can also ping back
+        if (IsZandronum)
+        {
+            if (!(PlayerInGame(i) || PlayerIsSpectator(i))) { continue; }
+        }
+        else
+        {
+            if (!PlayerInGame(i)) { continue; }
+        }
 
         for (j = 0; j < S2C_DATACOUNT; j++)
         {

@@ -77,6 +77,9 @@ dakka/pistolaltfire         sounds/pistols/pistol_altfire.ogg
 $limit dakka/pistolfire     0
 $limit dakka/pistolaltfire  0
 
+$volume dakka/pistolfire    0.5
+$volume dakka/pistolaltfire 0.6
+
 
 
 
@@ -131,6 +134,8 @@ dakka/chaingundetonate      sounds/chaingun/chaingun_detonate.ogg
 
 $alias dakka/rainexplode    dakka/gyrojetexplode
 
+$volume dakka/chaingunaltfire   0.5
+
 
 
 
@@ -149,8 +154,8 @@ dakka/minigun/flamestop     sounds/minigun/minigun_flamestop.ogg
 dakka/minigun/flameloop     sounds/minigun/minigun_flameloop.ogg
 dakka/firecrackle           sounds/minigun/minigun_firecrackle.ogg
 
-$volume dakka/minigun/flamestart    0.75
-$volume dakka/minigun/flamestop     0.75
+$volume dakka/minigun/flamestart    0.5
+$volume dakka/minigun/flamestop     0.5
 $volume dakka/minigun/flameloop     0.75
 
 
@@ -180,6 +185,8 @@ dakka/plasmaexplode         sounds/plasmarifle/plasma_explode.ogg
 $limit dakka/plasmafire     0
 $limit dakka/plasmaexplode  0
 
+$volume dakka/plasmabeam 0.6
+
 
 
 
@@ -197,6 +204,9 @@ $random arc/fire { arc/fire1 arc/fire2 arc/fire3 arc/fire4 }
 
 arc/altfire sounds/channeler/arc_altfire.ogg
 
+$volume arc/fire    0.6
+$volume arc/altfire 0.6
+
 
 
 
@@ -208,3 +218,6 @@ arc/altfire sounds/channeler/arc_altfire.ogg
 dakka/bfgfire               sounds/bfg/bfg_fire.ogg
 dakka/bfg_altfire           sounds/bfg/bfg_altfire.ogg
 dakka/bfgexplode            sounds/bfg/bfg_explode.ogg
+
+
+$volume dakka/bfg_altfire   0.5

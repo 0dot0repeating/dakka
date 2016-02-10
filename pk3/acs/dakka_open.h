@@ -1,9 +1,27 @@
 script DAKKA_OPEN open
 {
-    SetDBEntry("dakka", "iszand", 1);
-    IsZand = GetDBEntry("dakka", "iszand");
+    // Absorbed this from the PICKUP_OPEN script.
 
-    Score_CalcMapPoints();
+    Pickup_IsZandronum(); // side effect sets IsZandronum
+    IsServer = true;
+
+    while (true)
+    {
+        // Update CVars for everyone
+        
+        int i;
+
+        for (i = 0; i < PLAYERMAX; i++)
+        {
+            // Update CVars for players
+            Sender_SetData(i, S2C_D_BUNDLEPLASMA, GetCVar("dakka_bundleplasma") == 1);
+        }
+
+        // Absorbed from PICKUP_OPEN
+        Sender_UpdateClients();
+        Sender_ActuallySend();
+        Delay(1);
+    }
 }
 
 
