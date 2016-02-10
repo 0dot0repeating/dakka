@@ -162,8 +162,8 @@ function int Loop_CalcScore(int arcType, int arcerTID, int targetTID, int maxRan
         int noTeamIndex;
 
         // ZDoom has the "no team" index at 255. Zandronum has it at 4. DUMB.
-        if (IsZand) { noTeamIndex = 4; }
-        else        { noTeamIndex = 255; }
+        if (IsZandronum) { noTeamIndex = 4; }
+        else             { noTeamIndex = 255; }
 
         // A -FRIENDLY arc will target the player who fired it. Rule that out.
         if (firerPln == targetPln) { return -1; }

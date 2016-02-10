@@ -2,6 +2,8 @@ Base Doom;
 Height 0;
 MonospaceFonts false, "8";
 
+Resolution 320, 200;
+
 /*
  * am bg:       107 , 189
  * a1 bg:       321 , 181

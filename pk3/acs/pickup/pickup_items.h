@@ -3,7 +3,7 @@
 
 // This is, quite simply, the amount of pickup types that this ACS is equipped
 //  to handle.
-#define PICKUPCOUNT     32
+#define PICKUPCOUNT     33
 
 
 // How many items can you get from each pickup?
@@ -48,7 +48,8 @@
 #define It_InvulnSphere     29
 #define It_Backpack         30
 
-#define It_Dakka_Channeler  31
+#define It_Dakka_Channeler      31
+#define It_Dakka_PlasmaBundle   32
 
 // Here, you have the items that each pickup will give you. Each pickup can give
 //  as many as PK_RECEIVECOUNT items.
@@ -203,8 +204,14 @@ int PKP_ReceiveItems[PICKUPCOUNT][CLASSCOUNT][PK_RECEIVECOUNT] =
     // Dakka-specific item: channeler
     {
         {"PlasmaRifle"}, // shouldn't be able to get this
-        {"DWep_Channeler"},
+        {"DWep_Channeler", "DakkaCells"},
     },
+
+    // Dakka-specific item: channeler+plasma bundle
+    {
+        {"PlasmaRifle"},
+        {"DWep_PlasmaRifle", "DWep_Channeler", "DakkaCells"},
+    }
 };
 
 
@@ -353,9 +360,13 @@ int PKP_ReceiveCount[PICKUPCOUNT][CLASSCOUNT][PK_RECEIVECOUNT] =
     },
 
 
-    { // Channaler
+    { // Channeler - doesn't give its own cells, gotta do it manually
         {1},
+        {1, 60},
+    },
+    { // Plasma+channeler bundle
         {1},
+        {1, 1, 30},
     },
 };
 
@@ -511,6 +522,10 @@ int PKP_AlwaysPickup[PICKUPCOUNT][CLASSCOUNT] =
 
 
     { // Channeler
+        false,
+        false,
+    },
+    { // Channeler+plasma
         false,
         false,
     },

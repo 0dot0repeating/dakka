@@ -4,6 +4,7 @@ server int dakka_scrapfactor         = 100;
 server int dakka_jumpmod             = 0;
 server int dakka_startmode_weapons   = 0;
 server int dakka_startmode_ammo      = 1;
+server bool dakka_bundleplasma       = false;
 server bool dakka_scrapperstart      = false;
 server bool dakka_backpackstart      = false;
 server bool dakka_2brutal            = false;
