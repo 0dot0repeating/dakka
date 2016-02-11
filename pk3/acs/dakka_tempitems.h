@@ -5,7 +5,7 @@
 #define TMP_LEFTCLICK       2
 #define TMP_RIGHTCLICK      3
 #define TMP_INFINITEAMMO    4
-#define TMP_CLASSITEM       5
+#define TMP_DAKKACLASS      5
 
 #define TMP_ABNORMALHEALTH  6
 #define TMP_HEALTH300       7
@@ -94,7 +94,7 @@ function void Dakka_UpdateTemporaryItems(void)
     int classNum = Pickup_ClassNumber(0);
 
     TempChecks[TMP_INFINITEAMMO]    = GetCVar("sv_infiniteammo") || CheckInventory("PowerInfiniteAmmo");
-    TempChecks[TMP_CLASSITEM]       = classNum == Cl_Dakkaguy;
+    TempChecks[TMP_DAKKACLASS]      = classNum == Cl_Dakkaguy;
     
 
 
@@ -194,8 +194,8 @@ function void Dakka_UpdateTemporaryItems(void)
         int ammo1Percent = itof(ammo1Cur) / ammo1Max;
 
         // note: 1 is actually 1.0 / 65536, do not get confused
-        TempChecks[TMP_AMMO1_ABNORMAL]  = ammo1Percent <= 0.25;
-        TempChecks[TMP_AMMO1_25]        = middle(1, ammo1Percent, 0.25) == ammo1Percent;
+        TempChecks[TMP_AMMO1_ABNORMAL]  = ammo1Percent < 0.25;
+        TempChecks[TMP_AMMO1_25]        = middle(1, ammo1Percent, 0.25 - 1) == ammo1Percent;
         TempChecks[TMP_AMMO1_0]         = ammo1Percent <= 0;
     }
 
@@ -212,8 +212,8 @@ function void Dakka_UpdateTemporaryItems(void)
         int ammo2Percent = itof(ammo2Cur) / ammo2Max;
 
         // note: 1 is actually 1.0 / 65536, do not get confused
-        TempChecks[TMP_AMMO2_ABNORMAL]  = ammo2Percent <= 0.25;
-        TempChecks[TMP_AMMO2_25]        = middle(1, ammo2Percent, 0.25) == ammo2Percent;
+        TempChecks[TMP_AMMO2_ABNORMAL]  = ammo2Percent < 0.25;
+        TempChecks[TMP_AMMO2_25]        = middle(1, ammo2Percent, 0.25 - 1) == ammo2Percent;
         TempChecks[TMP_AMMO2_0]         = ammo2Percent <= 0;
     }
 
