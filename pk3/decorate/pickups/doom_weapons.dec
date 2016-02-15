@@ -231,7 +231,7 @@ actor Pickup_BFG9000: ClassBasedPickup replaces BFG9000
         stop
 
       Bundled:
-        MEGA A -1
+        BFBD A -1
         stop
 
       Pickup:
