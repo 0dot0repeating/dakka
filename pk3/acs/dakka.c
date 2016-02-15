@@ -60,6 +60,10 @@
 #include "dakka_gaussian.h"
 
 
+// Handle IDFA and IDKFA here.
+#include "dakka_idfa.h"
+
+
 
 // Tracers, for all sorts of things.
 #include "dakka_tracers.h"
