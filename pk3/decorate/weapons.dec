@@ -10,3 +10,4 @@
 #include "decorate/weapons/60_plasmarifle.dec"
 #include "decorate/weapons/61_channeler.dec"
 #include "decorate/weapons/70_bfg.dec"
+#include "decorate/weapons/71_impaler.dec"
