@@ -1,3 +1,9 @@
+int IDFAArmors[CLASSCOUNT] =
+{
+    "BlueArmor",
+    "Dakka_BlueArmor",
+};
+
 function void Dakka_ProcessIDFAArmor(void)
 {
     int armorName    = GetArmorInfo(ARMORINFO_CLASSNAME);
@@ -5,10 +11,11 @@ function void Dakka_ProcessIDFAArmor(void)
 
     if (armorProtect == 0.5 && !strcmp_i(armorName, "BasicArmorPickup"))
     {
+        int idfaArmor = IDFAArmors[Pickup_ClassNumber(0) + 1];
         int armorInv = CheckInventory("BasicArmor");
         TakeInventory("BasicArmor", 0x7FFFFFFF);
 
-        GiveInventory("BlueArmor", 1);
+        GiveInventory(idfaArmor, 1);
 
         int armorDiff = armorInv - CheckInventory("BasicArmor");
 
