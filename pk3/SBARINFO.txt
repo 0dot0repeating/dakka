@@ -441,7 +441,8 @@ StatusBar Normal, forcescaled
         InInventory DWep_PlasmaRifle       { DrawImage "H_WEP6_1", 251, 181; }
         InInventory DWep_Channeler         { DrawImage "H_WEP6_2", 251, 178; }
 
-        InInventory DWep_BFG9000           { DrawImage "H_WEP7_1", 256, 178; }
+        InInventory DWep_BFG9000           { DrawImage "H_WEP7_1", 256, 181; }
+        InInventory DWep_Impaler           { DrawImage "H_WEP7_2", 256, 178; }
 
         IsSelected "DWep_Fist"             { DrawImage "H_SELCT6", 225, 181; }
         IsSelected "DWep_Scrappers"        { DrawImage "H_SELCT5", 225, 178; }
@@ -460,7 +461,8 @@ StatusBar Normal, forcescaled
         IsSelected "DWep_PlasmaRifle"      { DrawImage "H_SELCT1", 251, 181; }
         IsSelected "DWep_Channeler"        { DrawImage "H_SELCT1", 251, 178; }
 
-        IsSelected "DWep_BFG9000"          { DrawImage "H_SELCT7", 256, 178; }
+        IsSelected "DWep_BFG9000"          { DrawImage "H_SELCT7", 256, 181; }
+        IsSelected "DWep_Impaler"          { DrawImage "H_SELCT8", 256, 178; }
     }
 
     InInventory HUD_AnyCardKeys
@@ -828,7 +830,8 @@ StatusBar Fullscreen, fullscreenoffsets
         InInventory DWep_PlasmaRifle       { DrawImage "H_WEP6_1", -15, -41; }
         InInventory DWep_Channeler         { DrawImage "H_WEP6_2", -15, -44; }
                                            
-        InInventory DWep_BFG9000           { DrawImage "H_WEP7_1", -10, -44; }
+        InInventory DWep_BFG9000           { DrawImage "H_WEP7_1", -10, -41; }
+        InInventory DWep_Impaler           { DrawImage "H_WEP7_2", -10, -44; }
 
         IsSelected "DWep_Fist"              { DrawImage "H_SELCT6", -41, -41; }
         IsSelected "DWep_Scrappers"         { DrawImage "H_SELCT5", -41, -44; }
@@ -847,7 +850,8 @@ StatusBar Fullscreen, fullscreenoffsets
         IsSelected "DWep_PlasmaRifle"       { DrawImage "H_SELCT1", -15, -41; }
         IsSelected "DWep_Channeler"         { DrawImage "H_SELCT1", -15, -44; }
 
-        IsSelected "DWep_BFG9000"           { DrawImage "H_SELCT7", -10, -44; }
+        IsSelected "DWep_BFG9000"           { DrawImage "H_SELCT7", -10, -41; }
+        IsSelected "DWep_Impaler"           { DrawImage "H_SELCT8", -10, -44; }
     }
 
     InInventory HUD_AnyCardKeys

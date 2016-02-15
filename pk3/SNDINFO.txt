@@ -64,6 +64,9 @@ $rolloff dakka/scrapperdie      128     512
 $volume  dakka/scrapfly      0.35
 $rolloff dakka/scrapfly      384     1024
 
+$volume dakka/scrapperfire    0.5
+$volume dakka/scrapperaltfire 0.5
+
 
 
 
@@ -169,6 +172,16 @@ $volume dakka/minigun/flameloop     0.75
 dakka/rocketfire            sounds/rocketlauncher/rocket_fire.ogg
 dakka/rocketload            sounds/rocketlauncher/rocket_load.wav
 dakka/rocketaltfire         sounds/rocketlauncher/rocket_altfire.ogg
+
+
+
+
+////////
+// IMPALER
+///
+
+
+dakka/impalerfire           sounds/impaler/impaler_fire.ogg
 
 
 

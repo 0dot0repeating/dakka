@@ -1,4 +1,4 @@
-#define WEAPONCOUNT    60
+#define WEAPONCOUNT    61
 #define REPLCOUNT   3
 
 #define WEP_NAME    0
@@ -25,6 +25,7 @@ int PKP_KnownGuns[WEAPONCOUNT][3] =
     {"DWep_PlasmaRifle",        "DakkaCells",               ""},
     {"DWep_Channeler",          "DakkaCells",               ""},
     {"DWep_BFG9000",            "DakkaCells",               ""},
+    {"DWep_Impaler",            "DakkaRockets",             ""},
 
 
     // DOOM (9 weapons)
