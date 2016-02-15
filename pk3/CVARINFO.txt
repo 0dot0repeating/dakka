@@ -2,25 +2,19 @@ server noarchive int dakka_usescvarinfo = 138973;
 
 server noarchive int  dakka_scrapfactor         = 100;
 server noarchive int  dakka_jumpmod             = 0;
+
 server noarchive int  dakka_startmode_weapons   = 0;
 server noarchive int  dakka_startmode_ammo      = 1;
 server noarchive int  dakka_startmode_health    = 1;
-server noarchive bool dakka_bundleplasma       = false;
-server noarchive bool dakka_bundlebfg          = false;
-server noarchive bool dakka_scrapperstart      = false;
-server noarchive bool dakka_backpackstart      = false;
-server noarchive bool dakka_2brutal            = false;
 
-server int dakka_rearm_10mm         = 0;
-server int dakka_rearm_shell        = 0;
-server int dakka_rearm_shotnade     = 0;
-server int dakka_rearm_gyroshell    = 0;
-server int dakka_rearm_5mm          = 0;
-server int dakka_rearm_rainnade     = 0;
-server int dakka_rearm_rocket       = 0;
-server int dakka_rearm_cell         = 0;
-server int dakka_rearm_scrap        = 0;
-server int dakka_rearm_flamer       = 0;
+server noarchive bool dakka_bundleplasma        = false;
+server noarchive bool dakka_bundlebfg           = false;
+
+server noarchive bool dakka_scrapperstart       = false;
+server noarchive bool dakka_backpackstart       = false;
+
+server noarchive int  dakka_shotgun2ssg         = 0;
+server noarchive int  dakka_chaingun2minigun    = 0;
 
 
 user bool dakka_cl_moremessages     = false;

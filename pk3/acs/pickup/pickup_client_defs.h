@@ -5,7 +5,7 @@
 
 // This defines how many different data points we should sync between the server
 //  and the clients.
-#define S2C_DATACOUNT   19
+#define S2C_DATACOUNT   21
 
 
 // Constants for identifying which data point we want to modify.
@@ -24,11 +24,17 @@
 // Tells the clients what dakka_bundlebfg is set to.
 #define S2C_D_BUNDLEBFG     4
 
+// Whether shotgun items (that spawned on the map) should show as SSGs instead.
+#define S2C_D_SHOT2SSG      5
+
+// Ditto, for the chaingun and minigun.
+#define S2C_D_CHAIN2MINI    6
+
 // Send score to client so he can display it himself.
-#define S2C_D_SCORE         5
+#define S2C_D_SCORE         7
 
 // And the score threshold as well.
-#define S2C_D_GOALSCORE     6
+#define S2C_D_GOALSCORE     8
 
 
 // All of these are bonus values. See acs/score/score_defs.h for what they

@@ -3,7 +3,7 @@
 
 // This is, quite simply, the amount of pickup types that this ACS is equipped
 //  to handle.
-#define PICKUPCOUNT     35
+#define PICKUPCOUNT     39
 
 
 // How many items can you get from each pickup?
@@ -53,6 +53,11 @@
 
 #define It_Dakka_Impaler        33
 #define It_Dakka_BFGBundle      34
+
+#define It_ST_Minigun           35
+#define It_ST_GrenadeLauncher   36
+#define It_ST_Railgun           37
+#define It_ST_BFG10k            38
 
 // Here, you have the items that each pickup will give you. Each pickup can give
 //  as many as PK_RECEIVECOUNT items.
@@ -204,29 +209,42 @@ int PKP_ReceiveItems[PICKUPCOUNT][CLASSCOUNT][PK_RECEIVECOUNT] =
     },
 
 
-    // Dakka-specific item: channeler
-    {
+    { // Dakka-specific item: channeler
         {"PlasmaRifle"}, // shouldn't be able to get this
         {"DWep_Channeler", "DakkaCells"},
     },
-
-    // Dakka-specific item: channeler+plasma bundle
-    {
+    { // Dakka-specific item: channeler+plasma bundle
         {"PlasmaRifle"},
         {"DWep_PlasmaRifle", "DWep_Channeler", "DakkaCells"},
     },
-
-    // Dakka-specific item: impaler
-    {
+    { // Dakka-specific item: impaler
         {"BFG9000"},
         {"DWep_Impaler"},
     },
-
-
-    // Dakka-specific item: BFG+impaler bundle
-    {
+    { // Dakka-specific item: BFG+impaler bundle
         {"BFG9000"},
         {"DWep_BFG9000", "DWep_Impaler"},
+    },
+
+
+
+    // Skulltag pickups
+
+    { // Minigun
+        {"Minigun"},
+        {"DWep_Minigun"},
+    },
+    { // Grenade launcher
+        {"GrenadeLauncher"},
+        {"DWep_RocketLauncher"},
+    },
+    { // Railgun
+        {"Railgun"},
+        {"DWep_Channeler", "DakkaCells"},
+    },
+    { // BFG10k
+        {"BFG10k"},
+        {"DWep_Impaler"},
     },
 };
 
@@ -384,8 +402,6 @@ int PKP_ReceiveCount[PICKUPCOUNT][CLASSCOUNT][PK_RECEIVECOUNT] =
         {1},
         {1, 1, 30},
     },
-
-
     { // Impaler
         {1},
         {1},
@@ -393,6 +409,26 @@ int PKP_ReceiveCount[PICKUPCOUNT][CLASSCOUNT][PK_RECEIVECOUNT] =
     { // BFG+impaler bundle
         {1},
         {1, 1},
+    },
+
+    
+
+    // Skulltag pickups
+    { // Minigun
+        {1},
+        {1},
+    },
+    { // Grenade launcher
+        {1},
+        {1},
+    },
+    { // Railgun
+        {1},
+        {1, 60},
+    },
+    { // BFG10k
+        {1},
+        {1},
     },
 };
 
@@ -555,13 +591,31 @@ int PKP_AlwaysPickup[PICKUPCOUNT][CLASSCOUNT] =
         false,
         false,
     },
-
-
     { // Impaler
         false,
         false,
     },
     { // (34) BFG+impaler
+        false,
+        false,
+    },
+
+
+
+    // Skulltag pickups
+    { // Minigun
+        false,
+        false,
+    },
+    { // Grenade launcher
+        false,
+        false,
+    },
+    { // Railgun
+        false,
+        false,
+    },
+    { // BFG10k
         false,
         false,
     },

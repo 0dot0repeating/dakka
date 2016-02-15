@@ -1,4 +1,4 @@
-#define WEAPONCOUNT    61
+#define WEAPONCOUNT    65
 #define REPLCOUNT   3
 
 #define WEP_NAME    0
@@ -38,6 +38,12 @@ int PKP_KnownGuns[WEAPONCOUNT][3] =
     {"RocketLauncher",          "RocketAmmo",               ""},
     {"PlasmaRifle",             "Cell",                     ""},
     {"BFG9000",                 "Cell",                     ""},
+
+    // SKULLTAG (4 weapons)
+    {"Minigun",                 "Clip",                     ""},
+    {"GrenadeLauncher",         "RocketAmmo",               ""},
+    {"Railgun",                 "Cell",                     ""},
+    {"BFG10k",                  "Cell",                     ""},
 
     // CHEX QUEST (9 weapons)
     {"Bootspoon",               "",                         ""},
@@ -98,7 +104,7 @@ int PKP_WeaponPriorities[WEAPONCOUNT] =
     1900,   // DWep_Pistol
     1500,   // DWep_Pistols
     1300,   // DWep_Shotgun
-    400,    // DWep_SuperShotgun
+    450,    // DWep_SuperShotgun
     700,    // DWep_Chaingun
     350,    // DWep_Minigun
     300,    // DWep_RocketLauncher
@@ -115,6 +121,11 @@ int PKP_WeaponPriorities[WEAPONCOUNT] =
     2500,   // RocketLauncher
     100,    // PlasmaRifle
     2800,   // BFG9000
+
+    700,    // Minigun
+    2500,   // GrenadeLauncher
+    100,    // Railgun
+    2800,   // BFG10k
 
     3700,   // Bootspoon
     2200,   // SuperBootspork

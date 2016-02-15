@@ -351,10 +351,28 @@ function void Dakka_DoLevelSpawn(int entered)
 
         if (entered)
         {
-            int hasPlasma = CheckInventory("DWep_PlasmaRifle");
-            int hasBFG    = CheckInventory("DWep_BFG9000");
+            int hasShotgun  = CheckInventory("DWep_Shotgun");
+            int hasChaingun = CheckInventory("DWep_Chaingun");
+            int hasPlasma   = CheckInventory("DWep_PlasmaRifle");
+            int hasBFG      = CheckInventory("DWep_BFG9000");
+
             Sender_SetData(pln, S2C_D_PLASMASTART, hasPlasma);
             Sender_SetData(pln, S2C_D_BFGSTART,    hasBFG);
+
+            if (hasShotgun) { GiveInventory("DakkaShotgunTracker", 1); }
+            else            { TakeInventory("DakkaShotgunTracker", 0x7FFFFFFF); }
+
+            if (hasChaingun) { GiveInventory("DakkaChaingunTracker", 1); }
+            else             { TakeInventory("DakkaChaingunTracker", 0x7FFFFFFF); }
+
+            // We don't handle S2C_D_SHOT2SSG or S2C_CHAIN2MINI here because
+            //  the CVar controlling them could change mid-game. That's handled
+            //  in the enter loop.
+            //
+            // The CVars might also play oddly with sv_coop_loseinventory and
+            //  sv_coop_loseweapons. But even then, you can still get the
+            //  shotguns and chainguns through enemy drops, so I'm not exactly
+            //  going to lose any sleep over it.
         }
     }
 }

@@ -150,15 +150,32 @@ int PKP_Messages[PICKUPCOUNT][CLASSCOUNT] =
         "$GOTPLASMA",
         "Plasma rifle and channeler!",
     },
-
     {
         "$GOTBFG9000",
         "\caImpaler!",
     },
-
     {
         "$GOTBFG9000",
         "\caTwo big frickin' guns!",
+    },
+
+
+
+    {
+        "$PICKUP_MINIGUN",
+        "Minigun!",
+    },
+    {
+        "$PICKUP_GRENADELAUNCHER",
+        "Rocket launcher!",
+    },
+    {
+        "$PICKUP_RAILGUN",
+        "Channeler!",
+    },
+    {
+        "$PICKUP_BFG10k",
+        "\caImpaler!",
     },
 };
 
@@ -327,8 +344,6 @@ int PKP_PickupFlashes[PICKUPCOUNT][CLASSCOUNT][5] =
         {255, 255, 64, 0.15, 0.15},
         {255, 255, 64, 0.15, 0.15},
     },
-
-
     { // Impaler
         {255, 255, 64, 0.15, 0.15},
         {255, 255, 64, 0.15, 0.15},
@@ -337,6 +352,27 @@ int PKP_PickupFlashes[PICKUPCOUNT][CLASSCOUNT][5] =
         {255, 255, 64, 0.15, 0.15},
         {255, 255, 64, 0.15, 0.15},
     },
+
+    
+
+    // Skulltag pickups
+    { // Minigun
+        {255, 255, 64, 0.15, 0.15},
+        {255, 255, 64, 0.15, 0.15},
+    },
+    { // Grenade launcher
+        {255, 255, 64, 0.15, 0.15},
+        {255, 255, 64, 0.15, 0.15},
+    },
+    { // Railgun
+        {255, 255, 64, 0.15, 0.15},
+        {255, 255, 64, 0.15, 0.15},
+    },
+    { // BFG10k
+        {255, 255, 64, 0.15, 0.15},
+        {255, 255, 64, 0.15, 0.15},
+    },
+        
 };
 
 
@@ -491,13 +527,31 @@ int PKP_PickupSounds[PICKUPCOUNT][CLASSCOUNT] =
         "misc/w_pkup",
         "misc/w_pkup",
     },
-
-
     { // Impaler
         "misc/w_pkup",
         "misc/w_pkup",
     },
     { // (34) BFG+Impaler
+        "misc/w_pkup",
+        "misc/w_pkup",
+    },
+
+
+
+    // Skulltag pickups
+    { // Minigun
+        "misc/w_pkup",
+        "misc/w_pkup",
+    },
+    { // Grenade launcher
+        "misc/w_pkup",
+        "misc/w_pkup",
+    },
+    { // Railgun
+        "misc/w_pkup",
+        "misc/w_pkup",
+    },
+    { // BFG10k
         "misc/w_pkup",
         "misc/w_pkup",
     },

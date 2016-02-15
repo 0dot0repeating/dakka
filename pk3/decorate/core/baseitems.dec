@@ -7,6 +7,8 @@ actor Boolean: Inventory
 actor Counter: Inventory
 {
     Inventory.MaxAmount 0x7FFFFFFF
+    Inventory.InterHubAmount 0x7FFFFFFF
+
     +UNDROPPABLE
 }
 
@@ -50,6 +52,16 @@ actor DakkaScoreItem:    Counter { +INTERHUBSTRIP }
 
 // Used in the Blursphere's scripted pickup
 actor DakkaVisPulse:     Counter {}
+
+// Used to track how many maps you've had a shotgun/chaingun
+actor DakkaShotgunTracker:  Counter {}
+actor DakkaChaingunTracker: Counter {}
+
+
+// Used in script 494 (pickup/dakka_wepdisplay.h).
+actor DPickup_SecondWepState:   Boolean {}
+actor DPickup_BundleState:      Boolean {}
+
 
 // HUD shit
 actor AbnormalHealth:   Boolean {}
