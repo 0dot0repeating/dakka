@@ -82,6 +82,16 @@ function void Armor_PickupArmor(int armorTo_index, int count)
     int armorFrom_points    = CheckInventory("Armor");
     int armorFrom_protect   = GetArmorInfo(ARMORINFO_SAVEPERCENT);
     int armorFrom_name      = GetArmorInfo(ARMORINFO_CLASSNAME);
+    int armorFrom_max       = GetArmorInfo(ARMORINFO_SAVEAMOUNT);
+
+    // If we know about the armor, use the info we have in the ACS. We can store
+    //  more info in ACS than we can in the armor itself.
+
+    if (armorFrom_index != -1)
+    {
+        armorFrom_protect = PKP_ArmorData[armorFrom_index][ARM_PROTECTION];
+        armorFrom_max     = PKP_ArmorData[armorFrom_index][ARM_MAXPOINTS];
+    }
 
     // Special case for the armor given by idfa and idkfa.
     if (armorFrom_protect == 0.5 && !strcmp_i(armorFrom_name, "BasicArmorPickup"))
@@ -92,18 +102,37 @@ function void Armor_PickupArmor(int armorTo_index, int count)
     // Right now, we're just determining what the end armor values will be if
     //  we decide to pick this up.
     int armorEnd_points; 
-    int armorEnd_name, armorEnd_protect;
+    int armorEnd_name, armorEnd_max, armorEnd_protect;
 
     switch (armorTo_type)
     {
       case ATYPE_REPLACE:
         armorEnd_points  = armorFrom_points + (armorTo_points * count);
         armorEnd_name    = armorTo_name;
+        armorEnd_max     = armorTo_max;
         armorEnd_protect = armorTo_protect;
         break;
 
       case ATYPE_BONUS:
         armorEnd_points  = armorFrom_points + (armorTo_points * count);
+
+        if (armorFrom_points == 0)
+        {
+            armorEnd_name    = armorTo_name;
+            armorEnd_protect = armorTo_protect;
+            armorEnd_max     = armorTo_max;
+        }
+        else
+        {
+            armorEnd_name    = armorFrom_name;
+            armorEnd_protect = armorFrom_protect;
+            armorEnd_max     = armorFrom_max;
+        }
+        break;
+
+      case ATYPE_ADDTOHIGHEST:
+        armorEnd_points  = armorFrom_points + (armorTo_points * count);
+        armorEnd_max     = max(armorTo_max, armorFrom_max);
 
         if (armorFrom_points == 0)
         {
@@ -129,6 +158,7 @@ function void Armor_PickupArmor(int armorTo_index, int count)
 
             armorEnd_name    = armorFrom_name;
             armorEnd_protect = armorFrom_protect;
+            armorEnd_max     = armorFrom_max;
         }
         else
         {
@@ -136,6 +166,7 @@ function void Armor_PickupArmor(int armorTo_index, int count)
 
             armorEnd_name    = armorTo_name;
             armorEnd_protect = armorTo_protect;
+            armorEnd_max     = armorTo_max;
         }
 
         armorFrom_adjusted = armorFrom_points * FixedDiv(armorFrom_protect, betterRatio);
@@ -145,7 +176,7 @@ function void Armor_PickupArmor(int armorTo_index, int count)
         break;
     }
 
-    armorEnd_points = min(armorTo_max, armorEnd_points);
+    armorEnd_points = min(armorEnd_max, armorEnd_points);
 
     // Now we weigh the start and end armor values.
 

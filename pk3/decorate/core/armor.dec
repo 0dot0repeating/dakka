@@ -1,0 +1,52 @@
+actor Dakka_GreenArmor: BasicArmorPickup
+{
+    Inventory.PickupMessage "Green armor!"
+    Inventory.Icon "ARM1A0"
+
+    Armor.SavePercent 33.335
+    Armor.SaveAmount 75
+
+    States
+    {
+      Spawn:
+        ARM1 A 6
+        ARM1 B 6 Bright
+        loop
+    }
+}
+
+actor Dakka_BlueArmor: BasicArmorPickup
+{
+    Inventory.PickupMessage "Blue armor!"
+    Inventory.Icon "ARM2A0"
+
+    Armor.SavePercent 50
+    Armor.SaveAmount 150
+
+    States
+    {
+      Spawn:
+        ARM2 A 6
+        ARM2 B 6 Bright
+        loop
+    }
+}
+
+actor Dakka_ArmorBonus: BasicArmorBonus
+{
+    Inventory.PickupMessage "Armor bonus"
+    Inventory.Icon "BON2A0"
+
+    Armor.SavePercent 33.335
+    Armor.SaveAmount 2
+    Armor.MaxSaveAmount 300
+
+    States
+    {
+      Spawn:
+        ARM1 A 6
+        ARM1 B 6 Bright
+        loop
+    }
+}
+

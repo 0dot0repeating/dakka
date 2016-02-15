@@ -7,6 +7,7 @@
 #include "decorate/core/puffs.dec"
 #include "decorate/core/dakkaguy.dec"
 
+#include "decorate/core/armor.dec"
 #include "decorate/core/invuln.dec"
 
 #include "decorate/core/skulltag_dummies.dec"
