@@ -201,6 +201,53 @@ function void Dakka_StartMode_Ammo(int classNum, int entered, int lostAmmo)
 
 
 
+// Health start modes (includes armor):
+//
+//  - 0: Do nothing.
+//
+//  - 1 (default): Enter the map with full health and no armor.
+//
+//  - 2: Enter the map with full health, and a set of green armor.
+//
+//  - 3: Enter the map with a soulsphere and a set of blue armor.
+//
+//  - 4: Enter the map with a megasphere.
+
+function void Dakka_StartMode_Health(int classNum, int entered)
+{
+    if (!entered) { return; }
+
+    int startmode = GetCVar("dakka_startmode_health");
+
+    if (startmode == 0) { return; }
+
+    int maxHP = getMaxHealth();
+
+    SetActorProperty(0, APROP_Health, maxHP);
+    TakeInventory("BasicArmor", 0x7FFFFFFF);
+
+    switch (startmode)
+    {
+      default:
+        break;
+
+      case 2:
+        Pickup_DoPickup(It_GreenArmor, classNum, false);
+        break;
+
+      case 3:
+        Pickup_DoPickup(It_Soulsphere, classNum, false);
+        Pickup_DoPickup(It_BlueArmor,  classNum, false);
+        break;
+
+      case 4:
+        Pickup_DoPickup(It_Megasphere, classNum, false);
+        break;
+    }
+}
+
+
+
 // Corresponds to dakka_scrapperstart. Should only be called for Dakkaguy.
 function void Dakka_ScrapperStart(int extraScrap)
 {
@@ -291,6 +338,7 @@ function void Dakka_DoLevelSpawn(int entered)
 
     Dakka_StartMode_Weapons(classNum, entered, lostWeapons);
     Dakka_StartMode_Ammo(   classNum, entered, lostAmmo);
+    Dakka_StartMode_Health( classNum, entered);
 
     if (entered)
     {
