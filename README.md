@@ -22,7 +22,7 @@ streamlining things, and so on and so forth.
 * Pickup system, though with some pickups left to define
 * Tracer system, cleaned up and much better at respecting your pitch
 * dakka\_cl\_lesseffects
-* dakka\_startmode (redone ad dakka\_startmode\_weapons and dakka\_startmode\_ammo)
+* dakka\_startmode (redone as dakka\_startmode\_weapons, dakka\_startmode\_ammo, and dakka\_startmode\_health)
 * dakka\_scrapperstart and dakka\_backpackstart
 
 
