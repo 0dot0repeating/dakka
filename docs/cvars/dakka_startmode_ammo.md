@@ -1,6 +1,6 @@
 # dakka\_startmode\_ammo
 
-**Related CVars:** [dakka\_startmode\_weapons](dakka_startmode_weapons.md)
+**Related CVars:** [dakka\_startmode\_weapons](dakka_startmode_weapons.md), [dakka\_startmode\_health](dakka_startmode_health.md)
 
 **Related files:** `/pk3/acs/dakka_levelstart.h`, `/pk3/acs/pickup_items_weapons.h`, `/pk3/acs/pickup/pickup_items_ammo.h`
 
