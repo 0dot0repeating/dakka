@@ -5,6 +5,8 @@ script DAKKA_OPEN open
     Pickup_IsZandronum(); // side effect sets IsZandronum
     IsServer = true;
 
+    Score_CalcMapPoints();
+
     while (true)
     {
         // Update CVars for everyone
