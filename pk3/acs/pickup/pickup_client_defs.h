@@ -5,7 +5,7 @@
 
 // This defines how many different data points we should sync between the server
 //  and the clients.
-#define S2C_DATACOUNT   17
+#define S2C_DATACOUNT   19
 
 
 // Constants for identifying which data point we want to modify.
@@ -18,16 +18,22 @@
 // Tells the clients what dakka_bundleplasma is set to.
 #define S2C_D_BUNDLEPLASMA  2
 
+// Also for Dakkaguy. If he started the map with a BFG, this is true.
+#define S2C_D_BFGSTART      3
+
+// Tells the clients what dakka_bundlebfg is set to.
+#define S2C_D_BUNDLEBFG     4
+
 // Send score to client so he can display it himself.
-#define S2C_D_SCORE         3
+#define S2C_D_SCORE         5
 
 // And the score threshold as well.
-#define S2C_D_GOALSCORE     4
+#define S2C_D_GOALSCORE     6
 
 
 // All of these are bonus values. See acs/score/score_defs.h for what they
 //  correspond to.
-#define S2C_D_BONUSSTART    5
+#define S2C_D_BONUSSTART    7
 
 #define S2C_D_BS_BASE         4
 #define S2C_D_BS_SPREE        5

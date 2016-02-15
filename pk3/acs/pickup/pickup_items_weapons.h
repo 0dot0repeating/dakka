@@ -168,7 +168,7 @@ int PKP_WeaponPriorities[WEAPONCOUNT] =
 //  sets your weapon loadout based off of it. See the corresponding files for
 //  details (or the wiki eventually). The stuff for it is stored here.
 
-#define STARTWEAPONS    11
+#define STARTWEAPONS    12
 
 // We can omit empty weapon slots due to commonFuncs.h holding a string
 //  explicitly to fill string slot 0
@@ -202,6 +202,7 @@ int Start_Weapons[CLASSCOUNT][STARTWEAPONS] =
         "DWep_PlasmaRifle",
         "DWep_Channeler",
         "DWep_BFG9000",
+        "DWep_Impaler",
     }
 };
 
@@ -236,6 +237,7 @@ int Start_WeaponPowers[CLASSCOUNT][STARTWEAPONS] =
         5,
         6,
         7, // Channeler might not have the *damage* of the BFG, but it's too good to just give away
+        7,
         7,
     },
 };

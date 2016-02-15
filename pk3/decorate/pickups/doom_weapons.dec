@@ -226,6 +226,14 @@ actor Pickup_BFG9000: ClassBasedPickup replaces BFG9000
         DBFG Z -1
         stop
 
+      Impaler:
+        DKIP Z -1
+        stop
+
+      Bundled:
+        MEGA A -1
+        stop
+
       Pickup:
         TNT1 A 0 A_JumpIf(ACS_ExecuteWithResult(PICKUP_PICKUP, It_BFG9000, false) == 1, "PickedUp")
         goto NotPickedUp

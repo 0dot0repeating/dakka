@@ -6,6 +6,7 @@ server noarchive int  dakka_startmode_weapons   = 0;
 server noarchive int  dakka_startmode_ammo      = 1;
 server noarchive int  dakka_startmode_health    = 1;
 server noarchive bool dakka_bundleplasma       = false;
+server noarchive bool dakka_bundlebfg          = false;
 server noarchive bool dakka_scrapperstart      = false;
 server noarchive bool dakka_backpackstart      = false;
 server noarchive bool dakka_2brutal            = false;
