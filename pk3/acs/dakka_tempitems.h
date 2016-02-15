@@ -78,6 +78,11 @@ int TempArmorItems[ARMORCOUNT] =
     "HUD_TanArmor",
     "HUD_SilverArmor",
     "HUD_RedArmor",
+
+    // Dakka armors
+    "HUD_GreenArmor",
+    "HUD_BlueArmor",
+    "HUD_GreenArmor",
 };
 
 

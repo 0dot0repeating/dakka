@@ -170,19 +170,19 @@ int PKP_ReceiveItems[PICKUPCOUNT][CLASSCOUNT][PK_RECEIVECOUNT] =
 
     {
         {"ArmorBonus"},
-        {"ArmorBonus"},
+        {"Dakka_ArmorBonus"},
     },
     {
         {"GreenArmor"},
-        {"GreenArmor"},
+        {"Dakka_GreenArmor"},
     },
     {
         {"BlueArmor"},
-        {"BlueArmor"},
+        {"Dakka_BlueArmor"},
     },
     {
         {"MegasphereHealth", "BlueArmor"},
-        {"DakkaMegasphere",  "BlueArmor"},
+        {"DakkaMegasphere",  "Dakka_BlueArmor"},
     },
 
 
@@ -339,10 +339,6 @@ int PKP_ReceiveCount[PICKUPCOUNT][CLASSCOUNT][PK_RECEIVECOUNT] =
     // Armor
     {
         {1},
-        {2},
-    },
-    {
-        {1},
         {1},
     },
     {
@@ -350,8 +346,12 @@ int PKP_ReceiveCount[PICKUPCOUNT][CLASSCOUNT][PK_RECEIVECOUNT] =
         {1},
     },
     {
+        {1},
+        {1},
+    },
+    { // Megasphere
         {1, 1},
-        {1, 1},
+        {1, 2},
     },
 
 

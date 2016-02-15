@@ -1,6 +1,5 @@
 function void Dakka_ProcessIDFAArmor(void)
 {
-    // idfa and idkfa give 'fake' blue armor. Let's make it real blue armor.
     int armorName    = GetArmorInfo(ARMORINFO_CLASSNAME);
     int armorProtect = GetArmorInfo(ARMORINFO_SAVEPERCENT);
 

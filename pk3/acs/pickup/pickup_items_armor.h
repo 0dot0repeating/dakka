@@ -1,4 +1,4 @@
-#define ARMORCOUNT 9
+#define ARMORCOUNT 12
 
 int PKP_KnownArmors[ARMORCOUNT] =
 {
@@ -11,6 +11,10 @@ int PKP_KnownArmors[ARMORCOUNT] =
     "LeatherArmor",
     "MetalArmor",
     "RedArmor",
+
+    "Dakka_GreenArmor",
+    "Dakka_BlueArmor",
+    "Dakka_ArmorBonus",
 };
 
 // See AMODE_* for comparison modes.
@@ -50,10 +54,10 @@ int PKP_KnownArmors[ARMORCOUNT] =
 #define AMODE_PROTECTION    1
 
 // Try to replace current armor if getting the new armor would be better.
-#define ATYPE_REPLACE   0
+#define ATYPE_REPLACE       0
 
 // Add to current armor if there is any.
-#define ATYPE_BONUS     1
+#define ATYPE_BONUS         1
 
 // Replicate the Quake 2 armor pickup behaviour. It's as such:
 //
@@ -81,7 +85,11 @@ int PKP_KnownArmors[ARMORCOUNT] =
 // End armor result: Combat armor (60% protection) at 75 points
 //
 // If the armor you currently have is unknown, just do ATYPE_REPLACE instead.
-#define ATYPE_QUAKE2    2
+#define ATYPE_QUAKE2        2
+
+
+// Add to current armor, but use the higher of the two armor maxes.
+#define ATYPE_ADDTOHIGHEST  3
 
 
 int PKP_ArmorData[ARMORCOUNT][5] =
@@ -95,5 +103,10 @@ int PKP_ArmorData[ARMORCOUNT][5] =
     {AMODE_POINTS,  ATYPE_REPLACE,  100,    100,    0.33335},
     {AMODE_POINTS,  ATYPE_REPLACE,  200,    200,    0.5},
     {AMODE_POINTS,  ATYPE_REPLACE,  200,    200,    0.66666},
+
+    // Dakka armors
+    {AMODE_POINTS,  ATYPE_QUAKE2,       75,     150,    0.33335},
+    {AMODE_POINTS,  ATYPE_QUAKE2,       150,    300,    0.5},
+    {AMODE_POINTS,  ATYPE_ADDTOHIGHEST, 2,      200,    0.33335},
 };
 
