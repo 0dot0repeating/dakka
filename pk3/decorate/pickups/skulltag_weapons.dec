@@ -1,0 +1,97 @@
+actor Pickup_STMinigun: ClassBasedPickup replaces Minigun
+{
+    States
+    {
+      Spawn:
+        TNT1 A 0
+        TNT1 A 0 A_SetUserVar("user_index", It_ST_Minigun)
+        TNT1 A 0 A_SetUserVar("user_dropped", 0)
+        goto DropCheck
+
+      Unknown:
+        MNGN A -1
+        stop
+
+      Dakka:
+        DMNG Z -1
+        stop
+
+      Pickup:
+        TNT1 A 0 A_JumpIf(ACS_ExecuteWithResult(PICKUP_PICKUP, It_ST_Minigun, false) == 1, "PickedUp")
+        goto NotPickedUp
+    }
+}
+
+actor Pickup_STGrenadeLauncher: ClassBasedPickup replaces GrenadeLauncher
+{
+    States
+    {
+      Spawn:
+        TNT1 A 0
+        TNT1 A 0 A_SetUserVar("user_index", It_ST_GrenadeLauncher)
+        TNT1 A 0 A_SetUserVar("user_dropped", 0)
+        goto DropCheck
+
+      Unknown:
+        GLAU A -1
+        stop
+
+      Dakka:
+        DKRL Z -1
+        stop
+
+      Pickup:
+        TNT1 A 0 A_JumpIf(ACS_ExecuteWithResult(PICKUP_PICKUP, It_ST_GrenadeLauncher, false) == 1, "PickedUp")
+        goto NotPickedUp
+    }
+}
+
+actor Pickup_STRailgun: ClassBasedPickup replaces Railgun
+{
+    States
+    {
+      Spawn:
+        TNT1 A 0
+        TNT1 A 0 A_SetUserVar("user_index", It_ST_Railgun)
+        TNT1 A 0 A_SetUserVar("user_dropped", 0)
+        goto DropCheck
+
+      Unknown:
+        RAIL A -1
+        stop
+
+      Dakka:
+        PLZM E -1
+        stop
+
+      Pickup:
+        TNT1 A 0 A_JumpIf(ACS_ExecuteWithResult(PICKUP_PICKUP, It_ST_Railgun, false) == 1, "PickedUp")
+        goto NotPickedUp
+    }
+}
+
+actor Pickup_STBFG10k: ClassBasedPickup replaces BFG10k
+{
+    States
+    {
+      Spawn:
+        TNT1 A 0
+        TNT1 A 0 A_SetUserVar("user_index", It_ST_BFG10k)
+        TNT1 A 0 A_SetUserVar("user_dropped", 0)
+        goto DropCheck
+
+      Unknown:
+        BFG2 A -1
+        stop
+
+      Dakka:
+        DKIP Z -1
+        stop
+
+      Pickup:
+        TNT1 A 0 A_JumpIf(ACS_ExecuteWithResult(PICKUP_PICKUP, It_ST_BFG10k, false) == 1, "PickedUp")
+        goto NotPickedUp
+    }
+}
+
+

@@ -40,6 +40,10 @@ actor Pickup_Shotgun: ClassBasedPickup replaces Shotgun
         DKSG Z -1
         stop
 
+      SuperShotgun:
+        DSSG Z -1
+        stop
+
       Pickup:
         TNT1 A 0 A_JumpIf(ACS_ExecuteWithResult(PICKUP_PICKUP, It_Shotgun, false) == 1, "PickedUp")
         goto NotPickedUp
@@ -115,6 +119,10 @@ actor Pickup_Chaingun: ClassBasedPickup replaces Chaingun
 
       Dakka:
         DCGN Z -1
+        stop
+
+      Minigun:
+        DMNG Z -1
         stop
 
       Pickup:

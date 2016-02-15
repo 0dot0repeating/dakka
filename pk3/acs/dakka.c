@@ -29,6 +29,8 @@
 #include "arc/arc.h"
 
 
+////////
+// vv STUFF FOR DAKKA_ENTER
 
 // Temporary items. These are items that are given and taken every tic by the
 //  spawn script (dakka_enter.h) and used to signal shit to DECORATE. There may,
@@ -38,12 +40,25 @@
 //  needs to be communicated instantly.
 #include "dakka_tempitems.h"
 
+// Used in dakka_enter.h. Stuff that runs once, when the player spawns for the
+//  first time. Not sure how I'll handle competitive gamemodes just yet.
+#include "dakka_levelstart.h"
+
+// Handle IDFA and IDKFA here.
+#include "dakka_idfa.h"
 
 // Scrap processing. For the scrapper.
 #include "dakka_scrap.h"
 
+// Handle the CVars dakka_shotgun2ssg and dakka_chaingun2minigun.
+#include "dakka_gunstoguns.h"
 
-// Auto-reload the SSG when it's in your pants.
+// ^^ STUFF FOR DAKKA_ENTER
+////////
+
+
+// Auto-reload the SSG when it's in your pants. Also scripts called by the SSG,
+//  to handle the triggers and whatnot
 #include "dakka_ssg.h"
 
 
@@ -60,10 +75,6 @@
 #include "dakka_gaussian.h"
 
 
-// Handle IDFA and IDKFA here.
-#include "dakka_idfa.h"
-
-
 
 // Tracers, for all sorts of things.
 #include "dakka_tracers.h"
@@ -78,11 +89,6 @@
 
 // Clientside same thing.
 #include "dakka_decorate_client.h"
-
-
-// Used in dakka_enter.h. Stuff that runs once, when the player spawns for the
-//  first time. Not sure how I'll handle competitive gamemodes just yet.
-#include "dakka_levelstart.h"
 
 
 // Each of these is for their respecting ACS script type.

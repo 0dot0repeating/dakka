@@ -41,10 +41,15 @@ script DAKKA_SPAWN (int respawned)
     {
         PlayerTIDs[pln] = defaultTID(-1);
 
+        // Handle the dakka_shotgun2ssg and dakka_chaingun2minigun CVars.
+        // - In dakka_gunstoguns.h
+        Dakka_GunsToGuns();
+
         // idfa and idkfa give 'fake' blue armor. Let's make it real blue armor.
+        // - In dakka_idfa.h
         Dakka_ProcessIDFAArmor();
 
-        // This is in dakka_tempitems.h
+        // In dakka_tempitems.h
         Dakka_UpdateTemporaryItems();
 
         // In dakka_scrap.h

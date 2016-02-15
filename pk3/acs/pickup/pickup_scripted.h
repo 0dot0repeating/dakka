@@ -6,7 +6,7 @@
 //  single class, we'll instead define whether a pickup should be scripted on
 //  a case by case basis.
 
-#define PK_SCRIPTEDCOUNT    2
+#define PK_SCRIPTEDCOUNT    4
 
 // Row 0 indicates which item index this is for.
 #define PK_S_ITEMNUM        0
@@ -41,6 +41,8 @@ int PKP_ScriptedPickups[PK_SCRIPTEDCOUNT][7] =
 {
     {It_PlasmaRifle, Cl_Dakkaguy, 494, 0, 1, 0, true}, // pickup/dakka_wepdisplay.h
     {It_BFG9000,     Cl_Dakkaguy, 494, 1, 1, 0, true},
+    {It_Shotgun,     Cl_Dakkaguy, 494, 2, 1, 0, true},
+    {It_Chaingun,    Cl_Dakkaguy, 494, 3, 1, 0, true},
 };
 
 
@@ -113,7 +115,7 @@ int CMSG_ScriptedMessages[MSG_SCRIPTEDCOUNT][7] =
 //   chases a nonexistent item around.
 
 
-#define DISP_SCRIPTEDCOUNT  4
+#define DISP_SCRIPTEDCOUNT  6
 
 // Row 0 indicates which item index this is for.
 #define DISP_S_ITEMNUM      0
@@ -137,4 +139,6 @@ int DISP_ScriptedDisplays[DISP_SCRIPTEDCOUNT][6] =
     {It_Blursphere,  Cl_Dakkaguy, 493, 0, 0, 0},
     {It_PlasmaRifle, Cl_Dakkaguy, 494, 0, 0, 0}, // pickup/dakka_wepdisplay.h
     {It_BFG9000,     Cl_Dakkaguy, 494, 1, 0, 0},
+    {It_Shotgun,     Cl_Dakkaguy, 494, 2, 0, 0},
+    {It_Chaingun,    Cl_Dakkaguy, 494, 3, 0, 0},
 };

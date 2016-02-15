@@ -1,4 +1,4 @@
-const int It_Fists            = 0;
+const int It_Fist             = 0;
 const int It_Chainsaw         = 1;
 const int It_Pistol           = 2;
 const int It_Shotgun          = 3;
@@ -35,10 +35,16 @@ const int It_Blursphere       = 28;
 const int It_InvulnSphere     = 29;
 const int It_Backpack         = 30;
 
-const int It_Dakka_Channeler    = 31;
-const int It_Dakka_PlasmaBundle = 32;
-const int It_Dakka_Impaler      = 33;
-const int It_Dakka_BFGBundle    = 34;
+const int It_Dakka_Channeler      = 31;
+const int It_Dakka_PlasmaBundle   = 32;
+
+const int It_Dakka_Impaler        = 33;
+const int It_Dakka_BFGBundle      = 34;
+
+const int It_ST_Minigun           = 35;
+const int It_ST_GrenadeLauncher   = 36;
+const int It_ST_Railgun           = 37;
+const int It_ST_BFG10k            = 38;
 
 
 #include "decorate/pickups/doom_weapons.dec"
@@ -46,3 +52,5 @@ const int It_Dakka_BFGBundle    = 34;
 #include "decorate/pickups/doom_health.dec"
 #include "decorate/pickups/doom_armor.dec"
 #include "decorate/pickups/doom_powerups.dec"
+
+#include "decorate/pickups/skulltag_weapons.dec"
