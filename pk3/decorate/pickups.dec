@@ -35,7 +35,10 @@ const int It_Blursphere       = 28;
 const int It_InvulnSphere     = 29;
 const int It_Backpack         = 30;
 
-const int It_Channeler        = 31;
+const int It_Dakka_Channeler    = 31;
+const int It_Dakka_PlasmaBundle = 32;
+const int It_Dakka_Impaler      = 33;
+const int It_Dakka_BFGBundle    = 34;
 
 
 #include "decorate/pickups/doom_weapons.dec"

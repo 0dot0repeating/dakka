@@ -17,6 +17,7 @@ script DAKKA_OPEN open
         {
             // Update CVars for players
             Sender_SetData(i, S2C_D_BUNDLEPLASMA, GetCVar("dakka_bundleplasma") == 1);
+            Sender_SetData(i, S2C_D_BUNDLEBFG,    GetCVar("dakka_bundlebfg")    == 1);
         }
 
         // Absorbed from PICKUP_OPEN

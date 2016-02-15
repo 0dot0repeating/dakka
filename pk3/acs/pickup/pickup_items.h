@@ -3,7 +3,7 @@
 
 // This is, quite simply, the amount of pickup types that this ACS is equipped
 //  to handle.
-#define PICKUPCOUNT     33
+#define PICKUPCOUNT     35
 
 
 // How many items can you get from each pickup?
@@ -50,6 +50,9 @@
 
 #define It_Dakka_Channeler      31
 #define It_Dakka_PlasmaBundle   32
+
+#define It_Dakka_Impaler        33
+#define It_Dakka_BFGBundle      34
 
 // Here, you have the items that each pickup will give you. Each pickup can give
 //  as many as PK_RECEIVECOUNT items.
@@ -211,7 +214,20 @@ int PKP_ReceiveItems[PICKUPCOUNT][CLASSCOUNT][PK_RECEIVECOUNT] =
     {
         {"PlasmaRifle"},
         {"DWep_PlasmaRifle", "DWep_Channeler", "DakkaCells"},
-    }
+    },
+
+    // Dakka-specific item: impaler
+    {
+        {"BFG9000"},
+        {"DWep_Impaler"},
+    },
+
+
+    // Dakka-specific item: BFG+impaler bundle
+    {
+        {"BFG9000"},
+        {"DWep_BFG9000", "DWep_Impaler"},
+    },
 };
 
 
@@ -367,6 +383,16 @@ int PKP_ReceiveCount[PICKUPCOUNT][CLASSCOUNT][PK_RECEIVECOUNT] =
     { // Plasma+channeler bundle
         {1},
         {1, 1, 30},
+    },
+
+
+    { // Impaler
+        {1},
+        {1},
+    },
+    { // BFG+impaler bundle
+        {1},
+        {1, 1},
     },
 };
 
@@ -525,7 +551,17 @@ int PKP_AlwaysPickup[PICKUPCOUNT][CLASSCOUNT] =
         false,
         false,
     },
-    { // Channeler+plasma
+    { // Plasma+channeler
+        false,
+        false,
+    },
+
+
+    { // Impaler
+        false,
+        false,
+    },
+    { // (34) BFG+impaler
         false,
         false,
     },

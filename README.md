@@ -59,7 +59,8 @@ streamlining things, and so on and so forth.
     enough to kill with ease through most walls. Don't try to kill the boss brain
     through the wall, though. I already tried that. Wall's too thick.
 
-    It currently can't be found in the map. Use idfa or something to get it.
+    The Impaler can be found in the same manner as the Channeler, but instead of
+    the plasma rifle and dakka_bundleplasma, it's the BFG and dakka_bundlebfg.
 
 
 ## How long's it gonna take to add all the shit back in?

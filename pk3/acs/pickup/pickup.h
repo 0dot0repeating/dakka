@@ -153,7 +153,7 @@
 #include "pickup_daemon.h"
 
 #include "dakka_vispulse.h"
-#include "dakka_channeler.h"
+#include "dakka_wepdisplay.h"
 
 // This is such a tiny script, it's a complete waste making a file for it. So
 //  here it is.

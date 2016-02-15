@@ -150,6 +150,16 @@ int PKP_Messages[PICKUPCOUNT][CLASSCOUNT] =
         "$GOTPLASMA",
         "Plasma rifle and channeler!",
     },
+
+    {
+        "$GOTBFG9000",
+        "\caImpaler!",
+    },
+
+    {
+        "$GOTBFG9000",
+        "\caTwo big frickin' guns!",
+    },
 };
 
 
@@ -317,6 +327,16 @@ int PKP_PickupFlashes[PICKUPCOUNT][CLASSCOUNT][5] =
         {255, 255, 64, 0.15, 0.15},
         {255, 255, 64, 0.15, 0.15},
     },
+
+
+    { // Impaler
+        {255, 255, 64, 0.15, 0.15},
+        {255, 255, 64, 0.15, 0.15},
+    },
+    { // (34) BFG+Impaler
+        {255, 255, 64, 0.15, 0.15},
+        {255, 255, 64, 0.15, 0.15},
+    },
 };
 
 
@@ -468,6 +488,16 @@ int PKP_PickupSounds[PICKUPCOUNT][CLASSCOUNT] =
         "misc/w_pkup",
     },
     { // Plasma+channeler
+        "misc/w_pkup",
+        "misc/w_pkup",
+    },
+
+
+    { // Impaler
+        "misc/w_pkup",
+        "misc/w_pkup",
+    },
+    { // (34) BFG+Impaler
         "misc/w_pkup",
         "misc/w_pkup",
     },
