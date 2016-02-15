@@ -78,29 +78,15 @@ function void Armor_PickupArmor(int armorTo_index, int count)
 
     // Don't grab comparison since we're using the compare method from the
     //  armor being given.
-    int armorFrom_name, armorFrom_protect;
-    int armorFrom_unknown = false;
-
     int armorFrom_index     = Armor_CurrentArmorIndex();
     int armorFrom_points    = CheckInventory("Armor");
+    int armorFrom_protect   = GetArmorInfo(ARMORINFO_SAVEPERCENT);
+    int armorFrom_name      = GetArmorInfo(ARMORINFO_CLASSNAME);
 
-    if (armorFrom_index == -1)
+    // Special case for the armor given by idfa and idkfa.
+    if (armorFrom_protect == 0.5 && !strcmp_i(armorFrom_name, "BasicArmorPickup"))
     {
-        armorFrom_unknown   = true;
-        armorFrom_name      = "";
-        armorFrom_protect   = 0; // Ain't gonna use this value anyway
-
-        // Force points-only comparison with unknown armor
-        armorTo_compare = AMODE_POINTS;
-
-        // Quake 2 mode can't work without knowing both from-armor and to-armor
-        //  protection values, so we use ATYPE_REPLACE instead.
-        if (armorTo_type == ATYPE_QUAKE2) { armorTo_type = ATYPE_REPLACE; }
-    }
-    else
-    {
-        armorFrom_name      = PKP_KnownArmors[armorFrom_index];
-        armorFrom_protect   = PKP_ArmorData[armorFrom_index][ARM_PROTECTION];
+        armorFrom_name = "BlueArmor";
     }
 
     // Right now, we're just determining what the end armor values will be if
