@@ -153,6 +153,7 @@ actor DakkaAintGibbinMyself: PowerProtection
     DamageFactor "DakkaRocket", 0.5
 }
 
+// Total damage: 225
 actor DakkaRocket
 {
     Radius 6
@@ -160,7 +161,7 @@ actor DakkaRocket
     Speed 40
 
     Projectile
-    Damage (58)
+    Damage (59)
     DamageType "DakkaRocket"
 
     +MTHRUSPECIES
@@ -185,10 +186,10 @@ actor DakkaRocket
       Death:
         DMIS B 0 bright A_GiveToTarget("DakkaAintGibbinMyself")
         DMIS B 0 A_ChangeFlag("FORCERADIUSDMG", 1)
-        DMIS B 0        A_Explode(46, 144, 0, 0, 64)
-        DMIS B 0        A_Explode(50, 144, 1, 0, 64)
+        DMIS B 0        A_Explode(70, 160, 0, 0, 64)
+        DMIS B 0        A_Explode(40, 160, 1, 0, 64)
         DMIS B 0 A_ChangeFlag("FORCERADIUSDMG", 0)
-        DMIS B 0        A_Explode(46, 144, 1, 0, 64)
+        DMIS B 0        A_Explode(56, 160, 1, 0, 64)
         DMIS F 5 bright A_TakeFromTarget("DakkaAintGibbinMyself")
         DMIS G 4 bright
         DMIS HIJ 3 bright
@@ -196,13 +197,14 @@ actor DakkaRocket
     }
 }
 
+// Damage: also 225, but all radius damage
 actor WhatTheFuckIsAPropellent: DakkaRocket
 {
     -NOGRAVITY
     Gravity 0.65
     Speed 35
 
-    Damage (8)
+    Damage (0)
 
     States
     {
@@ -222,9 +224,9 @@ actor WhatTheFuckIsAPropellent: DakkaRocket
       Death:
         DMIS B 0 A_NoGravity
         DMIS B 0 bright A_GiveToTarget("DakkaAintGibbinMyself")
-        DMIS B 0        A_Explode(80,  176, 0, 0, 80)
+        DMIS B 0        A_Explode(100, 176, 0, 0, 80)
         DMIS B 0 A_ChangeFlag("FORCERADIUSDMG", 1)
-        DMIS B 0        A_Explode(112, 176, 1, 0, 80)
+        DMIS B 0        A_Explode(125, 176, 1, 0, 80)
         DMIS B 0 A_ChangeFlag("FORCERADIUSDMG", 0)
         DMIS F 5 bright A_TakeFromTarget("DakkaAintGibbinMyself")
         DMIS G 4 bright
