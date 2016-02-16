@@ -47,7 +47,7 @@ actor DWep_SuperShotgun: DoomWeapon
 
       FirstReady:
         DSSG A 0 A_TakeInventory("DakkaSSG_OutOfSelect")
-        DSSG A 0 A_JumpIfInventory("DakkaSSG_ShotsFired", 2, "FirstReload")
+        DSSG A 0 A_JumpIf(CallACS("DSSG_ShotsLeft") <= 0, "FirstReload")
         goto Ready2
 
       Ready2:
