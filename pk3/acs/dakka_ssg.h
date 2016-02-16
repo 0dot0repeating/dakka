@@ -60,6 +60,9 @@ script "DSSG_Refire" (void)
 {
     int canFire = ACS_NamedExecuteWithResult("DSSG_ShotsLeft") > 0;
 
+    // This bug was hilarious.
+    if (GetCVar("dakka_bug_nossginvcheck")) { canFire = true; }
+
     int ret = keyPressed_any(BT_ATTACK | BT_ALTATTACK)
               && CheckInventory("DakkaSSG_ShotsFired");
 
