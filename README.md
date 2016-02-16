@@ -3,7 +3,7 @@
 It's a mod with guns.
 
 ***IMPORTANT:*** This mod only works in Zandronum versions at least 3.0 and
-ZDoom versions at least 2.7.1. Multiplayer play is only support on Zandronum
+ZDoom versions at least 2.7.1. Multiplayer play is only supported on Zandronum
 versions at least 3.0 - it could conceivably work on ZDoom, but the pickup
 display for sure would be utterly broken for every player besides the host.
 
