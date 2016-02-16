@@ -39,7 +39,7 @@
 
 // All of these are bonus values. See acs/score/score_defs.h for what they
 //  correspond to.
-#define S2C_D_BONUSSTART    7
+#define S2C_D_BONUSSTART    9
 
 #define S2C_D_BS_BASE         4
 #define S2C_D_BS_SPREE        5
