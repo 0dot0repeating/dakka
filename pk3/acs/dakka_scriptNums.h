@@ -1,11 +1,3 @@
-#define DAKKA_OPEN                  470
-#define DAKKA_OPEN_CLIENT           471
-#define DAKKA_ENTER                 472
-#define DAKKA_RESPAWN               473
-#define DAKKA_SPAWN                 474
-#define DAKKA_DISCONNECT            475
-
-
 #define DAKKA_SCORE                 476
 #define DAKKA_INFIGHTSCORE          477
 #define DAKKA_UPDATE_SWITCHAROO     478

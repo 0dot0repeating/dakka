@@ -1,43 +1,41 @@
-script DAKKA_ENTER enter
+script "Dakka_Enter" enter
 {
-    ACS_ExecuteWithResult(DAKKA_SPAWN, false);
+    ACS_NamedExecuteWithResult("Dakka_Spawn", false);
 }
 
 
-script DAKKA_RESPAWN respawn
+script "Dakka_Respawn" respawn
 {
-    ACS_ExecuteWithResult(DAKKA_SPAWN, true);
+    ACS_NamedExecuteWithResult("Dakka_Spawn", true);
 }
 
 
 int DakkaEnterLocks[PLAYERMAX];
 
-script DAKKA_SPAWN (int respawned)
+script "Dakka_Spawn" (int respawned)
 {
     int pln = PlayerNumber();
     int curScore;
 
+    int myLockVal = DakkaEnterLocks[pln] + 1;
+    DakkaEnterLocks[pln] = myLockVal;
+
+
     // DM does its own level start, since it needs to do things every spawn,
     //  and variables like dakka_startmode don't apply.
+    //
+    // Cooperative does standard level starts.
     if (GameType() == GAME_NET_DEATHMATCH)
     {
         // These functions expect 'entered', not 'respawned'
         Dakka_DoDMSpawn(!respawned);
     }
-
-    if (DakkaEnterLocks[pln]) { terminate; }
-    DakkaEnterLocks[pln] = true;
-
-    // Everything past this point will only be run by one script per player.
-
-    // Cooperative does standard level starts.
-    if (GameType() != GAME_NET_DEATHMATCH)
+    else
     {
-        // These functions expect 'entered', not 'respawned'
         Dakka_DoLevelSpawn(!respawned);
     }
 
-    while (true)
+    while (DakkaEnterLocks[pln] == myLockVal)
     {
         PlayerTIDs[pln] = defaultTID(-1);
 
@@ -64,12 +62,10 @@ script DAKKA_SPAWN (int respawned)
 
         Delay(1);
     }
-
-    DakkaEnterLocks[pln] = false;
 }
 
 
-script DAKKA_DISCONNECT (int pln) disconnect
+script "Dakka_Disconnect" (int pln) disconnect
 {
     DakkaEnterLocks[pln] = false;
 }
