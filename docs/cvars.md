@@ -7,10 +7,16 @@ Dakka has a slew of CVars used to configure the game to your liking.
 * [dakka\_startmode\_weapons](cvars/dakka_startmode_weapons.md)
 * [dakka\_startmode\_ammo](cvars/dakka_startmode_ammo.md)
 * [dakka\_startmode\_health](cvars/dakka_startmode_health.md)
+
 * [dakka\_backpackstart](cvars/dakka_backpackstart.md)
 * [dakka\_scrapperstart](cvars/dakka_scrapperstart.md)
+
 * [dakka\_scrapfactor](cvars/dakka_scrapfactor.md)
+
+* [dakka\_shotgun2ssg](cvars/dakka_shotgun2ssg.md)
+* [dakka\_chaingun2minigun](cvars/dakka_chaingun2minigun.md)
 * [dakka\_bundleplasma](cvars/dakka_bundleplasma.md)
+* [dakka\_bundlebfg](cvars/dakka_bundlebfg.md)
 
 
 ## List of clientside CVars
