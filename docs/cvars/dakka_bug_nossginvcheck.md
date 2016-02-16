@@ -23,3 +23,5 @@ SSG will fire faster than the chaingun. You're welcome.
 The SSG will even try to shoot without ammo! It won't succeed, but it'll still
 do the recoil, firing animation, and sound. It just won't actually put bullets
 out.
+
+[An accurate representation of what happens with this CVar on.](https://my.mixtape.moe/uvtqvp.webm)
