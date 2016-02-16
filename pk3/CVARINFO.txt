@@ -16,6 +16,8 @@ server noarchive bool dakka_backpackstart       = false;
 server noarchive int  dakka_shotgun2ssg         = 0;
 server noarchive int  dakka_chaingun2minigun    = 0;
 
+server noarchive bool dakka_bug_nossginvcheck   = false;
+
 
 user bool dakka_cl_moremessages     = false;
 user int  dakka_cl_recoil           = 0;
