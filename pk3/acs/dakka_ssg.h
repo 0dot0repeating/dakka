@@ -58,8 +58,10 @@ script "DSSG_BothClicked" (void)
 
 script "DSSG_Refire" (void)
 {
+    int canFire = ACS_NamedExecuteWithResult("DSSG_ShotsLeft") > 0;
+
     int ret = keyPressed_any(BT_ATTACK | BT_ALTATTACK)
               && CheckInventory("DakkaSSG_ShotsFired");
 
-    SetResultValue(ret);
+    SetResultValue(ret && canFire);
 }

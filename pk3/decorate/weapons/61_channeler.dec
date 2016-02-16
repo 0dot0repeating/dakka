@@ -9,8 +9,8 @@ actor DWep_Channeler: Weapon
     Weapon.AmmoType1 "DakkaCells"
     Weapon.AmmoType2 "DakkaCells"
 
-    // Don't give ammo here: give it in the pickup.
-    Weapon.AmmoGive1 0
+    // Actually 60 ammo in the pickups.
+    Weapon.AmmoGive1 30
     Weapon.AmmoUse1  3
     Weapon.AmmoUse2  12
 

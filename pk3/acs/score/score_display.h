@@ -16,11 +16,11 @@ function void Score_Draw(int curPoints, int goalPoints)
 
     SetHudSize(480, 360, 1);
 
+    SetFont("SCOREBAR");
+    HudMessage(s:"A"; HUDMSG_FADEOUT, 24401, CR_UNTRANSLATED, 390.4, 52.0, 0.5, 0.25);
+
     if (goalPoints > 0)
     {
-        SetFont("SCOREBAR");
-        HudMessage(s:"A"; HUDMSG_FADEOUT, 24401, CR_UNTRANSLATED, 390.4, 52.0, 0.5, 0.25);
-
         int pointstep = goalPoints / 100;
         int barpoints = curPoints % goalPoints;
 
@@ -47,11 +47,6 @@ function void Score_Draw(int curPoints, int goalPoints)
                 // 1873 = (1.0 / 35)+1 = 1 tic
             }
         }
-    }
-    else
-    {
-        SetFont("SCOREBAR");
-        HudMessage(s:"A"; HUDMSG_FADEOUT, 24401, CR_UNTRANSLATED, 390.4, 52.0, 0.5, 0.25);
     }
 }
 

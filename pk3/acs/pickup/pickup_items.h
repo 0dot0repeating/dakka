@@ -211,11 +211,11 @@ int PKP_ReceiveItems[PICKUPCOUNT][CLASSCOUNT][PK_RECEIVECOUNT] =
 
     { // Dakka-specific item: channeler
         {"PlasmaRifle"}, // shouldn't be able to get this
-        {"DWep_Channeler", "DakkaCells"},
+        {"DWep_Channeler"},
     },
     { // Dakka-specific item: channeler+plasma bundle
         {"PlasmaRifle"},
-        {"DWep_PlasmaRifle", "DWep_Channeler", "DakkaCells"},
+        {"DWep_PlasmaRifle", "DWep_Channeler"},
     },
     { // Dakka-specific item: impaler
         {"BFG9000"},
@@ -240,7 +240,7 @@ int PKP_ReceiveItems[PICKUPCOUNT][CLASSCOUNT][PK_RECEIVECOUNT] =
     },
     { // Railgun
         {"Railgun"},
-        {"DWep_Channeler", "DakkaCells"},
+        {"DWep_Channeler"},
     },
     { // BFG10k
         {"BFG10k"},
@@ -396,11 +396,11 @@ int PKP_ReceiveCount[PICKUPCOUNT][CLASSCOUNT][PK_RECEIVECOUNT] =
 
     { // Channeler - doesn't give its own cells, gotta do it manually
         {1},
-        {1, 60},
+        {2},
     },
     { // Plasma+channeler bundle
         {1},
-        {1, 1, 30},
+        {1, 1},
     },
     { // Impaler
         {1},
@@ -424,7 +424,7 @@ int PKP_ReceiveCount[PICKUPCOUNT][CLASSCOUNT][PK_RECEIVECOUNT] =
     },
     { // Railgun
         {1},
-        {1, 60},
+        {1},
     },
     { // BFG10k
         {1},
