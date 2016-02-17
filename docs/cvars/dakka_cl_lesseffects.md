@@ -27,4 +27,4 @@ Things changed:
 
 - Plasma trails don't last as long and involve less particles.
 
-- The BFG beam loses it helix.
+- The BFG beam loses its helix.
