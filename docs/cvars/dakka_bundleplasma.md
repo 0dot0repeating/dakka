@@ -1,8 +1,8 @@
 # dakka\_bundleplasma
 
-**Related CVars:** none
+**Related CVars:** `dakka_bundlebfg`
 
-**Related files:** `/pk3/acs/pickup/dakka_channeler.h`, `/pk3/acs/dakka_open.h`
+**Related files:** `/pk3/acs/pickup/dakka_wepdisplay.h`, `/pk3/acs/dakka_open.h`
 
 **CVar type:** bool
 
