@@ -268,38 +268,9 @@ function int adjustShort(int tmin, int tmax, int i)
 }
 
 
-// Taken from http://zdoom.org/wiki/sqrt
-
-function int sqrt_i(int number)
-{
-    if (number <= 3) { return number > 0; }
-
-    int oldAns = number >> 1,                     // initial guess
-        newAns = (oldAns + (number / oldAns)) >> 1; // first iteration
-
-    // main iterative method
-    while (newAns < oldAns)
-    {
-        oldAns = newAns;
-        newAns = (oldAns + number / oldAns) >> 1;
-    }
-
-    return oldAns;
-}
-
-function int sqrt(int number)
-{
-    if (number == 1.0) { return 1.0; }
-    if (number <= 0) { return 0; }
-    int val = 150.0;
-    for (int i=0; i<15; i++) { val = (val + FixedDiv(number, val)) >> 1; }
-
-    return val;
-}
-
 function int magnitudeTwo(int x, int y)
 {
-    return sqrt_i(x*x + y*y);
+    return sqrt(x*x + y*y);
 }
 
 function int magnitudeTwo_f(int x, int y)
@@ -315,7 +286,7 @@ function int magnitudeTwo_f(int x, int y)
 
 function int magnitudeThree(int x, int y, int z)
 {
-    return sqrt_i(x*x + y*y + z*z);
+    return sqrt(x*x + y*y + z*z);
 }
 
 function int magnitudeThree_f(int x, int y, int z)
@@ -336,7 +307,7 @@ function int magnitudeThree_f(int x, int y, int z)
 
 function int quadPos(int a, int b, int c)
 {
-    int s1 = sqrt(FixedMul(b, b)-(4*FixedMul(a, c)));
+    int s1 = FixedSqrt(FixedMul(b, b)-(4*FixedMul(a, c)));
     int s2 = (2 * a);
     int b1 = FixedDiv(-b + s1, s2);
 
@@ -345,7 +316,7 @@ function int quadPos(int a, int b, int c)
 
 function int quadNeg(int a, int b, int c)
 {
-    int s1 = sqrt(FixedMul(b, b)-(4*FixedMul(a, c)));
+    int s1 = FixedSqrt(FixedMul(b, b)-(4*FixedMul(a, c)));
     int s2 = (2 * a);
     int b1 = FixedDiv(-b - s1, s2);
 
@@ -1015,7 +986,7 @@ function int HeightFromJumpZ(int jumpz, int gravFactor)
 
 function int JumpZFromHeight(int height, int gravFactor)
 {
-    return sqrt(2 * height * gravFactor);
+    return FixedSqrt(2 * height * gravFactor);
 }
 
 function int roundZero(int toround)
@@ -1204,7 +1175,7 @@ function int quadSlope(int orgX, int orgY, int pntX, int pntY, int floatY)
         height = -height;
     }
     
-    int slope = cond(floatY, sqrt(height), sqrt(itof(height)));
+    int slope = cond(floatY, FixedSqrt(height), FixedSqrt(itof(height)));
 
     slope = (slope / dist);
 
@@ -1342,5 +1313,5 @@ function int dot3(int x1, int y1, int z1, int x2, int y2, int z2)
 function int acos(int f)
 {
     if(f > 1.0 || f < -1.0) f %= 1.0; // range bound
-    return VectorAngle(f, sqrt(1.0 - FixedMul(f, f)));
+    return VectorAngle(f, FixedSqrt(1.0 - FixedMul(f, f)));
 }
