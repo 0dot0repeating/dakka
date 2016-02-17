@@ -10,7 +10,7 @@ function int Armor_ArmorIndex(int armor)
 
     for (i = 0; i < ARMORCOUNT; i++)
     {
-        if (!strcmp_i(PKP_KnownArmors[i], armor))
+        if (!stricmp(PKP_KnownArmors[i], armor))
         {
             return i;
         }
@@ -94,7 +94,7 @@ function void Armor_PickupArmor(int armorTo_index, int count)
     }
 
     // Special case for the armor given by idfa and idkfa.
-    if (armorFrom_protect == 0.5 && !strcmp_i(armorFrom_name, "BasicArmorPickup"))
+    if (armorFrom_protect == 0.5 && !stricmp(armorFrom_name, "BasicArmorPickup"))
     {
         armorFrom_name = "BlueArmor";
     }

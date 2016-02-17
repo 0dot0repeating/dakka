@@ -151,7 +151,7 @@ function void Dakka_UpdateTemporaryItems(void)
         for (i = 0; i < ARMORCOUNT; i++)
         {
             int curItem = TempArmorItems[i];
-            SetInventory(curItem, strcmp_i(curItem, armorHUDItem) == 0);
+            SetInventory(curItem, stricmp(curItem, armorHUDItem) == 0);
         }
 
         int armorMax      = PKP_ArmorData[armorIndex][ARM_MAXPOINTS];

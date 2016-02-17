@@ -99,7 +99,7 @@ int PKP_KnownGuns[WEAPONCOUNT][3] =
 
 int PKP_WeaponPriorities[WEAPONCOUNT] =
 {
-    3700,   // DWep_Fists
+    3700,   // DWep_Fist 
     1100,   // DWep_Scrappers
     1900,   // DWep_Pistol
     1500,   // DWep_Pistols
@@ -178,78 +178,49 @@ int PKP_WeaponPriorities[WEAPONCOUNT] =
 // dakka_startmode_weapons (see dakka_levelstart.h) has modes that automatically
 //  sets your weapon loadout based off of it. See the corresponding files for
 //  details (or the wiki eventually). The stuff for it is stored here.
+//
+// PKP_ClassWeapons is also used by Dakka_TranslateGuns. (dakka_translateguns.h)
 
-#define STARTWEAPONS    12
+#define STARTWEAPONS    13
 
 // We can omit empty weapon slots due to commonFuncs.h holding a string
 //  explicitly to fill string slot 0
 
-int Start_Weapons[CLASSCOUNT][STARTWEAPONS] =
+// First col is Doomguy
+// Second col is Dakkaguy
+int PKP_ClassWeapons[STARTWEAPONS][CLASSCOUNT] =
 {
-    // Doomguy
-    {
-        "Fist",
-        "Chainsaw",
-        "Pistol",
-        "Shotgun",
-        "SuperShotgun",
-        "Chaingun",
-        "RocketLauncher",
-        "PlasmaRifle",
-        "BFG9000",
-    },
-
-    // Dakkaguy
-    {
-        "DWep_Fists",
-        // Scrappers excluded - handled by dakka_scrapperstart
-        "DWep_Pistol",
-        "DWep_Pistols",
-        "DWep_Shotgun",
-        "DWep_SuperShotgun",
-        "DWep_Chaingun",
-        "DWep_Minigun",
-        "DWep_RocketLauncher",
-        "DWep_PlasmaRifle",
-        "DWep_Channeler",
-        "DWep_BFG9000",
-        "DWep_Impaler",
-    }
+    {"Fist",            "DWep_Fist"},
+    {"Chainsaw",        ""}, // Scrappers excluded - see dakka_scrapperstart
+    {"Pistol",          "DWep_Pistol"},
+    {"",                "DWep_Pistols"},
+    {"Shotgun",         "DWep_Shotgun"},
+    {"SuperShotgun",    "DWep_SuperShotgun"},
+    {"Chaingun",        "DWep_Chaingun"},
+    {"",                "DWep_Minigun"},
+    {"RocketLauncher",  "DWep_RocketLauncher"},
+    {"PlasmaRifle",     "DWep_PlasmaRifle"},
+    {"",                "DWep_Channeler"},
+    {"BFG9000",         "DWep_BFG9000"},
+    {"",                "DWep_Impaler"},
 };
 
 // This is used to discriminate which weapons we should give. It doesn't
 //  correspond with weapon slot because that doesn't necessarily indicate
 //  the power of a weapon.
-int Start_WeaponPowers[CLASSCOUNT][STARTWEAPONS] =
+int PKP_ClassWeaponPowers[STARTWEAPONS][CLASSCOUNT] =
 {
-    // Doomguy
-    {
-        1,
-        1,
-        1,
-        3,
-        5, // Super shotgun hits like a rocket launcher; it deserves this
-        4,
-        5,
-        6,
-        7
-    },
-
-    // Dakkaguy
-    {
-        1,
-        // Still no scrappers
-        1,
-        1,
-        3,
-        5, // 480 burst damage 2stonk
-        4,
-        6, // Minigun meets the plasma rifle for DPS
-        5,
-        6,
-        7, // Channeler might not have the *damage* of the BFG, but it's too good to just give away
-        7,
-        7,
-    },
+    { 1,  1}, // fist
+    { 1, -1}, // chainsaw
+    { 1,  1}, // pistol
+    {-1,  1}, // pistols
+    { 3,  3}, // shotgun
+    { 5,  5}, // SSG
+    { 4,  4}, // chaingun
+    {-1,  6}, // minigun
+    { 5,  5}, // rocket launcher
+    { 6,  6}, // plasma rifle
+    {-1,  7}, // channeler
+    { 7,  7}, // BFG
+    {-1,  7}, // impaler
 };
-
