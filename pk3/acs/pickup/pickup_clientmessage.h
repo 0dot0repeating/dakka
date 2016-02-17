@@ -216,7 +216,7 @@ script PICKUP_SHOWMESSAGE (int mdata_index, int data1, int data2) clientside
     // If silent pickup's on, can't let other people hear it.
 
     int pickupSound = PKP_PickupSounds[itemNum][classNum + 1];
-    int silent      = !!(GetCvar("compat_silentpickup"));
+    int silent      = GetCvar("compat_silentpickup");
 
     if (silent)
     {
@@ -243,6 +243,7 @@ script PICKUP_SHOWMESSAGE (int mdata_index, int data1, int data2) clientside
     //  server, the client will do another likely malformed pickup message
     CMSG_ClearPickupData(pln);
 
+    // Timer()+1 because 0 means "never picked up".
     CMSG_LastPickup[pln][LASTPICKUP_INDEX] = itemNum;
     CMSG_LastPickup[pln][LASTPICKUP_TIME]  = Timer() + 1;
 }

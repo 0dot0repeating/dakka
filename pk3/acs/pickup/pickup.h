@@ -154,6 +154,7 @@
 
 #include "dakka_vispulse.h"
 #include "dakka_wepdisplay.h"
+#include "dakka_moremessages.h"
 
 // This is such a tiny script, it's a complete waste making a file for it. So
 //  here it is.

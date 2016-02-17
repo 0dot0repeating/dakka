@@ -29,11 +29,11 @@ streamlining things, and so on and so forth.
 * dakka\_cl\_lesseffects
 * dakka\_startmode (redone as dakka\_startmode\_weapons, dakka\_startmode\_ammo, and dakka\_startmode\_health)
 * dakka\_scrapperstart and dakka\_backpackstart
+* dakka\_cl\_moremessages (yaaaaaay)
 
 
 ## What's left?
 
-* dakka\_cl\_moremessages (I miss it already)
 * dakka\_jumpmod (might not come back in, honestly)
 * The dakka\_rearm CVars
 * Score rewards

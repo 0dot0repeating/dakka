@@ -150,7 +150,6 @@ function int Loop_CalcScore(int arcType, int arcerTID, int targetTID, int maxRan
     // Have we somehow targeted ourself? 
     if (firerTID == targetTID)
     {
-        Log(s:"Somehow we targeted ourself: ", d:firerTID, s:" vs. ", d:targetTID);
         return -1;
     }
 

@@ -77,7 +77,7 @@ int PKP_PickupNamed[PK_SCRIPTEDCOUNT] =
 //
 // I copypasted PKP_ScriptedPickups over for this. It's the exact same layout.
 
-#define MSG_SCRIPTEDCOUNT   1
+#define MSG_SCRIPTEDCOUNT   16
 
 // Row 0 indicates which item index this is for.
 #define MSG_S_ITEMNUM       0
@@ -107,12 +107,42 @@ int PKP_PickupNamed[PK_SCRIPTEDCOUNT] =
 // And the data itself.
 int CMSG_ScriptedMessages[MSG_SCRIPTEDCOUNT][8] =
 {
-    {-1, -1, -1, -1, -1, -1, -1, -1},
+    {It_Fist,               Cl_Dakkaguy,  -1, 0,   0,0, true, true},
+    {It_Chainsaw,           Cl_Dakkaguy,  -1, 1,   0,0, true, true},
+    {It_Pistol,             Cl_Dakkaguy,  -1, 2,   0,0, true, true},
+    {It_Shotgun,            Cl_Dakkaguy,  -1, 3,   0,0, true, true},
+    {It_SuperShotgun,       Cl_Dakkaguy,  -1, 4,   0,0, true, true},
+    {It_Chaingun,           Cl_Dakkaguy,  -1, 5,   0,0, true, true},
+    {It_Berserk,            Cl_Dakkaguy,  -1, 6,   0,0, true, true},
+    {It_ST_Minigun,         Cl_Dakkaguy,  -1, 6,   0,0, true, true},
+    {It_RocketLauncher,     Cl_Dakkaguy,  -1, 7,   0,0, true, true},
+    {It_ST_GrenadeLauncher, Cl_Dakkaguy,  -1, 7,   0,0, true, true},
+    {It_PlasmaRifle,        Cl_Dakkaguy,  -1, 8,   0,0, true, true},
+    {It_Dakka_Channeler,    Cl_Dakkaguy,  -1, 9,   0,0, true, true},
+    {It_ST_Railgun,         Cl_Dakkaguy,  -1, 9,   0,0, true, true},
+    {It_BFG9000,            Cl_Dakkaguy,  -1, 10,  0,0, true, true},
+    {It_Dakka_Impaler,      Cl_Dakkaguy,  -1, 11,  0,0, true, true},
+    {It_ST_BFG10k,          Cl_Dakkaguy,  -1, 11,  0,0, true, true},
 };
 
-int CMSG_MessageNamed[PK_SCRIPTEDCOUNT] =
+int CMSG_MessageNamed[MSG_SCRIPTEDCOUNT] =
 {
-    "",
+    "Dakka_MoreMessages",
+    "Dakka_MoreMessages",
+    "Dakka_MoreMessages",
+    "Dakka_MoreMessages",
+    "Dakka_MoreMessages",
+    "Dakka_MoreMessages",
+    "Dakka_MoreMessages",
+    "Dakka_MoreMessages",
+    "Dakka_MoreMessages",
+    "Dakka_MoreMessages",
+    "Dakka_MoreMessages",
+    "Dakka_MoreMessages",
+    "Dakka_MoreMessages",
+    "Dakka_MoreMessages",
+    "Dakka_MoreMessages",
+    "Dakka_MoreMessages",
 };
 
 

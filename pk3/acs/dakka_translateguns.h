@@ -59,7 +59,6 @@ function void Dakka_TranslateGuns(void)
             if (!justTake)
             {
                 GiveInventory(myWeapon, 1);
-                Log(s:"\"", s:hisWeapon, s:"\" -> \"", s:myWeapon, s:"\"");
             }
         }
     }
@@ -83,7 +82,6 @@ function void Dakka_TranslateGuns(void)
             if (stringBlank(itemToGive)) { continue; }
 
             GiveInventory(itemToGive, 1);
-            Log(s:"\"", s:checkWep, s:"\" -> \"", s:itemToGive, s:"\" (", d:itemToGive, s:")");
             gaveSomething = true;
         }
 

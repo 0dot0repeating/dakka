@@ -319,7 +319,7 @@ int PKP_ReceiveCount[PICKUPCOUNT][CLASSCOUNT][PK_RECEIVECOUNT] =
     },
     {
         {50},
-        {50, 100, 6, 12},
+        {50, 100, 6, 18},
     },
     {
         {20},
@@ -331,7 +331,7 @@ int PKP_ReceiveCount[PICKUPCOUNT][CLASSCOUNT][PK_RECEIVECOUNT] =
     },
     {
         {100},
-        {100, 12},
+        {100, 24},
     },
 
 
