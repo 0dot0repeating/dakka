@@ -4,7 +4,7 @@ function int Ammo_AmmoIndex(int ammo)
 
     for (i = 0; i < AMMOCOUNT; i++)
     {
-        if (!strcmp_i(PKP_KnownAmmo[i], ammo))
+        if (!stricmp(PKP_KnownAmmo[i], ammo))
         {
             return i;
         }

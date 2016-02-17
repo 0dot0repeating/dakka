@@ -47,8 +47,8 @@ function void Dakka_StartMode_Weapons(int classNum, int entered, int lostWeapons
 
     for (i = 0; i < STARTWEAPONS; i++)
     {
-        int wepName  = Start_Weapons[classNum+1][i];
-        int wepPower = Start_WeaponPowers[classNum+1][i];
+        int wepName  = PKP_ClassWeapons[i][classNum+1];
+        int wepPower = PKP_ClassWeaponPowers[i][classNum+1];
         int wepIndex = Weapon_WeaponIndex(wepName);
 
         // Ignore any weapons we don't recognize
@@ -147,12 +147,12 @@ function void Dakka_StartMode_Ammo(int classNum, int entered, int lostAmmo)
             //  for *our* class
             for (j = 0; j < STARTWEAPONS; j++)
             {
-                int startWep    = Start_Weapons[classNum+1][j];
-                int startRating = Start_WeaponPowers[classNum+1][j];
+                int startWep    = PKP_ClassWeapons[j][classNum+1];
+                int startRating = PKP_ClassWeaponPowers[j][classNum+1];
 
                 if (startRating > 2) { continue; }
 
-                if (strcmp_i(wepName, startWep))
+                if (stricmp(wepName, startWep))
                 {
                     isPistol = true;
                     break;
@@ -166,15 +166,27 @@ function void Dakka_StartMode_Ammo(int classNum, int entered, int lostAmmo)
         int ammo1Name = PKP_KnownGuns[i][WEP_AMMO1];
         int ammo2Name = PKP_KnownGuns[i][WEP_AMMO2];
 
-        // Need the index to shove it in Start_AmmoToKeep
-        int ammo1Index = Ammo_AmmoIndex(ammo1Name);
-        int ammo2Index = Ammo_AmmoIndex(ammo2Name);
-
-        // Yeah we get this ammo
-        if (CheckInventory(wepName))
+        // The StrLen check's for optimization - if there's no ammo type,
+        //  don't check, as Ammo_AmmoIndex's expensive when called as many
+        //  times as it is here
+        if (StrLen(ammo1Name) > 0)
         {
-            Start_AmmoToKeep[ammo1Index] = true;
-            Start_AmmoToKeep[ammo2Index] = true;
+            int ammo1Index = Ammo_AmmoIndex(ammo1Name);
+
+            if (CheckInventory(wepName))
+            {
+                Start_AmmoToKeep[ammo1Index] = true;
+            }
+        }
+
+        if (StrLen(ammo2name) > 0)
+        {
+            int ammo2Index = Ammo_AmmoIndex(ammo2Name);
+
+            if (CheckInventory(wepName))
+            {
+                Start_AmmoToKeep[ammo2Index] = true;
+            }
         }
     }
 

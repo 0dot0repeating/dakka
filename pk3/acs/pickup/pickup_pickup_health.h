@@ -10,7 +10,7 @@ function int Heal_HealthIndex(int item)
 
     for (i = 0; i < HEALTHCOUNT; i++)
     {
-        if (strcmp_i(item, PKP_HealthTypes[i]) == 0)
+        if (stricmp(item, PKP_HealthTypes[i]) == 0)
         {
             return i;
         }

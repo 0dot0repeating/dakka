@@ -162,7 +162,7 @@ function int Pickup_DoPickup(int index, int classNum, int dropped)
 
     // Little extra convenience: if the first item entry in the pickup is
     //  "Default", it'll use the default (unknown class) item entry instead.
-    if (!strcmp_i(PKP_ReceiveItems[index][classNum+1][0], "Default"))
+    if (!stricmp(PKP_ReceiveItems[index][classNum+1][0], "Default"))
     {
         classNum = -1;
     }

@@ -30,7 +30,7 @@
 
 
 ////////
-// vv STUFF FOR DAKKA_ENTER
+// vv STUFF FOR DAKKA_SPAWN
 
 // Temporary items. These are items that are given and taken every tic by the
 //  spawn script (dakka_enter.h) and used to signal shit to DECORATE. There may,
@@ -52,6 +52,9 @@
 
 // Handle the CVars dakka_shotgun2ssg and dakka_chaingun2minigun.
 #include "dakka_gunstoguns.h"
+
+// Make sure we don't have guns belonging to other classes.
+#include "dakka_translateguns.h"
 
 // ^^ STUFF FOR DAKKA_ENTER
 ////////

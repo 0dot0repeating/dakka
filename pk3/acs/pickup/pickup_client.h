@@ -162,7 +162,6 @@ function void Sender_ForceUpdateClient(int pln)
 
 
 // Okay NOW send the crap. This should only ever be run by PICKUP_MAINLOOP.
-function void Sender_ActuallySend(void)
 {
     int i, j;
 
@@ -175,13 +174,6 @@ function void Sender_ActuallySend(void)
             if (SToC_ToSend[i][j])
             {
                 int data = SToC_ServerData[i][j];
-
-                // As of Zandronum 2.1.2, negative numbers between -1 and -128
-                //  come to the client as 256 + <val>. This is to hack around that.
-                //
-                // This issue is fixed in 3.0. The little hack won't be necessary
-                //  at that point, but it also won't cause any real harm.
-                if (data < 0) { data -= 128; }
 
                 if (useAlways)
                 {
@@ -233,10 +225,6 @@ function void Sender_PingBack(int pln, int index, int value)
 script PICKUP_SENDTOCLIENT (int pln, int index, int value) clientside
 {
     int cpln = ConsolePlayerNumber(); // always 0 in ZDoom
-
-    // As of Zandronum 2.1.2, negative numbers between -1 and -128
-    //  come to the client as 256 + <val>. This is to hack around that.
-    if (value < 0) { value += 128; }
 
     // Add 1 to this so that 0 means "we never got anything", not "tic 0"
     SToC_LastReceiveTime[pln][index] = Timer() + 1;

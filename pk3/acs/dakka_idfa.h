@@ -9,7 +9,7 @@ function void Dakka_ProcessIDFAArmor(void)
     int armorName    = GetArmorInfo(ARMORINFO_CLASSNAME);
     int armorProtect = GetArmorInfo(ARMORINFO_SAVEPERCENT);
 
-    if (armorProtect == 0.5 && !strcmp_i(armorName, "BasicArmorPickup"))
+    if (armorProtect == 0.5 && !stricmp(armorName, "BasicArmorPickup"))
     {
         int idfaArmor = IDFAArmors[Pickup_ClassNumber(0) + 1];
         int armorInv = CheckInventory("BasicArmor");
