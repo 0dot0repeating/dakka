@@ -29,6 +29,10 @@
 
 #define PK_S_RETURNINDEX    6
 
+// Is this a named script? If so, read the script name from PKP_PickupNamed.
+
+#define PK_S_NAMEDSCRIPT    7
+
 
 // And the data itself.
 // 
@@ -37,12 +41,20 @@
 //  
 // It won't match anything.
 
-int PKP_ScriptedPickups[PK_SCRIPTEDCOUNT][7] =
+int PKP_ScriptedPickups[PK_SCRIPTEDCOUNT][8] =
 {
-    {It_PlasmaRifle, Cl_Dakkaguy, 494, 0, 1, 0, true}, // pickup/dakka_wepdisplay.h
-    {It_BFG9000,     Cl_Dakkaguy, 494, 1, 1, 0, true},
-    {It_Shotgun,     Cl_Dakkaguy, 494, 2, 1, 0, true},
-    {It_Chaingun,    Cl_Dakkaguy, 494, 3, 1, 0, true},
+    {It_PlasmaRifle, Cl_Dakkaguy, 494, 0, 1, 0, true, true}, // pickup/dakka_wepdisplay.h
+    {It_BFG9000,     Cl_Dakkaguy, 494, 1, 1, 0, true, true},
+    {It_Shotgun,     Cl_Dakkaguy, 494, 2, 1, 0, true, true},
+    {It_Chaingun,    Cl_Dakkaguy, 494, 3, 1, 0, true, true},
+};
+
+int PKP_PickupNamed[PK_SCRIPTEDCOUNT] =
+{
+    "Dakka_WepDisplay",
+    "Dakka_WepDisplay",
+    "Dakka_WepDisplay",
+    "Dakka_WepDisplay",
 };
 
 
@@ -87,11 +99,20 @@ int PKP_ScriptedPickups[PK_SCRIPTEDCOUNT][7] =
 //  string to display through it?
 #define MSG_S_ONLYSTRING    6
 
+// Is this a named script? If so, read the script name from PKP_MessageNamed.
+
+#define MSG_S_NAMEDSCRIPT    7
+
 
 // And the data itself.
-int CMSG_ScriptedMessages[MSG_SCRIPTEDCOUNT][7] =
+int CMSG_ScriptedMessages[MSG_SCRIPTEDCOUNT][8] =
 {
-    {-1, -1, -1, -1, -1, -1, -1},
+    {-1, -1, -1, -1, -1, -1, -1, -1},
+};
+
+int CMSG_MessageNamed[PK_SCRIPTEDCOUNT] =
+{
+    "",
 };
 
 
@@ -133,12 +154,26 @@ int CMSG_ScriptedMessages[MSG_SCRIPTEDCOUNT][7] =
 #define DISP_S_ARG2         4
 #define DISP_S_ARG3         5
 
-int DISP_ScriptedDisplays[DISP_SCRIPTEDCOUNT][6] =
+// Named script? Yaddayadda.
+
+#define DISP_S_NAMEDSCRIPT  6
+
+int DISP_ScriptedDisplays[DISP_SCRIPTEDCOUNT][7] =
 {
-    {It_Blursphere,  Cl_Unknown,  493, 0, 0, 0}, // pickup/dakka_vispulse.h
-    {It_Blursphere,  Cl_Dakkaguy, 493, 0, 0, 0},
-    {It_PlasmaRifle, Cl_Dakkaguy, 494, 0, 0, 0}, // pickup/dakka_wepdisplay.h
-    {It_BFG9000,     Cl_Dakkaguy, 494, 1, 0, 0},
-    {It_Shotgun,     Cl_Dakkaguy, 494, 2, 0, 0},
-    {It_Chaingun,    Cl_Dakkaguy, 494, 3, 0, 0},
+    {It_Blursphere,  Cl_Unknown,  493, 0, 0, 0, true}, // pickup/dakka_vispulse.h
+    {It_Blursphere,  Cl_Dakkaguy, 493, 0, 0, 0, true},
+    {It_PlasmaRifle, Cl_Dakkaguy, 494, 0, 0, 0, true}, // pickup/dakka_wepdisplay.h
+    {It_BFG9000,     Cl_Dakkaguy, 494, 1, 0, 0, true},
+    {It_Shotgun,     Cl_Dakkaguy, 494, 2, 0, 0, true},
+    {It_Chaingun,    Cl_Dakkaguy, 494, 3, 0, 0, true},
+};
+
+int DISP_DisplayNamed[DISP_SCRIPTEDCOUNT] = 
+{
+    "Dakka_WepDisplay",
+    "Dakka_WepDisplay",
+    "Dakka_WepDisplay",
+    "Dakka_WepDisplay",
+    "Dakka_WepDisplay",
+    "Dakka_WepDisplay",
 };

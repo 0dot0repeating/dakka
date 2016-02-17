@@ -66,13 +66,6 @@ function void Pickup_SendMessage(void)
         if (i + 1 < MDATA_SLOTS) { arg2 = PKP_MessageData[i+1]; }
         else { arg2 = 0; }
 
-        // As of Zandronum 2.1.2, Using ACS_ExecuteWithResult with arguments
-        //  between -1 and -128 will pass those numbers as 256 + <val> instead.
-        //  This is obviously not desirable.
-
-        if (arg1 < 0) { arg1 -= 128; }
-        if (arg2 < 0) { arg2 -= 128; }
-
         if (IsZandronum && ConsolePlayerNumber() == -1)
         {
             ACS_ExecuteAlways(PICKUP_SHOWMESSAGE, 0, i, arg1, arg2);
@@ -198,9 +191,21 @@ function int Pickup_DoPickup(int index, int classNum, int dropped)
             int arg2 = PKP_ScriptedPickups[scriptIndex][PK_S_ARG2];
             int arg3 = PKP_ScriptedPickups[scriptIndex][PK_S_ARG3];
 
+            int named = PKP_ScriptedPickups[scriptIndex][PK_S_NAMEDSCRIPT];
+            int name  = PKP_PickupNamed[scriptIndex];
+
             int getIndex = PKP_ScriptedPickups[scriptIndex][PK_S_RETURNINDEX];
 
-            int newIndex = ACS_ExecuteWithResult(snum, arg1, arg2, arg3);
+            int newIndex;
+            
+            if (named)
+            {
+                newIndex = ACS_NamedExecuteWithResult(name, arg1, arg2, arg3);
+            }
+            else
+            {
+                newIndex = ACS_ExecuteWithResult(snum, arg1, arg2, arg3);
+            }
 
             // Maybe we just wanted to determine which pickup index to use.
             //

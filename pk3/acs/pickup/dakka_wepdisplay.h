@@ -36,7 +36,7 @@ int WepDisplay_S2CCheck[WEPDISP_TYPES][2] =
 };
 
 
-script 494 (int weptype, int mode)
+script "Dakka_WepDisplay" (int weptype, int mode)
 {
     if (DISP_ScriptArgs[DPASS_DOCLEANUP])
     {

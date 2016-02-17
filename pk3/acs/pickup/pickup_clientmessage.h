@@ -29,14 +29,6 @@ int CMSG_LastPickup[PLAYERMAX][2];
 //  slot has been filled.
 function int CMSG_AddPickupData(int pln, int index, int arg1, int arg2)
 {
-    // As of Zandronum 2.1.2, Using ACS_ExecuteWithResult with arguments
-    //  between -1 and -128 will pass those numbers as 256 + <val> instead.
-    //  This is obviously not desirable.
-    //
-    // We subtracted 128 from it in Pickup_SendMessage, so we add 128 here.
-    if (arg1 < 0) { arg1 += 128; }
-    if (arg2 < 0) { arg2 += 128; }
-
     CMSG_MessageData[pln][index]   = arg1;
     CMSG_MessageData[pln][index+1] = arg2;
 
@@ -114,15 +106,18 @@ script PICKUP_SHOWMESSAGE (int mdata_index, int data1, int data2) clientside
 
     int message = "";
 
-    int snum, arg1, arg2, arg3, onlyString;
+    int snum, arg1, arg2, arg3, onlyString, named, name;
     int scriptIndex = CMSG_IsScripted(itemNum, classNum);
 
     if (scriptIndex != -1)
     {
-        snum = CMSG_ScriptedMessages[scriptIndex][MSG_S_SCRIPTNUM];
-        arg1 = CMSG_ScriptedMessages[scriptIndex][MSG_S_ARG1];
-        arg2 = CMSG_ScriptedMessages[scriptIndex][MSG_S_ARG2];
-        arg3 = CMSG_ScriptedMessages[scriptIndex][MSG_S_ARG3];
+        snum  = CMSG_ScriptedMessages[scriptIndex][MSG_S_SCRIPTNUM];
+        arg1  = CMSG_ScriptedMessages[scriptIndex][MSG_S_ARG1];
+        arg2  = CMSG_ScriptedMessages[scriptIndex][MSG_S_ARG2];
+        arg3  = CMSG_ScriptedMessages[scriptIndex][MSG_S_ARG3];
+
+        named = CMSG_ScriptedMessages[scriptIndex][MSG_S_NAMEDSCRIPT];
+        name  = CMSG_MessageNamed[scriptIndex];
 
         // If this is true, we just use the script for getting a message.
         onlyString = CMSG_ScriptedMessages[scriptIndex][MSG_S_ONLYSTRING];
@@ -142,7 +137,15 @@ script PICKUP_SHOWMESSAGE (int mdata_index, int data1, int data2) clientside
 
         if (!onlyString)
         {
-            ACS_ExecuteWithResult(snum, arg1, arg2, arg3);
+            if (named)
+            {
+                ACS_NamedExecuteWithResult(name, arg1, arg2, arg3);
+            }
+            else
+            {
+                ACS_ExecuteWithResult(snum, arg1, arg2, arg3);
+            }
+
             CMSG_ClearPickupData(pln);
             terminate;
         }
@@ -160,7 +163,14 @@ script PICKUP_SHOWMESSAGE (int mdata_index, int data1, int data2) clientside
 
     if (scriptIndex != -1)
     {
-        message = ACS_ExecuteWithResult(snum, arg1, arg2, arg3);
+        if (named)
+        {
+            message = ACS_NamedExecuteWithResult(name, arg1, arg2, arg3);
+        }
+        else
+        {
+            message = ACS_ExecuteWithResult(snum, arg1, arg2, arg3);
+        }
 
         // If the pickup script doesn't return a message, don't do pickup message behaviour.
         if (message == 0 || StrLen(message) == 0)

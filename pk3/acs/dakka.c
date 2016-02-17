@@ -7,14 +7,14 @@
 
 
 // Constant definitions that don't fit anywhere else.
-#include "dakka_const.h"
+#include "dakka_defs.h"
 
 // Script numbers and nothing else.
-#include "dakka_scriptNums.h"
+#include "dakka_defs_scriptnums.h"
 
 // Monster definitions. Mainly used for calculating the score needed to get
 //  a full heal.
-#include "dakka_monsters.h"
+#include "dakka_defs_monsters.h"
 
 
 
@@ -31,7 +31,7 @@
 
 // Class weapons. I want to keep this separate from the pickup system itself,
 //  since the pickup system doesn't actually need to know about this.
-#include "dakka_classweapons.h"
+#include "dakka_defs_classweapons.h"
 
 
 ////////
