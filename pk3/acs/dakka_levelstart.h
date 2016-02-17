@@ -47,13 +47,13 @@ function void Dakka_StartMode_Weapons(int classNum, int entered, int lostWeapons
 
     for (i = 0; i < CLASSWEAPONS; i++)
     {
-        int wepName  = PKP_ClassWeapons[i][classNum+1];
-        int wepPower = PKP_ClassWeaponPowers[i][classNum+1];
+        // We use this to ignore fist/pistol weapons, as well as the Scrappers.
+        int ignore = Dakka_ClassWep_StartModeIgnore[i][classNum+1];
+        if (ignore) { continue; }
+
+        int wepName  = Dakka_ClassWeapons[i][classNum+1];
+        int wepPower = Dakka_ClassWeaponPowers[i][classNum+1];
         int wepIndex = Weapon_WeaponIndex(wepName);
-
-        // Ignore any weapons we don't recognize
-        if (wepIndex == -1) { continue; }
-
 
         // Weapon power rating too high
         if (startMode < wepPower)
@@ -62,26 +62,42 @@ function void Dakka_StartMode_Weapons(int classNum, int entered, int lostWeapons
             continue;
         }
 
+        // If it's not a weapon we recognize, just give it once
+        //  and be done with it
+        if (wepIndex == -1)
+        {
+            GiveInventory(wepName, 1);
+            continue;
+        }
 
         int ammo1Name = PKP_KnownGuns[wepIndex][WEP_AMMO1];
         int ammo2Name = PKP_KnownGuns[wepIndex][WEP_AMMO2];
 
-        // Need the index to shove it in Start_AmmoToKeep
-        int ammo1Index = Ammo_AmmoIndex(ammo1Name);
-        int ammo2Index = Ammo_AmmoIndex(ammo2Name);
+        int gotAmmo1 = (ammo1Name != 0 && StrLen(ammo1Name) > 0);
+        int gotAmmo2 = (ammo2Name != 0 && StrLen(ammo2Name) > 0);
 
-        Start_AmmoToKeep[ammo1Index] = true;
-        Start_AmmoToKeep[ammo2Index] = true;
+        if (gotAmmo1)
+        {
+            int ammo1Index = Ammo_AmmoIndex(ammo1Name);
+            int ammo1Count = CheckInventory(ammo1Name);
 
-        // Need this to keep ammo constant
-        int ammo1Count = CheckInventory(ammo1Name);
-        int ammo2Count = CheckInventory(ammo2Name);
+            if (ammo1Index > -1) { Start_AmmoToKeep[ammo1Index] = true; }
+        }
+
+        if (gotAmmo2)
+        {
+            int ammo2Index = Ammo_AmmoIndex(ammo2Name);
+            int ammo2Count = CheckInventory(ammo2Name);
+
+            if (ammo2Index > -1) { Start_AmmoToKeep[ammo2Index] = true; }
+        }
 
         GiveInventory(wepName, 1);
 
         // Keep ammo constant
-        TakeInventory(ammo1Name, CheckInventory(ammo1Name) - ammo1Count);
-        TakeInventory(ammo2Name, CheckInventory(ammo2Name) - ammo2Count);
+        
+        if (gotAmmo1) { TakeInventory(ammo1Name, CheckInventory(ammo1Name) - ammo1Count); }
+        if (gotAmmo2) { TakeInventory(ammo2Name, CheckInventory(ammo2Name) - ammo2Count); }
     }
 
 
@@ -147,8 +163,8 @@ function void Dakka_StartMode_Ammo(int classNum, int entered, int lostAmmo)
             //  for *our* class
             for (j = 0; j < CLASSWEAPONS; j++)
             {
-                int startWep    = PKP_ClassWeapons[j][classNum+1];
-                int startRating = PKP_ClassWeaponPowers[j][classNum+1];
+                int startWep    = Dakka_ClassWeapons[j][classNum+1];
+                int startRating = Dakka_ClassWeaponPowers[j][classNum+1];
 
                 if (startRating > 2) { continue; }
 

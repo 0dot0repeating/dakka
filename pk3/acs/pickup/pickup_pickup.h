@@ -89,14 +89,7 @@ function void Pickup_HandlePickups(int index, int classNum, int dropped)
         int item  = PKP_ReceiveItems[index][classNum+1][i];
         int count = PKP_ReceiveCount[index][classNum+1][i];
 
-        // The "item == 0" check is only safe because the very first string I
-        //  defined - in commonFuncs.h - is a placeholder string specifically
-        //  meant to use up string index 0 without actually using it for
-        //  anything. Without a string like this, this is NOT a safe check.
-        //
-        // Thanks, ACC.
-
-        if (item == 0 || StrLen(item) == 0) { continue; }
+        if (stringBlank(item)) { continue; }
 
         int healIndex = Heal_HealthIndex(item);
 
