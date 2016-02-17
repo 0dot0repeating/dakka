@@ -45,7 +45,7 @@ function void Dakka_StartMode_Weapons(int classNum, int entered, int lostWeapons
         Start_AmmoToKeep[i] = false;
     }
 
-    for (i = 0; i < STARTWEAPONS; i++)
+    for (i = 0; i < CLASSWEAPONS; i++)
     {
         int wepName  = PKP_ClassWeapons[i][classNum+1];
         int wepPower = PKP_ClassWeaponPowers[i][classNum+1];
@@ -145,7 +145,7 @@ function void Dakka_StartMode_Ammo(int classNum, int entered, int lostAmmo)
 
             // Also we only give a crap about pistol start weapons
             //  for *our* class
-            for (j = 0; j < STARTWEAPONS; j++)
+            for (j = 0; j < CLASSWEAPONS; j++)
             {
                 int startWep    = PKP_ClassWeapons[j][classNum+1];
                 int startRating = PKP_ClassWeaponPowers[j][classNum+1];

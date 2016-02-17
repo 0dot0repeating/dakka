@@ -29,6 +29,11 @@
 #include "arc/arc.h"
 
 
+// Class weapons. I want to keep this separate from the pickup system itself,
+//  since the pickup system doesn't actually need to know about this.
+#include "dakka_classweapons.h"
+
+
 ////////
 // vv STUFF FOR DAKKA_SPAWN
 
