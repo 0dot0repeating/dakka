@@ -8,7 +8,7 @@
 #define SECOND_TICS 35.714285714285715
 #define UNIT_CM     2.73921568627451
 
-int kjaslhsdjkfghsdjkhfsdjkhf = "[commonFuncs.h: string index #0]";
+int CommonFuncs_ZeroString = "[commonFuncs.h: string index #0]";
 
 int TeamNames[TEAMCOUNT] = 
 {
@@ -304,39 +304,10 @@ function int magnitudeThree_f(int x, int y, int z)
     return len;
 }
 
-
-function int quadPos(int a, int b, int c)
-{
-    int s1 = FixedSqrt(FixedMul(b, b)-(4*FixedMul(a, c)));
-    int s2 = (2 * a);
-    int b1 = FixedDiv(-b + s1, s2);
-
-    return b1;
-}
-
-function int quadNeg(int a, int b, int c)
-{
-    int s1 = FixedSqrt(FixedMul(b, b)-(4*FixedMul(a, c)));
-    int s2 = (2 * a);
-    int b1 = FixedDiv(-b - s1, s2);
-
-    return b1;
-}
-
 // All the arguments are to be fixed-point
 function int quad(int a, int b, int c, int y)
 {
     return FixedMul(a, FixedMul(y, y)) + FixedMul(b, y) + c + y;
-}
-
-function int quadHigh(int a, int b, int c, int x)
-{
-    return quadPos(a, b, c-x);
-}
-
-function int quadLow(int a, int b, int c, int x)
-{
-    return quadNeg(a, b, c-x);
 }
 
 function int inRange(int low, int high, int x)
@@ -358,8 +329,7 @@ function int leftShort(int packed) { return packed >> 16; }
 function int rightShort(int packed) { return (packed << 16) >> 16; }
 
 
-// This stuff only works with StrParam
-
+// Strip out color codes
 function int cleanString(int string)
 {
     int ret = "";
@@ -388,6 +358,7 @@ function int cleanString(int string)
     return ret;
 }
 
+// Pad right side of string with padChar
 function int padStringR(int baseStr, int padChar, int len)
 {
     int baseStrLen = StrLen(baseStr);
@@ -410,6 +381,7 @@ function int padStringR(int baseStr, int padChar, int len)
     return StrParam(s:baseStr, s:pad);
 }
 
+// Pad left side of string with padChar
 function int padStringL(int baseStr, int padChar, int len)
 {
     int baseStrLen = StrLen(baseStr);
@@ -432,6 +404,7 @@ function int padStringL(int baseStr, int padChar, int len)
     return StrParam(s:pad, s:baseStr);
 }
 
+// Insert <repl> into position <where>, overwriting what was there
 function int changeString(int string, int repl, int where)
 {
     int i; int j; int k;
@@ -459,6 +432,7 @@ function int changeString(int string, int repl, int where)
     return ret;
 }
 
+// Get string slice, like python's slicing operator
 function int sliceString(int string, int start, int end)
 {
     int len = StrLen(string);
@@ -486,11 +460,13 @@ function int sliceString(int string, int start, int end)
     return ret;
 }
 
+// Find substring in string, starting from position 0
 function int strstr(int string, int substring)
 {
     return strstr_o(string, substring, 0);
 }
 
+// Find substring in string, starting from position <offset>
 function int strstr_o(int string, int substring, int offset)
 {
     int len = StrLen(string);
@@ -527,6 +503,7 @@ function int strstr_o(int string, int substring, int offset)
     return -1;
 }
 
+// Replace <from> with <to> in string
 function int strsub(int string, int from, int to)
 {
     int ret = "";
@@ -585,7 +562,7 @@ function int strsub(int string, int from, int to)
     return ret;
 }
 
-// End StrParam
+
 
 function int unusedTID(int start, int end)
 {
@@ -692,6 +669,7 @@ function int isTeamGame(void)
     return ret;
 }
 
+// Spawn actor certain distance in front of self
 function int spawnDistance(int item, int dist, int tid)
 {
     int myX, myY, myZ, myAng, myPitch, spawnX, spawnY, spawnZ;
@@ -953,11 +931,6 @@ function int distance_tid(int tid1, int tid2)
     return magnitudeThree_f(x2-x1, y2-y1, z2-z1);
 }
 
-function int distance_ftoi(int x1, int y1, int z1, int x2, int y2, int z2)
-{
-    return ftoi(distance(x1,y1,z1, x2,y2,z2));
-}
-
 function void printDebugInfo(void)
 {
     int classify    = ClassifyActor(0);
@@ -1139,56 +1112,7 @@ function int RaiseAmmoCapacity(int ammoname, int newcapacity, int raiseammo)
     return CheckInventory(ammo);
 }
 
-#define RATIOCOUNT  4
-
-#define RATIO_4_3   0
-#define RATIO_5_4   1
-#define RATIO_16_10 2
-#define RATIO_16_9  3
-
-int ScreenAspectNames[RATIOCOUNT] = 
-{
-    "4:3",
-    "5:4",
-    "16:10",
-    "16:9",
-};
-
-int ScreenAspectRatios[RATIOCOUNT][2] = 
-{
-    {4, 3},
-    {5, 4},
-    {16, 10},
-    {16, 9},
-};
-
-function int GetScreenAspect_BestFit(void)
-{
-    int sx = GetScreenWidth();
-    int sy = GetScreenHeight();
-    int bestMatch = -1;
-    int bestScore = 0x7FFFFFFF;
-    int i;
-
-    for (i = 0; i < RATIOCOUNT; i++)
-    {
-        int rx = ScreenAspectRatios[i][0];
-        int ry = ScreenAspectRatios[i][1];
-
-        int diff = abs(sx - round(sy * (itof(rx) / ry)));
-
-        if (bestScore > diff)
-        {
-            bestMatch = i;
-            bestScore = diff;
-
-            if (diff == 0) { break; }
-        }
-    }
-
-    return bestMatch;
-}
-
+// Shortest distance between two angles
 function int angleDifference(int ang1, int ang2)
 {
     ang1 = mod(ang1, 1.0);
@@ -1203,11 +1127,13 @@ function int angleDifference(int ang1, int ang2)
     return angDiff;
 }
 
+// Dot product of 2D vectors
 function int dot2(int x1, int y1, int x2, int y2)
 {
     return FixedMul(x1, x2) + FixedMul(y1, y2);
 }
 
+// Dot product of 3D vectors
 function int dot3(int x1, int y1, int z1, int x2, int y2, int z2)
 {
     return FixedMul(x1, x2) + FixedMul(y1, y2) + FixedMul(z1, z2);
@@ -1217,4 +1143,23 @@ function int acos(int f)
 {
     if(f > 1.0 || f < -1.0) f %= 1.0; // range bound
     return VectorAngle(f, FixedSqrt(1.0 - FixedMul(f, f)));
+}
+
+
+
+// Check for blank string.
+//
+// The CommonFuncs_ZeroString check is only safe because the very first
+//  string I defined - in commonFuncs.h - is a placeholder string
+//  specifically meant to use up string index 0 without actually using
+//  it for anything. Without a string like this, this is NOT a safe check.
+//
+// And we use CommonFuncs_ZeroString directly because that's safe to use
+//  in libraries. If we just compare to 0, other ACS that gets loaded will
+//  move CommonFuncs_ZeroString to something other than 0, breaking this.
+//
+// Thanks, ACC.
+function int stringBlank(int string)
+{
+    return (string == CommonFuncs_ZeroString) || (StrLen(string) == 0);
 }

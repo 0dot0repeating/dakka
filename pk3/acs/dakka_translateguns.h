@@ -1,3 +1,6 @@
+int Translate_ToTake[65535];
+
+
 function void Dakka_TranslateGuns(void)
 {
     int slot, class;
@@ -6,6 +9,9 @@ function void Dakka_TranslateGuns(void)
 
     int hisWeapon, takingSomething;
 
+    int takeCount = 0;
+
+    // Take away based off of Dakka_ClassWeapons (dakka_defs_classweapons.h).
     for (slot = 0; slot < CLASSWEAPONS; slot++)
     {
         // First off, check if we're even going to take anything.
@@ -19,8 +25,8 @@ function void Dakka_TranslateGuns(void)
         {
             if (class == classWepIndex) { continue; }
 
-            hisWeapon = PKP_ClassWeapons[slot][class];
-            if (hisWeapon == 0 || StrLen(hisWeapon) == 0) { continue; }
+            hisWeapon = Dakka_ClassWeapons[slot][class];
+            if (stringBlank(hisWeapon)) { continue; }
             if (!CheckInventory(hisWeapon)) { continue; }
 
             takingSomething = true;
@@ -29,53 +35,67 @@ function void Dakka_TranslateGuns(void)
         
         if (!takingSomething) { continue; }
 
+
+
         // Now that we know we're taking something, actually do the taking.
 
-        int myWeapon = PKP_ClassWeapons[slot][classWepIndex];
-        int justTake = (myWeapon == 0 || StrLen(myWeapon) == 0);
-
-        int myWepIndex, myAmmo1Count, myAmmo2Count;
-        int myAmmo1 = "";
-        int myAmmo2 = "";
-
-        if (!justTake)
-        {
-            myWepIndex = Weapon_WeaponIndex(myWeapon);
-
-            if (myWepIndex != -1)
-            {
-                myAmmo1 = PKP_KnownGuns[myWepIndex][WEP_AMMO1];
-                myAmmo2 = PKP_KnownGuns[myWepIndex][WEP_AMMO2];
-
-                if (StrLen(myAmmo1) > 0) { myAmmo1Count = CheckInventory(myAmmo1); }
-                if (StrLen(myAmmo2) > 0) { myAmmo2Count = CheckInventory(myAmmo2); }
-            }
-        }
+        int myWeapon = Dakka_ClassWeapons[slot][classWepIndex];
+        int justTake = stringBlank(myWeapon);
 
 
+        // Look at this class weapon slot for everyone, and translate any weapons in this slot.
         for (class = 0; class < CLASSCOUNT; class++)
         {
             if (class == classWepIndex) { continue; }
 
-            hisWeapon = PKP_ClassWeapons[slot][class];
-            if (hisWeapon == 0 || StrLen(hisWeapon) == 0) { continue; }
-
+            hisWeapon = Dakka_ClassWeapons[slot][class];
+            if (stringBlank(hisWeapon)) { continue; }
             if (!CheckInventory(hisWeapon)) { continue; }
 
-            TakeInventory(hisWeapon, 0x7FFFFFFF);
+            // We don't take away the weapons right away, in case one weapon for
+            //  class A can translate into multiple weapons for class B.
+            Translate_ToTake[takeCount++] = hisWeapon;
 
             if (!justTake)
             {
                 GiveInventory(myWeapon, 1);
-                Log(s:"Replaced weapon \"", s:hisWeapon, s:"\" with \"", s:myWeapon, s:"\"");
-            }
-            else
-            {
-                Log(s:"Took weapon \"", s:hisWeapon, s:"\"");
+                Log(s:"\"", s:hisWeapon, s:"\" -> \"", s:myWeapon, s:"\"");
             }
         }
+    }
 
-        if (StrLen(myAmmo1) > 0) { TakeInventory(myAmmo1, CheckInventory(myAmmo1) - myAmmo1Count); }
-        if (StrLen(myAmmo2) > 0) { TakeInventory(myAmmo2, CheckInventory(myAmmo2) - myAmmo2Count); }
+
+
+    // Now take away based off of Dakka_TranslatableGuns_From (dakka_defs_classweapons.h).
+    int from, i;
+
+    for (slot = 0; slot < TRANSLATE_GUNS; slot++)
+    {
+        int checkWep = Dakka_TranslatableGuns_From[slot];
+        if (!CheckInventory(checkWep)) { continue; }
+        
+        // If we're this far, we have checkWep.
+        int gaveSomething = false;
+
+        for (i = 0; i < TRANSLATE_MAXTO; i++)
+        {
+            int itemToGive = Dakka_TranslatableGuns_To[slot][classWepIndex][i];
+            if (stringBlank(itemToGive)) { continue; }
+
+            GiveInventory(itemToGive, 1);
+            Log(s:"\"", s:checkWep, s:"\" -> \"", s:itemToGive, s:"\" (", d:itemToGive, s:")");
+            gaveSomething = true;
+        }
+
+        if (gaveSomething)
+        {
+            Translate_ToTake[takeCount++] = checkWep;
+        }
+    }
+
+    // Now actually take away weapons.
+    for (i = 0; i < takeCount; i++)
+    {
+        TakeInventory(Translate_ToTake[i], 0x7FFFFFFF);
     }
 }

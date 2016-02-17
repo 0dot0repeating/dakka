@@ -173,7 +173,7 @@ script PICKUP_SHOWMESSAGE (int mdata_index, int data1, int data2) clientside
         }
 
         // If the pickup script doesn't return a message, don't do pickup message behaviour.
-        if (message == 0 || StrLen(message) == 0)
+        if (stringBlank(message))
         {
             CMSG_ClearPickupData(pln);
             terminate;
