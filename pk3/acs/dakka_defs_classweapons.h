@@ -6,7 +6,7 @@
 //
 // Dakka_ClassWeapons is also used by Dakka_TranslateGuns. (dakka_translateguns.h)
 
-#define CLASSWEAPONS    13
+#define CLASSWEAPONS    26
 
 #define CWEP_FIST               0
 #define CWEP_CHAINSAW           1
@@ -21,6 +21,21 @@
 #define CWEP_CHANNELER          10
 #define CWEP_BFG9000            11
 #define CWEP_IMPALER            12
+
+
+#define CWEP_HERETIC_STAFF      13
+#define CWEP_HERETIC_GAUNTLETS  14
+#define CWEP_HERETIC_GOLDWAND   15
+#define CWEP_HERETIC_GOLDWAND2  16
+#define CWEP_HERETIC_CROSSBOW   17
+#define CWEP_HERETIC_CROSSBOW2  18
+#define CWEP_HERETIC_BLASTER    19
+#define CWEP_HERETIC_BLASTER2   20
+#define CWEP_HERETIC_SKULLROD   21
+#define CWEP_HERETIC_SKULLROD2  22
+#define CWEP_HERETIC_PHOENIXROD 23
+#define CWEP_HERETIC_MACE       24
+#define CWEP_HERETIC_MACE2      25
 
 // First col is Doomguy
 // Second col is Dakkaguy
@@ -46,6 +61,20 @@ int Dakka_ClassWeapons[CLASSWEAPONS][CLASSCOUNT] =
     {"PlasmaRifle",     "DWep_Channeler"},
     {"BFG9000",         "DWep_BFG9000"},
     {"BFG9000",         "DWep_Impaler"},
+
+    {"Staff",           "DWep_Fists"},
+    {"Gauntlets",       "DWep_Scrappers"},
+    {"GoldWand",        "DWep_Pistol"},
+    {"GoldWand",        "DWep_Pistols"},
+    {"Crossbow",        "DWep_Shotgun"},
+    {"Crossbow",        "DWep_SuperShotgun"},
+    {"Blaster",         "DWep_Chaingun"},
+    {"Blaster",         "DWep_Minigun"},
+    {"PhoenixRod",      "DWep_RocketLauncher"},
+    {"SkullRod",        "DWep_PlasmaRifle"},
+    {"SkullRod",        "DWep_Channeler"},
+    {"Mace",            "DWep_BFG9000"},
+    {"Mace",            "DWep_Impaler"},
 };
 
 // This is used to discriminate which weapons we should give. It doesn't
@@ -54,7 +83,7 @@ int Dakka_ClassWeapons[CLASSWEAPONS][CLASSCOUNT] =
 int Dakka_ClassWeaponPowers[CLASSWEAPONS][CLASSCOUNT] =
 {
     { 1,  1}, // fist
-    { 1, -1}, // chainsaw
+    { 3,  5}, // chainsaw
     { 2,  2}, // pistol
     {-1,  2}, // pistols
     { 3,  3}, // shotgun
@@ -66,6 +95,21 @@ int Dakka_ClassWeaponPowers[CLASSWEAPONS][CLASSCOUNT] =
     {-1,  7}, // channeler
     { 7,  7}, // BFG
     {-1,  7}, // impaler
+
+
+    { 1,  1}, // staff          (fist)
+    { 3,  5}, // gauntlets      (scrappers)
+    { 2,  2}, // wand 1         (pistol)
+    { 2,  2}, // wand 2         (pistols)
+    { 3,  3}, // crossbow 1     (shotgun)
+    { 3,  5}, // crossbow 2     (ssg)
+    { 4,  4}, // blaster 1      (chaingun)
+    { 4,  6}, // blaster 2      (minigun)
+    { 6,  5}, // phoenix rod    (rocket launcher)
+    { 5,  6}, // hellstaff 1    (plasma)
+    { 5,  6}, // hellstaff 2    (channeler)
+    { 7,  7}, // mace 1         (bfg)
+    { 7,  7}, // mace 2         (impaler)
 };
 
 
@@ -76,7 +120,21 @@ int Dakka_ClassWep_StartModeIgnore[CLASSWEAPONS][CLASSCOUNT] =
     {true,  true},
     {false, true},
     {true,  true},
+    {true,  true},
+    {false, false},
+    {false, false},
+    {false, false},
+    {false, false},
+    {false, false},
+    {false, false},
+    {false, false},
+    {false, false},
+    {false, false},
+
+    {true,  true},
     {false, true},
+    {true,  true},
+    {true,  true},
     {false, false},
     {false, false},
     {false, false},
