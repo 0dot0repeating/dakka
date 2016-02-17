@@ -388,32 +388,6 @@ function int cleanString(int string)
     return ret;
 }
 
-function int cvarFromString(int prefix, int newname)
-{
-    int ret = "";
-    int i, c;
-    int prelen = strlen(prefix);
-    int namelen = strlen(newname);
-    int cap = prelen+namelen;
-
-    for (i = 0; i <= cap; i++)
-    {
-        c = cond(i >= prelen, GetChar(newname, i-prelen), GetChar(prefix, i));
-
-        if (
-            (c > 64 && c < 91)  // is uppercase letter
-         || (c > 90 && c < 123) // is lowercase letter
-         || (c > 47 && c < 58)  // is number
-         || c == 95             // _
-         )
-        {
-            ret = StrParam(s:ret, c:c);
-        }
-    }
-
-    return ret;
-}
-
 function int padStringR(int baseStr, int padChar, int len)
 {
     int baseStrLen = StrLen(baseStr);
@@ -811,21 +785,6 @@ function int condFalse(int test, int falseRet)
     return falseRet;
 }
 
-function void saveCVar(int cvar, int val)
-{
-    int setStr = StrParam(s:"set ", s:cvar, s:" ", d:val);
-    int arcStr = StrParam(s:"archivecvar ", s:cvar);
-    ConsoleCommand(setStr); ConsoleCommand(arcStr);
-}
-
-function int defaultCVar(int cvar, int defaultVal)
-{
-    int ret = GetCVar(cvar);
-    if (ret == 0) { saveCVar(cvar, defaultVal); return defaultVal; }
-
-    return ret;
-}
-
 
 function int onGround(int tid)
 {
@@ -905,48 +864,6 @@ function int isInvulnerable(void)
     int check2 = CheckInventory("PowerInvulnerable");
 
     return check1 || check2;
-}
-
-function void saveStringCVar(int string, int cvarname)
-{
-    int slen = StrLen(string);
-    int i, c, cvarname2;
-
-    for (i = 0; i < slen; i++)
-    {
-        cvarname2 = StrParam(s:cvarname, s:"_char", d:i);
-        SaveCVar(cvarname2, GetChar(string, i));
-    }
-
-    while (1)
-    {
-        cvarname2 = StrParam(s:cvarname, s:"_char", d:i);
-        c = GetCVar(cvarname2);
-
-        if (c == 0) { break; }
-
-        ConsoleCommand(StrParam(s:"unset ", s:cvarname2));
-        i += 1;
-    }
-}
-
-function int loadStringCVar(int cvarname)
-{
-    int ret = "";
-    int i = 0, c, cvarname2;
-
-    while (1)
-    {
-        cvarname2 = StrParam(s:cvarname, s:"_char", d:i);
-        c = GetCVar(cvarname2);
-
-        if (c == 0) { break; }
-
-        ret = StrParam(s:ret, c:c);
-        i += 1;
-    }
-
-    return ret;
 }
 
 function int defaultTID(int def)
@@ -1216,24 +1133,10 @@ function int RaiseAmmoCapacity(int ammoname, int newcapacity, int raiseammo)
 
     if ((ammo < capacity) && raiseammo)
     {
-        GiveInventory(ammoname, capacity - ammo);
+        GiveAmmo(ammoname, capacity - ammo);
     }
     
     return CheckInventory(ammo);
-}
-
-function int Zand_GetCVarFixed(int cvarname)
-{
-    int tmpName = StrParam(s:"tmpcvar_rand", d:random(12000, 24000));
-    ConsoleCommand(StrParam(s:"set ", s:tmpName, s:" 0"));
-
-    int evalCmd = StrParam(s:"eval * $", s:cvarname, s:" 65536 ", s:tmpName);
-    ConsoleCommand(evalCmd);
-
-    int ret = GetCVar(tmpName);
-    ConsoleCommand(StrParam(s:"unset ", d:tmpName));
-
-    return ret;
 }
 
 #define RATIOCOUNT  4
