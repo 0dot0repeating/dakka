@@ -69,10 +69,10 @@ script PICKUP_DISPLAY (int index, int dropped, int firstDisplay) clientside
     SetActorState(0, "Unknown");
 
     int oldClassNum;
-    int classNum = -2; // Class number can never be -1
+    int classNum = -1;
     int oldScript;
     int scriptIndex = -1;
-    int snum, arg1, arg2, arg3;
+    int snum, arg1, arg2, arg3, named, name;
 
     while (true)
     {
@@ -85,13 +85,7 @@ script PICKUP_DISPLAY (int index, int dropped, int firstDisplay) clientside
         classNum = SToC_ClientData[cpln][S2C_D_CLASSNUM] - 1;
 
         oldScript = scriptIndex;
-
-        // Slight optimization - don't do script lookups if the script couldn't
-        //  possibly have changed.
-        if (oldClassNum != classNum)
-        {
-            scriptIndex = Pickup_IsDisplayScripted(index, classNum);
-        }
+        scriptIndex = Pickup_IsDisplayScripted(index, classNum);
         
         // Slight optimization.
         if (oldScript != -1 || scriptIndex != -1)
@@ -120,7 +114,7 @@ script PICKUP_DISPLAY (int index, int dropped, int firstDisplay) clientside
             }
 
             // Let the old script do whatever cleanup it needs.
-            if (oldScript > 0)
+            if (oldScript != -1)
             {
                 Disp_ScriptArgs[DPASS_DOCLEANUP] = true;
 
@@ -128,7 +122,18 @@ script PICKUP_DISPLAY (int index, int dropped, int firstDisplay) clientside
                 arg1 = DISP_ScriptedDisplays[oldScript][DISP_S_ARG1];
                 arg2 = DISP_ScriptedDisplays[oldScript][DISP_S_ARG2];
                 arg3 = DISP_ScriptedDisplays[oldScript][DISP_S_ARG3];
-                ACS_ExecuteWithResult(snum, arg1, arg2, arg3);
+
+                named = DISP_ScriptedDisplays[oldScript][DISP_S_NAMEDSCRIPT];
+                name  = DISP_DisplayNamed[oldScript];
+
+                if (named)
+                {
+                    ACS_NamedExecuteWithResult(name, arg1, arg2, arg3);
+                }
+                else
+                {
+                    ACS_ExecuteWithResult(snum, arg1, arg2, arg3);
+                }
 
                 Disp_ScriptArgs[DPASS_DOCLEANUP] = false;
             }
@@ -136,14 +141,24 @@ script PICKUP_DISPLAY (int index, int dropped, int firstDisplay) clientside
 
         // If we got a script, let it handle everything. If it wants to
         //  SetActorState every tic, let it. I don't give a fuck!
-        if (scriptIndex > 0)
+        if (scriptIndex != -1)
         {
             snum = DISP_ScriptedDisplays[scriptIndex][DISP_S_SCRIPTNUM];
             arg1 = DISP_ScriptedDisplays[scriptIndex][DISP_S_ARG1];
             arg2 = DISP_ScriptedDisplays[scriptIndex][DISP_S_ARG2];
             arg3 = DISP_ScriptedDisplays[scriptIndex][DISP_S_ARG3];
 
-            ACS_ExecuteWithResult(snum, arg1, arg2, arg3);
+            named = DISP_ScriptedDisplays[scriptIndex][DISP_S_NAMEDSCRIPT];
+            name  = DISP_DisplayNamed[scriptIndex];
+
+            if (named)
+            {
+                ACS_NamedExecuteWithResult(name, arg1, arg2, arg3);
+            }
+            else
+            {
+                ACS_ExecuteWithResult(snum, arg1, arg2, arg3);
+            }
         }
 
         Delay(1);
