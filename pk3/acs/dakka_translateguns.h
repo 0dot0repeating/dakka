@@ -6,7 +6,7 @@ function void Dakka_TranslateGuns(void)
 
     int hisWeapon, takingSomething;
 
-    for (slot = 0; slot < STARTWEAPONS; slot++)
+    for (slot = 0; slot < CLASSWEAPONS; slot++)
     {
         // First off, check if we're even going to take anything.
         //  Because Weapon_WeaponIndex's a bit expensive.

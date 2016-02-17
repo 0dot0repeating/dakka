@@ -162,6 +162,7 @@ function void Sender_ForceUpdateClient(int pln)
 
 
 // Okay NOW send the crap. This should only ever be run by PICKUP_MAINLOOP.
+function void Sender_ActuallySend(void)
 {
     int i, j;
 
