@@ -105,7 +105,7 @@ actor ImpalerMissile: FastProjectile
     Speed 1
 
     Radius 8
-    Height 4
+    Height 8
 
     Scale 0.5
 

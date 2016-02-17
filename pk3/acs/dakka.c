@@ -16,6 +16,9 @@
 //  a full heal.
 #include "dakka_defs_monsters.h"
 
+// Messages for dakka_cl_moremessages.
+#include "dakka_defs_moremessages.h"
+
 
 
 
