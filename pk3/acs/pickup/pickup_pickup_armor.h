@@ -182,7 +182,6 @@ function void Armor_PickupArmor(int armorTo_index, int count)
 
     int armorFrom_weight = Armor_WeighArmor(armorFrom_points, armorFrom_protect, armorTo_compare);
     int armorEnd_weight  = Armor_WeighArmor(armorEnd_points,  armorEnd_protect,  armorTo_compare);
-
     
     // Now pick up if we'd gain armor.
     if (armorEnd_weight > armorFrom_weight)
@@ -199,16 +198,20 @@ function void Armor_PickupArmor(int armorTo_index, int count)
         {
             TakeInventory("BasicArmor", 0x7FFFFFFF);
             GiveInventory(armorEnd_name, 1);
-            
+
             int curArmor = CheckInventory("Armor");
+
+            // The (x+(y-1))/y effectively rounds up integer division
+            int armorNeeded = (armorEnd_points + (curArmor - 1)) / curArmor;
+
+            GiveInventory(armorEnd_name, armorNeeded);
             
-            if (curArmor < armorEnd_points)
+            curArmor = CheckInventory("Armor");
+            int armorToTake = curArmor - armorEnd_points;
+
+            if (armorToTake > 0)
             {
-                GiveInventory("Pickup_OneArmor", armorEnd_points - curArmor);
-            }
-            else
-            {
-                TakeInventory("BasicArmor", curArmor - armorEnd_points);
+                TakeInventory("BasicArmor", armorToTake);
             }
         }
 

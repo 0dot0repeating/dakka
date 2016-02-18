@@ -4,8 +4,9 @@
 #include "decorate/core/pickups.dec"
 #include "decorate/core/arc.dec"
 
-#include "decorate/core/puffs.dec"
 #include "decorate/core/dakkaguy.dec"
+#include "decorate/core/slotitems.dec"
+#include "decorate/core/puffs.dec"
 
 #include "decorate/core/armor.dec"
 #include "decorate/core/invuln.dec"
