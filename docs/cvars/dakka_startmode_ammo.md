@@ -2,7 +2,7 @@
 
 **Related CVars:** [dakka\_startmode\_weapons](dakka_startmode_weapons.md), [dakka\_startmode\_health](dakka_startmode_health.md)
 
-**Related files:** `/pk3/acs/dakka_levelstart.h`, `/pk3/acs/pickup_items_weapons.h`, `/pk3/acs/pickup/pickup_items_ammo.h`
+**Related files:** `/pk3/acs/dakka_levelstart.h`, `/pk3/acs/dakka_classweapons.h`, `/pk3/acs/pickup/pickup_items_ammo.h`
 
 **CVar type:** int
 
@@ -29,8 +29,8 @@ is processed immediately before this CVar is. There are five modes for this CVar
 * **4:** Same behaviour as mode 3, but ammo is reset to its maximum capacity rather
     than a default ammo count.
 
-A weapon is considered to be a pistol start weapon if it's listed in `Start_Weapons[]`
-(see `/pk3/acs/pickup_items_weapons.h`) and its power rating in `Start_WeaponPowers[]` is
+A weapon is considered to be a pistol start weapon if it's listed in `Dakka_ClassWeapons[]`
+(see `/pk3/acs/dakka_classweapons.h`) and its power rating in `Dakka_ClassWeaponPowers[]` is
 less than 3. Only weapons for your current class according to the pickup system
 (see the `Pickup_ClassNumber()` function) are checked.
 
