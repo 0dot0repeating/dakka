@@ -123,11 +123,11 @@ script "Dakka_Tracer" (int which, int yoff, int zoff)
       case TRACE_ARC_MASTER:
         if (IsServer)
         {
-            ACS_NamedExecuteWithResult("Dakka_Lightning", tracerTID1, tracerTID2);
+            ACS_NamedExecuteWithResult("Dakka_Lightning", which, tracerTID1, tracerTID2);
         }
         else
         {
-            ACS_NamedExecuteAlways("Dakka_Lightning", 0, tracerTID1, tracerTID2);
+            ACS_NamedExecuteAlways("Dakka_Lightning", 0, which, tracerTID1, tracerTID2);
         }
         break;
     }

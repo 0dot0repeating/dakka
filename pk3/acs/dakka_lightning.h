@@ -10,7 +10,7 @@
 int Lightning_Points[LIGHTNINGSLOTS][MAXPOINTS][5];
 int Lightning_InUse[LIGHTNINGSLOTS];
 
-script "Dakka_Lightning" (int startTID, int endTID)
+script "Dakka_Lightning" (int which, int startTID, int endTID)
 {
     int startX = GetActorX(startTID);
     int startY = GetActorY(startTID);
@@ -35,6 +35,36 @@ script "Dakka_Lightning" (int startTID, int endTID)
     int particleType = "ChannelerTrail";
     int density = cond(lesseffects, 18.0, 6.0);
     int speed   = 0;
+
+    int pointMin,  pointMax;
+    int rotateMin, rotateMax;
+    int radiusMin, radiusMax;
+
+    switch (which)
+    {
+      case TRACE_ARC_FIRER:
+        pointMin = 32.0;
+        pointMax = 128.0;
+
+        rotateMin = 0.25;
+        rotateMax = 0.75;
+
+        radiusMin = 2.0;
+        radiusMax = 6.0;
+        break;
+
+      case TRACE_ARC_MASTER:
+        pointMin = 16.0;
+        pointMax = 64.0;
+
+        rotateMin = 0.35;
+        rotateMax = 0.65;
+
+        radiusMin = 6.0;
+        radiusMax = 12.0;
+        break;
+    }
+        
 
 
     // Precalculate matrix multipliers to rotate lightning points into place
@@ -98,7 +128,7 @@ script "Dakka_Lightning" (int startTID, int endTID)
         Lightning_Points[lightningSlot][pointCount][LIGHTNING_DIST] = pointDist;
 
         pointCount += 1;
-        pointDist += random(16.0, 64.0);
+        pointDist += random(pointMin, pointMax);
 
         // always reach end point without running out of points
         if (pointCount + 1 >= MAXPOINTS)
@@ -112,9 +142,9 @@ script "Dakka_Lightning" (int startTID, int endTID)
 
         // calc position of next point
         int lastAngle = newPointAngle;
-        newPointAngle  = mod(lastAngle + random(0.35, 0.65), 1.0);
+        newPointAngle  = mod(lastAngle + random(rotateMin, rotateMax), 1.0);
 
-        int newPointRadius = random(6.0, 12.0);
+        int newPointRadius = random(radiusMin, radiusMax);
 
         int newPointX = pointDist;
         int newPointY = FixedMul(cos(newPointAngle), newPointRadius);
