@@ -1,9 +1,9 @@
 actor DWep_Channeler: Weapon
 {
-    Weapon.SlotPriority 0
     Tag "Channeler"
 
     Weapon.SlotNumber 6
+    Weapon.SlotPriority 1
     Weapon.SelectionOrder 100
     Weapon.Kickback 0
 
