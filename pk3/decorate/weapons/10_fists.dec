@@ -2,6 +2,7 @@ actor DWep_Fist: DoomWeapon
 {
     Tag "Fists"
 
+    Weapon.SlotNumber 1
     Weapon.SelectionOrder 3700
     +WEAPON.MELEEWEAPON
     +UNDROPPABLE

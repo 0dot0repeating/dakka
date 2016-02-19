@@ -2,6 +2,7 @@ actor DWep_Shotgun: DoomWeapon
 {
     Tag "Shotgun"
 
+    Weapon.SlotNumber 3
     Weapon.SelectionOrder 1300
 
     Weapon.AmmoUse1 1

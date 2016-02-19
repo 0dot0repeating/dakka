@@ -2,6 +2,7 @@ actor DWep_RocketLauncher: DoomWeapon
 {
     Tag "Rocket Launcher"
 
+    Weapon.SlotNumber 5
     Weapon.SelectionOrder 300
 
     Weapon.AmmoType1 "DakkaRockets"

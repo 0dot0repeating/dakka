@@ -9,6 +9,7 @@ actor DWep_BFG9000: DoomWeapon
 {
     Tag "BFG9000"
 
+    Weapon.SlotNumber 7
     Weapon.SelectionOrder 1000
 
     Weapon.AmmoType1 "DakkaCells"

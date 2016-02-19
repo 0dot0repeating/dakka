@@ -4,6 +4,7 @@ actor DWep_Impaler: DoomWeapon
 {
     Tag "Impaler"
 
+    Weapon.SlotNumber 7
     Weapon.SelectionOrder 301   // literally right behind the rocket launcher
 
     Weapon.AmmoUse1     1

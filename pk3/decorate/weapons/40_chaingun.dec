@@ -2,6 +2,7 @@ actor DWep_Chaingun: DoomWeapon
 {
     Tag "Chaingun"
 
+    Weapon.SlotNumber 4
     Weapon.SelectionOrder 700
 
     Weapon.AmmoType1 "DakkaBullet_5mm"
