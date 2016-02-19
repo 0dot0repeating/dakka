@@ -2,6 +2,7 @@ actor DWep_Pistols: DoomWeapon
 {
     Tag "Pistols"
 
+    Weapon.SlotNumber 2
     Weapon.SelectionOrder 1500
     Weapon.AmmoUse1 1
     Weapon.AmmoUse2 8

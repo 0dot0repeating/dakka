@@ -190,7 +190,7 @@ function void Armor_PickupArmor(int armorTo_index, int count)
         // (Note: armorEnd_name can't be "" if you have no armor, both armor
         //  types change the armor name to armorTo_name in that case)
 
-        if (StrLen(armorEnd_name) == 0)
+        if (stringBlank(armorEnd_name))
         {
             GiveInventory("Pickup_OneArmor", armorEnd_points - armorFrom_points);
         }

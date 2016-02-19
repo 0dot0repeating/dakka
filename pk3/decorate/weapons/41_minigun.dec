@@ -6,6 +6,7 @@ actor DWep_Minigun: DoomWeapon
 {
     Tag "Minigun"
 
+    Weapon.SlotNumber 4
     Weapon.SelectionOrder 350
 
     Weapon.AmmoType1 "DakkaBullet_5mm"

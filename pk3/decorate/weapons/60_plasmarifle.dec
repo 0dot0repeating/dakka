@@ -14,6 +14,7 @@ actor DWep_PlasmaRifle: DoomWeapon
 {
     Tag "Plasma Rifle"
 
+    Weapon.SlotNumber 6
     Weapon.SelectionOrder 100
     Weapon.SlotPriority 0.1
     Weapon.Kickback 0
