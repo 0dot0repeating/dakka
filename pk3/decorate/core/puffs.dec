@@ -64,7 +64,7 @@ actor DakkaPuff: BulletPuff
         goto Trace
 
       Trace:
-        TNT1 A 0 bright ACS_ExecuteWithResult(DAKKA_TRACER, TRACE_BULLET, 0, -6)
+        TNT1 A 0 bright ACS_NamedExecuteWithResult("Dakka_Tracer", TRACE_BULLET, 0, -6)
         DPUF AB 2 bright
         goto Melee
         
@@ -79,7 +79,7 @@ actor DakkaPuff_Left: DakkaPuff
     States
     {
       Trace:
-        TNT1 A 0 bright ACS_ExecuteWithResult(DAKKA_TRACER, TRACE_BULLET, -2, -4)
+        TNT1 A 0 bright ACS_NamedExecuteWithResult("Dakka_Tracer", TRACE_BULLET, -2, -4)
         DPUF AB 4 bright
         goto Melee
     }
@@ -90,7 +90,7 @@ actor DakkaPuff_Right: DakkaPuff
     States
     {
       Trace:
-        TNT1 A 0 bright ACS_ExecuteWithResult(DAKKA_TRACER, TRACE_BULLET,  2, -4)
+        TNT1 A 0 bright ACS_NamedExecuteWithResult("Dakka_Tracer", TRACE_BULLET,  2, -4)
         DPUF AB 4 bright
         goto Melee
     }

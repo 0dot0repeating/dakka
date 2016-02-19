@@ -22,12 +22,20 @@
 
 int DISP_ScriptArgs[DPASS_SLOTS];
 
+int DISP_ScriptDisplayCache[PICKUPCOUNT][CLASSCOUNT];
+int DISP_ScriptDisplayCached[PICKUPCOUNT][CLASSCOUNT];
 
 
 // Copypasta!
 function int Pickup_IsDisplayScripted(int index, int classNum)
 {
     int i;
+    int ret = -1;
+
+    if (DISP_ScriptDisplayCached[index][classNum+1])
+    {
+        return DISP_ScriptDisplayCache[index][classNum];
+    }
 
     for (i = 0; i < DISP_SCRIPTEDCOUNT; i++)
     {
@@ -36,11 +44,15 @@ function int Pickup_IsDisplayScripted(int index, int classNum)
 
         if (index == checkIndex && classNum == checkClass)
         {
-            return i;
+            ret = i;
+            break;
         }
     }
 
-    return -1;
+    DISP_ScriptDisplayCached[index][classNum+1] = true;
+    DISP_ScriptDisplayCache[index][classNum+1]  = ret;
+
+    return ret;
 }
     
 

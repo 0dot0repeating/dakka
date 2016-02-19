@@ -2,7 +2,6 @@
 const int SCORESCRIPT               = 476;
 const int DAKKA_UPDATE_SWITCHAROO   = 478;
 const int DAKKA_RECOIL              = 479;
-const int DAKKA_TRACER              = 480;
 const int DAKKA_GAUSSIAN            = 482;
 
 

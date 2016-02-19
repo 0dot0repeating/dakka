@@ -43,18 +43,18 @@
 
 int PKP_ScriptedPickups[PK_SCRIPTEDCOUNT][8] =
 {
-    {It_PlasmaRifle, Cl_Dakkaguy, 494, 0, 1, 0, true, true}, // pickup/dakka_wepdisplay.h
-    {It_BFG9000,     Cl_Dakkaguy, 494, 1, 1, 0, true, true},
-    {It_Shotgun,     Cl_Dakkaguy, 494, 2, 1, 0, true, true},
-    {It_Chaingun,    Cl_Dakkaguy, 494, 3, 1, 0, true, true},
+    {It_PlasmaRifle, Cl_Dakkaguy, 494, 0, 0, 0, true, true}, // pickup/dakka_wepdisplay.h
+    {It_BFG9000,     Cl_Dakkaguy, 494, 1, 0, 0, true, true},
+    {It_Shotgun,     Cl_Dakkaguy, 494, 2, 0, 0, true, true},
+    {It_Chaingun,    Cl_Dakkaguy, 494, 3, 0, 0, true, true},
 };
 
 int PKP_PickupNamed[PK_SCRIPTEDCOUNT] =
 {
-    "Dakka_WepDisplay",
-    "Dakka_WepDisplay",
-    "Dakka_WepDisplay",
-    "Dakka_WepDisplay",
+    "Dakka_WepPickup",
+    "Dakka_WepPickup",
+    "Dakka_WepPickup",
+    "Dakka_WepPickup",
 };
 
 

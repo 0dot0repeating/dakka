@@ -7,8 +7,6 @@
 #define DAKKA_DECORATE_CLIENT       465
 
 
-#define DAKKA_TRACER                480
-#define DAKKA_TRACER_CLIENT         481
 #define DAKKA_GAUSSIAN              482
 #define DAKKA_BFGTRACE_SERVER       483
 #define DAKKA_BFGTRACE_CLIENT       484

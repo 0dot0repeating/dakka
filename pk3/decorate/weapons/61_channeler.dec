@@ -97,13 +97,13 @@ actor Channeler_PrimaryBase: Arc_Base
       Spawn:
         TNT1 A 0
         TNT1 A 0 A_TakeFromTarget("Channeler_PrimaryCounter")
-        TNT1 A 0 ACS_ExecuteWithResult(DAKKA_TRACER, TRACE_ARC_FIRER, 0, -8)
+        TNT1 A 0 ACS_NamedExecuteWithResult("Dakka_Tracer", TRACE_ARC_FIRER, 0, -8)
         TNT1 A 0 A_SpawnItemEx("ChannelerBeamImpact")
         TNT1 A 1 ACS_ExecuteWithResult(ARC_MAIN, 0)
         stop
 
       Arc_Spawn:
-        TNT1 A 0 ACS_ExecuteWithResult(DAKKA_TRACER, TRACE_ARC_MASTER, 0, 0)
+        TNT1 A 0 ACS_NamedExecuteWithResult("Dakka_Tracer", TRACE_ARC_MASTER, 0, 0)
         TNT1 A 1 ACS_ExecuteWithResult(ARC_MAIN, 0)
         stop
 
@@ -266,7 +266,7 @@ actor Channeler_SecondaryBase: Arc_Base
         stop
 
       Arc_Spawn:
-        TNT1 A 0 ACS_ExecuteWithResult(DAKKA_TRACER, TRACE_ARC_MASTER, 0, 0)
+        TNT1 A 0 ACS_NamedExecuteWithResult("Dakka_Tracer", TRACE_ARC_MASTER, 0, 0)
         TNT1 A 1 ACS_ExecuteWithResult(ARC_MAIN, 1)
         stop
 
