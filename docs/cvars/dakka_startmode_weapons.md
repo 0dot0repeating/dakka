@@ -2,7 +2,7 @@
 
 **Related CVars:** [dakka\_startmode\_ammo](dakka_startmode_ammo.md), [dakka\_startmode\_health](dakka_startmode_health.md)
 
-**Related files:** `/pk3/acs/dakka_levelstart.h`, `/pk3/acs/pickup/pickup_items_weapons.h`
+**Related files:** `/pk3/acs/dakka_levelstart.h`, `/pk3/acs/dakka_defs_classweapons.h`
 
 **CVar type:** int
 
@@ -22,6 +22,6 @@ server settings cause you to lose your weapons on death. It has two modes.
     Any weapon above that power ranking is stripped from you, along with its ammo.
 
 
-The power rankings are located in `/pk3/acs/pickup/pickup_items_weapons.h`, in 
-`Start_WeaponPowers[]` The weapons they correspond to are in `Start_Weapons[]`, if
+The power rankings are located in `/pk3/acs/dakka_defs_classweapons.h`, in 
+`Dakka_ClassWeaponPowers[][]` The weapons they correspond to are in `Dakka_ClassWeapons[]`, if
 the comments are unclear.

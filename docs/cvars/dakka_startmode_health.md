@@ -26,6 +26,6 @@ a map with regards to health and armor. There are currently five modes for this 
 The reason why I state this in terms of pickups is because that's exactly how it's
 handled in the code. It doesn't give you the armor directly - it uses the pickup system
 to give you armor and health pickups appropriately. For example, modes 3 and 4 are
-equivalent for the Doomguy, but have a 100 HP difference for the Dakkaguy.
+equivalent for the Doomguy, but have a 100 HP and 150 armor difference for the Dakkaguy.
 
 The pickup definitions are in `/pk3/acs/pickup_items.h`.
