@@ -38,7 +38,7 @@ function void ClearPoints(int pln, int bonustime)
 
 int TmpBonuses[BONUSCOUNT];
 
-script DAKKA_SCORE (int pointValue)
+script "Dakka_Score" (int pointValue)
 {
     int myhp = GetActorProperty(0, APROP_SpawnHealth);
     int i;
@@ -61,7 +61,7 @@ script DAKKA_SCORE (int pointValue)
     {
         if ((ClassifyActor(0) & ACTOR_MONSTER) && (GetActorProperty(0, APROP_Friendly) == 0))
         {
-            ACS_ExecuteWithResult(477, pointValue);
+            ACS_NamedExecuteWithResult("Dakka_Infighter", pointValue);
         }
 
         terminate;
@@ -125,7 +125,7 @@ script DAKKA_SCORE (int pointValue)
 }
 
 // monster got the kill
-script DAKKA_INFIGHTSCORE (int pointValue)
+script "Dakka_Infighter" (int pointValue)
 {
     int points_base      = pointValue;
     int points_infighter = round(pointValue * SMult_Infighter());
