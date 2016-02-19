@@ -310,7 +310,7 @@ int PKP_ReceiveCount[PICKUPCOUNT][CLASSCOUNT][PK_RECEIVECOUNT] =
         {4},
     },
     {
-        {1},
+        {50},
         {2},
     },
     {
