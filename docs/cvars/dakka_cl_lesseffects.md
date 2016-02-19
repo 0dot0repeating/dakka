@@ -18,8 +18,8 @@ Things changed:
 - Bullet and plasma tracers have their density decrease threefold - the distance between
     tracer puffs increases from 12 units to 36 units.
 
-- Channeler trails have their density decrease fourfold - the distance between tracer
-    tracer puffs increases from 8 units to 32 units.
+- Channeler trails have their density decrease threefold - the distance between tracer
+    tracer puffs increases from 6 units to 18 units.
 
 - Bullet puffs no longer spawn bouncing particles, and plasma impact no longer sparks.
 
