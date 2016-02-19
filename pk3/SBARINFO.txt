@@ -895,45 +895,44 @@ StatusBar Fullscreen, fullscreenoffsets
 //////
 ////////////////
 
-StatusBar Automap
+StatusBar Automap, fullscreenoffsets, forcescaled
 {
-
     InInventory AbnormalHealth
     {
         InInventory HealthOver200
         {
-            DrawImage "HUD_HPB3", 0,  181;
-            DrawNumber 4, DK_HUDBIG, DHud_Health300, health, alignment(left), 12, 185;
+            DrawImage "HUD_HPB3", 0,  -19;
+            DrawNumber 4, DK_HUDBIG, DHud_Health300, health, alignment(left), 12, -15;
         }
 
         InInventory HealthOver100
         {
-            DrawImage "HUD_HPB2", 0,  181;
-            DrawNumber 4, DK_HUDBIG, DHud_Health200, health, alignment(left), 12, 185, 0;
+            DrawImage "HUD_HPB2", 0,  -19;
+            DrawNumber 4, DK_HUDBIG, DHud_Health200, health, alignment(left), 12, -15, 0;
         }
 
         InInventory HealthUnder50
         {
-            DrawImage "HUD_HPB4", 0,  181;
-            DrawNumber 4, DK_HUDBIG, DHud_Health50, health, alignment(left), 12, 185, 0;
+            DrawImage "HUD_HPB4", 0,  -19;
+            DrawNumber 4, DK_HUDBIG, DHud_Health50, health, alignment(left), 12, -15, 0;
         }
 
         InInventory HealthUnder25
         {
-            DrawImage "HUD_HPB5", 0,  181;
-            DrawNumber 4, DK_HUDBIG, DHud_Health25, health, alignment(left), 12, 185, 0;
+            DrawImage "HUD_HPB5", 0,  -19;
+            DrawNumber 4, DK_HUDBIG, DHud_Health25, health, alignment(left), 12, -15, 0;
         }
 
         InInventory HealthUnder0
         {
-            DrawImage "HUD_HPB6", 0,  181;
-            DrawNumber 4, DK_HUDBIG, DHud_Health0, health, alignment(left), 12, 185, 0;
+            DrawImage "HUD_HPB6", 0,  -19;
+            DrawNumber 4, DK_HUDBIG, DHud_Health0, health, alignment(left), 12, -15, 0;
         }
     }
     else
     {
-        DrawImage "HUD_HPBG", 0,  181;
-        DrawNumber 4, DK_HUDBIG, DHud_Health, health, alignment(left), 12, 185, 0;
+        DrawImage "HUD_HPBG", 0,  -19;
+        DrawNumber 4, DK_HUDBIG, DHud_Health, health, alignment(left), 12, -15, 0;
     }
 
 
@@ -945,26 +944,26 @@ StatusBar Automap
             {
                 InInventory HUD_Armor25
                 {
-                    DrawImage "HUD_AR14", 0, 163;
-                    DrawNumber 4, DK_HUDBIG, DHud_Armor, armor, alignment(left), 12, 167;
+                    DrawImage "HUD_AR14", 0, -37;
+                    DrawNumber 4, DK_HUDBIG, DHud_Armor, armor, alignment(left), 12, -33;
                 }
 
                 InInventory HUD_Armor50
                 {
-                    DrawImage "HUD_AR13", 0, 163;
-                    DrawNumber 4, DK_HUDBIG, DHud_Armor, armor, alignment(left), 12, 167;
+                    DrawImage "HUD_AR13", 0, -37;
+                    DrawNumber 4, DK_HUDBIG, DHud_Armor, armor, alignment(left), 12, -33;
                 }
 
                 InInventory HUD_Armor75
                 {
-                    DrawImage "HUD_AR12", 0, 163;
-                    DrawNumber 4, DK_HUDBIG, DHud_Armor, armor, alignment(left), 12, 167;
+                    DrawImage "HUD_AR12", 0, -37;
+                    DrawNumber 4, DK_HUDBIG, DHud_Armor, armor, alignment(left), 12, -33;
                 }
 
                 InInventory HUD_Armor100
                 {
-                    DrawImage "HUD_AR11", 0, 163;
-                    DrawNumber 4, DK_HUDBIG, DHud_Armor, armor, alignment(left), 12, 167;
+                    DrawImage "HUD_AR11", 0, -37;
+                    DrawNumber 4, DK_HUDBIG, DHud_Armor, armor, alignment(left), 12, -33;
                 }
             }
 
@@ -972,26 +971,26 @@ StatusBar Automap
             {
                 InInventory HUD_Armor25
                 {
-                    DrawImage "HUD_AR24", 0, 163;
-                    DrawNumber 4, DK_HUDBIG, DHud_ArmorBlue, armor, alignment(left), 12, 167;
+                    DrawImage "HUD_AR24", 0, -37;
+                    DrawNumber 4, DK_HUDBIG, DHud_ArmorBlue, armor, alignment(left), 12, -33;
                 }
 
                 InInventory HUD_Armor50
                 {
-                    DrawImage "HUD_AR23", 0, 163;
-                    DrawNumber 4, DK_HUDBIG, DHud_ArmorBlue, armor, alignment(left), 12, 167;
+                    DrawImage "HUD_AR23", 0, -37;
+                    DrawNumber 4, DK_HUDBIG, DHud_ArmorBlue, armor, alignment(left), 12, -33;
                 }
 
                 InInventory HUD_Armor75
                 {
-                    DrawImage "HUD_AR22", 0, 163;
-                    DrawNumber 4, DK_HUDBIG, DHud_ArmorBlue, armor, alignment(left), 12, 167;
+                    DrawImage "HUD_AR22", 0, -37;
+                    DrawNumber 4, DK_HUDBIG, DHud_ArmorBlue, armor, alignment(left), 12, -33;
                 }
 
                 InInventory HUD_Armor100
                 {
-                    DrawImage "HUD_AR21", 0, 163;
-                    DrawNumber 4, DK_HUDBIG, DHud_ArmorBlue, armor, alignment(left), 12, 167;
+                    DrawImage "HUD_AR21", 0, -37;
+                    DrawNumber 4, DK_HUDBIG, DHud_ArmorBlue, armor, alignment(left), 12, -33;
                 }
             }
 
@@ -999,26 +998,26 @@ StatusBar Automap
             {
                 InInventory HUD_Armor25
                 {
-                    DrawImage "HUD_AR34", 0, 163;
-                    DrawNumber 3, DK_HUDBIG, DHud_ArmorSilver, armor, alignment(left), 12, 167;
+                    DrawImage "HUD_AR34", 0, -37;
+                    DrawNumber 3, DK_HUDBIG, DHud_ArmorSilver, armor, alignment(left), 12, -33;
                 }
 
                 InInventory HUD_Armor50
                 {
-                    DrawImage "HUD_AR33", 0, 163;
-                    DrawNumber 3, DK_HUDBIG, DHud_ArmorSilver, armor, alignment(left), 12, 167;
+                    DrawImage "HUD_AR33", 0, -37;
+                    DrawNumber 3, DK_HUDBIG, DHud_ArmorSilver, armor, alignment(left), 12, -33;
                 }
 
                 InInventory HUD_Armor75
                 {
-                    DrawImage "HUD_AR32", 0, 163;
-                    DrawNumber 3, DK_HUDBIG, DHud_ArmorSilver, armor, alignment(left), 12, 167;
+                    DrawImage "HUD_AR32", 0, -37;
+                    DrawNumber 3, DK_HUDBIG, DHud_ArmorSilver, armor, alignment(left), 12, -33;
                 }
 
                 InInventory HUD_Armor100
                 {
-                    DrawImage "HUD_AR31", 0, 163;
-                    DrawNumber 3, DK_HUDBIG, DHud_ArmorSilver, armor, alignment(left), 12, 167;
+                    DrawImage "HUD_AR31", 0, -37;
+                    DrawNumber 3, DK_HUDBIG, DHud_ArmorSilver, armor, alignment(left), 12, -33;
                 }
             }
 
@@ -1026,26 +1025,26 @@ StatusBar Automap
             {
                 InInventory HUD_Armor25
                 {
-                    DrawImage "HUD_AR44", 0, 163;
-                    DrawNumber 3, DK_HUDBIG, DHud_ArmorGold, armor, alignment(left), 12, 167;
+                    DrawImage "HUD_AR44", 0, -37;
+                    DrawNumber 3, DK_HUDBIG, DHud_ArmorGold, armor, alignment(left), 12, -33;
                 }
 
                 InInventory HUD_Armor50
                 {
-                    DrawImage "HUD_AR43", 0, 163;
-                    DrawNumber 3, DK_HUDBIG, DHud_ArmorGold, armor, alignment(left), 12, 167;
+                    DrawImage "HUD_AR43", 0, -37;
+                    DrawNumber 3, DK_HUDBIG, DHud_ArmorGold, armor, alignment(left), 12, -33;
                 }
 
                 InInventory HUD_Armor75
                 {
-                    DrawImage "HUD_AR42", 0, 163;
-                    DrawNumber 3, DK_HUDBIG, DHud_ArmorGold, armor, alignment(left), 12, 167;
+                    DrawImage "HUD_AR42", 0, -37;
+                    DrawNumber 3, DK_HUDBIG, DHud_ArmorGold, armor, alignment(left), 12, -33;
                 }
 
                 InInventory HUD_Armor100
                 {
-                    DrawImage "HUD_AR41", 0, 163;
-                    DrawNumber 3, DK_HUDBIG, DHud_ArmorGold, armor, alignment(left), 12, 167;
+                    DrawImage "HUD_AR41", 0, -37;
+                    DrawNumber 3, DK_HUDBIG, DHud_ArmorGold, armor, alignment(left), 12, -33;
                 }
             }
 
@@ -1053,26 +1052,26 @@ StatusBar Automap
             {
                 InInventory HUD_Armor25
                 {
-                    DrawImage "HUD_AR54", 0, 163;
-                    DrawNumber 3, DK_HUDBIG, DHud_ArmorTan, armor, alignment(left), 12, 167;
+                    DrawImage "HUD_AR54", 0, -37;
+                    DrawNumber 3, DK_HUDBIG, DHud_ArmorTan, armor, alignment(left), 12, -33;
                 }
 
                 InInventory HUD_Armor50
                 {
-                    DrawImage "HUD_AR53", 0, 163;
-                    DrawNumber 3, DK_HUDBIG, DHud_ArmorTan, armor, alignment(left), 12, 167;
+                    DrawImage "HUD_AR53", 0, -37;
+                    DrawNumber 3, DK_HUDBIG, DHud_ArmorTan, armor, alignment(left), 12, -33;
                 }
 
                 InInventory HUD_Armor75
                 {
-                    DrawImage "HUD_AR52", 0, 163;
-                    DrawNumber 3, DK_HUDBIG, DHud_ArmorTan, armor, alignment(left), 12, 167;
+                    DrawImage "HUD_AR52", 0, -37;
+                    DrawNumber 3, DK_HUDBIG, DHud_ArmorTan, armor, alignment(left), 12, -33;
                 }
 
                 InInventory HUD_Armor100
                 {
-                    DrawImage "HUD_AR51", 0, 163;
-                    DrawNumber 3, DK_HUDBIG, DHud_ArmorTan, armor, alignment(left), 12, 167;
+                    DrawImage "HUD_AR51", 0, -37;
+                    DrawNumber 3, DK_HUDBIG, DHud_ArmorTan, armor, alignment(left), 12, -33;
                 }
             }
 
@@ -1080,39 +1079,39 @@ StatusBar Automap
             {
                 InInventory HUD_Armor25
                 {
-                    DrawImage "HUD_AR64", 0, 163;
-                    DrawNumber 3, DK_HUDBIG, DHud_ArmorRed, armor, alignment(left), 12, 167;
+                    DrawImage "HUD_AR64", 0, -37;
+                    DrawNumber 3, DK_HUDBIG, DHud_ArmorRed, armor, alignment(left), 12, -33;
                 }
 
                 InInventory HUD_Armor50
                 {
-                    DrawImage "HUD_AR63", 0, 163;
-                    DrawNumber 3, DK_HUDBIG, DHud_ArmorRed, armor, alignment(left), 12, 167;
+                    DrawImage "HUD_AR63", 0, -37;
+                    DrawNumber 3, DK_HUDBIG, DHud_ArmorRed, armor, alignment(left), 12, -33;
                 }
 
                 InInventory HUD_Armor75
                 {
-                    DrawImage "HUD_AR62", 0, 163;
-                    DrawNumber 3, DK_HUDBIG, DHud_ArmorRed, armor, alignment(left), 12, 167;
+                    DrawImage "HUD_AR62", 0, -37;
+                    DrawNumber 3, DK_HUDBIG, DHud_ArmorRed, armor, alignment(left), 12, -33;
                 }
 
                 InInventory HUD_Armor100
                 {
-                    DrawImage "HUD_AR61", 0, 163;
-                    DrawNumber 3, DK_HUDBIG, DHud_ArmorRed, armor, alignment(left), 12, 167;
+                    DrawImage "HUD_AR61", 0, -37;
+                    DrawNumber 3, DK_HUDBIG, DHud_ArmorRed, armor, alignment(left), 12, -33;
                 }
             }
         }
         else
         {
-            DrawImage "HUD_AR11", 0, 163;
-            DrawNumber 4, DK_HUDBIG, DHud_Armor, armor, alignment(left), 12, 167;
+            DrawImage "HUD_AR11", 0, -37;
+            DrawNumber 4, DK_HUDBIG, DHud_Armor, armor, alignment(left), 12, -33;
         }
 
     }
     else
     {   
-        DrawImage "HUD_ARNO", 0, 163;
+        DrawImage "HUD_ARNO", 0, -37;
     }
 
     UsesAmmo
@@ -1121,25 +1120,26 @@ StatusBar Automap
         {
             InInventory Ammo1Under25
             {
-                DrawImage "HUD_A1B2", 268, 181;
-                DrawNumber 4, DK_HUDBIG, DHud_Ammo1, ammo1, 307, 185;
+                DrawImage "HUD_A1B2", -52, -19;
+                DrawNumber 4, DK_HUDBIG, DHud_Ammo1, ammo1, -13, -15;
             }
 
             InInventory Ammo1Empty
             {
-                DrawImage "HUD_A1B3", 268, 181;
-                DrawNumber 4, DK_HUDBIG, DHud_Health0, ammo1, 307, 185;
+                DrawImage "HUD_A1B3", -52, -19;
+                DrawNumber 4, DK_HUDBIG, DHud_Health0, ammo1, -13, -15;
             }
         }
         else
         {
-            DrawImage "HUD_A1BG", 268, 181;
-            DrawNumber 4, DK_HUDBIG, DHud_Ammo1, ammo1, 307, 185;
+            DrawImage "HUD_A1BG", -52, -19;
+            DrawNumber 4, DK_HUDBIG, DHud_Ammo1, ammo1, -13, -15;
         }
+        
     }
     else
     {
-        DrawImage "HUD_A1NO", 268, 181;
+        DrawImage "HUD_A1NO", -52, -19;
     }
 
     UsesSecondaryAmmo
@@ -1148,58 +1148,56 @@ StatusBar Automap
         {
             InInventory Ammo2Under25
             {
-                DrawImage "HUD_A2B2", 270, 163;
-                DrawNumber 4, DK_HUDBIG, DHud_Ammo2, ammo2, 307, 167;
+                DrawImage "HUD_A2B2", -50, -37;
+                DrawNumber 4, DK_HUDBIG, DHud_Ammo2, ammo2, -13, -33;
             }
 
             InInventory Ammo2Empty
             {
-                DrawImage "HUD_A2B3", 270, 163;
-                DrawNumber 4, DK_HUDBIG, DHud_Health0, ammo2, 307, 167;
+                DrawImage "HUD_A2B3", -50, -37;
+                DrawNumber 4, DK_HUDBIG, DHud_Health0, ammo2, -13, -33;
             }
         }
         else
         {
-            DrawImage "HUD_A2BG", 270, 163;
-            DrawNumber 4, DK_HUDBIG, DHud_Ammo2, ammo2, 307, 167;
+            DrawImage "HUD_A2BG", -50, -37;
+            DrawNumber 4, DK_HUDBIG, DHud_Ammo2, ammo2, -13, -33;
         }
     }
     else
     {
-        DrawImage "HUD_A2NO", 270, 163;
+        DrawImage "HUD_A2NO", -50, -37;
     }
-
-    DrawSelectedInventory centerbottom, DK_HUDSMALL, 301, 160, 310, 154, untranslated;
 
     InInventory HUD_AnyCardKeys
     {
-        InInventory YellowCard  { DrawImage "HUD_YKY1", 2,  155; }
-        InInventory YellowSkull { DrawImage "HUD_YKY2", 2,  148; }
-        InInventory RedCard     { DrawImage "HUD_RKY1", 10,  155; }
-        InInventory RedSkull    { DrawImage "HUD_RKY2", 10,  148; }
-        InInventory BlueCard    { DrawImage "HUD_BKY1", 18,  155; }
-        InInventory BlueSkull   { DrawImage "HUD_BKY2", 18,  148; }
+        InInventory YellowCard  { DrawImage "HUD_YKY1", 2,   -45; }
+        InInventory YellowSkull { DrawImage "HUD_YKY2", 2,   -52; }
+        InInventory RedCard     { DrawImage "HUD_RKY1", 10,  -45; }
+        InInventory RedSkull    { DrawImage "HUD_RKY2", 10,  -52; }
+        InInventory BlueCard    { DrawImage "HUD_BKY1", 18,  -45; }
+        InInventory BlueSkull   { DrawImage "HUD_BKY2", 18,  -52; }
     }
     else
     {
-        InInventory YellowCard  { DrawImage "HUD_YKY1", 2,   148; }
-        InInventory YellowSkull { DrawImage "HUD_YKY2", 2,   155; }
-        InInventory RedCard     { DrawImage "HUD_RKY1", 10,  148; }
-        InInventory RedSkull    { DrawImage "HUD_RKY2", 10,  155; }
-        InInventory BlueCard    { DrawImage "HUD_BKY1", 18,  148; }
-        InInventory BlueSkull   { DrawImage "HUD_BKY2", 18,  155; }
+        InInventory YellowCard  { DrawImage "HUD_YKY1", 2,   -52; }
+        InInventory YellowSkull { DrawImage "HUD_YKY2", 2,   -45; }
+        InInventory RedCard     { DrawImage "HUD_RKY1", 10,  -52; }
+        InInventory RedSkull    { DrawImage "HUD_RKY2", 10,  -45; }
+        InInventory BlueCard    { DrawImage "HUD_BKY1", 18,  -52; }
+        InInventory BlueSkull   { DrawImage "HUD_BKY2", 18,  -45; }
     }
 
     InInventory HUD_AnyDoomKeys
     {
-        InInventory KeyYellow { DrawImage "HUD_YKY3", 2,  140; }
-        InInventory KeyGreen  { DrawImage "HUD_GKY1", 10, 141; }
-        InInventory KeyBlue   { DrawImage "HUD_BKY3", 18, 141; }
+        InInventory KeyYellow { DrawImage "HUD_YKY3", 2,  -60; }
+        InInventory KeyGreen  { DrawImage "HUD_GKY1", 10, -59; }
+        InInventory KeyBlue   { DrawImage "HUD_BKY3", 18, -59; }
     }
     else
     {
-        InInventory KeyYellow { DrawImage "HUD_YKY3", 2,  154; }
-        InInventory KeyGreen  { DrawImage "HUD_GKY1", 10, 155; }
-        InInventory KeyBlue   { DrawImage "HUD_BKY3", 18, 155; }
+        InInventory KeyYellow { DrawImage "HUD_YKY3", 2,  -46; }
+        InInventory KeyGreen  { DrawImage "HUD_GKY1", 10, -45; }
+        InInventory KeyBlue   { DrawImage "HUD_BKY3", 18, -45; }
     }
 }
