@@ -1,5 +1,3 @@
-#define DAKKA_SCORE                 476
-#define DAKKA_INFIGHTSCORE          477
 #define DAKKA_UPDATE_SWITCHAROO     478
 #define DAKKA_RECOIL                479
 
