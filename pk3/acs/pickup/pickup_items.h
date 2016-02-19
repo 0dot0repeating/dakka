@@ -138,7 +138,7 @@ int PKP_ReceiveItems[PICKUPCOUNT][CLASSCOUNT][PK_RECEIVECOUNT] =
     },
 
     {
-        {"ClipBox"},
+        {"Clip"},
         {"DakkaBullet_10mm", "DakkaBullet_5mm", "DakkaRainGrenades", "DakkaFlamerFuel"},
     },
     {
