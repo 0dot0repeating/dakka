@@ -2,7 +2,6 @@ addplayerclass Dakkaguy
 
 weaponsection Dakka
 
-addslotdefault 1 "DWep_Chainsaw"
 addslotdefault 1 "DWep_Fist"
 addslotdefault 1 "DWep_Scrappers"
 addslotdefault 2 "DWep_Pistol"

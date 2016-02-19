@@ -10,7 +10,7 @@
 // DakkaTracer is the tracer actor
 // DakkaTracerBright for lesseffects version
 
-script DAKKA_TRACER (int which, int yoff, int zoff)
+script "Dakka_Tracer" (int which, int yoff, int zoff)
 {
     int shotX = GetActorX(0);
     int shotY = GetActorY(0);
@@ -97,11 +97,11 @@ script DAKKA_TRACER (int which, int yoff, int zoff)
       default:
         if (IsServer)
         {
-            ACS_ExecuteWithResult(DAKKA_TRACER_CLIENT, which, tracerTID1, tracerTID2);
+            ACS_NamedExecuteWithResult("Dakka_Tracer_Client", which, tracerTID1, tracerTID2);
         }
         else
         {
-            ACS_ExecuteAlways(DAKKA_TRACER_CLIENT, 0, which, tracerTID1, tracerTID2);
+            ACS_NamedExecuteAlways("Dakka_Tracer_Client", 0, which, tracerTID1, tracerTID2);
         }
         break;
 
@@ -118,11 +118,23 @@ script DAKKA_TRACER (int which, int yoff, int zoff)
             ACS_ExecuteAlways(DAKKA_BFGTRACE_CLIENT, 0, tracerTID1, tracerTID2);
         }
         break;
+
+      case TRACE_ARC_FIRER:
+      case TRACE_ARC_MASTER:
+        if (IsServer)
+        {
+            ACS_NamedExecuteWithResult("Dakka_Lightning", tracerTID1, tracerTID2);
+        }
+        else
+        {
+            ACS_NamedExecuteAlways("Dakka_Lightning", 0, tracerTID1, tracerTID2);
+        }
+        break;
     }
 }
 
 
-script DAKKA_TRACER_CLIENT (int which, int startTID, int endTID) clientside
+script "Dakka_Tracer_Client" (int which, int startTID, int endTID) clientside
 {
     int startX = GetActorX(startTID);
     int startY = GetActorY(startTID);
@@ -207,3 +219,4 @@ script DAKKA_TRACER_CLIENT (int which, int startTID, int endTID) clientside
         }
     }
 }
+

@@ -68,6 +68,13 @@
 ////////
 
 
+// Tracers, for all sorts of things.
+#include "dakka_tracers.h"
+
+// Lightning tracer.
+#include "dakka_lightning.h"
+
+
 // Auto-reload the SSG when it's in your pants. Also scripts called by the SSG,
 //  to handle the triggers and whatnot
 #include "dakka_ssg.h"
@@ -84,11 +91,6 @@
 // Gaussian distribution script, for spread that looks circular rather than a
 //  rectangle.
 #include "dakka_gaussian.h"
-
-
-
-// Tracers, for all sorts of things.
-#include "dakka_tracers.h"
 
 
 // Clientside recoil script. Does anyone actually use this?
