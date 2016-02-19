@@ -118,7 +118,7 @@ int Dakka_ClassWeaponPowers[CLASSWEAPONS][CLASSCOUNT] =
 int Dakka_ClassWep_StartModeIgnore[CLASSWEAPONS][CLASSCOUNT] =
 {
     {true,  true},
-    {false, true},
+    {false, false},
     {true,  true},
     {true,  true},
     {false, false},
@@ -132,7 +132,7 @@ int Dakka_ClassWep_StartModeIgnore[CLASSWEAPONS][CLASSCOUNT] =
     {false, false},
 
     {true,  true},
-    {false, true},
+    {false, false},
     {true,  true},
     {true,  true},
     {false, false},
