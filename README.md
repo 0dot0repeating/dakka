@@ -10,12 +10,29 @@ display for sure would be utterly broken for every player besides the host.
 **DOWNLOAD:** http://jinotra.in/downloads/mods/doom/dakka/
 
 
+### FRESH FROM THIS REPO
+
+Above the latest-commit bar, on the very right, there's a download icon.
+
+Click that, choose ".ZIP" (or ".TAR.GZ" if you know you can open it), then unzip
+the ZIP file into its own directory.
+
+Go into the pk3/ directory, select everything in there, and zip it all up.
+Change the extension of the new ZIP file to ".pk3", and you should be good to go.
+
+If, in the ZIP you created, everything's still in the "pk3/" folder, you zipped
+the folder, not its contents. Don't do that.
+
+
+
 ## Wait, why's it missing so much stuff?
 
 Dakka's code got messy, and underlying systems changed enough that I decided
 enough was enough. Rather than let it go the way of Samsara, I decided to nip
 it in the bud and restructure everything, cleaning up extraneous code,
 streamlining things, and so on and so forth.
+
+
 
 ## So what *is* in so far?
 
@@ -37,6 +54,7 @@ streamlining things, and so on and so forth.
 * dakka\_jumpmod (might not come back in, honestly)
 * The dakka\_rearm CVars
 * Score rewards
+
 
 
 ## Anything new?
@@ -61,6 +79,7 @@ streamlining things, and so on and so forth.
 
     The Impaler can be found in the same manner as the Channeler, but instead of
     the plasma rifle and dakka_bundleplasma, it's the BFG and dakka_bundlebfg.
+
 
 
 ## How long's it gonna take to add all the shit back in?
