@@ -29,6 +29,14 @@ int CMSG_LastPickup[PLAYERMAX][2];
 //  slot has been filled.
 function int CMSG_AddPickupData(int pln, int index, int arg1, int arg2)
 {
+    // As of Zandronum 2.1.2, Using ACS_ExecuteWithResult with arguments
+    //  between -1 and -128 will pass those numbers as 256 + <val> instead.
+    //  This is obviously not desirable.
+    //
+    // We subtracted 128 from it in Pickup_SendMessage, so we add 128 here.
+    if (arg1 < 0) { arg1 += 128; }
+    if (arg2 < 0) { arg2 += 128; }
+
     CMSG_MessageData[pln][index]   = arg1;
     CMSG_MessageData[pln][index+1] = arg2;
 
@@ -190,7 +198,10 @@ script PICKUP_SHOWMESSAGE (int mdata_index, int data1, int data2) clientside
 
     // Whatever the message ended up being, check if it's a LANGUAGE lookup.
 
-    // Explicitly *not* one.
+    // Wrap the message in StrParam so that StrLen never crashes.
+    message = StrParam(s:message);
+
+    // Explicitly *not* a LANGUAGE message.
     if (strstr(message, "\\$") == 0)
     {
         message = sliceString(message, 2, StrLen(message));
@@ -243,7 +254,6 @@ script PICKUP_SHOWMESSAGE (int mdata_index, int data1, int data2) clientside
     //  server, the client will do another likely malformed pickup message
     CMSG_ClearPickupData(pln);
 
-    // Timer()+1 because 0 means "never picked up".
     CMSG_LastPickup[pln][LASTPICKUP_INDEX] = itemNum;
     CMSG_LastPickup[pln][LASTPICKUP_TIME]  = Timer() + 1;
 }

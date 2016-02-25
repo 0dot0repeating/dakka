@@ -193,7 +193,7 @@ script "Dakka_Tracer_Client" (int which, int startTID, int endTID) clientside
         density      = cond(lesseffects, 32.0, 8.0);
     }
 
-    if (StrLen(particleType) == 0) { terminate; }
+    if (stringBlank(particleType)) { terminate; }
 
     // miraculously, this works on both ints and fixed
     int startPoint = mod(dist, density) / 2;

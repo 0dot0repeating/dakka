@@ -73,8 +73,8 @@ function void Dakka_StartMode_Weapons(int classNum, int entered, int lostWeapons
         int ammo1Name = PKP_KnownGuns[wepIndex][WEP_AMMO1];
         int ammo2Name = PKP_KnownGuns[wepIndex][WEP_AMMO2];
 
-        int gotAmmo1 = (ammo1Name != 0 && StrLen(ammo1Name) > 0);
-        int gotAmmo2 = (ammo2Name != 0 && StrLen(ammo2Name) > 0);
+        int gotAmmo1 = !stringBlank(ammo1Name);
+        int gotAmmo2 = !stringBlank(ammo2Name);
 
         if (gotAmmo1)
         {
@@ -182,10 +182,10 @@ function void Dakka_StartMode_Ammo(int classNum, int entered, int lostAmmo)
         int ammo1Name = PKP_KnownGuns[i][WEP_AMMO1];
         int ammo2Name = PKP_KnownGuns[i][WEP_AMMO2];
 
-        // The StrLen check's for optimization - if there's no ammo type,
+        // The stingBlank check's for optimization - if there's no ammo type,
         //  don't check, as Ammo_AmmoIndex's expensive when called as many
         //  times as it is here
-        if (StrLen(ammo1Name) > 0)
+        if (!stringBlank(ammo1Name))
         {
             int ammo1Index = Ammo_AmmoIndex(ammo1Name);
 
@@ -195,7 +195,7 @@ function void Dakka_StartMode_Ammo(int classNum, int entered, int lostAmmo)
             }
         }
 
-        if (StrLen(ammo2name) > 0)
+        if (!stringBlank(ammo2Name))
         {
             int ammo2Index = Ammo_AmmoIndex(ammo2Name);
 

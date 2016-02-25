@@ -182,8 +182,8 @@ function void Dakka_UpdateTemporaryItems(void)
     }
     else
     {
-        hasAmmo1 = StrLen(ammo1Name) != 0;
-        hasAmmo2 = StrLen(ammo2Name) != 0;
+        hasAmmo1 = !stringBlank(ammo1Name);
+        hasAmmo2 = !stringBlank(ammo2Name);
     }
 
     if (!hasAmmo1)
