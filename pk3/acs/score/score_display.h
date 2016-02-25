@@ -100,6 +100,5 @@ function void Score_DrawBonuses(int pln)
 
         HudMessage(s:name; HUDMSG_FADEOUT | HUDMSG_COLORSTRING, 24410 + (offset * 2), "DScore_White", 
                         508.1, 82.0 + (13.0 * (offset-1)), 0.5, 0.5);
-
     }
 }

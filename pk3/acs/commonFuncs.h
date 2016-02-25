@@ -859,7 +859,7 @@ function int _defaulttid(int def, int alwaysPropagate)
     {
         if (def <= 0)
         {
-            tid = unusedTID(2000 + (100 * random(0, 50)), 65535);
+            tid = UniqueTID();
         }
         else
         {
