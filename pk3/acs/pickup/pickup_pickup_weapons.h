@@ -57,8 +57,8 @@ function void Weapon_PickupWeapon(int wepIndex, int count, int dropped)
     int ammo1 = PKP_KnownGuns[wepIndex][WEP_AMMO1];
     int ammo2 = PKP_KnownGuns[wepIndex][WEP_AMMO2];
 
-    int usesAmmo1  = !!StrLen(ammo1);
-    int usesAmmo2  = !!StrLen(ammo2);
+    int usesAmmo1  = !stringBlank(ammo1);
+    int usesAmmo2  = !stringBlank(ammo2);
 
     // Dropped weapons never use sv_weaponstay
     int weaponstay = GetCVar("sv_weaponstay") && !dropped;
@@ -154,35 +154,14 @@ function void Weapon_PickupWeapon(int wepIndex, int count, int dropped)
     //  so we have to.
     if (pickupDidSomething && !hasWeapon)
     {
-        int doswitch = false;
-
-        switch (CToS_ServerData[PlayerNumber()][C2S_D_SWITCHONPICKUP])
+        if (IsServer)
         {
-          case 0:
-            // Never switch
-            break;
-
-          case 1:
-            // Switch only on higher priority
-            // If the old gun isn't in the weapon index, switch anyway
-
-            int oldPriority;
-            int newPriority = PKP_WeaponPriorities[wepIndex];
-            int curGun = Weapon_CurrentWeaponIndex();
-
-            if (curGun == -1) { oldPriority = 0x7FFFFFFF; }
-            else { oldPriority = PKP_WeaponPriorities[curGun]; }
-
-            if (oldPriority >= newPriority) { doswitch = true; }
-            break;
-          
-          case 2:
-            // Always switch
-            doswitch = true;
-            break;
+            ACS_NamedExecuteWithResult("PWeapon_Switch", wepIndex);
         }
-
-        if (doswitch) { SetWeapon(weapon); }
+        else
+        {
+            ACS_NamedExecuteAlways("PWeapon_Switch", 0, wepIndex);
+        }
     }
 
     if (pickupDidSomething)
@@ -192,3 +171,53 @@ function void Weapon_PickupWeapon(int wepIndex, int count, int dropped)
     }
 }
 
+
+
+#define PWO_KNOWNGAMES 6
+
+int PWO_GameNames[PWO_KNOWNGAMES] = {"Doom", "Chex", "Heretic", "Hexen", "Strife", "Any"};
+
+script "PWeapon_Switch" (int wepIndex) clientside
+{
+    int doswitch = false;
+
+    int weapon    = PKP_KnownGuns[wepIndex][WEP_NAME];
+    int pickupState;
+
+    if (Pickup_IsZandronum())
+    {
+        pickupState = GetCVar("switchonpickup");
+    }
+    else
+    {
+        pickupState = cond(GetCvar("neverswitchonpickup"), 0, 2);
+    }
+
+    switch (pickupState)
+    {
+      case 0:
+        // Never switch
+        break;
+
+      case 1:
+        // Switch only on higher priority
+        // If the old gun isn't in the weapon index, switch anyway
+
+        int oldPriority;
+        int newPriority = PKP_WeaponPriorities[wepIndex];
+        int curGun = Weapon_CurrentWeaponIndex();
+
+        if (curGun == -1) { oldPriority = 0x7FFFFFFF; }
+        else { oldPriority = PKP_WeaponPriorities[curGun]; }
+
+        if (oldPriority >= newPriority) { doswitch = true; }
+        break;
+      
+      case 2:
+        // Always switch
+        doswitch = true;
+        break;
+    }
+
+    if (doswitch) { SetWeapon(weapon); }
+}

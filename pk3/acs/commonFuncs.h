@@ -1159,7 +1159,14 @@ function int acos(int f)
 //  move CommonFuncs_ZeroString to something other than 0, breaking this.
 //
 // Thanks, ACC.
+//
+// Also, we need to use StrParam because a nonexistent string that has StrLen
+//  done on it will crash the game. StrParam makes a valid string, and doesn't
+//  crash if given a nonexistent string. Yay.
 function int stringBlank(int string)
 {
-    return (string == CommonFuncs_ZeroString) || (StrLen(string) == 0);
+    if (string == CommonFuncs_ZeroString) { return true; }
+
+    int safeString = StrParam(s:string);
+    return StrLen(safeString) == 0;
 }

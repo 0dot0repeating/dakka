@@ -1,7 +1,7 @@
 // Class data whoa
 
 // First, how many classes are we talking about here?
-#define CLASSCOUNT_DEFINED  1
+#define CLASSCOUNT_DEFINED  4
 
 // But we're not actually going to use that number a lot, because Cl_Unknown
 //  exists. This is typically what we want.
@@ -19,7 +19,10 @@
 //  one applies.
 
 #define Cl_Unknown              (-1)
-#define Cl_Dakkaguy             0
+#define Cl_Test_ClipGuy         0
+#define Cl_Test_ShellGuy        1
+#define Cl_Test_RocketGuy       2
+#define Cl_Test_CellGuy         2
 
 
 
@@ -28,7 +31,10 @@
 int ClassNames[CLASSCOUNT] = 
 {
     "Unknown",
-    "Dakkaguy",
+    "Clipguy",
+    "Shellguy",
+    "Rocketguy",
+    "Cellguy",
 };
 
 
@@ -36,12 +42,13 @@ int ClassNames[CLASSCOUNT] =
 // This is the default state an item on display will jump to if it isn't
 //  scripted. It's used in pickup_display.h, but it's here to keep relevant
 //  data in the same place.
-//
-// If no class is found, it goes to "Unknown".
 
 int DISP_ClassStates[CLASSCOUNT_DEFINED] =
 {
-    "Dakka",
+    "Clipguy",
+    "Shellguy",
+    "Rocketguy",
+    "Cellguy",
 };
 
 
@@ -68,7 +75,10 @@ int DISP_ClassStates[CLASSCOUNT_DEFINED] =
 
 int ClassCheckMethod[CLASSCOUNT_DEFINED] =
 {
-    CLASS_FINDBYNAME,
+    CLASS_FINDBYSCRIPT,
+    CLASS_FINDBYSCRIPT,
+    CLASS_FINDBYSCRIPT,
+    CLASS_FINDBYSCRIPT,
 };
 
 
@@ -81,6 +91,9 @@ int ClassCheckMethod[CLASSCOUNT_DEFINED] =
 int ClassCheck_ByInv[CLASSCOUNT_DEFINED][CLASS_INVCHECKCOUNT] =
 {
     {""},
+    {""},
+    {""},
+    {""},
 };
 
 
@@ -90,7 +103,10 @@ int ClassCheck_ByInv[CLASSCOUNT_DEFINED][CLASS_INVCHECKCOUNT] =
 // Etc.
 int ClassCheck_ByName[CLASSCOUNT_DEFINED][CLASS_NAMECHECKCOUNT] =
 {
-    {"Dakkaguy"},
+    {""},
+    {""},
+    {""},
+    {""},
 };
 
 
@@ -103,7 +119,10 @@ int ClassCheck_ByName[CLASSCOUNT_DEFINED][CLASS_NAMECHECKCOUNT] =
 
 int ClassCheck_ByScript[CLASSCOUNT_DEFINED][4] =
 {
-    {0,0,0,0},
+    {490, 0, 0, 0},
+    {490, 1, 0, 0},
+    {490, 2, 0, 0},
+    {490, 3, 0, 0},
 };
 
 
@@ -112,6 +131,9 @@ int ClassCheck_ByScript[CLASSCOUNT_DEFINED][4] =
 
 int ClassCheck_ByNamedScript[CLASSCOUNT_DEFINED] =
 {
+    "",
+    "",
+    "",
     "",
 };
 
@@ -134,7 +156,7 @@ function int Pickup_CheckInv(int tid, int classNum)
     for (i = 0; i < CLASS_INVCHECKCOUNT; i++)
     {
         int item = ClassCheck_ByInv[classNum][i];
-        if (StrLen(item) == 0) { continue; }
+        if (stringBlank(item)) { continue; }
 
         if (tid == 0)
         {
