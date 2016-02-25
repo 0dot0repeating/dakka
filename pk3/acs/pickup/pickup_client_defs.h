@@ -41,15 +41,15 @@
 //  correspond to.
 #define S2C_D_BONUSSTART    9
 
-#define S2C_D_BS_BASE         4
-#define S2C_D_BS_SPREE        5
-#define S2C_D_BS_EFFICIENT    6
-#define S2C_D_BS_INFIGHTER    7
-#define S2C_D_BS_SWITCHAROO   8
-#define S2C_D_BS_SCRAPPING    9
-#define S2C_D_BS_CURVEBALL    10
-#define S2C_D_BS_AIR          11
-#define S2C_D_BS_BONEDRY      12
-#define S2C_D_BS_SORELOSER    13
-#define S2C_D_BS_BRAWLER      14
-#define S2C_D_BS_POINTBLANK   15
+#define S2C_D_BS_BASE         9
+#define S2C_D_BS_SPREE        10
+#define S2C_D_BS_EFFICIENT    11
+#define S2C_D_BS_INFIGHTER    12
+#define S2C_D_BS_SWITCHAROO   13
+#define S2C_D_BS_SCRAPPING    14
+#define S2C_D_BS_CURVEBALL    15
+#define S2C_D_BS_AIR          16
+#define S2C_D_BS_BONEDRY      17
+#define S2C_D_BS_SORELOSER    18
+#define S2C_D_BS_BRAWLER      19
+#define S2C_D_BS_POINTBLANK   20
