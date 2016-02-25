@@ -120,21 +120,4 @@ actor DakkaShootable: Trigger
     }
 }
 
-actor DakkaCurveballToken: Boolean {}
-
-actor DakkaCurveballChecker: Trigger
-{
-    States
-    {
-      Pickup:
-        TNT1 A 0 A_JumpIfTargetInLOS("CanSeeHim", 360)
-        TNT1 A 0 A_TakeInventory("DakkaCurveballToken")
-        stop
-
-      CanSeeHim:
-        TNT1 A 0 A_GiveInventory("DakkaCurveballToken")
-        stop
-    }
-}
-
 actor DakkaBackpackItem: BackpackItem {}

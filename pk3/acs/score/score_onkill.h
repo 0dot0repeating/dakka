@@ -48,14 +48,12 @@ script "Dakka_Score" (int pointValue)
     int myY = GetActorY(0);
     int myZ = GetActorZ(0);
 
-    SetActorPosition(0, GetActorX(0), GetActorY(0), myZ+41.0, 0);
-    GiveInventory("DakkaCurveballChecker", 1);
-    int curveCheck = CheckInventory("DakkaCurveballToken");
-    SetActorPosition(0, GetActorX(0), GetActorY(0), myZ, 0);
+    int myTID = defaultTID(-1);
 
     if (!SetActivatorToTarget(0)) { terminate; }
 
-    int pln = PlayerNumber();
+    int firerTID    = defaultTID(-1);
+    int pln         = PlayerNumber();
 
     if (pln == -1)
     {
@@ -66,6 +64,8 @@ script "Dakka_Score" (int pointValue)
 
         terminate;
     }
+
+    int curveCheck = CheckSight(myTID, firerTID, 0);
 
     int plX = GetActorX(0);
     int plY = GetActorY(0);
