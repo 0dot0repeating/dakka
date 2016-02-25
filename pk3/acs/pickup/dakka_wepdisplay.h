@@ -36,6 +36,10 @@ int WepDisplay_S2CCheck[WEPDISP_TYPES][2] =
 };
 
 
+// Array lookups are surprisingly expensive. Let's not do them if we don't have to.
+// 
+// Restructuring this script to do as few lookups as possible cut the instruction
+//  count for this down from 170-ish to 77. Good shit.
 script "Dakka_WepDisplay" (int weptype)
 {
     if (DISP_ScriptArgs[DPASS_DOCLEANUP])
@@ -45,7 +49,7 @@ script "Dakka_WepDisplay" (int weptype)
         terminate;
     }
 
-    int cpln = ConsolePlayerNumber();
+    int cpln             = ConsolePlayerNumber();
     int classNum_client  = SToC_ClientData[cpln][S2C_D_CLASSNUM] - 1;
 
     if (classNum_client != Cl_Dakkaguy) { terminate; }
@@ -53,8 +57,6 @@ script "Dakka_WepDisplay" (int weptype)
     int secondWepCheck = WepDisplay_S2CCheck[weptype][WDCHECK_USESECONDWEP];
     int bundleCheck    = WepDisplay_S2CCheck[weptype][WDCHECK_USEBUNDLE];
 
-    // This is for the display script.
-    // By the way, don't mix up CToS and SToC. Annoying bugs arise.
     int useSecond_client = false;
     int bundle_client    = false;
 
@@ -68,34 +70,29 @@ script "Dakka_WepDisplay" (int weptype)
         bundle_client       = SToC_ClientData[cpln][bundleCheck];
     }
 
-    int normState   = WepDisplay_States[weptype][WDSTATE_NORMAL];
-    int secondState = WepDisplay_States[weptype][WDSTATE_SECONDWEP];
-    int bundleState = WepDisplay_States[weptype][WDSTATE_BUNDLED];
-
-    int forceDisplay = false;
-
     // Gotta track this shit by inventory item so that every pickup changes
     //  properly - using an array had just one of the pickups change, and
     //  the rest of them to go "well the values match, time to do nothing :^)"
     int oldSecond = CheckInventory("DPickup_SecondWepState");
     int oldBundle = CheckInventory("DPickup_BundleState");
 
-    if (oldBundle != bundle_client)     { forceDisplay = true; }
-    if (oldSecond != useSecond_client)  { forceDisplay = true; }
-
-    if (DISP_ScriptArgs[DPASS_CLASSNUM] != DISP_ScriptArgs[DPASS_OLDCLASSNUM])
-    {
-        forceDisplay = true;
-    }
+    if ((oldBundle == bundle_client) && (oldSecond == useSecond_client)) { terminate; }
 
     SetInventory("DPickup_BundleState",     bundle_client);
     SetInventory("DPickup_SecondWepState",  useSecond_client);
 
-    if (!forceDisplay) { terminate; }
-
-    if (bundle_client == 1)     { SetActorState(0, bundleState); }
-    else if (useSecond_client)  { SetActorState(0, secondState); }
-    else                        { SetActorState(0, normState); }
+    if (bundle_client == 1)
+    {
+        SetActorState(0, WepDisplay_States[weptype][WDSTATE_BUNDLED]);
+    }
+    else if (useSecond_client)
+    {
+        SetActorState(0, WepDisplay_States[weptype][WDSTATE_SECONDWEP]);
+    }
+    else
+    {
+        SetActorState(0, WepDisplay_States[weptype][WDSTATE_NORMAL]);
+    }
 }
 
 script "Dakka_WepPickup" (int weptype)
