@@ -220,7 +220,15 @@ arc/altfire sounds/channeler/arc_altfire.ogg
 $volume arc/fire    0.6
 $volume arc/altfire 0.6
 
+arc/fry1    sounds/channeler/arc_fry1.ogg
+arc/fry2    sounds/channeler/arc_fry2.ogg
+arc/fry3    sounds/channeler/arc_fry3.ogg
 
+$random arc/fry { arc/fry1 arc/fry2 arc/fry3 }
+$volume arc/fry 0.5
+
+
+$limit arc/fry 0
 
 
 ////////
@@ -234,3 +242,5 @@ dakka/bfgexplode            sounds/bfg/bfg_explode.ogg
 
 
 $volume dakka/bfg_altfire   0.5
+
+$limit dakka/bfg_altfire 0
