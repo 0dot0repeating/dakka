@@ -1,2 +1,4 @@
 *.pk3
 nocommit/*
+core.*
+zandronum-crash*
