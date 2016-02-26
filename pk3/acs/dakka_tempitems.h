@@ -118,7 +118,7 @@ function void Dakka_UpdateTemporaryItems(void)
     TempChecks[TMP_HEALTH200]       = middle(101, health, 200) == health;
     TempChecks[TMP_HEALTH50]        = middle( 25, health,  49) == health;
     TempChecks[TMP_HEALTH25]        = middle(  1, health,  24) == health;
-    TempChecks[TMP_HEALTH0]         = health < 0;
+    TempChecks[TMP_HEALTH0]         = health <= 0;
 
 
 
