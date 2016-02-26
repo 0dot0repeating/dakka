@@ -1,10 +1,27 @@
+int Score_OldPoints[PLAYERMAX];
+int Score_OldGoalPoints[PLAYERMAX];
+int Score_FirstDraw[PLAYERMAX];
+
+
 function void Score_Update(int pln)
 {
+    int oldPoints       = Score_OldPoints[pln];
+    int oldGoalPoints   = Score_OldGoalPoints[pln];
+    int first           = Score_FirstDraw[pln];
+
     int points      = SToC_ClientData[pln][S2C_D_SCORE];
     int goalpoints  = SToC_ClientData[pln][S2C_D_GOALSCORE];
 
-    Score_Draw(points, goalpoints);
+    if (!first || (points != oldPoints) || (goalPoints != oldGoalPoints))
+    {
+        Score_Draw(points, goalpoints);
+        Score_FirstDraw[pln] = true;
+    }
+
     Score_DrawBonuses(pln);
+
+    Score_OldPoints[pln]     = points;
+    Score_OldGoalPoints[pln] = goalpoints;
 }
 
 function void Score_Draw(int curPoints, int goalPoints)
@@ -12,12 +29,12 @@ function void Score_Draw(int curPoints, int goalPoints)
     SetFont("DAKKAFON");
     SetHudSize(560, 420, 1);
     HudMessage(s:"Score: \c[DScore_Gold]", d:curPoints;
-                HUDMSG_FADEOUT | HUDMSG_COLORSTRING, 24200, "DScore_White", 455.4, 55.2, 0.5, 0.25);
+                HUDMSG_PLAIN | HUDMSG_COLORSTRING, 24200, "DScore_White", 455.4, 55.2, 0);
 
     SetHudSize(480, 360, 1);
 
     SetFont("SCOREBAR");
-    HudMessage(s:"A"; HUDMSG_FADEOUT, 24401, CR_UNTRANSLATED, 390.4, 52.0, 0.5, 0.25);
+    HudMessage(s:"A"; HUDMSG_PLAIN, 24401, CR_UNTRANSLATED, 390.4, 52.0, 0);
 
     if (goalPoints > 0)
     {
@@ -27,7 +44,6 @@ function void Score_Draw(int curPoints, int goalPoints)
         for (int i = 0; i < 100; i++)
         {
             int barGraphic = "POINTBR1";
-            int barChar    = "";
             int i10        = i % 10;
 
             if (i10 == 0 && i != 0)
@@ -43,8 +59,12 @@ function void Score_Draw(int curPoints, int goalPoints)
             if (barpoints > pointstep * (i + 1))
             {
                 SetFont(barGraphic);
-                HudMessage(s:"A"; HUDMSG_PLAIN, 24201 + i, CR_UNTRANSLATED, 340.1 + (1.0 * i), 52.0, 1873);
+                HudMessage(s:"A"; HUDMSG_PLAIN, 24201 + i, CR_UNTRANSLATED, 340.1 + (1.0 * i), 52.0, 0);
                 // 1873 = (1.0 / 35)+1 = 1 tic
+            }
+            else
+            {
+                HudMessage(s:""; HUDMSG_PLAIN, 24201 + i, CR_UNTRANSLATED, 340.1 + (1.0 * i), 52.0, 0);
             }
         }
     }
