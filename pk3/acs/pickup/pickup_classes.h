@@ -1,7 +1,7 @@
 // Class data whoa
 
 // First, how many classes are we talking about here?
-#define CLASSCOUNT_DEFINED  4
+#define CLASSCOUNT_DEFINED  1
 
 // But we're not actually going to use that number a lot, because Cl_Unknown
 //  exists. This is typically what we want.
@@ -19,10 +19,7 @@
 //  one applies.
 
 #define Cl_Unknown              (-1)
-#define Cl_Test_ClipGuy         0
-#define Cl_Test_ShellGuy        1
-#define Cl_Test_RocketGuy       2
-#define Cl_Test_CellGuy         2
+#define Cl_Dakkaguy             0
 
 
 
@@ -31,10 +28,7 @@
 int ClassNames[CLASSCOUNT] = 
 {
     "Unknown",
-    "Clipguy",
-    "Shellguy",
-    "Rocketguy",
-    "Cellguy",
+    "Dakkaguy",
 };
 
 
@@ -45,10 +39,7 @@ int ClassNames[CLASSCOUNT] =
 
 int DISP_ClassStates[CLASSCOUNT_DEFINED] =
 {
-    "Clipguy",
-    "Shellguy",
-    "Rocketguy",
-    "Cellguy",
+    "Dakka",
 };
 
 
@@ -75,10 +66,7 @@ int DISP_ClassStates[CLASSCOUNT_DEFINED] =
 
 int ClassCheckMethod[CLASSCOUNT_DEFINED] =
 {
-    CLASS_FINDBYSCRIPT,
-    CLASS_FINDBYSCRIPT,
-    CLASS_FINDBYSCRIPT,
-    CLASS_FINDBYSCRIPT,
+    CLASS_FINDBYNAME,
 };
 
 
@@ -91,9 +79,6 @@ int ClassCheckMethod[CLASSCOUNT_DEFINED] =
 int ClassCheck_ByInv[CLASSCOUNT_DEFINED][CLASS_INVCHECKCOUNT] =
 {
     {""},
-    {""},
-    {""},
-    {""},
 };
 
 
@@ -103,10 +88,7 @@ int ClassCheck_ByInv[CLASSCOUNT_DEFINED][CLASS_INVCHECKCOUNT] =
 // Etc.
 int ClassCheck_ByName[CLASSCOUNT_DEFINED][CLASS_NAMECHECKCOUNT] =
 {
-    {""},
-    {""},
-    {""},
-    {""},
+    {"Dakkaguy"},
 };
 
 
@@ -119,10 +101,7 @@ int ClassCheck_ByName[CLASSCOUNT_DEFINED][CLASS_NAMECHECKCOUNT] =
 
 int ClassCheck_ByScript[CLASSCOUNT_DEFINED][4] =
 {
-    {490, 0, 0, 0},
-    {490, 1, 0, 0},
-    {490, 2, 0, 0},
-    {490, 3, 0, 0},
+    {0,0,0,0},
 };
 
 
@@ -131,9 +110,6 @@ int ClassCheck_ByScript[CLASSCOUNT_DEFINED][4] =
 
 int ClassCheck_ByNamedScript[CLASSCOUNT_DEFINED] =
 {
-    "",
-    "",
-    "",
     "",
 };
 
