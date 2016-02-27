@@ -38,8 +38,9 @@ function void Score_Draw(int curPoints, int goalPoints)
 
     if (goalPoints > 0)
     {
-        int pointstep = goalPoints / 100;
-        int barpoints = curPoints % goalPoints;
+        int pointstep   = goalPoints / 100;
+        int barpoints   = curPoints % goalPoints;
+        int lastGraphic = "";
 
         for (int i = 0; i < 100; i++)
         {
@@ -58,7 +59,14 @@ function void Score_Draw(int curPoints, int goalPoints)
 
             if (barpoints > pointstep * (i + 1))
             {
-                SetFont(barGraphic);
+                // I think something with SetFont is causing random crashes
+                // - limiting its calls should help
+                if (strcmp(lastGraphic, barGraphic))
+                {
+                    SetFont(barGraphic);
+                    lastGraphic = barGraphic;
+                }
+
                 HudMessage(s:"A"; HUDMSG_PLAIN, 24201 + i, CR_UNTRANSLATED, 340.1 + (1.0 * i), 52.0, 0);
                 // 1873 = (1.0 / 35)+1 = 1 tic
             }
