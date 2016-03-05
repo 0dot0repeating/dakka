@@ -1,7 +1,8 @@
 script "Dakka_Open" open
 {
-    // Absorbed this from the PICKUP_OPEN script.
+    if (GameType() == GAME_TITLE_MAP) { terminate; }
 
+    // Absorbed this from the PICKUP_OPEN script.
     Pickup_IsZandronum(); // side effect sets IsZandronum
     IsServer = true;
 
@@ -30,6 +31,8 @@ script "Dakka_Open" open
 
 script "Dakka_Open_Client" open clientside
 {
+    if (GameType() == GAME_TITLE_MAP) { terminate; }
+
     int cpln = ConsolePlayerNumber();
 
     while (true)

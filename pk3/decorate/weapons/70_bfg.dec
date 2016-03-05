@@ -181,8 +181,8 @@ actor Dakka_TinyBFGBall
 
 actor Dakka_BFGLaser: FastProjectile
 {
-    Radius 4
-    Height 4
+    Radius 2
+    Height 2
     Speed 4096    // gets massively sped up
 
     +THRUACTORS

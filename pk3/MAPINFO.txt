@@ -2,3 +2,17 @@ gameinfo
 {
     playerclasses = "Dakkaguy"
 }
+
+map titlemap "DAKKA"
+{
+    sky1 = "DTITLSKY"
+}
+
+map dakktest "Empty test map"
+{
+    sky1 = "DTITLSKY"
+    music = "TESTMUS"
+
+    next = "dakktest"
+    nointermission
+}

@@ -34,7 +34,7 @@ function int Pickup_IsDisplayScripted(int index, int classNum)
 
     if (DISP_ScriptDisplayCached[index][classNum+1])
     {
-        return DISP_ScriptDisplayCache[index][classNum];
+        return DISP_ScriptDisplayCache[index][classNum+1];
     }
 
     for (i = 0; i < DISP_SCRIPTEDCOUNT; i++)
@@ -71,17 +71,28 @@ script PICKUP_DISPLAY (int index, int dropped, int firstDisplay) clientside
     // Special case to handle item respawns: if this is the first display ping,
     //  take away the KickedToClientside item, because the item hasn't been
     //  kicked to clientside yet.
-    if (!firstDisplay && CheckInventory("Class_KickedToClientside")) { terminate; }
+    //
+    // Special special case: ignore that if we've been kicked to clientside this
+    //  tic, because - guess what! - ZDoom is utterly fucking retarded and will
+    //  have ACS_ExecuteAlways scripts run a full tic later... sometimes! For
+    //  absolutely no fucking reason!
+    //
+    // *sigh*
+
+    int clientKick = CheckInventory("Class_KickedToClientside");
+    int time = Timer();
+
+    if ((clientKick == time) || (!firstDisplay && clientKick)) { terminate; }
 
     // Intentionally break sync between client and server for display shit.
     //  This is kinda voodoo magic.
-    GiveInventory("Class_KickedToClientside", 1);
+    SetInventory("Class_KickedToClientside", time);
 
     // Default state to go to.
     SetActorState(0, "Unknown");
 
     int oldClassNum;
-    int classNum = -1;
+    int classNum = SToC_ClientData[cpln][S2C_D_CLASSNUM] - 1;
     int oldScript;
     int scriptIndex = -1;
     int snum, arg1, arg2, arg3, named, name;

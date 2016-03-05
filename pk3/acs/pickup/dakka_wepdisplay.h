@@ -81,16 +81,19 @@ script "Dakka_WepDisplay" (int weptype)
     SetInventory("DPickup_BundleState",     bundle_client);
     SetInventory("DPickup_SecondWepState",  useSecond_client);
 
-    if (bundle_client == 1)
+    if (bundle_client)
     {
+        Log(s:"switch to bundle (", s:WepDisplay_States[weptype][WDSTATE_BUNDLED], s:")");
         SetActorState(0, WepDisplay_States[weptype][WDSTATE_BUNDLED]);
     }
     else if (useSecond_client)
     {
+        Log(s:"switch to second (", s:WepDisplay_States[weptype][WDSTATE_SECONDWEP], s:")");
         SetActorState(0, WepDisplay_States[weptype][WDSTATE_SECONDWEP]);
     }
     else
     {
+        Log(s:"switch to normal (", s:WepDisplay_States[weptype][WDSTATE_NORMAL], s:")");
         SetActorState(0, WepDisplay_States[weptype][WDSTATE_NORMAL]);
     }
 }
@@ -141,3 +144,6 @@ script "Dakka_WepPickup" (int weptype)
 
     SetResultValue(normPickup);
 }
+
+
+script "printTimer" (void) { Log(s:"t: ", d:Timer()); }

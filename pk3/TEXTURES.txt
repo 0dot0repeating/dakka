@@ -1,4 +1,3 @@
-
 sprite LPUNA0, 320, 240
 {
 Patch FIST1, 48, 127 { }
@@ -92,37 +91,4 @@ Patch FIST8, 58, 140 { }
 sprite RPUNH0, 320, 240
 {
 Patch FIST8, 58, 140 { FlipX }
-}
-
-
-Sprite DBULA0, 32, 20
-{
-    Offset 16, 17
-    Patch CLIPA0, 0, 3
-    Patch AMMOA0, 4, 0
-    Patch CLIPA0, 22, 8
-}
-
-Sprite DBULB0, 34, 20
-{
-    Offset 17, 18
-    Patch AMMOA0, 4, 2
-    Patch CLIPA0, 1, 9
-    Patch CLIPA0, 19, 9
-}
-
-Sprite DBULC0, 32, 20
-{
-    Offset 16, 17
-    Patch CLIPA0, 0, 3
-    Patch AMMOA0, 4, 0
-    Patch CLIPA0, 22, 8
-}
-
-Sprite DBULD0, 34, 20
-{
-    Offset 17, 18
-    Patch AMMOA0, 4, 2
-    Patch CLIPA0, 1, 9
-    Patch CLIPA0, 19, 9
 }

@@ -1,0 +1,4 @@
+texture   WFALL1    range     WFALL4      tics 8
+texture LAVFALL1    range   LAVFALL4      tics 8
+flat    FDWATER1    range   FDWATER4      tics 8
+flat    DAKLAVA1    range   DAKLAVA4      tics 8

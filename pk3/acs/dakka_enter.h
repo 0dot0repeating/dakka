@@ -14,6 +14,8 @@ int DakkaEnterLocks[PLAYERMAX];
 
 script "Dakka_Spawn" (int respawned)
 {
+    if (GameType() == GAME_TITLE_MAP) { terminate; }
+
     int pln = PlayerNumber();
     int curScore;
 

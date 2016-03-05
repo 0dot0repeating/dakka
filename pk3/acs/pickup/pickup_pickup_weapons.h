@@ -90,7 +90,18 @@ function void Weapon_PickupWeapon(int wepIndex, int count, int dropped)
         if (dropped) { SetAmmoCapacity(ammo2, ammo2_cap * 2); }
     }
 
-    GiveInventory(weapon, count);
+    int i;
+
+    // This is retarded.
+    // Giving more than one of a weapon doesn't give you proportionate ammo;
+    //  it gives you the same amount of ammo as if you only gave one. Hence
+    //  this stupid-ass for loop.
+    //
+    // Why is everything in ZDoom retarded?
+    for (i = 0; i < count; i++)
+    {
+        GiveInventory(weapon, 1);
+    }
 
     int gotWeapon = CheckInventory(weapon);
 

@@ -329,29 +329,53 @@ function int leftShort(int packed) { return packed >> 16; }
 function int rightShort(int packed) { return (packed << 16) >> 16; }
 
 
-// Strip out color codes
+function int isPrintable(int c)
+{
+    return ((c > 8) && (c < 14)) || ((c > 31) && (c < 127)) || ((c > 160) && (c < 173));
+}
+
+// Strip out color codes and unprintable characters
 function int cleanString(int string)
 {
     int ret = "";
     int strSize = StrLen(string);
 
-    int c, i, ignoreNext;
+    int c, i;
+
+    int inLongColor = false;
+    int inColorCode = false;
+    int foundChar28 = false;
     
     for (i = 0; i < strSize; i++)
     {
         c = GetChar(string, i);
 
-        if ( ( ((c > 8) && (c < 14)) || ((c > 31) && (c < 127)) || ((c > 160) && (c < 173)) ) && !ignoreNext)
+        if (inColorCode)
         {
-            ret = StrParam(s:ret, c:c);
-        }
-        else if (c == 28 && !ignoreNext)
-        {
-            ignoreNext = 1;
+            if (foundChar28 && c == '[')
+            {
+                inLongColor = true;
+            }
+
+            if (!inLongColor || (c == ']'))
+            {
+                inColorCode = false;
+            }
+
+            foundChar28 = false;
         }
         else
         {
-            ignoreNext = 0;
+            if (c == 28)
+            {
+                foundChar28 = true;
+                inColorCode = true;
+                inLongColor = false;
+            }
+            else if (isPrintable(c))
+            {
+                ret = StrParam(s:ret, c:c);
+            }
         }
     }
 
