@@ -1,5 +1,5 @@
 // This simulates VISIBILITYPULSE.
-script 493 (void)
+script "Dakka_VisPulse" (void)
 {
     if (DISP_ScriptArgs[DPASS_DOCLEANUP])
     {

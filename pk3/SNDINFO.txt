@@ -7,6 +7,17 @@ $limit dakka/explode        0
 
 
 ////////
+// TITLEMAP
+///
+
+dakka/title_lettersmack     sounds/titlemap/letter_smack.ogg
+dakka/title_dm2ttl          D_DM2TTL
+dakka/title_intro           D_INTRO
+
+
+
+
+////////
 // FISTS
 ///
 

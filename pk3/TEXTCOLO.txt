@@ -143,3 +143,49 @@ DScore_Daring
     #402008 #603010 0  24
     #C06020 #FF8030 25 255
 }
+
+
+DTitle_AllWhite
+{
+    #FFFFFF #FFFFFF 0 255
+}
+
+DTitle_Fists
+{
+    #203040 #C0F0FF 0 255
+}
+
+DTitle_Scrappers
+{
+    #102040 #40E0FF 0 255
+}
+
+DTitle_Shotgun
+{
+    #403020 #FFE0A0 0 255
+}
+
+DTitle_SuperShotgun
+{
+    #402810 #FFC050 0 255
+}
+
+DTitle_Chaingun
+{
+    #303030 #F8F8FF 0 255
+}
+
+DTitle_Minigun
+{
+    #202020 #B8B8C0 0 255
+}
+
+DTitle_PlasmaRifle
+{
+    #301040 #D090FF 0 255
+}
+
+DTitle_Channeler
+{
+    #200A30 #D050FF 0 255
+}

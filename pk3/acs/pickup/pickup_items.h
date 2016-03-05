@@ -394,7 +394,7 @@ int PKP_ReceiveCount[PICKUPCOUNT][CLASSCOUNT][PK_RECEIVECOUNT] =
     },
 
 
-    { // Channeler - doesn't give its own cells, gotta do it manually
+    { // Channeler - give channeler twice so you get 60 ammo on pickup
         {1},
         {2},
     },
@@ -424,7 +424,7 @@ int PKP_ReceiveCount[PICKUPCOUNT][CLASSCOUNT][PK_RECEIVECOUNT] =
     },
     { // Railgun
         {1},
-        {1},
+        {2},
     },
     { // BFG10k
         {1},

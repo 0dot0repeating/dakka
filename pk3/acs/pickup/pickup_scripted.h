@@ -200,8 +200,8 @@ int DISP_ScriptedDisplays[DISP_SCRIPTEDCOUNT][7] =
 
 int DISP_DisplayNamed[DISP_SCRIPTEDCOUNT] = 
 {
-    "Dakka_WepDisplay",
-    "Dakka_WepDisplay",
+    "Dakka_VisPulse",
+    "Dakka_VisPulse",
     "Dakka_WepDisplay",
     "Dakka_WepDisplay",
     "Dakka_WepDisplay",

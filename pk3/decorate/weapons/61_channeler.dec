@@ -18,9 +18,7 @@ actor DWep_Channeler: Weapon
     Inventory.PickupMessage "$DAKKA_PK_CHANNELER"
     Obituary "$DAKKA_MP_CHANNELER"
     
-    +ALT_AMMO_OPTIONAL
     +NOALERT
-
 
     States
     {
