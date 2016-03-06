@@ -56,7 +56,8 @@ function void Score_DoRewards(int lastScore, int curScore)
 
     Score_ProcessRewards();
 
-    Sender_SetData(pln, S2C_D_LIVESLEFT, PlayerExtraLifeCount[pln]);
+    Sender_SetData(pln, S2C_D_LIVESLEFT,   PlayerExtraLifeCount[pln]);
+    Sender_SetData(pln, S2C_D_REWARDCOUNT, PlayerMapScoreRewards[pln]);
 }
 
 

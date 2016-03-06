@@ -5,7 +5,7 @@
 
 // This defines how many different data points we should sync between the server
 //  and the clients.
-#define S2C_DATACOUNT   21
+#define S2C_DATACOUNT   23
 
 
 // Constants for identifying which data point we want to modify.
@@ -39,20 +39,23 @@
 // How many extra lives do we have?
 #define S2C_D_LIVESLEFT     9
 
+// Which reward number are we on?
+#define S2C_D_REWARDCOUNT   10
+
 
 // All of these are bonus values. See acs/score/score_defs.h for what they
 //  correspond to.
-#define S2C_D_BONUSSTART    10
+#define S2C_D_BONUSSTART    11
 
-#define S2C_D_BS_BASE         10
-#define S2C_D_BS_SPREE        11
-#define S2C_D_BS_EFFICIENT    12
-#define S2C_D_BS_INFIGHTER    13
-#define S2C_D_BS_SWITCHAROO   14
-#define S2C_D_BS_SCRAPPING    15
-#define S2C_D_BS_CURVEBALL    16
-#define S2C_D_BS_AIR          17
-#define S2C_D_BS_BONEDRY      18
-#define S2C_D_BS_SORELOSER    19
-#define S2C_D_BS_BRAWLER      20
-#define S2C_D_BS_POINTBLANK   21
+#define S2C_D_BS_BASE         11
+#define S2C_D_BS_SPREE        12
+#define S2C_D_BS_EFFICIENT    13
+#define S2C_D_BS_INFIGHTER    14
+#define S2C_D_BS_SWITCHAROO   15
+#define S2C_D_BS_SCRAPPING    16
+#define S2C_D_BS_CURVEBALL    17
+#define S2C_D_BS_AIR          18
+#define S2C_D_BS_BONEDRY      19
+#define S2C_D_BS_SORELOSER    20
+#define S2C_D_BS_BRAWLER      21
+#define S2C_D_BS_POINTBLANK   22
