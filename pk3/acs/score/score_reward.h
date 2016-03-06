@@ -22,7 +22,6 @@ script "Score_Award" (int scoreHeals)
         if (curRewards % 2)
         {
             PlayerExtraLifeCount[pln] += 1;
-            Log(s:"Life count: ", d:PlayerExtraLifeCount[pln]);
         }
         else
         {
@@ -56,6 +55,8 @@ function void Score_DoRewards(int lastScore, int curScore)
     }
 
     Score_ProcessRewards();
+
+    Sender_SetData(pln, S2C_D_LIVESLEFT, PlayerExtraLifeCount[pln]);
 }
 
 

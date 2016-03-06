@@ -39,6 +39,8 @@ script "Dakka_Open_Client" open clientside
     {
         // In score/score_display.h
         Score_Update(cpln);
+        Score_UpdateLives(cpln);
+
         Delay(1);
     }
 }

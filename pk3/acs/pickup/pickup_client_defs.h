@@ -36,20 +36,23 @@
 // And the score threshold as well.
 #define S2C_D_GOALSCORE     8
 
+// How many extra lives do we have?
+#define S2C_D_LIVESLEFT     9
+
 
 // All of these are bonus values. See acs/score/score_defs.h for what they
 //  correspond to.
-#define S2C_D_BONUSSTART    9
+#define S2C_D_BONUSSTART    10
 
-#define S2C_D_BS_BASE         9
-#define S2C_D_BS_SPREE        10
-#define S2C_D_BS_EFFICIENT    11
-#define S2C_D_BS_INFIGHTER    12
-#define S2C_D_BS_SWITCHAROO   13
-#define S2C_D_BS_SCRAPPING    14
-#define S2C_D_BS_CURVEBALL    15
-#define S2C_D_BS_AIR          16
-#define S2C_D_BS_BONEDRY      17
-#define S2C_D_BS_SORELOSER    18
-#define S2C_D_BS_BRAWLER      19
-#define S2C_D_BS_POINTBLANK   20
+#define S2C_D_BS_BASE         10
+#define S2C_D_BS_SPREE        11
+#define S2C_D_BS_EFFICIENT    12
+#define S2C_D_BS_INFIGHTER    13
+#define S2C_D_BS_SWITCHAROO   14
+#define S2C_D_BS_SCRAPPING    15
+#define S2C_D_BS_CURVEBALL    16
+#define S2C_D_BS_AIR          17
+#define S2C_D_BS_BONEDRY      18
+#define S2C_D_BS_SORELOSER    19
+#define S2C_D_BS_BRAWLER      20
+#define S2C_D_BS_POINTBLANK   21

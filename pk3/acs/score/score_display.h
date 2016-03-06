@@ -1,15 +1,16 @@
-int Score_OldPoints[PLAYERMAX];
-int Score_OldGoalPoints[PLAYERMAX];
-int Score_FirstDraw[PLAYERMAX];
-int Score_NoRewards[PLAYERMAX];
+#define OSCORE_POINTS       0
+#define OSCORE_GOALPOINTS   1
+#define OSCORE_FIRSTDRAW    2
+#define OSCORE_NOREWARD     3
 
+int Score_OldVals[4][PLAYERMAX];
 
 function void Score_Update(int pln)
 {
-    int oldPoints       = Score_OldPoints[pln];
-    int oldGoalPoints   = Score_OldGoalPoints[pln];
-    int oldNoReward     = Score_NoRewards[pln];
-    int first           = Score_FirstDraw[pln];
+    int oldPoints       = Score_OldVals[OSCORE_POINTS][pln];
+    int oldGoalPoints   = Score_OldVals[OSCORE_GOALPOINTS][pln];
+    int oldNoReward     = Score_OldVals[OSCORE_NOREWARD][pln];
+    int first           = Score_OldVals[OSCORE_FIRSTDRAW][pln];
 
     int points      = SToC_ClientData[pln][S2C_D_SCORE];
     int goalpoints  = SToC_ClientData[pln][S2C_D_GOALSCORE];
@@ -18,14 +19,14 @@ function void Score_Update(int pln)
     if (!first || (points != oldPoints) || (goalPoints != oldGoalPoints) || (noReward != oldNoReward))
     {
         Score_Draw(points, goalpoints);
-        Score_FirstDraw[pln] = true;
+        Score_OldVals[OSCORE_FIRSTDRAW][pln] = true;
     }
 
     Score_DrawBonuses(pln);
 
-    Score_OldPoints[pln]     = points;
-    Score_OldGoalPoints[pln] = goalpoints;
-    Score_NoRewards[pln]     = noReward;
+    Score_OldVals[OSCORE_POINTS][pln]     = points;
+    Score_OldVals[OSCORE_GOALPOINTS][pln] = goalpoints;
+    Score_OldVals[OSCORE_NOREWARD][pln]   = noReward;
 }
 
 function void Score_Draw(int curPoints, int goalPoints)
@@ -93,6 +94,53 @@ function void Score_Draw(int curPoints, int goalPoints)
                     HudMessage(s:""; HUDMSG_PLAIN, 24201 + i, CR_UNTRANSLATED, 340.1 + (1.0 * i), 52.0, 0);
                 }
             }
+        }
+    }
+}
+
+
+
+function void Score_UpdateLives(int pln)
+{
+    int lives = SToC_ClientData[pln][S2C_D_LIVESLEFT];
+    Score_DrawLives(lives);
+}
+
+
+#define LIVES_MAXDRAW   10
+
+
+function void Score_DrawLives(int lives)
+{
+    SetHudSize(560, 420, 1);
+
+    int lifeFont;
+
+    switch ((Timer() / 4) % 4)
+    {
+        default: case 0: lifeFont = "HUD_LIF1"; break;
+        case 1: lifeFont = "HUD_LIF2"; break;
+        case 2: lifeFont = "HUD_LIF3"; break;
+        case 3: lifeFont = "HUD_LIF4"; break;
+    }
+
+    SetFont(lifeFont);
+
+    int i;
+
+    int drawLives = min(LIVES_MAXDRAW, lives);
+
+    int borderLeft = itof(455 - (6 * (drawLives - 1)));
+
+    for (i = 0; i < LIVES_MAXDRAW; i++)
+    {
+        if (i >= drawLives)
+        {
+            HudMessage(s:""; HUDMSG_PLAIN, 25501 + i, 0,0,0,0);
+        }
+        else
+        {
+            HudMessage(s:"A"; HUDMSG_PLAIN, 25501 + i, CR_UNTRANSLATED, 0.4 + borderLeft + (12.0 * i), 40.2, 0);
         }
     }
 }
