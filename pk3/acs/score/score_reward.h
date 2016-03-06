@@ -12,6 +12,7 @@ script "Score_Award" (int scoreHeals)
 {
     int i;
     int pln = PlayerNumber();
+    int newLives = 0;
 
     for (i = 0; i < scoreHeals; i++)
     {
@@ -22,6 +23,7 @@ script "Score_Award" (int scoreHeals)
         if (curRewards % 2)
         {
             PlayerExtraLifeCount[pln] += 1;
+            newLives += 1;
         }
         else
         {
@@ -32,6 +34,18 @@ script "Score_Award" (int scoreHeals)
     }
 
     FadeRange(255, 234, 0, 1.0 - powFloat(0.65, scoreHeals), 255, 234, 0, 0.0, 0.75);
+
+    if (newLives > 0)
+    {
+        Delay(24);
+
+        for (i = 0; i < newLives; i++)
+        {
+            LocalAmbientSound("dakka/fullheal", 127);
+        }
+
+        FadeRange(192, 224, 255, 1.0 - powFloat(0.5, newLives), 192, 124, 255, 0.0, 0.75);
+    }
 }
 
 
