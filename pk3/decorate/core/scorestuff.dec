@@ -114,10 +114,6 @@ actor RevivalFlame
     +PIERCEARMOR
     +SERVERSIDEONLY
 
-    +SHOOTABLE
-    +INVULNERABLE
-    +NODAMAGE
-
     RenderStyle Add
     Scale 0.2
     Alpha 0.5
