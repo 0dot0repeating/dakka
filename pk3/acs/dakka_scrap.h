@@ -51,3 +51,44 @@ function void Dakka_ProcessScrap(void)
         TakeInventory(item,    needed * fullBatches);
     }
 }
+
+
+script "Dakka_ScrapXY" (void)
+{
+    int ret;
+    int x = GetActorVelX(0);
+    int y = GetActorVelY(0);
+    int z = GetActorVelZ(0);
+    int mag = magnitudeThree_f(x, y, z);
+
+    if (mag == 0)
+    {
+        ret = 1.0;
+    }
+    else
+    {
+        ret = FixedDiv(magnitudeTwo_f(x, y), mag);
+    }
+
+    SetResultValue(ret);
+}
+
+script "Dakka_ScrapZ" (void)
+{
+    int ret;
+    int x = GetActorVelX(0);
+    int y = GetActorVelY(0);
+    int z = GetActorVelZ(0);
+    int mag = magnitudeThree_f(x, y, z);
+
+    if (mag == 0)
+    {
+        ret = 0.0;
+    }
+    else
+    {
+        ret = FixedDiv(z, mag);
+    }
+
+    SetResultValue(ret);
+}

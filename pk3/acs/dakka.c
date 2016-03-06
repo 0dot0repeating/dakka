@@ -107,10 +107,8 @@
 #include "dakka_recoil.h"
 
 
-// Serverside DECORATE-slave script. I can't fucking wait for named scripts.
-#include "dakka_decorate.h"
-
-// Clientside same thing.
+// Clientside DECORATE slave script. There was a serverside one, but it got
+//  converted to named scripts. Same will happen to this one, eventually.
 #include "dakka_decorate_client.h"
 
 
