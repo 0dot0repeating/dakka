@@ -10,8 +10,10 @@
 #define S_MINIGUN           6
 #define S_ROCKETLAUNCHER    7
 #define S_PLASMARIFLE       8
-#define S_CHANNELER         9
-#define S_BFG9000           10
+#define S_BFG9000           9
+#define S_CHANNELER         10
+#define S_IMPALER           11
+#define S_REVIVAL           12
 
 #define SWITCHAROO_TICSPER100HP 24
 #define SWITCHAROO_MINTICS      72
