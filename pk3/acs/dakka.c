@@ -106,10 +106,8 @@
 // Clientside recoil script. Does anyone actually use this?
 #include "dakka_recoil.h"
 
-
-// Clientside DECORATE slave script. There was a serverside one, but it got
-//  converted to named scripts. Same will happen to this one, eventually.
-#include "dakka_decorate_client.h"
+// Clientside script to check dakka_cl_lesseffects.
+#include "dakka_lesseffects.h"
 
 
 // Each of these is for their respecting ACS script type.
