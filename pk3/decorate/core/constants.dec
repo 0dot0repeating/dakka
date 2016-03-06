@@ -16,10 +16,8 @@ const int ARC_DAMAGE                = 193;
 const int ARC_ALTFIRE               = 194;
 
 // DEC = serverside DECORATE
-const int DEC_ROTATESOUND           = 0;
 const int DEC_SCRAP_XYVEL           = 1;
 const int DEC_SCRAP_ZVEL            = 2;
-const int DEC_RL_ALTFIRE            = 7;
 
 
 
