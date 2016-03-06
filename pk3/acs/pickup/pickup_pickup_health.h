@@ -1,5 +1,3 @@
-int TMP_LowHealth;
-int TMP_HealthPointCount;
 int TMP_HealthPoints[HPOINT_COUNT][2];
 
 
@@ -24,12 +22,11 @@ function int Heal_HealthIndex(int item)
 // 
 // This is called after TMP_HealthPoints has been filled in with points
 //  calculated from PKP_HealingPoints.
-function void Heal_SortHealthPoints(void)
+function void Heal_SortHealthPoints(int pointCount)
 {
-    int pointcount = TMP_HealthPointCount;
     int i, j;
     
-    for (i = 0; i < pointcount; i++)
+    for (i = 0; i < pointCount; i++)
     {
         int base = TMP_HealthPoints[i][0];
         int heal = TMP_HealthPoints[i][1];
@@ -114,7 +111,7 @@ function void Heal_PickupHealth(int index, int amount)
     // and since health points can be based off of max health, we need to
     //  calculate and sort them to make sure they're right
     
-    TMP_HealthPointCount = 0;
+    int healthPointCount = 0;
     
     for (int i = 0; i < HPOINT_COUNT; i++)
     {
@@ -142,19 +139,16 @@ function void Heal_PickupHealth(int index, int amount)
             break;
         }
         
-        int point = TMP_HealthPointCount++;
+        int point = healthPointCount++;
         TMP_HealthPoints[point][0] = adjust_base;
         TMP_HealthPoints[point][1] = adjust_heal;
     }
     
     
     // well shit we ain't got anything to do
-    if (TMP_HealthPointCount == 0)
-    {
-        return;
-    }
+    if (healthPointCount == 0) { return; }
     
-    Heal_SortHealthPoints();
+    Heal_SortHealthPoints(healthPointCount);
     
     // give health
     
@@ -171,7 +165,7 @@ function void Heal_PickupHealth(int index, int amount)
         // since it's sorted top to bottom, we know if we're above the first
         //  breakpoint that we're outside the valid healing range
 
-        for (i = 0; i < TMP_HealthPointCount; i++)
+        for (i = 0; i < healthPointCount; i++)
         {
             int c_health = TMP_HealthPoints[i][0];
             

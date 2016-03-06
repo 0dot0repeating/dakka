@@ -10,4 +10,4 @@
 // Constants for identifying which data point we want to modify.
 
 // Tells the server how the client handles weapon switching on pickup.
-#define C2S_D_SWITCHONPICKUP    0
+#define C2S_D_NOSCOREREWARDS    0

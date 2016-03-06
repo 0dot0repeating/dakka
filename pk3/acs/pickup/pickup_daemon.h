@@ -96,18 +96,7 @@ script PICKUP_OPEN_CLIENT open clientside
             }
         }
 // */
-        oldPickupState = pickupState;
-
-        if (Pickup_IsZandronum())
-        {
-            pickupState = GetCVar("switchonpickup");
-        }
-        else
-        {
-            pickupState = cond(GetCvar("neverswitchonpickup"), 0, 2);
-        }
-
-        CSender_SetData(cpln, C2S_D_SWITCHONPICKUP, pickupState);
+        CSender_SetData(cpln, C2S_D_NOSCOREREWARDS, GetUserCVar(cpln, "dakka_cl_noscorerewards"));
 
         CSender_UpdateServer(cpln);
         CSender_ActuallySend(cpln);

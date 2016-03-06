@@ -45,7 +45,7 @@
 
 #define INFIGHTER_MULT          0.2
 
-world int 54:PlayerMapScores[];
+world int 101:PlayerMapScores[];
 
 // Allowing three fire modes.
 //  0 - primary   (+attack)
@@ -71,9 +71,6 @@ int Air_FloorHeight[PLAYERMAX];
 #define P_FULLHEAL_MAX      250
 #define P_FULLHEAL_PERCENT  0.7
 
-int MapStart_BasePoints     = 0;
-int MapStart_BaseMonsters   = 0;
-int MapStart_AveragePoints  = 0;
 int MapStart_FullHealPoints = 0;
 
 

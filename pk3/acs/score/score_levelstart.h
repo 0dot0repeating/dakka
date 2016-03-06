@@ -15,22 +15,15 @@ function void Score_CalcMapPoints(void)
         totalPoints += count * Monster_Points[i];
     }
 
-    MapStart_BasePoints     = totalPoints;
-    MapStart_BaseMonsters   = totalMons;
+    int averagePoints;
 
-    if (MapStart_BaseMonsters == 0)
-    {
-        MapStart_AveragePoints = 0;
-    }
-    else
-    {
-        MapStart_AveragePoints  = totalPoints / totalMons;
-    }
+    if (totalMons == 0) { averagePoints = 0; }
+    else { averagePoints  = totalPoints / totalMons; }
 
     
-    int fullHealMult = middle(P_FULLHEAL_MIN, FixedMul(MapStart_BaseMonsters, P_FULLHEAL_PERCENT), P_FULLHEAL_MAX);
+    int fullHealMult = middle(P_FULLHEAL_MIN, FixedMul(totalMons, P_FULLHEAL_PERCENT), P_FULLHEAL_MAX);
 
-    int fullHealPoints = MapStart_AveragePoints * fullHealMult;
+    int fullHealPoints = averagePoints * fullHealMult;
     fullHealPoints = ((fullHealPoints + 2500) / 5000) * 5000; // Round to nearest 5000
 
     MapStart_FullHealPoints = max(5000, fullHealPoints);

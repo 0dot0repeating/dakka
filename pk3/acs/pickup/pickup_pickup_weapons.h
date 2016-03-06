@@ -182,12 +182,6 @@ function void Weapon_PickupWeapon(int wepIndex, int count, int dropped)
     }
 }
 
-
-
-#define PWO_KNOWNGAMES 6
-
-int PWO_GameNames[PWO_KNOWNGAMES] = {"Doom", "Chex", "Heretic", "Hexen", "Strife", "Any"};
-
 script "PWeapon_Switch" (int wepIndex) clientside
 {
     int doswitch = false;

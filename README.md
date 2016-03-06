@@ -38,9 +38,11 @@ enough was enough. Rather than let it go the way of Samsara, I decided to nip
 it in the bud and restructure everything, cleaning up extraneous code,
 streamlining things, and so on and so forth.
 
-For the most part, everything's back in and them some. The only big thing left,
-score rewards, is coming within a day or two. Which means that this message will
-still be here a month from now.
+For the most part, everything's back in and them some. All that's left is some 
+CVars that I don't think anyone even used anyway, so the mod might be seeing an 
+actual release for the first time in over a year.
+
+Most of that year was spent in hiatus. I'm not *that* slow of a developer.
 
 
 ## So what *is* in so far?
@@ -48,6 +50,7 @@ still be here a month from now.
 * HUD
 * Arc system
 * Score system
+* Score rewards
 * All of the guns
 * Recoil system, if anyone actually used that
 * Pickup system, though with some pickups left to define
@@ -62,7 +65,6 @@ still be here a month from now.
 
 * dakka\_jumpmod (might not come back in, honestly)
 * The dakka\_rearm CVars
-* Score rewards
 
 
 
