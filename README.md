@@ -1,4 +1,4 @@
-# DAKKA
+![DAKKA](/README_logo.png "necessary")
 
 It's a mod with guns. The guns make everything easy - not Russian Overkill levels
 of easy, but still pretty damn easy. Eventually, I'll change up the monsters to
