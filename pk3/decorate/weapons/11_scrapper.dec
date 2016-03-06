@@ -320,10 +320,7 @@ actor ScrapperShot
         BAL1 C 0 A_Explode(2, 96, 0)
         BAL1 C 0 A_Explode(1, 96, 0)
         // No, I'm not going to do even remotely complicated calculations in DECORATE.
-        BAL1 CCC 0 A_SpawnItemEx("SplitScrap", 0,0,0, (ACS_ExecuteWithResult(DAKKA_DECORATE, DEC_SCRAP_XYVEL) / 65536.0) * frandom(15,20),
-                                                      0,
-                                                      (ACS_ExecuteWithResult(DAKKA_DECORATE, DEC_SCRAP_ZVEL) / 65536.0) + frandom(3,6),
-                                                      random(-60, 60))
+        BAL1 CCC 0 A_SpawnItemEx("SplitScrap", 0,0,0, (CallACS("Dakka_ScrapXY") / 65536.0) * frandom(15,20), 0, (CallACS("Dakka_ScrapZ") / 65536.0) + frandom(3,6), random(-60, 60))
         BAL1 C 0 A_SpawnItemEx("ScrapShotDeath")
         stop
     }

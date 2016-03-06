@@ -1,7 +1,6 @@
 #define DAKKA_UPDATE_SWITCHAROO     478
 #define DAKKA_RECOIL                479
 
-#define DAKKA_DECORATE              464
 #define DAKKA_DECORATE_CLIENT       465
 
 
