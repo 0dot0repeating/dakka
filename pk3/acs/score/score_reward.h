@@ -27,7 +27,7 @@ script "Score_Award" (int scoreHeals)
         }
         else
         {
-            PlayerAmmoRegenTimers[pln] += (36 * 20);
+            PlayerAmmoRegenTimers[pln] += (36 * 20) + 1;
         }
 
         PlayerMapScoreRewards[pln] += 1;
@@ -104,7 +104,7 @@ int AmmoRegen_PerSecond[AMMOREGENCOUNT] =
     3.0,
     1.5,
 
-    15.0,
+    8.0,
     8.0,
 };
 
