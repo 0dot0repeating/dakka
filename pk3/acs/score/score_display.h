@@ -50,9 +50,26 @@ function void Score_Draw(int curPoints, int goalPoints)
     }
     else
     {
+        int scoreBar, pointBar1, pointBar2, pointBar3;
+
+        if (SToC_ClientData[cpln][S2C_D_REWARDCOUNT] % 2)
+        {
+            pointBar1 = "POINTBR4";
+            pointBar2 = "POINTBR5";
+            pointBar3 = "POINTBR6";
+            scoreBar  = "SCOREBR2";
+        }
+        else
+        {
+            pointBar1 = "POINTBR1";
+            pointBar2 = "POINTBR2";
+            pointBar3 = "POINTBR3";
+            scoreBar  = "SCOREBAR";
+        }
+
         SetHudSize(480, 360, 1);
 
-        SetFont("SCOREBAR");
+        SetFont(scoreBar);
         HudMessage(s:"A"; HUDMSG_PLAIN, 24401, CR_UNTRANSLATED, 390.4, 52.0, 0);
 
         if (goalPoints > 0)
@@ -63,17 +80,17 @@ function void Score_Draw(int curPoints, int goalPoints)
 
             for (i = 0; i < 100; i++)
             {
-                int barGraphic = "POINTBR1";
+                int barGraphic = pointBar1;
                 int i10        = i % 10;
 
                 if (i10 == 0 && i != 0)
                 {
-                    barGraphic = "POINTBR3";
+                    barGraphic = pointBar3;
                 }
 
                 if (i10 == 9 && i != 99)
                 {
-                    barGraphic = "POINTBR2";
+                    barGraphic = pointBar2;
                 }
 
                 if (barpoints > pointstep * (i + 1))
