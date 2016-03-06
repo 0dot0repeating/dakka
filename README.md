@@ -4,10 +4,14 @@ It's a mod with guns. The guns make everything easy - not Russian Overkill level
 of easy, but still pretty damn easy. Eventually, I'll change up the monsters to
 fix this. Today's not that day.
 
-***IMPORTANT:*** This mod only works in Zandronum versions at least 3.0 and
-ZDoom versions at least 2.7.1. Multiplayer play is only supported on Zandronum
-versions at least 3.0 - it could conceivably work on ZDoom, but the pickup
-display for sure would be utterly broken for every player besides the host.
+***IMPORTANT:*** The latest version of this mod only works in Zandronum 
+versions at least 3.0 and ZDoom versions at least 2.7.1. Multiplayer play is 
+only supported on Zandronum versions at least 3.0 - it could conceivably work 
+on ZDoom, but the pickup display for sure would be utterly broken for every 
+player besides the host.
+
+Any version at and before 0.06-alpha6-2 were made in the days of Zandronum 1.3.
+ZDoom 2.5.0 and Zandronum 2.0 will run them without a hitch.
 
 **DOWNLOAD:** http://jinotra.in/downloads/mods/doom/dakka/
 
@@ -76,7 +80,7 @@ still be here a month from now.
     they didn't enter the map with one). Alternately, if dakka\_bundleplasma is
     on, plasma rifle pickups will be replaced with a big box containing both guns.
 
-*   The Impaler, a new slot 7 weapon. It currently has no alt-fire, but th
+*   The Impaler, a new slot 7 weapon. It currently has no alt-fire, but the
     primary fire rapidly fires rockets that deal up to 304 damage and pierce
     straight through walls. Damage is obviously diminished, but it still hurts
     enough to kill with ease through most walls. Don't try to kill the boss brain
