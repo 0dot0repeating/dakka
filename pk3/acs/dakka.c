@@ -80,6 +80,10 @@
 #include "dakka_ssg.h"
 
 
+// If you don't have flamer fuel, throw in WRF_NOSECONDARY for the minigun's spindown.
+#include "dakka_minigun.h"
+
+
 // Stuff for the Channeler that isn't handled by the arc code proper.
 #include "dakka_channeler.h"
 
