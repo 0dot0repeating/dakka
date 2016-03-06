@@ -1,6 +1,8 @@
 # DAKKA
 
-It's a mod with guns.
+It's a mod with guns. The guns make everything easy - not Russian Overkill levels
+of easy, but still pretty damn easy. Eventually, I'll change up the monsters to
+fix this. Today's not that day.
 
 ***IMPORTANT:*** This mod only works in Zandronum versions at least 3.0 and
 ZDoom versions at least 2.7.1. Multiplayer play is only supported on Zandronum
@@ -25,13 +27,16 @@ the folder, not its contents. Don't do that.
 
 
 
-## Wait, why's it missing so much stuff?
+## Wait, why's it missing stuff?
 
 Dakka's code got messy, and underlying systems changed enough that I decided
 enough was enough. Rather than let it go the way of Samsara, I decided to nip
 it in the bud and restructure everything, cleaning up extraneous code,
 streamlining things, and so on and so forth.
 
+For the most part, everything's back in and them some. The only big thing left,
+score rewards, is coming within a day or two. Which means that this message will
+still be here a month from now.
 
 
 ## So what *is* in so far?
