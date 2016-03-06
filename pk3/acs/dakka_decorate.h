@@ -5,8 +5,6 @@ int RotatingSoundIndex[PLAYERMAX];
 #define DEC_SCRAP_XYVEL     1
 #define DEC_SCRAP_ZVEL      2
 
-#define DEC_RL_ALTFIRE      7
-
 script DAKKA_DECORATE (int mode, int a1, int a2)
 {
     int pln = PlayerNumber();
@@ -43,11 +41,6 @@ script DAKKA_DECORATE (int mode, int a1, int a2)
             ret = FixedDiv(ret, mag);
         }
 
-        break;
-
-      case DEC_RL_ALTFIRE:
-        ret = (CheckInventory("DakkaRockets") - CheckInventory("DakkaRocketsLoaded")) > 0;
-        ret |= CheckInventory("DakkaInfiniteAmmo");
         break;
     }
 

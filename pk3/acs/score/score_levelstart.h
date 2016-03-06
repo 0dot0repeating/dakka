@@ -1,5 +1,7 @@
 function void Score_CalcMapPoints(void)
 {
+    if (MapStart_FullHealPoints > 0) { return; }
+
     int i;
     int name, count;
 

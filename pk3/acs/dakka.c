@@ -84,6 +84,10 @@
 #include "dakka_minigun.h"
 
 
+// Rocket launcher alt-fire junk.
+#include "dakka_rocketlauncher.h"
+
+
 // Stuff for the Channeler that isn't handled by the arc code proper.
 #include "dakka_channeler.h"
 

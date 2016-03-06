@@ -58,6 +58,12 @@ function void Score_DoRewards(int lastScore, int curScore)
 
     int scoreThreshold = MapStart_FullHealPoints;
 
+    if (scoreThreshold == 0)
+    {
+        Score_CalcMapPoints();
+        scoreThreshold = MapStart_FullHealPoints;
+    }
+
     int lastScoreHeals = lastScore / scoreThreshold;
     int  curScoreHeals =  curScore / scoreThreshold;
 
