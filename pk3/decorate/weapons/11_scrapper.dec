@@ -355,7 +355,8 @@ actor ScrapperTrail
     {
       Spawn:
         SCRT A 0 bright
-        SCRT A 4 bright A_JumpIf(ACS_ExecuteWithResult(DAKKA_DECORATE_CLIENT, CDEC_GETLESSEFFECTS), "Disappear")
+        SCRT A 4 bright A_JumpIf(CallACS("Dakka_LessEffects"), "Disappear")
+        SCRT A 4 bright A_JumpIf(CallACS("Dakka_LessEffects"), "Disappear")
         SCRT A 1 bright A_FadeOut(0.08)
         wait
 
@@ -444,7 +445,8 @@ actor ScrapperTrail2: ScrapperTrail
     {
       Spawn:
         SCRT A 0 bright
-        SCRT A 4 bright A_JumpIf(ACS_ExecuteWithResult(DAKKA_DECORATE_CLIENT, CDEC_GETLESSEFFECTS), "Disappear")
+        SCRT A 4 bright A_JumpIf(CallACS("Dakka_LessEffects"), "Disappear")
+        SCRT A 4 bright A_JumpIf(CallACS("Dakka_LessEffects"), "Disappear")
         SCRT A 1 bright A_FadeOut(0.04)
         wait
     }
@@ -459,7 +461,8 @@ actor ScrapperTrail3: ScrapperTrail
     {
       Spawn:
         SCRT A 0 bright
-        SCRT A 4 bright A_JumpIf(ACS_ExecuteWithResult(DAKKA_DECORATE_CLIENT, CDEC_GETLESSEFFECTS), "Disappear")
+        SCRT A 4 bright A_JumpIf(CallACS("Dakka_LessEffects"), "Disappear")
+        SCRT A 4 bright A_JumpIf(CallACS("Dakka_LessEffects"), "Disappear")
         SCRT A 1 bright A_FadeOut(0.04)
         wait
     }

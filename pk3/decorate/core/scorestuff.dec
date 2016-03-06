@@ -171,7 +171,8 @@ actor RevivalFlameVisual
     {
       Spawn:
         DFLM E 0 bright
-        DFLM E 0 bright A_JumpIf(ACS_ExecuteWithResult(DAKKA_DECORATE_CLIENT, CDEC_GETLESSEFFECTS), "NoFancy")
+        DFLM E 0 bright A_JumpIf(CallACS("Dakka_LessEffects"), "NoFancy")
+        DFLM E 0 bright A_JumpIf(CallACS("Dakka_LessEffects"), "NoFancy")
         goto Fancy
 
       NoFancy:
