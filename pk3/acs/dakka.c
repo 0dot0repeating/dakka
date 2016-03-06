@@ -74,6 +74,8 @@
 // Lightning tracer.
 #include "dakka_lightning.h"
 
+// Rotate sound slots so weapon firing sounds can overlap with each other.
+#include "dakka_rotatesound.h"
 
 // Auto-reload the SSG when it's in your pants. Also scripts called by the SSG,
 //  to handle the triggers and whatnot
