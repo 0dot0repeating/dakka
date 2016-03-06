@@ -23,7 +23,6 @@ script "Dakka_Spawn" (int respawned)
     int myLockVal = DakkaEnterLocks[pln] + 1;
     DakkaEnterLocks[pln] = myLockVal;
 
-
     // DM does its own level start, since it needs to do things every spawn,
     //  and variables like dakka_startmode don't apply.
     //
@@ -73,6 +72,7 @@ script "Dakka_Spawn" (int respawned)
 
         // In score/score_update.h
         Air_UpdateZHeight();
+
         Score_UpdateClient(pln);
 
         Delay(1);

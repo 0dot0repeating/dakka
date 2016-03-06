@@ -363,9 +363,6 @@ function void Dakka_DoLevelSpawn(int entered)
 
     GiveInventory("HubTracker", 1);
 
-    Log(s:"intra-hub enter: ", d:intraHubEnter);
-
-
     int lostEverything  = !entered &&                    GetCVar("sv_coop_loseinventory");
     int lostAmmo        = !entered && (lostEverything || GetCVar("sv_coop_loseammo"));
     int lostWeapons     = !entered && (lostEverything || GetCVar("sv_coop_loseweapons"));
