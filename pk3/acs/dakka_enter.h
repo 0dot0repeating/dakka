@@ -17,7 +17,8 @@ script "Dakka_Spawn" (int respawned)
     if (GameType() == GAME_TITLE_MAP) { terminate; }
 
     int pln = PlayerNumber();
-    int curScore;
+
+    int curScore, lastScore;
 
     int myLockVal = DakkaEnterLocks[pln] + 1;
     DakkaEnterLocks[pln] = myLockVal;
@@ -37,8 +38,13 @@ script "Dakka_Spawn" (int respawned)
         Dakka_DoLevelSpawn(!respawned);
     }
 
+    curScore = PlayerMapScores[pln];
+
     while (DakkaEnterLocks[pln] == myLockVal)
     {
+        lastScore = curScore;
+        curScore  = PlayerMapScores[pln];
+
         PlayerTIDs[pln] = defaultTID(-1);
 
         // Handle the dakka_shotgun2ssg and dakka_chaingun2minigun CVars.
@@ -61,6 +67,9 @@ script "Dakka_Spawn" (int respawned)
 
         // In dakka_ssg.h
         SSG_AutoReload();
+
+        // In score/score_reward.h
+        Score_DoRewards(lastScore, curScore);
 
         // In score/score_update.h
         Air_UpdateZHeight();

@@ -24,8 +24,13 @@
 // Step 10 (A): Clear all T_CHECKED target slots
 //  Pointers: {firer, ????, now-irrelevant target}
 
-int APos_X, APos_Y, APos_Z;
-int ALook_AngX, ALook_AngY, ALook_AngZ;
+#define APOS_X      0
+#define APOS_Y      1
+#define APOS_Z      2
+#define APOS_ANGX   3
+#define APOS_ANGY   4
+#define APOS_ANGZ   5
+int APos[6];
 
 function int Look_Loop(int arcType, int arcerTID)
 {
@@ -35,15 +40,16 @@ function int Look_Loop(int arcType, int arcerTID)
     // 
     // It's the vector of the angle the arc is facing.
     
-    APos_X = GetActorX(0);
-    APos_Y = GetActorY(0);
-    APos_Z = GetActorZ(0);
+    APos[APOS_X] = GetActorX(0);
+    APos[APOS_Y] = GetActorY(0);
+    APos[APOS_Z] = GetActorZ(0);
+
     int arcAngle = GetActorAngle(0);
     int arcPitch = GetActorPitch(0);
 
-    ALook_AngX = FixedMul(cos(arcAngle), cos(arcPitch));
-    ALook_AngY = FixedMul(sin(arcAngle), cos(arcPitch));
-    ALook_AngZ =          sin(arcPitch);
+    APos[APOS_ANGX] = FixedMul(cos(arcAngle), cos(arcPitch));
+    APos[APOS_ANGY] = FixedMul(sin(arcAngle), cos(arcPitch));
+    APos[APOS_ANGZ] =          sin(arcPitch);
 
 
     int isDM          = (GameType() == GAME_NET_DEATHMATCH);
@@ -192,9 +198,9 @@ function int Loop_CalcScore(int arcType, int arcerTID, int targetTID, int maxRan
     int targetY = GetActorY(targetTID);
     int targetZ = GetActorZ(targetTID) + GetActorViewHeight(targetTID);
 
-    int dX = targetX - APos_X;
-    int dY = targetY - APos_Y;
-    int dZ = targetZ - APos_Z;
+    int dX = targetX - APos[APOS_X];
+    int dY = targetY - APos[APOS_Y];
+    int dZ = targetZ - APos[APOS_Z];
 
     // dX and dY were already implicitly checked by A_LookEx, but not dZ,
     //  so let's handle that to quickly rule out targets too high or low up.
@@ -232,7 +238,7 @@ function int Loop_CalcScore(int arcType, int arcerTID, int targetTID, int maxRan
     //
     //  angleDiff will never be above 0.5.
 
-    int angleDiff = acos(FixedDiv(dot3(ALook_AngX, ALook_AngY, ALook_AngZ, dX, dY, dZ), distanceScore));
+    int angleDiff = acos(FixedDiv(dot3(APos[APOS_ANGX], APos[APOS_ANGY], APos[APOS_ANGZ], dX, dY, dZ), distanceScore));
 
 
     // Now calculate the score. We can only go up from distanceScore, or else

@@ -5,3 +5,4 @@
 #include "score_mults.h"
 #include "score_onkill.h"
 #include "score_weapons.h"
+#include "score_reward.h"

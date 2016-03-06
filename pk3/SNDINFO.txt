@@ -6,13 +6,31 @@ dakka/explode               sounds/general/explode.ogg
 $limit dakka/explode        0
 
 
+
+
 ////////
 // TITLEMAP
 ///
 
 dakka/title_lettersmack     sounds/titlemap/letter_smack.ogg
-dakka/title_dm2ttl          D_DM2TTL
-dakka/title_intro           D_INTRO
+
+
+
+
+////////
+// SCORE
+///
+
+dakka/pointreward           sounds/score/points_reward.ogg
+dakka/fullheal              sounds/score/points_fullheal.ogg
+dakka/ammoregen             sounds/score/points_ammoregen.ogg
+dakka/ammoregen_start       sounds/score/points_ammoregen_start.ogg
+dakka/fizzle                sounds/score/points_fizzle.ogg
+dakka/revive                sounds/score/point_revive.ogg   // FUCK CONSISTENCY
+
+$rolloff dakka/revive    512 3072
+$rolloff dakka/fizzle    128  512
+$rolloff dakka/ammoregen 128  512
 
 
 
