@@ -102,15 +102,17 @@ actor DWep_Shotgun: DoomWeapon
         goto Ready
 
       Flash:
-        DKSF B 1 bright offset(0, 38) A_Light2
-        DKSF B 1 bright offset(0, 32) A_Light2
-        DKSF A 1 bright A_Light1
+        DKSF B 1 bright offset(0, 38) A_Light(5)
+        DKSF B 1 bright offset(0, 32) A_Light(4)
+        DKSF A 1 bright A_Light(3)
+        TNT1 A 1 bright A_Light(2)
+        TNT1 A 1 bright A_Light(1)
         goto LightDone
 
       AltFlash:
-        DKSF B 1 bright offset(0, 37) A_Light2
-        DKSF B 1 bright offset(0, 32) A_Light2
-        DKSF A 2 bright A_Light1
+        DKSF B 1 bright offset(0, 37) A_Light(3)
+        DKSF B 1 bright offset(0, 32) A_Light(2)
+        DKSF A 2 bright A_Light(1)
         goto LightDone
 
       Spawn:

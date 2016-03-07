@@ -62,11 +62,15 @@ actor DWep_Scrappers: DoomWeapon
                                     CallACS("Dakka_Spread", -600, 600) / 65536.0)
         RSCP A 0 A_FireCustomMissile("AmmoWaster")
         RSCP A 0 ACS_NamedExecuteAlways("Dakka_Recoil", 0, 2, 2, 7)
-        RSCP A 1 bright
-        RSCP B 1 bright
-        RSCP C 1 bright
-        RSCP D 1 bright
-        RSCP E 2 bright A_WeaponReady(WRF_NOBOB | WRF_NOFIRE)
+        RSCP A 1 bright A_Light(6)
+        RSCP B 1 bright A_Light(5)
+        RSCP C 1 bright A_Light(4)
+        RSCP D 1 bright A_Light(3)
+        RSCP E 0 bright A_Light(2)
+        RSCP E 1 bright A_WeaponReady(WRF_NOBOB | WRF_NOFIRE)
+        RSCP E 0 bright A_Light(1)
+        RSCP E 1 bright A_WeaponReady(WRF_NOBOB | WRF_NOFIRE)
+        RSCP E 0 bright A_Light(0)
         RSCP F 3 A_WeaponReady(WRF_NOBOB | WRF_NOFIRE)
         RSCP F 0 A_CheckReload
         RSCP F 0 A_JumpIfInventory("ScrapperAltTimer", 1, 2)
@@ -85,11 +89,15 @@ actor DWep_Scrappers: DoomWeapon
                                     CallACS("Dakka_Spread", -600, 600) / 65536.0)
         RSCP A 0 A_FireCustomMissile("AmmoWaster")
         RSCP A 0 ACS_NamedExecuteAlways("Dakka_Recoil", 0, 2, 2, 7)
-        LSCP A 1 bright
-        LSCP B 1 bright
-        LSCP C 1 bright
-        LSCP D 1 bright
-        LSCP E 2 bright A_WeaponReady(WRF_NOBOB | WRF_NOFIRE)
+        LSCP A 1 bright A_Light(6)
+        LSCP B 1 bright A_Light(5)
+        LSCP C 1 bright A_Light(4)
+        LSCP D 1 bright A_Light(3)
+        LSCP E 0 bright A_Light(2)
+        LSCP E 1 bright A_WeaponReady(WRF_NOBOB | WRF_NOFIRE)
+        LSCP E 0 bright A_Light(1)
+        LSCP E 1 bright A_WeaponReady(WRF_NOBOB | WRF_NOFIRE)
+        LSCP E 0 bright A_Light(0)
         LSCP F 3 A_WeaponReady(WRF_NOBOB | WRF_NOFIRE)
         RSCP F 0 A_CheckReload
         RSCP F 0 A_JumpIfInventory("ScrapperAltTimer", 1, 2)
@@ -109,9 +117,18 @@ actor DWep_Scrappers: DoomWeapon
                                     CallACS("Dakka_Spread", -600, 600) / 65536.0)
         RSCP A 0 A_FireCustomMissile("AmmoWaster")
         RSCP A 0 ACS_NamedExecuteAlways("Dakka_Recoil", 0, 2, 2, 7)
-        DSCP JKLM 1 bright
-        DSCP NO 1 bright A_WeaponReady(WRF_NOBOB | WRF_NOFIRE)
-        DSCP PQR 1 A_WeaponReady(WRF_NOBOB | WRF_NOFIRE)
+        DSCP J 1 bright A_Light(7)
+        DSCP K 1 bright A_Light(6)
+        DSCP L 1 bright A_Light(5)
+        DSCP M 1 bright A_Light(4)
+        DSCP N 0 bright A_Light(3)
+        DSCP O 1 bright A_WeaponReady(WRF_NOBOB | WRF_NOFIRE)
+        DSCP O 0 bright A_Light(2)
+        DSCP O 1 bright A_WeaponReady(WRF_NOBOB | WRF_NOFIRE)
+        DSCP P 0 bright A_Light(1)
+        DSCP P 1 A_WeaponReady(WRF_NOBOB | WRF_NOFIRE)
+        DSCP P 0 A_Light(0)
+        DSCP QR 1 A_WeaponReady(WRF_NOBOB | WRF_NOFIRE)
         DSCP R 0 A_CheckReload
         DSCP R 0 A_JumpIfInventory("ScrapperAltTimer", 1, 2)
         DSCP R 0 A_JumpIfInventory("AltFired", 1, "PrimaryToAlt")
@@ -129,9 +146,18 @@ actor DWep_Scrappers: DoomWeapon
                                     CallACS("Dakka_Spread", -600, 600) / 65536.0)
         RSCP A 0 A_FireCustomMissile("AmmoWaster")
         RSCP A 0 ACS_NamedExecuteAlways("Dakka_Recoil", 0, 2, 2, 7)
-        DSCP ABCD 1 bright
-        DSCP EF 1 bright A_WeaponReady(WRF_NOBOB | WRF_NOFIRE)
-        DSCP GHI 1 A_WeaponReady(WRF_NOBOB | WRF_NOFIRE)
+        DSCP A 1 bright A_Light(7)
+        DSCP B 1 bright A_Light(6)
+        DSCP C 1 bright A_Light(5)
+        DSCP D 1 bright A_Light(4)
+        DSCP E 0 bright A_Light(3)
+        DSCP F 1 bright A_WeaponReady(WRF_NOBOB | WRF_NOFIRE)
+        DSCP F 0 bright A_Light(2)
+        DSCP F 1 bright A_WeaponReady(WRF_NOBOB | WRF_NOFIRE)
+        DSCP G 0 bright A_Light(1)
+        DSCP G 1 A_WeaponReady(WRF_NOBOB | WRF_NOFIRE)
+        DSCP G 0 A_Light(0)
+        DSCP HI 1 A_WeaponReady(WRF_NOBOB | WRF_NOFIRE)
         DSCP I 0 A_CheckReload
         DSCP I 0 A_JumpIfInventory("ScrapperAltTimer", 1, 2)
         DSCP I 0 A_JumpIfInventory("AltFired", 1, "PrimaryToAlt")
@@ -150,9 +176,18 @@ actor DWep_Scrappers: DoomWeapon
                                     CallACS("Dakka_Spread", -600, 600) / 65536.0)
         RSCP A 0 A_FireCustomMissile("AmmoWaster")
         RSCP A 0 ACS_NamedExecuteAlways("Dakka_Recoil", 0, 2, 2, 7)
-        RSCP LMNO 1 bright
-        RSCP PQ 1 bright A_WeaponReady(WRF_NOBOB | WRF_NOFIRE)
-        RSCP R 3 A_WeaponReady(WRF_NOBOB | WRF_NOFIRE)
+        RSCP L 1 bright A_Light(8)
+        RSCP M 1 bright A_Light(7)
+        RSCP N 1 bright A_Light(5)
+        RSCP O 1 bright A_Light(4)
+        RSCP P 0 bright A_Light(3)
+        RSCP P 1 bright A_WeaponReady(WRF_NOBOB | WRF_NOFIRE)
+        RSCP Q 0 bright A_Light(2)
+        RSCP Q 1 bright A_WeaponReady(WRF_NOBOB | WRF_NOFIRE)
+        RSCP R 0 bright A_Light(1)
+        RSCP R 1 A_WeaponReady(WRF_NOBOB | WRF_NOFIRE)
+        RSCP R 0 bright A_Light(0)
+        RSCP R 2 A_WeaponReady(WRF_NOBOB | WRF_NOFIRE)
         RSCP R 0 A_CheckReload
         RSCP R 0 A_JumpIfInventory("ScrapperAltTimer", 1, 2)
         RSCP R 0 A_JumpIfInventory("AltFired", 1, "PrimaryToAlt")
@@ -170,9 +205,18 @@ actor DWep_Scrappers: DoomWeapon
                                     CallACS("Dakka_Spread", -600, 600) / 65536.0)
         RSCP A 0 A_FireCustomMissile("AmmoWaster")
         RSCP A 0 ACS_NamedExecuteAlways("Dakka_Recoil", 0, 2, 2, 7)
-        LSCP LMNO 1 bright
-        LSCP PQ 1 bright A_WeaponReady(WRF_NOBOB | WRF_NOFIRE)
-        LSCP R 3 A_WeaponReady(WRF_NOBOB | WRF_NOFIRE)
+        LSCP L 1 bright A_Light(8)
+        LSCP M 1 bright A_Light(7)
+        LSCP N 1 bright A_Light(5)
+        LSCP O 1 bright A_Light(4)
+        LSCP P 0 bright A_Light(3)
+        LSCP P 1 bright A_WeaponReady(WRF_NOBOB | WRF_NOFIRE)
+        LSCP Q 0 bright A_Light(2)
+        LSCP Q 1 bright A_WeaponReady(WRF_NOBOB | WRF_NOFIRE)
+        LSCP R 0 bright A_Light(1)
+        LSCP R 1 A_WeaponReady(WRF_NOBOB | WRF_NOFIRE)
+        LSCP R 0 bright A_Light(0)
+        LSCP R 2 A_WeaponReady(WRF_NOBOB | WRF_NOFIRE)
         LSCP R 0 A_CheckReload
         LSCP F 0 A_JumpIfInventory("ScrapperAltTimer", 1, 2)
         LSCP R 0 A_JumpIfInventory("AltFired", 1, "PrimaryToAlt")
@@ -198,7 +242,7 @@ actor DWep_Scrappers: DoomWeapon
         goto Ready
 
       RStill_LEnd:
-        RSCP A 0 A_AlertMonsters
+        LSCP A 0 A_AlertMonsters
         LSCP F 0 A_JumpIfInventory("AltFired", 1, "PrimaryToAlt")
         LSCP F 1 A_JumpIfInventory("MainFired", 1, "RStart_LEnd")
 
@@ -237,8 +281,15 @@ actor DWep_Scrappers: DoomWeapon
         RSCP A 0 A_FireCustomMissile("ScrapperGrenade", 0, 0,  11)
         RSCP A 0 A_FireCustomMissile("AmmoWaster")
         RSCP A 0 ACS_NamedExecuteAlways("Dakka_Recoil", 0, 6, 4, 16)
-        SCPR BCDEF 1 bright
-        SCPR G 4
+        SCPR B 1 bright A_Light(9)
+        SCPR C 1 bright A_Light(8)
+        SCPR D 1 bright A_Light(6)
+        SCPR E 1 bright A_Light(5)
+        SCPR F 1 bright A_Light(4)
+        SCPR G 1 bright A_Light(3)
+        SCPR G 1 bright A_Light(2)
+        SCPR G 1 bright A_Light(1)
+        SCPR G 1 bright A_Light(0)
         SCPR HIJK 2
         SCRR L 0 A_JumpIfInventory("MainFired", 1, "AltToPrimary")
         SCPR L 2 A_WeaponReady(WRF_NOFIRE | WRF_NOBOB)
