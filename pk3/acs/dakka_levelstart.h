@@ -380,7 +380,8 @@ function void Dakka_DoLevelSpawn(int entered)
 
         if (entered)
         {
-            PlayerMapScores[pln] = 0;
+            // in acs/score_levelstart.h
+            Score_Reset(pln);
         }
     }
 

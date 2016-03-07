@@ -30,3 +30,14 @@ function void Score_CalcMapPoints(void)
 
     MapStart_FullHealPoints = max(5000, fullHealPoints);
 }
+
+
+function void Score_Reset(int pln)
+{
+    PlayerMapScores[pln]            = 0;
+    PlayerMapScoreRewards[pln]      = 0;
+    PlayerAmmoRegenTimers[pln]      = 0;
+    PlayerExtraLifeCount[pln]       = 0;
+    PlayerAmmoRegenTimeSpent[pln]   = 0;
+    PlayerHasExtraLives[pln]        = 0;
+}
