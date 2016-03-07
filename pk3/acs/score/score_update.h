@@ -25,8 +25,10 @@ function void Air_UpdateZHeight(void)
 
 function void Score_UpdateClient(int pln)
 {
-    Sender_SetData(pln, S2C_D_SCORE,     PlayerMapScores[pln]);
-    Sender_SetData(pln, S2C_D_GOALSCORE, MapStart_FullHealPoints);
+    Sender_SetData(pln, S2C_D_SCORE,        Score_GetScore(pln));
+    Sender_SetData(pln, S2C_D_GOALSCORE,    MapStart_FullHealPoints);
+    Sender_SetData(pln, S2C_D_LIVESLEFT,    Score_GetExtraLives(pln));
+    Sender_SetData(pln, S2C_D_REWARDCOUNT,  Score_GetRewardCount(pln));
 
     int i;
     for (i = 0; i < BONUSCOUNT; i++)

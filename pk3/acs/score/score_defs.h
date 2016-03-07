@@ -47,8 +47,6 @@
 
 #define INFIGHTER_MULT          0.2
 
-world int 101:PlayerMapScores[];
-
 // Allowing three fire modes.
 //  0 - primary   (+attack)
 //  1 - secondary (+altattack)
@@ -187,3 +185,115 @@ int LastBonus[PLAYERMAX][BONUSCOUNT];
 // Clientside. Stores the last value a bonus was seen with.
 // (also make sure to add score definitions in pickup_client_defs.h
 int Bonus_LastSeen[PLAYERMAX][BONUSCOUNT];
+
+
+
+
+global int 22:MapScoreData[];
+
+#define REWARDDATA_SCORE         0
+#define REWARDDATA_REWARDCOUNT  (1 * PLAYERMAX)
+#define REWARDDATA_REGENTIMER   (2 * PLAYERMAX)
+#define REWARDDATA_REGENSPENT   (3 * PLAYERMAX)
+#define REWARDDATA_EXTRALIVES   (4 * PLAYERMAX)
+#define REWARDDATA_HASLIVES     (5 * PLAYERMAX)
+
+function int Score_GetScore(int pln)
+{
+    return MapScoreData[REWARDDATA_SCORE + pln];
+}
+
+function void Score_SetScore(int pln, int val)
+{
+    MapScoreData[REWARDDATA_SCORE + pln] = val;
+}
+
+function void Score_ModScore(int pln, int val)
+{
+    MapScoreData[REWARDDATA_SCORE + pln] += val;
+}
+
+
+
+function int Score_GetRewardCount(int pln)
+{
+    return MapScoreData[REWARDDATA_REWARDCOUNT + pln];
+}
+
+function void Score_SetRewardCount(int pln, int val)
+{
+    MapScoreData[REWARDDATA_REWARDCOUNT + pln] = val;
+}
+
+function void Score_ModRewardCount(int pln, int val)
+{
+    MapScoreData[REWARDDATA_REWARDCOUNT + pln] += val;
+}
+
+
+
+function int Score_GetRegenTimer(int pln)
+{
+    return MapScoreData[REWARDDATA_REGENTIMER + pln];
+}
+
+function void Score_SetRegenTimer(int pln, int val)
+{
+    MapScoreData[REWARDDATA_REGENTIMER + pln] = val;
+}
+
+function void Score_ModRegenTimer(int pln, int val)
+{
+    MapScoreData[REWARDDATA_REGENTIMER + pln] += val;
+}
+
+
+
+function int Score_GetRegenSpent(int pln)
+{
+    return MapScoreData[REWARDDATA_REGENSPENT + pln];
+}
+
+function void Score_SetRegenSpent(int pln, int val)
+{
+    MapScoreData[REWARDDATA_REGENSPENT + pln] = val;
+}
+
+function void Score_ModRegenSpent(int pln, int val)
+{
+    MapScoreData[REWARDDATA_REGENSPENT + pln] += val;
+}
+
+
+
+function int Score_GetExtraLives(int pln)
+{
+    return MapScoreData[REWARDDATA_EXTRALIVES + pln];
+}
+
+function void Score_SetExtraLives(int pln, int val)
+{
+    MapScoreData[REWARDDATA_EXTRALIVES + pln] = val;
+}
+
+function void Score_ModExtraLives(int pln, int val)
+{
+    MapScoreData[REWARDDATA_EXTRALIVES + pln] += val;
+}
+
+
+
+function int Score_GetHasLives(int pln)
+{
+    return MapScoreData[REWARDDATA_HASLIVES + pln];
+}
+
+function void Score_SetHasLives(int pln, int val)
+{
+    MapScoreData[REWARDDATA_HASLIVES + pln] = val;
+}
+
+function void Score_ModHasLives(int pln, int val)
+{
+    MapScoreData[REWARDDATA_HASLIVES + pln] += val;
+}

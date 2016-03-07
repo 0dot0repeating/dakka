@@ -34,10 +34,10 @@ function void Score_CalcMapPoints(void)
 
 function void Score_Reset(int pln)
 {
-    PlayerMapScores[pln]            = 0;
-    PlayerMapScoreRewards[pln]      = 0;
-    PlayerAmmoRegenTimers[pln]      = 0;
-    PlayerExtraLifeCount[pln]       = 0;
-    PlayerAmmoRegenTimeSpent[pln]   = 0;
-    PlayerHasExtraLives[pln]        = 0;
+    Score_SetScore(pln, 0);
+    Score_SetRewardCount(pln, 0);
+    Score_SetRegenTimer(pln, 0);
+    Score_SetRegenSpent(pln, 0);
+    Score_SetExtraLives(pln, 0);
+    Score_SetHasLives(pln, false);
 }

@@ -37,12 +37,12 @@ script "Dakka_Spawn" (int respawned)
         Dakka_DoLevelSpawn(!respawned);
     }
 
-    curScore = PlayerMapScores[pln];
+    curScore = Score_GetScore(pln);
 
     while (DakkaEnterLocks[pln] == myLockVal)
     {
         lastScore = curScore;
-        curScore  = PlayerMapScores[pln];
+        curScore  = Score_GetScore(pln);
 
         PlayerTIDs[pln] = defaultTID(-1);
 
