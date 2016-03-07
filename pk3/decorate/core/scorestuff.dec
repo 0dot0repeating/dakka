@@ -58,14 +58,14 @@ actor DakkaReviveExplosion
         TNT1 A 0 A_SpawnItemEx("RevivalFlame", 80, 0, -32, frandom(-0.5, 0.5), frandom(-0.5, 0.5), 1.5, 270,   SXF_TRANSFERPOINTERS)
         TNT1 A 0 A_SpawnItemEx("RevivalFlame", 80, 0, -32, frandom(-0.5, 0.5), frandom(-0.5, 0.5), 1.5, 315,   SXF_TRANSFERPOINTERS)
 
-        TNT1 A 0 A_SpawnItemEx("RevivalFlameGround", 80, 0, -32, frandom(-0.2, 0.2), frandom(-0.2, 0.2), 0,   0,   SXF_TRANSFERPOINTERS)
-        TNT1 A 0 A_SpawnItemEx("RevivalFlameGround", 80, 0, -32, frandom(-0.2, 0.2), frandom(-0.2, 0.2), 0,  45,   SXF_TRANSFERPOINTERS)
-        TNT1 A 0 A_SpawnItemEx("RevivalFlameGround", 80, 0, -32, frandom(-0.2, 0.2), frandom(-0.2, 0.2), 0,  90,   SXF_TRANSFERPOINTERS)
-        TNT1 A 0 A_SpawnItemEx("RevivalFlameGround", 80, 0, -32, frandom(-0.2, 0.2), frandom(-0.2, 0.2), 0, 135,   SXF_TRANSFERPOINTERS)
-        TNT1 A 0 A_SpawnItemEx("RevivalFlameGround", 80, 0, -32, frandom(-0.2, 0.2), frandom(-0.2, 0.2), 0, 180,   SXF_TRANSFERPOINTERS)
-        TNT1 A 0 A_SpawnItemEx("RevivalFlameGround", 80, 0, -32, frandom(-0.2, 0.2), frandom(-0.2, 0.2), 0, 225,   SXF_TRANSFERPOINTERS)
-        TNT1 A 0 A_SpawnItemEx("RevivalFlameGround", 80, 0, -32, frandom(-0.2, 0.2), frandom(-0.2, 0.2), 0, 270,   SXF_TRANSFERPOINTERS)
-        TNT1 A 0 A_SpawnItemEx("RevivalFlameGround", 80, 0, -32, frandom(-0.2, 0.2), frandom(-0.2, 0.2), 0, 315,   SXF_TRANSFERPOINTERS)
+        TNT1 A 0 A_SpawnItemEx("RevivalFlameGround", 80, 0, -32, frandom(-0.2, 0.2), frandom(0.8, 1.2), 0,   0,   SXF_TRANSFERPOINTERS)
+        TNT1 A 0 A_SpawnItemEx("RevivalFlameGround", 80, 0, -32, frandom(-0.2, 0.2), frandom(0.8, 1.2), 0,  45,   SXF_TRANSFERPOINTERS)
+        TNT1 A 0 A_SpawnItemEx("RevivalFlameGround", 80, 0, -32, frandom(-0.2, 0.2), frandom(0.8, 1.2), 0,  90,   SXF_TRANSFERPOINTERS)
+        TNT1 A 0 A_SpawnItemEx("RevivalFlameGround", 80, 0, -32, frandom(-0.2, 0.2), frandom(0.8, 1.2), 0, 135,   SXF_TRANSFERPOINTERS)
+        TNT1 A 0 A_SpawnItemEx("RevivalFlameGround", 80, 0, -32, frandom(-0.2, 0.2), frandom(0.8, 1.2), 0, 180,   SXF_TRANSFERPOINTERS)
+        TNT1 A 0 A_SpawnItemEx("RevivalFlameGround", 80, 0, -32, frandom(-0.2, 0.2), frandom(0.8, 1.2), 0, 225,   SXF_TRANSFERPOINTERS)
+        TNT1 A 0 A_SpawnItemEx("RevivalFlameGround", 80, 0, -32, frandom(-0.2, 0.2), frandom(0.8, 1.2), 0, 270,   SXF_TRANSFERPOINTERS)
+        TNT1 A 0 A_SpawnItemEx("RevivalFlameGround", 80, 0, -32, frandom(-0.2, 0.2), frandom(0.8, 1.2), 0, 315,   SXF_TRANSFERPOINTERS)
 
         TNT1 A 1 A_SetAngle(angle + 2.5)
         TNT1 A 0 A_SetUserVar("user_firestep", user_firestep + 1)
@@ -103,7 +103,7 @@ actor RevivalIntervention: PowerProtection
     +DONTSQUASH
 
     DamageFactor None, 0
-    Powerup.Duration -1
+    Powerup.Duration -2
 }
 
 
