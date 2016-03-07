@@ -3,9 +3,9 @@ actor Pickup_ArmorBonus: ClassBasedPickup replaces ArmorBonus
     States
     {
       Spawn:
-        TNT1 A 0
-        TNT1 A 0 A_SetUserVar("user_index", It_ArmorBonus)
-        TNT1 A 0 A_SetUserVar("user_dropped", 0)
+        BON2 A 0
+        "----" A 0 A_SetUserVar("user_index", It_ArmorBonus)
+        "----" A 0 A_SetUserVar("user_dropped", 0)
         goto DropCheck
 
       Unknown:
@@ -24,9 +24,9 @@ actor Pickup_GreenArmor: ClassBasedPickup replaces GreenArmor
     States
     {
       Spawn:
-        TNT1 A 0
-        TNT1 A 0 A_SetUserVar("user_index", It_GreenArmor)
-        TNT1 A 0 A_SetUserVar("user_dropped", 0)
+        ARM1 A 0
+        "----" A 0 A_SetUserVar("user_index", It_GreenArmor)
+        "----" A 0 A_SetUserVar("user_dropped", 0)
         goto DropCheck
 
       Unknown:
@@ -46,9 +46,9 @@ actor Pickup_BlueArmor: ClassBasedPickup replaces BlueArmor
     States
     {
       Spawn:
-        TNT1 A 0
-        TNT1 A 0 A_SetUserVar("user_index", It_BlueArmor)
-        TNT1 A 0 A_SetUserVar("user_dropped", 0)
+        ARM2 A 0
+        "----" A 0 A_SetUserVar("user_index", It_BlueArmor)
+        "----" A 0 A_SetUserVar("user_dropped", 0)
         goto DropCheck
 
       Unknown:
@@ -68,9 +68,9 @@ actor Pickup_Megasphere: ClassBasedPickup replaces Megasphere
     States
     {
       Spawn:
-        TNT1 A 0
-        TNT1 A 0 A_SetUserVar("user_index", It_Megasphere)
-        TNT1 A 0 A_SetUserVar("user_dropped", 0)
+        MEGA A 0
+        "----" A 0 A_SetUserVar("user_index", It_Megasphere)
+        "----" A 0 A_SetUserVar("user_dropped", 0)
         goto DropCheck
 
       Unknown:
