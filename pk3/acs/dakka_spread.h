@@ -1,11 +1,11 @@
-#define DAKKASPREAD_ENTRIES     513
+#define DAKKASPREAD_ENTRIES     512
 
 // cumulative normal distribution over the range [-1.0, 1.0]
 //
 // infinities chopped off, max values used to normalize the array
 //
 // this table is here to speed up spread lookups
-int Dakka_SpreadTable[DAKKASPREAD_ENTRIES] =
+int Dakka_SpreadTable[DAKKASPREAD_ENTRIES + 1] =
 {
     -1.000000, -0.921894, -0.873569, -0.837926, -0.809423, -0.785531, -0.764879, -0.746633, -0.730251, -0.715355, -0.701676, -0.689010, -0.677204, -0.666136, -0.655709, -0.645844,
     -0.636477, -0.627553, -0.619027, -0.610861, -0.603021, -0.595478, -0.588207, -0.581186, -0.574397, -0.567821, -0.561444, -0.555251, -0.549231, -0.543373, -0.537665, -0.532101,
@@ -48,13 +48,13 @@ script "Dakka_Spread" (int x, int y)
     int hi = itof(max(x,y)) / 100;
     int lo = itof(min(x,y)) / 100;
 
-    int range  = hi - lo;
-    int center = lo + (range / 2);
+    int centerDist = (hi - lo) / 2;
+    int center = lo + centerDist;
 
     int rand = random(0, 1.0);
-    int randIndex = round(rand * (DAKKASPREAD_ENTRIES - 1));
+    int randIndex = round(rand * DAKKASPREAD_ENTRIES);
 
-    int ret = FixedMul(range / 2, Dakka_SpreadTable[randIndex]) + center;
+    int ret = FixedMul(centerDist, Dakka_SpreadTable[randIndex]) + center;
 
     SetResultValue(ret);
 }
