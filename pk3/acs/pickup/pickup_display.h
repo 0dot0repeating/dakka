@@ -58,7 +58,7 @@ function int Pickup_IsDisplayScripted(int index, int classNum)
 
 
 
-script PICKUP_DISPLAY (int index, int dropped, int firstDisplay) clientside
+script "Pickup_Display" (int index, int dropped, int firstDisplay) clientside
 {
     int cpln     = ConsolePlayerNumber();
     // Don't do shit if we're somehow running on the server.

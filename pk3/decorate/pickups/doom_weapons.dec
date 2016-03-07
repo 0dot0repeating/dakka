@@ -17,7 +17,7 @@ actor Pickup_Chainsaw: ClassBasedPickup replaces Chainsaw
         stop
 
       Pickup:
-        TNT1 A 0 A_JumpIf(ACS_ExecuteWithResult(PICKUP_PICKUP, It_Chainsaw, false) == 1, "PickedUp")
+        TNT1 A 0 A_JumpIf(CallACS("Pickup_Pickup", It_Chainsaw, false) == 1, "PickedUp")
         goto NotPickedUp
     }
 }
@@ -45,7 +45,7 @@ actor Pickup_Shotgun: ClassBasedPickup replaces Shotgun
         stop
 
       Pickup:
-        TNT1 A 0 A_JumpIf(ACS_ExecuteWithResult(PICKUP_PICKUP, It_Shotgun, false) == 1, "PickedUp")
+        TNT1 A 0 A_JumpIf(CallACS("Pickup_Pickup", It_Shotgun, false) == 1, "PickedUp")
         goto NotPickedUp
     }
 }
@@ -70,7 +70,7 @@ actor Pickup_ShotgunDropped: ClassBasedPickup
         stop
 
       Pickup:
-        TNT1 A 0 A_JumpIf(ACS_ExecuteWithResult(PICKUP_PICKUP, It_ShotgunDropped, true) == 1, "PickedUp")
+        TNT1 A 0 A_JumpIf(CallACS("Pickup_Pickup", It_ShotgunDropped, true) == 1, "PickedUp")
         goto NotPickedUp
     }
 }
@@ -94,7 +94,7 @@ actor Pickup_SuperShotgun: ClassBasedPickup replaces SuperShotgun
         stop
 
       Pickup:
-        TNT1 A 0 A_JumpIf(ACS_ExecuteWithResult(PICKUP_PICKUP, It_SuperShotgun, false) == 1, "PickedUp")
+        TNT1 A 0 A_JumpIf(CallACS("Pickup_Pickup", It_SuperShotgun, false) == 1, "PickedUp")
         goto NotPickedUp
     }
 }
@@ -126,7 +126,7 @@ actor Pickup_Chaingun: ClassBasedPickup replaces Chaingun
         stop
 
       Pickup:
-        TNT1 A 0 A_JumpIf(ACS_ExecuteWithResult(PICKUP_PICKUP, It_Chaingun, false) == 1, "PickedUp")
+        TNT1 A 0 A_JumpIf(CallACS("Pickup_Pickup", It_Chaingun, false) == 1, "PickedUp")
         goto NotPickedUp
     }
 }
@@ -151,7 +151,7 @@ actor Pickup_ChaingunDropped: ClassBasedPickup
         stop
 
       Pickup:
-        TNT1 A 0 A_JumpIf(ACS_ExecuteWithResult(PICKUP_PICKUP, It_ChaingunDropped, true) == 1, "PickedUp")
+        TNT1 A 0 A_JumpIf(CallACS("Pickup_Pickup", It_ChaingunDropped, true) == 1, "PickedUp")
         goto NotPickedUp
     }
 }
@@ -175,7 +175,7 @@ actor Pickup_RocketLauncher: ClassBasedPickup replaces RocketLauncher
         stop
 
       Pickup:
-        TNT1 A 0 A_JumpIf(ACS_ExecuteWithResult(PICKUP_PICKUP, It_RocketLauncher, false) == 1, "PickedUp")
+        TNT1 A 0 A_JumpIf(CallACS("Pickup_Pickup", It_RocketLauncher, false) == 1, "PickedUp")
         goto NotPickedUp
     }
 }
@@ -211,7 +211,7 @@ actor Pickup_PlasmaRifle: ClassBasedPickup replaces PlasmaRifle
         stop
 
       Pickup:
-        TNT1 A 0 A_JumpIf(ACS_ExecuteWithResult(PICKUP_PICKUP, It_PlasmaRifle, false) == 1, "PickedUp")
+        TNT1 A 0 A_JumpIf(CallACS("Pickup_Pickup", It_PlasmaRifle, false) == 1, "PickedUp")
         goto NotPickedUp
     }
 }
@@ -243,7 +243,7 @@ actor Pickup_BFG9000: ClassBasedPickup replaces BFG9000
         stop
 
       Pickup:
-        TNT1 A 0 A_JumpIf(ACS_ExecuteWithResult(PICKUP_PICKUP, It_BFG9000, false) == 1, "PickedUp")
+        TNT1 A 0 A_JumpIf(CallACS("Pickup_Pickup", It_BFG9000, false) == 1, "PickedUp")
         goto NotPickedUp
     }
 }
