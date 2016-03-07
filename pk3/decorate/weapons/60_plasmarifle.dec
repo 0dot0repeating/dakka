@@ -43,6 +43,7 @@ actor DWep_PlasmaRifle: DoomWeapon
         loop
 
       Deselect:
+        DPLS A 0 A_Light(0)
         DPLS AAA 0 A_Lower
         DPLS A 1 A_Lower
         loop
@@ -53,14 +54,17 @@ actor DWep_PlasmaRifle: DoomWeapon
         DPLS A 0 A_GiveInventory("GiveScrapCounter2", 1)
         DPLS A 0 ACS_NamedExecuteAlways("Dakka_Recoil", 0, -75, 2, 6)
         DPLS A 0 A_FireCustomMissile("DakkaPlasma")
-        DPLS C 2 bright A_Light2
-        DPLS B 1 bright A_Light1
+        DPLS C 2 bright A_Light(random(4, 6))
+        DPLS B 1 bright A_Light(3)
         DPLS B 0 A_ReFire
         goto FireDone
     
       FireDone:
-        DPLS D 0 A_Light0
-        DPLS D 2 A_WeaponReady(WRF_NOBOB | WRF_NOFIRE)
+        DPLS D 0 A_Light(2)
+        DPLS D 1 A_WeaponReady(WRF_NOBOB | WRF_NOFIRE)
+        DPLS D 0 A_Light(1)
+        DPLS D 1 A_WeaponReady(WRF_NOBOB | WRF_NOFIRE)
+        DPLS D 0 A_Light(0)
         DPLS E 1 A_WeaponReady(WRF_NOBOB | WRF_NOFIRE)
         DPLS F 4 A_WeaponReady(WRF_NOBOB | WRF_NOFIRE)
         DPLS F 2 A_WeaponReady(WRF_NOBOB | WRF_NOFIRE)
@@ -107,9 +111,13 @@ actor DWep_PlasmaRifle: DoomWeapon
         goto Ready
 
       Flash:
-        DPLS B 2 Bright A_Light1
-        DPLS A 3 Bright A_Light1
-        TNT1 A 1 Bright A_Light1
+        DPLS B 1 Bright A_Light(3)
+        DPLS B 1 Bright A_Light(6)
+        DPLS A 1 Bright A_Light(5)
+        DPLS A 1 Bright A_Light(4)
+        DPLS A 1 Bright A_Light(3)
+        TNT1 A 1 Bright A_Light(2)
+        TNT1 A 1 Bright A_Light(1)
         goto LightDone
 
       Spawn:

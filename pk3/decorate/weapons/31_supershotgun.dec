@@ -298,15 +298,24 @@ actor DWep_SuperShotgun: DoomWeapon
 
 
       Flash:
-        DSSF B 1 bright offset(0, 42) A_Light2
-        DSSF B 1 bright offset(0, 32) A_Light2
-        DSSF A 2 bright A_Light1
+        DSSF B 1 bright offset(0, 42) A_Light(8)
+        DSSF B 1 bright offset(0, 32) A_Light(6)
+        DSSF A 1 bright A_Light(4)
+        DSSF A 1 bright A_Light(3)
+        TNT1 A 1 bright A_Light(2)
+        TNT1 A 1 bright A_Light(1)
         goto LightDone
 
       FlashDouble:
-        DSSF B 1 bright offset(0, 48) A_Light2
-        DSSF B 1 bright offset(0, 32) A_Light2
-        DSSF A 2 bright A_Light1
+        DSSF B 1 bright offset(0, 48) A_Light(16)
+        DSSF B 1 bright offset(0, 32) A_Light(12)
+        DSSF A 1 bright A_Light(10)
+        DSSF A 1 bright A_Light(8)
+        TNT1 A 1 A_Light(6)
+        TNT1 A 1 A_Light(4)
+        TNT1 A 1 A_Light(3)
+        TNT1 A 1 A_Light(2)
+        TNT1 A 1 A_Light(1)
         goto LightDone
 
       Spawn:

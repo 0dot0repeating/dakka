@@ -134,11 +134,15 @@ actor DWep_RocketLauncher: DoomWeapon
         goto Ready
 
       Flash:
-        DKRF A 1 bright offset(0, 38) A_Light2
-        DKRF B 1 bright offset(0, 34)
-        DKRF C 1 bright A_Light1
-        DKRF D 3 bright
-        DKRF E 3 bright
+        DKRF A 1 bright offset(0, 38) A_Light(1)
+        DKRF B 1 bright offset(0, 34) A_Light(5)
+        DKRF C 1 bright
+        DKRF D 1 bright A_Light(4)
+        DKRF D 1 bright 
+        DKRF D 1 bright A_Light(3)
+        DKRF E 1 bright A_Light(2)
+        DKRF E 1 bright A_Light(1)
+        DKRF E 1 bright A_Light(0)
         goto LightDone
 
       Spawn:
