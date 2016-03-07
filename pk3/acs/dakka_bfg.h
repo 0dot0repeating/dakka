@@ -9,7 +9,7 @@
 
 #define BFG_INSTANT_STEP    16.0
 
-script DAKKA_BFGTRACE_SERVER (int startTID, int endTID)
+script "Dakka_BFG_Server" (int startTID, int endTID)
 {
     if (!IsServer) { terminate; }
     
@@ -84,7 +84,7 @@ script DAKKA_BFGTRACE_SERVER (int startTID, int endTID)
     }
 }
 
-script DAKKA_BFGTRACE_CLIENT (int startTID, int endTID)
+script "Dakka_BFG_Client" (int startTID, int endTID)
 {
     if (!IsServer) { terminate; }
     
