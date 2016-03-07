@@ -1,12 +1,5 @@
-world int 102:PlayerMapScoreRewards[];
-world int 103:PlayerAmmoRegenTimers[];
-world int 104:PlayerExtraLifeCount[];
-world int 105:PlayerAmmoRegenTimeSpent[];
-world int 106:PlayerHasExtraLives[];
-
 // Gotta do this because ZDoom only has 8 sound slots, because fuck you.
 int AmmoRegen_SoundLooperTIDs[PLAYERMAX];
-
 
 script "Score_Award" (int scoreHeals)
 {
@@ -18,19 +11,19 @@ script "Score_Award" (int scoreHeals)
     {
         LocalAmbientSound("dakka/pointreward", 127);
         
-        int curRewards = PlayerMapScoreRewards[pln];
+        int curRewards = Score_GetRewardCount(pln);
 
         if (curRewards % 2)
         {
-            PlayerExtraLifeCount[pln] += 1;
+            Score_ModExtraLives(pln, 1);
             newLives += 1;
         }
         else
         {
-            PlayerAmmoRegenTimers[pln] += (36 * 20) + 1;
+            Score_ModRegenTimer(pln, (36 * 20) + 1);
         }
 
-        PlayerMapScoreRewards[pln] += 1;
+        Score_ModRewardCount(pln, 1);
     }
 
     FadeRange(255, 234, 0, 1.0 - powFloat(0.65, scoreHeals), 255, 234, 0, 0.0, 0.75);
@@ -75,9 +68,6 @@ function void Score_DoRewards(int lastScore, int curScore)
     }
 
     Score_ProcessRewards();
-
-    Sender_SetData(pln, S2C_D_LIVESLEFT,   PlayerExtraLifeCount[pln]);
-    Sender_SetData(pln, S2C_D_REWARDCOUNT, PlayerMapScoreRewards[pln]);
 }
 
 
@@ -122,8 +112,8 @@ function void Score_ProcessRewards(void)
     int pln = PlayerNumber();
     int myTID = defaultTID(-1);
 
-    int regenTime = PlayerAmmoRegenTimers[pln];
-    int inRegen   = PlayerAmmoRegenTimeSpent[pln];
+    int regenTime = Score_GetRegenTimer(pln);
+    int inRegen   = Score_GetRegenSpent(pln);
 
     int looperTID = AmmoRegen_SoundLooperTIDs[pln];
     int i;
@@ -179,44 +169,68 @@ function void Score_ProcessRewards(void)
             FadeRange(128, 192, 255, random(0.1, 0.15), 128, 192, 255, 0, 0.4);
         }
 
-        PlayerAmmoRegenTimeSpent[pln] += 1;
+        Score_ModRegenSpent(pln, 1);
     }
+
 
     int newRegenTime = max(0, regenTime - 1);
 
-    PlayerAmmoRegenTimers[pln] = newRegenTime;
+    Score_SetRegenTimer(pln, newRegenTime);
 
     if (inRegen && newRegenTime == 0)
     {
-        PlayerAmmoRegenTimeSpent[pln] = 0;
-
-        if (looperTID != 0)
-        {
-            SetActorState(looperTID, "RegenDone");
-        }
-
+        Score_SetRegenSpent(pln, 0);
+        if (looperTID != 0) { SetActorState(looperTID, "RegenDone"); }
         AmmoRegen_SoundLooperTIDs[pln] = 0;
     }
 
 
 
-    int extraLives = PlayerExtraLifeCount[pln];
-    int hasLives   = PlayerHasExtraLives[pln];
+    int extraLives = Score_GetExtraLives(pln);
+    int hasLives   = Score_GetHasLives(pln);
 
     if (extraLives > 0)
     {
-        PlayerHasExtraLives[pln] = true;
+        Score_SetHasLives(pln, true);
         SetPlayerProperty(false, true, PROP_BUDDHA);
 
-        if (GetActorPRoperty(0, APROP_Health) <= 0)
+        if (GetActorProperty(0, APROP_Health) <= 0)
         {
-            PlayerExtraLifeCount[pln] = 0;
+            Score_SetExtraLives(pln, 0);
             SetPlayerProperty(false, false, PROP_BUDDHA);
         }
         else if (GetActorProperty(0, APROP_Health) == 1)
         {
+            // Read dakka_startmode_health to determine what the 'respawn'
+            //  stats should be
+            int startmode = GetCVar("dakka_startmode_health");
+            int classNum  = Pickup_ClassNumber(0);
+
             SetActorProperty(0, APROP_Health, getMaxHealth());
-            PlayerExtraLifeCount[pln] -= 1;
+
+            switch (startmode)
+            {
+              default:
+                break;
+
+              case 2:
+                TakeInventory("BasicArmor", 0x7FFFFFFF);
+                Pickup_DoPickup(It_GreenArmor, classNum, false);
+                break;
+
+              case 3:
+                TakeInventory("BasicArmor", 0x7FFFFFFF);
+                Pickup_DoPickup(It_Soulsphere, classNum, false);
+                Pickup_DoPickup(It_BlueArmor,  classNum, false);
+                break;
+
+              case 4:
+                TakeInventory("BasicArmor", 0x7FFFFFFF);
+                Pickup_DoPickup(It_Megasphere, classNum, false);
+                break;
+            }
+
+            Score_ModExtraLives(pln, -1);
 
             int revivalTID = UniqueTID();
 
@@ -230,7 +244,8 @@ function void Score_ProcessRewards(void)
 
             FadeRange(255, 223, 155, 0.75,    255, 79, 0, 0.0, 1.0);
 
-            if (PlayerExtraLifeCount[pln] == 0)
+            // we took out 1, so now it's actually 0 in the array
+            if (extraLives == 1)
             {
                 SetPlayerProperty(false, false, PROP_BUDDHA);
             }
@@ -238,7 +253,7 @@ function void Score_ProcessRewards(void)
     }
     else if (hasLives)
     {
-        PlayerHasExtraLives[pln] = false;
+        Score_SetHasLives(pln, false);
         SetPlayerProperty(false, false, PROP_BUDDHA);
     }
 }

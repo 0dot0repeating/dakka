@@ -432,7 +432,7 @@ function void Dakka_DoDMSpawn(int entered)
     int pln      = PlayerNumber();
     int classNum = Pickup_ClassNumber(0);
 
-    PlayerMapScores[pln] = 0;
+    Score_Reset(pln);
 
     Dakka_BackpackStart();
 

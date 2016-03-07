@@ -58,6 +58,15 @@ actor DakkaReviveExplosion
         TNT1 A 0 A_SpawnItemEx("RevivalFlame", 80, 0, -32, frandom(-0.5, 0.5), frandom(-0.5, 0.5), 1.5, 270,   SXF_TRANSFERPOINTERS)
         TNT1 A 0 A_SpawnItemEx("RevivalFlame", 80, 0, -32, frandom(-0.5, 0.5), frandom(-0.5, 0.5), 1.5, 315,   SXF_TRANSFERPOINTERS)
 
+        TNT1 A 0 A_SpawnItemEx("RevivalFlameGround", 80, 0, -32, frandom(-0.2, 0.2), frandom(-0.2, 0.2), 0,   0,   SXF_TRANSFERPOINTERS)
+        TNT1 A 0 A_SpawnItemEx("RevivalFlameGround", 80, 0, -32, frandom(-0.2, 0.2), frandom(-0.2, 0.2), 0,  45,   SXF_TRANSFERPOINTERS)
+        TNT1 A 0 A_SpawnItemEx("RevivalFlameGround", 80, 0, -32, frandom(-0.2, 0.2), frandom(-0.2, 0.2), 0,  90,   SXF_TRANSFERPOINTERS)
+        TNT1 A 0 A_SpawnItemEx("RevivalFlameGround", 80, 0, -32, frandom(-0.2, 0.2), frandom(-0.2, 0.2), 0, 135,   SXF_TRANSFERPOINTERS)
+        TNT1 A 0 A_SpawnItemEx("RevivalFlameGround", 80, 0, -32, frandom(-0.2, 0.2), frandom(-0.2, 0.2), 0, 180,   SXF_TRANSFERPOINTERS)
+        TNT1 A 0 A_SpawnItemEx("RevivalFlameGround", 80, 0, -32, frandom(-0.2, 0.2), frandom(-0.2, 0.2), 0, 225,   SXF_TRANSFERPOINTERS)
+        TNT1 A 0 A_SpawnItemEx("RevivalFlameGround", 80, 0, -32, frandom(-0.2, 0.2), frandom(-0.2, 0.2), 0, 270,   SXF_TRANSFERPOINTERS)
+        TNT1 A 0 A_SpawnItemEx("RevivalFlameGround", 80, 0, -32, frandom(-0.2, 0.2), frandom(-0.2, 0.2), 0, 315,   SXF_TRANSFERPOINTERS)
+
         TNT1 A 1 A_SetAngle(angle + 2.5)
         TNT1 A 0 A_SetUserVar("user_firestep", user_firestep + 1)
         TNT1 A 0 A_JumpIf(user_firestep > 70, "FlameRevivalDone")
@@ -152,6 +161,40 @@ actor RevivalFlame
         TNT1 A 0 A_Explode(1, 64, 0, 0, 32)
         TNT1 A 1 A_SetUserVar("user_counter", user_counter - 3)
         loop
+    }
+}
+
+actor RevivalFlameGround
+{
+    Radius 2
+    Height 2
+
+    +NOINTERACTION
+    +SERVERSIDEONLY
+
+    RenderStyle Add
+    Scale 0.2
+    Alpha 0.5
+
+    var int user_counter;
+    
+    States
+    {
+      Spawn:
+        DFLM E 0 bright
+        TNT1 A 0 A_SetUserVar("user_counter", 12)
+        goto Spawn2
+
+      Spawn2:
+        TNT1 A 0 A_SpawnItemEx("RevivalFlameVisual", 0, 0, 0, 0,0,random(0, 100)/50.0, 0, SXF_ABSOLUTEPOSITION)
+        TNT1 A 1 A_SetUserVar("user_counter", user_counter - 1)
+        TNT1 A 0 A_JumpIf(user_counter > 0, "Spawn2")
+        goto EndItAll
+
+      EndItAll:
+        TNT1 A 1
+        stop
+
     }
 }
 
