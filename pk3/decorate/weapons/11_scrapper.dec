@@ -61,7 +61,7 @@ actor DWep_Scrappers: DoomWeapon
                                     CallACS("Dakka_Gaussian", 50, 100) / 100.0, 0, 11,0,0,
                                     CallACS("Dakka_Gaussian", 40, 70) / 100.0)
         RSCP A 0 A_FireCustomMissile("AmmoWaster")
-        RSCP A 0 ACS_ExecuteAlways(DAKKA_RECOIL, 0, 2, 2, 7)
+        RSCP A 0 ACS_NamedExecuteAlways("Dakka_Recoil", 0, 2, 2, 7)
         RSCP A 1 bright
         RSCP B 1 bright
         RSCP C 1 bright
@@ -84,7 +84,7 @@ actor DWep_Scrappers: DoomWeapon
                                     CallACS("Dakka_Gaussian", 50, 100) / 100.0, 0, -11,0,0,
                                     CallACS("Dakka_Gaussian", 40, 70) / 100.0)
         RSCP A 0 A_FireCustomMissile("AmmoWaster")
-        RSCP A 0 ACS_ExecuteAlways(DAKKA_RECOIL, 0, 2, 2, 7)
+        RSCP A 0 ACS_NamedExecuteAlways("Dakka_Recoil", 0, 2, 2, 7)
         LSCP A 1 bright
         LSCP B 1 bright
         LSCP C 1 bright
@@ -108,7 +108,7 @@ actor DWep_Scrappers: DoomWeapon
                                     CallACS("Dakka_Gaussian", 50, 100) / 100.0, 0, 11,0,0,
                                     CallACS("Dakka_Gaussian", 40, 70) / 100.0)
         RSCP A 0 A_FireCustomMissile("AmmoWaster")
-        RSCP A 0 ACS_ExecuteAlways(DAKKA_RECOIL, 0, 2, 2, 7)
+        RSCP A 0 ACS_NamedExecuteAlways("Dakka_Recoil", 0, 2, 2, 7)
         DSCP JKLM 1 bright
         DSCP NO 1 bright A_WeaponReady(WRF_NOBOB | WRF_NOFIRE)
         DSCP PQR 1 A_WeaponReady(WRF_NOBOB | WRF_NOFIRE)
@@ -128,7 +128,7 @@ actor DWep_Scrappers: DoomWeapon
                                     CallACS("Dakka_Gaussian", 50, 100) / 100.0, 0, -11,0,0,
                                     CallACS("Dakka_Gaussian", 40, 70) / 100.0)
         RSCP A 0 A_FireCustomMissile("AmmoWaster")
-        RSCP A 0 ACS_ExecuteAlways(DAKKA_RECOIL, 0, 2, 2, 7)
+        RSCP A 0 ACS_NamedExecuteAlways("Dakka_Recoil", 0, 2, 2, 7)
         DSCP ABCD 1 bright
         DSCP EF 1 bright A_WeaponReady(WRF_NOBOB | WRF_NOFIRE)
         DSCP GHI 1 A_WeaponReady(WRF_NOBOB | WRF_NOFIRE)
@@ -149,7 +149,7 @@ actor DWep_Scrappers: DoomWeapon
                                     CallACS("Dakka_Gaussian", 50, 100) / 100.0, 0, 11,0,0,
                                     CallACS("Dakka_Gaussian", 40, 70) / 100.0)
         RSCP A 0 A_FireCustomMissile("AmmoWaster")
-        RSCP A 0 ACS_ExecuteAlways(DAKKA_RECOIL, 0, 2, 2, 7)
+        RSCP A 0 ACS_NamedExecuteAlways("Dakka_Recoil", 0, 2, 2, 7)
         RSCP LMNO 1 bright
         RSCP PQ 1 bright A_WeaponReady(WRF_NOBOB | WRF_NOFIRE)
         RSCP R 3 A_WeaponReady(WRF_NOBOB | WRF_NOFIRE)
@@ -169,7 +169,7 @@ actor DWep_Scrappers: DoomWeapon
                                     CallACS("Dakka_Gaussian", 50, 100) / 100.0, 0, -11,0,0,
                                     CallACS("Dakka_Gaussian", 40, 70) / 100.0)
         RSCP A 0 A_FireCustomMissile("AmmoWaster")
-        RSCP A 0 ACS_ExecuteAlways(DAKKA_RECOIL, 0, 2, 2, 7)
+        RSCP A 0 ACS_NamedExecuteAlways("Dakka_Recoil", 0, 2, 2, 7)
         LSCP LMNO 1 bright
         LSCP PQ 1 bright A_WeaponReady(WRF_NOBOB | WRF_NOFIRE)
         LSCP R 3 A_WeaponReady(WRF_NOBOB | WRF_NOFIRE)
@@ -236,7 +236,7 @@ actor DWep_Scrappers: DoomWeapon
         RSCP A 0 A_FireCustomMissile("ScrapperGrenade", 0, 0, -11)
         RSCP A 0 A_FireCustomMissile("ScrapperGrenade", 0, 0,  11)
         RSCP A 0 A_FireCustomMissile("AmmoWaster")
-        RSCP A 0 ACS_ExecuteAlways(DAKKA_RECOIL, 0, 6, 4, 16)
+        RSCP A 0 ACS_NamedExecuteAlways("Dakka_Recoil", 0, 6, 4, 16)
         SCPR BCDEF 1 bright
         SCPR G 4
         SCPR HIJK 2

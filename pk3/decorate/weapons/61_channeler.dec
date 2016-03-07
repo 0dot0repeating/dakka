@@ -50,7 +50,7 @@ actor DWep_Channeler: Weapon
         PLZM A 0 ACS_ExecuteWithResult(DAKKA_UPDATE_SWITCHAROO, 10, 0)
         PLZM A 0 A_GiveInventory("GiveScrapCounter2", 3)
         PLZM A 0 bright A_FireBullets(3, 3, 2, 0, "Channeler_PrimaryPuff", 1, 768)
-        PLZM A 0 ACS_ExecuteAlways(DAKKA_RECOIL, 0, 2, 2, 10)
+        PLZM A 0 ACS_NamedExecuteAlways("Dakka_Recoil", 0, 2, 2, 10)
         PLZM C 1 bright offset(0, 38) A_Light2
         PLZM C 1 bright offset(0, 40)
         PLZM D 2 bright offset(0, 40) A_Light1
@@ -68,7 +68,7 @@ actor DWep_Channeler: Weapon
         PLZM A 0 A_AlertMonsters
         PLZM A 0 A_GiveInventory("GiveScrapCounter2", 12)
         PLZM A 0 bright A_FireCustomMissile("Channeler_SecondaryShot", 0, 1)
-        PLZM A 0 ACS_ExecuteAlways(DAKKA_RECOIL, 0, 4, 3, 24)
+        PLZM A 0 ACS_NamedExecuteAlways("Dakka_Recoil", 0, 4, 3, 24)
         PLZM C 1 bright offset(0, 41) A_Light2
         PLZM C 1 bright offset(0, 43)
         PLZM D 2 bright offset(0, 44) A_Light1
