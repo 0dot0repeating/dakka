@@ -4,12 +4,6 @@ const int DAKKA_RECOIL              = 479;
 const int DAKKA_GAUSSIAN            = 482;
 
 
-const int ARC_MAIN                  = 191;
-const int ARC_CLEAR                 = 192;
-const int ARC_DAMAGE                = 193;
-const int ARC_ALTFIRE               = 194;
-
-
 const int TRACE_BULLET      = 0;
 const int TRACE_PLASMA      = 1;
 const int TRACE_ARC_FIRER   = 2;

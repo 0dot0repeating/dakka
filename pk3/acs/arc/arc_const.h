@@ -5,12 +5,6 @@
 // Well, okay, you probably don't need to mess with the ARCDATA_* and ADATA_*
 //  stuff. But the STR_ArcData and INT_ArcData stuff is fine.
 
-// Core arc script number. This is also in decorate/core.dec, so be sure
-//  to change it there as well.
-
-#define ARC_MAIN        191
-#define ARC_CLEAR       192
-
 
 
 // Arc types need to be defined in ACS, because there's no wayt to store all
@@ -42,7 +36,7 @@
 // Should this arcer not automatically clear target data when it's done arcing?
 //      
 // This is meant for spawning multiple arcers at once that shouldn't overlap.
-//  Make damn sure you call ARC_CLEAR when you're done.
+//  Make damn sure you call "Arc_Clear" when you're done.
 #define ADATA_INT_MANUALCLEAR   4
 
 

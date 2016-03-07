@@ -1,7 +1,4 @@
-#define ARC_DAMAGE      193
-#define ARC_ALTFIRE     194
-
-script ARC_DAMAGE (int damage)
+script "Arc_Damage" (int damage)
 {
     int myTID = defaultTID(-1);
 
@@ -19,7 +16,7 @@ script ARC_DAMAGE (int damage)
 
 // This script exists tp ensure that everything related to the arc runs in
 //  the right order. All of this is necessary.
-script ARC_ALTFIRE (int count, int isFirer)
+script "Arc_AltFire" (int count, int isFirer)
 {
     int myTID = defaultTID(-1);
     int firerTID;
