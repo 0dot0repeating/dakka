@@ -28,9 +28,6 @@
 // Score system.
 #include "score/score.h"
 
-// Arc system, used for the Channeler.
-#include "arc/arc.h"
-
 
 // Class weapons. I want to keep this separate from the pickup system itself,
 //  since the pickup system doesn't actually need to know about this.
@@ -88,10 +85,6 @@
 
 // Rocket launcher alt-fire junk.
 #include "dakka_rocketlauncher.h"
-
-
-// Stuff for the Channeler that isn't handled by the arc code proper.
-#include "dakka_channeler.h"
 
 
 // BFG BEAM SON

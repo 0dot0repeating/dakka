@@ -1,3 +1,7 @@
+#library "arc"
+
+#include "zcommon.acs"
+#include "commonFuncs.h"
 
 // Concepts you should be aware of:
 //
@@ -51,11 +55,17 @@
 //   None of this is necessary for the arc stuff to run. Stick your auxillary
 //   scripts and functions and whatnot in here.
 
-#include "arc_const.h"
-#include "arc_user_const.h"
-#include "arc_target.h"
-#include "arc_look.h"
-#include "arc_angle.h"
-#include "arc_main.h"
-#include "arc_user.h"
+#include "arc/arc_const.h"
+#include "arc/arc_user_const.h"
+#include "arc/arc_target.h"
+#include "arc/arc_look.h"
+#include "arc/arc_angle.h"
+#include "arc/arc_main.h"
+#include "arc/arc_user.h"
 
+
+script "Arc_Open" open
+{
+    SetDBEntry("pickup", "client_iszand", true);
+    IsZandronum = GetDBEntry("pickup", "client_iszand") == 1;
+}
