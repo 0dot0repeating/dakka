@@ -14,7 +14,7 @@ actor Pickup_Clip: ClassBasedPickup replaces Clip
         stop
 
       Pickup:
-        TNT1 A 0 A_JumpIf(ACS_ExecuteWithResult(PICKUP_PICKUP, It_Clip, false) == 1, "PickedUp")
+        TNT1 A 0 A_JumpIf(CallACS("Pickup_Pickup", It_Clip, false) == 1, "PickedUp")
         goto NotPickedUp
     }
 }
@@ -36,7 +36,7 @@ actor Pickup_ClipDropped: ClassBasedPickup
         stop
 
       Pickup:
-        TNT1 A 0 A_JumpIf(ACS_ExecuteWithResult(PICKUP_PICKUP, It_Clip, true) == 1, "PickedUp")
+        TNT1 A 0 A_JumpIf(CallACS("Pickup_Pickup", It_Clip, true) == 1, "PickedUp")
         goto NotPickedUp
     }
 }
@@ -57,7 +57,7 @@ actor Pickup_Shell: ClassBasedPickup replaces Shell
         stop
 
       Pickup:
-        TNT1 A 0 A_JumpIf(ACS_ExecuteWithResult(PICKUP_PICKUP, It_Shell, false) == 1, "PickedUp")
+        TNT1 A 0 A_JumpIf(CallACS("Pickup_Pickup", It_Shell, false) == 1, "PickedUp")
         goto NotPickedUp
     }
 }
@@ -78,7 +78,7 @@ actor Pickup_RocketAmmo: ClassBasedPickup replaces RocketAmmo
         stop
 
       Pickup:
-        TNT1 A 0 A_JumpIf(ACS_ExecuteWithResult(PICKUP_PICKUP, It_RocketAmmo, false) == 1, "PickedUp")
+        TNT1 A 0 A_JumpIf(CallACS("Pickup_Pickup", It_RocketAmmo, false) == 1, "PickedUp")
         goto NotPickedUp
     }
 }
@@ -99,7 +99,7 @@ actor Pickup_Cell: ClassBasedPickup replaces Cell
         stop
 
       Pickup:
-        TNT1 A 0 A_JumpIf(ACS_ExecuteWithResult(PICKUP_PICKUP, It_Cell, false) == 1, "PickedUp")
+        TNT1 A 0 A_JumpIf(CallACS("Pickup_Pickup", It_Cell, false) == 1, "PickedUp")
         goto NotPickedUp
     }
 }
@@ -120,7 +120,7 @@ actor Pickup_ClipBox: ClassBasedPickup replaces ClipBox
         stop
 
       Pickup:
-        TNT1 A 0 A_JumpIf(ACS_ExecuteWithResult(PICKUP_PICKUP, It_ClipBox, false) == 1, "PickedUp")
+        TNT1 A 0 A_JumpIf(CallACS("Pickup_Pickup", It_ClipBox, false) == 1, "PickedUp")
         goto NotPickedUp
     }
 }
@@ -141,7 +141,7 @@ actor Pickup_ShellBox: ClassBasedPickup replaces ShellBox
         stop
 
       Pickup:
-        TNT1 A 0 A_JumpIf(ACS_ExecuteWithResult(PICKUP_PICKUP, It_ShellBox, false) == 1, "PickedUp")
+        TNT1 A 0 A_JumpIf(CallACS("Pickup_Pickup", It_ShellBox, false) == 1, "PickedUp")
         goto NotPickedUp
     }
 }
@@ -162,7 +162,7 @@ actor Pickup_RocketBox: ClassBasedPickup replaces RocketBox
         stop
 
       Pickup:
-        TNT1 A 0 A_JumpIf(ACS_ExecuteWithResult(PICKUP_PICKUP, It_RocketBox, false) == 1, "PickedUp")
+        TNT1 A 0 A_JumpIf(CallACS("Pickup_Pickup", It_RocketBox, false) == 1, "PickedUp")
         goto NotPickedUp
     }
 }
@@ -183,7 +183,7 @@ actor Pickup_CellPack: ClassBasedPickup replaces CellPack
         stop
 
       Pickup:
-        TNT1 A 0 A_JumpIf(ACS_ExecuteWithResult(PICKUP_PICKUP, It_CellPack, false) == 1, "PickedUp")
+        TNT1 A 0 A_JumpIf(CallACS("Pickup_Pickup", It_CellPack, false) == 1, "PickedUp")
         goto NotPickedUp
     }
 }
@@ -205,7 +205,7 @@ actor Pickup_Backpack: ClassBasedPickup replaces Backpack
         stop
 
       Pickup:
-        TNT1 A 0 A_JumpIf(ACS_ExecuteWithResult(PICKUP_PICKUP, It_Backpack, false) == 1, "PickedUp")
+        TNT1 A 0 A_JumpIf(CallACS("Pickup_Pickup", It_Backpack, false) == 1, "PickedUp")
         goto NotPickedUp
     }
 }

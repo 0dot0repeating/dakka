@@ -138,7 +138,7 @@ function void CSender_ActuallySend(int pln)
                 // RequestScriptPuke will also run on the console player puking
                 //  the script, thankfully. No need to worry about player numbers
                 //  here.
-                RequestScriptPuke(PICKUP_SENDTOSERVER, i, data, 0);
+                NamedRequestScriptPuke("Pickup_SendToServer", i, data, 0);
             }
             else
             {
@@ -158,7 +158,7 @@ function void CSender_ActuallySend(int pln)
                 // Really, we only need the PLAYER1 actor pointer!
                 
                 SetActivator(0, AAPTR_PLAYER1);
-                ACS_ExecuteWithResult(PICKUP_SENDTOSERVER, i, data);
+                ACS_NamedExecuteWithResult("Pickup_SendToServer", i, data);
             }
 
             CToS_LastSendTime[pln][i] = Timer();
@@ -170,21 +170,21 @@ function void CSender_ActuallySend(int pln)
 
 function void CSender_PingBack(int pln, int index, int value)
 {
-    if (Pickup_IsZandronum() && ConsolePlayerNumber() == -1)
+    if (ConsolePlayerNumber() == -1)
     {
         // Send back to the client that we got the right data
-        ACS_ExecuteAlways(PICKUP_PINGCLIENT, 0, pln, index, value);
+        ACS_NamedExecuteAlways("Pickup_PingClient", 0, pln, index, value);
     }
     else
     {
         // Eh fuck it, we'll do it ourself
-        ACS_ExecuteWithResult(PICKUP_PINGCLIENT, pln, index, value);
+        ACS_NamedExecuteWithResult("Pickup_PingClient", pln, index, value);
     }
 }
 
 
 
-script PICKUP_SENDTOSERVER (int index, int data) net
+script "Pickup_SendToServer" (int index, int data) net
 {
     int pln = PlayerNumber();
 
@@ -194,7 +194,7 @@ script PICKUP_SENDTOSERVER (int index, int data) net
     CSender_PingBack(pln, index, data);
 }
 
-script PICKUP_PINGCLIENT (int pln, int index, int value) clientside
+script "Pickup_PingClient" (int pln, int index, int value) clientside
 {
     CToS_LastServerResponse[pln][index] = value;
 }

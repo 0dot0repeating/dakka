@@ -27,7 +27,7 @@ actor Pickup_Berserk: ClassBasedPickup replaces Berserk
         stop
 
       Pickup:
-        TNT1 A 0 A_JumpIf(ACS_ExecuteWithResult(PICKUP_PICKUP, It_Berserk, false) == 1, "PickedUp")
+        TNT1 A 0 A_JumpIf(CallACS("Pickup_Pickup", It_Berserk, false) == 1, "PickedUp")
         goto NotPickedUp
     }
 }
@@ -50,7 +50,7 @@ actor Pickup_Blursphere: ClassBasedPickup replaces Blursphere
         loop
 
       Pickup:
-        TNT1 A 0 A_JumpIf(ACS_ExecuteWithResult(PICKUP_PICKUP, It_Blursphere, false) == 1, "PickedUp")
+        TNT1 A 0 A_JumpIf(CallACS("Pickup_Pickup", It_Blursphere, false) == 1, "PickedUp")
         goto NotPickedUp
     }
 }
@@ -71,7 +71,7 @@ actor Pickup_InvulnSphere: ClassBasedPickup replaces InvulnerabilitySphere
         loop
 
       Pickup:
-        TNT1 A 0 A_JumpIf(ACS_ExecuteWithResult(PICKUP_PICKUP, It_InvulnSphere, false) == 1, "PickedUp")
+        TNT1 A 0 A_JumpIf(CallACS("Pickup_Pickup", It_InvulnSphere, false) == 1, "PickedUp")
         goto NotPickedUp
     }
 }

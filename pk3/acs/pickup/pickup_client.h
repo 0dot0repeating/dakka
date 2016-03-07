@@ -161,7 +161,7 @@ function void Sender_ForceUpdateClient(int pln)
 
 
 
-// Okay NOW send the crap. This should only ever be run by PICKUP_MAINLOOP.
+// Okay NOW send the crap. This should only ever be run by "Pickup_Open".
 function void Sender_ActuallySend(void)
 {
     int i, j;
@@ -178,11 +178,11 @@ function void Sender_ActuallySend(void)
 
                 if (useAlways)
                 {
-                    ACS_ExecuteAlways(PICKUP_SENDTOCLIENT, 0, i, j, data);
+                    ACS_NamedExecuteAlways("Pickup_SendToClient", 0, i, j, data);
                 }
                 else
                 {
-                    ACS_ExecuteWithResult(PICKUP_SENDTOCLIENT, i, j, data);
+                    ACS_NamedExecuteWithResult("Pickup_SendToClient", i, j, data);
                 }
 
                 SToC_LastSendTime[i][j] = Timer();
@@ -207,7 +207,7 @@ function void Sender_PingBack(int pln, int index, int value)
         // The server won't go by what the script arguments say for player
         //  number because one could spoof pings really easily then - it's
         //  harmless in this case, but annoying
-        RequestScriptPuke(PICKUP_PINGSERVER, index, value, 0);
+        NamedRequestScriptPuke("Pickup_PingServer", index, value, 0);
     }
     else
     {
@@ -223,7 +223,7 @@ function void Sender_PingBack(int pln, int index, int value)
 
 
 // Called by the server to send data. Recieved by the client to get that data.
-script PICKUP_SENDTOCLIENT (int pln, int index, int value) clientside
+script "Pickup_SendToClient" (int pln, int index, int value) clientside
 {
     int cpln = ConsolePlayerNumber(); // always 0 in ZDoom
 
@@ -242,7 +242,7 @@ script PICKUP_SENDTOCLIENT (int pln, int index, int value) clientside
 // Called by the client to send data back to the server. Recieved by the server
 //  to get that data. This is only called in Zandronum online, unless the player
 //  is puking scripts for some reason.
-script PICKUP_PINGSERVER (int index, int value) net
+script "Pickup_PingServer" (int index, int value) net
 {
     int pln = PlayerNumber();
     SToC_LastClientResponse[pln][index] = value;

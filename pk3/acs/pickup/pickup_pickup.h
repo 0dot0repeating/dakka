@@ -68,12 +68,12 @@ function void Pickup_SendMessage(void)
 
         if (IsZandronum && ConsolePlayerNumber() == -1)
         {
-            ACS_ExecuteAlways(PICKUP_SHOWMESSAGE, 0, i, arg1, arg2);
+            ACS_NamedExecuteAlways("Pickup_ShowMessage", 0, i, arg1, arg2);
         }
         else
         {
             // I don't like latency.
-            ACS_ExecuteWithResult(PICKUP_SHOWMESSAGE, i, arg1, arg2);
+            ACS_NamedExecuteWithResult("Pickup_ShowMessage", i, arg1, arg2);
         }
     }
 }
@@ -224,13 +224,13 @@ function int Pickup_DoPickup(int index, int classNum, int dropped)
         Pickup_HandlePickups(index, classNum, dropped);
     }
 
-    // If the index changed, the PICKUP_PICKUP script needs to know.
+    // If the index changed, the "Pickup_Pickup" script needs to know.
     return index;
 }
 
 
 
-script PICKUP_PICKUP (int index, int dropped)
+script "Pickup_Pickup" (int index, int dropped)
 {
     // For some reason the pickup code likes to run on the client,
     //  even when it shouldn't.

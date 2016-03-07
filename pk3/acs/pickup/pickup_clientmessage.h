@@ -94,7 +94,7 @@ function int CMSG_IsScripted(int index, int classNum)
 
 
 
-script PICKUP_SHOWMESSAGE (int mdata_index, int data1, int data2) clientside
+script "Pickup_ShowMessage" (int mdata_index, int data1, int data2) clientside
 {
     // This is the player number of the person picking up the item.
     int pln  = PlayerNumber();

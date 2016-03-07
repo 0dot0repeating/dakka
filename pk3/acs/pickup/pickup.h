@@ -11,12 +11,6 @@
 // What each file corresponds to:
 //
 //
-//      == pickup_const ==
-//
-// This is where constant definitions that don't fit anywhere else lay. Mainly
-//  script numbers.
-//
-//
 //      == pickup_classes ==
 //
 // This stores the data and functions required to distinguish classes from each
@@ -129,7 +123,6 @@
 //
 // Well, so long as you get rid of the script stuff.
 
-#include "pickup_const.h"
 #include "pickup_client_defs.h"
 #include "pickup_client.h"
 #include "pickup_server_defs.h"
@@ -158,7 +151,7 @@
 
 // This is such a tiny script, it's a complete waste making a file for it. So
 //  here it is.
-script PICKUP_DROPPED (void)
+script "Pickup_Dropped" (void)
 {
     SetResultValue(GetActorProperty(0, APROP_Dropped));
 }

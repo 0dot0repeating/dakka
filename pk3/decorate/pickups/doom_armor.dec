@@ -14,7 +14,7 @@ actor Pickup_ArmorBonus: ClassBasedPickup replaces ArmorBonus
         loop
 
       Pickup:
-        TNT1 A 0 A_JumpIf(ACS_ExecuteWithResult(PICKUP_PICKUP, It_ArmorBonus, false) == 1, "PickedUp")
+        TNT1 A 0 A_JumpIf(CallACS("Pickup_Pickup", It_ArmorBonus, false) == 1, "PickedUp")
         goto NotPickedUp
     }
 }
@@ -36,7 +36,7 @@ actor Pickup_GreenArmor: ClassBasedPickup replaces GreenArmor
         loop
 
       Pickup:
-        TNT1 A 0 A_JumpIf(ACS_ExecuteWithResult(PICKUP_PICKUP, It_GreenArmor, false) == 1, "PickedUp")
+        TNT1 A 0 A_JumpIf(CallACS("Pickup_Pickup", It_GreenArmor, false) == 1, "PickedUp")
         goto NotPickedUp
     }
 }
@@ -58,7 +58,7 @@ actor Pickup_BlueArmor: ClassBasedPickup replaces BlueArmor
         loop
 
       Pickup:
-        TNT1 A 0 A_JumpIf(ACS_ExecuteWithResult(PICKUP_PICKUP, It_BlueArmor, false) == 1, "PickedUp")
+        TNT1 A 0 A_JumpIf(CallACS("Pickup_Pickup", It_BlueArmor, false) == 1, "PickedUp")
         goto NotPickedUp
     }
 }
@@ -79,7 +79,7 @@ actor Pickup_Megasphere: ClassBasedPickup replaces Megasphere
         loop
 
       Pickup:
-        TNT1 A 0 A_JumpIf(ACS_ExecuteWithResult(PICKUP_PICKUP, It_Megasphere, false) == 1, "PickedUp")
+        TNT1 A 0 A_JumpIf(CallACS("Pickup_Pickup", It_Megasphere, false) == 1, "PickedUp")
         goto NotPickedUp
     }
 }

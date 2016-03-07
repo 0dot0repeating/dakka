@@ -4,7 +4,7 @@
 
 // See DAKKA_OPEN in dakka_open.h instead
 /*
-script PICKUP_MAINLOOP open
+script "Pickup_Open" open
 {
     // We're just interested in the side effect.
     Pickup_IsZandronum();
@@ -19,7 +19,7 @@ script PICKUP_MAINLOOP open
 }
 */
 
-script PICKUP_ENTER enter
+script "Pickup_Enter" enter
 {
     int pln = PlayerNumber();
     int i;
@@ -57,7 +57,7 @@ script PICKUP_ENTER enter
     }
 }
 
-script PICKUP_DISCONNECT (int pln) disconnect
+script "Pickup_Disconnect" (int pln) disconnect
 {
     Sender_ClearData(pln);
     Sender_ForceUpdateClient(pln);
@@ -65,7 +65,7 @@ script PICKUP_DISCONNECT (int pln) disconnect
 
 
 
-script PICKUP_OPEN_CLIENT open clientside
+script "Pickup_Open_Client" open clientside
 {
     int cpln = ConsolePlayerNumber();
     int oldPickupState;
