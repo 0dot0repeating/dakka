@@ -10,8 +10,17 @@
 int Lightning_Points[LIGHTNINGSLOTS][MAXPOINTS][5];
 int Lightning_InUse[LIGHTNINGSLOTS];
 
-script "Dakka_Lightning" (int which, int startTID, int endTID)
+script "Dakka_Lightning" (int which, int startTID, int endTID) clientside
 {
+    int waitTimer = 0;
+
+    while (!(IsTIDUsed(startTID) && IsTIDUsed(endTID)))
+    {
+        waitTimer++;
+        Delay(1);
+        if (waitTimer > 36) { terminate; }
+    }
+
     int startX = GetActorX(startTID);
     int startY = GetActorY(startTID);
     int startZ = GetActorZ(startTID);

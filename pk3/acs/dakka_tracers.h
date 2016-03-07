@@ -12,6 +12,8 @@
 
 script "Dakka_Tracer" (int which, int yoff, int zoff)
 {
+    if (!IsServer) { terminate; }
+
     int shotX = GetActorX(0);
     int shotY = GetActorY(0);
     int shotZ = GetActorZ(0);
@@ -85,23 +87,24 @@ script "Dakka_Tracer" (int which, int yoff, int zoff)
     int spawnZ = myZ + rotateZ;
 
     
-    int tracerTID1 = unusedTID(15000, 16999);
-    int tracerTID2 = unusedTID(17000, 19000);
-
+    // I start at 4000 because of this bug:
+    //  http://zandronum.com/tracker/view.php?id=2671
+    int tracerTID1 = UniqueTID(4000);
     SpawnForced("TracerDummy", spawnX, spawnY, spawnZ, tracerTID1);
-    SpawnForced("TracerDummy",  shotX,  shotY,  shotZ, tracerTID2);
 
+    int tracerTID2 = UniqueTID(4001);
+    SpawnForced("TracerDummy",  shotX,  shotY,  shotZ, tracerTID2);
 
     switch (which)
     {
       default:
-        if (IsServer)
+        if (ConsolePlayerNumber() == -1)
         {
-            ACS_NamedExecuteWithResult("Dakka_Tracer_Client", which, tracerTID1, tracerTID2);
+            ACS_NamedExecuteAlways("Dakka_Tracer_Client", 0, which, tracerTID1, tracerTID2);
         }
         else
         {
-            ACS_NamedExecuteAlways("Dakka_Tracer_Client", 0, which, tracerTID1, tracerTID2);
+            ACS_NamedExecuteWithResult("Dakka_Tracer_Client", which, tracerTID1, tracerTID2);
         }
         break;
 
@@ -109,25 +112,25 @@ script "Dakka_Tracer" (int which, int yoff, int zoff)
         // These will be in dakka_bfg.h
         ACS_ExecuteWithResult(DAKKA_BFGTRACE_SERVER, tracerTID1, tracerTID2);
         
-        if (IsServer)
+        if (ConsolePlayerNumber() == -1)
         {
-            ACS_ExecuteWithResult(DAKKA_BFGTRACE_CLIENT, tracerTID1, tracerTID2);
+            ACS_ExecuteAlways(DAKKA_BFGTRACE_CLIENT, 0, tracerTID1, tracerTID2);
         }
         else
         {
-            ACS_ExecuteAlways(DAKKA_BFGTRACE_CLIENT, 0, tracerTID1, tracerTID2);
+            ACS_ExecuteWithResult(DAKKA_BFGTRACE_CLIENT, tracerTID1, tracerTID2);
         }
         break;
 
       case TRACE_ARC_FIRER:
       case TRACE_ARC_MASTER:
-        if (IsServer)
+        if (ConsolePlayerNumber() == -1)
         {
-            ACS_NamedExecuteWithResult("Dakka_Lightning", which, tracerTID1, tracerTID2);
+            ACS_NamedExecuteAlways("Dakka_Lightning", 0, which, tracerTID1, tracerTID2);
         }
         else
         {
-            ACS_NamedExecuteAlways("Dakka_Lightning", 0, which, tracerTID1, tracerTID2);
+            ACS_NamedExecuteWithResult("Dakka_Lightning", which, tracerTID1, tracerTID2);
         }
         break;
     }
@@ -136,6 +139,15 @@ script "Dakka_Tracer" (int which, int yoff, int zoff)
 
 script "Dakka_Tracer_Client" (int which, int startTID, int endTID) clientside
 {
+    int waitTimer = 0;
+
+    while (!(IsTIDUsed(startTID) && IsTIDUsed(endTID)))
+    {
+        waitTimer++;
+        Delay(1);
+        if (waitTimer > 36) { terminate; }
+    }
+
     int startX = GetActorX(startTID);
     int startY = GetActorY(startTID);
     int startZ = GetActorZ(startTID);

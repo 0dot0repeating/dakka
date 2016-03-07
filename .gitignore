@@ -1,4 +1,5 @@
 *.pk3
+*.zip
 nocommit/*
 core.*
 zandronum-crash*
