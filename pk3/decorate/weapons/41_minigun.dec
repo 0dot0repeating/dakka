@@ -55,7 +55,7 @@ actor DWep_Minigun: DoomWeapon
         loop
 
       Fire:
-        "----" A 0 ACS_ExecuteWithResult(DAKKA_UPDATE_SWITCHAROO, 6, 0)
+        "----" A 0 ACS_NamedExecuteWithResult("Dakka_Switcharoo", 6, 0)
         DMNG A 0 A_AlertMonsters
         DMNG B 0 A_GiveInventory("GiveScrapCounter", 7)
         DMNG A 0 A_JumpIfInventory("MinigunFireState", 5, "FireA5_Double")
@@ -222,7 +222,7 @@ actor DWep_Minigun: DoomWeapon
         DMNG A 0 A_PlaySound("dakka/minigun/flameloop",  6, 1, 1)
         DMNG A 0 A_PlaySound("dakka/firecrackle",        7, 1, 1)
 
-        "----" A 0 ACS_ExecuteWithResult(DAKKA_UPDATE_SWITCHAROO, 6, 1)
+        "----" A 0 ACS_NamedExecuteWithResult("Dakka_Switcharoo", 6, 1)
         "----" A 0 A_Light1
         DMNG E 0 A_GiveInventory("GiveScrapCounter3", 1)
         DMNG E 0 A_FireCustomMissile("MinigunFlame",  random(-20,20)/5.0, 1, 0, -4)
@@ -232,7 +232,7 @@ actor DWep_Minigun: DoomWeapon
         DMNG E 0 A_FireCustomMissile("MinigunFlameV", random(-20,20)/5.0, 0, 0, -4)
         DMNG E 1 bright offset(0, 33) A_WeaponReady(WRF_NOBOB | WRF_NOFIRE)
 
-        "----" A 0 ACS_ExecuteWithResult(DAKKA_UPDATE_SWITCHAROO, 6, 1)
+        "----" A 0 ACS_NamedExecuteWithResult("Dakka_Switcharoo", 6, 1)
         "----" A 0 A_Light2
         DMNG F 0 A_GiveInventory("GiveScrapCounter3", 1)
         DMNG F 0 A_FireCustomMissile("MinigunFlame", random(-20,20)/5.0, 0, 0, -4)
@@ -242,7 +242,7 @@ actor DWep_Minigun: DoomWeapon
         DMNG F 0 A_FireCustomMissile("MinigunFlameV", random(-20,20)/5.0, 0, 0, -4)
         DMNG F 1 bright offset(0, 34) A_WeaponReady(WRF_NOBOB | WRF_NOFIRE)
 
-        "----" A 0 ACS_ExecuteWithResult(DAKKA_UPDATE_SWITCHAROO, 6, 1)
+        "----" A 0 ACS_NamedExecuteWithResult("Dakka_Switcharoo", 6, 1)
         "----" A 0 A_Light1
         DMNG I 0 A_GiveInventory("GiveScrapCounter3", 1)
         DMNG I 0 A_FireCustomMissile("MinigunFlame", random(-20,20)/5.0, 0, 0, -4)
@@ -252,7 +252,7 @@ actor DWep_Minigun: DoomWeapon
         DMNG I 0 A_FireCustomMissile("MinigunFlameV", random(-20,20)/5.0, 0, 0, -4)
         DMNG I 1 bright offset(0, 35) A_WeaponReady(WRF_NOBOB | WRF_NOFIRE)
 
-        "----" A 0 ACS_ExecuteWithResult(DAKKA_UPDATE_SWITCHAROO, 6, 1)
+        "----" A 0 ACS_NamedExecuteWithResult("Dakka_Switcharoo", 6, 1)
         "----" A 0 A_Light2
         DMNG J 0 A_GiveInventory("GiveScrapCounter3", 1)
         DMNG J 0 A_FireCustomMissile("MinigunFlame", random(-20,20)/5.0, 0, 0, -4)
@@ -272,7 +272,7 @@ actor DWep_Minigun: DoomWeapon
         DMNG A 0 A_AlertMonsters
         DMNG A 0 A_TakeInventory("MinigunFireState")
 
-        "----" A 0 ACS_ExecuteWithResult(DAKKA_UPDATE_SWITCHAROO, 6, 1)
+        "----" A 0 ACS_NamedExecuteWithResult("Dakka_Switcharoo", 6, 1)
         "----" A 0 A_Light1
         DMNG G 0 A_GiveInventory("GiveScrapCounter3", 1)
         DMNG G 0 A_FireCustomMissile("MinigunFlame", random(-20,20)/5.0, 1, 0, -4)
@@ -282,7 +282,7 @@ actor DWep_Minigun: DoomWeapon
         DMNG G 0 A_FireCustomMissile("MinigunFlameV", random(-20,20)/5.0, 0, 0, -4)
         DMNG G 1 bright offset(0, 37) A_WeaponReady(WRF_NOBOB | WRF_NOFIRE)
 
-        "----" A 0 ACS_ExecuteWithResult(DAKKA_UPDATE_SWITCHAROO, 6, 1)
+        "----" A 0 ACS_NamedExecuteWithResult("Dakka_Switcharoo", 6, 1)
         "----" A 0 A_Light2
         DMNG H 0 A_GiveInventory("GiveScrapCounter3", 1)
         DMNG H 0 A_FireCustomMissile("MinigunFlame", random(-20,20)/5.0, 0, 0, -4)
@@ -292,7 +292,7 @@ actor DWep_Minigun: DoomWeapon
         DMNG H 0 A_FireCustomMissile("MinigunFlameV", random(-20,20)/5.0, 0, 0, -4)
         DMNG H 1 bright               A_WeaponReady(WRF_NOBOB | WRF_NOFIRE)
 
-        "----" A 0 ACS_ExecuteWithResult(DAKKA_UPDATE_SWITCHAROO, 6, 1)
+        "----" A 0 ACS_NamedExecuteWithResult("Dakka_Switcharoo", 6, 1)
         "----" A 0 A_Light1
         DMNG I 0 A_GiveInventory("GiveScrapCounter3", 1)
         DMNG I 0 A_FireCustomMissile("MinigunFlame", random(-20,20)/5.0, 0, 0, -4)
@@ -302,7 +302,7 @@ actor DWep_Minigun: DoomWeapon
         DMNG I 0 A_FireCustomMissile("MinigunFlameV", random(-20,20)/5.0, 0, 0, -4)
         DMNG I 1 bright               A_WeaponReady(WRF_NOBOB | WRF_NOFIRE)
 
-        "----" A 0 ACS_ExecuteWithResult(DAKKA_UPDATE_SWITCHAROO, 6, 1)
+        "----" A 0 ACS_NamedExecuteWithResult("Dakka_Switcharoo", 6, 1)
         "----" A 0 A_Light2
         DMNG J 0 A_GiveInventory("GiveScrapCounter3", 1)
         DMNG J 0 A_FireCustomMissile("MinigunFlame", random(-20,20)/5.0, 0, 0, -4)

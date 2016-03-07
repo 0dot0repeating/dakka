@@ -40,7 +40,7 @@ actor DWep_Impaler: DoomWeapon
         loop
 
       Fire:
-        DKIP A 0 ACS_ExecuteWithResult(DAKKA_UPDATE_SWITCHAROO, 11, 0)
+        DKIP A 0 ACS_NamedExecuteWithResult("Dakka_Switcharoo", 11, 0)
         DKIP A 0 A_JumpIfInventory("ImpalerBarrelCounter", 2, "RightFire")
         DKIP A 0 A_JumpIfInventory("ImpalerBarrelCounter", 1, "LeftFire")
         goto CenterFire

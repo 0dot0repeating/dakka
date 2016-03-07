@@ -1,4 +1,4 @@
-script DAKKA_UPDATE_SWITCHAROO (int slot, int firemode, int noUpdateEfficiency)
+script "Dakka_Switcharoo" (int slot, int firemode, int noUpdateEfficiency)
 {
     int pln = PlayerNumber();
     if (pln == -1) // called from projectile

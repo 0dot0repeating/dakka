@@ -1,7 +1,4 @@
 // One easy to change place!
-const int DAKKA_UPDATE_SWITCHAROO   = 478;
-
-
 const int TRACE_BULLET      = 0;
 const int TRACE_PLASMA      = 1;
 const int TRACE_ARC_FIRER   = 2;
