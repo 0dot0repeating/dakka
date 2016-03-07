@@ -1,6 +1,6 @@
 // I can kinda read this and I'd recommend you don't.
 
-script DAKKA_RECOIL (int degrees, int ticsup, int ticsdown) clientside
+script "Dakka_Recoil" (int degrees, int ticsup, int ticsdown) clientside
 {
     if (degrees == 0) { terminate; }
 

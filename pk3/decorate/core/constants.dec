@@ -1,7 +1,5 @@
 // One easy to change place!
 const int DAKKA_UPDATE_SWITCHAROO   = 478;
-const int DAKKA_RECOIL              = 479;
-const int DAKKA_GAUSSIAN            = 482;
 
 
 const int TRACE_BULLET      = 0;
