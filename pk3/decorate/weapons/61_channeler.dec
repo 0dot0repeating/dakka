@@ -378,6 +378,7 @@ actor ChannelerBlobTrail2
     States
     {
       Spawn:
+        PLZH H 0 bright
         PLZM H 0 bright A_ScaleVelocity(0.8)
         PLZM HH 1 bright A_FadeOut(0.05)
         PLZM I 0 bright A_ScaleVelocity(0.8)
@@ -405,6 +406,15 @@ actor ChannelerBlobTrail3
     States
     {
       Spawn:
+        PLZH H 0 bright
+        PLZM H 0 bright A_JumpIf(CallACS("Dakka_LessEffects") == 1, "SpawnNo")
+        goto Spawn2
+
+      SpawnNo:
+        PLZM H 0 bright
+        stop
+
+      Spawn2:
         PLZM H 0 bright A_ScaleVelocity(0.7)
         PLZM HH 1 bright A_FadeOut(0.025)
         PLZM H 0 bright A_ScaleVelocity(0.7)
@@ -443,8 +453,16 @@ actor ChannelerBlobTrail4
     {
       Spawn:
         PLZM F  0 bright
+        PLZM F  0 bright A_JumpIf(CallACS("Dakka_LessEffects") == 1, "SpawnNo")
         PLZM FFGG 2 bright A_ScaleVelocity(0.7)
         goto Spawn2
+
+      SpawnNo:
+        PLZM F 0 bright A_ScaleVelocity(0.7)
+        PLZM FFFF 1 bright A_FadeOut(0.015)
+        PLZM F 0 bright A_ScaleVelocity(0.7)
+        PLZM GGGG 1 bright A_FadeOut(0.015)
+        loop
     
       Spawn2:
         PLZM F 0 bright A_ScaleVelocity(0.7)

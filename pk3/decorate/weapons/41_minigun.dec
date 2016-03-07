@@ -429,7 +429,6 @@ actor MinigunFlameV: MinigunFlame
       Spawn:
         DFLM E 0 bright
         DFLM E 0 bright A_JumpIf(CallACS("Dakka_LessEffects"), "NoFancy")
-        DFLM E 0 bright A_JumpIf(CallACS("Dakka_LessEffects"), "NoFancy")
         TNT1 A 0 A_ScaleVelocity(random(90, 110) / 100.0)
         TNT1 A 0 A_SetUserVar("user_counter", 24)
         goto Fancy
@@ -478,7 +477,6 @@ actor MinigunFlameVisual
     {
       Spawn:
         DFLM E 0 bright
-        DFLM E 0 bright A_JumpIf(CallACS("Dakka_LessEffects"), "NoFancy")
         DFLM E 0 bright A_JumpIf(CallACS("Dakka_LessEffects"), "NoFancy")
         goto Fancy
 
