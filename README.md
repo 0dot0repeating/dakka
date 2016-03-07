@@ -5,7 +5,7 @@ of easy, but still pretty damn easy. Eventually, I'll change up the monsters to
 fix this. Today's not that day.
 
 ***IMPORTANT:*** The latest version of this mod only works in Zandronum 
-versions at least 3.0 and ZDoom versions at least 2.7.1. Multiplayer play is 
+versions at least 3.0 and ZDoom versions at least 2.8.0. Multiplayer play is 
 only supported on Zandronum versions at least 3.0 - it could conceivably work 
 on ZDoom, but the pickup display for sure would be utterly broken for every 
 player besides the host.
