@@ -23,11 +23,13 @@ Things changed:
 
 - Bullet puffs no longer spawn bouncing particles, and plasma impact no longer sparks.
 
+- The SSG's rocket trails become shorter.
+
 - Minigun flames become much less dense.
 
 - Plasma trails don't last as long and involve less particles.
 
-- The BFG beam loses its helix.
-
 - One half of the Channeler's short-lived particles don't appear. The longer-lived
     particles last only a third as long.
+
+- The BFG beam loses its helix.

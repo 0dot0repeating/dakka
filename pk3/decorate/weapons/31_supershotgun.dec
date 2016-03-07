@@ -425,7 +425,9 @@ actor DGyroTrail
     States
     {
       Spawn:
-        TNT1 A 2
+        TNT1 A 0
+        TNT1 A 1 A_JumpIf(CallACS("Dakka_LessEffects") == 1, "SpawnLess")
+
         // huge hacks time
         GTRL A 0 A_Jump(64, 9)
         GTRL A 0 A_Jump(64, 9)
@@ -447,6 +449,13 @@ actor DGyroTrail
         GTRL B 1 bright
         GTRL C 1 bright
         GTRL C 1 bright
+        GTRL C 1 bright
+        stop
+
+      SpawnLess:
+        TNT1 A 1
+        GTRL A 1 bright
+        GTRL B 1 bright
         GTRL C 1 bright
         stop
     }
