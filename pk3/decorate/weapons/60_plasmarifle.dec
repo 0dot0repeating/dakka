@@ -192,7 +192,6 @@ actor PlasmaTrail
         TNT1 A 0 A_SpawnItemEx("PlasmaTrail_CS2", -momx * 2.00, -momy * 2.00, -momz * 2.00, 0,0,0, 0, SXF_ABSOLUTEVELOCITY | SXF_TRANSFERPITCH)
 
         TNT1 A 0 A_JumpIf(CallACS("Dakka_LessEffects") == 1, "NoTrail")
-        TNT1 A 0 A_JumpIf(CallACS("Dakka_LessEffects") == 1, "NoTrail")
 
         TNT1 A 0 A_SpawnItemEx("PlasmaTrail_CS",  -momx * 1.33, -momy * 1.33, -momz * 1.33, 0,0,0, 0, SXF_ABSOLUTEVELOCITY | SXF_TRANSFERPITCH)
         TNT1 A 0 A_SpawnItemEx("PlasmaTrail_CS",  -momx * 1.67, -momy * 1.67, -momz * 1.67, 0,0,0, 0, SXF_ABSOLUTEVELOCITY | SXF_TRANSFERPITCH)
@@ -264,7 +263,6 @@ actor PlasmaDebris
     {
       Spawn:
         DPLA A 0 bright
-        DPLA A 0 bright A_JumpIf(CallACS("Dakka_LessEffects") == 1, "Die")
         DPLA A 0 bright A_JumpIf(CallACS("Dakka_LessEffects") == 1, "Die")
         DPLA C 4 bright
         goto Spawn2
