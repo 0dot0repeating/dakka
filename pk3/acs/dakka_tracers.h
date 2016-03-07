@@ -110,15 +110,15 @@ script "Dakka_Tracer" (int which, int yoff, int zoff)
 
       case TRACE_BFG:
         // These will be in dakka_bfg.h
-        ACS_ExecuteWithResult(DAKKA_BFGTRACE_SERVER, tracerTID1, tracerTID2);
+        ACS_NamedExecuteWithResult("Dakka_BFG_Server", tracerTID1, tracerTID2);
         
         if (ConsolePlayerNumber() == -1)
         {
-            ACS_ExecuteAlways(DAKKA_BFGTRACE_CLIENT, 0, tracerTID1, tracerTID2);
+            ACS_NamedExecuteWithResult("Dakka_BFG_Client", 0, tracerTID1, tracerTID2);
         }
         else
         {
-            ACS_ExecuteWithResult(DAKKA_BFGTRACE_CLIENT, tracerTID1, tracerTID2);
+            ACS_NamedExecuteWithResult("Dakka_BFG_Client", tracerTID1, tracerTID2);
         }
         break;
 

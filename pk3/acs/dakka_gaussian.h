@@ -1,4 +1,4 @@
-script DAKKA_GAUSSIAN (int count, int high, int low)
+script "Dakka_Gaussian" (int count, int high, int low)
 {
     int ret = 0;
     int i;
