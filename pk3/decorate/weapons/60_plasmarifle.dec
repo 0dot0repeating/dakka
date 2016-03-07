@@ -48,7 +48,7 @@ actor DWep_PlasmaRifle: DoomWeapon
         loop
 
       Fire:
-        "----" A 0 ACS_ExecuteWithResult(DAKKA_UPDATE_SWITCHAROO, 8, 0)
+        "----" A 0 ACS_NamedExecuteWithResult("Dakka_Switcharoo", 8, 0)
         DPLS A 0 A_AlertMonsters
         DPLS A 0 A_GiveInventory("GiveScrapCounter2", 1)
         DPLS A 0 ACS_NamedExecuteAlways("Dakka_Recoil", 0, -75, 2, 6)
@@ -78,7 +78,7 @@ actor DWep_PlasmaRifle: DoomWeapon
         goto Reload
 
       ActualAlt:
-        "----" A 0 ACS_ExecuteWithResult(DAKKA_UPDATE_SWITCHAROO, 8, 1)
+        "----" A 0 ACS_NamedExecuteWithResult("Dakka_Switcharoo", 8, 1)
         DPLS A 0 A_GunFlash
         DPLS A 0 A_AlertMonsters
         DPLS A 0 A_PlaySound("dakka/plasmabeam", CallACS("Dakka_RotateSound"))

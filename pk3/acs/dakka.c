@@ -9,9 +9,6 @@
 // Constant definitions that don't fit anywhere else.
 #include "dakka_defs.h"
 
-// Script numbers and nothing else.
-#include "dakka_defs_scriptnums.h"
-
 // Monster definitions. Mainly used for calculating the score needed to get
 //  a full heal.
 #include "dakka_defs_monsters.h"
