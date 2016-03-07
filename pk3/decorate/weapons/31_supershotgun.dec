@@ -155,8 +155,8 @@ actor DWep_SuperShotgun: DoomWeapon
         DSSG A 0 A_AlertMonsters
         DSSG A 0 ACS_NamedExecuteWithResult("DSSG_ChangeShots")
         DSSG AAAAAAAAAAAAAAAAAAAA 0 A_FireCustomMissile("DakkaGyrojet", 
-                                    CallACS("Dakka_Gaussian", 50, 100) / 100.0, 0, 0,0,0,
-                                    CallACS("Dakka_Gaussian", 40, 70) / 100.0)
+                                    CallACS("Dakka_Spread", -1460, 1460) / 65536.0, 0, 0,0,0,
+                                    CallACS("Dakka_Spread", -940,  940)  / 65536.0)
         DSSG A 0 A_FireCustomMissile("AmmoWaster")
         DSSG A 0 ACS_NamedExecuteAlways("Dakka_Recoil", 0, 9, 2, 15)
         DSSG B 0 A_GiveInventory("GiveScrapCounter", 80)

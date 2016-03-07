@@ -88,9 +88,8 @@
 #include "dakka_bfg.h"
 
 
-// Gaussian distribution script, for spread that looks circular rather than a
-//  rectangle.
-#include "dakka_gaussian.h"
+// Spread script, so that projectiles spread in a more circular manner, rather than a box.
+#include "dakka_spread.h"
 
 
 // Clientside recoil script. Does anyone actually use this?
