@@ -239,6 +239,9 @@ actor DWep_SuperShotgun: DoomWeapon
         goto Ready
 
       Reload:
+        DSSG B 0 A_JumpIfInventory("DSSG_ShotsFired", 1, "IdleReload")
+        goto Ready3
+
       IdleReload:
         DSSG B 0 A_JumpIfInventory("DakkaShells", 2, "IReload2")
         DSSG B 0 A_JumpIfInventory("DakkaGyroShells", 2, "IReload2")
