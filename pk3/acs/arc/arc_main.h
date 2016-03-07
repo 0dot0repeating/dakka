@@ -68,7 +68,7 @@
 //
 // Step 17 (A): Send new arcer object to Arc_Spawn
 
-script ARC_MAIN (int arcType)
+script "Arc_Main" (int arcType)
 {
     int manualClear = INT_ArcData[arcType][ADATA_INT_MANUALCLEAR];
 
@@ -231,7 +231,7 @@ script ARC_MAIN (int arcType)
 
 // This is for when the arc object doesn't automatically do Target_Clear().
 
-script ARC_CLEAR (void)
+script "Arc_Clear" (void)
 {
     T_Clear();
 }
