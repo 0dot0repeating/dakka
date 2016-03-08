@@ -51,8 +51,10 @@ actor DWep_Pistols: DoomWeapon
 
       NoFire:
         BPST V 0 A_ReFire
+        BPST V 0 A_Light(1)
+        BPST V 1 A_WeaponReady(WRF_NOBOB | WRF_NOPRIMARY)
         BPST V 0 A_Light(0)
-        BPST V 2 A_WeaponReady(WRF_NOBOB | WRF_NOPRIMARY)
+        BPST V 1 A_WeaponReady(WRF_NOBOB | WRF_NOPRIMARY)
         BPST W 0 A_ReFire
         BPST W 1 A_WeaponReady(WRF_NOBOB | WRF_NOPRIMARY)
         BPST X 0 A_ReFire
@@ -75,7 +77,10 @@ actor DWep_Pistols: DoomWeapon
         BPST K 1 bright A_Light(5)
         BPST L 1 bright A_Light(3)
         BPST M 0 bright A_Light(2)
-        BPST MN 1 A_WeaponReady(WRF_NOBOB | WRF_NOFIRE)
+        BPST M 1 A_WeaponReady(WRF_NOBOB | WRF_NOFIRE)
+        BPST M 0 A_Light(1)
+        BPST N 1 A_WeaponReady(WRF_NOBOB | WRF_NOFIRE)
+        BPST N 0 A_Light(0)
         BPST I 0 A_JumpIfNoAmmo("NoHold")
         BPST O 0 A_ReFire
         BPST O 1 A_WeaponReady(WRF_NOBOB | WRF_NOPRIMARY)
@@ -89,8 +94,9 @@ actor DWep_Pistols: DoomWeapon
 
       NoHold:
         BPST Q 0 A_ReFire
-        BPST V 0 A_Light(0)
+        BPST Q 0 A_Light(1)
         BPST Q 1 A_WeaponReady(WRF_NOBOB | WRF_NOPRIMARY)
+        BPST R 0 A_Light(0)
         BPST R 0 A_ReFire
         BPST R 1 A_WeaponReady(WRF_NOBOB | WRF_NOPRIMARY)
         goto Ready
@@ -102,8 +108,7 @@ actor DWep_Pistols: DoomWeapon
         BPST F    0 A_GiveInventory("GiveScrapCounter", 5)
         BPST F 0 ACS_NamedExecuteAlways("Dakka_Recoil", 0, -45, 2, 5)
         BPST T 1 bright A_Light(5)
-        BPST U 1 bright A_Light(3)
-        BPST U 0 A_Light(2)
+        BPST U 1 bright A_Light(2)
         BPST I 0 A_JumpIfNoAmmo("NoFire")
         BPST I 0 A_JumpIfInventory("MainFired", 1, "Fire2")
         goto NoFire

@@ -75,8 +75,7 @@ function void Score_DoRewards(int lastScore, int curScore)
 
 
 
-
-function void Score_CheckRevival(void)
+script "Score_CheckRevival" (void)
 {
     int pln = PlayerNumber();
     int myTID = defaultTID(-1);
@@ -84,7 +83,7 @@ function void Score_CheckRevival(void)
     int extraLives = Score_GetExtraLives(pln);
     int hasLives   = Score_GetHasLives(pln);
 
-    if (!hasLives) { return; }
+    if (!hasLives) { terminate; }
 
     if (GetActorProperty(0, APROP_Health) <= 0)
     {
@@ -126,9 +125,7 @@ function void Score_CheckRevival(void)
 
         int revivalTID = UniqueTID();
 
-        SetActorVelocity(0, 0,0,0, false, true);
         SpawnForced("DakkaReviveExplosion", GetActorX(0), GetActorY(0), GetActorZ(0) + 32.0, revivalTID);
-        GiveInventory("FreezeRevivee", 1);
         GiveInventory("RevivalIntervention", 1);
 
         SetActivator(revivalTID);
@@ -144,12 +141,6 @@ function void Score_CheckRevival(void)
             SetPlayerProperty(false, false, PROP_BUDDHA);
         }
     }
-}
-
-
-script "Score_CheckRevival" (void)
-{
-    Score_CheckRevival();
 }
 
 
@@ -276,7 +267,7 @@ function void Score_ProcessRewards(void)
         Score_SetHasLives(pln, true);
         SetPlayerProperty(false, true, PROP_BUDDHA);
 
-        Score_CheckRevival();
+        ACS_NamedExecuteWithResult("Score_CheckRevival");
 
     }
     else if (hasLives)

@@ -92,17 +92,32 @@ actor DWep_BFG9000: DoomWeapon
         goto Ready
 
       Flash:
-        DBFF B  8 bright A_Light2
-        DBFF A  7 bright A_Light1
-        DBFF C  6 bright A_Light1
-        DBFF DE 6 bright
+        DBFF B  4 bright A_Light(12)
+        DBFF B  1 bright A_Light(11)
+        DBFF B  1 bright A_Light(10)
+        DBFF B  1 bright A_Light(9)
+        DBFF A  1 bright A_Light(8)
+        DBFF A  1 bright A_Light(7)
+        DBFF A  1 bright A_Light(6)
+        DBFF A  1 bright A_Light(5)
+        DBFF A  1 bright A_Light(4)
+        DBFF C  1 bright A_Light(3)
+        DBFF C  1 bright A_Light(2)
+        DBFF D  1 bright A_Light(1)
+        DBFF E  1 bright A_Light(0)
         Goto LightDone
 
-      Flash:
-        DBFF B  4 bright A_Light2
-        DBFF A  3 bright A_Light1
-        DBFF C  2 bright A_Light1
-        DBFF E  1 bright
+      AltFlash:
+        DBFF B  1 bright A_Light(8)
+        DBFF B  1 bright
+        DBFF B  1 bright A_Light(7)
+        DBFF B  1 bright A_Light(6)
+        DBFF A  1 bright A_Light(5)
+        DBFF A  1 bright A_Light(4)
+        DBFF A  1 bright A_Light(3)
+        DBFF C  1 bright A_Light(2)
+        DBFF C  1 bright A_Light(1)
+        DBFF E  1 bright A_Light(0)
         Goto LightDone
 
       Spawn:
