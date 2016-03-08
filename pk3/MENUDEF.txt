@@ -1,0 +1,199 @@
+OptionValue Dakka_StartMode_Health
+{
+    0, "no change"
+    1, "reset health"
+    2, "max HP + green armor"
+    3, "soulsphere + blue armor"
+    4, "megasphere"
+}
+
+OptionValue Dakka_StartMode_Weapons
+{
+    0, "no change"
+    2, "pistol start"
+    3, "up to shotgun tier"
+    4, "up to chaingun tier"
+    5, "up to RL tier"
+    6, "up to plasma tier"
+    7, "up to BFG tier"
+}
+
+OptionValue Dakka_StartMode_Ammo
+{
+    0, "no change"
+    1, "reset ammo"
+    2, "max out ammo"
+    3, "keep only pistol ammo"
+    4, "keep and max pistol"
+}
+
+OptionValue Dakka_KeepScore
+{
+    0, "keep nothing"
+    1, "keep score"
+    2, "keep score+rewards"
+    3, "keep everything"
+}
+
+OptionValue Dakka_BackpackStart
+{
+    -1, "take away"
+     0, "off"
+     1, "on"
+}
+
+
+
+ListMenu Dakka_Options
+{
+	IfGame(Doom, Chex)
+	{
+		Position 77, 92
+		IfOption(ReadThis)
+		{
+			Position 77, 84
+		}
+	}
+	IfGame(Strife)
+	{
+		Position 77, 65
+	}
+	IfGame(Heretic)
+	{
+		Position 100, 76
+	}
+	IfGame(Hexen)
+	{
+		Position 100, 76
+	}
+
+    Font "CONFONT", "White"
+
+    StaticTextCentered 160, 70, "NOTE! Only user options"
+    StaticTextCentered 160, 78, "are saved between sessions."
+	
+    Font "DBIGFON2", "Gray"
+    TextItem "Game Options", "g", "Dakka_GameOptions"
+    TextItem "User Options", "u", "Dakka_UserOptions"
+
+}
+
+
+
+OptionMenu Dakka_GameOptions
+{
+    Title "DAKKA (Game options)"
+
+    Command "Everything persists", "dakka_cmd_allpersist"
+    Command "Nothing persists",    "dakka_cmd_nopersist"
+    Command "Default persistance", "dakka_cmd_defaultpersist"
+
+
+    StaticText ""
+    StaticText "Uncategorized options"
+
+    Slider "Scrap factor",   "dakka_scrapfactor", 0, 1000, 10, 0
+    Option "Transfer score", "dakka_keepscore", "Dakka_KeepScore"
+
+    StaticText ""
+    StaticText "Level start options"
+
+    Option "Start mode (weapons)", "dakka_startmode_weapons",   "Dakka_StartMode_Weapons"
+    Option "Start mode (ammo)",    "dakka_startmode_ammo",      "Dakka_StartMode_Ammo"
+    Option "Start mode (health)",  "dakka_startmode_health",    "Dakka_StartMode_Health"
+
+    Option "Start w/ scrappers", "dakka_scrapperstart", "OnOff"
+    Option "Start w/ backpack",  "dakka_backpackstart", "Dakka_BackpackStart"
+
+    StaticText ""
+    StaticText ""
+    StaticText "Pickup conversion options"
+    StaticText "(After X maps with the item, its pickup changes)"
+    StaticText ""
+
+    Slider "Shotgun to SSG",      "dakka_shotgun2ssg",      0, 100, 1, 0
+    Slider "Chaingun to minigun", "dakka_chaingun2minigun", 0, 100, 1, 0
+
+    StaticText ""
+    StaticText ""
+    StaticText "Pickup bundle options"
+
+    Option "Bundle channeler+plasma", "dakka_bundleplasma", "OnOff"
+    Option "Bundle impaler+BFG",      "dakka_bundlebfg",    "OnOff"
+}
+
+OptionMenu "Dakka_UserOptions"
+{
+    Title "DAKKA (User options)"
+
+    Slider "Recoil factor", "dakka_cl_recoil", 0, 1000, 25, 0
+    Option "Jerky recoil", "dakka_cl_jerkyrecoil", "OnOff"
+
+    StaticText ""
+
+    Option "Less effects", "dakka_cl_lesseffects", "OnOff"
+    Option "Disable score rewards", "dakka_cl_noscorerewards", "OnOff"
+    Option "More pickup messages", "dakka_cl_moremessages", "OnOff"
+}
+
+
+
+ListMenu MainMenu
+{
+	IfGame(Doom, Chex)
+	{
+		Position 97, 72
+		IfOption(ReadThis)
+		{
+			Position 97, 64
+		}
+	}
+	IfGame(Strife)
+	{
+		Position 97, 45
+	}
+	IfGame(Heretic)
+	{
+		Position 110, 56
+	}
+	IfGame(Hexen)
+	{
+		Position 110, 56
+	}
+	
+	IfGame(Doom, Strife, Chex)
+	{
+		PatchItem "M_NGAME", "n", "PlayerclassMenu"
+		ifOption(SwapMenu)
+		{
+			PatchItem "M_LOADG", "l", "LoadGameMenu"
+			PatchItem "M_SAVEG", "s", "SaveGameMenu"
+			PatchItem "M_OPTION","o", "OptionsMenu"
+		}
+		else
+		{
+			PatchItem "M_OPTION","o", "OptionsMenu"
+			PatchItem "M_LOADG", "l", "LoadGameMenu"
+			PatchItem "M_SAVEG", "s", "SaveGameMenu"
+		}
+
+
+        Font "DBIGFON2", "Brick"
+        TextItem "Dakka", "d", "Dakka_Options"
+
+		ifOption(ReadThis)
+		{
+			PatchItem "M_RDTHIS","r", "ReadThisMenu"
+		}
+		PatchItem "M_QUITG", "q", "QuitMenu"
+	}
+	
+	IfGame(Heretic, Hexen)
+	{
+		TextItem "$MNU_NEWGAME", "n", "PlayerclassMenu"
+		TextItem "$MNU_OPTIONS", "o", "OptionsMenu"
+		TextItem "$MNU_GAMEFILES", "g", "GameFilesMenu"
+		TextItem "$MNU_INFO", "i", "ReadThisMenu"
+		TextItem "$MNU_QUITGAME", "q", "QuitMenu"
+	}
+}
