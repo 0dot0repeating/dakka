@@ -14,7 +14,7 @@
 //  11 - Impaler
 
 #define MMSG_SLOTS  12
-#define MMSG_COUNT  10
+#define MMSG_COUNT  11
 
 
 int MMSG_ExtraMessages[MMSG_SLOTS][MMSG_COUNT] = 
@@ -84,6 +84,7 @@ int MMSG_ExtraMessages[MMSG_SLOTS][MMSG_COUNT] =
     },
     { // Minigun
         "It's like a fire hose! Except it shoots fire. And there's six of them. And they're made of metal.",
+        "Is \cayour\c- flashlight chambered for 5mm rounds? No? Didn't think so.",
         "Absolutely \cano\c- resemblance to any guns from Painkiller. No siree.",
         "I sure hope the map wasn't relying on you having 100 health now.",
         "There's a reason you can carry 1000 rounds for this.",
@@ -151,7 +152,7 @@ int MMSG_ExtraMessages[MMSG_SLOTS][MMSG_COUNT] =
         "Jesus christ this dumb thing is so heavy.",
         "Because you never liked ambushes anyway.",
         "Clearly compensating for something.",
-        "Why's it come with cells?",
+        "Why's it got cells next to it?",
         "omg it pumps rods",
     }
 };

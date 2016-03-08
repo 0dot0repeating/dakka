@@ -7,6 +7,7 @@ Dakka has a slew of CVars used to configure the game to your liking.
 ### General CVars
 
 *   [dakka\_scrapfactor](cvars/dakka_scrapfactor.md)
+*   [dakka\_keepscore](cvars/dakka_keepscore.md)
 
 
 ### Level start CVars
