@@ -192,11 +192,29 @@ int Bonus_LastSeen[PLAYERMAX][BONUSCOUNT];
 global int 22:MapScoreData[];
 
 #define REWARDDATA_SCORE         0
-#define REWARDDATA_REWARDCOUNT  (1 * PLAYERMAX)
-#define REWARDDATA_REGENTIMER   (2 * PLAYERMAX)
-#define REWARDDATA_REGENSPENT   (3 * PLAYERMAX)
-#define REWARDDATA_EXTRALIVES   (4 * PLAYERMAX)
-#define REWARDDATA_HASLIVES     (5 * PLAYERMAX)
+#define REWARDDATA_DISPLAYSCORE (1 * PLAYERMAX)
+#define REWARDDATA_REWARDCOUNT  (2 * PLAYERMAX)
+#define REWARDDATA_SCOREPERCENT (3 * PLAYERMAX)
+#define REWARDDATA_REGENTIMER   (4 * PLAYERMAX)
+#define REWARDDATA_REGENSPENT   (5 * PLAYERMAX)
+#define REWARDDATA_EXTRALIVES   (6 * PLAYERMAX)
+#define REWARDDATA_HASLIVES     (7 * PLAYERMAX)
+
+
+#define REWARDMASK_SCORE         (1 << 0)
+#define REWARDMASK_DISPLAYSCORE  (1 << 1)
+#define REWARDMASK_REWARDCOUNT   (1 << 2)
+#define REWARDMASK_SCOREPERCENT  (1 << 3)
+#define REWARDMASK_REGENTIMER    (1 << 4)
+#define REWARDMASK_REGENSPENT    (1 << 5)
+#define REWARDMASK_EXTRALIVES    (1 << 6)
+#define REWARDMASK_HASLIVES      (1 << 7)
+
+#define REWARDMASK_ONLYDISPLAY      (REWARDMASK_DISPLAYSCORE)
+#define REWARDMASK_NOTDISPLAY       (~REWARDMASK_ONLYDISPLAY)
+#define REWARDMASK_ONLYREWARDS      (REWARDMASK_REGENTIMER | REWARDMASK_REGENSPENT | REWARDMASK_EXTRALIVES)
+#define REWARDMASK_NOTREWARDS       (~REWARDMASK_ONLYREWARDS)
+#define REWARDMASK_ALL              0xFFFFFFFF
 
 function int Score_GetScore(int pln)
 {
@@ -215,6 +233,31 @@ function void Score_ModScore(int pln, int val)
 
 
 
+function int Score_GetDisplayScore(int pln)
+{
+    return MapScoreData[REWARDDATA_DISPLAYSCORE + pln];
+}
+
+function void Score_SetDisplayScore(int pln, int val)
+{
+    MapScoreData[REWARDDATA_DISPLAYSCORE + pln] = val;
+}
+
+function void Score_ModDisplayScore(int pln, int val)
+{
+    MapScoreData[REWARDDATA_DISPLAYSCORE + pln] += val;
+}
+
+
+function void Score_ModBothScores(int pln, int val)
+{
+    MapScoreData[REWARDDATA_SCORE        + pln] += val;
+    MapScoreData[REWARDDATA_DISPLAYSCORE + pln] += val;
+}
+
+
+
+
 function int Score_GetRewardCount(int pln)
 {
     return MapScoreData[REWARDDATA_REWARDCOUNT + pln];
@@ -229,6 +272,26 @@ function void Score_ModRewardCount(int pln, int val)
 {
     MapScoreData[REWARDDATA_REWARDCOUNT + pln] += val;
 }
+
+
+
+function int Score_GetScorePercent(int pln)
+{
+    return MapScoreData[REWARDDATA_SCOREPERCENT + pln];
+}
+
+function void Score_CalcScorePercent(int pln)
+{
+    if (MapStart_FullHealPoints <= 0)
+    {
+        MapScoreData[REWARDDATA_SCOREPERCENT + pln] = 0;
+    }
+    else
+    {
+        MapScoreData[REWARDDATA_SCOREPERCENT + pln] = FixedDiv(Score_GetScore(pln), MapStart_FullHealPoints) % 1.0;
+    }
+}
+
 
 
 

@@ -12,13 +12,14 @@ function void Score_Update(int pln)
     int oldNoReward     = Score_OldVals[OSCORE_NOREWARD][pln];
     int first           = Score_OldVals[OSCORE_FIRSTDRAW][pln];
 
-    int points      = SToC_ClientData[pln][S2C_D_SCORE];
-    int goalpoints  = SToC_ClientData[pln][S2C_D_GOALSCORE];
-    int noReward    = CToS_ClientData[pln][C2S_D_NOSCOREREWARDS];
+    int points          = SToC_ClientData[pln][S2C_D_SCORE];
+    int goalpoints      = SToC_ClientData[pln][S2C_D_GOALSCORE];
+    int displayPoints   = SToC_ClientData[pln][S2C_D_DISPLAYSCORE];
+    int noReward        = CToS_ClientData[pln][C2S_D_NOSCOREREWARDS];
 
     if (!first || (points != oldPoints) || (goalPoints != oldGoalPoints) || (noReward != oldNoReward))
     {
-        Score_Draw(points, goalpoints);
+        Score_Draw(points, goalpoints, displayPoints);
         Score_OldVals[OSCORE_FIRSTDRAW][pln] = true;
     }
 
@@ -29,11 +30,11 @@ function void Score_Update(int pln)
     Score_OldVals[OSCORE_NOREWARD][pln]   = noReward;
 }
 
-function void Score_Draw(int curPoints, int goalPoints)
+function void Score_Draw(int curPoints, int goalPoints, int displayPoints)
 {
     SetFont("DAKKAFON");
     SetHudSize(560, 420, 1);
-    HudMessage(s:"Score: \c[DScore_Gold]", d:curPoints;
+    HudMessage(s:"Score: \c[DScore_Gold]", d:displayPoints;
                 HUDMSG_PLAIN | HUDMSG_COLORSTRING, 24200, "DScore_White", 455.4, 55.2, 0);
 
     int i;

@@ -4,10 +4,13 @@
 
 // This defines how many different data points we should sync between the client
 //  and the server.
-#define C2S_DATACOUNT   1
+#define C2S_DATACOUNT   2
 
 
 // Constants for identifying which data point we want to modify.
 
-// Tells the server how the client handles weapon switching on pickup.
+// Do we want score rewards?
 #define C2S_D_NOSCOREREWARDS    0
+
+// Do we want to keep the display score between maps?
+#define C2S_D_KEEPSCORE         1
