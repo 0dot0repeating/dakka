@@ -64,7 +64,7 @@ script "Pickup_Disconnect" (int pln) disconnect
 }
 
 
-
+/* Also absorbed by "Dakka_Open_Client"
 script "Pickup_Open_Client" open clientside
 {
     int cpln = ConsolePlayerNumber();
@@ -78,8 +78,6 @@ script "Pickup_Open_Client" open clientside
         int time = Timer();
         int i;
 
-// Debug shit, comment out whenever
-/*
         SetHudSize(640, 480, 1);
         SetFont("CONFONT");
         for (i = 0; i < S2C_DATACOUNT; i++)
@@ -95,7 +93,6 @@ script "Pickup_Open_Client" open clientside
                     HUDMSG_PLAIN,   12002 + (i * 4), CR_DARKGRAY, 550.2, 60.0 + (12.0 * i), 1.0);
             }
         }
-// */
         CSender_SetData(cpln, C2S_D_NOSCOREREWARDS, GetUserCVar(cpln, "dakka_cl_noscorerewards"));
 
         CSender_UpdateServer(cpln);
@@ -104,3 +101,4 @@ script "Pickup_Open_Client" open clientside
         Delay(1);
     }
 }
+*/

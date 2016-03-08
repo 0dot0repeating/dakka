@@ -82,17 +82,17 @@ script "Dakka_Score" (int pointValue)
     int points_scrapping    = round(pointValue * SMult_Scrapping(pln));
     int points_pointblank   = round(pointValue * SMult_PointBlank(myX, myY, myZ, plX, plY, plZ));
 
-    Score_ModScore(pln, pointValue);
-    Score_ModScore(pln, points_switcharoo);
-    Score_ModScore(pln, points_killstreak);
-    Score_ModScore(pln, points_efficiency);
-    Score_ModScore(pln, points_bonedry);
-    Score_ModScore(pln, points_soreloser);
-    Score_ModScore(pln, points_brawler);
-    Score_ModScore(pln, points_air);
-    Score_ModScore(pln, points_curveball);
-    Score_ModScore(pln, points_scrapping);
-    Score_ModScore(pln, points_pointblank);
+    Score_ModBothScores(pln, pointValue);
+    Score_ModBothScores(pln, points_switcharoo);
+    Score_ModBothScores(pln, points_killstreak);
+    Score_ModBothScores(pln, points_efficiency);
+    Score_ModBothScores(pln, points_bonedry);
+    Score_ModBothScores(pln, points_soreloser);
+    Score_ModBothScores(pln, points_brawler);
+    Score_ModBothScores(pln, points_air);
+    Score_ModBothScores(pln, points_curveball);
+    Score_ModBothScores(pln, points_scrapping);
+    Score_ModBothScores(pln, points_pointblank);
 
     int bonustime = Timer();
 
@@ -137,8 +137,8 @@ script "Dakka_Infighter" (int pointValue)
     {
         if (!PlayerInGame(i)) { continue; }
 
-        Score_ModScore(i, points_base);
-        Score_ModScore(i, points_infighter);
+        Score_ModBothScores(i, points_base);
+        Score_ModBothScores(i, points_infighter);
 
         BonusValues[i][BS_BASE]       += points_base;
         BonusValues[i][BS_INFIGHTER]  += points_infighter;

@@ -49,6 +49,9 @@ function void Score_DoRewards(int lastScore, int curScore)
     int pln = PlayerNumber();
     if (CToS_ServerData[pln][C2S_D_NOSCOREREWARDS]) { return; }
 
+    // Update this because yeah
+    Score_CalcScorePercent(pln);
+
     int scoreThreshold = MapStart_FullHealPoints;
 
     if (scoreThreshold == 0)
@@ -68,6 +71,85 @@ function void Score_DoRewards(int lastScore, int curScore)
     }
 
     Score_ProcessRewards();
+}
+
+
+
+
+function void Score_CheckRevival(void)
+{
+    int pln = PlayerNumber();
+    int myTID = defaultTID(-1);
+
+    int extraLives = Score_GetExtraLives(pln);
+    int hasLives   = Score_GetHasLives(pln);
+
+    if (!hasLives) { return; }
+
+    if (GetActorProperty(0, APROP_Health) <= 0)
+    {
+        Score_SetExtraLives(pln, 0);
+        SetPlayerProperty(false, false, PROP_BUDDHA);
+    }
+    else if (GetActorProperty(0, APROP_Health) == 1)
+    {
+        // Read dakka_startmode_health to determine what the 'respawn'
+        //  stats should be
+        int startmode = GetCVar("dakka_startmode_health");
+        int classNum  = Pickup_ClassNumber(0);
+
+        SetActorProperty(0, APROP_Health, getMaxHealth());
+
+        switch (startmode)
+        {
+          default:
+            break;
+
+          case 2:
+            TakeInventory("BasicArmor", 0x7FFFFFFF);
+            Pickup_DoPickup(It_GreenArmor, classNum, false);
+            break;
+
+          case 3:
+            TakeInventory("BasicArmor", 0x7FFFFFFF);
+            Pickup_DoPickup(It_Soulsphere, classNum, false);
+            Pickup_DoPickup(It_BlueArmor,  classNum, false);
+            break;
+
+          case 4:
+            TakeInventory("BasicArmor", 0x7FFFFFFF);
+            Pickup_DoPickup(It_Megasphere, classNum, false);
+            break;
+        }
+
+        Score_ModExtraLives(pln, -1);
+
+        int revivalTID = UniqueTID();
+
+        SetActorVelocity(0, 0,0,0, false, true);
+        SpawnForced("DakkaReviveExplosion", GetActorX(0), GetActorY(0), GetActorZ(0) + 32.0, revivalTID);
+        GiveInventory("FreezeRevivee", 1);
+        GiveInventory("RevivalIntervention", 1);
+
+        SetActivator(revivalTID);
+        SetPointer(AAPTR_TARGET, myTID);
+        SetActorAngle(0, GetActorAngle(myTID));
+        SetActivator(myTID);
+
+        FadeRange(255, 223, 155, 0.75,    255, 79, 0, 0.0, 1.0);
+
+        // we took out 1, so now it's actually 0 in the array
+        if (extraLives == 1)
+        {
+            SetPlayerProperty(false, false, PROP_BUDDHA);
+        }
+    }
+}
+
+
+script "Score_CheckRevival" (void)
+{
+    Score_CheckRevival();
 }
 
 
@@ -194,62 +276,8 @@ function void Score_ProcessRewards(void)
         Score_SetHasLives(pln, true);
         SetPlayerProperty(false, true, PROP_BUDDHA);
 
-        if (GetActorProperty(0, APROP_Health) <= 0)
-        {
-            Score_SetExtraLives(pln, 0);
-            SetPlayerProperty(false, false, PROP_BUDDHA);
-        }
-        else if (GetActorProperty(0, APROP_Health) == 1)
-        {
-            // Read dakka_startmode_health to determine what the 'respawn'
-            //  stats should be
-            int startmode = GetCVar("dakka_startmode_health");
-            int classNum  = Pickup_ClassNumber(0);
+        Score_CheckRevival();
 
-            SetActorProperty(0, APROP_Health, getMaxHealth());
-
-            switch (startmode)
-            {
-              default:
-                break;
-
-              case 2:
-                TakeInventory("BasicArmor", 0x7FFFFFFF);
-                Pickup_DoPickup(It_GreenArmor, classNum, false);
-                break;
-
-              case 3:
-                TakeInventory("BasicArmor", 0x7FFFFFFF);
-                Pickup_DoPickup(It_Soulsphere, classNum, false);
-                Pickup_DoPickup(It_BlueArmor,  classNum, false);
-                break;
-
-              case 4:
-                TakeInventory("BasicArmor", 0x7FFFFFFF);
-                Pickup_DoPickup(It_Megasphere, classNum, false);
-                break;
-            }
-
-            Score_ModExtraLives(pln, -1);
-
-            int revivalTID = UniqueTID();
-
-            SetActorVelocity(0, 0,0,0, false, true);
-            SpawnForced("DakkaReviveExplosion", GetActorX(0), GetActorY(0), GetActorZ(0) + 32.0, revivalTID);
-
-            SetActivator(revivalTID);
-            SetPointer(AAPTR_TARGET, myTID);
-            SetActorAngle(0, GetActorAngle(myTID));
-            SetActivator(myTID);
-
-            FadeRange(255, 223, 155, 0.75,    255, 79, 0, 0.0, 1.0);
-
-            // we took out 1, so now it's actually 0 in the array
-            if (extraLives == 1)
-            {
-                SetPlayerProperty(false, false, PROP_BUDDHA);
-            }
-        }
     }
     else if (hasLives)
     {

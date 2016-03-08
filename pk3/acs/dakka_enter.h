@@ -83,4 +83,5 @@ script "Dakka_Spawn" (int respawned)
 script "Dakka_Disconnect" (int pln) disconnect
 {
     DakkaEnterLocks[pln] = false;
+    Score_ResetMask(pln, REWARDMASK_ALL);
 }
