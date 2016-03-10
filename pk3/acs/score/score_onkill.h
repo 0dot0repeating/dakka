@@ -42,7 +42,7 @@ script "Dakka_Score" (int pointValue)
 {
     int myhp = GetActorProperty(0, APROP_SpawnHealth);
     int i;
-    if (pointValue == -1) { pointValue = SMult_Base(); }
+    if (pointValue <= 0) { pointValue = SMult_Base(); }
 
     int myX = GetActorX(0);
     int myY = GetActorY(0);
