@@ -166,10 +166,10 @@ function void Dakka_StartMode_Ammo(int classNum, int entered, int lostAmmo)
             //  for *our* class
             for (j = 0; j < CLASSWEAPONS; j++)
             {
-                int startWep    = Dakka_ClassWeapons[j][classNum+1];
                 int startRating = Dakka_ClassWeaponPowers[j][classNum+1];
-
                 if (startRating > 2) { continue; }
+
+                int startWep    = Dakka_ClassWeapons[j][classNum+1];
 
                 if (!stricmp(wepName, startWep))
                 {
