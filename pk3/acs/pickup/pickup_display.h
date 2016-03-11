@@ -56,9 +56,21 @@ function int Pickup_IsDisplayScripted(int index, int classNum)
 }
     
 
+script "Pickup_Display" (int index, int dropped, int firstDisplay)
+{
+    int cpln = ConsolePlayerNumber();
 
+    if (cpln == -1)
+    {
+        ACS_NamedExecuteAlways("Pickup_Display_Main", 0, index, dropped, firstDisplay);
+    }
+    else if (IsServer)
+    {
+        ACS_NamedExecuteWithResult("Pickup_Display_Main", index, dropped, firstDisplay);
+    }
+}
 
-script "Pickup_Display" (int index, int dropped, int firstDisplay) clientside
+script "Pickup_Display_Main" (int index, int dropped, int firstDisplay) clientside
 {
     int cpln     = ConsolePlayerNumber();
     // Don't do shit if we're somehow running on the server.
@@ -128,13 +140,11 @@ script "Pickup_Display" (int index, int dropped, int firstDisplay) clientside
 
             if (classNum == -1)
             {
-                Log(s:"switching to Unknown");
                 SetActorState(0, "Unknown");
             }
             else
             {
                 // DISP_ClassStates is in pickup_items.h.
-                Log(s:"switching to ", s:DISP_ClassStates[classNum]);
                 SetActorState(0, DISP_ClassStates[classNum]);
             }
 
