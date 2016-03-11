@@ -136,7 +136,7 @@ function void Dakka_StartMode_Ammo(int classNum, int entered, int lostAmmo)
     int i;
 
     // Exit early because fuck it
-    if (startMode <= 0 || startMode > 3) { return; }
+    if (startMode <= 0 || startMode > 4) { return; }
 
     // These all basically use the same logic except for how much ammo you get,
     //  and whether only pistol-class or lower weapons should get ammo.
@@ -153,6 +153,9 @@ function void Dakka_StartMode_Ammo(int classNum, int entered, int lostAmmo)
     {
         int wepName   = PKP_KnownGuns[i][WEP_NAME];
 
+        // I honestly have no idea why I didn't include this here earlier
+        if (!CheckInventory(wepName)) { continue; }
+
         // If we're only grabbing pistol start weapons, check power rating
         if (onlyPistols)
         {
@@ -168,7 +171,7 @@ function void Dakka_StartMode_Ammo(int classNum, int entered, int lostAmmo)
 
                 if (startRating > 2) { continue; }
 
-                if (stricmp(wepName, startWep))
+                if (!stricmp(wepName, startWep))
                 {
                     isPistol = true;
                     break;
@@ -188,21 +191,13 @@ function void Dakka_StartMode_Ammo(int classNum, int entered, int lostAmmo)
         if (!stringBlank(ammo1Name))
         {
             int ammo1Index = Ammo_AmmoIndex(ammo1Name);
-
-            if (CheckInventory(wepName))
-            {
-                Start_AmmoToKeep[ammo1Index] = true;
-            }
+            Start_AmmoToKeep[ammo1Index] = true;
         }
 
         if (!stringBlank(ammo2Name))
         {
             int ammo2Index = Ammo_AmmoIndex(ammo2Name);
-
-            if (CheckInventory(wepName))
-            {
-                Start_AmmoToKeep[ammo2Index] = true;
-            }
+            Start_AmmoToKeep[ammo2Index] = true;
         }
     }
 
