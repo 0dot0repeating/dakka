@@ -33,7 +33,7 @@ the folder, not its contents. Don't do that.
 ## COLORFUL HELL
 
 This mod has explicit support for Colorful Hell. Simply grab colorful\_dakka.pk3
-from the addons/ directory, and load the mods in the order: 
+from the addons/ directory (protip: hit the "Raw" button), and load the mods in the order: 
 
 - Any maps you're using
 - Dakka
