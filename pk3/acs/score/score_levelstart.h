@@ -13,8 +13,6 @@ function void Score_CalcMapPoints(void)
         name = Monster_KnownMons[i];
         count = ThingCountName(name, 0);
 
-        Log(d:count, s:" of ", s:name);
-
         totalMons   += count;
         totalPoints += count * Monster_Points[i];
     }
@@ -33,8 +31,6 @@ function void Score_CalcMapPoints(void)
     MapStart_FullHealPoints = max(5000, fullHealPoints);
 
     // Adjust everyone's base score to match the percentage from the last map if it's non-zero
-
-    Log(s:"threshold: ", d:MapStart_FullHealPoints);
     
     for (i = 0; i < PLAYERMAX; i++)
     {
@@ -42,7 +38,6 @@ function void Score_CalcMapPoints(void)
         int percent = Score_GetScorePercent(i);
 
         // We add 1 because FixedMul loves rounding down, and we don't actually want that!
-        Log(s:"player ", d:i, s:" going from ", d:Score_GetScore(i), s:" to ", d:FixedMul(MapStart_FullHealPoints, percent + 1));
         Score_SetScore(i, FixedMul(MapStart_FullHealPoints, percent + 1));
     }
 }
