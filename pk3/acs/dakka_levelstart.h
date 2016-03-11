@@ -47,27 +47,32 @@ function void Dakka_StartMode_Weapons(int classNum, int entered, int lostWeapons
 
     for (i = 0; i < CLASSWEAPONS; i++)
     {
-        // We use this to ignore fist/pistol weapons, as well as the Scrappers.
-        int ignore = Dakka_ClassWep_StartModeIgnore[i][classNum+1];
-        if (ignore) { continue; }
-
         int wepName  = Dakka_ClassWeapons[i][classNum+1];
         int wepPower = Dakka_ClassWeaponPowers[i][classNum+1];
         int wepIndex = Weapon_WeaponIndex(wepName);
 
-        // Weapon power rating too high
-        if (startMode < wepPower)
-        {
-            TakeInventory(wepName, 0x7FFFFFFF);
-            continue;
-        }
 
-        // If it's not a weapon we recognize, just give it once
-        //  and be done with it
-        if (wepIndex == -1)
+        // We use this to ignore fist/pistol weapons, as well as the Scrappers.
+        //
+        // But we don't want to take away ammo for them either, that's bad
+        int ignore = Dakka_ClassWep_StartModeIgnore[i][classNum+1];
+
+        if (!ignore)
         {
-            GiveInventory(wepName, 1);
-            continue;
+            // Weapon power rating too high
+            if (startMode < wepPower)
+            {
+                TakeInventory(wepName, 0x7FFFFFFF);
+                continue;
+            }
+
+            // If it's not a weapon we recognize, just give it once
+            //  and be done with it
+            if (wepIndex == -1)
+            {
+                GiveInventory(wepName, 1);
+                continue;
+            }
         }
 
         int ammo1Name = PKP_KnownGuns[wepIndex][WEP_AMMO1];
@@ -92,12 +97,15 @@ function void Dakka_StartMode_Weapons(int classNum, int entered, int lostWeapons
             if (ammo2Index > -1) { Start_AmmoToKeep[ammo2Index] = true; }
         }
 
-        GiveInventory(wepName, 1);
+        if (!ignore)
+        {
+            GiveInventory(wepName, 1);
 
-        // Keep ammo constant
-        
-        if (gotAmmo1) { TakeInventory(ammo1Name, CheckInventory(ammo1Name) - ammo1Count); }
-        if (gotAmmo2) { TakeInventory(ammo2Name, CheckInventory(ammo2Name) - ammo2Count); }
+            // Keep ammo constant
+            
+            if (gotAmmo1) { TakeInventory(ammo1Name, CheckInventory(ammo1Name) - ammo1Count); }
+            if (gotAmmo2) { TakeInventory(ammo2Name, CheckInventory(ammo2Name) - ammo2Count); }
+        }
     }
 
 
