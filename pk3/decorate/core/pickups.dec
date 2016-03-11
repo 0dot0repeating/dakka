@@ -45,11 +45,11 @@ actor ClassBasedPickup: CustomInventory
         goto FirstDisplay
 
       FirstDisplay:
-        "----" A 1 ACS_NamedExecuteAlways("Pickup_Display", 0, user_index, user_dropped, true)
+        "----" A 1 ACS_NamedExecuteWithResult("Pickup_Display", user_index, user_dropped, true)
         goto LoopDisplay
 
       LoopDisplay:
-        "----" A 35 ACS_NamedExecuteAlways("Pickup_Display", 0, user_index, user_dropped)
+        "----" A 35 ACS_NamedExecuteWithResult("Pickup_Display", user_index, user_dropped)
         wait
 
       Unknown:
