@@ -30,6 +30,17 @@ If, in the ZIP you created, everything's still in the "pk3/" folder, you zipped
 the folder, not its contents. Don't do that.
 
 
+## COLORFUL HELL
+
+This mod has explicit support for Colorful Hell. Simply grab colorful\_dakka.pk3
+from the addons/ directory, and load the mods in the order: 
+
+- Any maps you're using
+- Dakka
+- Colorful Hell
+- colorful\_dakka.pk3
+
+
 
 ## Wait, why's it missing stuff?
 

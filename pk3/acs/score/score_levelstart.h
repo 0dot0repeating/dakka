@@ -13,6 +13,8 @@ function void Score_CalcMapPoints(void)
         name = Monster_KnownMons[i];
         count = ThingCountName(name, 0);
 
+        Log(d:count, s:" of ", s:name);
+
         totalMons   += count;
         totalPoints += count * Monster_Points[i];
     }

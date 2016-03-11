@@ -3,3 +3,4 @@
 nocommit/*
 core.*
 zandronum-crash*
+!addons/*

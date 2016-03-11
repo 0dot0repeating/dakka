@@ -1,7 +1,7 @@
 #library "dakka_titlemap"
 
 #include "zcommon.acs"
-#include "commonFuncs.h"
+#include "dakka_commonFuncs.h"
 
 
 #define MUSICCOUNT  3
