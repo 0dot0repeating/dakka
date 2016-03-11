@@ -1,7 +1,7 @@
 #include "zcommon.acs"
 #library "dakka"
 
-#include "commonFuncs.h"
+#include "dakka_commonFuncs.h"
 
 
 
