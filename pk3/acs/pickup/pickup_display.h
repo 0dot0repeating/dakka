@@ -92,7 +92,7 @@ script "Pickup_Display" (int index, int dropped, int firstDisplay) clientside
     SetActorState(0, "Unknown");
 
     int oldClassNum;
-    int classNum = SToC_ClientData[cpln][S2C_D_CLASSNUM] - 1;
+    int classNum = -1;
     int oldScript;
     int scriptIndex = -1;
     int snum, arg1, arg2, arg3, named, name;
@@ -128,11 +128,13 @@ script "Pickup_Display" (int index, int dropped, int firstDisplay) clientside
 
             if (classNum == -1)
             {
+                Log(s:"switching to Unknown");
                 SetActorState(0, "Unknown");
             }
             else
             {
                 // DISP_ClassStates is in pickup_items.h.
+                Log(s:"switching to ", s:DISP_ClassStates[classNum]);
                 SetActorState(0, DISP_ClassStates[classNum]);
             }
 
