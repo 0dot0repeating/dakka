@@ -32,13 +32,13 @@ the folder, not its contents. Don't do that.
 
 ## COLORFUL HELL
 
-This mod has explicit support for Colorful Hell. Simply grab colorful\_dakka.pk3
+This mod has explicit support for Colorful Hell. Simply grab colorful\_dakka\_82.pk3
 from the addons/ directory (protip: hit the "Raw" button), and load the mods in the order: 
 
 - Any maps you're using
 - Dakka
-- Colorful Hell
-- colorful\_dakka.pk3
+- coluorfullHell82.pk3
+- colorful\_dakka\_82.pk3
 
 Note that Colorful Hell will *not* run in Zandronum 3.0. You will need ZDoom or 
 GZDoom to play Dakka with Colorful Hell.
@@ -46,6 +46,9 @@ GZDoom to play Dakka with Colorful Hell.
 Also note that while Dakka does explicitly support Colorful Hell, it has not
 been extensively tested. If something is off with the support, bring it up on
 /vr/, and I'll get to it quickly enough.
+
+colorful\_hell\_80.pk3 was for, well, Colorful Hell 0.80. You probably don't
+want or need that one, but it's kept there anyway.
 
 
 ## Wait, why's it missing stuff?
