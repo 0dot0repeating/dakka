@@ -37,7 +37,7 @@ from the addons/ directory (protip: hit the "Raw" button), and load the mods in 
 
 - Any maps you're using
 - Dakka
-- coluorfullHell82.pk3
+- colourfullHell82.pk3
 - colorful\_dakka\_82.pk3
 
 Note that Colorful Hell will *not* run in Zandronum 3.0. You will need ZDoom or 
