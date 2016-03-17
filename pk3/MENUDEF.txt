@@ -92,8 +92,9 @@ OptionMenu Dakka_GameOptions
     StaticText ""
     StaticText "Uncategorized options"
 
-    Slider "Scrap factor",   "dakka_scrapfactor", 0, 1000, 10, 0
-    Option "Transfer score", "dakka_keepscore", "Dakka_KeepScore"
+    Slider "Scrap factor",      "dakka_scrapfactor", 0, 1000, 10, 0
+    Option "Transfer score",    "dakka_keepscore", "Dakka_KeepScore"
+    Option "Do resets in hub",  "dakka_ignorehubs", "OnOff"
 
     StaticText ""
     StaticText "Level start options"
