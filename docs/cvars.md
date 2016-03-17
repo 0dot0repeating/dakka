@@ -8,6 +8,7 @@ Dakka has a slew of CVars used to configure the game to your liking.
 
 *   [dakka\_scrapfactor](cvars/dakka_scrapfactor.md)
 *   [dakka\_keepscore](cvars/dakka_keepscore.md)
+*   [dakka\_ignorehubs](cvars/dakka_ignorehubs.md)
 
 
 ### Level start CVars
