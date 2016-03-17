@@ -358,11 +358,16 @@ function void Dakka_BackpackStart(void)
 
 function void Dakka_DoLevelSpawn(int entered)
 {
-    // Detect if we're moving around in the same hug
+    // Detect if we're moving around in the same hub
     int hasHubTracker = CheckInventory("HubTracker");
 
+    // Unless we have dakka_ignorehubs on because thanks DUMP
+    int ignoreHubs = GetCVar("dakka_ignorehubs");
+
+    Log(s:"Ignore hubs: ", d:ignoreHubs);
+
     // Handle respawns normally
-    int intraHubEnter = hasHubTracker && entered;
+    int intraHubEnter = !ignoreHubs && hasHubTracker && entered;
 
     GiveInventory("HubTracker", 1);
 

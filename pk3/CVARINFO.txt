@@ -4,6 +4,7 @@ server noarchive int  dakka_scrapfactor         = 100;
 server noarchive int  dakka_jumpmod             = 0;
 
 server noarchive int  dakka_keepscore           = 1;
+server noarchive bool dakka_ignorehubs          = false;
 
 server noarchive int  dakka_startmode_weapons   = 0;
 server noarchive int  dakka_startmode_ammo      = 1;

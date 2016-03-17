@@ -80,6 +80,20 @@ script "Dakka_Spawn" (int respawned)
 }
 
 
+script "Dakka_Return" return
+{
+    // I don't think return scripts will ever run in DM but just in case
+    if (GameType() == GAME_NET_DEATHMATCH)
+    {
+        Dakka_DoDMSpawn(false);
+    }
+    else
+    {
+        Dakka_DoLevelSpawn(false);
+    }
+}
+
+
 script "Dakka_Disconnect" (int pln) disconnect
 {
     DakkaEnterLocks[pln] = false;
