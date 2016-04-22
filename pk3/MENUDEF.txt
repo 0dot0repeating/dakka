@@ -135,6 +135,17 @@ OptionMenu "Dakka_UserOptions"
     Option "Less effects", "dakka_cl_lesseffects", "OnOff"
     Option "Disable score rewards", "dakka_cl_noscorerewards", "OnOff"
     Option "More pickup messages", "dakka_cl_moremessages", "OnOff"
+
+    StaticText ""
+    StaticText "Keybinds"
+    StaticText ""
+
+    Control "Slot 1, fist first",     "fistswitch"
+    Control "Slot 2, pistol first",   "pistswitch"
+    Control "Slot 3, shotgun first",  "shotswitch"
+    Control "Slot 4, chaingun first", "chainswitch"
+    Control "Slot 6, plasma first",   "plasmaswitch"
+    Control "Slot 7, BFG first",      "bfgswitch"
 }
 
 

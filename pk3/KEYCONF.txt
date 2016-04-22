@@ -1,3 +1,23 @@
+addkeysection "Dakka" Dakka
+
 alias dakka_cmd_allpersist      "dakka_startmode_weapons 0; dakka_startmode_ammo 0; dakka_startmode_health 0; dakka_keepscore 3"
 alias dakka_cmd_nopersist       "dakka_startmode_weapons 2; dakka_startmode_ammo 3; dakka_startmode_health 1; dakka_keepscore 0"
 alias dakka_cmd_defaultpersist  "dakka_startmode_weapons 0; dakka_startmode_ammo 1; dakka_startmode_health 1; dakka_keepscore 1"
+
+alias fistswitch "use Slot1Switch_FistFirst"
+addmenukey "Slot 1, fist first" fistswitch
+
+alias pistswitch "use Slot2Switch_PistolFirst"
+addmenukey "Slot 2, pistol first" pistswitch
+
+alias shotswitch "use Slot3Switch_ShotgunFirst"
+addmenukey "Slot 3, shotgun first" shotswitch
+
+alias chainswitch "use Slot4Switch_ChaingunFirst"
+addmenukey "Slot 4, chaingun first" chainswitch
+
+alias plasmaswitch "use Slot6Switch_PlasmaFirst"
+addmenukey "Slot 6, plasma first" plasmaswitch
+
+alias plasmaswitch "use Slot7Switch_BFGFirst"
+addmenukey "Slot 7, BFG first" bfgswitch
