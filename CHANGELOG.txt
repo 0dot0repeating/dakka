@@ -180,7 +180,9 @@ MISC:
 
 - The shotgun's primary fire has been buffed to 125 damage, making it capable of
   killing hell knights, arachnotrons, and barons of hell in one less shot.
-  
+
+- You can now switch out of the shotgun's primary/alt fires sooner.
+
 - You also no longer pump a shell/grenade into your shotgun when you're out of
   them. I briefly considered having Dakkaguy pump a shell/grenade in the moment
   you found one, but then I decided it'd be distracting for no reason.
