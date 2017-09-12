@@ -1,6 +1,7 @@
-*.pk3
+*.pk[37]
 *.zip
 nocommit/*
 core.*
 zandronum-crash*
 !addons/*
+*.lnk

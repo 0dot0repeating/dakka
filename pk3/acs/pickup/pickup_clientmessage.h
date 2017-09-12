@@ -29,14 +29,6 @@ int CMSG_LastPickup[PLAYERMAX][2];
 //  slot has been filled.
 function int CMSG_AddPickupData(int pln, int index, int arg1, int arg2)
 {
-    // As of Zandronum 2.1.2, Using ACS_ExecuteWithResult with arguments
-    //  between -1 and -128 will pass those numbers as 256 + <val> instead.
-    //  This is obviously not desirable.
-    //
-    // We subtracted 128 from it in Pickup_SendMessage, so we add 128 here.
-    if (arg1 < 0) { arg1 += 128; }
-    if (arg2 < 0) { arg2 += 128; }
-
     CMSG_MessageData[pln][index]   = arg1;
     CMSG_MessageData[pln][index+1] = arg2;
 
@@ -80,10 +72,10 @@ function int CMSG_IsScripted(int index, int classNum)
 
     for (i = 0; i < MSG_SCRIPTEDCOUNT; i++)
     {
-        int checkIndex = CMSG_ScriptedMessages[i][MSG_S_ITEMNUM];
-        int checkClass = CMSG_ScriptedMessages[i][MSG_S_CLASSNUM];
+        int indexToCheck = CMSG_ScriptedMessages[i][MSG_S_ITEMNUM];
+        int classToCheck = CMSG_ScriptedMessages[i][MSG_S_CLASSNUM];
 
-        if (index == checkIndex && classNum == checkClass)
+        if (index == indexToCheck && classNum == classToCheck)
         {
             return i;
         }
@@ -136,12 +128,6 @@ script "Pickup_ShowMessage" (int mdata_index, int data1, int data2) clientside
         // Note that CMSG_MessageData is still available for use in the message
         //  script, so we don't need to pass in class number, item number, and
         //  all that.
-        //
-        // We pass in dropped mainly for consistency. I don't wanna make an
-        //  argument array for pickup scripts.
-        //
-        // If I make one for them anyway, expect to get the
-        //  full three arguments.
 
         if (!onlyString)
         {
@@ -204,7 +190,7 @@ script "Pickup_ShowMessage" (int mdata_index, int data1, int data2) clientside
     // Explicitly *not* a LANGUAGE message.
     if (strstr(message, "\\$") == 0)
     {
-        message = sliceString(message, 2, StrLen(message));
+        message = sliceString(message, 1, StrLen(message));
     }
     else if (GetChar(message, 0) == '$')
     {
@@ -251,7 +237,7 @@ script "Pickup_ShowMessage" (int mdata_index, int data1, int data2) clientside
 
 
     // This must be at the end, or else for every two numbers sent from the
-    //  server, the client will do another likely malformed pickup message
+    //  server, the client will do another pickup message, likely malformed
     CMSG_ClearPickupData(pln);
 
     CMSG_LastPickup[pln][LASTPICKUP_INDEX] = itemNum;

@@ -404,10 +404,8 @@ function void Dakka_DoLevelSpawn(int entered)
         {
             int hasShotgun  = CheckInventory("DWep_Shotgun");
             int hasChaingun = CheckInventory("DWep_Chaingun");
-            int hasPlasma   = CheckInventory("DWep_PlasmaRifle");
             int hasBFG      = CheckInventory("DWep_BFG9000");
 
-            Sender_SetData(pln, S2C_D_PLASMASTART, hasPlasma);
             Sender_SetData(pln, S2C_D_BFGSTART,    hasBFG);
 
             if (!intraHubEnter)

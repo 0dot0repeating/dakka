@@ -41,6 +41,9 @@ DAKKA_MP_PLASMARIFLE_BEAM   = "%k scorched %o.";
 DAKKA_PK_CHANNELER          = "Channeler!"
 DAKKA_MP_CHANNELER          = "%k overcharged %o.";
 
+DAKKA_PK_PLASMALANCE        = "Plasma lance!"
+DAKKA_MP_PLASMALANCE        = "%k melted a hole in %o.";
+
 DAKKA_PK_BFG9000            = "\caBig feffin' gun!";
 DAKKA_MP_BFG9000            = "%k annihilated %o.";
 DAKKA_MP_BFG9000_BLAST      = "%k pulverized %o.";

@@ -14,6 +14,7 @@
 #define S_CHANNELER         10
 #define S_IMPALER           11
 #define S_REVIVAL           12
+#define S_PLASMALANCE       13
 
 #define SWITCHAROO_TICSPER100HP 24
 #define SWITCHAROO_MINTICS      72
@@ -148,14 +149,14 @@ int BonusNames[BONUSCOUNT] =
 {
     "Base",
     "Spree",
-    "One Stone",
+    "Efficiency",
     "Infighter",
     "Switcharoo",
     "Scrapping",
     "Curveball",
     "Air",
-    "Bone Dry",
-    "Sore Loser",
+    "Redline",
+    "Swan Song",
     "Brawler",
     "Point-Blank",
 };

@@ -1,5 +1,5 @@
-#include "zcommon.acs"
 #library "dakka"
+#include "zcommon.acs"
 
 #include "dakka_commonFuncs.h"
 
@@ -83,6 +83,9 @@
 // Rocket launcher alt-fire junk.
 #include "dakka_rocketlauncher.h"
 
+
+// Plasma lance hit detection.
+#include "dakka_plasmalance.h"
 
 // BFG BEAM SON
 #include "dakka_bfg.h"

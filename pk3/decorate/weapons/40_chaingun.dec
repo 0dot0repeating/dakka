@@ -192,10 +192,10 @@ actor ChainRainer
       MakeItRain:
         CGRN A 0 ACS_NamedExecuteWithResult("Dakka_Switcharoo", 5, 1)
         CGRN A 0 A_SpawnItemEx("ChainRain", 0,0,0, random(2, 12)/1.5, 0, random(-6, -3), random(0,   180))
-        CGRN AB 3 bright
+        CGRN ABC 2 bright
         CGRN A 0 ACS_NamedExecuteWithResult("Dakka_Switcharoo", 5, 1)
         CGRN A 0 A_SpawnItemEx("ChainRain", 0,0,0, random(2, 12)/1.5, 0, random(-6, -3), random(180, 360))
-        CGRN AB 3 bright
+        CGRN ABC 2 bright
         CGRN A 0 A_GiveInventory("ChainRainCount", 1)
         CGRN A 0 A_JumpIfInventory("ChainRainCount", 4, "NoMoreRain")
         loop
@@ -235,7 +235,8 @@ actor ChainRain
         loop
 
       Death:
-        DMIS B 0 A_Explode(32, 96)
+        DMIS B 0 A_SetScale(0.75)
+        DMIS B 0 A_Explode(32, 96, true, false, 32)
         DMIS F 4 bright A_PlaySound("dakka/gyrojetexplode")
         DMIS G 3 bright
         DMIS HIJ 2 bright

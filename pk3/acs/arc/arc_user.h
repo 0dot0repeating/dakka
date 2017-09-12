@@ -14,7 +14,7 @@ script "Arc_Damage" (int damage)
     Thing_ChangeTID(hisTID_new, hisTID);
 }
 
-// This script exists tp ensure that everything related to the arc runs in
+// This script exists to ensure that everything related to the arc runs in
 //  the right order. All of this is necessary.
 script "Arc_AltFire" (int count, int isFirer)
 {

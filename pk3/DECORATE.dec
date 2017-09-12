@@ -2,3 +2,4 @@
 #include "decorate/weapons.dec"
 #include "decorate/pickups.dec"
 #include "decorate/monsters.dec"
+#include "decorate/targetpractice.dec"

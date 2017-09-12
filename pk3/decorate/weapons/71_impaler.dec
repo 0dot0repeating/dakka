@@ -4,11 +4,11 @@ actor DWep_Impaler: DoomWeapon
 {
     Tag "Impaler"
 
-    Weapon.SlotNumber 7
-    Weapon.SelectionOrder 301   // literally right behind the rocket launcher
+    Weapon.SlotNumber 5
+    Weapon.SelectionOrder 300
 
     Weapon.AmmoUse1     1
-    Weapon.AmmoGive1    10
+    Weapon.AmmoGive1    15
     Weapon.AmmoType1    "DakkaRockets"
 
     Inventory.PickupMessage "$DAKKA_PK_IMPALER"
@@ -53,12 +53,12 @@ actor DWep_Impaler: DoomWeapon
         DKIP B 1 bright offset(0, 38) A_GunFlash
         DKIP C 1 bright
         DKIP D 1 bright               A_WeaponReady(WRF_NOBOB | WRF_NOFIRE)
-        DKIP E 1 bright               A_WeaponReady(WRF_NOBOB | WRF_NOFIRE)
-        DKIP F 2 bright offset(0, 37) A_WeaponReady(WRF_NOBOB | WRF_NOFIRE)
-        DKIP H 1        offset(0, 35) A_WeaponReady(WRF_NOBOB | WRF_NOFIRE)
+        DKIP E 1 bright offset(0, 37) A_WeaponReady(WRF_NOBOB | WRF_NOFIRE)
+        DKIP F 2 bright offset(0, 36) A_WeaponReady(WRF_NOBOB | WRF_NOFIRE)
+        DKIP H 1        offset(0, 34) A_WeaponReady(WRF_NOBOB | WRF_NOFIRE)
         DKIP A 0                      A_Refire
-        DKIP A 1                      A_WeaponReady(WRF_NOBOB | WRF_NOFIRE)
-        DKIP A 0        offset(0, 33) A_Refire
+        DKIP A 1        offset(0, 33) A_WeaponReady(WRF_NOBOB | WRF_NOFIRE)
+        DKIP A 0        offset(0, 32) A_Refire
         DKIP A 2                      A_WeaponReady(WRF_NOBOB | WRF_NOFIRE)
         goto Ready
 
@@ -69,12 +69,12 @@ actor DWep_Impaler: DoomWeapon
         DKIP I 1 bright offset(0, 38) A_GunFlash
         DKIP J 1 bright
         DKIP K 1 bright               A_WeaponReady(WRF_NOBOB | WRF_NOFIRE)
-        DKIP L 1 bright               A_WeaponReady(WRF_NOBOB | WRF_NOFIRE)
-        DKIP M 2 bright offset(0, 37) A_WeaponReady(WRF_NOBOB | WRF_NOFIRE)
-        DKIP O 1        offset(0, 35) A_WeaponReady(WRF_NOBOB | WRF_NOFIRE)
+        DKIP L 1 bright offset(0, 37) A_WeaponReady(WRF_NOBOB | WRF_NOFIRE)
+        DKIP M 2 bright offset(0, 36) A_WeaponReady(WRF_NOBOB | WRF_NOFIRE)
+        DKIP O 1        offset(0, 34) A_WeaponReady(WRF_NOBOB | WRF_NOFIRE)
         DKIP A 0                      A_Refire
-        DKIP A 1                      A_WeaponReady(WRF_NOBOB | WRF_NOFIRE)
-        DKIP A 0        offset(0, 33) A_Refire
+        DKIP A 1        offset(0, 33) A_WeaponReady(WRF_NOBOB | WRF_NOFIRE)
+        DKIP A 0        offset(0, 32) A_Refire
         DKIP A 2                      A_WeaponReady(WRF_NOBOB | WRF_NOFIRE)
         goto Ready
 
@@ -85,12 +85,12 @@ actor DWep_Impaler: DoomWeapon
         DKIP P 1 bright offset(0, 38) A_GunFlash
         DKIP Q 1 bright
         DKIP R 1 bright               A_WeaponReady(WRF_NOBOB | WRF_NOFIRE)
-        DKIP S 1 bright               A_WeaponReady(WRF_NOBOB | WRF_NOFIRE)
-        DKIP T 2 bright offset(0, 37) A_WeaponReady(WRF_NOBOB | WRF_NOFIRE)
-        DKIP V 1        offset(0, 35) A_WeaponReady(WRF_NOBOB | WRF_NOFIRE)
+        DKIP S 1 bright offset(0, 37) A_WeaponReady(WRF_NOBOB | WRF_NOFIRE)
+        DKIP T 2 bright offset(0, 36) A_WeaponReady(WRF_NOBOB | WRF_NOFIRE)
+        DKIP V 1        offset(0, 34) A_WeaponReady(WRF_NOBOB | WRF_NOFIRE)
         DKIP A 0                      A_Refire
-        DKIP A 1                      A_WeaponReady(WRF_NOBOB | WRF_NOFIRE)
-        DKIP A 0        offset(0, 33) A_Refire
+        DKIP A 1        offset(0, 33) A_WeaponReady(WRF_NOBOB | WRF_NOFIRE)
+        DKIP A 0        offset(0, 32) A_Refire
         DKIP A 2                      A_WeaponReady(WRF_NOBOB | WRF_NOFIRE)
         goto Ready
 
@@ -121,16 +121,18 @@ actor ImpalerMissile: FastProjectile
     +SKYEXPLODE
     +FORCERADIUSDMG
     +EXTREMEDEATH
-
-    // When strafing around, it'll appear next you on uncapped framerate for a tic
+    
+    // When strafing around, it'll appear next to you on uncapped framerate for a tic
     // So disable that
     RenderStyle None
+    
+    DeathSound "dakka/explode"
 
     States
     {
       Spawn:
         MIS3 A 0 nodelay
-        MIS3 A 0 A_ChangeVelocity(velx * 192.0, vely * 192.0, velz * 192.0, CVF_REPLACE)
+        MIS3 A 0 A_ChangeVelocity(velx * 72.0, vely * 72.0, velz * 72.0, CVF_REPLACE)
         goto Spawn2
 
       Spawn2:
@@ -139,54 +141,65 @@ actor ImpalerMissile: FastProjectile
         MIS3 A 0 A_SetUserVar("user_velz", velz)
 
         MIS3 A 0 A_SpawnItemEx("ImpalerSmoke_DelayOne",  0,0,0,   0,0,0, 0, SXF_ABSOLUTEPOSITION | SXF_ABSOLUTEANGLE)
-        MIS3 A 0 A_SpawnItemEx("ImpalerSmoke_DelayOne",           (velx *  16) / 192.0,    (vely *  16) / 192.0,    (velz *  16) / 192.0,   0,0,0, 0, SXF_ABSOLUTEPOSITION | SXF_ABSOLUTEANGLE)
-        MIS3 A 0 A_SpawnItemEx("ImpalerSmoke_DelayOne",           (velx *  32) / 192.0,    (vely *  32) / 192.0,    (velz *  32) / 192.0,   0,0,0, 0, SXF_ABSOLUTEPOSITION | SXF_ABSOLUTEANGLE)
-        MIS3 A 0 A_SpawnItemEx("ImpalerSmoke_DelayOne",           (velx *  48) / 192.0,    (vely *  48) / 192.0,    (velz *  48) / 192.0,   0,0,0, 0, SXF_ABSOLUTEPOSITION | SXF_ABSOLUTEANGLE)
-        MIS3 A 0 A_SpawnItemEx("ImpalerSmoke_DelayOne",           (velx *  64) / 192.0,    (vely *  64) / 192.0,    (velz *  64) / 192.0,   0,0,0, 0, SXF_ABSOLUTEPOSITION | SXF_ABSOLUTEANGLE)
-        MIS3 A 0 A_SpawnItemEx("ImpalerSmoke_DelayOne",           (velx *  80) / 192.0,    (vely *  80) / 192.0,    (velz *  80) / 192.0,   0,0,0, 0, SXF_ABSOLUTEPOSITION | SXF_ABSOLUTEANGLE)
+        MIS3 A 0 A_SpawnItemEx("ImpalerSmoke_DelayOne",           (velx *  8)  / 72.0,    (vely *  8)  / 72.0,    (velz *  8)  / 192.0,   0,0,0, 0, SXF_ABSOLUTEPOSITION | SXF_ABSOLUTEANGLE)
+        MIS3 A 0 A_SpawnItemEx("ImpalerSmoke_DelayOne",           (velx *  24) / 72.0,    (vely *  24) / 72.0,    (velz *  24) / 192.0,   0,0,0, 0, SXF_ABSOLUTEPOSITION | SXF_ABSOLUTEANGLE)
+        MIS3 A 0 A_SpawnItemEx("ImpalerSmoke_DelayOne",           (velx *  40) / 72.0,    (vely *  40) / 72.0,    (velz *  40) / 192.0,   0,0,0, 0, SXF_ABSOLUTEPOSITION | SXF_ABSOLUTEANGLE)
+        MIS3 A 0 A_SpawnItemEx("ImpalerSmoke_DelayOne",           (velx *  56) / 72.0,    (vely *  56) / 72.0,    (velz *  56) / 192.0,   0,0,0, 0, SXF_ABSOLUTEPOSITION | SXF_ABSOLUTEANGLE)
 
         MIS3 A 1
         MIS3 A 0 A_SetTranslucent(1, 0)
 
-        MIS3 A 0 A_SpawnItemEx("ImpalerSmoke", -(velx *  16) / 192.0,   -(vely *  16) / 192.0,   -(velz *  16) / 192.0,   0,0,0, 0, SXF_ABSOLUTEPOSITION | SXF_ABSOLUTEANGLE)
-        MIS3 A 0 A_SpawnItemEx("ImpalerSmoke", -(velx *  32) / 192.0,   -(vely *  32) / 192.0,   -(velz *  32) / 192.0,   0,0,0, 0, SXF_ABSOLUTEPOSITION | SXF_ABSOLUTEANGLE)
-        MIS3 A 0 A_SpawnItemEx("ImpalerSmoke", -(velx *  48) / 192.0,   -(vely *  48) / 192.0,   -(velz *  48) / 192.0,   0,0,0, 0, SXF_ABSOLUTEPOSITION | SXF_ABSOLUTEANGLE)
-        MIS3 A 0 A_SpawnItemEx("ImpalerSmoke", -(velx *  64) / 192.0,   -(vely *  64) / 192.0,   -(velz *  64) / 192.0,   0,0,0, 0, SXF_ABSOLUTEPOSITION | SXF_ABSOLUTEANGLE)
-        MIS3 A 0 A_SpawnItemEx("ImpalerSmoke", -(velx *  80) / 192.0,   -(vely *  80) / 192.0,   -(velz *  80) / 192.0,   0,0,0, 0, SXF_ABSOLUTEPOSITION | SXF_ABSOLUTEANGLE)
-        MIS3 A 0 A_SpawnItemEx("ImpalerSmoke", -(velx *  96) / 192.0,   -(vely *  96) / 192.0,   -(velz *  96) / 192.0,   0,0,0, 0, SXF_ABSOLUTEPOSITION | SXF_ABSOLUTEANGLE)
+        MIS3 A 0 A_SpawnItemEx("ImpalerSmoke", -(velx *  8)  / 72.0,   -(vely *  8)  / 72.0,   -(velz *  8)  / 72.0,   0,0,0, 0, SXF_ABSOLUTEPOSITION | SXF_ABSOLUTEANGLE)
+        MIS3 A 0 A_SpawnItemEx("ImpalerSmoke", -(velx *  24) / 72.0,   -(vely *  24) / 72.0,   -(velz *  24) / 72.0,   0,0,0, 0, SXF_ABSOLUTEPOSITION | SXF_ABSOLUTEANGLE)
+        MIS3 A 0 A_SpawnItemEx("ImpalerSmoke", -(velx *  40) / 72.0,   -(vely *  40) / 72.0,   -(velz *  40) / 72.0,   0,0,0, 0, SXF_ABSOLUTEPOSITION | SXF_ABSOLUTEANGLE)
+        MIS3 A 0 A_SpawnItemEx("ImpalerSmoke", -(velx *  56) / 72.0,   -(vely *  56) / 72.0,   -(velz *  56) / 72.0,   0,0,0, 0, SXF_ABSOLUTEPOSITION | SXF_ABSOLUTEANGLE)
         loop
 
       Death:
-        TNT1 A 0 A_SpawnItemEx("ImpalerSmoke", -(user_velx *  16) / 192.0,   -(user_vely *  16) / 192.0,   -(user_velz *  16) / 192.0,   0,0,0, 0, SXF_ABSOLUTEPOSITION | SXF_ABSOLUTEANGLE)
-        TNT1 A 0 A_SpawnItemEx("ImpalerSmoke", -(user_velx *  32) / 192.0,   -(user_vely *  32) / 192.0,   -(user_velz *  32) / 192.0,   0,0,0, 0, SXF_ABSOLUTEPOSITION | SXF_ABSOLUTEANGLE)
-        TNT1 A 0 A_SpawnItemEx("ImpalerSmoke", -(user_velx *  48) / 192.0,   -(user_vely *  48) / 192.0,   -(user_velz *  48) / 192.0,   0,0,0, 0, SXF_ABSOLUTEPOSITION | SXF_ABSOLUTEANGLE)
-        TNT1 A 0 A_SpawnItemEx("ImpalerSmoke", -(user_velx *  64) / 192.0,   -(user_vely *  64) / 192.0,   -(user_velz *  64) / 192.0,   0,0,0, 0, SXF_ABSOLUTEPOSITION | SXF_ABSOLUTEANGLE)
-        TNT1 A 0 A_SpawnItemEx("ImpalerSmoke", -(user_velx *  80) / 192.0,   -(user_vely *  80) / 192.0,   -(user_velz *  80) / 192.0,   0,0,0, 0, SXF_ABSOLUTEPOSITION | SXF_ABSOLUTEANGLE)
-        TNT1 A 0 A_SpawnItemEx("ImpalerSmoke", -(user_velx *  96) / 192.0,   -(user_vely *  96) / 192.0,   -(user_velz *  96) / 192.0,   0,0,0, 0, SXF_ABSOLUTEPOSITION | SXF_ABSOLUTEANGLE)
+        MIS3 A 0 A_SpawnItemEx("ImpalerSmoke", -(user_velx *  8)  / 72.0,   -(user_vely *  8)  / 72.0,   -(user_velz *  8)  / 72.0,   0,0,0, 0, SXF_ABSOLUTEPOSITION | SXF_ABSOLUTEANGLE)
+        MIS3 A 0 A_SpawnItemEx("ImpalerSmoke", -(user_velx *  24) / 72.0,   -(user_vely *  24) / 72.0,   -(user_velz *  24) / 72.0,   0,0,0, 0, SXF_ABSOLUTEPOSITION | SXF_ABSOLUTEANGLE)
+        MIS3 A 0 A_SpawnItemEx("ImpalerSmoke", -(user_velx *  40) / 72.0,   -(user_vely *  40) / 72.0,   -(user_velz *  40) / 72.0,   0,0,0, 0, SXF_ABSOLUTEPOSITION | SXF_ABSOLUTEANGLE)
+        MIS3 A 0 A_SpawnItemEx("ImpalerSmoke", -(user_velx *  56) / 72.0,   -(user_vely *  56) / 72.0,   -(user_velz *  56) / 72.0,   0,0,0, 0, SXF_ABSOLUTEPOSITION | SXF_ABSOLUTEANGLE)
 
-        TNT1 A 0 A_Explode(64, 64, 1, false, 48)
-
-        TNT1 A 0 A_SpawnItemEx("ImpalerWallPiercer_Stage1", (user_velx * 8)   / 192.0,   (user_vely * 8)   / 192.0,   (user_velz * 8)   / 192.0,   0,0,0, 0, SXF_ABSOLUTEPOSITION | SXF_ABSOLUTEANGLE | SXF_TRANSFERPOINTERS)
-        TNT1 A 0 A_SpawnItemEx("ImpalerWallPiercer_Stage1", (user_velx * 16)  / 192.0,   (user_vely * 16)  / 192.0,   (user_velz * 16)  / 192.0,   0,0,0, 0, SXF_ABSOLUTEPOSITION | SXF_ABSOLUTEANGLE | SXF_TRANSFERPOINTERS)
-        TNT1 A 0 A_SpawnItemEx("ImpalerWallPiercer_Stage1", (user_velx * 24)  / 192.0,   (user_vely * 24)  / 192.0,   (user_velz * 24)  / 192.0,   0,0,0, 0, SXF_ABSOLUTEPOSITION | SXF_ABSOLUTEANGLE | SXF_TRANSFERPOINTERS)
-        TNT1 A 0 A_SpawnItemEx("ImpalerWallPiercer_Stage1", (user_velx * 32)  / 192.0,   (user_vely * 32)  / 192.0,   (user_velz * 32)  / 192.0,   0,0,0, 0, SXF_ABSOLUTEPOSITION | SXF_ABSOLUTEANGLE | SXF_TRANSFERPOINTERS)
-
-        TNT1 A 0 A_SpawnItemEx("ImpalerWallPiercer_Stage2", (user_velx * 40)  / 192.0,   (user_vely * 40)  / 192.0,   (user_velz * 40)  / 192.0,   0,0,0, 0, SXF_ABSOLUTEPOSITION | SXF_ABSOLUTEANGLE | SXF_TRANSFERPOINTERS)
-        TNT1 A 0 A_SpawnItemEx("ImpalerWallPiercer_Stage2", (user_velx * 48)  / 192.0,   (user_vely * 48)  / 192.0,   (user_velz * 48)  / 192.0,   0,0,0, 0, SXF_ABSOLUTEPOSITION | SXF_ABSOLUTEANGLE | SXF_TRANSFERPOINTERS)
-        TNT1 A 0 A_SpawnItemEx("ImpalerWallPiercer_Stage2", (user_velx * 56)  / 192.0,   (user_vely * 56)  / 192.0,   (user_velz * 56)  / 192.0,   0,0,0, 0, SXF_ABSOLUTEPOSITION | SXF_ABSOLUTEANGLE | SXF_TRANSFERPOINTERS)
-        TNT1 A 0 A_SpawnItemEx("ImpalerWallPiercer_Stage2", (user_velx * 64)  / 192.0,   (user_vely * 64)  / 192.0,   (user_velz * 64)  / 192.0,   0,0,0, 0, SXF_ABSOLUTEPOSITION | SXF_ABSOLUTEANGLE | SXF_TRANSFERPOINTERS)
-
-        TNT1 A 0 A_SpawnItemEx("ImpalerWallPiercer_Stage3", (user_velx * 72)  / 192.0,   (user_vely * 72)  / 192.0,   (user_velz * 72)  / 192.0,   0,0,0, 0, SXF_ABSOLUTEPOSITION | SXF_ABSOLUTEANGLE | SXF_TRANSFERPOINTERS)
-        TNT1 A 0 A_SpawnItemEx("ImpalerWallPiercer_Stage3", (user_velx * 80)  / 192.0,   (user_vely * 80)  / 192.0,   (user_velz * 80)  / 192.0,   0,0,0, 0, SXF_ABSOLUTEPOSITION | SXF_ABSOLUTEANGLE | SXF_TRANSFERPOINTERS)
-        TNT1 A 0 A_SpawnItemEx("ImpalerWallPiercer_Stage3", (user_velx * 88)  / 192.0,   (user_vely * 88)  / 192.0,   (user_velz * 88)  / 192.0,   0,0,0, 0, SXF_ABSOLUTEPOSITION | SXF_ABSOLUTEANGLE | SXF_TRANSFERPOINTERS)
-        TNT1 A 0 A_SpawnItemEx("ImpalerWallPiercer_Stage3", (user_velx * 96)  / 192.0,   (user_vely * 96)  / 192.0,   (user_velz * 96)  / 192.0,   0,0,0, 0, SXF_ABSOLUTEPOSITION | SXF_ABSOLUTEANGLE | SXF_TRANSFERPOINTERS)
-
-        TNT1 A 0 A_SpawnItemEx("ImpalerWallPiercer_Stage4", (user_velx * 104) / 192.0,   (user_vely * 104) / 192.0,   (user_velz * 104) / 192.0,   0,0,0, 0, SXF_ABSOLUTEPOSITION | SXF_ABSOLUTEANGLE | SXF_TRANSFERPOINTERS)
-        TNT1 A 0 A_SpawnItemEx("ImpalerWallPiercer_Stage4", (user_velx * 112) / 192.0,   (user_vely * 112) / 192.0,   (user_velz * 112) / 192.0,   0,0,0, 0, SXF_ABSOLUTEPOSITION | SXF_ABSOLUTEANGLE | SXF_TRANSFERPOINTERS)
-        TNT1 A 0 A_SpawnItemEx("ImpalerWallPiercer_Stage4", (user_velx * 120) / 192.0,   (user_vely * 120) / 192.0,   (user_velz * 120) / 192.0,   0,0,0, 0, SXF_ABSOLUTEPOSITION | SXF_ABSOLUTEANGLE | SXF_TRANSFERPOINTERS)
-        TNT1 A 0 A_SpawnItemEx("ImpalerWallPiercer_Stage4", (user_velx * 128) / 192.0,   (user_vely * 128) / 192.0,   (user_velz * 128) / 192.0,   0,0,0, 0, SXF_ABSOLUTEPOSITION | SXF_ABSOLUTEANGLE | SXF_TRANSFERPOINTERS)
-
+        TNT1 A 0 A_Explode(48, 128, true, false, 48)
+        TNT1 A 0 ACS_NamedExecuteWithResult("Dakka_InitLanceHit", 128, 32, 40)
+        TNT1 A 0 A_RadiusGive("ImpalerPrimaryHitChecker", 384, RGF_MONSTERS | RGF_OBJECTS | RGF_PLAYERS | RGF_VOODOO | RGF_CUBE)
+        
+        TNT1 A 0 ACS_NamedExecuteWithResult("Dakka_InitLanceHit", 256, 64, 40)
+        TNT1 A 0 A_RadiusGive("ImpalerPrimaryHitChecker", 448, RGF_MONSTERS | RGF_OBJECTS | RGF_PLAYERS | RGF_VOODOO | RGF_CUBE)
+        
         TNT1 A 8 A_SpawnItemEx("ImpalerExplosion_Client")
+        stop
+    }
+}
+
+actor ImpalerPrimaryHitChecker: Trigger
+{
+    States
+    {
+      Pickup:
+        TNT1 A 0 ACS_NamedExecutewithResult("Dakka_CheckLanceHit", 1)
+        stop
+    }
+}
+
+actor ImpalerPrimaryHurter
+{
+    +BLOODLESSIMPACT
+    +EXTREMEDEATH
+    
+    var int user_damage;
+    
+    States
+    {
+      Spawn:
+        TNT1 A 0
+        goto DoHurt
+        
+      DoHurt:
+        TNT1 A 0 A_Explode(user_damage / 2,       8, false, false, 8)
+        TNT1 A 0 A_ChangeFlag("FORCERADIUSDMG", true)
+        TNT1 A 0 A_Explode((user_damage + 1) / 2, 8, false, false, 8)
         stop
     }
 }
@@ -206,73 +219,6 @@ actor ImpalerExplosion_Client
         DMIS F 4 bright
         DMIS G 3 bright
         DMIS HIJ 2 bright
-        stop
-    }
-}
-
-
-actor ImpalerWallPiercer_Stage1
-{
-    Projectile
-    +NOINTERACTION
-
-    Radius 2
-    Height 2
-
-    +EXTREMEDEATH
-    +FORCERADIUSDMG
-    +NODAMAGETHRUST
-
-    RenderStyle Add
-
-    States
-    {
-      Spawn:
-        TNT1 A 0 nodelay A_ChangeFlag("PAINLESS", random(0, 8) == 0)
-        TNT1 A 0 A_Explode(15, 88, 0, false, 88)
-        DMIS F 8 bright
-        stop
-    }
-}
-
-actor ImpalerWallPiercer_Stage2: ImpalerWallPiercer_Stage1
-{
-    Scale 0.75
-
-    States
-    {
-      Spawn:
-        TNT1 A 0 nodelay A_ChangeFlag("PAINLESS", random(0, 8) == 0)
-        TNT1 A 0 A_Explode(15, 80, 0, false, 80)
-        DMIS F 8 bright
-        stop
-    }
-}
-
-actor ImpalerWallPiercer_Stage3: ImpalerWallPiercer_Stage1
-{
-    Scale 0.5
-
-    States
-    {
-      Spawn:
-        TNT1 A 0 nodelay A_ChangeFlag("PAINLESS", random(0, 8) == 0)
-        TNT1 A 0 A_Explode(15, 72, 0, false, 72)
-        DMIS F 8 bright
-        stop
-    }
-}
-
-actor ImpalerWallPiercer_Stage4: ImpalerWallPiercer_Stage1
-{
-    Scale 0.25
-
-    States
-    {
-      Spawn:
-        TNT1 A 0 nodelay A_ChangeFlag("PAINLESS", random(0, 8) == 0)
-        TNT1 A 0 A_Explode(15, 64, 0, false, 64)
-        DMIS F 8 bright
         stop
     }
 }

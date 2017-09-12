@@ -1,4 +1,4 @@
-#define WEAPONCOUNT    65
+#define WEAPONCOUNT    66
 #define REPLCOUNT   3
 
 #define WEP_NAME    0
@@ -12,7 +12,7 @@ int PKP_KnownGuns[WEAPONCOUNT][3] =
 {
 //  Name                        Ammo 1                      Ammo 2
 //
-    // DAKKA (12 weapons)
+    // DAKKA (14 weapons)
     {"DWep_Fist",               "",                         ""},
     {"DWep_Scrappers",          "DakkaScrap",               ""},
     {"DWep_Pistol",             "DakkaBullet_10mm",         ""},
@@ -24,6 +24,7 @@ int PKP_KnownGuns[WEAPONCOUNT][3] =
     {"DWep_RocketLauncher",     "DakkaRockets",             ""},
     {"DWep_PlasmaRifle",        "DakkaCells",               ""},
     {"DWep_Channeler",          "DakkaCells",               ""},
+    {"DWep_PlasmaLance",        "DakkaCells",               ""},
     {"DWep_BFG9000",            "DakkaCells",               ""},
     {"DWep_Impaler",            "DakkaRockets",             ""},
 
@@ -110,6 +111,7 @@ int PKP_WeaponPriorities[WEAPONCOUNT] =
     300,    // DWep_RocketLauncher
     100,    // DWep_PlasmaRifle
     100,    // DWep_Channeler
+    100,    // DWep_PlasmaLance
     1000,   // DWep_BFG9000
 
     3700,   // Fist

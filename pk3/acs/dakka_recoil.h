@@ -95,4 +95,3 @@ script "Dakka_Recoil" (int degrees, int ticsup, int ticsdown) clientside
         }
     }
 }
-

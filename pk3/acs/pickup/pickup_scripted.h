@@ -6,7 +6,7 @@
 //  single class, we'll instead define whether a pickup should be scripted on
 //  a case by case basis.
 
-#define PK_SCRIPTEDCOUNT    4
+#define PK_SCRIPTEDCOUNT    2
 
 // Row 0 indicates which item index this is for.
 #define PK_S_ITEMNUM        0
@@ -37,22 +37,16 @@
 // And the data itself.
 // 
 // If you don't actually want any scripted pickups, just define the scripted
-//  whatever count as 1, and use {-1, -1, -1, -1, -1, -1}.
-//  
-// It won't match anything.
+//  whatever count as 1, and use {-1, -1, -1, -1, -1, -1}. That'll disable it.
 
 int PKP_ScriptedPickups[PK_SCRIPTEDCOUNT][8] =
 {
-    {It_PlasmaRifle, Cl_Dakkaguy, 494, 0, 0, 0, true, true}, // pickup/dakka_wepdisplay.h
-    {It_BFG9000,     Cl_Dakkaguy, 494, 1, 0, 0, true, true},
-    {It_Shotgun,     Cl_Dakkaguy, 494, 2, 0, 0, true, true},
-    {It_Chaingun,    Cl_Dakkaguy, 494, 3, 0, 0, true, true},
+    {It_Shotgun,     Cl_Dakkaguy, 494, 0, 0, 0, true, true}, // pickup/dakka_wepdisplay.h
+    {It_Chaingun,    Cl_Dakkaguy, 494, 1, 0, 0, true, true},
 };
 
 int PKP_PickupNamed[PK_SCRIPTEDCOUNT] =
 {
-    "Dakka_WepPickup",
-    "Dakka_WepPickup",
     "Dakka_WepPickup",
     "Dakka_WepPickup",
 };
@@ -77,7 +71,7 @@ int PKP_PickupNamed[PK_SCRIPTEDCOUNT] =
 //
 // I copypasted PKP_ScriptedPickups over for this. It's the exact same layout.
 
-#define MSG_SCRIPTEDCOUNT   16
+#define MSG_SCRIPTEDCOUNT   14
 
 // Row 0 indicates which item index this is for.
 #define MSG_S_ITEMNUM       0
@@ -115,20 +109,16 @@ int CMSG_ScriptedMessages[MSG_SCRIPTEDCOUNT][8] =
     {It_Chaingun,           Cl_Dakkaguy,  -1, 5,   0,0, true, true},
     {It_Berserk,            Cl_Dakkaguy,  -1, 6,   0,0, true, true},
     {It_ST_Minigun,         Cl_Dakkaguy,  -1, 6,   0,0, true, true},
-    {It_RocketLauncher,     Cl_Dakkaguy,  -1, 7,   0,0, true, true},
-    {It_ST_GrenadeLauncher, Cl_Dakkaguy,  -1, 7,   0,0, true, true},
-    {It_PlasmaRifle,        Cl_Dakkaguy,  -1, 8,   0,0, true, true},
-    {It_Dakka_Channeler,    Cl_Dakkaguy,  -1, 9,   0,0, true, true},
-    {It_ST_Railgun,         Cl_Dakkaguy,  -1, 9,   0,0, true, true},
-    {It_BFG9000,            Cl_Dakkaguy,  -1, 10,  0,0, true, true},
-    {It_Dakka_Impaler,      Cl_Dakkaguy,  -1, 11,  0,0, true, true},
+    {It_RocketLauncher,     Cl_Dakkaguy,  -1, 12,  0,0, true, true},
+    {It_ST_GrenadeLauncher, Cl_Dakkaguy,  -1, 12,  0,0, true, true},
+    {It_PlasmaRifle,        Cl_Dakkaguy,  -1, 10,  0,0, true, true},
+    {It_ST_Railgun,         Cl_Dakkaguy,  -1, 10,  0,0, true, true},
+    {It_BFG9000,            Cl_Dakkaguy,  -1, 11,  0,0, true, true},
     {It_ST_BFG10k,          Cl_Dakkaguy,  -1, 11,  0,0, true, true},
 };
 
 int CMSG_MessageNamed[MSG_SCRIPTEDCOUNT] =
 {
-    "Dakka_MoreMessages",
-    "Dakka_MoreMessages",
     "Dakka_MoreMessages",
     "Dakka_MoreMessages",
     "Dakka_MoreMessages",
@@ -149,9 +139,7 @@ int CMSG_MessageNamed[MSG_SCRIPTEDCOUNT] =
 
 
 // OH HEY LOOK AT THAT IT'S SCRIPTED DISPLAY SHIT.
-//
-// I copypasted PKP_ScriptedPickups again. You still only get two arguments.
-//  First one is still 'dropped'.
+// Yes I copypasted PKP_ScriptedPickups again.
 
 // Important things to note when scripting pickup displays:
 //
@@ -166,7 +154,7 @@ int CMSG_MessageNamed[MSG_SCRIPTEDCOUNT] =
 //   chases a nonexistent item around.
 
 
-#define DISP_SCRIPTEDCOUNT  6
+#define DISP_SCRIPTEDCOUNT  4
 
 // Row 0 indicates which item index this is for.
 #define DISP_S_ITEMNUM      0
@@ -192,18 +180,14 @@ int DISP_ScriptedDisplays[DISP_SCRIPTEDCOUNT][7] =
 {
     {It_Blursphere,  Cl_Unknown,  493, 0, 0, 0, true}, // pickup/dakka_vispulse.h
     {It_Blursphere,  Cl_Dakkaguy, 493, 0, 0, 0, true},
-    {It_PlasmaRifle, Cl_Dakkaguy, 494, 0, 0, 0, true}, // pickup/dakka_wepdisplay.h
-    {It_BFG9000,     Cl_Dakkaguy, 494, 1, 0, 0, true},
-    {It_Shotgun,     Cl_Dakkaguy, 494, 2, 0, 0, true},
-    {It_Chaingun,    Cl_Dakkaguy, 494, 3, 0, 0, true},
+    {It_Shotgun,     Cl_Dakkaguy, 495, 0, 0, 0, true}, // pickup/dakka_wepdisplay.h
+    {It_Chaingun,    Cl_Dakkaguy, 496, 1, 0, 0, true},
 };
 
 int DISP_DisplayNamed[DISP_SCRIPTEDCOUNT] = 
 {
     "Dakka_VisPulse",
     "Dakka_VisPulse",
-    "Dakka_WepDisplay",
-    "Dakka_WepDisplay",
     "Dakka_WepDisplay",
     "Dakka_WepDisplay",
 };

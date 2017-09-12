@@ -1,4 +1,4 @@
-#define MONTYPES        186
+#define MONTYPES        185
 
 int Monster_KnownMons[MONTYPES] =
 {
@@ -215,7 +215,6 @@ int Monster_KnownMons[MONTYPES] =
     "Dakka_Smartdude_Purple",
     "Dakka_Smartdude_Yellow",
     "Dakka_Smartdude_Red",
-    "Dakka_Smartdude_Black",
 
     "Dakka_Spiderdude_Slave",
 };
@@ -435,7 +434,6 @@ int Monster_Points[MONTYPES] =
     6666,                 // "PurpleMind" 
     7777,                 // "YellowMind" 
     10000,                // "RedMind" 
-    11111,                // "BlackMind" 
                           //                         
     500,                  // "SpecialSpider1" 
 };
