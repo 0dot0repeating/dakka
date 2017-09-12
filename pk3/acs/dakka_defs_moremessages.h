@@ -10,10 +10,11 @@
 //  7  - Rocket Launcher
 //  8  - Plasma rifle
 //  9  - Channeler
-//  10 - BFG9000
-//  11 - Impaler
+//  10 - Plasma lance
+//  11 - BFG9000
+//  12 - Impaler
 
-#define MMSG_SLOTS  12
+#define MMSG_SLOTS  13
 #define MMSG_COUNT  11
 
 
@@ -32,8 +33,8 @@ int MMSG_ExtraMessages[MMSG_SLOTS][MMSG_COUNT] =
         "This thing would normally require two hands to hold. You dual wield them.",
         "Ow, ow, fuck! These casings are hot! Why am I doing this?!",
         "Oh my god this mod rips off Unreal Tournament so much.",
+        "Wait until you see the weaponized pressure washers.",
         "What are you gonna do, give me some spare tin?",
-        "Wait until you see the dual trash compactors.",
         "Questionably legal. Unquestionably awesome.",
         "These sure are some funky-looking rivets.",
         "Where'd the second one come from?",
@@ -72,7 +73,7 @@ int MMSG_ExtraMessages[MMSG_SLOTS][MMSG_COUNT] =
     },
     { // Chaingun
         "The grenades are launched by very tiny gnomes inside the barrels.",
-        "Bigger gun, smaller caliber. There's a joke in there somewhere.",
+        "For when you need to shave a demon from halfway across the map.",
         "Not pictured: the fifty pounds of ammo boxes you lug around.",
         "No, it's not technically a chaingun. No, no one cares.",
         "When are they gonna invent a gatling-gatling gun?",
@@ -130,6 +131,15 @@ int MMSG_ExtraMessages[MMSG_SLOTS][MMSG_COUNT] =
         "It's positively electrifying!",
         "Aiming is overrated anyway.",
     },
+    { // Plasma lance
+        "You see, when a marine and a ranger love each other very much...",
+        "Fuck it, just add more barrels to everything.",
+        "Yeah just slap lights all over it, it's fine.",
+        "The side grip makes it fire 50% faster.",
+        "It's the nail for the demons' coffins.",
+        "What? Your nailgun is evolving!",
+        "Way to get a point across.",
+    },
     { // BFG9000
         "Honestly, it's amazing that the UAC even lost with guns like these.",
         "In case you haven't yet realized, this is not a deathmatch mod.",
@@ -144,15 +154,14 @@ int MMSG_ExtraMessages[MMSG_SLOTS][MMSG_COUNT] =
         "They can't ignore your girth now.",
     },
     { // Impaler
-        "It's a point and click game! You point at something, and they die when you click!",
+        "If you ignore fire rate, this is totally weaker than the vanilla rocket launcher.",
+        "It's a point and click game! You point at something, and it dies when you click!",
         "You don't get to keep it if you keep making dick jokes about it.",
-        "Time to never use the normal rocket launcher again.",
         "Oh my god this mod rips off Duke Nukem 3D so much.",
         "The magazine for it is bigger than your head.",
         "Jesus christ this dumb thing is so heavy.",
-        "Because you never liked ambushes anyway.",
-        "Clearly compensating for something.",
-        "Why's it got cells next to it?",
+        "Actually, maybe accept this substitute.",
+        "You picked up a cartoony church organ!",
         "omg it pumps rods",
-    }
+    },
 };

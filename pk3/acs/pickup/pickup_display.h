@@ -39,10 +39,10 @@ function int Pickup_IsDisplayScripted(int index, int classNum)
 
     for (i = 0; i < DISP_SCRIPTEDCOUNT; i++)
     {
-        int checkIndex = DISP_ScriptedDisplays[i][DISP_S_ITEMNUM];
-        int checkClass = DISP_ScriptedDisplays[i][DISP_S_CLASSNUM];
+        int indexToCheck = DISP_ScriptedDisplays[i][DISP_S_ITEMNUM];
+        int classToCheck = DISP_ScriptedDisplays[i][DISP_S_CLASSNUM];
 
-        if (index == checkIndex && classNum == checkClass)
+        if (index == indexToCheck && classNum == classToCheck)
         {
             ret = i;
             break;
@@ -105,9 +105,10 @@ script "Pickup_Display_Main" (int index, int dropped, int firstDisplay) clientsi
 
     int oldClassNum;
     int classNum = -1;
-    int oldScript;
+    int oldScript, oldNamed;
     int scriptIndex = -1;
-    int snum, arg1, arg2, arg3, named, name;
+    int named = false;
+    int snum, arg1, arg2, arg3, name;
 
     while (true)
     {
@@ -120,6 +121,7 @@ script "Pickup_Display_Main" (int index, int dropped, int firstDisplay) clientsi
         classNum = SToC_ClientData[cpln][S2C_D_CLASSNUM] - 1;
 
         oldScript = scriptIndex;
+        oldNamed  = named;
         scriptIndex = Pickup_IsDisplayScripted(index, classNum);
         
         // Slight optimization.
@@ -175,7 +177,7 @@ script "Pickup_Display_Main" (int index, int dropped, int firstDisplay) clientsi
         }
 
         // If we got a script, let it handle everything. If it wants to
-        //  SetActorState every tic, let it. I don't give a fuck!
+        //  SetActorState every tic, let it.
         if (scriptIndex != -1)
         {
             snum = DISP_ScriptedDisplays[scriptIndex][DISP_S_SCRIPTNUM];

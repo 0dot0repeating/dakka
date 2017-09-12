@@ -16,7 +16,7 @@ actor DWep_PlasmaRifle: DoomWeapon
 
     Weapon.SlotNumber 6
     Weapon.SelectionOrder 100
-    Weapon.SlotPriority 0.95
+    Weapon.SlotPriority 0.9
     Weapon.Kickback 0
 
     Weapon.AmmoType1 "DakkaCells"

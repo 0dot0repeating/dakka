@@ -20,7 +20,7 @@
     changed from dragon's breath to gyrojets.
 
 - Chaingun grenades no longer remote detonated - instead, they shoot up and rain
-    grenades down upon thine demons, to smite them justly and nobly.
+    grenades down upon thy demons, to smite them justly and nobly.
 
 - Rocket launcher alt-fire slowed down so that the primary fire has a reason to
     exist. Seriously, who ever used not-altfire?
@@ -56,8 +56,9 @@
 - Fixed SSG fire rolling - now you can let off two shots almost instantaneously,
     and rolling on alt-fire actually works.
 
-- SSG now takes time to reload when it's in your pockets. No reload cancelling,
-    faggots. Use a different gun for those two seconds. Like a rocket launcher.
+- SSG now takes time to reload when it's in your pockets, so you can't just shove
+  it up your butt every two shots to skip the reload. Use a different gun for a
+  couple seconds. Like a rocket launcher.
 
 - BFG beam's damage radius narrowed massively. Now it no longer wrecks everything
     forever.
@@ -127,7 +128,7 @@ WEAPON BEHAVIOUR JUNK:
     full damage radius, it's unchanged.
 
 - The SSG can now fire off both shots in the exact same tic! Does this really
-    change anything gameplay-wise? No, but it's really fucking loud.
+    change anything gameplay-wise? No, but it's really loud.
 
 - The shotgun has its base kickback doubled (at 200), and the SSG has had its
     base kickback nearly quadrupled (at 350)! Launch cacodemons across the map!
@@ -170,3 +171,32 @@ MISC:
 - For some reason higher dakka_scrapfactor values lowered the amount of scrap
     you got? That's dumb. Higher means more scrap now. It goes up to 1000, as
     in you get 1000% the scrap you normally would.
+
+    
+0.06 -> 1.0:
+
+- Dakka now replaces player classes again. Dakkaguy stands tall and proud,
+  probably on top of a pile of spent minigun casings and dead demons.
+
+- The shotgun's primary fire has been buffed to 125 damage, making it capable of
+  killing hell knights, arachnotrons, and barons of hell in one less shot.
+  
+- You also no longer pump a shell/grenade into your shotgun when you're out of
+  them. I briefly considered having Dakkaguy pump a shell/grenade in the moment
+  you found one, but then I decided it'd be distracting for no reason.
+
+- Chaingun rain grenades have a slight full-damage radius now, which should make
+  them more effective at clearing out trash mobs.
+
+- You now carry up to 90 rockets (180 with a backpack), get 3 of them from small
+  rocket pickups, and get 15 of them from rocket boxes. This is because...
+
+- The rocket launcher has been replaced with the IMPALER, a triple-barreled
+  cannon that buffets your foes with far, far too many rockets. The primary fire
+  will unload automatic explosive death upon your enemies, while the alt fire...
+  uh, get back to me on that one.
+
+- The plasma rifle and channeler have been dropped, and in their place comes the
+  PLASMA LANCE. The primary fire launches plasma nails that penetrate enemies to
+  hit what's behind them, while the alt-fire launches unstable balls of plasma
+  that burst into lightning shortly upon impact.

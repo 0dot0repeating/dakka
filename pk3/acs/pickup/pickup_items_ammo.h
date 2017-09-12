@@ -59,7 +59,7 @@ int PKP_DefaultAmmoCount[AMMOCOUNT] =
     160,            // 5mm
     8,              // rain
     24,             // flamer
-    10,             // rockets
+    15,             // rockets
     50,             // cells
 
     // DOOM (4)

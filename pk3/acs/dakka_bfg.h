@@ -34,8 +34,6 @@ script "Dakka_BFG_Server" (int startTID, int endTID)
     int nY = FixedDiv(dY, dist);
     int nZ = FixedDiv(dZ, dist);
 
-    int lesseffects = GetCVar("dakka_cl_lesseffects");
-
     int density = BFG_INSTANT_STEP;
 
     // miraculously, this works on both ints and fixed

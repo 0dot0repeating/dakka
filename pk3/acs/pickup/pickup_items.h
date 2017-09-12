@@ -3,7 +3,7 @@
 
 // This is, quite simply, the amount of pickup types that this ACS is equipped
 //  to handle.
-#define PICKUPCOUNT     39
+#define PICKUPCOUNT     35
 
 
 // How many items can you get from each pickup?
@@ -48,16 +48,10 @@
 #define It_InvulnSphere     29
 #define It_Backpack         30
 
-#define It_Dakka_Channeler      31
-#define It_Dakka_PlasmaBundle   32
-
-#define It_Dakka_Impaler        33
-#define It_Dakka_BFGBundle      34
-
-#define It_ST_Minigun           35
-#define It_ST_GrenadeLauncher   36
-#define It_ST_Railgun           37
-#define It_ST_BFG10k            38
+#define It_ST_Minigun           31
+#define It_ST_GrenadeLauncher   32
+#define It_ST_Railgun           33
+#define It_ST_BFG10k            34
 
 // Here, you have the items that each pickup will give you. Each pickup can give
 //  as many as PK_RECEIVECOUNT items.
@@ -76,7 +70,7 @@ int PKP_ReceiveItems[PICKUPCOUNT][CLASSCOUNT][PK_RECEIVECOUNT] =
 {
     {
         {"Fist"},
-        {"DWep_Fists"},
+        {"DWep_Fist"},
     },
     {
         {"Chainsaw"},
@@ -100,11 +94,11 @@ int PKP_ReceiveItems[PICKUPCOUNT][CLASSCOUNT][PK_RECEIVECOUNT] =
     },
     {
         {"RocketLauncher"},
-        {"DWep_RocketLauncher"},
+        {"DWep_Impaler"},
     },
     {
         {"PlasmaRifle"},
-        {"DWep_PlasmaRifle"},
+        {"DWep_PlasmaLance"},
     },
     {
         {"BFG9000"},
@@ -209,25 +203,6 @@ int PKP_ReceiveItems[PICKUPCOUNT][CLASSCOUNT][PK_RECEIVECOUNT] =
     },
 
 
-    { // Dakka-specific item: channeler
-        {"PlasmaRifle"}, // shouldn't be able to get this
-        {"DWep_Channeler"},
-    },
-    { // Dakka-specific item: channeler+plasma bundle
-        {"PlasmaRifle"},
-        {"DWep_PlasmaRifle", "DWep_Channeler"},
-    },
-    { // Dakka-specific item: impaler
-        {"BFG9000"},
-        {"DWep_Impaler"},
-    },
-    { // Dakka-specific item: BFG+impaler bundle
-        {"BFG9000"},
-        {"DWep_BFG9000", "DWep_Impaler"},
-    },
-
-
-
     // Skulltag pickups
 
     { // Minigun
@@ -236,15 +211,15 @@ int PKP_ReceiveItems[PICKUPCOUNT][CLASSCOUNT][PK_RECEIVECOUNT] =
     },
     { // Grenade launcher
         {"GrenadeLauncher"},
-        {"DWep_RocketLauncher"},
+        {"DWep_Impaler"},
     },
     { // Railgun
         {"Railgun"},
-        {"DWep_Channeler"},
+        {"DWep_PlasmaLance"},
     },
     { // BFG10k
         {"BFG10k"},
-        {"DWep_Impaler"},
+        {"DWep_BFG9000"},
     },
 };
 
@@ -310,8 +285,8 @@ int PKP_ReceiveCount[PICKUPCOUNT][CLASSCOUNT][PK_RECEIVECOUNT] =
         {4},
     },
     {
-        {50},
-        {2},
+        {1},
+        {3},
     },
     {
         {20},
@@ -327,7 +302,7 @@ int PKP_ReceiveCount[PICKUPCOUNT][CLASSCOUNT][PK_RECEIVECOUNT] =
     },
     {
         {5},
-        {10, 3, 6, 5},
+        {15, 3, 6, 5},
     },
     {
         {100},
@@ -393,24 +368,6 @@ int PKP_ReceiveCount[PICKUPCOUNT][CLASSCOUNT][PK_RECEIVECOUNT] =
         {1},
     },
 
-
-    { // Channeler - give channeler twice so you get 60 ammo on pickup
-        {1},
-        {2},
-    },
-    { // Plasma+channeler bundle
-        {1},
-        {1, 1},
-    },
-    { // Impaler
-        {1},
-        {1},
-    },
-    { // BFG+impaler bundle
-        {1},
-        {1, 1},
-    },
-
     
 
     // Skulltag pickups
@@ -424,7 +381,7 @@ int PKP_ReceiveCount[PICKUPCOUNT][CLASSCOUNT][PK_RECEIVECOUNT] =
     },
     { // Railgun
         {1},
-        {2},
+        {1},
     },
     { // BFG10k
         {1},
@@ -583,24 +540,6 @@ int PKP_AlwaysPickup[PICKUPCOUNT][CLASSCOUNT] =
     },
 
 
-    { // Channeler
-        false,
-        false,
-    },
-    { // Plasma+channeler
-        false,
-        false,
-    },
-    { // Impaler
-        false,
-        false,
-    },
-    { // (34) BFG+impaler
-        false,
-        false,
-    },
-
-
 
     // Skulltag pickups
     { // Minigun
@@ -615,7 +554,7 @@ int PKP_AlwaysPickup[PICKUPCOUNT][CLASSCOUNT] =
         false,
         false,
     },
-    { // BFG10k
+    { // (34) BFG10k
         false,
         false,
     },

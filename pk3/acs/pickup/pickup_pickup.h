@@ -2,16 +2,15 @@
 
 
 
-// This is here because in Dakka (which had a similar pickup system to this),
-//  when you ran over a stack of 500 chainguns and didn't pick up any of them,
-//  things started lagging really fucking badly because it was running the
+// This is here because in the old versions of Dakka, which had a shittier
+//  version of this system, running over a large stack of items without picking
+//  up any of them would make the framerate crawl because it was running the
 //  pickup script 500 times a tic, for every tic you were moving over them.
 //
 // With this, if the pickup failed to do something, any future pickups on that
-//  slot for that player on that tic will just fail instantly, to save a damn
-//  lot of processor cycles.
-//
-// Dakka now uses this system, by the way.
+//  slot for that player on that tic will just fail instantly, keeping the game
+//  playable in most of those cases. Since it's usually the same item that
+//  stacks up, it works well.
 
 int PKP_RefusePickups[PLAYERMAX][PICKUPCOUNT];
 
@@ -24,10 +23,10 @@ function int Pickup_IsScripted(int index, int classNum)
 
     for (i = 0; i < PK_SCRIPTEDCOUNT; i++)
     {
-        int checkIndex = PKP_ScriptedPickups[i][PK_S_ITEMNUM];
-        int checkClass = PKP_ScriptedPickups[i][PK_S_CLASSNUM];
+        int indexToCheck = PKP_ScriptedPickups[i][PK_S_ITEMNUM];
+        int classToCheck = PKP_ScriptedPickups[i][PK_S_CLASSNUM];
 
-        if (index == checkIndex && classNum == checkClass)
+        if (index == indexToCheck && classNum == classToCheck)
         {
             return i;
         }

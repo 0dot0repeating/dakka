@@ -1,7 +1,7 @@
 // This is for the plasma rifle with Dakkaguy. If he started the map with a
 //  plasma rifle, he gets a channeler instead.
 
-#define WEPDISP_TYPES   4
+#define WEPDISP_TYPES   2
 
 
 #define WDSTATE_NORMAL      0
@@ -10,16 +10,12 @@
 
 int WepDisplay_States[WEPDISP_TYPES][3] =
 {
-    {"Dakka", "Channeler",      "Bundled"},
-    {"Dakka", "Impaler",        "Bundled"},
     {"Dakka", "SuperShotgun",   ""},
     {"Dakka", "Minigun",        ""},
 };
 
 int WepDisplay_ReturnIndex[WEPDISP_TYPES][3] =
 {
-    {It_PlasmaRifle,    It_Dakka_Channeler, It_Dakka_PlasmaBundle},
-    {It_BFG9000,        It_Dakka_Impaler,   It_Dakka_BFGBundle},
     {It_Shotgun,        It_SuperShotgun,    -1},
     {It_Chaingun,       It_ST_Minigun,      -1},
 };
@@ -29,8 +25,6 @@ int WepDisplay_ReturnIndex[WEPDISP_TYPES][3] =
 
 int WepDisplay_S2CCheck[WEPDISP_TYPES][2] =
 {
-    {S2C_D_PLASMASTART, S2C_D_BUNDLEPLASMA},
-    {S2C_D_BFGSTART,    S2C_D_BUNDLEBFG},
     {S2C_D_SHOT2SSG,    -1},
     {S2C_D_CHAIN2MINI,  -1},
 };

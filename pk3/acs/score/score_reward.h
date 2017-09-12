@@ -153,10 +153,12 @@ int AmmoRegen_AmmoTypes[AMMOREGENCOUNT] =
     "DakkaShells",
     "DakkaShotGrenades",
     "DakkaGyroShells",
+    
     "DakkaBullet_5mm",
     "DakkaRainGrenades",
     "DakkaFlamerFuel",
     "DakkaRockets",
+    
     "DakkaCells",
     "DakkaScrap",
 };
@@ -170,11 +172,11 @@ int AmmoRegen_PerSecond[AMMOREGENCOUNT] =
 
     20.0,
     0.75,
-    3.0,
-    1.5,
+    2.5,
+    2.0,
 
-    8.0,
-    8.0,
+    5.0,
+    4.0,
 };
 
 int AmmoRegen_RegenCounters[PLAYERMAX][AMMOREGENCOUNT];
