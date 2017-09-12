@@ -7,13 +7,11 @@ $limit dakka/explode        0
 
 
 
-
 ////////
 // TITLEMAP
 ///
 
 dakka/title_lettersmack     sounds/titlemap/letter_smack.ogg
-
 
 
 
@@ -31,7 +29,6 @@ dakka/revive                sounds/score/point_revive.ogg   // FUCK CONSISTENCY
 $rolloff dakka/revive    512 3072
 $rolloff dakka/fizzle    128  512
 $rolloff dakka/ammoregen 128  512
-
 
 
 
@@ -54,7 +51,6 @@ $limit dakka/punchwall 0
 $limit dakka/punch     0
 
 $volume dakka/punchwall 0.5
-
 
 
 
@@ -98,7 +94,6 @@ $volume dakka/scrapperaltfire 0.5
 
 
 
-
 ////////
 // PISTOL(S)
 ///
@@ -114,7 +109,6 @@ $volume dakka/pistolaltfire 0.6
 
 
 
-
 ////////
 // SHOTGUN
 ///
@@ -127,7 +121,6 @@ $random dakka/shotfire      { dakka/sf1 dakka/sf2 dakka/sf3 }
 
 dakka/shotreload            sounds/shotgun/shotgun_reload.ogg
 dakka/shotgrenade           sounds/shotgun/shotgun_grenade.ogg
-
 
 
 
@@ -155,7 +148,6 @@ $rolloff dakka/gyrojetexplode 32 1024
 
 
 
-
 ////////
 // CHAINGUN
 ///
@@ -170,11 +162,9 @@ $volume dakka/chaingunaltfire   0.5
 
 
 
-
 ////////
 // MINIGUN
 ///
-
 
 dakka/minigunfire           sounds/minigun/minigun_fire.flac
 dakka/minigunfire2          sounds/minigun/minigun_fire2.ogg
@@ -192,11 +182,9 @@ $volume dakka/minigun/flameloop     0.75
 
 
 
-
 ////////
 // ROCKET LAUNCHER
 ///
-
 
 dakka/rocketfire            sounds/rocketlauncher/rocket_fire.ogg
 dakka/rocketload            sounds/rocketlauncher/rocket_load.wav
@@ -204,21 +192,18 @@ dakka/rocketaltfire         sounds/rocketlauncher/rocket_altfire.ogg
 
 
 
-
 ////////
 // IMPALER
 ///
 
-
 dakka/impalerfire           sounds/impaler/impaler_fire.ogg
-
+dakka/impaleraltfire        sounds/impaler/impaler_altfire.wav
 
 
 
 ////////
 // PLASMA RIFLE
 ///
-
 
 dakka/plasmafire            sounds/plasmarifle/plasma_fire.ogg
 dakka/plasmabeam            sounds/plasmarifle/plasma_altfire.ogg
@@ -231,11 +216,9 @@ $volume dakka/plasmabeam 0.6
 
 
 
-
 ////////
 // CHANNELER
 ///
-
 
 arc/fire1 sounds/channeler/arcfire1.ogg
 arc/fire2 sounds/channeler/arcfire2.ogg
@@ -260,10 +243,10 @@ $volume arc/fry 0.5
 $limit arc/fry 0
 
 
+
 ////////
 // BFG9000
 ///
-
 
 dakka/bfgfire               sounds/bfg/bfg_fire.ogg
 dakka/bfg_altfire           sounds/bfg/bfg_altfire.ogg
