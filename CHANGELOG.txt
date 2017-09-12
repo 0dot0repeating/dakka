@@ -200,3 +200,6 @@ MISC:
   PLASMA LANCE. The primary fire launches plasma nails that penetrate enemies to
   hit what's behind them, while the alt-fire launches unstable balls of plasma
   that burst into lightning shortly upon impact.
+
+- The dakka_bundleplasma and dakka_bundlebfg CVars are gone, as they no longer
+  serve any purpose.

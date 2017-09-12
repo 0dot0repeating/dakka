@@ -5,15 +5,16 @@ of easy, but still pretty damn easy. Eventually, I'll change up the monsters to
 fix this. Today's not that day.
 
 ***IMPORTANT:*** The latest version of this mod only works in Zandronum 
-versions at least 3.0 and ZDoom versions at least 2.8.0. Multiplayer play is 
-only supported on Zandronum versions at least 3.0 - it could conceivably work 
-on ZDoom, but the pickup display for sure would be utterly broken for every 
-player besides the host.
+versions at least 3.0 and ZDoom versions at least 2.8.0. This shouldn't be an issue
+anymore, considering Zandronum 3.0 finally released and ZDoom is long past 2.8.0
+(well, QZDoom and GZDoom), but just make sure anyway, alright?
 
 Any version at and before 0.06-alpha6-2 were made in the days of Zandronum 1.3.
-ZDoom 2.5.0 and Zandronum 2.0 will run them without a hitch.
+ZDoom 2.5.0 and Zandronum 2.0 will run them without a hitch. Newer versions *should*,
+but no promises.
 
 **DOWNLOAD:** http://jinotra.in/downloads/mods/doom/dakka/
+
 
 
 ### FRESH FROM THIS REPO
@@ -30,95 +31,67 @@ If, in the ZIP you created, everything's still in the "pk3/" folder, you zipped
 the folder, not its contents. Don't do that.
 
 
+
 ## COLORFUL HELL
 
-This mod has explicit support for Colorful Hell. Simply grab colorful\_dakka\_82.pk3
+This mod has outdated support for Colorful Hell - the latest version it supports
+is version 85. In case you're still using that version, grab colorful\_dakka\_85.pk3
 from the addons/ directory (protip: hit the "Raw" button), and load the mods in the order: 
 
 - Any maps you're using
 - Dakka
-- colourfullHell82.pk3
-- colorful\_dakka\_82.pk3
+- colourfullHell85.pk3
+- colorful\_dakka\_85.pk3
 
-Note that Colorful Hell will *not* run in Zandronum 3.0. You will need ZDoom or 
+Note that Colorful Hell will *not* run in Zandronum 3.0. You will need QZDoom or 
 GZDoom to play Dakka with Colorful Hell.
 
-Also note that while Dakka does explicitly support Colorful Hell, it has not
-been extensively tested. If something is off with the support, bring it up on
-/vr/, and I'll get to it quickly enough.
+Obviously, since the support is outdated, expect it to be spotty with newer
+versions of Colorful Hell. Also, I do not play games with Colorful Hell, so it's
+not extensively playtested on top of that.
 
-colorful\_hell\_80.pk3 was for, well, Colorful Hell 0.80. You probably don't
-want or need that one, but it's kept there anyway.
+Right now, my priority is getting Dakka actually *finished*. Once that's done,
+then I might start worrying about addons.
+
 
 
 ## Wait, why's it missing stuff?
 
-Dakka's code got messy, and underlying systems changed enough that I decided
-enough was enough. Rather than let it go the way of Samsara, I decided to nip
-it in the bud and restructure everything, cleaning up extraneous code,
-streamlining things, and so on and so forth.
-
-For the most part, everything's back in and them some. All that's left is some 
-CVars that I don't think anyone even used anyway, so the mod might be seeing an 
-actual release for the first time in over a year.
-
-Most of that year was spent in hiatus. I'm not *that* slow of a developer.
-
-
-## So what *is* in so far?
-
-* HUD
-* Arc system
-* Score system
-* Score rewards
-* All of the guns
-* Recoil system, if anyone actually used that
-* Pickup system, though with some pickups left to define
-* Tracer system, cleaned up and much better at respecting your pitch
-* dakka\_cl\_lesseffects
-* dakka\_startmode (redone as dakka\_startmode\_weapons, dakka\_startmode\_ammo, and dakka\_startmode\_health)
-* dakka\_scrapperstart and dakka\_backpackstart
-* dakka\_cl\_moremessages (yaaaaaay)
-
-
-## What's left?
-
-* dakka\_jumpmod (might not come back in, honestly)
-* The dakka\_rearm CVars
+... is it? Besides intentional removals and restructuring, everything should be
+back in place now. Unless you actually used the dakka\_jumpmod or dakka\_rearm
+CVars, it probably got removed to make way for something else.
 
 
 
-## Anything new?
+## Which would be?
 
-*   The Channeler, a new slot 6 weapon with weapon behaviour that puts the original
-    BFG to shame in complexity. In short, it fires chain lightning. Primary fire
-    launches it straight from the channeler itself, and the alt-fire will fire
-    a ball of cyan energy stuff that will arc lightning through anyone nearby,
-    both as it flies through the air and for a couple seconds after it hits something.
-
-    You can get the Channeler through entering a map with the plasma rifle in
-    your inventory and finding a plasma rifle pickup - it'll have been replaced
-    with the channeler, just for you (other people will see the plasma rifle if
-    they didn't enter the map with one). Alternately, if dakka\_bundleplasma is
-    on, plasma rifle pickups will be replaced with a big box containing both guns.
-
-*   The Impaler, a new slot 7 weapon. It currently has no alt-fire, but the
-    primary fire rapidly fires rockets that deal up to 304 damage and pierce
-    straight through walls. Damage is obviously diminished, but it still hurts
-    enough to kill with ease through most walls. Don't try to kill the boss brain
-    through the wall, though. I already tried that. Wall's too thick.
-
-    The Impaler can be found in the same manner as the Channeler, but instead of
-    the plasma rifle and dakka_bundleplasma, it's the BFG and dakka_bundlebfg.
+Going down the list:
 
 
+### Rocket launcher
 
-## How long's it gonna take to add all the shit back in?
-
-Hopefully not very long. All of this shit was coded before, so it's not like I
-have to redo fucking everything. I just need to untangle it as best I can, and
-where I can't, leave comments indicating where to look instead of just shit like
-"// and this one" with no other comments within like 50 lines. That was so dumb.
+Replaced by the impaler, since it's more distinct than "the Doom rocket launcher
+but better". Plus I've always wanted to make an automatic multi-barreled rocket
+launcher, and *of course* I'm fulfilling that desire.
 
 
-*README to be expanded as I think of what to add in this damn thing.*
+### Plasma rifle, channeler
+
+Replaced by the plasma lance. I was always waffling on the plasma rifle, and while
+the channeler was an impressive tech demo... it sounded like shit and looked out
+of place. So in comes the plasma lance to solve both of those issues. The primary
+fire is a more interesting take on the plasma rifle, and the alt-fire takes from
+the channeler without stepping on the chaingun's toes.
+
+Plus, it's a plasma nailgun, and who wouldn't want that?
+
+  
+
+... actually, I think that's it for things removed. Everything else should be
+present. Check the changelog, it should be in there. If not, I dunno.
+
+
+
+## Are you *ever* going to release this?
+
+I'm trying man :(
