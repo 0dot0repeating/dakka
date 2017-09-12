@@ -279,11 +279,9 @@ function void ShowWeaponTips(int doFade, int forceColor, int overrideColor, int 
     int ssgColor        = "DTitle_SuperShotgun";
     int chaingunColor   = "DTitle_Chaingun";
     int minigunColor    = "DTitle_Minigun";
-    int rocketColor     = "Brick";
-    int plasmaColor     = "DTitle_PlasmaRifle";
-    int channelerColor  = "DTitle_Channeler";
-    int bfgColor        = "Green";
     int impalerColor    = "Red";
+    int plasmaColor     = "DTitle_PlasmaLance";
+    int bfgColor        = "Green";
     
     if (forceColor)
     {
@@ -294,11 +292,9 @@ function void ShowWeaponTips(int doFade, int forceColor, int overrideColor, int 
         ssgColor        = overrideColor;
         chaingunColor   = overrideColor;
         minigunColor    = overrideColor;
-        rocketColor     = overrideColor;
-        plasmaColor     = overrideColor;
-        channelerColor  = overrideColor;
-        bfgColor        = overrideColor;
         impalerColor    = overrideColor;
+        plasmaColor     = overrideColor;
+        bfgColor        = overrideColor;
     }
     
     SetHudSize(320, 200, 0);
@@ -315,14 +311,11 @@ function void ShowWeaponTips(int doFade, int forceColor, int overrideColor, int 
     HudMessage(s:"Chaingun";         msgMode | HUDMSG_COLORSTRING, 26, chaingunColor,   265.4,  80.0, duration, 1.0, 1.0);
     HudMessage(s:"Minigun";          msgMode | HUDMSG_COLORSTRING, 27, minigunColor,    265.4,  88.0, duration, 1.0, 1.0);
     
-    HudMessage(s:"Rocket\nLauncher"; msgMode | HUDMSG_COLORSTRING, 28, rocketColor,      80.4, 104.0, duration, 1.0, 1.0);
+    HudMessage(s:"Impaler";          msgMode | HUDMSG_COLORSTRING, 28, impalerColor,    80.4,  104.0, duration, 1.0, 1.0);
     
-    HudMessage(s:"Plasma Rifle";     msgMode | HUDMSG_COLORSTRING, 29, plasmaColor,     160.4, 100.0, duration, 1.0, 1.0);
-    HudMessage(s:"Channeler";        msgMode | HUDMSG_COLORSTRING, 30, channelerColor,  160.4, 108.0, duration, 1.0, 1.0);
+    HudMessage(s:"Plasma Lance";     msgMode | HUDMSG_COLORSTRING, 29, plasmaColor,     160.4, 104.0, duration, 1.0, 1.0);
     
-    HudMessage(s:"BFG9000";          msgMode | HUDMSG_COLORSTRING, 31, bfgColor,        240.4, 100.0, duration, 1.0, 1.0);
-    HudMessage(s:"Impaler";          msgMode | HUDMSG_COLORSTRING, 32, impalerColor,    240.4, 108.0, duration, 1.0, 1.0);
-
+    HudMessage(s:"BFG9000";          msgMode | HUDMSG_COLORSTRING, 30, bfgColor,        240.4, 104.0, duration, 1.0, 1.0);
 }
 
 script "titlemap_weptips" (int flash, int duration)
