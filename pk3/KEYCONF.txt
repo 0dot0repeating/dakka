@@ -15,9 +15,3 @@ addmenukey "Slot 3, shotgun first" shotswitch
 
 alias chainswitch "use Slot4Switch_ChaingunFirst"
 addmenukey "Slot 4, chaingun first" chainswitch
-
-alias plasmaswitch "use Slot6Switch_PlasmaFirst"
-addmenukey "Slot 6, plasma first" plasmaswitch
-
-alias plasmaswitch "use Slot7Switch_BFGFirst"
-addmenukey "Slot 7, BFG first" bfgswitch

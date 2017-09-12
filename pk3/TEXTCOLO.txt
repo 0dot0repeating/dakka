@@ -180,12 +180,7 @@ DTitle_Minigun
     #202020 #B8B8C0 0 255
 }
 
-DTitle_PlasmaRifle
-{
-    #301040 #D090FF 0 255
-}
-
-DTitle_Channeler
+DTitle_PlasmaLance
 {
     #200A30 #D050FF 0 255
 }
