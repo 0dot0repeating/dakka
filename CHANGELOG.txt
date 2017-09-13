@@ -188,7 +188,8 @@ MISC:
   you found one, but then I decided it'd be distracting for no reason.
 
 - Chaingun rain grenades have a slight full-damage radius now, which should make
-  them more effective at clearing out trash mobs.
+  them more effective at clearing out trash mobs. In return, they've been nerfed
+  to 24 damage per explosion, down from 32.
 
 - You now carry up to 90 rockets (180 with a backpack), get 3 of them from small
   rocket pickups, and get 15 of them from rocket boxes. This is because...
