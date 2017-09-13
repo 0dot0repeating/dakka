@@ -5,3 +5,7 @@ core.*
 zandronum-crash*
 !addons/*
 *.lnk
+*.backup?
+*.dbs
+*.bkp
+*.bak
