@@ -8,8 +8,10 @@ actor DWep_Impaler: DoomWeapon
     Weapon.SelectionOrder 300
 
     Weapon.AmmoUse1     1
+    Weapon.AmmoUse2     3
     Weapon.AmmoGive1    15
     Weapon.AmmoType1    "DakkaRockets"
+    Weapon.AmmoType2    "DakkaRockets"
 
     Inventory.PickupMessage "$DAKKA_PK_IMPALER"
     Obituary "$DAKKA_MP_IMPALER"
@@ -99,10 +101,15 @@ actor DWep_Impaler: DoomWeapon
         goto Ready
       
       AltFire:
+        DKIP A 0 A_JumpIfInventory("DakkaInfiniteAmmo", 1, 2)
+        DKIP A 0 A_JumpIfInventory("DakkaRockets", 5, 1)
+        goto NoAlt
+        
         DKIP A 0 A_GunFlash
         DKIP A 0 A_PlaySound("dakka/impaleraltfire", CHAN_WEAPON)
         DKIP A 0 ACS_NamedExecuteWithResult("Dakka_Switcharoo", 11, 1)
         DKIP A 0 ACS_NamedExecuteAlways("Dakka_Recoil", 0, 8, 2, 28)
+        DKIP A 0 A_FireCustomMissile("ImpalerAltMissile")
         DKP2 E 1 bright offset(0, 38)
         DKP2 F 1 bright offset(0, 43)
         DKP2 G 2 bright offset(0, 44)
@@ -116,9 +123,22 @@ actor DWep_Impaler: DoomWeapon
         DKP2 C 1                      A_WeaponReady(WRF_NOBOB | WRF_NOFIRE)
         DKP2 C 2        offset(0, 32) A_WeaponReady(WRF_NOBOB | WRF_NOFIRE)
         DKIP A 2                      A_WeaponReady(WRF_NOBOB | WRF_NOSECONDARY)
+        DKIP A 0                      A_JumpIfInventory("DakkaInfiniteAmmo", 1, 2)
+        DKIP A 0                      A_JumpIfInventory("DakkaRockets", 5, 1)
+        goto EndAlt_NoAmmo
+        
         DKIP A 0                      A_Refire
+        DKIP A 3                      A_WeaponReady(WRF_NOBOB)
         goto Ready
-
+      
+      NoAlt:
+        DKIP A 1 A_WeaponReady(WRF_NOSECONDARY)
+        goto Ready
+      
+      EndAlt_NoAmmo:
+        DKIP A 3 A_WeaponReady(WRF_NOBOB | WRF_NOSECONDARY)
+        goto Ready
+        
       Flash:
         TNT1 A 3 A_Light(4)
         TNT1 A 2 A_Light(3)
@@ -171,7 +191,9 @@ actor ImpalerMissile: FastProjectile
         loop
 
       Death:
-        TNT1 A 0 A_Explode(48, 128, true, false, 48)
+        TNT1 A 0 A_Explode(24, 128, true, false, 48)
+        TNT1 A 0 A_ChangeFlag("FORCERADIUSDMG", false)
+        TNT1 A 0 A_Explode(24, 128, true, false, 48)
         TNT1 A 0 ACS_NamedExecuteWithResult("Dakka_InitLanceHit", 128, 32, 40)
         TNT1 A 0 A_RadiusGive("ImpalerPrimaryHitChecker", 384, RGF_MONSTERS | RGF_OBJECTS | RGF_VOODOO | RGF_CUBE)
         
@@ -261,22 +283,100 @@ actor ImpalerSmoke
         stop
 
       Smoke3:
-        SMK2 ABCDEFGHIJKLMNOP 1
+        SMK3 ABCDEFGHIJKLMNOP 1
         stop
 
       Smoke4:
-        SMK2 ABCDEFGHIJKLMNOP 1
+        SMK4 ABCDEFGHIJKLMNOP 1
         stop
     }
 }
 
 
-actor ImpalerSmoke_DelayOne: ImpalerSmoke
+actor ImpalerAltMissile: FastProjectile
+{
+    Speed 72
+    
+    Radius 8
+    Height 8
+
+    Scale 0.5
+
+    +SKYEXPLODE
+    +EXTREMEDEATH
+    +RIPPER
+    +NOBOSSRIP
+    +BLOODLESSIMPACT
+    +FORCERADIUSDMG
+    
+    
+    MissileType "ImpalerSmoke"
+    MissileHeight 8
+    
+    var int user_detonated;
+    var int user_flytime;
+    var int user_impaled;
+    var int user_impalex;
+    var int user_impaley;
+    var int user_impalez;
+
+    States
+    {
+      Spawn:
+        MIS3 A 0
+        MIS3 A 0 ACS_NamedExecuteWithResult("Dakka_ImpalerSideMissiles")
+        MIS3 A 1 ACS_NamedExecuteWithResult("Dakka_ImpalerMaster", true)
+        goto Spawn2
+      
+      Spawn2:
+        MIS3 A 1 ACS_NamedExecuteWithResult("Dakka_ImpalerMaster")
+        loop
+      
+      Death:
+      Detonate:
+        TNT1 A 0 A_JumpIf(user_detonated, "AlreadyDead")
+        TNT1 A 0 A_Stop
+        TNT1 A 0 A_SetUserVar("user_detonated", true)
+        TNT1 A 0 A_PlaySound("dakka/explode")
+        TNT1 A 0 A_Explode(64, 160, false, false, 32)
+        TNT1 A 0 A_ChangeFlag("FORCERADIUSDMG", 0)
+        TNT1 A 0 A_Explode(36, 160, true, false, 32)
+        TNT1 A 35 A_SpawnItemEx("ImpalerExplosion_Client")
+        stop
+      
+      AlreadyDead:
+        TNT1 A 35
+        stop
+    }
+}
+
+actor ImpalerAltMissile_Side: ImpalerAltMissile
 {
     States
     {
       Spawn:
-        TNT1 A 2
-        goto Super::Spawn
+        MIS3 A 0
+        MIS3 A 1 ACS_NamedExecuteWithResult("Dakka_ImpalerSlave")
+        loop
+    }
+}
+
+actor ImpalerImpaleChecker
+{
+    +PAINLESS
+    +BLOODLESSIMPACT
+    +PUFFONACTORS
+    +NOINTERACTION
+    +PUFFGETSOWNER
+    +HITTRACER
+    
+    Decal "none"
+    
+    States
+    {
+      Spawn:
+        TNT1 A 0  bright
+        TNT1 A 70 bright ACS_NamedExecuteWithResult("Dakka_DoTheImpale")
+        stop
     }
 }
