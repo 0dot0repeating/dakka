@@ -6,7 +6,7 @@ script "Dakka_RLFull" (void)
 }
 
 
-// No I don't expect this to ever get reused ever again.
+// No I don't expect this to ever get reused.
 // Quite frankly, 80% of it is hacks to get things to move as expected.
 // It's pretty awful.
 
@@ -73,10 +73,17 @@ script "Dakka_ImpalerMaster" (int justSpawned)
     
     int myTID = defaultTID(0);
     
-    SetActivator(0, AAPTR_TRACER);
+    SetActivator(0, AAPTR_TARGET);
+    int firerTID = defaultTID(0);
+    int firerX   = GetActorX(0);
+    int firerY   = GetActorY(0);
+    int firerZ   = GetActorZ(0);
+    
+    SetActivator(myTID, AAPTR_TRACER);
     
     if (!(ClassifyActor(0) & ACTOR_WORLD))
     {
+        int monTID  = defaultTID(0);
         int flytime = GetUserVariable(myTID, "user_flytime") - 1;
         
         if (flytime < 0)
@@ -98,12 +105,22 @@ script "Dakka_ImpalerMaster" (int justSpawned)
         int newY = myY + impaleY;
         int newZ = myZ + impaleZ;
         
-        int moved = SetActorPosition(0, newX, newY, newZ, false);
+        SetActivator(firerTID);
+        Warp(0, newX - 128.0, newY - 128.0, newZ, 0, WARPF_ABSOLUTEPOSITION | WARPF_NOCHECKPOSITION);
+        SetActivator(monTID);
+            
+        int moved   = Warp(0, newX, newY, newZ, 0, WARPF_ABSOLUTEPOSITION | WARPF_INTERPOLATE);
+        int dragged = false;
         
         if ((!moved) && (myVelZ < 0 && myVelZ > -6.0))
         {
-            moved = SetActorPosition(0, newX, newY, GetActorZ(0), false);
+            moved   = Warp(0, newX, newY, GetActorZ(0), 0, WARPF_ABSOLUTEPOSITION | WARPF_INTERPOLATE);
+            dragged = moved;
         }
+        
+        SetActivator(firerTID);
+        Warp(0, firerX, firerY, firerZ, 0, WARPF_ABSOLUTEPOSITION | WARPF_NOCHECKPOSITION);
+        SetActivator(monTID);
         
         if (!moved)
         {
@@ -114,9 +131,16 @@ script "Dakka_ImpalerMaster" (int justSpawned)
         }
         else
         {
-            SetActorVelocity(0, myVelX, myVelY, myVelZ-1.0, false, false);
-            SetActivator(myTID);
-            SetActorVelocity(0, 0,0,-0.67, true, false);
+            if (CheckFlag(0, "NOGRAVITY") || dragged)
+            {
+                SetActorVelocity(0, myVelX, myVelY, myVelZ, false, false);
+            }
+            else
+            {
+                SetActorVelocity(0, myVelX, myVelY, myVelZ-0.67, false, false);
+                SetActivator(myTID);
+                SetActorVelocity(0, 0,0,-0.67, true, false);
+            }
         }
     }
     else
@@ -196,11 +220,12 @@ script "Dakka_DoTheImpale" (void)
     
     if (CheckFlag(0, "ISMONSTER") && !CheckFlag(0, "BOSS") && !CheckFlag(0, "DONTRIP"))
     {
-        int monTID  = defaultTID(0);
-        int monX    = GetActorX(0);
-        int monY    = GetActorY(0);
-        int monZ    = GetActorZ(0);
-        int monMass = GetActorProperty(0, APROP_Mass);
+        int monTID   = defaultTID(0);
+        int monX     = GetActorX(0);
+        int monY     = GetActorY(0);
+        int monZ     = GetActorZ(0);
+        int monMass  = GetActorProperty(0, APROP_Mass);
+        int floating = CheckFlag(0, "NOGRAVITY");
         
         SetActorState(0, "Pain");
         
@@ -212,20 +237,26 @@ script "Dakka_DoTheImpale" (void)
         int projVY = GetActorVelY(0);
         int projVZ = GetActorVelZ(0);
         
-        projVX /= (monMass / 150);
-        projVY /= (monMass / 150);
-        projVZ /= (monMass / 150);
+        projVX /= max(1, (monMass + 75) / 150);
+        projVY /= max(1, (monMass + 75) / 150);
+        projVZ /= max(1, (monMass + 75) / 150);
         
         int impaleX = monX - projX - (projVX / 2);
         int impaleY = monY - projY - (projVY / 2);
         int impaleZ = monZ - projZ - (projVZ / 2);
         
+        if (floating)
+        {
+            impaleZ /= 3;
+            impaleZ -= GetActorProperty(monTID, APROP_Height) / 2;
+        }
+        
         SetPointer(AAPTR_TRACER, monTID);
         SetUserVariable(0, "user_impaled", true);
-        SetUserVariable(0, "user_impalex", impaleX / 3);
-        SetUserVariable(0, "user_impaley", impaleY / 3);
+        SetUserVariable(0, "user_impalex", impaleX / 2);
+        SetUserVariable(0, "user_impaley", impaleY / 2);
         SetUserVariable(0, "user_impalez", impaleZ);
-        SetUserVariable(0, "user_flytime", 18);
+        SetUserVariable(0, "user_flytime", 12);
         SetActorVelocity(0, projVX, projVY, projVZ, false, false);
     }
 }
