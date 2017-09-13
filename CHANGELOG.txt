@@ -196,7 +196,8 @@ MISC:
 - The rocket launcher has been replaced with the IMPALER, a triple-barreled
   cannon that buffets your foes with far, far too many rockets. The primary fire
   will unload automatic explosive death upon your enemies, while the alt fire...
-  uh, get back to me on that one.
+  well, it impales things. Then they blow up. Great for pairing up stragglers
+  with their friends!
 
 - The plasma rifle and channeler have been dropped, and in their place comes the
   PLASMA LANCE. The primary fire launches plasma nails that penetrate enemies to
