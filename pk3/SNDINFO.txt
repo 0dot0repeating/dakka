@@ -128,16 +128,18 @@ dakka/shotgrenade           sounds/shotgun/shotgun_grenade.ogg
 // SSG
 ///
 
-dakka/ssgfire               sounds/ssg/ssg_fire_bl2.ogg
+dakka/ssgfire               sounds/ssg/ssg_fire_caravan.ogg
 dakka/ssgaltfire            sounds/ssg/ssg_altfire_1.ogg
 
 dakka/ssgopen               sounds/ssg/ssg_open.ogg
 dakka/ssgload               sounds/ssg/ssg_load.ogg
 dakka/ssgclose              sounds/ssg/ssg_close.ogg
 
-$volume dakka/ssgopen   0.5
-$volume dakka/ssgload   0.5
-$volume dakka/ssgclose  0.5
+$volume dakka/ssgfire       0.9
+$volume dakka/ssgaltfire    0.9
+$volume dakka/ssgopen       0.6
+$volume dakka/ssgload       0.6
+$volume dakka/ssgclose      0.6
 
 dakka/gyrojet               sounds/ssg/gyrojet_fire.wav
 dakka/gyrojetexplode        sounds/ssg/gyrojet_explode.ogg
@@ -158,7 +160,7 @@ dakka/chaingundetonate      sounds/chaingun/chaingun_detonate.ogg
 
 $alias dakka/rainexplode    dakka/gyrojetexplode
 
-$volume dakka/chaingunaltfire   0.5
+$volume dakka/chaingunaltfire   0.8
 
 
 
