@@ -1,7 +1,6 @@
 actor TracerDummy
 {
     +NOINTERACTION
-    +CLIENTSIDEONLY
     Height 0
     Radius 0
 
