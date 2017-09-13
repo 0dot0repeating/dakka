@@ -80,8 +80,8 @@
 #include "dakka_minigun.h"
 
 
-// Rocket launcher alt-fire junk.
-#include "dakka_rocketlauncher.h"
+// Old rocket launcher stuff, new impaler stuff.
+#include "dakka_rockets.h"
 
 
 // Plasma lance hit detection.
