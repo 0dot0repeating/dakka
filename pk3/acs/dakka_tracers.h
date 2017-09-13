@@ -87,12 +87,10 @@ script "Dakka_Tracer" (int which, int yoff, int zoff)
     int spawnZ = myZ + rotateZ;
 
     
-    // I start at 4000 because of this bug:
-    //  http://zandronum.com/tracker/view.php?id=2671
-    int tracerTID1 = UniqueTID(4000);
+    int tracerTID1 = UniqueTID();
     SpawnForced("TracerDummy", spawnX, spawnY, spawnZ, tracerTID1);
 
-    int tracerTID2 = UniqueTID(4001);
+    int tracerTID2 = UniqueTID();
     SpawnForced("TracerDummy",  shotX,  shotY,  shotZ, tracerTID2);
 
     switch (which)
