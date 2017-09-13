@@ -43,25 +43,3 @@ actor Slot4Switch_ChaingunFirst: Toggle
         fail
     }
 }
-
-actor Slot6Switch_PlasmaFirst: Toggle
-{
-    States
-    {
-      Use:
-        TNT1 A 0 A_SelectWeapon("DWep_Channeler")
-        TNT1 A 0 A_SelectWeapon("DWep_PlasmaRifle")
-        fail
-    }
-}
-
-actor Slot7Switch_BFGFirst: Toggle
-{
-    States
-    {
-      Use:
-        TNT1 A 0 A_SelectWeapon("DWep_Impaler")
-        TNT1 A 0 A_SelectWeapon("DWep_BFG9000")
-        fail
-    }
-}

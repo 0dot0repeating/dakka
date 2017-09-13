@@ -364,8 +364,6 @@ function void Dakka_DoLevelSpawn(int entered)
     // Unless we have dakka_ignorehubs on because thanks DUMP
     int ignoreHubs = GetCVar("dakka_ignorehubs");
 
-    Log(s:"Ignore hubs: ", d:ignoreHubs);
-
     // Handle respawns normally
     int intraHubEnter = !ignoreHubs && hasHubTracker && entered;
 
