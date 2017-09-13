@@ -129,6 +129,7 @@ dakka/shotgrenade           sounds/shotgun/shotgun_grenade.ogg
 ///
 
 dakka/ssgfire               sounds/ssg/ssg_fire_caravan.ogg
+dakka/ssgfire2              sounds/ssg/ssg_fire_caravan_2.ogg
 dakka/ssgaltfire            sounds/ssg/ssg_altfire_1.ogg
 
 dakka/ssgopen               sounds/ssg/ssg_open.ogg
