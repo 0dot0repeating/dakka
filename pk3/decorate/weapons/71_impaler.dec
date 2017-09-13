@@ -322,7 +322,7 @@ actor ImpalerAltMissile: FastProjectile
     var int user_impalex;
     var int user_impaley;
     var int user_impalez;
-
+    
     States
     {
       Spawn:
