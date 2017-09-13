@@ -93,6 +93,7 @@ script "Dakka_CheckLanceHit" (int isimpaler)
     int normRejY = FixedDiv(rejY, rejectDist);
     int normRejZ = FixedDiv(rejZ, rejectDist);
     
+    //Log(s:"Check position: <", f:adjX, s:", ", f:adjY, s:", ", f:adjZ, s:">");
     //Log(s:"Project dist: ", f:projectDist, s:" <", f:projX, s:", ", f:projY, s:", ", f:projZ, s:">");
     //Log(s:"Reject dist: ",  f:rejectDist,  s:" <", f:rejX,  s:", ", f:rejY,  s:", ", f:rejZ,  s:">");
     //SpawnForced("LanceMarker1", startX + projX, startY + projY, startZ + projZ);
@@ -108,13 +109,19 @@ script "Dakka_CheckLanceHit" (int isimpaler)
     int closestY = startY + FixedMul(normY, projectToUse) + FixedMul(normRejY, rejectToUse);
     int closestZ = startZ + FixedMul(normZ, projectToUse) + FixedMul(normRejZ, rejectToUse);
     
+    //SpawnForced("LanceMarker3", closestX, closestY, closestZ);
+    
     if (middle(myX - myWidth, closestX, myX + myWidth)  == closestX
      && middle(myY - myWidth, closestY, myY + myWidth)  == closestY
      && middle(myZ,           closestZ, myZ + myHeight) == closestZ)
     {
-        //SpawnForced("LanceMarker3", closestX, closestY, closestZ);
         ACS_NamedExecuteWithResult("Dakka_OnLanceHit", projectToUse, rejectToUse, isimpaler);
+        //Log(n:0, s:" hit (p ", f:projectToUse, s:", r ", f:rejectToUse, s:")");
     }
+    //else
+    //{
+    //    Log(n:0, s:" not hit (p ", f:projectToUse, s:", r ", f:rejectToUse, s:")");
+    //}
 }
 
 

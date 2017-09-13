@@ -163,16 +163,20 @@ actor ImpalerMissile: FastProjectile
     States
     {
       Spawn:
+        MIS3 A 0
+        MIS3 A 0 A_SetUserVar("user_velx", velx * 100)
+        MIS3 A 0 A_SetUserVar("user_vely", vely * 100)
+        MIS3 A 0 A_SetUserVar("user_velz", velz * 100)
         MIS3 A 1
         loop
 
       Death:
         TNT1 A 0 A_Explode(48, 128, true, false, 48)
         TNT1 A 0 ACS_NamedExecuteWithResult("Dakka_InitLanceHit", 128, 32, 40)
-        TNT1 A 0 A_RadiusGive("ImpalerPrimaryHitChecker", 384, RGF_MONSTERS | RGF_OBJECTS | RGF_PLAYERS | RGF_VOODOO | RGF_CUBE)
+        TNT1 A 0 A_RadiusGive("ImpalerPrimaryHitChecker", 384, RGF_MONSTERS | RGF_OBJECTS | RGF_VOODOO | RGF_CUBE)
         
         TNT1 A 0 ACS_NamedExecuteWithResult("Dakka_InitLanceHit", 256, 64, 40)
-        TNT1 A 0 A_RadiusGive("ImpalerPrimaryHitChecker", 448, RGF_MONSTERS | RGF_OBJECTS | RGF_PLAYERS | RGF_VOODOO | RGF_CUBE)
+        TNT1 A 0 A_RadiusGive("ImpalerPrimaryHitChecker", 448, RGF_MONSTERS | RGF_OBJECTS | RGF_VOODOO | RGF_CUBE)
         
         TNT1 A 8 A_SpawnItemEx("ImpalerExplosion_Client")
         stop
