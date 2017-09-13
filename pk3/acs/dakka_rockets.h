@@ -109,12 +109,12 @@ script "Dakka_ImpalerMaster" (int justSpawned)
         Warp(0, newX - 128.0, newY - 128.0, newZ, 0, WARPF_ABSOLUTEPOSITION | WARPF_NOCHECKPOSITION);
         SetActivator(monTID);
             
-        int moved   = Warp(0, newX, newY, newZ, 0, WARPF_ABSOLUTEPOSITION | WARPF_INTERPOLATE);
+        int moved   = Warp(0, newX, newY, newZ, 0, WARPF_ABSOLUTEPOSITION | WARPF_TESTONLY);
         int dragged = false;
         
         if ((!moved) && (myVelZ < 0 && myVelZ > -6.0))
         {
-            moved   = Warp(0, newX, newY, GetActorZ(0), 0, WARPF_ABSOLUTEPOSITION | WARPF_INTERPOLATE);
+            moved   = Warp(0, newX, newY, GetActorZ(0), 0, WARPF_ABSOLUTEPOSITION | WARPF_TESTONLY);
             dragged = moved;
         }
         
