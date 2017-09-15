@@ -8,7 +8,7 @@ map titlemap "DAKKA"
     sky1 = "DTITLSKY"
 }
 
-map dakktest "Empty test map"
+map dakktest "DAKKATEST"
 {
     sky1 = "CC4SKY2"
     music = "TESTMUS"
