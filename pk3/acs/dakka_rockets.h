@@ -6,257 +6,236 @@ script "Dakka_RLFull" (void)
 }
 
 
-// No I don't expect this to ever get reused.
-// Quite frankly, 80% of it is hacks to get things to move as expected.
-// It's pretty awful.
 
-
-script "Dakka_ImpalerSideMissiles" (void)
+script "Dakka_ImpalerAltFly" (void)
 {
-    int myX     = GetActorX(0);
-    int myY     = GetActorY(0);
-    int myZ     = GetActorZ(0);
-    int myVelX  = GetActorVelX(0);
-    int myVelY  = GetActorVelY(0);
-    int myVelZ  = GetActorVelZ(0);
-    int myAng   = GetActorAngle(0);
-    int myPitch = -VectorAngle(VectorLength(myVelX, myVelY), myVelZ);
-    int myTID   = defaultTID(0);
-    
-    SetActorPitch(0, myPitch);
-    
-    int leftTID  = UniqueTID();
-    int leftX    = myX - FixedMul(1.2, myVelX) + (6 * cos(myAng + 0.25));
-    int leftY    = myY - FixedMul(1.2, myVelY) + (6 * sin(myAng + 0.25));
-    int leftZ    = myZ - FixedMul(1.2, myVelZ);
-    
-    int rightTID = UniqueTID();
-    int rightX   = myX - FixedMul(1.2, myVelX) + (6 * cos(myAng - 0.25));
-    int rightY   = myY - FixedMul(1.2, myVelY) + (6 * sin(myAng - 0.25));
-    int rightZ   = myZ - FixedMul(1.2, myVelZ) ;
-    
-    SpawnForced("ImpalerAltMissile_Side", leftX,  leftY,  leftZ,  leftTID);
-    SpawnForced("ImpalerAltMissile_Side", rightX, rightY, rightZ, rightTID);
-    
-    SetActorVelocity(leftTID,  myVelX, myVelY, myVelZ, false, false);
-    SetActorVelocity(rightTID, myVelX, myVelY, myVelZ, false, false);
-    
-    SetActorAngle(leftTID,  myAng);
-    SetActorPitch(leftTID,  myPitch);
-    SetActorAngle(rightTID, myAng);
-    SetActorPitch(rightTID, myPitch);
-    
-    SetActivator(0, AAPTR_TARGET);
-    int myFirer = defaultTID(0);
-    
-    SetActivator(leftTID);
-    SetPointer(AAPTR_TARGET, myFirer);
-    SetPointer(AAPTR_MASTER, myTID);
-    
-    SetActivator(rightTID);
-    SetPointer(AAPTR_TARGET, myFirer);
-    SetPointer(AAPTR_MASTER, myTID);
+    SetUserVariable(0, "user_updated",  true);
+    SetUserVariable(0, "user_velx",     GetActorVelX(0));
+    SetUserVariable(0, "user_vely",     GetActorVelY(0));
+    SetUserVariable(0, "user_velz",     GetActorVelZ(0));
 }
 
 
-script "Dakka_ImpalerMaster" (int justSpawned)
+
+script "Dakka_ImpalerAltHit" (int power)
 {
-    int myX    = GetActorX(0);
-    int myY    = GetActorY(0);
-    int myZ    = GetActorZ(0);
-    int myVelX = GetActorVelX(0);
-    int myVelY = GetActorVelY(0);
-    int myVelZ = GetActorVelZ(0);
+    int projTID = defaultTID(0);
+    int projX   = GetActorX(0);
+    int projY   = GetActorY(0);
+    int projZ   = GetActorZ(0);
     
-    int myPitch = -VectorAngle(VectorLength(myVelX, myVelY), myVelZ);
-    SetActorPitch(0, myPitch);
+    int projNotInited = !GetUserVariable(0, "user_updated");
+    int projVX, projVY, projVZ, projSpeed;
     
-    int myTID = defaultTID(0);
-    
-    SetActivator(0, AAPTR_TARGET);
-    int firerTID = defaultTID(0);
-    int firerX   = GetActorX(0);
-    int firerY   = GetActorY(0);
-    int firerZ   = GetActorZ(0);
-    
-    SetActivator(myTID, AAPTR_TRACER);
-    
-    if (!(ClassifyActor(0) & ACTOR_WORLD))
+    if (projNotInited)
     {
-        int monTID  = defaultTID(0);
-        int flytime = GetUserVariable(myTID, "user_flytime") - 1;
+        projSpeed = GetActorProperty(0, APROP_Speed);
         
-        if (flytime < 0)
+        SetActivator(0, AAPTR_TARGET);
+        int firerAngle = GetActorAngle(0);
+        int firerPitch = GetActorPitch(0);
+        
+        projVX = FixedMul(projSpeed, FixedMul(cos(firerAngle), cos(firerPitch)));
+        projVY = FixedMul(projSpeed, FixedMul(sin(firerAngle), cos(firerPitch)));
+        projVZ = FixedMul(projSpeed, -sin(firerPitch));
+        
+        SetActivator(projTID);
+    }
+    else
+    {
+        projVX    = GetUserVariable(0, "user_velx");
+        projVY    = GetUserVariable(0, "user_vely");
+        projVZ    = GetUserVariable(0, "user_velz");
+        projSpeed = VectorLength(VectorLength(projVX, projVY), projVZ); 
+    }
+    
+    int projNVX, projNVY, projNVZ;
+    
+    if (projSpeed == 0)
+    {
+        projNVX = 0;
+        projNVY = 0;
+        projNVZ = 0;
+    }
+    else
+    {
+        projNVX = FixedDiv(projVX, projSpeed);
+        projNVY = FixedDiv(projVY, projSpeed);
+        projNVZ = FixedDiv(projVZ, projSpeed);
+    }
+    
+    //Log(s:"vel: \cd<", f:projVX, s:", ", f:projVY, s:", ", f:projVZ, s:">\c- (norm: \cq<", f:projNVX, s:", ", f:projNVY, s:", ", f:projNVZ, s:">\c-)");
+    
+    if (projNotInited)
+    {
+        ACS_NamedExecuteWithResult("Dakka_ImpalerAlt_FindTarget", projVX, projVY, projVZ, projSpeed);
+    }
+    
+    SetActivator(0, AAPTR_TRACER);
+    
+    if (ClassifyActor(0) & ACTOR_WORLD)
+    {
+        Log(s:"No target, just detonate");
+        SetActorState(projTID, "Detonate");
+        terminate;
+    }
+    
+    //Log(s:"Hit thing \"", n:0, s:"\"");
+    
+    if (CheckFlag(0, "BOSS") || CheckFlag(0, "DONTRIP"))
+    {
+        SetActorState(projTID, "Detonate");
+        terminate;
+    }   
+    
+    int monX      = GetActorX(0);
+    int monY      = GetActorY(0);
+    int monZ      = GetActorZ(0);
+    int monRadius = GetActorProperty(0, APROP_Radius);
+    int monHeight = GetActorProperty(0, APROP_Height);
+    
+    int monX1 = monX - monRadius,    monX2 = monX + monRadius;
+    int monY1 = monY - monRadius,    monY2 = monY + monRadius;
+    int monZ1 = monZ,                monZ2 = monZ + monHeight;
+    
+    int stepsBack = 0;
+    int maxPushDist = min(monRadius, projSpeed);
+    
+    //Log(s:"target hitbox: \cf<", f:monX1, s:", ", f:monY1, s:", ", f:monZ1, s:">\c- to \ck<", f:monX2, s:", ", f:monY2, s:", ", f:monZ2, s:">\c-");
+
+    SetActivator(projTID);
+    
+    while (stepsBack < 3)
+    {
+        int projNewX = projX + FixedMul(projNVX, maxPushDist);
+        int projNewY = projY + FixedMul(projNVY, maxPushDist);
+        int projNewZ = projZ + FixedMul(projNVZ, maxPushDist);
+
+        //Log(s:"trying \cb<", f:projNewX, s:", ", f:projNewY, s:", ", f:projNewZ, s:">\c-");
+
+        if (projNewX > monX1 && projNewX < monX2
+         && projNewY > monY1 && projNewY < monY2
+         && projNewZ > monZ1 && projNewZ < monZ2)
         {
-            SetActorVelocity(0, (myVelX / 4) + random(-8.0, 8.0), (myVelY / 4) + random(-8.0, 8.0), (myVelZ / 4) + random(-2.0, 8.0), false, false);
-            SetActivator(myTID);
-            Warp(0, myX - myVelX, myY - myVelY, myZ - myVelZ, 0, WARPF_NOCHECKPOSITION | WARPF_ABSOLUTEPOSITION | WARPF_STOP | WARPF_INTERPOLATE);
-            SetActorState(myTID, "Detonate");
-            terminate;
-        }
-        
-        SetUserVariable(myTID, "user_flytime", flytime);
-        
-        int impaleX = GetUserVariable(myTID, "user_impalex");
-        int impaleY = GetUserVariable(myTID, "user_impaley");
-        int impaleZ = GetUserVariable(myTID, "user_impalez");
-        
-        int newX = myX + impaleX;
-        int newY = myY + impaleY;
-        int newZ = myZ + impaleZ;
-        
-        SetActivator(firerTID);
-        Warp(0, newX - 128.0, newY - 128.0, newZ, 0, WARPF_ABSOLUTEPOSITION | WARPF_NOCHECKPOSITION);
-        SetActivator(monTID);
-            
-        int moved   = Warp(0, newX, newY, newZ, 0, WARPF_ABSOLUTEPOSITION | WARPF_TESTONLY);
-        int dragged = false;
-        
-        if ((!moved) && (myVelZ < 0 && myVelZ > -6.0))
-        {
-            moved   = Warp(0, newX, newY, GetActorZ(0), 0, WARPF_ABSOLUTEPOSITION | WARPF_TESTONLY);
-            dragged = moved;
-        }
-        
-        SetActivator(firerTID);
-        Warp(0, firerX, firerY, firerZ, 0, WARPF_ABSOLUTEPOSITION | WARPF_NOCHECKPOSITION);
-        SetActivator(monTID);
-        
-        if (!moved)
-        {
-            SetActorVelocity(0, (myVelX / 4) + random(-8.0, 8.0), (myVelY / 4) + random(-8.0, 8.0), (myVelZ / 4) + random(-2.0, 8.0), false, false);
-            SetActivator(myTID);
-            Warp(0, myX - myVelX, myY - myVelY, myZ - myVelZ, 0, WARPF_NOCHECKPOSITION | WARPF_ABSOLUTEPOSITION | WARPF_STOP | WARPF_INTERPOLATE);
-            SetActorState(myTID, "Detonate");
+            Warp(0, projNewX, projNewY, projNewZ, 0, WARPF_ABSOLUTEPOSITION | WARPF_NOCHECKPOSITION | WARPF_INTERPOLATE);
+            //Log(s:"... warped");
+            break;
         }
         else
         {
-            if (CheckFlag(0, "NOGRAVITY") || dragged)
-            {
-                SetActorVelocity(0, myVelX, myVelY, myVelZ, false, false);
-            }
-            else
-            {
-                SetActorVelocity(0, myVelX, myVelY, myVelZ-0.67, false, false);
-                SetActivator(myTID);
-                SetActorVelocity(0, 0,0,-0.67, true, false);
-            }
+            //Log(s:"... refused");
+            maxPushDist /= 2;
+            stepsBack++;
         }
     }
-    else
-    {
-        SetActivator(myTID);
-        SetUserVariable(0, "user_impaled", false);
-        int mySpeed = VectorLength(VectorLength(myVelX, myVelY), myVelZ);
-        
-        if (justSpawned)
-        {
-            Warp(0, myX - myVelX, myY - myVelY, myZ - myVelZ, 0, WARPF_NOCHECKPOSITION | WARPF_ABSOLUTEPOSITION | WARPF_INTERPOLATE);
-            LineAttack(0,  GetActorAngle(0),       GetActorPitch(0)+0.025, 0, "ImpalerImpaleChecker", "None", mySpeed);
-            LineAttack(0,  GetActorAngle(0)-0.025, GetActorPitch(0)+0.025, 0, "ImpalerImpaleChecker", "None", mySpeed);
-            LineAttack(0,  GetActorAngle(0)+0.025, GetActorPitch(0)+0.025, 0, "ImpalerImpaleChecker", "None", mySpeed);
-            LineAttack(0,  GetActorAngle(0),       GetActorPitch(0)+0.05,  0, "ImpalerImpaleChecker", "None", mySpeed);
-            LineAttack(0,  GetActorAngle(0),       GetActorPitch(0),       0, "ImpalerImpaleChecker", "None", mySpeed);
-            
-            if (GetUserVariable(0, "user_impaled"))
-            {
-                SetUserVariable(0, "user_impalex", GetUserVariable(0, "user_impalex") + (myVelX * 2));
-                SetUserVariable(0, "user_impaley", GetUserVariable(0, "user_impaley") + (myVelY * 2));
-                SetUserVariable(0, "user_impalez", GetUserVariable(0, "user_impalez") + (myVelZ * 2));
-            }
-            
-            Warp(0, myX, myY, myZ, 0, WARPF_NOCHECKPOSITION | WARPF_ABSOLUTEPOSITION | WARPF_INTERPOLATE);
-        }
-        
-        LineAttack(0,  GetActorAngle(0),       GetActorPitch(0)+0.025, 0, "ImpalerImpaleChecker", "None", mySpeed);
-        LineAttack(0,  GetActorAngle(0)-0.025, GetActorPitch(0)+0.025, 0, "ImpalerImpaleChecker", "None", mySpeed);
-        LineAttack(0,  GetActorAngle(0)+0.025, GetActorPitch(0)+0.025, 0, "ImpalerImpaleChecker", "None", mySpeed);
-        LineAttack(0,  GetActorAngle(0),       GetActorPitch(0)+0.05,  0, "ImpalerImpaleChecker", "None", mySpeed);
-        LineAttack(0,  GetActorAngle(0),       GetActorPitch(0),       0, "ImpalerImpaleChecker", "None", mySpeed);
-    }
+    
+    SetActorVelocity(0, 0,0,0, false, false);
+    ACS_NamedExecuteWithResult("Dakka_ImpalerAltPush", projNVX, projNVY, projNVZ, power);
 }
 
 
-script "Dakka_ImpalerSlave" (void)
-{
-    int myTID = defaultTID(0);
-    SetActivator(myTID, AAPTR_MASTER);
-    
-    int detonated = GetUserVariable(0, "user_detonated");
-    
-    
-    if (detonated)
-    {
-        SetActivator(myTID);
-        
-        int myX    = GetActorX(0);
-        int myY    = GetActorY(0);
-        int myZ    = GetActorZ(0);
-        int myVelX = GetActorVelX(0);
-        int myVelY = GetActorVelY(0);
-        int myVelZ = GetActorVelZ(0);
-        
-        Warp(0, myX - myVelX, myY - myVelY, myZ - myVelZ, 0, WARPF_NOCHECKPOSITION | WARPF_ABSOLUTEPOSITION | WARPF_STOP | WARPF_INTERPOLATE);
-        SetActorState(0, "Death");
-    }
-    else
-    {
-        int masterVX = GetActorVelX(0);
-        int masterVY = GetActorVelY(0);
-        int masterVZ = GetActorVelZ(0);
-        SetActorVelocity(myTID, masterVX, masterVY, masterVZ, false, false);
-    }
-}
 
-
-script "Dakka_DoTheImpale" (void)
+script "Dakka_ImpalerAltPush" (int normX, int normY, int normZ, int power)
 {
-    int myTID = defaultTID(0);
+    int projTID = defaultTID(0);
+    int projX   = GetActorX(0);
+    int projY   = GetActorY(0);
+    int projZ   = GetActorZ(0);
     
-    SetActivator(myTID, AAPTR_TARGET);
-    if (GetUserVariable(0, "user_impaled")) { terminate; }
+    SetActivator(0, AAPTR_TRACER);
+    int monX = GetActorX(0);
+    int monY = GetActorY(0);
+    int monZ = GetActorZ(0);
+    int monMass = GetActorProperty(0, APROP_Mass);
     
-    SetActivator(myTID, AAPTR_TRACER);
+    int offsetX = projX - monX;
+    int offsetY = projY - monY;
+    int offsetZ = projZ - monZ;
     
-    if (CheckFlag(0, "ISMONSTER") && !CheckFlag(0, "BOSS") && !CheckFlag(0, "DONTRIP"))
+    int thrustMult_int     = power / monMass;
+    int thrustMult_frac    = itof(power % monMass) / monMass;
+    int thrustMult         = itof(min(32767, thrustMult_int)) + thrustMult_frac;
+    
+    // Normalization, so zombies don't fly so much further away than everyone else
+    thrustMult = FixedSqrt(thrustMult);
+    
+    if (!(isDead(0) || CheckFlag(0, "NOPAIN") || CheckFlag(0, "INVULNERABLE")))   
     {
-        int monTID   = defaultTID(0);
-        int monX     = GetActorX(0);
-        int monY     = GetActorY(0);
-        int monZ     = GetActorZ(0);
-        int monMass  = GetActorProperty(0, APROP_Mass);
-        int floating = CheckFlag(0, "NOGRAVITY");
-        
         SetActorState(0, "Pain");
+    }
+    
+    SetActorVelocity(0, FixedMul(normX, thrustMult * 3), FixedMul(normY, thrustMult * 3), FixedMul(normZ, thrustMult * 3), false, false);
+    
+    while (IsTIDUsed(projTID) && GetUserVariable(projTID, "user_detonated") == false)
+    {
+        SetActivator(projTID, AAPTR_TRACER);
+        SetActorVelocity(0, FixedMul(normX, thrustMult), FixedMul(normY, thrustMult), FixedMul(normZ, thrustMult), true, false);
         
-        SetActivator(myTID, AAPTR_TARGET);
-        int projX  = GetActorX(0);
-        int projY  = GetActorY(0);
-        int projZ  = GetActorZ(0);
-        int projVX = GetActorVelX(0);
-        int projVY = GetActorVelY(0);
-        int projVZ = GetActorVelZ(0);
+        monX = GetActorX(0);
+        monY = GetActorY(0);
+        monZ = GetActorZ(0);
         
-        projVX /= max(1, (monMass + 75) / 150);
-        projVY /= max(1, (monMass + 75) / 150);
-        projVZ /= max(1, (monMass + 75) / 150);
+        int monTID_old = ActivatorTID();
+        int monTID_new = defaultTID(0);
         
-        int impaleX = monX - projX - (projVX / 2);
-        int impaleY = monY - projY - (projVY / 2);
-        int impaleZ = monZ - projZ - (projVZ / 2);
-        
-        if (floating)
+        SetActivator(projTID);
+        Warp(0, offsetX + monX, offsetY + monY, offsetZ + monZ, 0, WARPF_ABSOLUTEPOSITION | WARPF_NOCHECKPOSITION | WARPF_INTERPOLATE);
+        SetPointer(AAPTR_TRACER, monTID_new);
+        Thing_ChangeTID(monTID_new, monTID_old);
+        Delay(1);
+    }
+}
+
+
+
+#define IMPALERMASK_ACTORS  (MF_SHOOTABLE)
+#define IMPALERMASK_WALLS   (ML_BLOCKING | ML_BLOCKEVERYTHING | ML_BLOCKPROJECTILE)
+
+script "Dakka_ImpalerAlt_FindTarget" (int velX, int velY, int velZ, int speed)
+{
+    int myTID     = defaultTID(0);
+    int myX       = GetActorX(0);
+    int myY       = GetActorY(0);
+    int myZ       = GetActorZ(0);
+    int myRadius  = GetActorProperty(0, APROP_Radius);
+    int myHeight  = GetActorProperty(0, APROP_Height);
+    int fireAngle =  VectorAngle(velX, velY);
+    int firePitch = -VectorAngle(VectorLength(velX, velY), velZ);
+    
+    int targetTID_old = PickActor(0, fireAngle, firePitch, speed, 0, IMPALERMASK_ACTORS, IMPALERMASK_WALLS, PICKAF_RETURNTID);
+    int targetTID_new = UniqueTID();
+    
+    if (PickActor(0, fireAngle, firePitch, speed, targetTID_new, IMPALERMASK_ACTORS, IMPALERMASK_WALLS, PICKAF_FORCETID))
+    {
+        SetActivator(targetTID_new);
+        if (ClassifyActor(0) & ACTOR_MONSTER)
         {
-            impaleZ /= 3;
-            impaleZ -= GetActorProperty(monTID, APROP_Height) / 2;
+            //Log(s:"\"", n:0, s:"\c-\" is a huge Jian, please break his legs");
+            
+            int monX      = GetActorX(0);
+            int monY      = GetActorY(0);
+            int monZ      = GetActorZ(0);
+            int monRadius = GetActorProperty(0, APROP_Radius);
+            int monHeight = GetActorProperty(0, APROP_Height);
+            
+            int sharedRadius = (myRadius + monRadius);
+            int sharedHeight = (myHeight + monHeight);
+            
+            int testX1 = monX - sharedRadius, testX2 = monX + sharedRadius;
+            int testY1 = monY - sharedRadius, testY2 = monY + sharedRadius;
+            int testZ1 = monZ - myHeight,     testZ2 = monZ + sharedHeight;
+            
+            if (myX >= testX1 && myX <= testX2
+             && myY >= testY1 && myY <= testY2
+             && myZ >= testZ1 && myZ <= testZ2)
+            {
+                 //Log(s:"\cg -- LEG BREAKING IN PROGRESS -- ");
+                 SetActivator(myTID);
+                 SetPointer(AAPTR_TRACER, targetTID_new);
+                 SetActivator(targetTID_new);
+            }
         }
         
-        SetPointer(AAPTR_TRACER, monTID);
-        SetUserVariable(0, "user_impaled", true);
-        SetUserVariable(0, "user_impalex", impaleX / 2);
-        SetUserVariable(0, "user_impaley", impaleY / 2);
-        SetUserVariable(0, "user_impalez", impaleZ);
-        SetUserVariable(0, "user_flytime", 12);
-        SetActorVelocity(0, projVX, projVY, projVZ, false, false);
+        Thing_ChangeTID(0, targetTID_old);
     }
 }
