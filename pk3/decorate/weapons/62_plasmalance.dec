@@ -200,12 +200,14 @@ actor PLPrimaryShot: FastProjectile
     +BLOODLESSIMPACT
     +NODAMAGETHRUST
     +SERVERSIDEONLY
+    +HITTRACER
     
     RenderStyle Add
     
     var int user_velx;
     var int user_vely;
     var int user_velz;
+    var int user_init;
     
     DeathSound "dakka/plasmaexplode"
     Obituary "$DAKKA_MP_PLASMALANCE"
@@ -213,9 +215,11 @@ actor PLPrimaryShot: FastProjectile
     States
     {
       Spawn:
-        TNT1 A 0 A_SetUserVar("user_velx", velx * 100)
-        TNT1 A 0 A_SetUserVar("user_vely", vely * 100)
-        TNT1 A 0 A_SetUserVar("user_velz", velz * 100)
+        TNT1 A 0
+        TNT1 A 0 A_SetUserVar("user_init", true)
+        TNT1 A 0 A_SetUserVar("user_velx", velx * 65536)
+        TNT1 A 0 A_SetUserVar("user_vely", vely * 65536)
+        TNT1 A 0 A_SetUserVar("user_velz", velz * 65536)
         TNT1 A 1 A_SpawnItemEx("PLPrimaryTrail", -1.8 * velx, -1.8 * vely, -1.8 * velz, velx,vely,velz, 0, SXF_ABSOLUTEPOSITION | SXF_ABSOLUTEVELOCITY | SXF_TRANSFERPOINTERS)
         loop
       
