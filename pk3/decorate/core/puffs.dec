@@ -33,9 +33,10 @@ actor DakkaPuff: BulletPuff
     +PUFFONACTORS
     +FORCEXYBILLBOARD
     +NOTIMEFREEZE
+    +SKYEXPLODE
 
-    Radius 1
-    Height 1
+    Radius 0
+    Height 0
 
     States
     {
