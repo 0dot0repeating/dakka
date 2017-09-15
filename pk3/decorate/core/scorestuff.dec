@@ -3,6 +3,7 @@ actor DakkaScoreItem:    Counter { +INTERHUBSTRIP }
 actor RegenSoundLooper
 {
     +NOINTERACTION
+    +NOTIMEFREEZE
 
     Radius 4
     Height 4
@@ -12,13 +13,13 @@ actor RegenSoundLooper
       Spawn:
         TNT1 A 0
         TNT1 A 0 A_PlaySound("dakka/ammoregen_start", CHAN_ITEM, 1.0, false)
-        TNT1 A 0 A_PlaySound("dakka/ammoregen",       CHAN_BODY, 1.0, true)
-        TNT1 A 1 A_Warp(AAPTR_TARGET, 0,0,0, 0, WARPF_NOCHECKPOSITION)
+        TNT1 A 0 A_PlaySound("dakka/ammoregen",       CHAN_BODY | CHAN_LISTENERZ, 1.0, true)
+        TNT1 A 1 A_Warp(AAPTR_TARGET, 0,0,0, 0, WARPF_NOCHECKPOSITION | WARPF_COPYINTERPOLATION)
         wait
 
       RegenDone:
         TNT1 A 0 A_PlaySound("dakka/fizzle", CHAN_BODY)
-        TNT1 AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA 1 A_Warp(AAPTR_TARGET)
+        TNT1 AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA 1 A_Warp(AAPTR_TARGET, 0,0,0, 0, WARPF_NOCHECKPOSITION | WARPF_COPYINTERPOLATION)
         stop
     }
 }
