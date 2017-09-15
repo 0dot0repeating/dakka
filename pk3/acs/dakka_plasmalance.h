@@ -14,7 +14,7 @@
 
 int CurLanceData[13];
 
-script "Dakka_InitLanceHit" (int length, int radius, int damage)
+script "Dakka_InitLanceHit" (int length, int radius, int damage, int isimpaler)
 {
     int myTID = defaultTID(0);
     
@@ -22,14 +22,36 @@ script "Dakka_InitLanceHit" (int length, int radius, int damage)
     int myY = GetActorY(0);
     int myZ = GetActorZ(0);
     
-    int velx = itof(GetUserVariable(0, "user_velx")) / 100;
-    int vely = itof(GetUserVariable(0, "user_vely")) / 100;
-    int velz = itof(GetUserVariable(0, "user_velz")) / 100;
-    int mag = magnitudeThree_f(velx, vely, velz);
+    int velX, velY, velZ, mag;
+    
+    if (!GetUserVariable(0, "user_init"))
+    {
+        mag = GetActorProperty(0, APROP_Speed);
+        
+        SetActivator(0, AAPTR_TARGET);
+        int firerAngle = GetActorAngle(0);
+        int firerPitch = GetActorPitch(0);
+        
+        velX = FixedMul(mag, FixedMul(cos(firerAngle), cos(firerPitch)));
+        velY = FixedMul(mag, FixedMul(sin(firerAngle), cos(firerPitch)));
+        velZ = FixedMul(mag, -sin(firerPitch));
+        
+        SetActivator(myTID);
+    }
+    else
+    {
+        velx = GetUserVariable(0, "user_velx");
+        vely = GetUserVariable(0, "user_vely");
+        velz = GetUserVariable(0, "user_velz");
+        mag  = VectorLength(VectorLength(velx, vely), velz);
+    }
     
     int normX = FixedDiv(velx, mag);
     int normY = FixedDiv(vely, mag);
     int normZ = FixedDiv(velz, mag);
+    
+    //Log(s:"\cdPlain velocity (init): len ", f:mag, s:" <", f:velX, s:", ", f:velY, s:", ", f:velZ, s:">");
+    //Log(s:"\cqNormalized velocity (init): <", f:normX, s:", ", f:normY, s:", ", f:normZ, s:">");
     
     int distX = normX * length;
     int distY = normY * length;
@@ -50,12 +72,32 @@ script "Dakka_InitLanceHit" (int length, int radius, int damage)
     CurLanceData[LANCE_LENGTH] = itof(length);
     CurLanceData[LANCE_RADIUS] = itof(radius);
     CurLanceData[LANCE_DAMAGE] = damage;
+    
+    // Always do damage to the thing we hit
+    SetActivator(0, AAPTR_TRACER);
+    ACS_NamedExecuteWithResult("Dakka_OnLanceHit", 0, 0, isimpaler);
 }
 
         
         
 script "Dakka_CheckLanceHit" (int isimpaler)
 {
+    // First check we aren't the thing directly hit
+    int projTID   = CurLanceData[LANCE_TID];
+    int myTID_old = ActivatorTID();
+    int myTID_new = defaultTID(0);
+    
+    SetActivator(projTID, AAPTR_TRACER);
+    if (ActivatorTID() == myTID_new)
+    {
+        Thing_ChangeTID(0, myTID_old);
+        terminate;
+    }
+    
+    SetActivator(myTID_new);
+    Thing_ChangeTID(0, myTID_old);
+    
+    
     int myX = GetActorX(0);
     int myY = GetActorY(0);
     int myZ = GetActorZ(0);
@@ -93,9 +135,10 @@ script "Dakka_CheckLanceHit" (int isimpaler)
     int normRejY = FixedDiv(rejY, rejectDist);
     int normRejZ = FixedDiv(rejZ, rejectDist);
     
-    //Log(s:"Check position: <", f:adjX, s:", ", f:adjY, s:", ", f:adjZ, s:">");
-    //Log(s:"Project dist: ", f:projectDist, s:" <", f:projX, s:", ", f:projY, s:", ", f:projZ, s:">");
-    //Log(s:"Reject dist: ",  f:rejectDist,  s:" <", f:rejX,  s:", ", f:rejY,  s:", ", f:rejZ,  s:">");
+    //Log(s:"\n\cbCheck position: <", f:adjX, s:", ", f:adjY, s:", ", f:adjZ, s:">");
+    //Log(s:"\ceNormalized velocity (check): <", f:normX, s:", ", f:normY, s:", ", f:normZ, s:">");
+    //Log(s:"\ckProject dist: ", f:projectDist, s:" <", f:projX, s:", ", f:projY, s:", ", f:projZ, s:">");
+    //Log(s:"\ciReject dist: ",  f:rejectDist,  s:" <", f:rejX,  s:", ", f:rejY,  s:", ", f:rejZ,  s:">");
     //SpawnForced("LanceMarker1", startX + projX, startY + projY, startZ + projZ);
     //SpawnForced("LanceMarker2", startX + rejX,  startY + rejY,  startZ + rejZ);
     
@@ -116,11 +159,11 @@ script "Dakka_CheckLanceHit" (int isimpaler)
      && middle(myZ,           closestZ, myZ + myHeight) == closestZ)
     {
         ACS_NamedExecuteWithResult("Dakka_OnLanceHit", projectToUse, rejectToUse, isimpaler);
-        //Log(n:0, s:" hit (p ", f:projectToUse, s:", r ", f:rejectToUse, s:")");
+        //Log(s:"\cf", n:0, s:"\cd hit\c- (p ", f:projectToUse, s:", r ", f:rejectToUse, s:")\n");
     }
     //else
     //{
-    //    Log(n:0, s:" not hit (p ", f:projectToUse, s:", r ", f:rejectToUse, s:")");
+    //    Log(s:"\cf", n:0, s:"\ca not hit\c- (p ", f:projectToUse, s:", r ", f:rejectToUse, s:")\n");
     //}
 }
 
@@ -128,23 +171,24 @@ script "Dakka_CheckLanceHit" (int isimpaler)
 
 script "Dakka_OnLanceHit" (int projectDist, int rejectDist, int isimpaler)
 {
-    int oldMonTID = ActivatorTID();
-    int monTID    = defaultTID(0);
-    int projTID   = CurLanceData[LANCE_TID];
+    int monX      = GetactorX(0);
+    int monY      = GetActorY(0);
+    int monZ      = GetActorZ(0);
+    int monHeight = GetActorProperty(0, APROP_Height);
     
+    
+    int projTID   = CurLanceData[LANCE_TID];
     SetActivator(projTID, AAPTR_TARGET);
     int hurterTID = UniqueTID();
     int myTID     = defaultTID(0);
     
     str hurterType = "PLPrimaryHurter";
     if (isimpaler) { hurterType = "ImpalerPrimaryHurter"; }
-    SpawnForced(hurterType, GetActorX(monTID), GetActorY(monTID), GetActorZ(monTID) + (GetActorProperty(monTID, APROP_Height) / 2), hurterTID);
+    SpawnForced(hurterType, monX, monY, monZ + (monHeight / 2), hurterTID);
+    
     
     SetActivator(hurterTID);
     SetPointer(AAPTR_TARGET, myTID);
     SetUserVariable(0, "user_damage", CurLanceData[LANCE_DAMAGE]);
-    
-    SetActivator(monTID);
-    Thing_ChangeTID(0, oldMonTID);
-    SetActorState(hurterTID, "DoHurt");
+    SetActorState(0, "DoHurt");
 }
