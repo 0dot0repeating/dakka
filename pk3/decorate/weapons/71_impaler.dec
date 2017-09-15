@@ -102,7 +102,7 @@ actor DWep_Impaler: DoomWeapon
       
       AltFire:
         DKIP A 0 A_JumpIfInventory("DakkaInfiniteAmmo", 1, 2)
-        DKIP A 0 A_JumpIfInventory("DakkaRockets", 5, 1)
+        DKIP A 0 A_JumpIfInventory("DakkaRockets", 3, 1)
         goto NoAlt
         
         DKIP A 0 A_GunFlash
@@ -110,7 +110,10 @@ actor DWep_Impaler: DoomWeapon
         DKIP A 0 A_PlaySound("dakka/impaleraltfire", CHAN_WEAPON)
         DKIP A 0 ACS_NamedExecuteWithResult("Dakka_Switcharoo", 11, 1)
         DKIP A 0 ACS_NamedExecuteAlways("Dakka_Recoil", 0, 8, 2, 28)
-        DKIP A 0 A_FireCustomMissile("ImpalerAltMissile")
+        DKIP A 0 ACS_NamedExecuteAlways("Dakka_Recoil", 0, 8, 2, 28)
+        DKIP A 0 A_FireCustomMissile("ImpalerAltMissile2")
+        DKIP A 0 A_FireCustomMissile("ImpalerAltMissile", 0, false, -2)
+        DKIP A 0 A_FireCustomMissile("ImpalerAltMissile", 0, false,  2)
         DKP2 E 1 bright offset(0, 38)
         DKP2 F 1 bright offset(0, 43)
         DKP2 G 2 bright offset(0, 44)
@@ -125,7 +128,7 @@ actor DWep_Impaler: DoomWeapon
         DKP2 C 2        offset(0, 32) A_WeaponReady(WRF_NOBOB | WRF_NOFIRE)
         DKIP A 2                      A_WeaponReady(WRF_NOBOB | WRF_NOSECONDARY)
         DKIP A 0                      A_JumpIfInventory("DakkaInfiniteAmmo", 1, 2)
-        DKIP A 0                      A_JumpIfInventory("DakkaRockets", 5, 1)
+        DKIP A 0                      A_JumpIfInventory("DakkaRockets", 3, 1)
         goto EndAlt_NoAmmo
         
         DKIP A 0                      A_Refire
@@ -297,7 +300,7 @@ actor ImpalerSmoke
 
 actor ImpalerAltMissile: FastProjectile
 {
-    Speed 72
+    Speed 75
     
     Radius 8
     Height 8
@@ -306,80 +309,92 @@ actor ImpalerAltMissile: FastProjectile
 
     +SKYEXPLODE
     +EXTREMEDEATH
-    +RIPPER
-    +NOBOSSRIP
     +BLOODLESSIMPACT
     +FORCERADIUSDMG
-    
+    +HITTRACER
     
     MissileType "ImpalerSmoke"
     MissileHeight 8
     Decal Scorch
     
+    var int user_updated;
+    var int user_velx;
+    var int user_vely;
+    var int user_velz;
+    
+    var int user_offsetx;
+    var int user_offsety;
+    var int user_offsetz;
+    
     var int user_detonated;
-    var int user_flytime;
-    var int user_impaled;
-    var int user_impalex;
-    var int user_impaley;
-    var int user_impalez;
     
     States
     {
       Spawn:
         MIS3 A 0
-        MIS3 A 0 ACS_NamedExecuteWithResult("Dakka_ImpalerSideMissiles")
-        MIS3 A 1 ACS_NamedExecuteWithResult("Dakka_ImpalerMaster", true)
-        goto Spawn2
-      
-      Spawn2:
-        MIS3 A 1 ACS_NamedExecuteWithResult("Dakka_ImpalerMaster")
+        MIS3 A 1 ACS_NamedExecuteWithResult("Dakka_ImpalerAltFly")
         loop
       
       Death:
+        // I have no idea why this is happening
+        MIS3 A 0 A_JumpIf(user_detonated, "AlreadyDied")
+        MIS3 A 0 A_ChangeFlag("NOTIMEFREEZE", 1)
+        MIS3 A 0 ACS_NamedExecuteWithResult("Dakka_ImpalerAltHit", 350)
+        MIS3 AA 0 bright A_SpawnItemEx("ImpalerSmoke", frandom(-2, 2), 0, frandom(-2, 2), 0,0,0, frandom(0, 360))
+        MIS3 A  1 bright A_SpawnItemEx("ImpalerSmoke", frandom(-2, 2), 0, frandom(-2, 2), 0,0,0, frandom(0, 360))
+        
+        MIS3 A 0 A_ChangeFlag("NODAMAGETHRUST", 1)
+        MIS3 A 0 A_Explode(25, 16, false, false, 16)
+        MIS3 A 0 A_ChangeFlag("NODAMAGETHRUST", 0)
+        
+        MIS3 AA 0 bright A_SpawnItemEx("ImpalerSmoke", frandom(-2, 2), 0, frandom(-2, 2), 0,0,0, frandom(0, 360))
+        MIS3 A  1 bright A_SpawnItemEx("ImpalerSmoke", frandom(-2, 2), 0, frandom(-2, 2), 0,0,0, frandom(0, 360))
+        MIS3 AA 0 bright A_SpawnItemEx("ImpalerSmoke", frandom(-2, 2), 0, frandom(-2, 2), 0,0,0, frandom(0, 360))
+        MIS3 A  1 bright A_SpawnItemEx("ImpalerSmoke", frandom(-2, 2), 0, frandom(-2, 2), 0,0,0, frandom(0, 360))
+        MIS3 AA 0 bright A_SpawnItemEx("ImpalerSmoke", frandom(-2, 2), 0, frandom(-2, 2), 0,0,0, frandom(0, 360))
+        MIS3 A  1 bright A_SpawnItemEx("ImpalerSmoke", frandom(-2, 2), 0, frandom(-2, 2), 0,0,0, frandom(0, 360))
+                                                                                          
+        MIS3 AA 0 bright A_SpawnItemEx("ImpalerSmoke", frandom(-2, 2), 0, frandom(-2, 2), 0,0,0, frandom(0, 360))
+        MIS3 A  1 bright A_SpawnItemEx("ImpalerSmoke", frandom(-2, 2), 0, frandom(-2, 2), 0,0,0, frandom(0, 360))
+        MIS3 AA 0 bright A_SpawnItemEx("ImpalerSmoke", frandom(-2, 2), 0, frandom(-2, 2), 0,0,0, frandom(0, 360))
+        MIS3 A  1 bright A_SpawnItemEx("ImpalerSmoke", frandom(-2, 2), 0, frandom(-2, 2), 0,0,0, frandom(0, 360))
+        MIS3 AA 0 bright A_SpawnItemEx("ImpalerSmoke", frandom(-2, 2), 0, frandom(-2, 2), 0,0,0, frandom(0, 360))
+        MIS3 A  1 bright A_SpawnItemEx("ImpalerSmoke", frandom(-2, 2), 0, frandom(-2, 2), 0,0,0, frandom(0, 360))
+        MIS3 AA 0 bright A_SpawnItemEx("ImpalerSmoke", frandom(-2, 2), 0, frandom(-2, 2), 0,0,0, frandom(0, 360))
+        MIS3 A  1 bright A_SpawnItemEx("ImpalerSmoke", frandom(-2, 2), 0, frandom(-2, 2), 0,0,0, frandom(0, 360))
+                                                                                          
+        MIS3 AA 0 bright A_SpawnItemEx("ImpalerSmoke", frandom(-2, 2), 0, frandom(-2, 2), 0,0,0, frandom(0, 360))
+        MIS3 A  1 bright A_SpawnItemEx("ImpalerSmoke", frandom(-2, 2), 0, frandom(-2, 2), 0,0,0, frandom(0, 360))
+        MIS3 AA 0 bright A_SpawnItemEx("ImpalerSmoke", frandom(-2, 2), 0, frandom(-2, 2), 0,0,0, frandom(0, 360))
+        MIS3 A  1 bright A_SpawnItemEx("ImpalerSmoke", frandom(-2, 2), 0, frandom(-2, 2), 0,0,0, frandom(0, 360))
+        MIS3 AA 0 bright A_SpawnItemEx("ImpalerSmoke", frandom(-2, 2), 0, frandom(-2, 2), 0,0,0, frandom(0, 360))
+        MIS3 A  1 bright A_SpawnItemEx("ImpalerSmoke", frandom(-2, 2), 0, frandom(-2, 2), 0,0,0, frandom(0, 360))
+        MIS3 AA 0 bright A_SpawnItemEx("ImpalerSmoke", frandom(-2, 2), 0, frandom(-2, 2), 0,0,0, frandom(0, 360))
+        MIS3 A  1 bright A_SpawnItemEx("ImpalerSmoke", frandom(-2, 2), 0, frandom(-2, 2), 0,0,0, frandom(0, 360))
+        goto Detonate
+      
       Detonate:
-        TNT1 A 0 A_JumpIf(user_detonated, "AlreadyDead")
-        TNT1 A 0 A_Stop
         TNT1 A 0 A_SetUserVar("user_detonated", true)
-        TNT1 A 0 A_PlaySound("dakka/explode")
-        TNT1 A 0 A_Explode(80, 160, false, false, 32)
+        TNT1 A 0 A_Explode(60, 160, false, false, 32)
         TNT1 A 0 A_ChangeFlag("FORCERADIUSDMG", 0)
+        TNT1 A 0 A_GiveToTarget("DakkaImpalerResistance")
         TNT1 A 0 A_Explode(40, 160, true, false, 32)
+        TNT1 A 0 A_TakeFromTarget("DakkaImpalerResistance")
+        TNT1 A 0 A_ChangeFlag("NOTIMEFREEZE", 0)
+        TNT1 A 0 A_PlaySound("dakka/explode")
         TNT1 A 35 A_SpawnItemEx("ImpalerExplosion_Client")
         stop
       
-      AlreadyDead:
+      AlreadyDied:
         TNT1 A 35
         stop
     }
 }
 
-actor ImpalerAltMissile_Side: ImpalerAltMissile
+actor DakkaImpalerResistance: PowerProtection
 {
-    States
-    {
-      Spawn:
-        MIS3 A 0
-        MIS3 A 1 ACS_NamedExecuteWithResult("Dakka_ImpalerSlave")
-        loop
-    }
+    DamageFactor "None", 0.75
+    Powerup.Duration 1
 }
 
-actor ImpalerImpaleChecker
-{
-    +PAINLESS
-    +BLOODLESSIMPACT
-    +PUFFONACTORS
-    +NOINTERACTION
-    +PUFFGETSOWNER
-    +HITTRACER
-    
-    Decal "none"
-    
-    States
-    {
-      Spawn:
-        TNT1 A 0  bright
-        TNT1 A 70 bright ACS_NamedExecuteWithResult("Dakka_DoTheImpale")
-        stop
-    }
-}
+actor ImpalerAltMissile2: ImpalerAltMissile { Speed 90 }
