@@ -65,11 +65,22 @@ script "Dakka_Score" (int pointValue)
         terminate;
     }
 
-    int curveCheck = CheckSight(myTID, firerTID, 0);
-
     int plX = GetActorX(0);
     int plY = GetActorY(0);
     int plZ = GetActorZ(0);
+
+    int curveCheck = CheckSight(myTID, firerTID, 0);
+    
+    SetActivator(myTID);
+    
+    Warp(0, myX, myY, myZ + GetActorProperty(0, APROP_Height) / 2, 0, WARPF_NOCHECKPOSITION | WARPF_ABSOLUTEPOSITION);
+    curveCheck = curveCheck || CheckSight(myTID, firerTID, 0);
+    
+    Warp(0, myX, myY, myZ + GetActorProperty(0, APROP_Height), 0, WARPF_NOCHECKPOSITION | WARPF_ABSOLUTEPOSITION);
+    curveCheck = curveCheck || CheckSight(myTID, firerTID, 0);
+    
+    Warp(0, myX, myY, myZ, 0, WARPF_NOCHECKPOSITION | WARPF_ABSOLUTEPOSITION);
+    SetActivator(firerTID);
 
     int points_switcharoo   = round(pointValue * SMult_WeaponSwitch(pln, myhp));
     int points_killstreak   = round(pointValue * SMult_Killstreak(pln));
