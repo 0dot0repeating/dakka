@@ -20,12 +20,12 @@ script "dakka_titlemap" open
     if (stricmp(StrParam(n:PRINTNAME_LEVELNAME), "DAKKA")) { terminate; }
     
     SetHudSize(320, 200, true);
-    FadeRange(0,0,0, 1.0, 0,0,0, 1.0, 11.0);
+    FadeRange(0,0,0, 1.0, 0,0,0, 1.0, 10.0);
     
     SetFont("TITLEPIC");
-    HudMessage(s:"A"; HUDMSG_FADEINOUT, 1, CR_UNTRANSLATED, 160.4, 100.0, 2.0, 1.0, 1.0);
+    HudMessage(s:"A"; HUDMSG_FADEOUT, 1, CR_UNTRANSLATED, 160.4, 100.0, 2.0, 1.0);
 
-    Delay(140);
+    Delay(105);
     
     // dakka title stuff here
     
@@ -373,34 +373,24 @@ script "titlemap_scoretips" (int flash, int duration)
 }
 
 
-#define GAMETIPCOUNT    22
+#define GAMETIPCOUNT    14
 
 int GameTips[GAMETIPCOUNT] =
 {
-    "The super shotgun has no mandatory delay between shots. Hitting both mouse buttons in quick succession will fire whichever button you hit first, twice. Bring the pain!",
-    "The rocket launcher's alt fire has a slightly larger explosion radius, but all of its damage is splash damage, making it much less effective on bosses.",
-    "You can plasma climb! It's not very much, but it is there, and it can get you up to places you shouldn't be, which means you should totally be there.",
-    "Dakkaguy can reload the super shotgun with his buttcheeks. Take advantage of that, and fill the downtime with something like a minigun!",
+    "The super shotgun has no refire delay, so hitting both mouse buttons in quick succession will fire whichever button you hit first, twice. Bring the pain!",
+    "The impaler's alt-fire impales demons, surprisingly enough. Use it to bring stragglers close to their friends and blow them all up!",
+    "Plasma nails pierce through enemies, similarly to the impaler primary fire. They don't penetrate nearly as far, but it's still extra damage, right?",
+    "Dakkaguy can reload the super shotgun with his buttcheeks. Take advantage of that, and fill the downtime with more dakka!",
     "Dakkaguy takes reduced damage from his own explosions, but \canot\c- reduced thrust. This means exactly what you think it means.",
-    "The guide to cells:\n- Single target? Plasma.\n- Multiple targets? Channeler.\n- In a row? BFG.",
-    "Shotgun grenades might not be as punchy as rockets...\nbut they're still punchy.",
-    "Rain grenades will always be your best friend when preparing for ambushes.",
-    "Your fists are actually silent.\nMost maps don't account for that.",
-    "Use your friggin' scrappers. It's worth it.",
-
+    "Shotgun grenades: they might not actually be rockets, but who cares?",
+    "Rain grenades are best employed in multiples. Anything that manages to survive won't be able to retaliate under the storm of explosions.",
+    "Your fists are silent, which is perfect for breaking those maps that force you to shoot a switch at the start.\n\nOr you could just shoot the switch anyway, since it lets you kill more demons.",
+    "Spent bullets, shells, and cells fuel your scrappers. Respect the environment; scrap some demons before that meter tops off.",
     "The fatter the enemy, the better the minigun roasts them.\n\nThis is not a social commentary.\nNo, not even now. Shut up.",
     "Scrappers + small places = very dead demons.",
-    "When in doubt, fire the Impaler into a wall.\nIf you hear enemies dying, you just saved yourself an ambush.",
-    "Minigun flames pierce invulnerability.\nBecause why the fuck not?",
-    
-    "Don't like the game taking away your ammo every time you enter a map? Set \cddakka_startmode_ammo\c- to \cf0\c-.",
-    "Want scrappers all the time? Check out \cddakka_scrapperstart\c-.",
-    "Want to pistol start every map? Set \cddakka_startmode_weapons\c- to \cf1\c-. Or set it to \cf3\c- for shotgun starts. Or \cf7\c- to start with every weapon in your arsenal. Your call.",
-    "\cddakka_startmode_health\c- controls the health and armor you start each map at.\n\n\cf0\c- turns it off, \cf1\c- sets your HP to 100, \cf2\c- gives you a green armor as well, \cf3\c- gives you a soulsphere and blue armor instead, and \cf4\c- gives you a megasphere.",
-    "Want more scrap? Try \cddakka_scrapfactor\c-! \cf100\c- means you get 100% normal scrapper values, \cf1000\c- means 1000%, \cf0\c- means 0%, etc. It goes from \cf0\c- to \cf10000\c-.",
-    "\cddakka_cl_moremessages\c- is a very serious CVar for very serious people.",
-    "\cddakka_cl_lesseffects\c- turns off some of the flashier stuff. Good to have, if you run a toaster.",
-    "Want some more punch in your guns? Try \cddakka_cl_recoil\c-. \cf100\c- is 100% recoil. It can go to \cf10000\c-.",
+    "You can reload-cancel the SSG, as long as it didn't start the reload empty. This applies both to idle reloads and manual reloads.",
+    "Minigun flames pierce invulnerability.\nBecause why not?",
+    "Your weapons can still be swapped out while in a firing animation, so take advantage of it!",
 };
 
 
@@ -416,7 +406,7 @@ int GameHeaders[GAMEHEADERCOUNT] =
 };
 
 
-#define DUMBTIPCOUNT 87
+#define DUMBTIPCOUNT 91
 
 int DumbTips[DUMBTIPCOUNT] = 
 {
@@ -441,7 +431,7 @@ int DumbTips[DUMBTIPCOUNT] =
     "To defeat the Cyberdemon, shoot at it until it dies.",
     "protip: git gud",
     "Hey, chaingun! The hell with respect!",
-    "Don't even attempt to figure out the physics Dakka's weapons work by. They don't work by physics.",
+    "Dakka's guns work by one rule: would it be cool if they worked like that? If no, then they don't work like that.",
     "If a tree falls in the woods and no one is around to hear it, it should've had LifeAlert.",
     "You are huge! That means you're worth a lot of points!",
     "If you are reading this message, that means you are reading this message.",
@@ -455,7 +445,6 @@ int DumbTips[DUMBTIPCOUNT] =
     "That one marine spinning forever is both the solution to our energy troubles, and the reason the demons invaded. It's canon now.",
     "\"All you had to do was not punch an astronaut.\"\n\n\"Sometimes it's hard not to punch an astronaut...\"",
     "Soylent pink is made of demons! \caDEMONS!",
-    "Bullet decals lining up with puffs online is serious business. Just ask Edward!",
     "Do not pet the cacodemon.",
     "The UAC should build a wall to keep the demons out!\nAnd then make Hell pay for it!",
     "Insert coin to continue.",
@@ -507,10 +496,15 @@ int DumbTips[DUMBTIPCOUNT] =
     "Stop! Or I'll say stop again!",
     "Somebody stop the damn match! Enough's enough!",
     "Crush your enemies. Drive them before you. Hear the lamentations of their women. That is what's best in life.",
+    "Sometimes, it's not about the destination or the journey. Sometimes it's just about killing things. Those are the better times.",
+    "I'm sorry, this line has been disconnected.",
+    "I just called to say... I love you.",
+    "Sometimes things get a little ugly. Sometimes things get real ugly. Sometimes things just don't work out at all like how you'd expect them to.\n\nSo anyway, officer, about the dead guy...",
+    "Maybe... maybe I'm the chump.\n\n\n\n\n... nah.",
 };
 
 
-#define DUMBHEADERCOUNT 10
+#define DUMBHEADERCOUNT 11
 
 int DumbHeaders[DUMBHEADERCOUNT] =
 {
@@ -524,6 +518,7 @@ int DumbHeaders[DUMBHEADERCOUNT] =
     "?????????",
     "(play some dakka already)",
     "On another note:",
+    "Breaking news!",
 };
 
 int LastDumbTip = -1;
