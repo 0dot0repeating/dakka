@@ -4,6 +4,7 @@
 
 dakka/explode               sounds/general/explode.ogg
 $limit dakka/explode        0
+$rolloff dakka/explode      512 2048
 
 
 
@@ -202,6 +203,23 @@ dakka/rocketaltfire         sounds/rocketlauncher/rocket_altfire.ogg
 dakka/impalerfire           sounds/impaler/impaler_fire.ogg
 dakka/impaleraltfire        sounds/impaler/impaler_altfire.wav
 
+dakka/impale1               sounds/impaler/painkiller-hit.ogg
+dakka/impale2               sounds/impaler/painkiller-hit.ogg
+
+$random dakka/impale        { dakka/impale1 dakka/impale2 }
+$limit  dakka/impale        0
+
+dakka/impalerexplode1       sounds/impaler/impaler_explode1.ogg
+dakka/impalerexplode2       sounds/impaler/impaler_explode2.ogg
+dakka/impalerexplode3       sounds/impaler/impaler_explode3.ogg
+
+$random dakka/impalerexplode        { dakka/impalerexplode1 dakka/impalerexplode2 dakka/impalerexplode3 }
+$limit  dakka/impalerexplode        0
+$rolloff dakka/impalerexplode 512 2048
+
+dakka/impalerfly            sounds/impaler/impaler_fly.wav
+$volume  dakka/impalerfly   0.75
+$rolloff dakka/impalerfly   1 640
 
 
 ////////
