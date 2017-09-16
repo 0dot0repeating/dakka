@@ -75,7 +75,7 @@ script "Dakka_ImpalerAltHit" (int power)
     
     if (ClassifyActor(0) & ACTOR_WORLD)
     {
-        Log(s:"No target, just detonate");
+        //Log(s:"No target, just detonate");
         SetActorState(projTID, "Detonate");
         terminate;
     }
