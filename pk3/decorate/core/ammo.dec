@@ -72,10 +72,10 @@ actor DakkaRockets: Ammo
 {
     Inventory.Icon "BROKA0"
 
-    Inventory.Amount 3
-    Inventory.MaxAmount 90
-    Ammo.BackpackAmount 6
-    Ammo.BackpackMaxAmount 180
+    Inventory.Amount 4
+    Inventory.MaxAmount 80
+    Ammo.BackpackAmount 8
+    Ammo.BackpackMaxAmount 160
 }
 
 actor DakkaCells: Ammo

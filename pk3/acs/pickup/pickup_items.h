@@ -278,7 +278,7 @@ int PKP_ReceiveCount[PICKUPCOUNT][CLASSCOUNT][PK_RECEIVECOUNT] =
     // Ammo
     {
         {10},
-        {16, 5},
+        {12, 6},
     },
     {
         {4},
@@ -286,7 +286,7 @@ int PKP_ReceiveCount[PICKUPCOUNT][CLASSCOUNT][PK_RECEIVECOUNT] =
     },
     {
         {1},
-        {3},
+        {4},
     },
     {
         {20},
@@ -294,7 +294,7 @@ int PKP_ReceiveCount[PICKUPCOUNT][CLASSCOUNT][PK_RECEIVECOUNT] =
     },
     {
         {50},
-        {50, 100, 6, 18},
+        {50, 75, 4, 12},
     },
     {
         {20},
@@ -302,11 +302,11 @@ int PKP_ReceiveCount[PICKUPCOUNT][CLASSCOUNT][PK_RECEIVECOUNT] =
     },
     {
         {5},
-        {15, 3, 6, 5},
+        {20, 3, 6, 4},
     },
     {
         {100},
-        {100, 24},
+        {100, 18},
     },
 
 
