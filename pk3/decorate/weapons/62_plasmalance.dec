@@ -42,7 +42,7 @@ actor DWep_PlasmaLance: DoomWeapon
       FireLeft:
         PLNC G 0                      A_CheckReload
         PLNC G 0                      ACS_NamedExecuteWithResult("Dakka_Switcharoo", 13, 0)
-        PLNC G 0                      ACS_NamedExecuteAlways("Dakka_Recoil", 0, -115, 2, 12)
+        PLNC G 0                      ACS_NamedExecuteAlways("Dakka_Recoil", 0, -115, 1, 8)
         PLNC G 0                      A_GiveInventory("LastLanceBarrelUsed")
         PLNC G 0                      A_GiveInventory("GiveScrapCounter2", 1)
         PLNC G 0                      A_FireCustomMissile("PLPrimaryShot", 0, true, -1.5)
@@ -75,7 +75,7 @@ actor DWep_PlasmaLance: DoomWeapon
       FireRight:
         PLNC I 0                      A_CheckReload
         PLNC I 0                      ACS_NamedExecuteWithResult("Dakka_Switcharoo", 13, 0)
-        PLNC I 0                      ACS_NamedExecuteAlways("Dakka_Recoil", 0, -130, 2, 12)
+        PLNC I 0                      ACS_NamedExecuteAlways("Dakka_Recoil", 0, -130, 1, 8)
         PLNC I 0                      A_TakeInventory("LastLanceBarrelUsed")
         PLNC I 0                      A_GiveInventory("GiveScrapCounter2", 1)
         PLNC I 0                      A_FireCustomMissile("PLPrimaryShot", 0, true, 1.5)
@@ -108,7 +108,7 @@ actor DWep_PlasmaLance: DoomWeapon
       HoldLeft:
         PLNC G 0                      A_CheckReload
         PLNC G 0                      ACS_NamedExecuteWithResult("Dakka_Switcharoo", 13, 0)
-        PLNC G 0                      ACS_NamedExecuteAlways("Dakka_Recoil", 0, -115, 2, 12)
+        PLNC G 0                      ACS_NamedExecuteAlways("Dakka_Recoil", 0, -115, 1, 8)
         PLNC G 0                      A_GiveInventory("LastLanceBarrelUsed")
         PLNC G 0                      A_GiveInventory("GiveScrapCounter2", 1)
         PLNC G 0                      A_FireCustomMissile("PLPrimaryShot", 0, true, -1.5)
@@ -141,7 +141,7 @@ actor DWep_PlasmaLance: DoomWeapon
       HoldRight:
         PLNC I 0                      A_CheckReload
         PLNC I 0                      ACS_NamedExecuteWithResult("Dakka_Switcharoo", 13, 0)
-        PLNC I 0                      ACS_NamedExecuteAlways("Dakka_Recoil", 0, -130, 2, 12)
+        PLNC I 0                      ACS_NamedExecuteAlways("Dakka_Recoil", 0, -115, 1, 8)
         PLNC I 0                      A_TakeInventory("LastLanceBarrelUsed")
         PLNC I 0                      A_GiveInventory("GiveScrapCounter2", 1)
         PLNC I 0                      A_FireCustomMissile("PLPrimaryShot", 0, true, 1.5)
