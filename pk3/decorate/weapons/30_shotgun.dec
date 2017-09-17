@@ -194,30 +194,31 @@ actor ShotNadeTrail
     +NOINTERACTION
     +CLIENTSIDEONLY
 
-    RenderStyle Translucent
-    Scale 0.5
-    Alpha 0.5
+    RenderStyle Add
+    Alpha 0.05
+    Scale 0.1
 
     States
     {
       Spawn:
-        TNT1 A 0
-        TNT1 A 0 A_Jump(255, "S1", "S2", "S3", "S4", "S5")
+        TNT1 A 0 nodelay A_SetScale(frandom(0.125, 0.15))
+        TNT1 A 0 A_Jump(256, "Smoke1", "Smoke2", "Smoke3", "Smoke4")
+        goto Smoke1
 
-      S1:
-        DPUF B 1
+      Smoke1:
+        SMK1 ABCDEFGHIJKLMNOPQR 1
+        stop
 
-      S2:
-        DPUF B 1
+      Smoke2:
+        SMK2 ABCDEFGHIJKLMNOPQR 1
+        stop
 
-      S3:
-        DPUF B 1
+      Smoke3:
+        SMK3 ABCDEFGHIJKLMNOP 1
+        stop
 
-      S4:
-        DPUF B 1
-
-      S5:
-        DPUF CD 4
+      Smoke4:
+        SMK4 ABCDEFGHIJKLMNOP 1
         stop
     }
 }
