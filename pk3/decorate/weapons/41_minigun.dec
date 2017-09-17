@@ -73,7 +73,7 @@ actor DWep_Minigun: DoomWeapon
         DMNG A 0 A_AlertMonsters
         DMNG B 0 A_GiveInventory("GiveScrapCounter", 7)
         DMNG A 0 A_JumpIfInventory("MinigunFireState", 5, "FireA5_Double")
-        DMNG A 0 ACS_NamedExecuteAlways("Dakka_Recoil", 0, -150, 2, 9)
+        DMNG A 0 ACS_NamedExecuteAlways("Dakka_Recoil", 0, -150, 1, 9)
         DMNG A 0 bright A_FireBullets(7.5, 7.5, -1, 16, "DakkaPuff", FBF_NORANDOM | FBF_USEAMMO)
         goto FireAnim
 
@@ -168,7 +168,7 @@ actor DWep_Minigun: DoomWeapon
         goto FireA5_A
 
       FireA5_A:
-        DMNG A 0 ACS_NamedExecuteAlways("Dakka_Recoil", 0, -250, 2, 9)
+        DMNG A 0 ACS_NamedExecuteAlways("Dakka_Recoil", 0, -250, 1, 9)
         DMNG A 0 A_GiveInventory("GoToC")
         DMNG A 1 bright offset(0, 36) A_GunFlash
         DMNG C 0 A_Refire
