@@ -95,16 +95,16 @@ actor DWep_Chaingun: DoomWeapon
         goto Ready
 
       Flash:
-        DCGF A 1 bright offset(0, 33) A_Light(4)
-        DCGF B 1 bright A_Light(3)
+        DCGF A 1 bright offset(0, 33) A_Light(3)
+        DCGF B 1 bright
         DCGF C 1 bright A_Light(2)
         TNT1 A 1 A_Light(2)
         TNT1 A 1 A_Light(1)
         goto LightDone
 
       Flash2:
-        DCGF A 1 bright offset(0, 33) A_Light(4)
-        DCGF C 1 bright A_Light(3)
+        DCGF A 1 bright offset(0, 33) A_Light(3)
+        DCGF C 1 bright
         DCGF D 1 bright A_Light(2)
         TNT1 A 1 A_Light(2)
         TNT1 A 1 A_Light(1)

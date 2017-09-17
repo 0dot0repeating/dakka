@@ -26,6 +26,7 @@ actor DWep_Pistol: DoomWeapon
         loop
 
       Deselect:
+        DPST C 0 A_Light0
         DPST CCC 0 A_Lower
         DPST C 1 A_Lower
         loop
@@ -41,9 +42,10 @@ actor DWep_Pistol: DoomWeapon
         DPST B   0 bright A_FireBullets(0.25, 0.25, -1, 12, "DakkaPuff", FBF_NORANDOM | FBF_USEAMMO)
         DPST B   0 A_GiveInventory("GiveScrapCounter", 5)
         DPST B   0 ACS_NamedExecuteAlways("Dakka_Recoil", 0, -45, 2, 5)
-        DPST B   1 bright A_Light(4)
-        DPST C   1 bright A_Light(2)
-        DPST E   1 A_Light(0)
+        DPST B   1 bright A_Light(2)
+        DPST C   1 bright
+        DPST E   1 A_Light(1)
+        DPST E   0 A_Light(0)
         DPST EDCB  1 A_WeaponReady(WRF_NOBOB | WRF_NOPRIMARY)
         goto Ready
 
@@ -54,11 +56,12 @@ actor DWep_Pistol: DoomWeapon
         DPST B 0 A_FireBullets(8, 6.5, 4, 12, "DakkaPuff", FBF_NORANDOM | FBF_USEAMMO)
         DPST B 0 A_GiveInventory("GiveScrapCounter", 20)
         DPST B 0 ACS_NamedExecuteAlways("Dakka_Recoil", 0, 2, 2, 16)
-        DPST C 1 bright A_Light(8)
-        DPST E 1 bright A_Light(6)
-        DPST E 1 A_Light(4)
+        DPST C 1 bright A_Light(3)
+        DPST E 1 bright
         DPST E 1 A_Light(2)
-        DPST E 6 A_Light(0)
+        DPST E 1 A_Light(1)
+        DPST E 1 A_Light(0)
+        DPST E 4 A_WeaponReady(WRF_NOBOB | WRF_NOFIRE)
         DPST D 3 A_WeaponReady(WRF_NOBOB | WRF_NOFIRE)
         DPST C 2 A_WeaponReady(WRF_NOBOB | WRF_NOFIRE)
         DPST B 1 A_WeaponReady(WRF_NOBOB | WRF_NOFIRE)
