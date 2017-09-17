@@ -43,7 +43,8 @@
 #include "dakka_tempitems.h"
 
 // Used in dakka_enter.h. Stuff that runs once, when the player spawns for the
-//  first time. Not sure how I'll handle competitive gamemodes just yet.
+//  first time. Not sure how I'll handle competitive gamemodes just yet, but
+//  then again, who the hell would deathmatch or CTF with Dakka?
 #include "dakka_levelstart.h"
 
 // Handle IDFA and IDKFA here.
@@ -58,7 +59,10 @@
 // Make sure we don't have guns belonging to other classes.
 #include "dakka_translateguns.h"
 
-// ^^ STUFF FOR DAKKA_ENTER
+// <insert dead meme here>
+#include "dakka_powerlevel.h"
+
+// ^^ STUFF FOR DAKKA_SPAWN
 ////////
 
 

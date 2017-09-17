@@ -4,7 +4,7 @@
 
 // This defines how many different data points we should sync between the client
 //  and the server.
-#define C2S_DATACOUNT   2
+#define C2S_DATACOUNT   3
 
 
 // Constants for identifying which data point we want to modify.
@@ -12,5 +12,8 @@
 // Do we want score rewards?
 #define C2S_D_NOSCOREREWARDS    0
 
+// Do we want score at all?
+#define C2S_D_NOSCORE           1
+
 // Do we want to keep the display score between maps?
-#define C2S_D_KEEPSCORE         1
+#define C2S_D_KEEPSCORE         2

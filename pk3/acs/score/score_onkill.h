@@ -54,6 +54,8 @@ script "Dakka_Score" (int pointValue)
 
     int firerTID    = defaultTID(-1);
     int pln         = PlayerNumber();
+    
+    if (CToS_ServerData[pln][C2S_D_NOSCORE]) { terminate; }
 
     if (pln == -1)
     {

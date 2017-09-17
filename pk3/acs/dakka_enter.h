@@ -57,6 +57,9 @@ script "Dakka_Spawn" (int respawned)
         // Translate guns meant for other classes
         // - In dakka_translateguns.h
         Dakka_TranslateGuns();
+        
+        // In dakka_powerlevel.h
+        Dakka_PowerLevel();
 
         // In dakka_tempitems.h
         Dakka_UpdateTemporaryItems();
