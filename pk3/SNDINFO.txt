@@ -82,13 +82,13 @@ $limit dakka/scrapperdie    0
 $limit dakka/scrapperfly    0
 
 $volume  dakka/scrappersplit    0.25
-$rolloff dakka/scrappersplit    128     512
+$rolloff dakka/scrappersplit    320     960
 
 $volume  dakka/scrapperdie      0.25
-$rolloff dakka/scrapperdie      128     512
+$rolloff dakka/scrapperdie      360     920
 
-$volume  dakka/scrapfly      0.35
-$rolloff dakka/scrapfly      384     1024
+$volume  dakka/scrapfly      0.3
+$rolloff dakka/scrapfly      256     768
 
 $volume dakka/scrapperfire    0.5
 $volume dakka/scrapperaltfire 0.5
