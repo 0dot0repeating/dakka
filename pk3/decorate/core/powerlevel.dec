@@ -1,0 +1,22 @@
+
+actor DakkaPowerLevel_-10: PowerDamage { Powerup.Duration 0x7FFFFFFF    DamageFactor "normal", 0.10   }
+actor DakkaPowerLevel_-9:  PowerDamage { Powerup.Duration 0x7FFFFFFF    DamageFactor "normal", 0.25   }
+actor DakkaPowerLevel_-8:  PowerDamage { Powerup.Duration 0x7FFFFFFF    DamageFactor "normal", 0.3333 }
+actor DakkaPowerLevel_-7:  PowerDamage { Powerup.Duration 0x7FFFFFFF    DamageFactor "normal", 0.4    }
+actor DakkaPowerLevel_-6:  PowerDamage { Powerup.Duration 0x7FFFFFFF    DamageFactor "normal", 0.5    }
+actor DakkaPowerLevel_-5:  PowerDamage { Powerup.Duration 0x7FFFFFFF    DamageFactor "normal", 0.6    }
+actor DakkaPowerLevel_-4:  PowerDamage { Powerup.Duration 0x7FFFFFFF    DamageFactor "normal", 0.6667 }
+actor DakkaPowerLevel_-3:  PowerDamage { Powerup.Duration 0x7FFFFFFF    DamageFactor "normal", 0.75   }
+actor DakkaPowerLevel_-2:  PowerDamage { Powerup.Duration 0x7FFFFFFF    DamageFactor "normal", 0.8    }
+actor DakkaPowerLevel_-1:  PowerDamage { Powerup.Duration 0x7FFFFFFF    DamageFactor "normal", 0.9    }
+
+actor DakkaPowerLevel_1:  PowerDamage  { Powerup.Duration 0x7FFFFFFF    DamageFactor "normal", 1.25   }
+actor DakkaPowerLevel_2:  PowerDamage  { Powerup.Duration 0x7FFFFFFF    DamageFactor "normal", 1.3333 }
+actor DakkaPowerLevel_3:  PowerDamage  { Powerup.Duration 0x7FFFFFFF    DamageFactor "normal", 1.5    }
+actor DakkaPowerLevel_4:  PowerDamage  { Powerup.Duration 0x7FFFFFFF    DamageFactor "normal", 1.6667 }
+actor DakkaPowerLevel_5:  PowerDamage  { Powerup.Duration 0x7FFFFFFF    DamageFactor "normal", 1.75   }
+actor DakkaPowerLevel_6:  PowerDamage  { Powerup.Duration 0x7FFFFFFF    DamageFactor "normal", 2      }
+actor DakkaPowerLevel_7:  PowerDamage  { Powerup.Duration 0x7FFFFFFF    DamageFactor "normal", 2.5    }
+actor DakkaPowerLevel_8:  PowerDamage  { Powerup.Duration 0x7FFFFFFF    DamageFactor "normal", 3      }
+actor DakkaPowerLevel_9:  PowerDamage  { Powerup.Duration 0x7FFFFFFF    DamageFactor "normal", 4      }
+actor DakkaPowerLevel_10: PowerDamage  { Powerup.Duration 0x7FFFFFFF    DamageFactor "normal", 5      }

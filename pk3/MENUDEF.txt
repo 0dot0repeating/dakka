@@ -42,6 +42,31 @@ OptionValue Dakka_BackpackStart
      1, "on"
 }
 
+OptionValue Dakka_PowerLevel
+{
+    -10, "0.1x damage"
+    -9,  "0.25x damage"
+    -8,  "0.33x damage"
+    -7,  "0.4x damage"
+    -6,  "0.5x damage"
+    -5,  "0.6x damage"
+    -4,  "0.66x damage"
+    -3,  "0.75x damage"
+    -2,  "0.8x damage"
+    -1,  "0.9x damage"
+     0,  "1x damage"
+     1,  "1.25x damage"
+     2,  "1.33x damage"
+     3,  "1.5x damage"
+     4,  "1.66x damage"
+     5,  "1.75x damage"
+     6,  "2x damage"
+     7,  "2.5x damage"
+     8,  "3x damage"
+     9,  "4x damage"
+     10, "5x damage"
+}
+
 
 
 ListMenu Dakka_Options
@@ -95,6 +120,7 @@ OptionMenu Dakka_GameOptions
     Slider "Scrap factor",      "dakka_scrapfactor", 0, 1000, 10, 0
     Option "Transfer score",    "dakka_keepscore", "Dakka_KeepScore"
     Option "Do resets in hub",  "dakka_ignorehubs", "OnOff"
+    Option "Power level",       "dakka_powerlevel", "Dakka_PowerLevel"
 
     StaticText ""
     StaticText "Level start options"
@@ -108,8 +134,9 @@ OptionMenu Dakka_GameOptions
 
     StaticText ""
     StaticText ""
-    StaticText "Pickup conversion options"
-    StaticText "(After X maps with the item, its pickup changes)"
+    StaticText "Pickup upgrade options"
+    StaticText "After X maps with the first weapon,"
+    StaticText "its pickups will become the second weapon."
     StaticText ""
 
     Slider "Shotgun to SSG",      "dakka_shotgun2ssg",      0, 100, 1, 0
@@ -125,9 +152,10 @@ OptionMenu "Dakka_UserOptions"
 
     StaticText ""
 
-    Option "Less effects", "dakka_cl_lesseffects", "OnOff"
-    Option "Disable score rewards", "dakka_cl_noscorerewards", "OnOff"
-    Option "More pickup messages", "dakka_cl_moremessages", "OnOff"
+    Option "Disable score rewards",  "dakka_cl_noscorerewards", "OnOff"
+    Option "Disable score entirely", "dakka_cl_noscore",        "OnOff"
+    Option "Less effects",           "dakka_cl_lesseffects",    "OnOff"
+    Option "Dumb pickup messages",   "dakka_cl_moremessages",   "OnOff"
 
     StaticText ""
     StaticText "Keybinds"

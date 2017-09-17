@@ -68,6 +68,7 @@ script "Dakka_Open_Client" open clientside
         */
 
         CSender_SetData(cpln, C2S_D_NOSCOREREWARDS, GetUserCVar(cpln, "dakka_cl_noscorerewards"));
+        CSender_SetData(cpln, C2S_D_NOSCORE,        GetUserCVar(cpln, "dakka_cl_noscore"));
 
         CSender_UpdateServer(cpln);
         CSender_ActuallySend(cpln);

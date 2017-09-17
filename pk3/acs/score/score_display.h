@@ -2,22 +2,25 @@
 #define OSCORE_GOALPOINTS   1
 #define OSCORE_FIRSTDRAW    2
 #define OSCORE_NOREWARD     3
+#define OSCORE_NOSCORE      4
 
-int Score_OldVals[4][PLAYERMAX];
+int Score_OldVals[5][PLAYERMAX];
 
 function void Score_Update(int pln)
 {
     int oldPoints       = Score_OldVals[OSCORE_POINTS][pln];
     int oldGoalPoints   = Score_OldVals[OSCORE_GOALPOINTS][pln];
     int oldNoReward     = Score_OldVals[OSCORE_NOREWARD][pln];
+    int oldNoScore      = Score_OldVals[OSCORE_NOSCORE][pln];
     int first           = Score_OldVals[OSCORE_FIRSTDRAW][pln];
 
     int points          = SToC_ClientData[pln][S2C_D_SCORE];
     int goalpoints      = SToC_ClientData[pln][S2C_D_GOALSCORE];
     int displayPoints   = SToC_ClientData[pln][S2C_D_DISPLAYSCORE];
-    int noReward        = CToS_ClientData[pln][C2S_D_NOSCOREREWARDS];
+    int noReward        = GetUserCVar(pln, "dakka_cl_noscorerewards");
+    int noScore         = GetUserCVar(pln, "dakka_cl_noscore");
 
-    if (!first || (points != oldPoints) || (goalPoints != oldGoalPoints) || (noReward != oldNoReward))
+    if (!first || (points != oldPoints) || (goalPoints != oldGoalPoints) || (noReward != oldNoReward) || (oldNoScore != noScore))
     {
         Score_Draw(points, goalpoints, displayPoints);
         Score_OldVals[OSCORE_FIRSTDRAW][pln] = true;
@@ -28,19 +31,31 @@ function void Score_Update(int pln)
     Score_OldVals[OSCORE_POINTS][pln]     = points;
     Score_OldVals[OSCORE_GOALPOINTS][pln] = goalpoints;
     Score_OldVals[OSCORE_NOREWARD][pln]   = noReward;
+    Score_OldVals[OSCORE_NOSCORE][pln]    = noScore;
 }
 
 function void Score_Draw(int curPoints, int goalPoints, int displayPoints)
 {
-    SetFont("DAKKAFON");
-    SetHudSize(560, 420, 1);
-    HudMessage(s:"Score: \c[DScore_Gold]", d:displayPoints;
-                HUDMSG_PLAIN | HUDMSG_COLORSTRING, 24200, "DScore_White", 455.4, 55.2, 0);
 
     int i;
     int cpln = ConsolePlayerNumber();
+    
+    int noScore         = GetUserCVar(cpln, "dakka_cl_noscore");
+    int noScoreRewards  = GetUserCVar(cpln, "dakka_cl_noscorerewards") || noScore;
+    
+    if (noScore)
+    {
+        HudMessage(s:""; HUDMSG_PLAIN, 24200, 0,0,0,0);
+    }
+    else
+    {
+        SetFont("DAKKAFON");
+        SetHudSize(560, 420, 1);
+        HudMessage(s:"Score: \c[DScore_Gold]", d:displayPoints;
+                    HUDMSG_PLAIN | HUDMSG_COLORSTRING, 24200, "DScore_White", 455.4, 55.2, 0);
+    }
 
-    if (CToS_ClientData[cpln][C2S_D_NOSCOREREWARDS])
+    if (noScoreRewards)
     {
         HudMessage(s:""; HUDMSG_PLAIN, 24401, 0,0,0,0);
 
