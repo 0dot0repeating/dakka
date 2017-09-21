@@ -68,9 +68,8 @@ actor DWep_SuperShotgun: DoomWeapon
         DSSG B 0 A_GiveInventory("GiveScrapCounter", 80)
         DSSG A 0 A_AlertMonsters
 
-        DSSG A 0 ACS_NamedExecuteWithResult("DSSG_ChangeShots")
         
-        DSSG A 0 A_JumpIf(CallACS("DSSG_ShotsLeft") < 1, "FireLastShell")
+        DSSG A 0 A_JumpIfInventory("DakkaSSG_ShotsFired", 1, "FireLastShell")
         DSSG A 0 A_PlaySound("dakka/ssgfire", CallACS("Dakka_RotateSound"))
         goto FireContinue
       
@@ -79,6 +78,7 @@ actor DWep_SuperShotgun: DoomWeapon
         goto FireContinue
       
       FireContinue:
+        DSSG A 0 ACS_NamedExecuteWithResult("DSSG_ChangeShots")
         DSSG A 0 A_FireBullets(14.6, 9.4, 20, 12, "DakkaPuff", FBF_NORANDOM | FBF_USEAMMO)
         DSSG A 0 ACS_NamedExecuteAlways("Dakka_Recoil", 0, 9, 1, 15)
         DSSG A 0 A_GunFlash
@@ -96,9 +96,8 @@ actor DWep_SuperShotgun: DoomWeapon
         DSSG B 0 A_GiveInventory("GiveScrapCounter", 80)
         DSSG A 0 A_AlertMonsters
 
-        DSSG A 0 ACS_NamedExecuteWithResult("DSSG_ChangeShots")
         
-        DSSG A 0 A_JumpIf(CallACS("DSSG_ShotsLeft") < 1, "DoubleFireLastShell")
+        DSSG A 0 A_JumpIfInventory("DakkaSSG_ShotsFired", 1, "DoubleFireLastShell")
         DSSG A 0 A_PlaySound("dakka/ssgfire", CallACS("Dakka_RotateSound"))
         goto DoubleFireContinue
       
@@ -107,6 +106,7 @@ actor DWep_SuperShotgun: DoomWeapon
         goto DoubleFireContinue
       
       DoubleFireContinue:
+        DSSG A 0 ACS_NamedExecuteWithResult("DSSG_ChangeShots")
         DSSG A 0 A_FireBullets(14.6, 9.4, 20, 12, "DakkaPuff", FBF_NORANDOM | FBF_USEAMMO)
         DSSG A 0 ACS_NamedExecuteAlways("Dakka_Recoil", 0, 9, 1, 15)
         DSSG A 0 A_GunFlash("FlashDouble")
