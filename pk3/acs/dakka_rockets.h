@@ -166,7 +166,9 @@ script "Dakka_ImpalerAltPush" (int normX, int normY, int normZ, int power)
     
     SetActorVelocity(0, FixedMul(normX, thrustMult * 3), FixedMul(normY, thrustMult * 3), FixedMul(normZ, thrustMult * 3), false, false);
     
-    while (IsTIDUsed(projTID) && GetUserVariable(projTID, "user_detonated") == false)
+    int timelimit = 36;
+    
+    while (timelimit > 0 && IsTIDUsed(projTID) && GetUserVariable(projTID, "user_detonated") == false)
     {
         SetActivator(projTID, AAPTR_TRACER);
         SetActorVelocity(0, FixedMul(normX, thrustMult), FixedMul(normY, thrustMult), FixedMul(normZ, thrustMult), true, false);
@@ -181,7 +183,9 @@ script "Dakka_ImpalerAltPush" (int normX, int normY, int normZ, int power)
         SetActivator(projTID);
         Warp(0, offsetX + monX, offsetY + monY, offsetZ + monZ, 0, WARPF_ABSOLUTEPOSITION | WARPF_NOCHECKPOSITION | WARPF_INTERPOLATE);
         SetPointer(AAPTR_TRACER, monTID_new);
-        Thing_ChangeTID(monTID_new, monTID_old);
+        
+        if (monTID_new != monTID_old) { Thing_ChangeTID(monTID_new, monTID_old); }
+        timelimit--;
         Delay(1);
     }
 }
