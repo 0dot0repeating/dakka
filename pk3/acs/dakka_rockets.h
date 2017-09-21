@@ -177,14 +177,9 @@ script "Dakka_ImpalerAltPush" (int normX, int normY, int normZ, int power)
         monY = GetActorY(0);
         monZ = GetActorZ(0);
         
-        int monTID_old = ActivatorTID();
-        int monTID_new = defaultTID(0);
-        
         SetActivator(projTID);
         Warp(0, offsetX + monX, offsetY + monY, offsetZ + monZ, 0, WARPF_ABSOLUTEPOSITION | WARPF_NOCHECKPOSITION | WARPF_INTERPOLATE);
-        SetPointer(AAPTR_TRACER, monTID_new);
         
-        if (monTID_new != monTID_old) { Thing_ChangeTID(monTID_new, monTID_old); }
         timelimit--;
         Delay(1);
     }
