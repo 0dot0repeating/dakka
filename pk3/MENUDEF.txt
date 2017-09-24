@@ -24,7 +24,7 @@ OptionValue Dakka_StartMode_Ammo
     1, "reset ammo"
     2, "max out ammo"
     3, "keep only pistol ammo"
-    4, "keep and max pistol"
+    4, "pistol full, rest empty"
 }
 
 OptionValue Dakka_KeepScore
@@ -109,9 +109,9 @@ OptionMenu Dakka_GameOptions
 {
     Title "DAKKA (Game options)"
 
-    Command "Everything persists", "dakka_cmd_allpersist"
-    Command "Nothing persists",    "dakka_cmd_nopersist"
-    Command "Default persistance", "dakka_cmd_defaultpersist"
+    Command "Continuous play mode", "dakka_cmd_continuousplay"
+    Command "Pistol start mode",    "dakka_cmd_pistolstart"
+    Command "Reset to defaults",    "dakka_cmd_defaults"
 
 
     StaticText ""
