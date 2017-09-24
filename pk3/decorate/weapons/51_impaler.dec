@@ -165,8 +165,8 @@ actor ImpalerMissile: FastProjectile
 {
     Speed 72
 
-    Radius 8
-    Height 8
+    Radius 6
+    Height 4
 
     Scale 0.5
 
@@ -288,8 +288,8 @@ actor ImpalerAltMissile: FastProjectile
 {
     Speed 75
     
-    Radius 8
-    Height 8
+    Radius 6
+    Height 4
 
     Scale 0.5
 

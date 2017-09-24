@@ -169,7 +169,7 @@ int MMSG_ExtraMessages[MMSG_SLOTS][MMSG_COUNT] =
         "What's that? I can't hear you over these endless explosions!",
         "Would you believe this was once a pressure washer?",
         "Oh my god this mod rips off Duke Nukem 3D so much.",
-        "And this is why you can hold up to 160 rockets.",
+        "And this is why you can hold up to 240 rockets.",
         "The magazine for it is bigger than your head.",
         "Jesus christ this dumb thing is so heavy.",
         "Actually, maybe accept this substitute.",
