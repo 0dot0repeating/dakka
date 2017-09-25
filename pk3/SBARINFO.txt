@@ -207,25 +207,35 @@ StatusBar Normal, fullscreenoffsets, 0.85
     DrawBar "AMBAR_1", "AMBAK_1", DakkaRockets,      horizontal,  34+center,  -7;
     DrawBar "AMBAR_1", "AMBAK_1", DakkaCells,        horizontal,  95+center,  -7;
     DrawBar "AMBAR_1", "AMBAK_1", DakkaCells,        horizontal,  156+center, -7;
-    
-    InInventory HUD_AnyDoomKeys
+
+    InInventory YellowCard
     {
-        InInventory HUD_AnyCardKeys
-        {
-            InInventory YellowCard { DrawImage "HUD_YKY1", 8,  -79; }
-            InInventory RedCard    { DrawImage "HUD_RKY1", 24, -79; }
-            InInventory BlueCard   { DrawImage "HUD_BKY1", 40, -79; }
-            
-            InInventory YellowSkull { DrawImage "HUD_YKY2", 9,  -94; }
-            InInventory RedSkull    { DrawImage "HUD_RKY2", 25, -94; }
-            InInventory BlueSkull   { DrawImage "HUD_BKY2", 41, -94; }
-        }
-        else
-        {
-            InInventory YellowSkull { DrawImage "HUD_YKY2", 9,  -80; }
-            InInventory RedSkull    { DrawImage "HUD_RKY2", 25, -80; }
-            InInventory BlueSkull   { DrawImage "HUD_BKY2", 41, -80; }
-        }
+        DrawImage "HUD_YKY1", 8, -79;
+        InInventory YellowSkull { DrawImage "HUD_YKY2", 9,  -94; }
+    }
+    else
+    {
+        InInventory YellowSkull { DrawImage "HUD_YKY2", 9,  -80; }
+    }
+    
+    InInventory RedCard
+    {
+        DrawImage "HUD_RKY1", 24, -79;
+        InInventory RedSkull { DrawImage "HUD_RKY2", 25,  -94; }
+    }
+    else
+    {
+        InInventory RedSkull { DrawImage "HUD_RKY2", 25,  -80; }
+    }
+    
+    InInventory BlueCard
+    {
+        DrawImage "HUD_BKY1", 40, -79;
+        InInventory BlueSkull { DrawImage "HUD_BKY2", 41,  -94; }
+    }
+    else
+    {
+        InInventory BlueSkull { DrawImage "HUD_BKY2", 41,  -80; }
     }
 }
 
@@ -430,25 +440,35 @@ StatusBar Fullscreen, fullscreenoffsets, 0.85
     IsSelected DWep_Impaler        { DrawImage "FSH_WP53", -143, -42; }
     IsSelected DWep_PlasmaLance    { DrawImage "FSH_WP63", -133, -42; }
     IsSelected DWep_BFG9000        { DrawImage "FSH_WP73", -123, -42; }
-    
-    InInventory HUD_AnyDoomKeys
+
+    InInventory YellowCard
     {
-        InInventory HUD_AnyCardKeys
-        {
-            InInventory YellowCard { DrawImage "HUD_YKY1", 8,  -79; }
-            InInventory RedCard    { DrawImage "HUD_RKY1", 24, -79; }
-            InInventory BlueCard   { DrawImage "HUD_BKY1", 40, -79; }
-            
-            InInventory YellowSkull { DrawImage "HUD_YKY2", 9,  -94; }
-            InInventory RedSkull    { DrawImage "HUD_RKY2", 25, -94; }
-            InInventory BlueSkull   { DrawImage "HUD_BKY2", 41, -94; }
-        }
-        else
-        {
-            InInventory YellowSkull { DrawImage "HUD_YKY2", 9,  -80; }
-            InInventory RedSkull    { DrawImage "HUD_RKY2", 25, -80; }
-            InInventory BlueSkull   { DrawImage "HUD_BKY2", 41, -80; }
-        }
+        DrawImage "HUD_YKY1", 8, -79;
+        InInventory YellowSkull { DrawImage "HUD_YKY2", 9,  -94; }
+    }
+    else
+    {
+        InInventory YellowSkull { DrawImage "HUD_YKY2", 9,  -80; }
+    }
+    
+    InInventory RedCard
+    {
+        DrawImage "HUD_RKY1", 24, -79;
+        InInventory RedSkull { DrawImage "HUD_RKY2", 25,  -94; }
+    }
+    else
+    {
+        InInventory RedSkull { DrawImage "HUD_RKY2", 25,  -80; }
+    }
+    
+    InInventory BlueCard
+    {
+        DrawImage "HUD_BKY1", 40, -79;
+        InInventory BlueSkull { DrawImage "HUD_BKY2", 41,  -94; }
+    }
+    else
+    {
+        InInventory BlueSkull { DrawImage "HUD_BKY2", 41,  -80; }
     }
 }
 
@@ -653,24 +673,34 @@ StatusBar Automap, fullscreenoffsets, 0.85
     IsSelected DWep_Impaler        { DrawImage "FSH_WP53", -143, -42; }
     IsSelected DWep_PlasmaLance    { DrawImage "FSH_WP63", -133, -42; }
     IsSelected DWep_BFG9000        { DrawImage "FSH_WP73", -123, -42; }
-    
-    InInventory HUD_AnyDoomKeys
+
+    InInventory YellowCard
     {
-        InInventory HUD_AnyCardKeys
-        {
-            InInventory YellowCard { DrawImage "HUD_YKY1", 8,  -79; }
-            InInventory RedCard    { DrawImage "HUD_RKY1", 24, -79; }
-            InInventory BlueCard   { DrawImage "HUD_BKY1", 40, -79; }
-            
-            InInventory YellowSkull { DrawImage "HUD_YKY2", 9,  -94; }
-            InInventory RedSkull    { DrawImage "HUD_RKY2", 25, -94; }
-            InInventory BlueSkull   { DrawImage "HUD_BKY2", 41, -94; }
-        }
-        else
-        {
-            InInventory YellowSkull { DrawImage "HUD_YKY2", 9,  -80; }
-            InInventory RedSkull    { DrawImage "HUD_RKY2", 25, -80; }
-            InInventory BlueSkull   { DrawImage "HUD_BKY2", 41, -80; }
-        }
+        DrawImage "HUD_YKY1", 8, -79;
+        InInventory YellowSkull { DrawImage "HUD_YKY2", 9,  -94; }
+    }
+    else
+    {
+        InInventory YellowSkull { DrawImage "HUD_YKY2", 9,  -80; }
+    }
+    
+    InInventory RedCard
+    {
+        DrawImage "HUD_RKY1", 24, -79;
+        InInventory RedSkull { DrawImage "HUD_RKY2", 25,  -94; }
+    }
+    else
+    {
+        InInventory RedSkull { DrawImage "HUD_RKY2", 25,  -80; }
+    }
+    
+    InInventory BlueCard
+    {
+        DrawImage "HUD_BKY1", 40, -79;
+        InInventory BlueSkull { DrawImage "HUD_BKY2", 41,  -94; }
+    }
+    else
+    {
+        InInventory BlueSkull { DrawImage "HUD_BKY2", 41,  -80; }
     }
 }
