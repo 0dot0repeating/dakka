@@ -36,13 +36,13 @@ script "Dakka_Recoil" (int degrees, int ticsup, int ticsdown) clientside
             newPitch = qCurve * pow((i+1)-ticsup, 2);
             pitchDiff = (newPitch - oldPitch) / 360;
 
-            SetActorPitch(0, GetActorPitch(0) + pitchDiff);
+            ChangeActorPitch(0, GetActorPitch(0) + pitchDiff, true);
             Delay(1);
         }
     }
     else
     {
-        SetActorPitch(0, GetActorPitch(0) - (degrees / 360));
+        ChangeActorPitch(0, GetActorPitch(0) - (degrees / 360), true);
     }
 
     int totalDown = 0;
@@ -66,7 +66,7 @@ script "Dakka_Recoil" (int degrees, int ticsup, int ticsdown) clientside
                     pitchDiff = (newPitch - oldPitch) / 360;
                     totalDown += pitchDiff;
 
-                    SetActorPitch(0, GetActorPitch(0) + pitchDiff);
+                    ChangeActorPitch(0, GetActorPitch(0) + pitchDiff, true);
                     Delay(1);
                 }
             }
@@ -81,17 +81,17 @@ script "Dakka_Recoil" (int degrees, int ticsup, int ticsdown) clientside
                     pitchDiff = (newPitch - oldPitch) / 360;
                     totalDown += pitchDiff;
 
-                    SetActorPitch(0, GetActorPitch(0) + pitchDiff);
+                    ChangeActorPitch(0, GetActorPitch(0) + pitchDiff, true);
                     Delay(1);
                 }
             }
 
             int pitchLeft = (degrees / 360) - totalDown;
-            SetActorPitch(0, GetActorPitch(0) + pitchLeft);
+            ChangeActorPitch(0, GetActorPitch(0) + pitchLeft, true);
         }
         else
         {
-            SetActorPitch(0, GetActorPitch(0) + (degrees / 360));
+            ChangeActorPitch(0, GetActorPitch(0) + (degrees / 360), true);
         }
     }
 }
