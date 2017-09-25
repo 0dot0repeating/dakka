@@ -183,6 +183,8 @@ actor ImpalerMissile: FastProjectile
     
     MissileType "ImpalerSmoke"
     MissileHeight 8
+    
+    var int user_detonated;
 
     States
     {
@@ -201,6 +203,11 @@ actor ImpalerMissile: FastProjectile
 
       Death:
         MIS3 A 0 A_StopSound(CHAN_BODY)
+        MIS3 A 0 A_JumpIf(user_detonated, "AlreadyDied")
+        goto Death2
+      
+      Death2:
+        TNT1 A 0 A_SetUserVar("user_detonated", true)
         TNT1 A 0 A_Explode(24, 128, true, false, 48)
         TNT1 A 0 A_ChangeFlag("FORCERADIUSDMG", false)
         TNT1 A 0 A_Explode(24, 128, true, false, 48)
@@ -211,6 +218,10 @@ actor ImpalerMissile: FastProjectile
         TNT1 A 0 A_RadiusGive("ImpalerPrimaryHitChecker", 448, RGF_MONSTERS | RGF_OBJECTS | RGF_VOODOO | RGF_CUBE)
         
         TNT1 A 8 A_SpawnItemEx("ImpalerExplosion_Client")
+        stop
+        
+      AlreadyDied:
+        TNT1 A 8
         stop
     }
 }
