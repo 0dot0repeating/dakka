@@ -1,4 +1,4 @@
-#define TMPITEM_COUNT       26
+#define TMPITEM_COUNT       24
 
 #define TMP_LEFTFIRE        0
 #define TMP_RIGHTFIRE       1
@@ -14,24 +14,21 @@
 #define TMP_HEALTH25        10
 #define TMP_HEALTH0         11
 
-#define TMP_DOOMKEYS        12
-#define TMP_CARDKEYS        13
+#define TMP_AMMO1_ABNORMAL  12
+#define TMP_AMMO1_25        13
+#define TMP_AMMO1_0         14
 
-#define TMP_AMMO1_ABNORMAL  14
-#define TMP_AMMO1_25        15
-#define TMP_AMMO1_0         16
+#define TMP_AMMO2_ABNORMAL  15
+#define TMP_AMMO2_25        16
+#define TMP_AMMO2_0         17
 
-#define TMP_AMMO2_ABNORMAL  17
-#define TMP_AMMO2_25        18
-#define TMP_AMMO2_0         19
+#define TMP_KNOWNARMOR      18
+#define TMP_ARMOR100        19
+#define TMP_ARMOR75         20
+#define TMP_ARMOR50         21
+#define TMP_ARMOR25         22
 
-#define TMP_KNOWNARMOR      20
-#define TMP_ARMOR100        21
-#define TMP_ARMOR75         22
-#define TMP_ARMOR50         23
-#define TMP_ARMOR25         24
-
-#define TMP_GOTBACKPACK     25
+#define TMP_GOTBACKPACK     23
 
 int TempChecks[TMPITEM_COUNT];
 
@@ -49,8 +46,6 @@ int TempItems[TMPITEM_COUNT] =
     "HealthUnder50",
     "HealthUnder25",
     "HealthUnder0",
-    "HUD_AnyDoomKeys",
-    "HUD_AnyCardKeys",
     "AbnormalAmmo1",
     "Ammo1Under25",
     "Ammo1Empty",
@@ -100,14 +95,6 @@ function void Dakka_UpdateTemporaryItems(void)
 
     TempChecks[TMP_INFINITEAMMO]    = GetCVar("sv_infiniteammo") || CheckInventory("PowerInfiniteAmmo");
     TempChecks[TMP_DAKKACLASS]      = classNum == Cl_Dakkaguy;
-    
-
-
-    int gotCards  = CheckInventory("BlueCard")  || CheckInventory("YellowCard")  || CheckInventory("RedCard");
-    int gotSkulls = CheckInventory("BlueSkull") || CheckInventory("YellowSkull") || CheckInventory("RedSkull");
-
-    TempChecks[TMP_DOOMKEYS]        = gotCards || gotSkulls;
-    TempChecks[TMP_CARDKEYS]        = gotCards;
 
 
 
