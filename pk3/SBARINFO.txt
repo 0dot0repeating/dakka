@@ -6,7 +6,7 @@ Height 0;
 
 // reference image zero point: (0, 0)
 
-StatusBar Normal, fullscreenoffsets, 0.75
+StatusBar Normal, fullscreenoffsets, 0.85
 {
     InInventory AbnormalHealth
     {
@@ -126,7 +126,7 @@ StatusBar Normal, fullscreenoffsets, 0.75
     {
         InInventory Ammo1Empty
         {
-            DrawImage  "HUD_AM11", -104, -32;
+            DrawImage  "HUD_AM13", -104, -32;
             DrawNumber 4, "DK_HUDBIG", DHud_AmmoGray, ammo1, alignment(right), -25, -24;
         }
         else
@@ -146,7 +146,7 @@ StatusBar Normal, fullscreenoffsets, 0.75
     {
         InInventory Ammo2Empty
         {
-            DrawImage  "HUD_AM21", -96, -63;
+            DrawImage  "HUD_AM23", -96, -63;
             DrawNumber 4, "DK_HUDBIG", DHud_AmmoGray, ammo2, alignment(right), -25, -56;
         }
         else
@@ -229,7 +229,7 @@ StatusBar Normal, fullscreenoffsets, 0.75
     }
 }
 
-StatusBar Fullscreen, fullscreenoffsets, 0.75
+StatusBar Fullscreen, fullscreenoffsets, 0.85
 {
     InInventory AbnormalHealth
     {
@@ -349,7 +349,7 @@ StatusBar Fullscreen, fullscreenoffsets, 0.75
     {
         InInventory Ammo1Empty
         {
-            DrawImage  "HUD_AM11", -104, -32;
+            DrawImage  "HUD_AM13", -104, -32;
             DrawNumber 4, "DK_HUDBIG", DHud_AmmoGray, ammo1, alignment(right), -25, -24;
         }
         else
@@ -369,7 +369,7 @@ StatusBar Fullscreen, fullscreenoffsets, 0.75
     {
         InInventory Ammo2Empty
         {
-            DrawImage  "HUD_AM21", -96, -63;
+            DrawImage  "HUD_AM23", -96, -63;
             DrawNumber 4, "DK_HUDBIG", DHud_AmmoGray, ammo2, alignment(right), -25, -56;
         }
         else
@@ -452,7 +452,7 @@ StatusBar Fullscreen, fullscreenoffsets, 0.75
     }
 }
 
-StatusBar Automap, fullscreenoffsets, 0.75
+StatusBar Automap, fullscreenoffsets, 0.85
 {
     InInventory AbnormalHealth
     {
@@ -572,7 +572,7 @@ StatusBar Automap, fullscreenoffsets, 0.75
     {
         InInventory Ammo1Empty
         {
-            DrawImage  "HUD_AM11", -104, -32;
+            DrawImage  "HUD_AM13", -104, -32;
             DrawNumber 4, "DK_HUDBIG", DHud_AmmoGray, ammo1, alignment(right), -25, -24;
         }
         else
@@ -592,7 +592,7 @@ StatusBar Automap, fullscreenoffsets, 0.75
     {
         InInventory Ammo2Empty
         {
-            DrawImage  "HUD_AM21", -96, -63;
+            DrawImage  "HUD_AM23", -96, -63;
             DrawNumber 4, "DK_HUDBIG", DHud_AmmoGray, ammo2, alignment(right), -25, -56;
         }
         else
