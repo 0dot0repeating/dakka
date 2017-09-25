@@ -12,20 +12,6 @@ DK_HUDBIG
     9 HNUM_9B
 }
 
-DK_HUDSMALL
-{
-    0 HNUM_0S
-    1 HNUM_1S
-    2 HNUM_2S
-    3 HNUM_3S
-    4 HNUM_4S
-    5 HNUM_5S
-    6 HNUM_6S
-    7 HNUM_7S
-    8 HNUM_8S
-    9 HNUM_9S
-}
-
 DK_SCORE
 {
     template DAKFN%03d
