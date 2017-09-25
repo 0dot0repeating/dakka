@@ -20,7 +20,7 @@ Height 0;
 // ammo 2 bar:   96  x 31,    (544, 417)
 // ammo 2 text:  right align, (615, 424)
 
-StatusBar Normal, forcescaled, fullscreenoffsets, 0.75
+StatusBar Normal, fullscreenoffsets, 0.75
 {
     InInventory AbnormalHealth
     {
