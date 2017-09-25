@@ -196,17 +196,17 @@ StatusBar Normal, fullscreenoffsets, 0.75
     IsSelected DWep_PlasmaLance { DrawImage "HWEP6_2", 96+center, -27; }
     IsSelected DWep_BFG9000     { DrawImage "HWEP7_2", 157+center, -28; }
     
-    DrawBar "AMBAR_1", "nullimage", DakkaScrap,        horizontal, -212+center, -7;
-    DrawBar "AMBAR_1", "nullimage", DakkaBullet_10mm,  horizontal, -149+center, -7;
-    DrawBar "AMBAR_2", "nullimage", DakkaShells,       horizontal, -88+center,  -7;
-    DrawBar "AMBAR_3", "nullimage", DakkaShotGrenades, horizontal, -69+center,  -7;
-    DrawBar "AMBAR_4", "nullimage", DakkaGyroShells,   horizontal, -50+center,  -7;
-    DrawBar "AMBAR_2", "nullimage", DakkaBullet_5mm,   horizontal, -27+center,  -7;
-    DrawBar "AMBAR_3", "nullimage", DakkaRainGrenades, horizontal, -8+center,   -7;
-    DrawBar "AMBAR_4", "nullimage", DakkaFlamerFuel,   horizontal,  11+center,  -7;
-    DrawBar "AMBAR_1", "nullimage", DakkaRockets,      horizontal,  34+center,  -7;
-    DrawBar "AMBAR_1", "nullimage", DakkaCells,        horizontal,  95+center,  -7;
-    DrawBar "AMBAR_1", "nullimage", DakkaCells,        horizontal,  156+center, -7;
+    DrawBar "AMBAR_1", "AMBAK_1", DakkaScrap,        horizontal, -212+center, -7;
+    DrawBar "AMBAR_1", "AMBAK_1", DakkaBullet_10mm,  horizontal, -149+center, -7;
+    DrawBar "AMBAR_2", "AMBAK_2", DakkaShells,       horizontal, -88+center,  -7;
+    DrawBar "AMBAR_3", "AMBAK_2", DakkaShotGrenades, horizontal, -69+center,  -7;
+    DrawBar "AMBAR_4", "AMBAK_2", DakkaGyroShells,   horizontal, -50+center,  -7;
+    DrawBar "AMBAR_2", "AMBAK_2", DakkaBullet_5mm,   horizontal, -27+center,  -7;
+    DrawBar "AMBAR_3", "AMBAK_2", DakkaRainGrenades, horizontal, -8+center,   -7;
+    DrawBar "AMBAR_4", "AMBAK_2", DakkaFlamerFuel,   horizontal,  11+center,  -7;
+    DrawBar "AMBAR_1", "AMBAK_1", DakkaRockets,      horizontal,  34+center,  -7;
+    DrawBar "AMBAR_1", "AMBAK_1", DakkaCells,        horizontal,  95+center,  -7;
+    DrawBar "AMBAR_1", "AMBAK_1", DakkaCells,        horizontal,  156+center, -7;
     
     InInventory HUD_AnyDoomKeys
     {
@@ -398,16 +398,16 @@ StatusBar Fullscreen, fullscreenoffsets, 0.75
     WeaponAmmo DakkaRockets         { DrawImage "FSH_AMO9", -126, -31; }
     WeaponAmmo DakkaCells           { DrawImage "FSH_AMO0", -119, -31; }
     
-    DrawBar "FSH_AMB1", "nullimage", DakkaScrap,        vertical, -180, -29;
-    DrawBar "FSH_AMB2", "nullimage", DakkaBullet_10mm,  vertical, -173, -29;
-    DrawBar "FSH_AMB3", "nullimage", DakkaShells,       vertical, -166, -29;
-    DrawBar "FSH_AMB4", "nullimage", DakkaShotGrenades, vertical, -159, -29;
-    DrawBar "FSH_AMB5", "nullimage", DakkaGyroShells,   vertical, -152, -29;
-    DrawBar "FSH_AMB6", "nullimage", DakkaBullet_5mm,   vertical, -145, -29;
-    DrawBar "FSH_AMB7", "nullimage", DakkaRainGrenades, vertical, -138, -29;
-    DrawBar "FSH_AMB8", "nullimage", DakkaFlamerFuel,   vertical, -131, -29;
-    DrawBar "FSH_AMB9", "nullimage", DakkaRockets,      vertical, -124, -29;
-    DrawBar "FSH_AMB0", "nullimage", DakkaCells,        vertical, -117, -29;
+    DrawBar "FSH_AMB1", "FSH_AMBK", DakkaScrap,        vertical, -180, -29;
+    DrawBar "FSH_AMB2", "FSH_AMBK", DakkaBullet_10mm,  vertical, -173, -29;
+    DrawBar "FSH_AMB3", "FSH_AMBK", DakkaShells,       vertical, -166, -29;
+    DrawBar "FSH_AMB4", "FSH_AMBK", DakkaShotGrenades, vertical, -159, -29;
+    DrawBar "FSH_AMB5", "FSH_AMBK", DakkaGyroShells,   vertical, -152, -29;
+    DrawBar "FSH_AMB6", "FSH_AMBK", DakkaBullet_5mm,   vertical, -145, -29;
+    DrawBar "FSH_AMB7", "FSH_AMBK", DakkaRainGrenades, vertical, -138, -29;
+    DrawBar "FSH_AMB8", "FSH_AMBK", DakkaFlamerFuel,   vertical, -131, -29;
+    DrawBar "FSH_AMB9", "FSH_AMBK", DakkaRockets,      vertical, -124, -29;
+    DrawBar "FSH_AMB0", "FSH_AMBK", DakkaCells,        vertical, -117, -29;
     
     InInventory DWep_Scrappers      { DrawImage "FSH_WP11", -182, -42; }
     InInventory DWep_Pistol         { DrawImage "FSH_WP21", -172, -37; }
@@ -621,16 +621,16 @@ StatusBar Automap, fullscreenoffsets, 0.75
     WeaponAmmo DakkaRockets         { DrawImage "FSH_AMO9", -126, -31; }
     WeaponAmmo DakkaCells           { DrawImage "FSH_AMO0", -119, -31; }
     
-    DrawBar "FSH_AMB1", "nullimage", DakkaScrap,        vertical, -180, -29;
-    DrawBar "FSH_AMB2", "nullimage", DakkaBullet_10mm,  vertical, -173, -29;
-    DrawBar "FSH_AMB3", "nullimage", DakkaShells,       vertical, -166, -29;
-    DrawBar "FSH_AMB4", "nullimage", DakkaShotGrenades, vertical, -159, -29;
-    DrawBar "FSH_AMB5", "nullimage", DakkaGyroShells,   vertical, -152, -29;
-    DrawBar "FSH_AMB6", "nullimage", DakkaBullet_5mm,   vertical, -145, -29;
-    DrawBar "FSH_AMB7", "nullimage", DakkaRainGrenades, vertical, -138, -29;
-    DrawBar "FSH_AMB8", "nullimage", DakkaFlamerFuel,   vertical, -131, -29;
-    DrawBar "FSH_AMB9", "nullimage", DakkaRockets,      vertical, -124, -29;
-    DrawBar "FSH_AMB0", "nullimage", DakkaCells,        vertical, -117, -29;
+    DrawBar "FSH_AMB1", "FSH_AMBK", DakkaScrap,        vertical, -180, -29;
+    DrawBar "FSH_AMB2", "FSH_AMBK", DakkaBullet_10mm,  vertical, -173, -29;
+    DrawBar "FSH_AMB3", "FSH_AMBK", DakkaShells,       vertical, -166, -29;
+    DrawBar "FSH_AMB4", "FSH_AMBK", DakkaShotGrenades, vertical, -159, -29;
+    DrawBar "FSH_AMB5", "FSH_AMBK", DakkaGyroShells,   vertical, -152, -29;
+    DrawBar "FSH_AMB6", "FSH_AMBK", DakkaBullet_5mm,   vertical, -145, -29;
+    DrawBar "FSH_AMB7", "FSH_AMBK", DakkaRainGrenades, vertical, -138, -29;
+    DrawBar "FSH_AMB8", "FSH_AMBK", DakkaFlamerFuel,   vertical, -131, -29;
+    DrawBar "FSH_AMB9", "FSH_AMBK", DakkaRockets,      vertical, -124, -29;
+    DrawBar "FSH_AMB0", "FSH_AMBK", DakkaCells,        vertical, -117, -29;
     
     InInventory DWep_Scrappers      { DrawImage "FSH_WP11", -182, -42; }
     InInventory DWep_Pistol         { DrawImage "FSH_WP21", -172, -37; }
