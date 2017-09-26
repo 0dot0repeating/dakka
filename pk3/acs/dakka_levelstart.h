@@ -267,12 +267,12 @@ function void Dakka_StartMode_Health(int classNum, int entered)
         break;
 
       case 3:
-        Pickup_DoPickup(It_Soulsphere, classNum, false);
+        GiveInventory("Pickup_Soulsphere", 1);
         Pickup_DoPickup(It_BlueArmor,  classNum, false);
         break;
 
       case 4:
-        Pickup_DoPickup(It_Megasphere, classNum, false);
+        GiveInventory("Pickup_Megasphere", 1);
         break;
     }
 }

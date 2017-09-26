@@ -51,65 +51,8 @@ int PKP_Messages[PICKUPCOUNT][CLASSCOUNT] =
         "$GOTCHAINGUN",
         "Chaingun!",
     },
-
-
-    {
-        "$GOTCLIP",
-        "Bullets",
-    },
-    {
-        "$GOTSHELL",
-        "Shells",
-    },
-    {
-        "$GOTROCKET",
-        "Rockets",
-    },
-    {
-        "$GOTCELL",
-        "Cells",
-    },
-
-    {
-        "$GOTCLIPBOX",
-        "Big bullets",
-    },
-    {
-        "$GOTSHELLBOX",
-        "Big shells",
-    },
-    {
-        "$GOTROCKBOX",
-        "Big rockets",
-    },
-    {
-        "$GOTCELLBOX",
-        "Big cells",
-    },
-
-
-    {
-        "$GOTHTHBONUS",
-        "Health bonus",
-    },
-    {
-        "$GOTSTIM",
-        "Stimpack",
-    },
-    {
-        "$GOTMEDIKIT",
-        "Medikit",
-    },
-    {
-        "$GOTSUPER",
-        "Soulsphere!",
-    },
-
-
-    {
-        "$GOTARMBONUS",
-        "Armor bonus",
-    },
+    
+    
     {
         "$GOTARMOR",
         "Green armor!",
@@ -118,29 +61,6 @@ int PKP_Messages[PICKUPCOUNT][CLASSCOUNT] =
         "$GOTMEGA",
         "Blue armor!",
     },
-    {
-        "$GOTMSPHERE",
-        "Megasphere!",
-    },
-
-
-    {
-        "$GOTBERSERK",
-        "Minigun!",
-    },
-    {
-        "$GOTINVIS",
-        "Blursphere!",
-    },
-    {
-        "$GOTINVUL",
-        "Invulnerability!",
-    },
-    {
-        "$GOTBACKPACK",
-        "Backpack!",
-    },
-
 
 
     {
@@ -179,23 +99,7 @@ int PKP_Messages[PICKUPCOUNT][CLASSCOUNT] =
 int PKP_PickupFlashes[PICKUPCOUNT][CLASSCOUNT][5] =
 {
     // Weapons
-    { // 0
-        {255, 255, 64, 0.15, 0.15},
-        {255, 255, 64, 0.15, 0.15},
-    },
     {
-        {255, 255, 64, 0.15, 0.15},
-        {255, 255, 64, 0.15, 0.15},
-    },
-    {
-        {255, 255, 64, 0.15, 0.15},
-        {255, 255, 64, 0.15, 0.15},
-    },
-    {
-        {255, 255, 64, 0.15, 0.15},
-        {255, 255, 64, 0.15, 0.15},
-    },
-    { // 4
         {255, 255, 64, 0.15, 0.15},
         {255, 255, 64, 0.15, 0.15},
     },
@@ -215,35 +119,6 @@ int PKP_PickupFlashes[PICKUPCOUNT][CLASSCOUNT][5] =
         {255, 255, 64, 0.15, 0.15},
         {255, 255, 64, 0.15, 0.15},
     },
-    { // 9
-        {255, 255, 64, 0.15, 0.15},
-        {255, 255, 64, 0.15, 0.15},
-    },
-    {
-        {255, 255, 64, 0.15, 0.15},
-        {255, 255, 64, 0.15, 0.15},
-    },
-
-
-    // Ammo
-    {
-        {255, 255, 64, 0.15, 0.15},
-        {255, 255, 64, 0.15, 0.15},
-    },
-    {
-        {255, 255, 64, 0.15, 0.15},
-        {255, 255, 64, 0.15, 0.15},
-    },
-    {
-        {255, 255, 64, 0.15, 0.15},
-        {255, 255, 64, 0.15, 0.15},
-    },
-    { // 14
-        {255, 255, 64, 0.15, 0.15},
-        {255, 255, 64, 0.15, 0.15},
-    },
-
-    // Ammo (big)
     {
         {255, 255, 64, 0.15, 0.15},
         {255, 255, 64, 0.15, 0.15},
@@ -260,13 +135,6 @@ int PKP_PickupFlashes[PICKUPCOUNT][CLASSCOUNT][5] =
         {255, 255, 64, 0.15, 0.15},
         {255, 255, 64, 0.15, 0.15},
     },
-
-
-    // Health
-    { // 19
-        {255, 255, 64, 0.15, 0.15},
-        {255, 255, 64, 0.15, 0.15},
-    },
     {
         {255, 255, 64, 0.15, 0.15},
         {255, 255, 64, 0.15, 0.15},
@@ -275,48 +143,16 @@ int PKP_PickupFlashes[PICKUPCOUNT][CLASSCOUNT][5] =
         {255, 255, 64, 0.15, 0.15},
         {255, 255, 64, 0.15, 0.15},
     },
-    {
-        {255, 255, 64, 0.15, 0.15},
-        {255, 255, 64, 0.15, 0.15},
-    },
-
-
+    
     // Armor
     {
         {255, 255, 64, 0.15, 0.15},
         {255, 255, 64, 0.15, 0.15},
     },
-    { // 24
-        {255, 255, 64, 0.15, 0.15},
-        {255, 255, 64, 0.15, 0.15},
-    },
     {
         {255, 255, 64, 0.15, 0.15},
         {255, 255, 64, 0.15, 0.15},
     },
-    {
-        {255, 255, 64, 0.15, 0.15},
-        {255, 255, 64, 0.15, 0.15},
-    },
-
-
-    { // Berserk
-        {255, 255, 64, 0.15, 0.15},
-        {255, 255, 64, 0.15, 0.15},
-    },
-    { // Blursphere
-        {255, 255, 64, 0.15, 0.15},
-        {255, 255, 64, 0.15, 0.15},
-    },
-    { // (29) Invuln
-        {255, 255, 64, 0.15, 0.15},
-        {255, 255, 64, 0.15, 0.15},
-    },
-    { // Backpack
-        {255, 255, 64, 0.15, 0.15},
-        {255, 255, 64, 0.15, 0.15},
-    },
-
     
 
     // Skulltag pickups
@@ -332,11 +168,10 @@ int PKP_PickupFlashes[PICKUPCOUNT][CLASSCOUNT][5] =
         {255, 255, 64, 0.15, 0.15},
         {255, 255, 64, 0.15, 0.15},
     },
-    { // (34) BFG10k
+    { // BFG10k
         {255, 255, 64, 0.15, 0.15},
         {255, 255, 64, 0.15, 0.15},
-    },
-        
+    },  
 };
 
 
@@ -345,23 +180,7 @@ int PKP_PickupFlashes[PICKUPCOUNT][CLASSCOUNT][5] =
 int PKP_PickupSounds[PICKUPCOUNT][CLASSCOUNT] =
 {
     // Weapons
-    { // 0
-        "misc/w_pkup",
-        "misc/w_pkup",
-    },
     {
-        "misc/w_pkup",
-        "misc/w_pkup",
-    },
-    {
-        "misc/w_pkup",
-        "misc/w_pkup",
-    },
-    {
-        "misc/w_pkup",
-        "misc/w_pkup",
-    },
-    { // 4
         "misc/w_pkup",
         "misc/w_pkup",
     },
@@ -381,7 +200,7 @@ int PKP_PickupSounds[PICKUPCOUNT][CLASSCOUNT] =
         "misc/w_pkup",
         "misc/w_pkup",
     },
-    { // 9
+    {
         "misc/w_pkup",
         "misc/w_pkup",
     },
@@ -389,99 +208,33 @@ int PKP_PickupSounds[PICKUPCOUNT][CLASSCOUNT] =
         "misc/w_pkup",
         "misc/w_pkup",
     },
-
+    {
+        "misc/w_pkup",
+        "misc/w_pkup",
+    },
+    {
+        "misc/w_pkup",
+        "misc/w_pkup",
+    },
+    {
+        "misc/w_pkup",
+        "misc/w_pkup",
+    },
+    {
+        "misc/w_pkup",
+        "misc/w_pkup",
+    },
     
-    // Ammo
-    {
-        "misc/i_pkup",
-        "misc/i_pkup",
-    },
-    {
-        "misc/i_pkup",
-        "misc/i_pkup",
-    },
-    {
-        "misc/i_pkup",
-        "misc/i_pkup",
-    },
-    { // 14
-        "misc/i_pkup",
-        "misc/i_pkup",
-    },
-
-    // Ammo (big)
-    {
-        "misc/i_pkup",
-        "misc/i_pkup",
-    },
-    {
-        "misc/i_pkup",
-        "misc/i_pkup",
-    },
-    {
-        "misc/i_pkup",
-        "misc/i_pkup",
-    },
-    {
-        "misc/i_pkup",
-        "misc/i_pkup",
-    },
-
-
-    // Health
-    { // 19
-        "misc/i_pkup",
-        "misc/i_pkup",
-    },
-    {
-        "misc/i_pkup",
-        "misc/i_pkup",
-    },
-    {
-        "misc/i_pkup",
-        "misc/i_pkup",
-    },
-    {
-        "misc/p_pkup",
-        "misc/p_pkup",
-    },
 
     // Armor
     {
         "misc/i_pkup",
         "misc/i_pkup",
     },
-    { // 24
-        "misc/i_pkup",
-        "misc/i_pkup",
-    },
     {
         "misc/i_pkup",
         "misc/i_pkup",
     },
-    {
-        "misc/p_pkup",
-        "misc/p_pkup",
-    },
-
-
-    { // Berserk
-        "misc/p_pkup",
-        "misc/w_pkup",
-    },
-    { // Blursphere
-        "misc/p_pkup",
-        "misc/p_pkup",
-    },
-    { // (29) Blursphere
-        "misc/p_pkup",
-        "misc/p_pkup",
-    },
-    { // Backpack
-        "misc/i_pkup",
-        "misc/i_pkup",
-    },
-
 
 
     // Skulltag pickups
@@ -497,7 +250,7 @@ int PKP_PickupSounds[PICKUPCOUNT][CLASSCOUNT] =
         "misc/w_pkup",
         "misc/w_pkup",
     },
-    { // (34) BFG10k
+    { // BFG10k
         "misc/w_pkup",
         "misc/w_pkup",
     },

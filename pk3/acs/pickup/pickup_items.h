@@ -3,11 +3,11 @@
 
 // This is, quite simply, the amount of pickup types that this ACS is equipped
 //  to handle.
-#define PICKUPCOUNT     35
+#define PICKUPCOUNT     17
 
 
 // How many items can you get from each pickup?
-#define PK_RECEIVECOUNT 5
+#define PK_RECEIVECOUNT 3
 
 
 // Define item constants here. Because "item 0" doesn't mean shit.
@@ -24,34 +24,13 @@
 #define It_ShotgunDropped   9
 #define It_ChaingunDropped  10
 
-#define It_Clip             11
-#define It_Shell            12
-#define It_RocketAmmo       13
-#define It_Cell             14
-#define It_ClipBox          15
-#define It_ShellBox         16
-#define It_RocketBox        17
-#define It_CellPack         18
+#define It_GreenArmor       11
+#define It_BlueArmor        12
 
-#define It_HealthBonus      19
-#define It_Stimpack         20
-#define It_Medikit          21
-#define It_Soulsphere       22
-
-#define It_ArmorBonus       23
-#define It_GreenArmor       24
-#define It_BlueArmor        25
-#define It_Megasphere       26
-
-#define It_Berserk          27
-#define It_Blursphere       28
-#define It_InvulnSphere     29
-#define It_Backpack         30
-
-#define It_ST_Minigun           31
-#define It_ST_GrenadeLauncher   32
-#define It_ST_Railgun           33
-#define It_ST_BFG10k            34
+#define It_ST_Minigun           13
+#define It_ST_GrenadeLauncher   14
+#define It_ST_Railgun           15
+#define It_ST_BFG10k            16
 
 // Here, you have the items that each pickup will give you. Each pickup can give
 //  as many as PK_RECEIVECOUNT items.
@@ -113,64 +92,7 @@ int PKP_ReceiveItems[PICKUPCOUNT][CLASSCOUNT][PK_RECEIVECOUNT] =
         {"DWep_Chaingun"},
     },
 
-
-    {
-        {"Clip"},
-        {"DakkaBullet_10mm", "DakkaBullet_5mm"},
-    },
-    {
-        {"Shell"},
-        {"DakkaShells"},
-    },
-    {
-        {"RocketAmmo"},
-        {"DakkaRockets"},
-    },
-    {
-        {"Cell"},
-        {"DakkaCells"},
-    },
-
-    {
-        {"Clip"},
-        {"DakkaBullet_10mm", "DakkaBullet_5mm", "DakkaRainGrenades", "DakkaFlamerFuel"},
-    },
-    {
-        {"Shell"},
-        {"DakkaShells", "DakkaShotGrenades", "DakkaGyroShells"},
-    },
-    {
-        {"RocketAmmo"},
-        {"DakkaRockets", "DakkaShotGrenades", "DakkaGyroShells", "DakkaRainGrenades"},
-    },
-    {
-        {"Cell"},
-        {"DakkaCells", "DakkaFlamerFuel"},
-    },
-
-
-    {
-        {"HealthBonus"},
-        {"DakkaHealthBonus"},
-    },
-    {
-        {"BaseHealth"},
-        {"BaseHealth"},
-    },
-    {
-        {"Medikit"},
-        {"BaseHealth"},
-    },
-    {
-        {"HealthBonus"},
-        {"DakkaSoulsphere"},
-    },
-
-
-    {
-        {"ArmorBonus"},
-        {"Dakka_ArmorBonus"},
-    },
+    
     {
         {"GreenArmor"},
         {"Dakka_GreenArmor"},
@@ -179,32 +101,9 @@ int PKP_ReceiveItems[PICKUPCOUNT][CLASSCOUNT][PK_RECEIVECOUNT] =
         {"BlueArmor"},
         {"Dakka_BlueArmor"},
     },
-    {
-        {"MegasphereHealth", "BlueArmor"},
-        {"DakkaMegasphere",  "Dakka_BlueArmor"},
-    },
-
-
-    {
-        {"FullHealth", "PowerStrength", "SwitchToFist"},
-        {"DWep_Minigun"},
-    },
-    {
-        {"Blursphere"},
-        {"Blursphere"},
-    },
-    {
-        {"InvulnerabilitySphere"},
-        {"DakkaInvulnerable"},
-    },
-    {
-        {"Backpack"},
-        {"Backpack"},
-    },
 
 
     // Skulltag pickups
-
     { // Minigun
         {"Minigun"},
         {"DWep_Minigun"},
@@ -275,95 +174,12 @@ int PKP_ReceiveCount[PICKUPCOUNT][CLASSCOUNT][PK_RECEIVECOUNT] =
     },
 
 
-    // Ammo
-    {
-        {10},
-        {12, 6},
-    },
-    {
-        {4},
-        {4},
-    },
-    {
-        {1},
-        {4},
-    },
-    {
-        {20},
-        {20},
-    },
-    {
-        {50},
-        {50, 75, 4, 12},
-    },
-    {
-        {20},
-        {20, 4, 8},
-    },
-    {
-        {5},
-        {20, 3, 6, 4},
-    },
-    {
-        {100},
-        {100, 18},
-    },
-
-
-    // Health
-    {
-        {1},
-        {1},
-    },
-    {
-        {10},
-        {10},
-    },
-    {
-        {25},
-        {25},
-    },
-    {
-        {100},
-        {50},
-    },
-
-
     // Armor
     {
         {1},
         {1},
     },
     {
-        {1},
-        {1},
-    },
-    {
-        {1},
-        {1},
-    },
-    { // Megasphere
-        {1, 1},
-        {1, 2},
-    },
-
-
-    { // Berserk
-        {1, 1, 1},
-        {1},
-    },
-
-    { // Blursphere
-        {1},
-        {1},
-    },
-
-    { // Invuln
-        {1},
-        {1},
-    },
-
-    { // Backpack
         {1},
         {1},
     },
@@ -397,23 +213,7 @@ int PKP_ReceiveCount[PICKUPCOUNT][CLASSCOUNT][PK_RECEIVECOUNT] =
 int PKP_AlwaysPickup[PICKUPCOUNT][CLASSCOUNT] =
 {
     // Weapons
-    { // 0
-        false,
-        false,
-    },
     {
-        false,
-        false,
-    },
-    {
-        false,
-        false,
-    },
-    {
-        false,
-        false,
-    },
-    { // 4
         false,
         false,
     },
@@ -433,35 +233,6 @@ int PKP_AlwaysPickup[PICKUPCOUNT][CLASSCOUNT] =
         false,
         false,
     },
-    { // 9
-        false,
-        false,
-    },
-    {
-        false,
-        false,
-    },
-
-
-    // Ammo
-    {
-        false,
-        false,
-    },
-    {
-        false,
-        false,
-    },
-    {
-        false,
-        false,
-    },
-    { // 14
-        false,
-        false,
-    },
-
-    // Ammo (big)
     {
         false,
         false,
@@ -478,13 +249,6 @@ int PKP_AlwaysPickup[PICKUPCOUNT][CLASSCOUNT] =
         false,
         false,
     },
-
-
-    // Health
-    { // 19
-        true,
-        true,
-    },
     {
         false,
         false,
@@ -492,51 +256,17 @@ int PKP_AlwaysPickup[PICKUPCOUNT][CLASSCOUNT] =
     {
         false,
         false,
-    },
-    {
-        true,
-        true,
     },
 
 
     // Armor
     {
-        true,
-        true,
-    },
-    { // 24
         false,
         false,
     },
     {
         false,
         false,
-    },
-    {
-        true,
-        true,
-    },
-
-
-    
-    { // Berserk
-        true,
-        false,
-    },
-
-    { // Blursphere
-        true,
-        true,
-    },
-
-    { // (29) Invuln
-        true,
-        true,
-    },
-
-    { // Backpack
-        true,
-        true,
     },
 
 
@@ -554,7 +284,7 @@ int PKP_AlwaysPickup[PICKUPCOUNT][CLASSCOUNT] =
         false,
         false,
     },
-    { // (34) BFG10k
+    { // BFG10k
         false,
         false,
     },
