@@ -1,17 +1,7 @@
-actor Pickup_ArmorBonus: ClassBasedPickup replaces ArmorBonus
-{
-    States
-    {
-      Spawn:
-        BON2 ABCDCB 6
-        loop
+// Armor bonus in decorate/core/armor.dec
 
-      Pickup:
-        TNT1 A 0 A_JumpIf(CallACS("Pickup_Pickup", It_ArmorBonus, false) == 1, "PickedUp")
-        goto NotPickedUp
-    }
-}
-
+// Since this uses special armor merging behavior,
+// it's gonna remain as a pickup script for now
 actor Pickup_GreenArmor: ClassBasedPickup replaces GreenArmor
 {
     States
@@ -27,6 +17,8 @@ actor Pickup_GreenArmor: ClassBasedPickup replaces GreenArmor
     }
 }
 
+
+// Ditto
 actor Pickup_BlueArmor: ClassBasedPickup replaces BlueArmor
 {
     States
@@ -42,8 +34,16 @@ actor Pickup_BlueArmor: ClassBasedPickup replaces BlueArmor
     }
 }
 
-actor Pickup_Megasphere: ClassBasedPickup replaces Megasphere
+
+actor Pickup_Megasphere: CustomInventory replaces Megasphere
 {
+    +COUNTITEM
+    +ALWAYSPICKUP
+    +FANCYPICKUPSOUND
+    
+    Inventory.PickupMessage "Megasphere!"
+    Inventory.PickupSound   "misc/p_pkup"
+    
     States
     {
       Spawn:
@@ -51,7 +51,8 @@ actor Pickup_Megasphere: ClassBasedPickup replaces Megasphere
         loop
 
       Pickup:
-        TNT1 A 0 A_JumpIf(CallACS("Pickup_Pickup", It_Megasphere, false) == 1, "PickedUp")
-        goto NotPickedUp
+        TNT1 A 0 A_GiveInventory("Dakka_OneHealth", 300)
+        TNT1 A 0 A_GiveInventory("Dakka_BlueArmor")
+        stop
     }
 }

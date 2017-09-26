@@ -1,5 +1,7 @@
-actor Pickup_Clip: ClassBasedPickup replaces Clip
+actor Pickup_Clip: CustomInventory replaces Clip
 {
+    Inventory.PickupMessage "Bullets"
+    
     States
     {
       Spawn:
@@ -7,13 +9,16 @@ actor Pickup_Clip: ClassBasedPickup replaces Clip
         stop
 
       Pickup:
-        TNT1 A 0 A_JumpIf(CallACS("Pickup_Pickup", It_Clip, false) == 1, "PickedUp")
-        goto NotPickedUp
+        TNT1 A 0 A_GiveInventory("DakkaBullet_10mm", 12)
+        TNT1 A 0 A_GiveInventory("DakkaBullet_5mm", 6)
+        stop
     }
 }
 
-actor Pickup_ClipDropped: ClassBasedPickup
+actor Pickup_ClipDropped: CustomInventory
 {
+    Inventory.PickupMessage "Bullets"
+    
     States
     {
       Spawn:
@@ -21,13 +26,16 @@ actor Pickup_ClipDropped: ClassBasedPickup
         stop
 
       Pickup:
-        TNT1 A 0 A_JumpIf(CallACS("Pickup_Pickup", It_Clip, true) == 1, "PickedUp")
-        goto NotPickedUp
+        TNT1 A 0 A_GiveInventory("DakkaBullet_10mm", 6)
+        TNT1 A 0 A_GiveInventory("DakkaBullet_5mm", 3)
+        stop
     }
 }
 
-actor Pickup_Shell: ClassBasedPickup replaces Shell
+actor Pickup_Shell: CustomInventory replaces Shell
 {
+    Inventory.PickupMessage "Shells"
+    
     States
     {
       Spawn:
@@ -35,13 +43,15 @@ actor Pickup_Shell: ClassBasedPickup replaces Shell
         stop
 
       Pickup:
-        TNT1 A 0 A_JumpIf(CallACS("Pickup_Pickup", It_Shell, false) == 1, "PickedUp")
-        goto NotPickedUp
+        TNT1 A 0 A_GiveInventory("DakkaShells", 4)
+        stop
     }
 }
 
-actor Pickup_RocketAmmo: ClassBasedPickup replaces RocketAmmo
+actor Pickup_RocketAmmo: CustomInventory replaces RocketAmmo
 {
+    Inventory.PickupMessage "Rockets"
+    
     States
     {
       Spawn:
@@ -49,13 +59,15 @@ actor Pickup_RocketAmmo: ClassBasedPickup replaces RocketAmmo
         stop
 
       Pickup:
-        TNT1 A 0 A_JumpIf(CallACS("Pickup_Pickup", It_RocketAmmo, false) == 1, "PickedUp")
-        goto NotPickedUp
+        TNT1 A 0 A_GiveInventory("DakkaRockets", 4)
+        stop
     }
 }
 
-actor Pickup_Cell: ClassBasedPickup replaces Cell
+actor Pickup_Cell: CustomInventory replaces Cell
 {
+    Inventory.PickupMessage "Cells"
+    
     States
     {
       Spawn:
@@ -63,13 +75,15 @@ actor Pickup_Cell: ClassBasedPickup replaces Cell
         stop
 
       Pickup:
-        TNT1 A 0 A_JumpIf(CallACS("Pickup_Pickup", It_Cell, false) == 1, "PickedUp")
-        goto NotPickedUp
+        TNT1 A 0 A_GiveInventory("DakkaCells", 20)
+        stop
     }
 }
 
-actor Pickup_ClipBox: ClassBasedPickup replaces ClipBox
+actor Pickup_ClipBox: CustomInventory replaces ClipBox
 {
+    Inventory.PickupMessage "Big bullets"
+    
     States
     {
       Spawn:
@@ -77,13 +91,18 @@ actor Pickup_ClipBox: ClassBasedPickup replaces ClipBox
         stop
 
       Pickup:
-        TNT1 A 0 A_JumpIf(CallACS("Pickup_Pickup", It_ClipBox, false) == 1, "PickedUp")
-        goto NotPickedUp
+        TNT1 A 0 A_GiveInventory("DakkaBullet_10mm",  50)
+        TNT1 A 0 A_GiveInventory("DakkaBullet_5mm",   75)
+        TNT1 A 0 A_GiveInventory("DakkaRainGrenades", 4)
+        TNT1 A 0 A_GiveInventory("DakkaFlamerFuel",   12)
+        stop
     }
 }
 
-actor Pickup_ShellBox: ClassBasedPickup replaces ShellBox
+actor Pickup_ShellBox: CustomInventory replaces ShellBox
 {
+    Inventory.PickupMessage "Big shells"
+    
     States
     {
       Spawn:
@@ -91,13 +110,17 @@ actor Pickup_ShellBox: ClassBasedPickup replaces ShellBox
         stop
 
       Pickup:
-        TNT1 A 0 A_JumpIf(CallACS("Pickup_Pickup", It_ShellBox, false) == 1, "PickedUp")
-        goto NotPickedUp
+        TNT1 A 0 A_GiveInventory("DakkaShells",       20)
+        TNT1 A 0 A_GiveInventory("DakkaShotGrenades", 4)
+        TNT1 A 0 A_GiveInventory("DakkaGyroShells",   8)
+        stop
     }
 }
 
-actor Pickup_RocketBox: ClassBasedPickup replaces RocketBox
+actor Pickup_RocketBox: CustomInventory replaces RocketBox
 {
+    Inventory.PickupMessage "Big rockets"
+    
     States
     {
       Spawn:
@@ -105,13 +128,18 @@ actor Pickup_RocketBox: ClassBasedPickup replaces RocketBox
         stop
 
       Pickup:
-        TNT1 A 0 A_JumpIf(CallACS("Pickup_Pickup", It_RocketBox, false) == 1, "PickedUp")
-        goto NotPickedUp
+        TNT1 A 0 A_GiveInventory("DakkaRockets",      20)
+        TNT1 A 0 A_GiveInventory("DakkaShotGrenades", 3)
+        TNT1 A 0 A_GiveInventory("DakkaGyroShells",   6)
+        TNT1 A 0 A_GiveInventory("DakkaRainGrenades", 4)
+        stop
     }
 }
 
-actor Pickup_CellPack: ClassBasedPickup replaces CellPack
+actor Pickup_CellPack: CustomInventory replaces CellPack
 {
+    Inventory.PickupMessage "Big cells"
+    
     States
     {
       Spawn:
@@ -119,14 +147,18 @@ actor Pickup_CellPack: ClassBasedPickup replaces CellPack
         stop
 
       Pickup:
-        TNT1 A 0 A_JumpIf(CallACS("Pickup_Pickup", It_CellPack, false) == 1, "PickedUp")
-        goto NotPickedUp
+        TNT1 A 0 A_GiveInventory("DakkaCells",      100)
+        TNT1 A 0 A_GiveInventory("DakkaFlamerFuel", 18)
+        stop
     }
 }
 
 
-actor Pickup_Backpack: ClassBasedPickup replaces Backpack
+actor Pickup_Backpack: CustomInventory replaces Backpack
 {
+    +ALWAYSPICKUP
+    Inventory.PickupMessage "Backpack!"
+    
     States
     {
       Spawn:
@@ -134,7 +166,7 @@ actor Pickup_Backpack: ClassBasedPickup replaces Backpack
         stop
 
       Pickup:
-        TNT1 A 0 A_JumpIf(CallACS("Pickup_Pickup", It_Backpack, false) == 1, "PickedUp")
-        goto NotPickedUp
+        TNT1 A 0 A_GiveInventory("DakkaBackpackItem")
+        stop
     }
 }
