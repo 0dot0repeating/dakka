@@ -111,13 +111,12 @@ script "Score_CheckRevival" (void)
 
           case 3:
             TakeInventory("BasicArmor", 0x7FFFFFFF);
-            Pickup_DoPickup(It_Soulsphere, classNum, false);
+            GiveInventory("Pickup_Soulsphere", 1);
             Pickup_DoPickup(It_BlueArmor,  classNum, false);
             break;
 
           case 4:
-            TakeInventory("BasicArmor", 0x7FFFFFFF);
-            Pickup_DoPickup(It_Megasphere, classNum, false);
+            GiveInventory("Pickup_Megasphere", 1);
             break;
         }
 

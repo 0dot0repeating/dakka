@@ -11,40 +11,13 @@ const int It_BFG9000          = 8;
 const int It_ShotgunDropped   = 9;
 const int It_ChaingunDropped  = 10;
 
-const int It_Clip             = 11;
-const int It_Shell            = 12;
-const int It_RocketAmmo       = 13;
-const int It_Cell             = 14;
-const int It_ClipBox          = 15;
-const int It_ShellBox         = 16;
-const int It_RocketBox        = 17;
-const int It_CellPack         = 18;
+const int It_GreenArmor       = 11;
+const int It_BlueArmor        = 12;
 
-const int It_HealthBonus      = 19;
-const int It_Stimpack         = 20;
-const int It_Medikit          = 21;
-const int It_Soulsphere       = 22;
-
-const int It_ArmorBonus       = 23;
-const int It_GreenArmor       = 24;
-const int It_BlueArmor        = 25;
-const int It_Megasphere       = 26;
-
-const int It_Berserk          = 27;
-const int It_Blursphere       = 28;
-const int It_InvulnSphere     = 29;
-const int It_Backpack         = 30;
-
-const int It_Dakka_Channeler      = 31;
-const int It_Dakka_PlasmaBundle   = 32;
-
-const int It_Dakka_Impaler        = 33;
-const int It_Dakka_BFGBundle      = 34;
-
-const int It_ST_Minigun           = 35;
-const int It_ST_GrenadeLauncher   = 36;
-const int It_ST_Railgun           = 37;
-const int It_ST_BFG10k            = 38;
+const int It_ST_Minigun           = 13;
+const int It_ST_GrenadeLauncher   = 14;
+const int It_ST_Railgun           = 15;
+const int It_ST_BFG10k            = 16;
 
 
 #include "decorate/pickups/doom_weapons.dec"
