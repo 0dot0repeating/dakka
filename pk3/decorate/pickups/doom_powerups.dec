@@ -1,13 +1,3 @@
-actor SwitchToFist: Trigger
-{
-    States
-    {
-      Pickup:
-        TNT1 A 0 A_SelectWeapon("Fist")
-        stop
-    }
-}
-
 actor Pickup_Berserk: ClassBasedPickup replaces Berserk
 {
     States
@@ -22,10 +12,9 @@ actor Pickup_Berserk: ClassBasedPickup replaces Berserk
     }
 }
 
-actor Pickup_Blursphere: ClassBasedPickup replaces Blursphere
+actor Pickup_Blursphere: Blursphere replaces Blursphere
 {
-    +VISIBILITYPULSE
-    RenderStyle Translucent
+    Inventory.PickupMessage "Blursphere!"
     
     States
     {
@@ -39,16 +28,8 @@ actor Pickup_Blursphere: ClassBasedPickup replaces Blursphere
     }
 }
 
-actor Pickup_InvulnSphere: ClassBasedPickup replaces InvulnerabilitySphere
+actor Pickup_InvulnSphere: InvulnerabilitySphere replaces InvulnerabilitySphere
 {
-    States
-    {
-      Spawn:
-        PINV ABCD 6 bright
-        loop
-
-      Pickup:
-        TNT1 A 0 A_JumpIf(CallACS("Pickup_Pickup", It_InvulnSphere, false) == 1, "PickedUp")
-        goto NotPickedUp
-    }
+    Inventory.PickupMessage "Invulnerability!"
+    Powerup.Colormap 0.1,0.05,0, 1,0.67,0.25
 }

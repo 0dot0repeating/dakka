@@ -1,5 +1,14 @@
-actor Pickup_HealthBonus: ClassBasedPickup replaces HealthBonus
+actor Dakka_OneHealth: Health
 {
+    Inventory.Amount 1
+    Inventory.MaxAmount 300
+}
+
+actor Pickup_HealthBonus: CustomInventory replaces HealthBonus
+{
+    +ALWAYSPICKUP
+    Inventory.PickupMessage "Health bonus"
+    
     States
     {
       Spawn:
@@ -7,41 +16,48 @@ actor Pickup_HealthBonus: ClassBasedPickup replaces HealthBonus
         loop
 
       Pickup:
-        TNT1 A 0 A_JumpIf(CallACS("Pickup_Pickup", It_HealthBonus, false) == 1, "PickedUp")
-        goto NotPickedUp
-    }
-}
-
-actor Pickup_Stimpack: ClassBasedPickup replaces Stimpack
-{
-    States
-    {
-      Spawn:
-        STIM A -1
+        TNT1 A 0 A_JumpIf(health >= 200, "Heal300")
+        TNT1 A 0 A_JumpIf(health >= 100, "Heal200")
+        TNT1 A 0 A_JumpIf(health >= 50,  "Heal100")
+        goto Heal50
+      
+      Heal300:
+        TNT1 A 0 A_GiveInventory("Dakka_OneHealth", 1)
         stop
-
-      Pickup:
-        TNT1 A 0 A_JumpIf(CallACS("Pickup_Pickup", It_Stimpack, false) == 1, "PickedUp")
-        goto NotPickedUp
-    }
-}
-
-actor Pickup_Medikit: ClassBasedPickup replaces Medikit
-{
-    States
-    {
-      Spawn:
-        MEDI A -1
+      
+      Heal200:
+        TNT1 A 0 A_GiveInventory("Dakka_OneHealth", 2)
         stop
-
-      Pickup:
-        TNT1 A 0 A_JumpIf(CallACS("Pickup_Pickup", It_Medikit, false) == 1, "PickedUp")
-        goto NotPickedUp
+      
+      Heal100:
+        TNT1 A 0 A_GiveInventory("Dakka_OneHealth", 3)
+        stop
+      
+      Heal50:
+        TNT1 A 0 A_GiveInventory("Dakka_OneHealth", 4)
+        stop
     }
 }
 
-actor Pickup_Soulsphere: ClassBasedPickup replaces Soulsphere
+actor Pickup_Stimpack: Stimpack replaces Stimpack
 {
+    Inventory.PickupMessage "Stimpack"
+}
+
+actor Pickup_Medikit: Medikit replaces Medikit
+{
+    Inventory.PickupMessage "Medikit"
+}
+
+actor Pickup_Soulsphere: CustomInventory replaces Soulsphere
+{
+    +COUNTITEM
+    +ALWAYSPICKUP
+    +FANCYPICKUPSOUND
+    
+    Inventory.PickupMessage "Soulsphere!"
+    Inventory.PickupSound   "misc/p_pkup"
+    
     States
     {
       Spawn:
@@ -49,7 +65,31 @@ actor Pickup_Soulsphere: ClassBasedPickup replaces Soulsphere
         loop
 
       Pickup:
-        TNT1 A 0 A_JumpIf(CallACS("Pickup_Pickup", It_Soulsphere, false) == 1, "PickedUp")
+        TNT1 AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA 0 A_GiveInventory("Dakka_SoulsphereHealth")
         goto NotPickedUp
+    }
+}
+
+actor Dakka_SoulsphereHealth: CustomInventory
+{
+    Inventory.MaxAmount 50
+    
+    States
+    {
+      Spawn:
+        TNT1 A 0
+        stop
+      
+      Pickup:
+        TNT1 A 0 A_JumpIf(health >= 200, "Heal300")
+        goto HealNormal
+      
+      Heal300:
+        TNT1 A 0 A_GiveInventory("Dakka_OneHealth", 1)
+        stop
+      
+      HealNormal:
+        TNT1 A 0 A_GiveInventory("Dakka_OneHealth", 2)
+        stop
     }
 }

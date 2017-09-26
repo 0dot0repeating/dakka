@@ -1,4 +1,4 @@
-// Server-to-client definitions here.
+// Client-to-server definitions here.
 //
 // C2S is for constant definitions, CToS is for array definitions, and CSender is
 // for function definitions. Scripts use the PICKUP prefix like all other scripts.
@@ -117,7 +117,8 @@ function void CSender_ForceSendAll(int pln)
 
 
 
-// Okay NOW send the crap. This should only ever be run by the 
+// Okay NOW send the crap. This should only ever be run
+// by the OPEN CLIENTSIDE script.
 function void CSender_ActuallySend(int pln)
 {
     int i;
@@ -129,9 +130,6 @@ function void CSender_ActuallySend(int pln)
         if (CToS_ToSend[pln][i])
         {
             int data = CToS_ClientData[pln][i];
-
-            // RequestScriptPuke doesn't suffer from the negative argument
-            //  corruption issue. Yay.
 
             if (useScriptPuke)
             {
