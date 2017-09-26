@@ -154,7 +154,7 @@ int CMSG_MessageNamed[MSG_SCRIPTEDCOUNT] =
 //   chases a nonexistent item around.
 
 
-#define DISP_SCRIPTEDCOUNT  4
+#define DISP_SCRIPTEDCOUNT  2
 
 // Row 0 indicates which item index this is for.
 #define DISP_S_ITEMNUM      0
@@ -178,16 +178,12 @@ int CMSG_MessageNamed[MSG_SCRIPTEDCOUNT] =
 
 int DISP_ScriptedDisplays[DISP_SCRIPTEDCOUNT][7] =
 {
-    {It_Blursphere,  Cl_Unknown,  493, 0, 0, 0, true}, // pickup/dakka_vispulse.h
-    {It_Blursphere,  Cl_Dakkaguy, 493, 0, 0, 0, true},
     {It_Shotgun,     Cl_Dakkaguy, 495, 0, 0, 0, true}, // pickup/dakka_wepdisplay.h
     {It_Chaingun,    Cl_Dakkaguy, 496, 1, 0, 0, true},
 };
 
 int DISP_DisplayNamed[DISP_SCRIPTEDCOUNT] = 
 {
-    "Dakka_VisPulse",
-    "Dakka_VisPulse",
     "Dakka_WepDisplay",
     "Dakka_WepDisplay",
 };

@@ -3,16 +3,6 @@ actor Pickup_STMinigun: ClassBasedPickup replaces Minigun
     States
     {
       Spawn:
-        MNGN A 0
-        "----" A 0 A_SetUserVar("user_index", It_ST_Minigun)
-        "----" A 0 A_SetUserVar("user_dropped", 0)
-        goto DropCheck
-
-      Unknown:
-        MNGN A -1
-        stop
-
-      Dakka:
         DMNG Z -1
         stop
 
@@ -27,17 +17,7 @@ actor Pickup_STGrenadeLauncher: ClassBasedPickup replaces GrenadeLauncher
     States
     {
       Spawn:
-        GLAU A 0
-        "----" A 0 A_SetUserVar("user_index", It_ST_GrenadeLauncher)
-        "----" A 0 A_SetUserVar("user_dropped", 0)
-        goto DropCheck
-
-      Unknown:
-        GLAU A -1
-        stop
-
-      Dakka:
-        DKRL Z -1
+        DKIP Z -1
         stop
 
       Pickup:
@@ -51,17 +31,7 @@ actor Pickup_STRailgun: ClassBasedPickup replaces Railgun
     States
     {
       Spawn:
-        RAIL A 0
-        "----" A 0 A_SetUserVar("user_index", It_ST_Railgun)
-        "----" A 0 A_SetUserVar("user_dropped", 0)
-        goto DropCheck
-
-      Unknown:
-        RAIL A -1
-        stop
-
-      Dakka:
-        PLZM E -1
+        DPLS Z -1
         stop
 
       Pickup:
@@ -75,17 +45,7 @@ actor Pickup_STBFG10k: ClassBasedPickup replaces BFG10k
     States
     {
       Spawn:
-        BFG2 A 0
-        "----" A 0 A_SetUserVar("user_index", It_ST_BFG10k)
-        "----" A 0 A_SetUserVar("user_dropped", 0)
-        goto DropCheck
-
-      Unknown:
-        BFG2 A -1
-        stop
-
-      Dakka:
-        DKIP Z -1
+        DBFG Z -1
         stop
 
       Pickup:

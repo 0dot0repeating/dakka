@@ -13,16 +13,6 @@ actor Pickup_Berserk: ClassBasedPickup replaces Berserk
     States
     {
       Spawn:
-        PSTR A 0
-        "----" A 0 A_SetUserVar("user_index", It_Berserk)
-        "----" A 0 A_SetUserVar("user_dropped", 0)
-        goto DropCheck
-
-      Unknown:
-        PSTR A -1
-        stop
-
-      Dakka:
         DMNG Z -1
         stop
 
@@ -34,18 +24,12 @@ actor Pickup_Berserk: ClassBasedPickup replaces Berserk
 
 actor Pickup_Blursphere: ClassBasedPickup replaces Blursphere
 {
+    +VISIBILITYPULSE
+    RenderStyle Translucent
+    
     States
     {
       Spawn:
-        PINS A 0
-        "----" A 0 A_SetUserVar("user_index", It_Blursphere)
-        "----" A 0 A_SetUserVar("user_dropped", 0)
-        goto DropCheck
-
-      // Can't A_ChangeFlag("VISIBILITYPULSE"), so we do it by ACS - see
-      //  acs/pickup/pickup_scripted.h
-      Unknown:
-      Dakka:
         PINS ABCD 6 bright
         loop
 
@@ -60,13 +44,6 @@ actor Pickup_InvulnSphere: ClassBasedPickup replaces InvulnerabilitySphere
     States
     {
       Spawn:
-        PINV A 0
-        "----" A 0 A_SetUserVar("user_index", It_InvulnSphere)
-        "----" A 0 A_SetUserVar("user_dropped", 0)
-        goto DropCheck
-
-      Unknown:
-      Dakka:
         PINV ABCD 6 bright
         loop
 
