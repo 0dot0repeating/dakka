@@ -237,6 +237,9 @@ StatusBar Normal, fullscreenoffsets, 0.85
     {
         InInventory BlueSkull { DrawImage "HUD_BKY2", 41,  -80; }
     }
+    
+    DrawSelectedInventory centerbottom, alwaysshowcounter, drawshadow(1, 1), INDEXFONT, -45, -69, -33, -73;
+    DrawInventoryBar Doom, noartibox, drawshadow(1, 1), 12, INDEXFONT, -223+center, -62;
 }
 
 StatusBar Fullscreen, fullscreenoffsets, 0.85
@@ -470,6 +473,9 @@ StatusBar Fullscreen, fullscreenoffsets, 0.85
     {
         InInventory BlueSkull { DrawImage "HUD_BKY2", 41,  -80; }
     }
+    
+    DrawSelectedInventory centerbottom, alwaysshowcounter, drawshadow(1, 1), INDEXFONT, -45, -69, -33, -73;
+    DrawInventoryBar Doom, noartibox, drawshadow(1, 1), 12, INDEXFONT, -223+center, -30;
 }
 
 StatusBar Automap, fullscreenoffsets, 0.85
@@ -703,4 +709,17 @@ StatusBar Automap, fullscreenoffsets, 0.85
     {
         InInventory BlueSkull { DrawImage "HUD_BKY2", 41,  -80; }
     }
+    
+    DrawSelectedInventory centerbottom, alwaysshowcounter, drawshadow(1, 1), INDEXFONT, -45, -69, -33, -73;
+    DrawInventoryBar Doom, noartibox, drawshadow(1, 1), 12, INDEXFONT, -223+center, -62;
+}
+
+
+StatusBar Inventory, fullscreenoffsets
+{
+}
+
+
+StatusBar InventoryFullscreen, fullscreenoffsets
+{
 }
