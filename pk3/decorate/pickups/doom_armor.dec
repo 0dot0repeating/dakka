@@ -3,13 +3,6 @@ actor Pickup_ArmorBonus: ClassBasedPickup replaces ArmorBonus
     States
     {
       Spawn:
-        BON2 A 0
-        "----" A 0 A_SetUserVar("user_index", It_ArmorBonus)
-        "----" A 0 A_SetUserVar("user_dropped", 0)
-        goto DropCheck
-
-      Unknown:
-      Dakka:
         BON2 ABCDCB 6
         loop
 
@@ -24,13 +17,6 @@ actor Pickup_GreenArmor: ClassBasedPickup replaces GreenArmor
     States
     {
       Spawn:
-        ARM1 A 0
-        "----" A 0 A_SetUserVar("user_index", It_GreenArmor)
-        "----" A 0 A_SetUserVar("user_dropped", 0)
-        goto DropCheck
-
-      Unknown:
-      Dakka:
         ARM1 A 6
         ARM1 B 7 bright
         loop
@@ -46,13 +32,6 @@ actor Pickup_BlueArmor: ClassBasedPickup replaces BlueArmor
     States
     {
       Spawn:
-        ARM2 A 0
-        "----" A 0 A_SetUserVar("user_index", It_BlueArmor)
-        "----" A 0 A_SetUserVar("user_dropped", 0)
-        goto DropCheck
-
-      Unknown:
-      Dakka:
         ARM2 A 6
         ARM2 B 7 bright
         loop
@@ -68,13 +47,6 @@ actor Pickup_Megasphere: ClassBasedPickup replaces Megasphere
     States
     {
       Spawn:
-        MEGA A 0
-        "----" A 0 A_SetUserVar("user_index", It_Megasphere)
-        "----" A 0 A_SetUserVar("user_dropped", 0)
-        goto DropCheck
-
-      Unknown:
-      Dakka:
         MEGA ABCD 6 bright
         loop
 

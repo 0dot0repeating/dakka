@@ -3,13 +3,6 @@ actor Pickup_Clip: ClassBasedPickup replaces Clip
     States
     {
       Spawn:
-        CLIP A 0
-        "----" A 0 A_SetUserVar("user_index", It_Clip)
-        "----" A 0 A_SetUserVar("user_dropped", 0)
-        goto DropCheck
-
-      Unknown:
-      Dakka:
         CLIP A -1
         stop
 
@@ -24,14 +17,6 @@ actor Pickup_ClipDropped: ClassBasedPickup
     States
     {
       Spawn:
-        CLIP A 0
-        "----" A 0 A_SetUserVar("user_index", It_Clip)
-        "----" A 0 A_SetUserVar("user_dropped", 0)
-        "----" A 0 A_ChangeFlag("DROPPED", true)
-        goto DropCheck
-
-      Unknown:
-      Dakka:
         CLIP A -1
         stop
 
@@ -46,13 +31,6 @@ actor Pickup_Shell: ClassBasedPickup replaces Shell
     States
     {
       Spawn:
-        SHEL A 0
-        "----" A 0 A_SetUserVar("user_index", It_Shell)
-        "----" A 0 A_SetUserVar("user_dropped", 0)
-        goto DropCheck
-
-      Unknown:
-      Dakka:
         SHEL A -1
         stop
 
@@ -67,13 +45,6 @@ actor Pickup_RocketAmmo: ClassBasedPickup replaces RocketAmmo
     States
     {
       Spawn:
-        ROCK A 0
-        "----" A 0 A_SetUserVar("user_index", It_RocketAmmo)
-        "----" A 0 A_SetUserVar("user_dropped", 0)
-        goto DropCheck
-
-      Unknown:
-      Dakka:
         ROCK A -1
         stop
 
@@ -88,13 +59,6 @@ actor Pickup_Cell: ClassBasedPickup replaces Cell
     States
     {
       Spawn:
-        CELL A 0
-        "----" A 0 A_SetUserVar("user_index", It_Cell)
-        "----" A 0 A_SetUserVar("user_dropped", 0)
-        goto DropCheck
-
-      Unknown:
-      Dakka:
         CELL A -1
         stop
 
@@ -109,13 +73,6 @@ actor Pickup_ClipBox: ClassBasedPickup replaces ClipBox
     States
     {
       Spawn:
-        AMMO A 0
-        "----" A 0 A_SetUserVar("user_index", It_ClipBox)
-        "----" A 0 A_SetUserVar("user_dropped", 0)
-        goto DropCheck
-
-      Unknown:
-      Dakka:
         AMMO A -1
         stop
 
@@ -130,13 +87,6 @@ actor Pickup_ShellBox: ClassBasedPickup replaces ShellBox
     States
     {
       Spawn:
-        SBOX A 0
-        "----" A 0 A_SetUserVar("user_index", It_ShellBox)
-        "----" A 0 A_SetUserVar("user_dropped", 0)
-        goto DropCheck
-
-      Unknown:
-      Dakka:
         SBOX A -1
         stop
 
@@ -151,13 +101,6 @@ actor Pickup_RocketBox: ClassBasedPickup replaces RocketBox
     States
     {
       Spawn:
-        BROK A 0
-        "----" A 0 A_SetUserVar("user_index", It_RocketBox)
-        "----" A 0 A_SetUserVar("user_dropped", 0)
-        goto DropCheck
-
-      Unknown:
-      Dakka:
         BROK A -1
         stop
 
@@ -172,13 +115,6 @@ actor Pickup_CellPack: ClassBasedPickup replaces CellPack
     States
     {
       Spawn:
-        CELP A 0
-        "----" A 0 A_SetUserVar("user_index", It_CellPack)
-        "----" A 0 A_SetUserVar("user_dropped", 0)
-        goto DropCheck
-
-      Unknown:
-      Dakka:
         CELP A -1
         stop
 
@@ -194,13 +130,6 @@ actor Pickup_Backpack: ClassBasedPickup replaces Backpack
     States
     {
       Spawn:
-        BPAK A 0
-        "----" A 0 A_SetUserVar("user_index", It_Backpack)
-        "----" A 0 A_SetUserVar("user_dropped", 0)
-        goto DropCheck
-
-      Unknown:
-      Dakka:
         BPAK A -1
         stop
 
