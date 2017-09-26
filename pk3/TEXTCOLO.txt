@@ -6,8 +6,8 @@ DHud_Health
 
 DHud_Health50
 {
-    #B09090 #FFD8D8  0 240
-    #FFD8D8 #FFE8E8  241 255
+    #995c5c #e6aaaa  0 240
+    #e6aaaa #e6c8c8  241 255
 }
 
 DHud_Health25
@@ -18,8 +18,8 @@ DHud_Health25
 
 DHud_Health0
 {
-    #909090 #D8D8D8  0 240
-    #D8D8D8 #E8E8E8  241 255
+    #606060 #A0A0A0  0 240
+    #A0A0A0 #A8A8A8  241 255
 }
 
 DHud_Health200
