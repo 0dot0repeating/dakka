@@ -49,7 +49,7 @@ DHud_ArmorBlue
 
 DHud_ArmorSilver
 {
-    #B0B0B0 #E8E8E8  0 240
+    #A0A0A0 #E8E8E8  0 240
     #E8E8E8 #FFFFFF  241 255
 }
 
