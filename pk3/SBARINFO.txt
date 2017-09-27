@@ -162,39 +162,44 @@ StatusBar Normal, fullscreenoffsets, 0.85
         DrawImage  "HUD_AM20", -96, -63;
     }
     
-    DrawImage "HUD_WBAR", -223+center, -32;
+    Alpha 0.6667
+    {
+        DrawImage "HUD_WBAR", -223+center, -32;
+    }
     
-    InInventory DWep_Scrappers { DrawImage "HWEP1_1", -202+center, -28; }
-    
-    InInventory DWep_Pistol || DWep_Pistols { DrawImage "HWEP21_1", -144+center, -26; }
-    InInventory DWep_Pistols                { DrawImage "HWEP22_1", -128+center, -26; }
-    
-    InInventory DWep_Shotgun      { DrawImage "HWEP31_1", -88+center, -26; }
-    InInventory DWep_SuperShotgun { DrawImage "HWEP32_1", -78+center, -24; }
-    
-    InInventory DWep_Chaingun { DrawImage "HWEP41_1", -27+center, -26; }
-    InInventory DWep_Minigun  { DrawImage "HWEP42_1", 3+center, -24; }
-    
-    InInventory DWep_Impaler     { DrawImage "HWEP5_1", 36+center, -27; }
-    InInventory DWep_PlasmaLance { DrawImage "HWEP6_1", 96+center, -27; }
-    InInventory DWep_BFG9000     { DrawImage "HWEP7_1", 157+center, -28; }
-    
-    
-    
-    IsSelected DWep_Scrappers { DrawImage "HWEP1_2", -202+center, -28; }
-    
-    IsSelected DWep_Pistol, DWep_Pistols { DrawImage "HWEP21_2", -144+center, -26; }
-    IsSelected DWep_Pistols              { DrawImage "HWEP22_2", -128+center, -26; }
-    
-    IsSelected DWep_Shotgun      { DrawImage "HWEP31_2", -88+center, -26; }
-    IsSelected DWep_SuperShotgun { DrawImage "HWEP32_2", -78+center, -24; }
-    
-    IsSelected DWep_Chaingun { DrawImage "HWEP41_2", -27+center, -26; }
-    IsSelected DWep_Minigun  { DrawImage "HWEP42_2", 3+center, -24; }
-    
-    IsSelected DWep_Impaler     { DrawImage "HWEP5_2", 36+center, -27; }
-    IsSelected DWep_PlasmaLance { DrawImage "HWEP6_2", 96+center, -27; }
-    IsSelected DWep_BFG9000     { DrawImage "HWEP7_2", 157+center, -28; }
+    Alpha 0.8
+    {
+        InInventory DWep_Scrappers { DrawImage "HWEP1_1", -202+center, -28; }
+        
+        InInventory DWep_Pistol || DWep_Pistols { DrawImage "HWEP21_1", -144+center, -26; }
+        InInventory DWep_Pistols                { DrawImage "HWEP22_1", -128+center, -26; }
+        
+        InInventory DWep_Shotgun      { DrawImage "HWEP31_1", -88+center, -26; }
+        InInventory DWep_SuperShotgun { DrawImage "HWEP32_1", -78+center, -24; }
+        
+        InInventory DWep_Chaingun { DrawImage "HWEP41_1", -27+center, -26; }
+        InInventory DWep_Minigun  { DrawImage "HWEP42_1", 3+center, -24; }
+        
+        InInventory DWep_Impaler     { DrawImage "HWEP5_1", 36+center, -27; }
+        InInventory DWep_PlasmaLance { DrawImage "HWEP6_1", 96+center, -27; }
+        InInventory DWep_BFG9000     { DrawImage "HWEP7_1", 157+center, -28; }
+        
+        
+        IsSelected DWep_Scrappers { DrawImage "HWEP1_2", -202+center, -28; }
+        
+        IsSelected DWep_Pistol, DWep_Pistols { DrawImage "HWEP21_2", -144+center, -26; }
+        IsSelected DWep_Pistols              { DrawImage "HWEP22_2", -128+center, -26; }
+        
+        IsSelected DWep_Shotgun      { DrawImage "HWEP31_2", -88+center, -26; }
+        IsSelected DWep_SuperShotgun { DrawImage "HWEP32_2", -78+center, -24; }
+        
+        IsSelected DWep_Chaingun { DrawImage "HWEP41_2", -27+center, -26; }
+        IsSelected DWep_Minigun  { DrawImage "HWEP42_2", 3+center, -24; }
+        
+        IsSelected DWep_Impaler     { DrawImage "HWEP5_2", 36+center, -27; }
+        IsSelected DWep_PlasmaLance { DrawImage "HWEP6_2", 96+center, -27; }
+        IsSelected DWep_BFG9000     { DrawImage "HWEP7_2", 157+center, -28; }
+    }
     
     DrawBar "AMBAR_1", "AMBAK_1", DakkaScrap,        horizontal, -212+center, -7;
     DrawBar "AMBAR_1", "AMBAK_1", DakkaBullet_10mm,  horizontal, -149+center, -7;
@@ -207,7 +212,7 @@ StatusBar Normal, fullscreenoffsets, 0.85
     DrawBar "AMBAR_1", "AMBAK_1", DakkaRockets,      horizontal,  34+center,  -7;
     DrawBar "AMBAR_1", "AMBAK_1", DakkaCells,        horizontal,  95+center,  -7;
     DrawBar "AMBAR_1", "AMBAK_1", DakkaCells,        horizontal,  156+center, -7;
-
+    
     InInventory YellowCard
     {
         DrawImage "HUD_YKY1", 8, -79;
@@ -238,8 +243,15 @@ StatusBar Normal, fullscreenoffsets, 0.85
         InInventory BlueSkull { DrawImage "HUD_BKY2", 41,  -80; }
     }
     
-    DrawSelectedInventory centerbottom, alwaysshowcounter, drawshadow(1, 1), INDEXFONT, -45, -69, -33, -73;
-    DrawInventoryBar Doom, noartibox, drawshadow(1, 1), 12, INDEXFONT, -223+center, -62;
+    InventoryBarNotVisible
+    {
+        DrawSelectedInventory centerbottom, alwaysshowcounter, drawshadow(1, 1), INDEXFONT, -45, -69, -33, -73;
+        
+        Alpha 0.444
+        {
+            DrawInventoryBar Doom, noartibox, drawshadow(1, 1), 12, INDEXFONT, -223+center, -62;
+        }
+    }
 }
 
 StatusBar Fullscreen, fullscreenoffsets, 0.85
@@ -474,8 +486,15 @@ StatusBar Fullscreen, fullscreenoffsets, 0.85
         InInventory BlueSkull { DrawImage "HUD_BKY2", 41,  -80; }
     }
     
-    DrawSelectedInventory centerbottom, alwaysshowcounter, drawshadow(1, 1), INDEXFONT, -45, -69, -33, -73;
-    DrawInventoryBar Doom, noartibox, drawshadow(1, 1), 12, INDEXFONT, 108, -30;
+    InventoryBarNotVisible
+    {
+        DrawSelectedInventory centerbottom, alwaysshowcounter, drawshadow(1, 1), INDEXFONT, -45, -69, -33, -73;
+        
+        Alpha 0.444
+        {
+            DrawInventoryBar Doom, noartibox, drawshadow(1, 1), 12, INDEXFONT, 108, -30;
+        }
+    }
 }
 
 StatusBar Automap, fullscreenoffsets, 0.85
@@ -679,7 +698,7 @@ StatusBar Automap, fullscreenoffsets, 0.85
     IsSelected DWep_Impaler        { DrawImage "FSH_WP53", -143, -42; }
     IsSelected DWep_PlasmaLance    { DrawImage "FSH_WP63", -133, -42; }
     IsSelected DWep_BFG9000        { DrawImage "FSH_WP73", -123, -42; }
-
+    
     InInventory YellowCard
     {
         DrawImage "HUD_YKY1", 8, -79;
@@ -710,16 +729,35 @@ StatusBar Automap, fullscreenoffsets, 0.85
         InInventory BlueSkull { DrawImage "HUD_BKY2", 41,  -80; }
     }
     
-    DrawSelectedInventory centerbottom, alwaysshowcounter, drawshadow(1, 1), INDEXFONT, -45, -69, -33, -73;
-    DrawInventoryBar Doom, noartibox, drawshadow(1, 1), 12, INDEXFONT, 108, -62;
+    InventoryBarNotVisible
+    {
+        DrawSelectedInventory centerbottom, alwaysshowcounter, drawshadow(1, 1), INDEXFONT, -45, -69, -33, -73;
+        
+        Alpha 0.444
+        {
+            DrawInventoryBar Doom, noartibox, drawshadow(1, 1), 12, INDEXFONT, -223+center, -62;
+        }
+    }
 }
 
 
-StatusBar Inventory, fullscreenoffsets
+StatusBar Inventory, fullscreenoffsets, 0.75
 {
+    Alpha 0.444
+    {
+        DrawSelectedInventory centerbottom, alwaysshowcounter, drawshadow(1, 1), INDEXFONT, -45, -69, -33, -73;
+    }
+    
+    DrawInventoryBar Doom, noartibox, drawshadow(1, 1), 12, INDEXFONT, -223+center, -62;
 }
 
 
-StatusBar InventoryFullscreen, fullscreenoffsets
+StatusBar InventoryFullscreen, fullscreenoffsets, 0.75
 {
+    Alpha 0.444
+    {
+        DrawSelectedInventory centerbottom, alwaysshowcounter, drawshadow(1, 1), INDEXFONT, -45, -69, -33, -73;
+    }
+    
+    DrawInventoryBar Doom, noartibox, drawshadow(1, 1), 12, INDEXFONT, 108, -30;
 }
