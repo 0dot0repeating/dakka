@@ -1,4 +1,4 @@
-#define WEAPONCOUNT    66
+#define WEAPONCOUNT 63
 #define REPLCOUNT   3
 
 #define WEP_NAME    0
@@ -12,7 +12,7 @@ int PKP_KnownGuns[WEAPONCOUNT][3] =
 {
 //  Name                        Ammo 1                      Ammo 2
 //
-    // DAKKA (14 weapons)
+    // DAKKA (11 weapons)
     {"DWep_Fist",               "",                         ""},
     {"DWep_Scrappers",          "DakkaScrap",               ""},
     {"DWep_Pistol",             "DakkaBullet_10mm",         ""},
@@ -21,12 +21,9 @@ int PKP_KnownGuns[WEAPONCOUNT][3] =
     {"DWep_SuperShotgun",       "DakkaShells",              "DakkaGyroShells"},
     {"DWep_Chaingun",           "DakkaBullet_5mm",          "DakkaRainGrenades"},
     {"DWep_Minigun",            "DakkaBullet_5mm",          "DakkaFlamerFuel"},
-    {"DWep_RocketLauncher",     "DakkaRockets",             ""},
-    {"DWep_PlasmaRifle",        "DakkaCells",               ""},
-    {"DWep_Channeler",          "DakkaCells",               ""},
+    {"DWep_Impaler",            "DakkaRockets",             ""},
     {"DWep_PlasmaLance",        "DakkaCells",               ""},
     {"DWep_BFG9000",            "DakkaCells",               ""},
-    {"DWep_Impaler",            "DakkaRockets",             ""},
 
 
     // DOOM (9 weapons)
@@ -67,7 +64,7 @@ int PKP_KnownGuns[WEAPONCOUNT][3] =
     {"SkullRod",                "SkullRodAmmo",             ""},
     {"Mace",                    "MaceAmmo",                 ""},
 
-    // HEXEN (16 weapons)
+    // HEXEN (12 weapons)
     {"FWeapFist",               "",                         ""},
     {"CWeapMace",               "",                         ""},
     {"MWeapWand",               "",                         ""},
@@ -108,9 +105,7 @@ int PKP_WeaponPriorities[WEAPONCOUNT] =
     450,    // DWep_SuperShotgun
     700,    // DWep_Chaingun
     350,    // DWep_Minigun
-    300,    // DWep_RocketLauncher
-    100,    // DWep_PlasmaRifle
-    100,    // DWep_Channeler
+    300,    // DWep_Impaler
     100,    // DWep_PlasmaLance
     1000,   // DWep_BFG9000
 
