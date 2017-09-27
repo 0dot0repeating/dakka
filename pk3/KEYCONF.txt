@@ -4,14 +4,14 @@ alias dakka_cmd_continuousplay "dakka_startmode_weapons 0; dakka_startmode_ammo 
 alias dakka_cmd_pistolstart    "dakka_startmode_weapons 2; dakka_startmode_ammo 3; dakka_startmode_health 1; dakka_keepscore 0; dakka_backpackstart -1"
 alias dakka_cmd_defaults       "dakka_startmode_weapons 0; dakka_startmode_ammo 1; dakka_startmode_health 1; dakka_keepscore 0; dakka_backpackstart  0; dakka_scrapperstart 0; dakka_scrapfactor 100; dakka_ignorehubs 0; dakka_powerlevel 0; dakka_shotgun2ssg 0; dakka_chaingun2minigun 0"
 
-alias fistswitch "use Slot1Switch_FistFirst"
+alias fistswitch "pukename Dakka_SwitchWeps 0 1"
 addmenukey "Slot 1, fist first" fistswitch
 
-alias pistswitch "use Slot2Switch_PistolFirst"
+alias pistswitch "pukename Dakka_SwitchWeps 2 3"
 addmenukey "Slot 2, pistol first" pistswitch
 
-alias shotswitch "use Slot3Switch_ShotgunFirst"
+alias shotswitch "pukename Dakka_SwitchWeps 4 5"
 addmenukey "Slot 3, shotgun first" shotswitch
 
-alias chainswitch "use Slot4Switch_ChaingunFirst"
+alias chainswitch "pukename Dakka_SwitchWeps 6 7"
 addmenukey "Slot 4, chaingun first" chainswitch

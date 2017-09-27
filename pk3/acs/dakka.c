@@ -105,6 +105,9 @@
 // Clientside script to check dakka_cl_lesseffects.
 #include "dakka_lesseffects.h"
 
+// Clientside weapon switching script, because A_SelectWeapon don't do shit online.
+#include "dakka_wepswitch.h"
+
 
 // Each of these is for their respecting ACS script type.
 #include "dakka_open.h"

@@ -17,12 +17,6 @@ actor Dakkaguy: PlayerPawn
     Player.HealRadiusType "Health"
     
     Player.StartItem "DakkaClassItem"
-    Player.StartItem "Slot1Switch_FistFirst"
-    Player.StartItem "Slot2Switch_PistolFirst"
-    Player.StartItem "Slot3Switch_ShotgunFirst"
-    Player.StartItem "Slot4Switch_ChaingunFirst"
-    Player.StartItem "Slot6Switch_PlasmaFirst"
-    Player.StartItem "Slot7Switch_BFGFirst"
     
     Player.StartItem "DWep_Pistols"
     Player.StartItem "DWep_Fist"
