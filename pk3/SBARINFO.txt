@@ -475,7 +475,7 @@ StatusBar Fullscreen, fullscreenoffsets, 0.85
     }
     
     DrawSelectedInventory centerbottom, alwaysshowcounter, drawshadow(1, 1), INDEXFONT, -45, -69, -33, -73;
-    DrawInventoryBar Doom, noartibox, drawshadow(1, 1), 12, INDEXFONT, -223+center, -30;
+    DrawInventoryBar Doom, noartibox, drawshadow(1, 1), 12, INDEXFONT, 108, -30;
 }
 
 StatusBar Automap, fullscreenoffsets, 0.85
@@ -711,7 +711,7 @@ StatusBar Automap, fullscreenoffsets, 0.85
     }
     
     DrawSelectedInventory centerbottom, alwaysshowcounter, drawshadow(1, 1), INDEXFONT, -45, -69, -33, -73;
-    DrawInventoryBar Doom, noartibox, drawshadow(1, 1), 12, INDEXFONT, -223+center, -62;
+    DrawInventoryBar Doom, noartibox, drawshadow(1, 1), 12, INDEXFONT, 108, -62;
 }
 
 
