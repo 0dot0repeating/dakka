@@ -56,7 +56,7 @@ int Dakka_ClassWeapons[CLASSWEAPONS][CLASSCOUNT] =
     {"PlasmaRifle",     "DWep_PlasmaLance"},
     {"BFG9000",         "DWep_BFG9000"},
 
-    {"Staff",           "DWep_Fists"},
+    {"Staff",           "DWep_Fist"},
     {"Gauntlets",       "DWep_Scrappers"},
     {"GoldWand",        "DWep_Pistol"},
     {"GoldWand",        "DWep_Pistols"},
