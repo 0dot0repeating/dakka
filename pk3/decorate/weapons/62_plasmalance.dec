@@ -2,7 +2,7 @@ actor LastLanceBarrelUsed: Boolean {}
 
 actor DWep_PlasmaLance: DoomWeapon
 {
-    Tag "Plasma Lance"
+    Tag "Lancer"
 
     Weapon.SlotNumber 6
     Weapon.SelectionOrder 100

@@ -29,7 +29,7 @@ script "dakka_titlemap" open
     
     // dakka title stuff here
     
-    AmbientSound("dakka/title_lettersmack", 127);
+    AmbientSound("dakka/hammerwall", 127);
     
     SetFont("DKLOGOF1");
     HudMessage(s:"A"; HUDMSG_PLAIN, 2, CR_UNTRANSLATED, 160.4, 10.1, 1.0);
@@ -39,7 +39,7 @@ script "dakka_titlemap" open
     
     Delay(10);
     
-    AmbientSound("dakka/title_lettersmack", 127);
+    AmbientSound("dakka/hammerwall", 127);
     
     SetFont("DKLOGOF2");
     HudMessage(s:"A"; HUDMSG_PLAIN, 2, CR_UNTRANSLATED, 160.4, 10.1, 1.0);
@@ -49,7 +49,7 @@ script "dakka_titlemap" open
     
     Delay(10);
     
-    AmbientSound("dakka/title_lettersmack", 127);
+    AmbientSound("dakka/hammerwall", 127);
     
     SetFont("DKLOGOF3");
     HudMessage(s:"A"; HUDMSG_PLAIN, 2, CR_UNTRANSLATED, 160.4, 10.1, 1.0);
@@ -59,7 +59,7 @@ script "dakka_titlemap" open
     
     Delay(10);
     
-    AmbientSound("dakka/title_lettersmack", 127);
+    AmbientSound("dakka/hammerwall", 127);
     
     SetFont("DKLOGOF4");
     HudMessage(s:"A"; HUDMSG_PLAIN, 2, CR_UNTRANSLATED, 160.4, 10.1, 1.0);
@@ -71,7 +71,7 @@ script "dakka_titlemap" open
     
     ACS_NamedExecuteWithResult("titlemap_showtips");
     
-    AmbientSound("dakka/title_lettersmack", 127);
+    AmbientSound("dakka/hammerwall", 127);
     
     SetFont("DKLOGOF5");
     HudMessage(s:"A"; HUDMSG_PLAIN, 2, CR_UNTRANSLATED, 160.4, 10.1, 1.0);
@@ -274,7 +274,8 @@ function void ShowWeaponTips(int doFade, int forceColor, int overrideColor, int 
     
     int fistColor       = "DTitle_Fists";
     int scrapperColor   = "DTitle_Scrappers";
-    int pistolColor     = "Tan";
+    int pistolColor     = "DTitle_Pistol";
+    int pistolsColor    = "DTitle_Pistols";
     int shotgunColor    = "DTitle_Shotgun";
     int ssgColor        = "DTitle_SuperShotgun";
     int chaingunColor   = "DTitle_Chaingun";
@@ -288,6 +289,7 @@ function void ShowWeaponTips(int doFade, int forceColor, int overrideColor, int 
         fistColor       = overrideColor;
         scrapperColor   = overrideColor;
         pistolColor     = overrideColor;
+        pistolsColor    = overrideColor;
         shotgunColor    = overrideColor;
         ssgColor        = overrideColor;
         chaingunColor   = overrideColor;
@@ -300,22 +302,23 @@ function void ShowWeaponTips(int doFade, int forceColor, int overrideColor, int 
     SetHudSize(320, 200, 0);
     SetFont("ARCFONT");
     
-    HudMessage(s:"Fists";            msgMode | HUDMSG_COLORSTRING, 21, fistColor,        55.4,  80.0, duration, 1.0, 1.0);
-    HudMessage(s:"Scrappers";        msgMode | HUDMSG_COLORSTRING, 22, scrapperColor,    55.4,  88.0, duration, 1.0, 1.0);
-    
-    HudMessage(s:"Pistols";          msgMode | HUDMSG_COLORSTRING, 23, pistolColor,     120.4,  84.0, duration, 1.0, 1.0);
-    
-    HudMessage(s:"Shotgun";          msgMode | HUDMSG_COLORSTRING, 24, shotgunColor,    195.4,  80.0, duration, 1.0, 1.0);
-    HudMessage(s:"Super Shotgun";    msgMode | HUDMSG_COLORSTRING, 25, ssgColor,        195.4,  88.0, duration, 1.0, 1.0);
-    
-    HudMessage(s:"Chaingun";         msgMode | HUDMSG_COLORSTRING, 26, chaingunColor,   265.4,  80.0, duration, 1.0, 1.0);
-    HudMessage(s:"Minigun";          msgMode | HUDMSG_COLORSTRING, 27, minigunColor,    265.4,  88.0, duration, 1.0, 1.0);
-    
-    HudMessage(s:"Impaler";          msgMode | HUDMSG_COLORSTRING, 28, impalerColor,    80.4,  104.0, duration, 1.0, 1.0);
-    
-    HudMessage(s:"Plasma Lance";     msgMode | HUDMSG_COLORSTRING, 29, plasmaColor,     160.4, 104.0, duration, 1.0, 1.0);
-    
-    HudMessage(s:"BFG9000";          msgMode | HUDMSG_COLORSTRING, 30, bfgColor,        240.4, 104.0, duration, 1.0, 1.0);
+    HudMessage(s:"Fists";         msgMode | HUDMSG_COLORSTRING, 21, fistColor,        40.4,  80.0, duration, 1.0, 1.0);
+    HudMessage(s:"Scrappers";     msgMode | HUDMSG_COLORSTRING, 22, scrapperColor,    40.4,  88.0, duration, 1.0, 1.0);
+                                  
+    HudMessage(s:"Pistol";        msgMode | HUDMSG_COLORSTRING, 23, pistolColor,     115.4,  80.0, duration, 1.0, 1.0);
+    HudMessage(s:"Two pistols";   msgMode | HUDMSG_COLORSTRING, 24, pistolsColor,    115.4,  88.0, duration, 1.0, 1.0);
+                                  
+    HudMessage(s:"Shotgun";       msgMode | HUDMSG_COLORSTRING, 25, shotgunColor,    205.4,  80.0, duration, 1.0, 1.0);
+    HudMessage(s:"Super Shotgun"; msgMode | HUDMSG_COLORSTRING, 26, ssgColor,        205.4,  88.0, duration, 1.0, 1.0);
+                                  
+    HudMessage(s:"Chaingun";      msgMode | HUDMSG_COLORSTRING, 27, chaingunColor,   280.4,  80.0, duration, 1.0, 1.0);
+    HudMessage(s:"Minigun";       msgMode | HUDMSG_COLORSTRING, 28, minigunColor,    280.4,  88.0, duration, 1.0, 1.0);
+                                  
+    HudMessage(s:"Impaler";       msgMode | HUDMSG_COLORSTRING, 29, impalerColor,    80.4,  104.0, duration, 1.0, 1.0);
+                                  
+    HudMessage(s:"Lancer";        msgMode | HUDMSG_COLORSTRING, 30, plasmaColor,     160.4, 104.0, duration, 1.0, 1.0);
+                                  
+    HudMessage(s:"BFG9000";       msgMode | HUDMSG_COLORSTRING, 31, bfgColor,        240.4, 104.0, duration, 1.0, 1.0);
 }
 
 script "titlemap_weptips" (int flash, int duration)
@@ -325,14 +328,14 @@ script "titlemap_weptips" (int flash, int duration)
     
     if (flash)
     {
-        AmbientSound("dakka/title_lettersmack", 127);
+        AmbientSound("dakka/hammerwall", 127);
         HudMessage(s:"Weapons:"; HUDMSG_PLAIN | HUDMSG_COLORSTRING, 11, "DTitle_AllWhite", 160.4, 70.0, 0);
         Delay(2);
         HudMessage(s:"Weapons:"; HUDMSG_PLAIN, 11, CR_WHITE, 160.4, 70.0, 0);
         
         Delay(10);
         
-        AmbientSound("dakka/title_lettersmack", 127);
+        AmbientSound("dakka/hammerwall", 127);
         ShowWeaponTips(false, true, "DTitle_AllWhite", duration);
         Delay(2);
         
@@ -361,7 +364,7 @@ script "titlemap_scoretips" (int flash, int duration)
     
     if (flash)
     {
-        AmbientSound("dakka/title_lettersmack", 127);
+        AmbientSound("dakka/hammerwall", 127);
         HudMessage(s:ScoreMessage; HUDMSG_PLAIN | HUDMSG_COLORSTRING, 41, "DTitle_AllWhite",     160.4, 145.0, 0);
         Delay(2);
         HudMessage(s:ScoreMessage; HUDMSG_FADEOUT | HUDMSG_COLORSTRING, 41, "White",             160.4, 145.0, duration, 1.0);

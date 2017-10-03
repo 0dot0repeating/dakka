@@ -9,47 +9,47 @@ int PKP_Messages[PICKUPCOUNT][CLASSCOUNT] =
 {
     {
         "You got a pair of hands!",
-        "Two hands!",
+        "$DAKKA_PK_FISTS",
     },
     {
         "$GOTCHAINSAW",
-        "Scrappers! Wait, what?",
+        "$DAKKA_PK_SCRAPPER",
     },
     {
         "Picked up a pistol.",
-        "Pistols!",
+        "$DAKKA_PK_PISTOLS",
     },
     {
         "$GOTSHOTGUN",
-        "Shotgun!",
+        "$DAKKA_PK_SHOTGUN",
     },
     {
         "$GOTSHOTGUN2",
-        "Super shotgun!",
+        "$DAKKA_PK_SUPERSHOTGUN",
     },
     {
         "$GOTCHAINGUN",
-        "Chaingun!",
+        "$DAKKA_PK_CHAINGUN",
     },
     {
         "$GOTLAUNCHER",
-        "Impaler!",
+        "$DAKKA_PK_IMPALER",
     },
     {
         "$GOTPLASMA",
-        "Plasma lance!",
+        "$DAKKA_PK_PLASMALANCE",
     },
     {
         "$GOTBFG9000",
-        "\caBig feffin' gun!",
+        "$DAKKA_PK_BFG9000",
     },
     {
         "$GOTSHOTGUN",
-        "Shotgun!",
+        "$DAKKA_PK_SHOTGUN",
     },
     {
         "$GOTCHAINGUN",
-        "Chaingun!",
+        "$DAKKA_PK_CHAINGUN",
     },
     
     
@@ -65,19 +65,19 @@ int PKP_Messages[PICKUPCOUNT][CLASSCOUNT] =
 
     {
         "$PICKUP_MINIGUN",
-        "Minigun!",
+        "$DAKKA_PK_MINIGUN",
     },
     {
         "$PICKUP_GRENADELAUNCHER",
-        "Impaler!",
+        "$DAKKA_PK_IMPALER",
     },
     {
         "$PICKUP_RAILGUN",
-        "Plasma lance!",
+        "$DAKKA_PK_PLASMALANCE",
     },
     {
         "$PICKUP_BFG10k",
-        "\caBig feffin' gun!",
+        "$DAKKA_PK_BFG9000",
     },
 };
 

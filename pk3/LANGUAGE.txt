@@ -4,10 +4,7 @@ DAKKA_PK_FISTS              = "Two hands!";
 DAKKA_MP_FISTS              = "%k smacked down %o.";
 DAKKA_MP_FISTS_SLAM         = "%k smashed %o.";
 
-DAKKA_PK_CHAINSAW           = "Chainsaw!";
-DAKKA_MP_CHAINSAW           = "%k cut apart %o.";
-
-DAKKA_PK_SCRAPPER           = "Scrapper!";
+DAKKA_PK_SCRAPPER           = "Scrappers! Wait, what?";
 DAKKA_MP_SCRAPPER           = "%k scrapped %o.";
 
 DAKKA_PK_PISTOL             = "Pistol?";
@@ -31,18 +28,11 @@ DAKKA_PK_MINIGUN            = "Minigun!";
 DAKKA_MP_MINIGUN            = "%k minced %o.";
 DAKKA_MP_MINIGUN_FLAME      = "%k toasted %o.";
 
-DAKKA_PK_ROCKETLAUNCHER     = "Rocket launcher!";
-DAKKA_MP_ROCKETLAUNCHER     = "%k smeared %o.";
+DAKKA_PK_IMPALER            = "Impaler!";
+DAKKA_MP_IMPALER            = "%k impaled %o.";
 
-DAKKA_PK_PLASMARIFLE        = "Plasma rifle!";
-DAKKA_MP_PLASMARIFLE        = "%k melted %o.";
-DAKKA_MP_PLASMARIFLE_BEAM   = "%k scorched %o.";
-
-DAKKA_PK_CHANNELER          = "Channeler!"
-DAKKA_MP_CHANNELER          = "%k overcharged %o.";
-
-DAKKA_PK_PLASMALANCE        = "Plasma lance!"
-DAKKA_MP_PLASMALANCE        = "%k melted a hole in %o.";
+DAKKA_PK_PLASMALANCE        = "Lancer!";
+DAKKA_MP_PLASMALANCE        = "%k burned a hole through %o.";
 
 DAKKA_PK_BFG9000            = "\caBig feffin' gun!";
 DAKKA_MP_BFG9000            = "%k annihilated %o.";
