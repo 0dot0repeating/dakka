@@ -2,17 +2,10 @@
 // SHARED AMONG A LOT OF THINGS
 ///
 
+dakka/silent                dsempty
 dakka/explode               sounds/general/explode.ogg
 $limit dakka/explode        0
 $rolloff dakka/explode      512 2048
-
-
-
-////////
-// TITLEMAP
-///
-
-dakka/title_lettersmack     sounds/titlemap/letter_smack.ogg
 
 
 
@@ -47,6 +40,9 @@ dakka/slam4                 sounds/fists/hardpunch4.ogg
 $random dakka/slam          { dakka/slam1 dakka/slam2 dakka/slam3 dakka/slam4 }
 
 dakka/slamwall              sounds/fists/hardwall.ogg
+
+dakka/hammerhit             sounds/fists/hammerhit1.wav
+dakka/hammerwall            sounds/fists/hammerwall.ogg
 
 $limit dakka/punchwall 0
 $limit dakka/punch     0
