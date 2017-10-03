@@ -160,6 +160,16 @@ DTitle_Scrappers
     #102040 #40E0FF 0 255
 }
 
+DTitle_Pistol
+{
+    #4d4026 #fff4b3 0 255
+}
+
+DTitle_Pistols
+{
+    #403520 #ffd966 0 255
+}
+
 DTitle_Shotgun
 {
     #403020 #FFE0A0 0 255
