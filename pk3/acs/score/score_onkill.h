@@ -54,8 +54,6 @@ script "Dakka_Score" (int pointValue)
 
     int firerTID    = defaultTID(-1);
     int pln         = PlayerNumber();
-    
-    if (CToS_ServerData[pln][C2S_D_NOSCORE]) { terminate; }
 
     if (pln == -1)
     {
@@ -66,6 +64,8 @@ script "Dakka_Score" (int pointValue)
 
         terminate;
     }
+    
+    if (CToS_ServerData[pln][C2S_D_NOSCORE]) { terminate; }
 
     int plX = GetActorX(0);
     int plY = GetActorY(0);
@@ -148,7 +148,7 @@ script "Dakka_Infighter" (int pointValue)
     
     for (i = 0; i < PLAYERMAX; i++)
     {
-        if (!PlayerInGame(i)) { continue; }
+        if (!PlayerInGame(i) || CToS_ServerData[i][C2S_D_NOSCORE]) { continue; }
 
         Score_ModBothScores(i, points_base);
         Score_ModBothScores(i, points_infighter);

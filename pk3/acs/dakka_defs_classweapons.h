@@ -74,16 +74,16 @@ int Dakka_ClassWeapons[CLASSWEAPONS][CLASSCOUNT] =
 //  the power of a weapon.
 int Dakka_ClassWeaponPowers[CLASSWEAPONS][CLASSCOUNT] =
 {
-    { 1,  1}, // fist
-    { 3,  5}, // chainsaw
+    { 1,  1}, // fist            / fists
+    { 3,  5}, // chainsaw        / scrappers
     { 2,  2}, // pistol
-    {-1,  2}, // pistols
+    {-1,  2}, // none            / pistols
     { 3,  3}, // shotgun
     { 5,  5}, // SSG
     { 4,  4}, // chaingun
-    {-1,  6}, // minigun
-    { 5,  5}, // impaler
-    { 6,  6}, // plasma lance
+    {-1,  6}, // none            / minigun
+    { 5,  5}, // rocket launcher / impaler
+    { 6,  6}, // plasma rifle    / plasma lance
     { 7,  7}, // BFG
 
     { 1,  1}, // staff          (fist)
