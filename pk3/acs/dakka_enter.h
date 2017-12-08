@@ -63,6 +63,9 @@ script "Dakka_Spawn" (int respawned)
 
         // In dakka_tempitems.h
         Dakka_UpdateTemporaryItems();
+        
+        // In dakka_fists.h
+        Dakka_FistTap();
 
         // In dakka_scrap.h
         Dakka_ProcessScrap();

@@ -397,6 +397,11 @@ function void Dakka_DoLevelSpawn(int entered)
         {
             Dakka_ScrapperStart(0);
         }
+        
+        if (CheckFlag(0, "SHIELDREFLECT"))
+        {
+            GiveInventory("DakkaUnblockReflection", 1);
+        }
 
         if (entered)
         {
