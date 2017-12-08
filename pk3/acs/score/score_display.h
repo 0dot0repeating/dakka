@@ -26,7 +26,7 @@ function void Score_Update(int pln)
         Score_OldVals[OSCORE_FIRSTDRAW][pln] = true;
     }
 
-    Score_DrawBonuses(pln);
+    Score_DrawBonuses(pln, noScore);
 
     Score_OldVals[OSCORE_POINTS][pln]     = points;
     Score_OldVals[OSCORE_GOALPOINTS][pln] = goalpoints;
@@ -182,15 +182,13 @@ function void Score_DrawLives(int lives)
 
 int Tmp_BonusDisplay[BONUSCOUNT];
 
-function void Score_DrawBonuses(int pln)
+function void Score_DrawBonuses(int pln, int noscore)
 {
     if (pln < 0 || pln >= PLAYERMAX) { return; }
     SetHudSize(640, 480, 1);
 
     int i, display, score, name, color, offset = 0;
-
     int redisplay = false;
-
     int bonus;
 
     for (i = 0; i < BONUSCOUNT; i++)
@@ -199,13 +197,15 @@ function void Score_DrawBonuses(int pln)
         display = (bonus > Bonus_LastSeen[pln][i]);
 
         Tmp_BonusDisplay[i] = display;
-
-        if (display) { redisplay = true; }
+        redisplay |= display;
 
         Bonus_LastSeen[pln][i] = bonus;
     }
 
-    if (!redisplay) { return; }
+    // Check noscore here so that turning the cvar on mid-game doesn't display
+    // any score changes that happened while it was off. There shouldn't be any,
+    // but just in case.
+    if (noscore || !redisplay) { return; }
 
     for (i = 0; i < BONUSCOUNT; i++)
     {
