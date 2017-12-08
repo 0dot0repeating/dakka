@@ -75,6 +75,9 @@
 // Rotate sound slots so weapon firing sounds can overlap with each other.
 #include "dakka_rotatesound.h"
 
+// Punch the things.
+#include "dakka_fists.h"
+
 // Auto-reload the SSG when it's in your pants. Also scripts called by the SSG,
 //  to handle the triggers and whatnot
 #include "dakka_ssg.h"
