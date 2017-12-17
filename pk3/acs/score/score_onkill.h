@@ -48,9 +48,14 @@ script "Dakka_Score" (int pointValue)
     int myY = GetActorY(0);
     int myZ = GetActorZ(0);
 
-    int myTID = defaultTID(-1);
+    int myTID_old = ActivatorTID();
+    int myTID     = defaultTID(-1);
 
-    if (!SetActivatorToTarget(0)) { terminate; }
+    if (!SetActivatorToTarget(0))
+    { 
+        Thing_ChangeTID(myTID, myTID_old);
+        terminate;
+    }
 
     int firerTID    = defaultTID(-1);
     int pln         = PlayerNumber();
@@ -62,10 +67,15 @@ script "Dakka_Score" (int pointValue)
             ACS_NamedExecuteWithResult("Dakka_Infighter", pointValue);
         }
 
+        Thing_ChangeTID(myTID, myTID_old);
         terminate;
     }
     
-    if (CToS_ServerData[pln][C2S_D_NOSCORE]) { terminate; }
+    if (CToS_ServerData[pln][C2S_D_NOSCORE])
+    {    
+        Thing_ChangeTID(myTID, myTID_old);
+        terminate;
+    }
 
     int plX = GetActorX(0);
     int plY = GetActorY(0);
@@ -74,6 +84,7 @@ script "Dakka_Score" (int pointValue)
     int curveCheck = CheckSight(myTID, firerTID, 0);
     
     SetActivator(myTID);
+    Thing_ChangeTID(myTID, myTID_old);
     
     Warp(0, myX, myY, myZ + GetActorProperty(0, APROP_Height) / 2, 0, WARPF_NOCHECKPOSITION | WARPF_ABSOLUTEPOSITION);
     curveCheck = curveCheck || CheckSight(myTID, firerTID, 0);
