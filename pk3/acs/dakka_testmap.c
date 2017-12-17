@@ -12,3 +12,8 @@ script "DAKKTEST_ReportDamage" (void)
     }
     SetActorProperty(0, APROP_Health, maxhp);
 }
+
+// do nothing, but avoid unknown script errors
+script "DAKKTEST_MonitorTID_Ping" (void)
+{
+}

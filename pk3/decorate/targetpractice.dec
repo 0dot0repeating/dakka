@@ -113,3 +113,13 @@ actor DamageReporter
         loop
     }
 }
+
+actor DAKKTEST_TIDMonitorItem: Trigger
+{
+    States
+    {
+      Pickup:
+        TNT1 A 0 ACS_NamedExecuteWithResult("DAKKTEST_MonitorTID_Ping")
+        stop    
+    }
+}
