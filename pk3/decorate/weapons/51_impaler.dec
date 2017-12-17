@@ -467,13 +467,19 @@ actor ImpalerExplosionSpark
 	
 	Scale 0.075
 	RenderStyle Add
+    
+    ReactionTime 105
 	
 	States
 	{
 	  Spawn:
 		OPRT B 0 A_SpawnItemEx("ImpalerTinyTrailParticle", 0,0,0, frandom(-1, 1), 0, frandom(-1, 1), random(0, 360))
-	    OPRT B 1 bright
+	    OPRT B 1 bright A_Countdown
 		loop
+      
+      Death:
+        TNT1 A 0
+        stop
 	}
 }
 
