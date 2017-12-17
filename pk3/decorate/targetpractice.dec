@@ -99,8 +99,8 @@ actor DamageReporter
     Speed 0
     Gravity 0
     Mass 0x7FFFFFFF
-    Radius 16
-    Height 32
+    Radius 32
+    Height 64
     
     +SHOOTABLE
     +NOBLOOD
