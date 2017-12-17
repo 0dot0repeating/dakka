@@ -92,3 +92,24 @@ actor MeatShield: Demon
         stop
     }
 }
+
+actor DamageReporter
+{
+    Health 0x7FFFFFFF
+    Speed 0
+    Gravity 0
+    Mass 0x7FFFFFFF
+    Radius 16
+    Height 32
+    
+    +SHOOTABLE
+    +NOBLOOD
+    
+    States
+    {
+      Spawn:
+        TNT1 A 0 A_Stop
+        TNT1 A 1 ACS_NamedExecuteWithResult("DAKKTEST_ReportDamage")
+        loop
+    }
+}
