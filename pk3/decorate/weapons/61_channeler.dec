@@ -130,7 +130,8 @@ actor Channeler_PrimaryBase: Arc_Base
         TNT1 A 0 A_JumpIfInTargetInventory("Channeler_PrimaryCounter", 3, "DoneDamaging")
         TNT1 A 0 A_GiveToTarget("Channeler_PrimaryCounter")
         TNT1 A 0 ACS_NamedExecuteWithResult("Arc_Damage", 15)
-        loop
+        TNT1 A 1
+        wait
 
       DoneDamaging:
         TNT1 A 0
