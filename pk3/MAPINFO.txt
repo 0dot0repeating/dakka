@@ -15,4 +15,10 @@ map dakktest "DAKKATEST"
 
     next = "dakktest"
     nointermission
+
+    specialaction = "BaronOfHell",      "Generic_Door", 667, 16, 1, 0, 0
+    specialaction = "Cyberdemon",       "Generic_Door", 668, 16, 1, 0, 0
+    specialaction = "SpiderMastermind", "Generic_Door", 669, 16, 1, 0, 0
+    specialaction = "Fatso",            "Generic_Door", 670, 16, 1, 0, 0
+    specialaction = "Arachnotron",      "Generic_Door", 671, 16, 1, 0, 0
 }
