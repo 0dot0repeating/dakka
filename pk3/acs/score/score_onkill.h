@@ -57,8 +57,9 @@ script "Dakka_Score" (int pointValue)
         terminate;
     }
 
-    int firerTID    = defaultTID(-1);
-    int pln         = PlayerNumber();
+    int firerTID_old = ActivatorTID();
+    int firerTID     = defaultTID(-1);
+    int pln          = PlayerNumber();
 
     if (pln == -1)
     {
@@ -67,13 +68,15 @@ script "Dakka_Score" (int pointValue)
             ACS_NamedExecuteWithResult("Dakka_Infighter", pointValue);
         }
 
-        Thing_ChangeTID(myTID, myTID_old);
+        Thing_ChangeTID(myTID,    myTID_old);
+        Thing_ChangeTID(firerTID, firerTID_old);
         terminate;
     }
     
     if (CToS_ServerData[pln][C2S_D_NOSCORE])
     {    
-        Thing_ChangeTID(myTID, myTID_old);
+        Thing_ChangeTID(myTID,    myTID_old);
+        Thing_ChangeTID(firerTID, firerTID_old);
         terminate;
     }
 
@@ -94,6 +97,7 @@ script "Dakka_Score" (int pointValue)
     
     Warp(0, myX, myY, myZ, 0, WARPF_NOCHECKPOSITION | WARPF_ABSOLUTEPOSITION);
     SetActivator(firerTID);
+    Thing_ChangeTID(firerTID, firerTID_old);
 
     int points_switcharoo   = round(pointValue * SMult_WeaponSwitch(pln, myhp));
     int points_killstreak   = round(pointValue * SMult_Killstreak(pln));
