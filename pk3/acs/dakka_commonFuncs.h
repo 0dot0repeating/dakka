@@ -879,7 +879,7 @@ function int _defaulttid(int def, int alwaysPropagate)
 
     int tid = ActivatorTID();
 
-    if (tid == 0 || ThingCount(0, tid) > 1)
+    if (tid == 0 || IsTIDUsed(tid))
     {
         if (def <= 0)
         {

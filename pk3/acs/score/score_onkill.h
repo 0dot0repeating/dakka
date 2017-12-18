@@ -87,7 +87,6 @@ script "Dakka_Score" (int pointValue)
     int curveCheck = CheckSight(myTID, firerTID, 0);
     
     SetActivator(myTID);
-    Thing_ChangeTID(myTID, myTID_old);
     
     Warp(0, myX, myY, myZ + GetActorProperty(0, APROP_Height) / 2, 0, WARPF_NOCHECKPOSITION | WARPF_ABSOLUTEPOSITION);
     curveCheck = curveCheck || CheckSight(myTID, firerTID, 0);
@@ -97,6 +96,8 @@ script "Dakka_Score" (int pointValue)
     
     Warp(0, myX, myY, myZ, 0, WARPF_NOCHECKPOSITION | WARPF_ABSOLUTEPOSITION);
     SetActivator(firerTID);
+    
+    Thing_ChangeTID(myTID,    myTID_old);
     Thing_ChangeTID(firerTID, firerTID_old);
 
     int points_switcharoo   = round(pointValue * SMult_WeaponSwitch(pln, myhp));
