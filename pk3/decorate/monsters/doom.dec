@@ -110,8 +110,7 @@ actor Dakka_Paindude: PainElemental replaces PainElemental
     }
 }
 
-// luv u 2 term <3
-actor Dakka_Dumbdude: Revenant replaces Revenant
+actor Dakka_Bonehead: Revenant replaces Revenant
 {
     States
     {
@@ -120,6 +119,9 @@ actor Dakka_Dumbdude: Revenant replaces Revenant
         goto Super::Death
     }
 }
+
+// luv u 2 term <3
+actor Dakka_Dumbdude: RandomSpawner { dropitem "Dakka_Bonehead" }
 
 actor Dakka_Spiderdude: Arachnotron replaces Arachnotron
 {
