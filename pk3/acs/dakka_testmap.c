@@ -1,6 +1,8 @@
 #library "dakka_testmap"
 #include "zcommon.acs"
 
+
+// superceded in DAKKTEST itself, but here to avoid unknown script errors
 script "DAKKTEST_ReportDamage" (void)
 {
     int hp    = GetActorProperty(0, APROP_Health);
