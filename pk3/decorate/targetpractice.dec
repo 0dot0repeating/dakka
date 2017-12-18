@@ -148,3 +148,5 @@ actor DAKKTEST_EnableRadiusDamage: Trigger
         stop
     }
 }
+
+actor NotCommanderKeen: Dakka_Underagedude {}
