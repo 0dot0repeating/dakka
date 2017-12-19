@@ -29,9 +29,6 @@ script "Dakka_FistHit" (void)
     int hitTID_old   = ActivatorTID();
     int hitTID_new   = defaultTID(0);
     int hitShootable = CheckFlag(0, "SHOOTABLE");
-    int hitInvuln    = CheckFlag(0, "NODAMAGE") || CheckFlag(0, "INVULNERABLE");
-    int hitHealth    = GetActorProperty(0, APROP_Health);
-    int hitHealthMax = GetActorProperty(0, APROP_SpawnHealth);
     
     if (!hitShootable)
     {
@@ -41,36 +38,20 @@ script "Dakka_FistHit" (void)
         terminate;
     }
     
-    int hitDamage, hitThrust = 0, forcePain = false;
+    int hitDamage = 7 + (min(15, punchSpeed) / 5);
+    if (isBerserked) { hitDamage *= 3; }
     
-    if (finisher && !hitInvuln && (hitHealth <= 70))
-    {
-        hitDamage = 70;
-        hitThrust = 10.0;
-        forcePain = true;
-        GiveActorInventory(firerTID, "DakkaFistFinisher", 1);
-        GiveActorInventory(firerTID, "DakkaFistQuake2", 1);
-        ThingSound(myTID, "dakka/explode", 127);
-    }
-    else
-    {
-        hitDamage = 7 + (min(15, punchSpeed) / 5);
-        if (primaryTapped) { hitDamage += 1; }
-        
-        GiveActorInventory(firerTID, "DakkaFistSpeed", 1 + cond(primaryTapped, 4, 1));
-        GiveActorInventory(firerTID, "DakkaFistQuake1", 1);
-        ThingSound(myTID, "dakka/punch", 127);
-    }
-    
-    if (isBerserked) { hitDamage *= 3; hitThrust *= 2; }
+    GiveActorInventory(firerTID, "DakkaFistSpeed", 2);
+    GiveActorInventory(firerTID, "DakkaFistQuake1", 1);
+    ThingSound(myTID, "dakka/punch", 127);
     
     SetActivator(myTID);
-    ACS_NamedExecuteWithResult("Dakka_FistDamage", hitDamage, hitThrust);
+    ACS_NamedExecuteWithResult("Dakka_FistDamage", hitDamage);
     
     Thing_ChangeTID(hitTID_new, hitTID_old);
 }
 
-script "Dakka_FistDamage" (int damage, int thrust, int forcepain)
+script "Dakka_FistDamage" (int damage)
 {
     int myTID = defaultTID(-1);
 
@@ -81,20 +62,7 @@ script "Dakka_FistDamage" (int damage, int thrust, int forcepain)
     int hisTID_new = defaultTID(-1);
 
     SetActivator(myTID, AAPTR_TARGET);
-    
-    if (forcePain && !(CheckFlag(hisTID_new, "INVULNERABLE") || CheckFlag(hisTID_new, "NOPAIN")))
-    {
-        SetActorState(hisTID_new, "Pain.Punch");
-    }
-
     Thing_Damage2(hisTID_new, damage, "Punch");
-    
-    if (thrust > 0)
-    {
-        SetActorVelocity(hisTID_new, FixedMul(thrust, cos(GetActorAngle(0))),
-                                     FixedMul(thrust, sin(GetActorAngle(0))),
-                                     0, true, false);
-    }
     
     int oldAng = GetActorAngle(0);
     int newAng = VectorAngle(GetActorX(hisTID_new) - GetActorX(0),
