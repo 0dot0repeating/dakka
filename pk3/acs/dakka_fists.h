@@ -41,7 +41,7 @@ script "Dakka_FistHit" (void)
     int hitDamage = 7 + (min(15, punchSpeed) / 5);
     if (isBerserked) { hitDamage *= 3; }
     
-    GiveActorInventory(firerTID, "DakkaFistSpeed", 2);
+    GiveActorInventory(firerTID, "DakkaFistSpeed",  2);
     GiveActorInventory(firerTID, "DakkaFistQuake1", 1);
     ThingSound(myTID, "dakka/punch", 127);
     
