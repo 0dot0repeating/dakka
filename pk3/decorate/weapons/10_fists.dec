@@ -1,4 +1,5 @@
 actor LeftPunchNext:        Boolean {}
+actor DakkaFistConnected:   Boolean {}
 actor DakkaFistSpeed:       Counter { Inventory.MaxAmount 30 }
 actor DakkaFistTap_Main:    Counter {}
 actor DakkaFistTap_Alt:     Counter {}
@@ -37,6 +38,7 @@ actor DWep_Fist: DoomWeapon
         
       Fire:
         TNT1 A 0 A_TakeInventory("DakkaFistSpeed")
+        TNT1 A 0 A_TakeInventory("DakkaFistConnected")
         TNT1 A 0 A_JumpIfInventory("LeftPunchNext", 1, "FireLeft")
         TNT1 A 0 A_GiveInventory("LeftPunchNext")
         goto Right6
@@ -48,6 +50,7 @@ actor DWep_Fist: DoomWeapon
       
       Hold:
         TNT1 A 0 A_TakeInventory("DakkaFistSpeed", 1)
+        TNT1 A 0 A_TakeInventory("DakkaFistConnected")
         TNT1 A 0 A_JumpIfInventory("LeftPunchNext", 1, "HoldLeft")
         TNT1 A 0 A_GiveInventory("LeftPunchNext")
         TNT1 A 0 A_JumpIfInventory("DakkaFistSpeed", 6, "RightHold2")
@@ -70,18 +73,36 @@ actor DWep_Fist: DoomWeapon
       RightHold6:
         DFIT C 1
         DFIT F 1 A_FireBullets(0, 0, 1, 0, "FistPunchPuff", FBF_NORANDOMPUFFZ, 80)
+        DFIT F 0 A_JumpIfInventory("DakkaFistConnected", 1, "RightHit6")
         DFIT E 1 A_WeaponReady(WRF_NOFIRE | WRF_NOBOB)
         DFIT B 1 A_WeaponReady(WRF_NOFIRE | WRF_NOBOB)
         TNT1 A 2 A_WeaponReady(WRF_NOFIRE | WRF_NOBOB)
+        goto AttackEnd
+        
+      
+      RightHit6:
+        DFIT F 1 A_WeaponReady(WRF_NOFIRE | WRF_NOBOB)
+        DFIT D 1 A_WeaponReady(WRF_NOFIRE | WRF_NOBOB)
+        DFIT B 1 A_WeaponReady(WRF_NOFIRE | WRF_NOBOB)
+        TNT1 A 1 A_WeaponReady(WRF_NOFIRE | WRF_NOBOB)
         goto AttackEnd
         
       Left6:
       LeftHold6:
         DFIT H 1
         DFIT K 1 A_FireBullets(0, 0, 1, 0, "FistPunchPuff", FBF_NORANDOMPUFFZ, 80)
+        DFIT K 0 A_JumpIfInventory("DakkaFistConnected", 1, "LeftHit6")
         DFIT J 1 A_WeaponReady(WRF_NOFIRE | WRF_NOBOB)
         DFIT G 1 A_WeaponReady(WRF_NOFIRE | WRF_NOBOB)
         TNT1 A 2 A_WeaponReady(WRF_NOFIRE | WRF_NOBOB)
+        goto AttackEnd
+        
+      
+      LeftHit6:
+        DFIT K 1 A_WeaponReady(WRF_NOFIRE | WRF_NOBOB)
+        DFIT I 1 A_WeaponReady(WRF_NOFIRE | WRF_NOBOB)
+        DFIT G 1 A_WeaponReady(WRF_NOFIRE | WRF_NOBOB)
+        TNT1 A 1 A_WeaponReady(WRF_NOFIRE | WRF_NOBOB)
         goto AttackEnd
       
       
@@ -89,7 +110,16 @@ actor DWep_Fist: DoomWeapon
       RightHold5:
         DFIT C 1
         DFIT F 1 A_FireBullets(0, 0, 1, 0, "FistPunchPuff", FBF_NORANDOMPUFFZ, 80)
+        DFIT F 0 A_JumpIfInventory("DakkaFistConnected", 1, "RightHit5")
         DFIT E 1 A_WeaponReady(WRF_NOFIRE | WRF_NOBOB)
+        DFIT B 1 A_WeaponReady(WRF_NOFIRE | WRF_NOBOB)
+        TNT1 A 1 A_WeaponReady(WRF_NOFIRE | WRF_NOBOB)
+        goto AttackEnd
+        
+      
+      RightHit5:
+        DFIT F 1 A_WeaponReady(WRF_NOFIRE | WRF_NOBOB)
+        DFIT D 1 A_WeaponReady(WRF_NOFIRE | WRF_NOBOB)
         DFIT B 1 A_WeaponReady(WRF_NOFIRE | WRF_NOBOB)
         TNT1 A 1 A_WeaponReady(WRF_NOFIRE | WRF_NOBOB)
         goto AttackEnd
@@ -98,9 +128,17 @@ actor DWep_Fist: DoomWeapon
       LeftHold5:
         DFIT H 1
         DFIT K 1 A_FireBullets(0, 0, 1, 0, "FistPunchPuff", FBF_NORANDOMPUFFZ, 80)
+        DFIT K 0 A_JumpIfInventory("DakkaFistConnected", 1, "LeftHit5")
         DFIT J 1 A_WeaponReady(WRF_NOFIRE | WRF_NOBOB)
         DFIT G 1 A_WeaponReady(WRF_NOFIRE | WRF_NOBOB)
         TNT1 A 1 A_WeaponReady(WRF_NOFIRE | WRF_NOBOB)
+        goto AttackEnd
+        
+      
+      LeftHit5:
+        DFIT K 1 A_WeaponReady(WRF_NOFIRE | WRF_NOBOB)
+        DFIT I 1 A_WeaponReady(WRF_NOFIRE | WRF_NOBOB)
+        DFIT G 1 A_WeaponReady(WRF_NOFIRE | WRF_NOBOB)
         goto AttackEnd
       
       
@@ -177,10 +215,12 @@ actor FistPunchPuff: BulletPuff
       Melee:
       XDeath:
         TNT1 A 0
+        TNT1 A 0 A_GiveToTarget("DakkaFistConnected")
         TNT1 A 8 ACS_NamedExecuteWithResult("Dakka_FistHit")
         stop
 
       Crash:
+        TNT1 A 0 A_GiveToTarget("DakkaFistConnected")
         BPUF CD 4
         stop
     }
