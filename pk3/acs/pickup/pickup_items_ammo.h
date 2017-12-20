@@ -55,7 +55,7 @@ int PKP_DefaultAmmoCount[AMMOCOUNT] =
     100,            // 10mm
     16,             // shells
     4,              // grenades
-    8,              // gyro
+    4,              // gyro
     160,            // 5mm
     8,              // rain
     24,             // flamer
