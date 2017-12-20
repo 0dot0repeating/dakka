@@ -6,7 +6,7 @@ function void SSG_AutoReload(void)
     if (CheckWeapon("DWep_SuperShotgun")) { return; }
 
     // Also don't tick it down if we haven't got ammo for it
-    if (CheckInventory("DakkaShells") < 2 && CheckInventory("DakkaGyroShells") < 2)
+    if (CheckInventory("DakkaShells") < 2 && CheckInventory("DakkaGyroShells") < 1)
     {
         return;
     }

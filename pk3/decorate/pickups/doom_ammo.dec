@@ -112,7 +112,7 @@ actor Pickup_ShellBox: CustomInventory replaces ShellBox
       Pickup:
         TNT1 A 0 A_GiveInventory("DakkaShells",       20)
         TNT1 A 0 A_GiveInventory("DakkaShotGrenades", 4)
-        TNT1 A 0 A_GiveInventory("DakkaGyroShells",   8)
+        TNT1 A 0 A_GiveInventory("DakkaGyroShells",   2)
         stop
     }
 }
@@ -130,7 +130,7 @@ actor Pickup_RocketBox: CustomInventory replaces RocketBox
       Pickup:
         TNT1 A 0 A_GiveInventory("DakkaRockets",      20)
         TNT1 A 0 A_GiveInventory("DakkaShotGrenades", 3)
-        TNT1 A 0 A_GiveInventory("DakkaGyroShells",   6)
+        TNT1 A 0 A_GiveInventory("DakkaGyroShells",   2)
         TNT1 A 0 A_GiveInventory("DakkaRainGrenades", 4)
         stop
     }

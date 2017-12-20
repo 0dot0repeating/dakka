@@ -42,10 +42,10 @@ actor DakkaGyroShells: Ammo
 {
     Inventory.Icon "SBOXA0"
 
-    Inventory.Amount 4
-    Inventory.MaxAmount 40
-    Ammo.BackpackAmount 4
-    Ammo.BackpackMaxAmount 80
+    Inventory.Amount 2
+    Inventory.MaxAmount 15
+    Ammo.BackpackAmount 2
+    Ammo.BackpackMaxAmount 30
 }
 
 actor DakkaRainGrenades: Ammo
