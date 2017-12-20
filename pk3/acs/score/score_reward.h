@@ -167,7 +167,7 @@ int AmmoRegen_PerSecond[AMMOREGENCOUNT] =
     15.0,
     3.0,
     0.75,
-    1.1,
+    0.55,
 
     20.0,
     0.75,
