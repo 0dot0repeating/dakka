@@ -1,9 +1,10 @@
 function void Dakka_FistTap(void)
 {
-    if (inputPressed(BT_ATTACK)) { SetInventory("DakkaFistTap_Main", 5); }
+    if (inputPressed(BT_ATTACK)) { SetInventory("DakkaFistTap_Main", 4); }
     else { TakeInventory("DakkaFistTap_Main", 1); }
     
-    if (inputPressed(BT_ALTATTACK)) { SetInventory("DakkaFistTap_Alt", 5); }
+    // Give 6 because the longest punch takes 6 tics
+    if (inputPressed(BT_ALTATTACK)) { SetInventory("DakkaFistTap_Alt", 6); }
     else { TakeInventory("DakkaFistTap_Alt", 1); }
 }
 
