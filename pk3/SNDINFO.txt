@@ -32,6 +32,7 @@ $rolloff dakka/ammoregen 128  512
 
 dakka/punch                 sounds/fists/punch.ogg
 dakka/punchwall             sounds/fists/fistwall.ogg
+dakka/fistcharge            sounds/fists/fistcharge.ogg
 
 dakka/slam1                 sounds/fists/hardpunch1.ogg
 dakka/slam2                 sounds/fists/hardpunch2.ogg
