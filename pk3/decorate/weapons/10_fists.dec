@@ -72,24 +72,24 @@ actor DWep_Fist: DoomWeapon
       Right6:
       RightHold6:
         DFIT C 1
-        DFIT F 1 A_FireBullets(0, 0, 1, 7, "FistPunchPuff", FBF_NORANDOM | FBF_NORANDOMPUFFZ, 80)
+        DFIT F 1 A_FireBullets(0, 0, 1, 8, "FistPunchPuff", FBF_NORANDOM | FBF_NORANDOMPUFFZ, 80)
         DFIT E 1 A_WeaponReady(WRF_NOFIRE | WRF_NOBOB)
         DFIT B 1 A_WeaponReady(WRF_NOFIRE | WRF_NOBOB)
-        TNT1 A 0 A_JumpIfInventory("DakkaFistTap_Alt", 1, "LeftCharge_Weak")
+        TNT1 A 0 A_JumpIfInventory("DakkaFistTap_Alt", 1, "Charge_Weak")
         TNT1 A 1 A_WeaponReady(WRF_NOFIRE | WRF_NOBOB)
-        TNT1 A 0 A_JumpIfInventory("DakkaFistTap_Alt", 1, "LeftCharge_Weak")
+        TNT1 A 0 A_JumpIfInventory("DakkaFistTap_Alt", 1, "Charge_Weak")
         TNT1 A 1 A_WeaponReady(WRF_NOFIRE | WRF_NOBOB)
         goto AttackEnd
         
       Left6:
       LeftHold6:
         DFIT H 1
-        DFIT K 1 A_FireBullets(0, 0, 1, 7, "FistPunchPuff", FBF_NORANDOM | FBF_NORANDOMPUFFZ, 80)
+        DFIT K 1 A_FireBullets(0, 0, 1, 8, "FistPunchPuff", FBF_NORANDOM | FBF_NORANDOMPUFFZ, 80)
         DFIT J 1 A_WeaponReady(WRF_NOFIRE | WRF_NOBOB)
         DFIT G 1 A_WeaponReady(WRF_NOFIRE | WRF_NOBOB)
-        TNT1 A 0 A_JumpIfInventory("DakkaFistTap_Alt", 1, "RightCharge_Weak")
+        TNT1 A 0 A_JumpIfInventory("DakkaFistTap_Alt", 1, "Charge_Weak")
         TNT1 A 1 A_WeaponReady(WRF_NOFIRE | WRF_NOBOB)
-        TNT1 A 0 A_JumpIfInventory("DakkaFistTap_Alt", 1, "RightCharge_Weak")
+        TNT1 A 0 A_JumpIfInventory("DakkaFistTap_Alt", 1, "Charge_Weak")
         TNT1 A 1 A_WeaponReady(WRF_NOFIRE | WRF_NOBOB)
         goto AttackEnd
       
@@ -100,7 +100,7 @@ actor DWep_Fist: DoomWeapon
         DFIT F 1 A_FireBullets(0, 0, 1, 8, "FistPunchPuff", FBF_NORANDOM | FBF_NORANDOMPUFFZ, 80)
         DFIT E 1 A_WeaponReady(WRF_NOFIRE | WRF_NOBOB)
         DFIT B 1 A_WeaponReady(WRF_NOFIRE | WRF_NOBOB)
-        TNT1 A 0 A_JumpIfInventory("DakkaFistTap_Alt", 1, "LeftCharge_Weak")
+        TNT1 A 0 A_JumpIfInventory("DakkaFistTap_Alt", 1, "Charge_Weak")
         TNT1 A 1 A_WeaponReady(WRF_NOFIRE | WRF_NOBOB)
         goto AttackEnd
         
@@ -110,7 +110,7 @@ actor DWep_Fist: DoomWeapon
         DFIT K 1 A_FireBullets(0, 0, 1, 8, "FistPunchPuff", FBF_NORANDOM | FBF_NORANDOMPUFFZ, 80)
         DFIT J 1 A_WeaponReady(WRF_NOFIRE | WRF_NOBOB)
         DFIT G 1 A_WeaponReady(WRF_NOFIRE | WRF_NOBOB)
-        TNT1 A 0 A_JumpIfInventory("DakkaFistTap_Alt", 1, "RightCharge_Weak")
+        TNT1 A 0 A_JumpIfInventory("DakkaFistTap_Alt", 1, "Charge_Weak")
         TNT1 A 1 A_WeaponReady(WRF_NOFIRE | WRF_NOBOB)
         goto AttackEnd
       
@@ -120,7 +120,7 @@ actor DWep_Fist: DoomWeapon
         DFIT C 1
         DFIT F 1 A_FireBullets(0, 0, 1, 9, "FistPunchPuff", FBF_NORANDOM | FBF_NORANDOMPUFFZ, 80)
         DFIT D 1 A_WeaponReady(WRF_NOFIRE | WRF_NOBOB)
-        TNT1 A 0 A_JumpIfInventory("DakkaFistTap_Alt", 1, "LeftCharge_Medium")
+        TNT1 A 0 A_JumpIfInventory("DakkaFistTap_Alt", 1, "Charge_Medium")
         TNT1 A 1 A_WeaponReady(WRF_NOFIRE | WRF_NOBOB)
         goto AttackEnd
         
@@ -129,7 +129,7 @@ actor DWep_Fist: DoomWeapon
         DFIT H 1
         DFIT K 1 A_FireBullets(0, 0, 1, 9, "FistPunchPuff", FBF_NORANDOM | FBF_NORANDOMPUFFZ, 80)
         DFIT I 1 A_WeaponReady(WRF_NOFIRE | WRF_NOBOB)
-        TNT1 A 0 A_JumpIfInventory("DakkaFistTap_Alt", 1, "RightCharge_Medium")
+        TNT1 A 0 A_JumpIfInventory("DakkaFistTap_Alt", 1, "Charge_Medium")
         TNT1 A 1 A_WeaponReady(WRF_NOFIRE | WRF_NOBOB)
         goto AttackEnd
       
@@ -138,7 +138,7 @@ actor DWep_Fist: DoomWeapon
       RightHold3:
         DFIT F 1 A_FireBullets(0, 0, 1, 9, "FistPunchPuff", FBF_NORANDOM | FBF_NORANDOMPUFFZ, 80)
         DFIT C 1 A_WeaponReady(WRF_NOFIRE | WRF_NOBOB)
-        TNT1 A 0 A_JumpIfInventory("DakkaFistTap_Alt", 1, "LeftCharge_Medium")
+        TNT1 A 0 A_JumpIfInventory("DakkaFistTap_Alt", 1, "Charge_Medium")
         TNT1 A 1 A_WeaponReady(WRF_NOFIRE | WRF_NOBOB)
         goto AttackEnd
         
@@ -146,7 +146,7 @@ actor DWep_Fist: DoomWeapon
       LeftHold3:
         DFIT K 1 A_FireBullets(0, 0, 1, 9, "FistPunchPuff", FBF_NORANDOM | FBF_NORANDOMPUFFZ, 80)
         DFIT H 1 A_WeaponReady(WRF_NOFIRE | WRF_NOBOB)
-        TNT1 A 0 A_JumpIfInventory("DakkaFistTap_Alt", 1, "RightCharge_Medium")
+        TNT1 A 0 A_JumpIfInventory("DakkaFistTap_Alt", 1, "Charge_Medium")
         TNT1 A 1 A_WeaponReady(WRF_NOFIRE | WRF_NOBOB)
         goto AttackEnd
       
@@ -154,20 +154,19 @@ actor DWep_Fist: DoomWeapon
       Right2:
       RightHold2:
         DFIT F 1 A_FireBullets(0, 0, 1, 10, "FistPunchPuff", FBF_NORANDOM | FBF_NORANDOMPUFFZ, 80)
-        TNT1 A 0 A_JumpIfInventory("DakkaFistTap_Alt", 1, "LeftCharge_Strong")
+        TNT1 A 0 A_JumpIfInventory("DakkaFistTap_Alt", 1, "Charge_Strong")
         DFIT C 1 A_WeaponReady(WRF_NOFIRE | WRF_NOBOB)
         goto AttackEnd
         
       Left2:
       LeftHold2:
         DFIT K 1 A_FireBullets(0, 0, 1, 10, "FistPunchPuff", FBF_NORANDOM | FBF_NORANDOMPUFFZ, 80)
-        TNT1 A 0 A_JumpIfInventory("DakkaFistTap_Alt", 1, "RightCharge_Strong")
+        TNT1 A 0 A_JumpIfInventory("DakkaFistTap_Alt", 1, "Charge_Strong")
         DFIT H 1 A_WeaponReady(WRF_NOFIRE | WRF_NOBOB)
         goto AttackEnd
       
 
-      LeftCharge_Weak:
-      RightCharge_Weak:
+      Charge_Weak:
         TNT1 A 0 A_ClearRefire
         TNT1 A 0 A_TakeInventory("DakkaFistConnected")
         TNT1 A 0 A_PlaySound("dakka/fistcharge", 5, 0.25)
@@ -189,8 +188,7 @@ actor DWep_Fist: DoomWeapon
         goto Ready
       
 
-      LeftCharge_Medium:
-      RightCharge_Medium:
+      Charge_Medium:
         TNT1 A 0 A_ClearRefire
         TNT1 A 0 A_TakeInventory("DakkaFistConnected")
         TNT1 A 0 A_PlaySound("dakka/fistcharge", 5, 0.25)
@@ -214,8 +212,7 @@ actor DWep_Fist: DoomWeapon
         goto Ready
       
 
-      LeftCharge_Strong:
-      RightCharge_Strong:
+      Charge_Strong:
         TNT1 A 0  A_ClearRefire
         TNT1 A 0 A_PlaySound("dakka/fistcharge", 5, 0.25)
         TNT1 AAAAAAAA 1 A_FireBullets(0, 0, 1, 0, "FistTrackingPuff", FBF_NORANDOM | FBF_NORANDOMPUFFZ, 112)
