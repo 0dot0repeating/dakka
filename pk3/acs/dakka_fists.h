@@ -8,12 +8,13 @@ function void Dakka_FistTap(void)
     else { TakeInventory("DakkaFistTap_Alt", 1); }
 }
 
-script "Dakka_FistHit" (int thrustpower, int lockpower)
+script "Dakka_FistHit" (int thrustpower, int lockpower, int locktics)
 {
     int myTID = defaultTID(0);
     if (lockpower == 0) { lockpower = 6; }
     if (lockpower < 0)  { lockpower = 0; }
     lockpower = itof(lockpower) / 360;
+    locktics  = cond(locktics < 1, 3, locktics);
     
     SetActivator(0, AAPTR_TARGET);
     if (ClassifyActor(0) & ACTOR_WORLD)
@@ -48,15 +49,15 @@ script "Dakka_FistHit" (int thrustpower, int lockpower)
         int angleDiff  = middle(-lockpower, angleDifference(firerAngle, punchAngle), lockpower);
         
         SetActivator(firerTID);
-        ACS_NamedExecuteWithResult("Dakka_FistLockon", angleDiff);
+        ACS_NamedExecuteWithResult("Dakka_FistLockon", angleDiff, locktics);
     }
 }
 
 
-script "Dakka_FistLockon" (int angDiff) clientside
+script "Dakka_FistLockon" (int angDiff, int tics) clientside
 {
     int left = angDiff;
-    for (int i = 0; i < 3; i++)
+    for (int i = 0; i < tics; i++)
     {
         int angDelta = angDiff / 3;
         ChangeActorAngle(0, GetActorAngle(0) + angDelta, true);
@@ -74,8 +75,6 @@ script "Dakka_FistThrust" (int angle, int power)
     int adjPower = FixedSqrt((itof(power) / myMass) * 200);
     int thrustX  = FixedMul(cos(angle), adjPower);
     int thrustY  = FixedMul(sin(angle), adjPower);
-    
-    Log(f:thrustX, s:", ", f:thrustY);
     
     SetActorVelocity(0, thrustX, thrustY, GetActorVelZ(0), false, false);
 }
