@@ -42,7 +42,7 @@
 //
 // You can use CustomInventory here if you want.
 
-int Dakka_ClassWeapons[CLASSWEAPONS][CLASSCOUNT] =
+str Dakka_ClassWeapons[CLASSWEAPONS][CLASSCOUNT] =
 {
     {"Fist",            "DWep_Fist"},
     {"Chainsaw",        "DWep_Scrappers"},
@@ -139,7 +139,7 @@ int Dakka_ClassWep_StartModeIgnore[CLASSWEAPONS][CLASSCOUNT] =
 // Items that aren't class weapons go in here. This simply stores the item to
 //  be taken away.
 
-int Dakka_TranslatableGuns_From[TRANSLATE_GUNS] =
+str Dakka_TranslatableGuns_From[TRANSLATE_GUNS] =
 {
     "Fist2",
     "Chainsaw2",
@@ -154,10 +154,7 @@ int Dakka_TranslatableGuns_From[TRANSLATE_GUNS] =
     "BFG9002",
 };
 
-
-// What should the guns translate into?
-// For the purposes of this, 
-int Dakka_TranslatableGuns_To[TRANSLATE_GUNS][CLASSCOUNT][TRANSLATE_MAXTO] =
+str Dakka_TranslatableGuns_To[TRANSLATE_GUNS][CLASSCOUNT][TRANSLATE_MAXTO] =
 {
     { // Fist2
         {""},
