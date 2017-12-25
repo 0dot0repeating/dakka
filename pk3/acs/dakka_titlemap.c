@@ -388,7 +388,7 @@ int GameTips[GAMETIPCOUNT] =
     "Shotgun grenades: they might not actually be rockets, but who cares?",
     "Rain grenades are best employed in multiples. Anything that manages to survive won't be able to retaliate under the storm of explosions.",
     "Your fists are silent, which is perfect for breaking those maps that force you to shoot a switch at the start.\n\nOr you could just shoot the switch anyway, since it lets you kill more demons.",
-    "Spent bullets, shells, and cells fuel your scrappers. Respect the environment; scrap some demons before that meter tops off.",
+    "Spent ammo of all kinds refuels your scrappers. Respect the environment; scrap some demons before that meter tops off.",
     "The fatter the enemy, the better the minigun roasts them.\n\nThis is not a social commentary.\nNo, not even now. Shut up.",
     "Scrappers + small places = very dead demons.",
     "You can reload-cancel the SSG, as long as it didn't start the reload empty. This applies both to idle reloads and manual reloads.",
