@@ -43,7 +43,7 @@
 
 #define SCRAPPING_MULT          0.125
 
-#define POINTBLANK_DIST         128.0
+#define POINTBLANK_DIST         64.0
 #define POINTBLANK_MULT         0.1
 
 #define INFIGHTER_MULT          0.2
@@ -85,14 +85,13 @@ int SCORE_UpdatesSwitcharoo[CLASSCOUNT_DEFINED] =
     true,
 };
 
-#define KNOWNMELEE 15
+#define KNOWNMELEE 14
 
 int Brawler_KnownMelee[KNOWNMELEE] =
 {
     "Fist",
     "Chainsaw",
     "DWep_Fist",
-    "DWep_Chainsaw",
     
     "PunchDagger",
     
@@ -113,9 +112,8 @@ int Brawler_KnownMelee[KNOWNMELEE] =
 int Brawler_MeleeMults[KNOWNMELEE] = 
 {
     0.5,
+    0.5,
     0.25,
-    0.25,
-    0.15,
     
     0.5,
     
