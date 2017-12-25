@@ -85,7 +85,7 @@ int SCORE_UpdatesSwitcharoo[CLASSCOUNT_DEFINED] =
     true,
 };
 
-#define KNOWNMELEE 14
+#define KNOWNMELEE 10
 
 int Brawler_KnownMelee[KNOWNMELEE] =
 {
@@ -102,11 +102,6 @@ int Brawler_KnownMelee[KNOWNMELEE] =
     
     "Staff",
     "Gauntlets",
-    
-    "Fight",
-    "Knife",
-    "Fist~",
-    "Chainsaw~",
 };
 
 int Brawler_MeleeMults[KNOWNMELEE] = 
@@ -122,11 +117,6 @@ int Brawler_MeleeMults[KNOWNMELEE] =
     0.1,
     0.3,
     
-    0.5,
-    0.25,
-    
-    0.5,
-    0.25,
     0.5,
     0.25,
 };
