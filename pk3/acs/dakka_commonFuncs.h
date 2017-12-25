@@ -34,6 +34,14 @@ int msgColors[22] =
 function int itof(int x) { return x << 16; }
 function int ftoi(int x) { return x >> 16; }
 
+function int safeAdd(int a, int b)
+{
+    if (b > 0 && (a > 0x7FFFFFFF - b)) { return 0x7FFFFFFF; }
+    if (b < 0 && (a < 0x80000000 - b)) { return 0x80000000; }
+    
+    return a + b;
+}
+
 function int abs(int x)
 {
     if (x < 0) { return -x; }

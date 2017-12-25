@@ -47,7 +47,9 @@ script "Dakka_Score" (int pointValue)
     int myX = GetActorX(0);
     int myY = GetActorY(0);
     int myZ = GetActorZ(0);
-
+    
+    int myRadius  = GetActorProperty(0, APROP_Radius);
+    int myHeight  = GetActorProperty(0, APROP_Height);
     int myTID_old = ActivatorTID();
     int myTID     = defaultTID(-1);
 
@@ -80,9 +82,11 @@ script "Dakka_Score" (int pointValue)
         terminate;
     }
 
-    int plX = GetActorX(0);
-    int plY = GetActorY(0);
-    int plZ = GetActorZ(0);
+    int plX      = GetActorX(0);
+    int plY      = GetActorY(0);
+    int plZ      = GetActorZ(0);
+    int plRadius = GetActorProperty(0, APROP_Radius);
+    int plHeight = GetActorProperty(0, APROP_Height);
 
     int curveCheck = CheckSight(myTID, firerTID, 0);
     
@@ -109,7 +113,7 @@ script "Dakka_Score" (int pointValue)
     int points_air          = round(pointValue * SMult_Air(pln));
     int points_curveball    = round(pointValue * SMult_Curveball(curveCheck));
     int points_scrapping    = round(pointValue * SMult_Scrapping(pln));
-    int points_pointblank   = round(pointValue * SMult_PointBlank(myX, myY, myZ, plX, plY, plZ));
+    int points_pointblank   = round(pointValue * SMult_PointBlank(myX, myY, myZ, myRadius, myHeight, plX, plY, plZ, plRadius, plHeight));
 
     Score_ModBothScores(pln, pointValue);
     Score_ModBothScores(pln, points_switcharoo);

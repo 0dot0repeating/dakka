@@ -173,9 +173,17 @@ function int SMult_Scrapping(int pln)
     return 0;
 }
 
-function int SMult_PointBlank(int mx, int my, int mz, int px, int py, int pz)
+function int SMult_PointBlank(int mx, int my, int mz, int mradius, int mheight, int px, int py, int pz, int pradius, int pheight)
 {
-    int dist = distance(mx, my, mz, px, py, pz);
+    int mX_closest = middle(px, safeAdd(mx, mradius), safeAdd(mx, -mradius));
+    int mY_closest = middle(py, safeAdd(my, mradius), safeAdd(my, -mradius));
+    int mZ_closest = middle(pz, safeAdd(mz, mheight), mz);
+    
+    int pX_closest = middle(mX_closest, safeAdd(px, pradius), safeAdd(px, -pradius));
+    int pY_closest = middle(mY_closest, safeAdd(py, pradius), safeAdd(py, -pradius));
+    int pZ_closest = middle(mZ_closest, safeAdd(pz, pheight), pz);
+    
+    int dist = distance(mX_closest, mY_closest, mZ_closest, pX_closest, pY_closest, pZ_closest);
     if (dist < POINTBLANK_DIST) { return POINTBLANK_MULT; }
 
     return 0;
