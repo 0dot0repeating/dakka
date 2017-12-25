@@ -91,6 +91,7 @@ actor DWep_Shotgun: DoomWeapon
         DKSG A 0 A_AlertMonsters
         DKSG A 0 A_FireCustomMissile("ShotgunGrenade")
         DKSG A 0 ACS_NamedExecuteAlways("Dakka_Recoil", 0, 2, 2, 14)
+        DKSG B 0 A_GiveInventory("GiveScrapCounter", 60)
         DKSG A 0 A_GunFlash
         DKSG A 0 A_PlaySound("dakka/shotgrenade", CHAN_WEAPON)
         DKSG A 1 bright offset(0, 38)
