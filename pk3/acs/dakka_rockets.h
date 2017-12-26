@@ -24,6 +24,7 @@ script "Dakka_ImpalerAltHit" (int power)
     int projY   = GetActorY(0);
     int projZ   = GetActorZ(0);
     
+    // If the projectile hit a target literally the moment it spawned, this will kick in
     int projNotInited = !GetUserVariable(0, "user_updated");
     int projVX, projVY, projVZ, projSpeed;
     
@@ -31,6 +32,7 @@ script "Dakka_ImpalerAltHit" (int power)
     {
         projSpeed = GetActorProperty(0, APROP_Speed);
         
+        // Use firer angle/pitch since the velocity user vars wouldn't have been set
         SetActivator(0, AAPTR_TARGET);
         int firerAngle = GetActorAngle(0);
         int firerPitch = GetActorPitch(0);
@@ -64,23 +66,19 @@ script "Dakka_ImpalerAltHit" (int power)
         projNVZ = FixedDiv(projVZ, projSpeed);
     }
     
-    //Log(s:"vel: \cd<", f:projVX, s:", ", f:projVY, s:", ", f:projVZ, s:">\c- (norm: \cq<", f:projNVX, s:", ", f:projNVY, s:", ", f:projNVZ, s:">\c-)");
-    
     if (projNotInited)
     {
         ACS_NamedExecuteWithResult("Dakka_ImpalerAlt_FindTarget", projVX, projVY, projVZ, projSpeed);
     }
     
+    
     SetActivator(0, AAPTR_TRACER);
     
     if (ClassifyActor(0) & ACTOR_WORLD)
     {
-        //Log(s:"No target, just detonate");
         SetActorState(projTID, "Detonate");
         terminate;
     }
-    
-    //Log(s:"Hit thing \"", n:0, s:"\"");
     
     if (CheckFlag(0, "BOSS") || CheckFlag(0, "DONTRIP"))
     {
@@ -100,30 +98,26 @@ script "Dakka_ImpalerAltHit" (int power)
     
     int stepsBack = 0;
     int maxPushDist = min(monRadius, projSpeed);
-    
-    //Log(s:"target hitbox: \cf<", f:monX1, s:", ", f:monY1, s:", ", f:monZ1, s:">\c- to \ck<", f:monX2, s:", ", f:monY2, s:", ", f:monZ2, s:">\c-");
 
     SetActivator(projTID);
     
+    // Try multiple positions until we find one where the missile is actually inside the monster
+    //  - purely for visual purposes, the pushing works either way
     while (stepsBack < 3)
     {
         int projNewX = projX + FixedMul(projNVX, maxPushDist);
         int projNewY = projY + FixedMul(projNVY, maxPushDist);
         int projNewZ = projZ + FixedMul(projNVZ, maxPushDist);
 
-        //Log(s:"trying \cb<", f:projNewX, s:", ", f:projNewY, s:", ", f:projNewZ, s:">\c-");
-
         if (projNewX > monX1 && projNewX < monX2
          && projNewY > monY1 && projNewY < monY2
          && projNewZ > monZ1 && projNewZ < monZ2)
         {
             Warp(0, projNewX, projNewY, projNewZ, 0, WARPF_ABSOLUTEPOSITION | WARPF_NOCHECKPOSITION | WARPF_INTERPOLATE);
-            //Log(s:"... warped");
             break;
         }
         else
         {
-            //Log(s:"... refused");
             maxPushDist /= 2;
             stepsBack++;
         }
@@ -143,6 +137,8 @@ script "Dakka_ImpalerAltPush" (int normX, int normY, int normZ, int power)
     int projZ   = GetActorZ(0);
     
     SetActivator(0, AAPTR_TRACER);
+    if (ClassifyActor(0) & ACTOR_WORLD) { terminate; } // this should never happen
+    
     int monX = GetActorX(0);
     int monY = GetActorY(0);
     int monZ = GetActorZ(0);
@@ -152,9 +148,20 @@ script "Dakka_ImpalerAltPush" (int normX, int normY, int normZ, int power)
     int offsetY = projY - monY;
     int offsetZ = projZ - monZ;
     
-    int thrustMult_int     = power / monMass;
-    int thrustMult_frac    = itof(power % monMass) / monMass;
-    int thrustMult         = itof(min(32767, thrustMult_int)) + thrustMult_frac;
+    int thrustMult;
+    
+    Log(n:0);
+    
+    if (monMass <= 0)
+    {
+        thrustMult = itof(min(32767, power));
+    }
+    else
+    {
+        int thrustMult_int  = power / monMass;
+        int thrustMult_frac = itof(power % monMass) / monMass;
+            thrustMult      = itof(min(32767, thrustMult_int)) + thrustMult_frac;
+    }
     
     // Normalization, so zombies don't fly so much further away than everyone else
     thrustMult = FixedSqrt(thrustMult);
@@ -190,6 +197,7 @@ script "Dakka_ImpalerAltPush" (int normX, int normY, int normZ, int power)
 #define IMPALERMASK_ACTORS  (MF_SHOOTABLE)
 #define IMPALERMASK_WALLS   (ML_BLOCKING | ML_BLOCKEVERYTHING | ML_BLOCKPROJECTILE)
 
+// Find target if projectile hit something before it could run any states
 script "Dakka_ImpalerAlt_FindTarget" (int velX, int velY, int velZ, int speed)
 {
     int myTID     = defaultTID(0);
