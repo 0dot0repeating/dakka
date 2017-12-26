@@ -28,15 +28,15 @@ actor DWep_Fist: DoomWeapon
         loop
 
       Deselect:
-        DFIT A 0 A_JumpIfInventory("DakkaFistInAlt", 1, "AltDeselect")
+        "####" A 0 A_JumpIfInventory("DakkaFistInAlt", 1, "AltDeselect")
         DFIT AAA 0 A_Lower
         DFIT A 1 A_Lower
         loop
       
       AltDeselect:
-        LFIT K 0 A_TakeInventory("DakkaFistInAlt")
-        LFIT K 0 A_ZoomFactor(1.0, ZOOM_NOSCALETURNING)
-        LFIT KIG 1
+        "####" K 0 A_TakeInventory("DakkaFistInAlt")
+        "####" K 0 A_ZoomFactor(1.0, ZOOM_NOSCALETURNING)
+        "####" KIG 1
         TNT1 A 2
         TNT1 AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA 0 A_Lower
         TNT1 A 0 A_Lower
@@ -51,129 +51,77 @@ actor DWep_Fist: DoomWeapon
         TNT1 A 0 A_TakeInventory("DakkaFistSpeed")
         TNT1 A 0 A_TakeInventory("DakkaFistConnected")
         TNT1 A 0 A_JumpIfInventory("LeftPunchNext", 1, "FireLeft")
-        TNT1 A 0 A_GiveInventory("LeftPunchNext")
-        goto Right6
+        RFIT Z 0 A_GiveInventory("LeftPunchNext")
+        goto Fire6
       
       FireLeft:
-        TNT1 A 0 A_TakeInventory("LeftPunchNext")
-        goto Left6
+        LFIT Z 0 A_TakeInventory("LeftPunchNext")
+        goto Fire6
       
       
       Hold:
         TNT1 A 0 A_TakeInventory("DakkaFistSpeed", 1)
         TNT1 A 0 A_TakeInventory("DakkaFistConnected")
         TNT1 A 0 A_JumpIfInventory("LeftPunchNext", 1, "HoldLeft")
-        TNT1 A 0 A_GiveInventory("LeftPunchNext")
-        TNT1 A 0 A_JumpIfInventory("DakkaFistSpeed", 6, "RightHold2")
-        TNT1 A 0 A_JumpIfInventory("DakkaFistSpeed", 4, "RightHold3")
-        TNT1 A 0 A_JumpIfInventory("DakkaFistSpeed", 2, "RightHold4")
-        TNT1 A 0 A_JumpIfInventory("DakkaFistSpeed", 1, "RightHold5")
-        goto RightHold6
+        RFIT Z 0 A_GiveInventory("LeftPunchNext")
+        goto HoldCommon
       
       HoldLeft:
-        TNT1 A 0 A_TakeInventory("LeftPunchNext")
-        TNT1 A 0 A_JumpIfInventory("DakkaFistSpeed", 6, "LeftHold2")
-        TNT1 A 0 A_JumpIfInventory("DakkaFistSpeed", 4, "LeftHold3")
-        TNT1 A 0 A_JumpIfInventory("DakkaFistSpeed", 2, "LeftHold4")
-        TNT1 A 0 A_JumpIfInventory("DakkaFistSpeed", 1, "LeftHold5")
-        goto LeftHold6
+        LFIT Z 0 A_TakeInventory("LeftPunchNext")
+        goto HoldCommon
+      
+      HoldCommon:
+        "####" Z 0 A_JumpIfInventory("DakkaFistSpeed", 6, "Hold2")
+        "####" Z 0 A_JumpIfInventory("DakkaFistSpeed", 4, "Hold3")
+        "####" Z 0 A_JumpIfInventory("DakkaFistSpeed", 2, "Hold4")
+        "####" Z 0 A_JumpIfInventory("DakkaFistSpeed", 1, "Hold5")
+        goto Hold6
       
       
       
-      Right6:
-      RightHold6:
-        RFIT B 1
-        RFIT E 1 A_FireBullets(0, 0, 1, 8, "FistPunchPuff", FBF_NORANDOM | FBF_NORANDOMPUFFZ, 80)
-        RFIT D 1 A_WeaponReady(WRF_NOFIRE | WRF_NOBOB)
-        RFIT A 1 A_WeaponReady(WRF_NOFIRE | WRF_NOBOB)
-        TNT1 A 0 A_JumpIfInventory("DakkaFistTap_Alt", 1, "AltFire_FromPrimary")
-        TNT1 A 1 A_WeaponReady(WRF_NOFIRE | WRF_NOBOB)
-        TNT1 A 0 A_JumpIfInventory("DakkaFistTap_Alt", 1, "AltFire_FromPrimary")
-        TNT1 A 1 A_WeaponReady(WRF_NOFIRE | WRF_NOBOB)
-        goto AttackEnd
-        
-      Left6:
-      LeftHold6:
-        LFIT B 1
-        LFIT E 1 A_FireBullets(0, 0, 1, 8, "FistPunchPuff", FBF_NORANDOM | FBF_NORANDOMPUFFZ, 80)
-        LFIT D 1 A_WeaponReady(WRF_NOFIRE | WRF_NOBOB)
-        LFIT A 1 A_WeaponReady(WRF_NOFIRE | WRF_NOBOB)
-        TNT1 A 0 A_JumpIfInventory("DakkaFistTap_Alt", 1, "AltFire_FromPrimary")
-        TNT1 A 1 A_WeaponReady(WRF_NOFIRE | WRF_NOBOB)
-        TNT1 A 0 A_JumpIfInventory("DakkaFistTap_Alt", 1, "AltFire_FromPrimary")
-        TNT1 A 1 A_WeaponReady(WRF_NOFIRE | WRF_NOBOB)
+      Fire6: Hold6:
+        "####" B 1
+        "####" E 1 A_FireBullets(0, 0, 1, 8, "FistPunchPuff", FBF_NORANDOM | FBF_NORANDOMPUFFZ, 80)
+        "####" D 1 A_WeaponReady(WRF_NOFIRE | WRF_NOBOB)
+        "####" A 1 A_WeaponReady(WRF_NOFIRE | WRF_NOBOB)
+        "####" Z 0 A_JumpIfInventory("DakkaFistTap_Alt", 1, "AltFire_FromPrimary")
+        "####" Z 1 A_WeaponReady(WRF_NOFIRE | WRF_NOBOB)
+        "####" Z 0 A_JumpIfInventory("DakkaFistTap_Alt", 1, "AltFire_FromPrimary")
+        "####" Z 1 A_WeaponReady(WRF_NOFIRE | WRF_NOBOB)
         goto AttackEnd
       
       
-      Right5:
-      RightHold5:
-        RFIT B 1
-        RFIT E 1 A_FireBullets(0, 0, 1, 8, "FistPunchPuff", FBF_NORANDOM | FBF_NORANDOMPUFFZ, 80)
-        RFIT D 1 A_WeaponReady(WRF_NOFIRE | WRF_NOBOB)
-        RFIT A 1 A_WeaponReady(WRF_NOFIRE | WRF_NOBOB)
-        TNT1 A 0 A_JumpIfInventory("DakkaFistTap_Alt", 1, "AltFire_FromPrimary")
-        TNT1 A 1 A_WeaponReady(WRF_NOFIRE | WRF_NOBOB)
-        goto AttackEnd
-        
-      Left5:
-      LeftHold5:
-        LFIT B 1
-        LFIT E 1 A_FireBullets(0, 0, 1, 8, "FistPunchPuff", FBF_NORANDOM | FBF_NORANDOMPUFFZ, 80)
-        LFIT D 1 A_WeaponReady(WRF_NOFIRE | WRF_NOBOB)
-        LFIT A 1 A_WeaponReady(WRF_NOFIRE | WRF_NOBOB)
-        TNT1 A 0 A_JumpIfInventory("DakkaFistTap_Alt", 1, "AltFire_FromPrimary")
-        TNT1 A 1 A_WeaponReady(WRF_NOFIRE | WRF_NOBOB)
+      Fire5: Hold5:
+        "####" B 1
+        "####" E 1 A_FireBullets(0, 0, 1, 8, "FistPunchPuff", FBF_NORANDOM | FBF_NORANDOMPUFFZ, 80)
+        "####" D 1 A_WeaponReady(WRF_NOFIRE | WRF_NOBOB)
+        "####" A 1 A_WeaponReady(WRF_NOFIRE | WRF_NOBOB)
+        "####" Z 0 A_JumpIfInventory("DakkaFistTap_Alt", 1, "AltFire_FromPrimary")
+        "####" Z 1 A_WeaponReady(WRF_NOFIRE | WRF_NOBOB)
         goto AttackEnd
       
       
-      Right4:
-      RightHold4:
-        RFIT B 1
-        RFIT E 1 A_FireBullets(0, 0, 1, 9, "FistPunchPuff", FBF_NORANDOM | FBF_NORANDOMPUFFZ, 80)
-        RFIT C 1 A_WeaponReady(WRF_NOFIRE | WRF_NOBOB)
-        TNT1 A 0 A_JumpIfInventory("DakkaFistTap_Alt", 1, "AltFire_FromPrimary")
-        TNT1 A 1 A_WeaponReady(WRF_NOFIRE | WRF_NOBOB)
-        goto AttackEnd
-        
-      Left4:
-      LeftHold4:
-        LFIT B 1
-        LFIT E 1 A_FireBullets(0, 0, 1, 9, "FistPunchPuff", FBF_NORANDOM | FBF_NORANDOMPUFFZ, 80)
-        LFIT C 1 A_WeaponReady(WRF_NOFIRE | WRF_NOBOB)
-        TNT1 A 0 A_JumpIfInventory("DakkaFistTap_Alt", 1, "AltFire_FromPrimary")
-        TNT1 A 1 A_WeaponReady(WRF_NOFIRE | WRF_NOBOB)
+      Fire4: Hold4:
+        "####" B 1
+        "####" E 1 A_FireBullets(0, 0, 1, 9, "FistPunchPuff", FBF_NORANDOM | FBF_NORANDOMPUFFZ, 80)
+        "####" C 1 A_WeaponReady(WRF_NOFIRE | WRF_NOBOB)
+        "####" Z 0 A_JumpIfInventory("DakkaFistTap_Alt", 1, "AltFire_FromPrimary")
+        "####" Z 1 A_WeaponReady(WRF_NOFIRE | WRF_NOBOB)
         goto AttackEnd
       
       
-      Right3:
-      RightHold3:
-        RFIT E 1 A_FireBullets(0, 0, 1, 9, "FistPunchPuff", FBF_NORANDOM | FBF_NORANDOMPUFFZ, 80)
-        RFIT B 1 A_WeaponReady(WRF_NOFIRE | WRF_NOBOB)
-        TNT1 A 0 A_JumpIfInventory("DakkaFistTap_Alt", 1, "AltFire_FromPrimary")
-        TNT1 A 1 A_WeaponReady(WRF_NOFIRE | WRF_NOBOB)
-        goto AttackEnd
-        
-      Left3:
-      LeftHold3:
-        LFIT E 1 A_FireBullets(0, 0, 1, 9, "FistPunchPuff", FBF_NORANDOM | FBF_NORANDOMPUFFZ, 80)
-        LFIT B 1 A_WeaponReady(WRF_NOFIRE | WRF_NOBOB)
-        TNT1 A 0 A_JumpIfInventory("DakkaFistTap_Alt", 1, "AltFire_FromPrimary")
-        TNT1 A 1 A_WeaponReady(WRF_NOFIRE | WRF_NOBOB)
+      Fire3: Hold3:
+        "####" E 1 A_FireBullets(0, 0, 1, 9, "FistPunchPuff", FBF_NORANDOM | FBF_NORANDOMPUFFZ, 80)
+        "####" B 1 A_WeaponReady(WRF_NOFIRE | WRF_NOBOB)
+        "####" Z 0 A_JumpIfInventory("DakkaFistTap_Alt", 1, "AltFire_FromPrimary")
+        "####" Z 1 A_WeaponReady(WRF_NOFIRE | WRF_NOBOB)
         goto AttackEnd
       
       
-      Right2:
-      RightHold2:
-        RFIT E 1 A_FireBullets(0, 0, 1, 10, "FistPunchPuff", FBF_NORANDOM | FBF_NORANDOMPUFFZ, 80)
-        TNT1 A 0 A_JumpIfInventory("DakkaFistTap_Alt", 1, "AltFire_FromPrimary")
-        RFIT B 1 A_WeaponReady(WRF_NOFIRE | WRF_NOBOB)
-        goto AttackEnd
-        
-      Left2:
-      LeftHold2:
-        LFIT E 1 A_FireBullets(0, 0, 1, 10, "FistPunchPuff", FBF_NORANDOM | FBF_NORANDOMPUFFZ, 80)
-        TNT1 A 0 A_JumpIfInventory("DakkaFistTap_Alt", 1, "AltFire_FromPrimary")
-        LFIT B 1 A_WeaponReady(WRF_NOFIRE | WRF_NOBOB)
+      Fire2: Hold2:
+        "####" E 1 A_FireBullets(0, 0, 1, 10, "FistPunchPuff", FBF_NORANDOM | FBF_NORANDOMPUFFZ, 80)
+        "####" Z 0 A_JumpIfInventory("DakkaFistTap_Alt", 1, "AltFire_FromPrimary")
+        "####" B 1 A_WeaponReady(WRF_NOFIRE | WRF_NOBOB)
         goto AttackEnd
       
       
