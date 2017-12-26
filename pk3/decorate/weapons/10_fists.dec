@@ -192,6 +192,7 @@ actor DWep_Fist: DoomWeapon
         TNT1 A 1 A_FireBullets(0, 0, 1, 0, "FistTrackingPuff", FBF_NORANDOM | FBF_NORANDOMPUFFZ, 112)
         goto Altfire_Weak
 
+      AltHold:
       AltFire_FromPrimary:
         TNT1 A 0 A_ClearRefire
         TNT1 A 0 A_GiveInventory("DakkaFistInAlt")
@@ -287,10 +288,6 @@ actor DWep_Fist: DoomWeapon
         DFIT R 0 A_ZoomFactor(1.35,  ZOOM_NOSCALETURNING | ZOOM_INSTANT)
         
         DFIT RRRRRRRRRRRRRR 1 A_WeaponReady(WRF_NOFIRE | WRF_NOBOB)
-        DFIT R 0  A_WeaponReady(WRF_NOFIRE | WRF_NOBOB)
-        DFIT R 1  A_ZoomFactor(1.3,  ZOOM_NOSCALETURNING)
-        DFIT R 0  A_WeaponReady(WRF_NOFIRE | WRF_NOBOB)
-        DFIT R 1  A_ZoomFactor(1.25, ZOOM_NOSCALETURNING)
         DFIT R 0  A_WeaponReady(WRF_NOFIRE | WRF_NOBOB)
         DFIT R 1  A_ZoomFactor(1.3,  ZOOM_NOSCALETURNING)
         DFIT R 0  A_WeaponReady(WRF_NOFIRE | WRF_NOBOB)
