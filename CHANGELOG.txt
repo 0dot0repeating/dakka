@@ -33,6 +33,12 @@ GENERAL CHANGES:
 
 NEW WEAPONS:
 
+- While the fists are still fists, they've been completely reworked and might as
+    well go here. The primary fire throws out weak punches that quickly build up
+    to blistering speed, while the alt-fire is a charged punch, which can be
+    charged up to three times to loose a bone-splintering one-two-three salvo
+    that also hurts everyone near the poor sap you just broke in half.
+
 - The rocket launcher has been replaced with the IMPALER, a triple-barreled
     cannon that buffets your foes with far, far too many rockets. The primary
     fire will unload automatic explosive death upon your enemies, while the alt
@@ -46,12 +52,6 @@ NEW WEAPONS:
 
 
 WEAPON CHANGES:
-
-- The fists have been completely redone to be more Dakka-y. The primary fire
-    throws out weak punches that quickly build up to blistering speed, while the
-    alt-fire is a charged punch, which can be charged up to three times to loose
-    a bone-splintering one-two-three salvo that also hurts everyone near the
-    poor sap you just broke in half.
 
 - The pistol alt-fire has been heavily nerfed, both in bullet count (4 to 3) and
     fire rate (15 tics to 18 tics).
