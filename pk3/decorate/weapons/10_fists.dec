@@ -24,6 +24,10 @@ actor DWep_Fist: DoomWeapon
     States
     {
       Select:
+        DFIT A 0 A_TakeInventory("DakkaFistSpeed")
+        goto Select2
+        
+      Select2:
         DFIT AA 0 A_Raise
         DFIT A 1 A_Raise
         loop
@@ -48,21 +52,31 @@ actor DWep_Fist: DoomWeapon
         wait
 
       Ready:
-        TNT1 A 0 A_TakeInventory("DakkaFistAttackOver")
+        DFIT A 0 A_TakeInventory("DakkaFistAttackOver")
+        goto Ready2
+      
+      Ready2:
+        DFIT A 0 A_TakeInventory("DakkaFistSpeed", 1)
         DFIT A 1 A_WeaponReady
-        wait
+        loop
         
         
       Fire:
-        TNT1 A 0 A_TakeInventory("DakkaFistSpeed")
         TNT1 A 0 A_TakeInventory("DakkaFistConnected")
         TNT1 A 0 A_TakeInventory("DakkaFistAttackOver")
         TNT1 A 0 A_JumpIfInventory("LeftPunchNext", 1, "FireLeft")
         RFIT Z 0 A_GiveInventory("LeftPunchNext")
-        goto Fire6
+        goto FireCommon
       
       FireLeft:
         LFIT Z 0 A_TakeInventory("LeftPunchNext")
+        goto FireCommon
+      
+      FireCommon:
+        "####" Z 0 A_JumpIfInventory("DakkaFistSpeed", 6, "Fire2")
+        "####" Z 0 A_JumpIfInventory("DakkaFistSpeed", 4, "Fire3")
+        "####" Z 0 A_JumpIfInventory("DakkaFistSpeed", 2, "Fire4")
+        "####" Z 0 A_JumpIfInventory("DakkaFistSpeed", 1, "Fire5")
         goto Fire6
       
       
