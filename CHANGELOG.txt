@@ -1,84 +1,108 @@
-"Better Doom Weapons" -> Dakka 0.01
-- Scrapped all the weapon code beside the fists, and redid it from scratch.
-
-- The emphasis is now on speed of weaponry, and utility in all weapons.
-
+NOTE: Most of this changelog was retroactive; anything before 0.05 was for sure,
+      and 0.05 itself probably was retroactive. Therefore, while they shouldn't
+      be inaccurate, they're hardly comprehensive. Keep that in mind.
 
 
-0.01 -> 0.022
-- Mainly bugfixes as far as I can remember, largely for online play.
+####====----
+##==--
+#=-     DAKKA v1.0
+#-
 
-- Chaingun grenades were constantly exploding online, and in general desyncing
-    like a motherfucker.
+GENERAL CHANGES:
 
-- The SSG was broken for some reason. Forgot how.
+- Dakka now replaces player classes again. Dakkaguy stands tall and proud,
+    probably on top of a pile of spent minigun casings and dead demons.
 
+- The HUD has been completely redone, because honestly? It was pretty damn ugly.
+    The functionality is the same, but it's much sleeker and sharper, and comes
+    with better inventory support to boot.
 
+- The dakka_bundleplasma and dakka_bundlebfg CVars are gone, as they no longer
+    serve any purpose.
 
-0.022 -> 0.032
-- SSG switched from "faster SSG" to "two shots before every reload". Alt-fire
-    changed from dragon's breath to gyrojets.
+- Sound levels have been looked over and normalized, for the most part. But only
+    in Zandronum, since GZDoom's OpenAL implementation plays first person stereo
+    sounds as downmixed mono sounds that are far quieter than they should be.
+    FMod - the backend Zandronum uses - handles it just fine. Nothing I can do
+    about this, and downmixing the stereo sounds results in muffled garbage, so
+    I'm targeting Zandronum for the time being.
 
-- Chaingun grenades no longer remote detonated - instead, they shoot up and rain
-    grenades down upon thy demons, to smite them justly and nobly.
-
-- Rocket launcher alt-fire slowed down so that the primary fire has a reason to
-    exist. Seriously, who ever used not-altfire?
-
-- BFG primary fire went from BFG BALL THAT BARRELS THROUGH SHIT to GIANT GODDAMN
-    BEAM THAT BARRELS THROUGH EVERYTHING AND TURNS THEM INTO LIQUID *DEAD*.
-
-
-
-0.032 -> 0.04
-- ROCKETS FUCKING EVERYWHERE. Double rockets from pickups because best.
-
-- NEW AMMO TYPES SON. Chainguns and SSGs no longer magically use rockets.
-    Grenades are no longer rockets. You still get tons of rockets anyway.
-
-- SSG gets new sounds! Also, 'rolling' the fire buttons in primary fire now
-    fires two primary blasts off, rather than primary -> alt.
-
-- BFG beam now uses 80 cells, to balance out the fact that it's UNGODLY POWERFUL
-    AND ONESHOTS CYBERDEMONS AND MAKES NUTS.WAD ITS BITCH.
+    Dunno what I'll do when Zandronum switches over to OpenAL. Hopefully the bug
+    will be fixed by then?
 
 
+NEW WEAPONS:
 
-0.04 -> 0.05fuckme (yes seriously)
-- SCRAPPER SON. No longer do you have a shitty no-effort chainsaw. Now you have
-    a gun that takes the casings and whatnot spent from other guns, and turns
-    them into molten hunks of scrap and SHOOTS THEM BACK AT YOUR ENEMIES. Death
-    fueling death. Can't really get more metal than that.
+- The rocket launcher has been replaced with the IMPALER, a triple-barreled
+    cannon that buffets your foes with far, far too many rockets. The primary
+    fire will unload automatic explosive death upon your enemies, while the alt
+    fire... well, it impales things. Then they blow up. Great for pairing up
+    stragglers with their friends!
 
-- dakka_cl_recoil is in. 0 is no recoil, 100 is full recoil, and it can go up to
-    1000 for 10x recoil. It's pretty ridiculous.
-
-- Fixed SSG fire rolling - now you can let off two shots almost instantaneously,
-    and rolling on alt-fire actually works.
-
-- SSG now takes time to reload when it's in your pockets, so you can't just shove
-  it up your butt every two shots to skip the reload. Use a different gun for a
-  couple seconds. Like a rocket launcher.
-
-- BFG beam's damage radius narrowed massively. Now it no longer wrecks everything
-    forever.
-
-- BFG alt-fire now uses 8 cells.
-
-- You can now play as other classes with Dakka. This is mostly for laughing at
-    not-Dakka classes as you smear them with rocket launchers firing at the
-    pistol fire rate.
+- The plasma rifle and channeler have been dropped, and in their place comes the
+    LANCER. The primary fire launches plasma nails that penetrate enemies and
+    hit what's behind them, while the alt-fire charges up the weapon to release
+    a torrent of lightning that arcs through everything in front of you.
 
 
+WEAPON CHANGES:
 
-0.05fuckme -> 0.06:
+- The fists have been completely redone to be more Dakka-y. The primary fire
+    throws out weak punches that quickly build up to blistering speed, while the
+    alt-fire is a charged punch, which can be charged up to three times to loose
+    a bone-splintering one-two-three salvo that also hurts everyone near the
+    poor sap you just broke in half.
+
+- The pistol alt-fire has been heavily nerfed, both in bullet count (4 to 3) and
+    fire rate (15 tics to 18 tics).
+
+- The shotgun's primary fire has been buffed to 125 damage, making it capable of
+    killing hell knights, arachnotrons, and barons of hell in one less shot.
+
+- You can now switch out of the shotgun's primary/alt fires sooner.
+
+- You also no longer pump a shell/grenade into your shotgun when you're out of
+    them. I briefly considered having Dakkaguy load a shell/grenade the moment
+    you found one, but then I decided it'd be distracting for no reason.
+
+- The super shotgun's alt-fire now only uses one ammo per shot. Since you
+    couldn't use an odd number of gyro shells and could only get an odd amount
+    through ammo regeneration, it makes more sense to do it this way.
+
+- Chaingun rain grenades have a slight full-damage radius now, which should make
+    them more effective at clearing out trash. In return, they've been nerfed to
+    24 damage per explosion, down from 32.
+
+
+AMMO CHANGES:
+
+- The scrappers now get ammo from all the other guns. While things like grenades
+    and rockets realistically shouldn't leave behind any scrap metal, this isn't
+    exactly a realistic mod to begin with, and this change encourages variety.
+
+- Gyro shells now have a max ammo count of 15 (30 with a backpack), and have had
+    their pickup and ammo regeneration rates cut significantly. This is after
+    factoring in that the SSG only uses one per shot now.
+
+- You now carry up to 120 rockets (240 with a backpack), get 4 rockets from
+    small rocket pickups, and get 20 from rocket boxes. This sounds like a buff,
+    but the impaler does far less damage per shot than the rocket launcher did;
+    it's actually a significant nerf!
+
+
+
+
+####====----
+##==--
+#=-     DAKKA v0.06
+#-
 
 NEW STUFF:
 
-- Score system! Not just for dick-measuring, but it also gets you boosts in-game!
-    The manner in which you kill shit factors into how many points you get, too,
-    not just the type of enemy you kill. And believe me, there are a *lot* of
-    point modifiers. You'll have a hell of a time *not* getting them.
+- Score system! Not just for bragging rights, but also gets for in-game boosts!
+    The manner in which you kill shit factors into how many points you get,
+    and there's enough modifiers in there for the question to be less "will you
+    get any?" and more "can you actually manage to get all of them at once?"
 
 - Minigun! It's also a flamethrower! It's also comparable to the plasma rifle
     damage-wise! It replaces berserk.
@@ -93,7 +117,7 @@ NEW STUFF:
     Unreal HUD too.
 
 - Bullet tracers! Oh my god so many bullet tracers. If you don't want them, use
-    dakka_cl_notracers to turn them off. Ya filthy animal.
+    dakka_cl_notracers to turn them off... but who'd do that?
 
 
 WEAPON BEHAVIOUR JUNK:
@@ -172,38 +196,143 @@ MISC:
     you got? That's dumb. Higher means more scrap now. It goes up to 1000, as
     in you get 1000% the scrap you normally would.
 
-    
-0.06 -> 1.0:
 
-- Dakka now replaces player classes again. Dakkaguy stands tall and proud,
-  probably on top of a pile of spent minigun casings and dead demons.
 
-- The shotgun's primary fire has been buffed to 125 damage, making it capable of
-  killing hell knights, arachnotrons, and barons of hell in one less shot.
 
-- You can now switch out of the shotgun's primary/alt fires sooner.
+####====----
+##==--
+#=-     DAKKA v0.05
+#-
 
-- You also no longer pump a shell/grenade into your shotgun when you're out of
-  them. I briefly considered having Dakkaguy pump a shell/grenade in the moment
-  you found one, but then I decided it'd be distracting for no reason.
+- SCRAPPER SON. No longer do you have a shitty no-effort chainsaw. Now you have
+    a gun that takes the casings and whatnot spent from other guns, and turns
+    them into molten hunks of scrap and SHOOTS THEM BACK AT YOUR ENEMIES. Death
+    fueling death. Can't really get more metal than that.
 
-- Chaingun rain grenades have a slight full-damage radius now, which should make
-  them more effective at clearing out trash mobs. In return, they've been nerfed
-  to 24 damage per explosion, down from 32.
+- dakka_cl_recoil is in. 0 is no recoil, 100 is full recoil, and it can go up to
+    1000 for 10x recoil. It's pretty ridiculous.
 
-- You now carry up to 90 rockets (180 with a backpack), get 3 of them from small
-  rocket pickups, and get 15 of them from rocket boxes. This is because...
+- Fixed SSG fire rolling - now you can let off two shots almost instantaneously,
+    and rolling on alt-fire actually works.
 
-- The rocket launcher has been replaced with the IMPALER, a triple-barreled
-  cannon that buffets your foes with far, far too many rockets. The primary fire
-  will unload automatic explosive death upon your enemies, while the alt fire...
-  well, it impales things. Then they blow up. Great for pairing up stragglers
-  with their friends!
+- SSG now takes time to reload when it's in your pockets, so you can't just shove
+    it up your butt every two shots to skip the reload. Use a different gun for
+    a couple seconds. Like a rocket launcher.
 
-- The plasma rifle and channeler have been dropped, and in their place comes the
-  PLASMA LANCE. The primary fire launches plasma nails that penetrate enemies to
-  hit what's behind them, while the alt-fire launches unstable balls of plasma
-  that burst into lightning shortly upon impact.
+- BFG beam's damage radius narrowed massively. Now it no longer wrecks everything
+    forever.
 
-- The dakka_bundleplasma and dakka_bundlebfg CVars are gone, as they no longer
-  serve any purpose.
+- BFG alt-fire now uses 8 cells.
+
+- You can now play as other classes with Dakka. This is mostly for laughing at
+    not-Dakka classes as you smear them with rocket launchers firing at the
+    pistol fire rate.
+
+
+
+
+####====----
+##==--
+#=-     DAKKA v0.04
+#-
+
+
+0.032 -> 0.04
+- ROCKETS EVERYWHERE. Things weren't dying fast enough, so now you get twice as
+    many rockets! Even though you don't actually need so many, because...
+
+- NEW AMMO TYPES. You now have shotgun grenades, gyro shells, and rain grenades.
+    Now you no longer have sleepless nights over how you fit a rocket into a
+    shotgun barrel, and instead have sleepless nights over how you fit a grenade
+    into a shotgun barrel. It's progress!
+
+- SSG gets new sounds! Also, 'rolling' the fire buttons in primary fire now
+    fires two primary blasts off, rather than primary -> alt.
+
+- BFG beam now uses 80 cells, to balance out the fact that it's, uh, getting up
+    there on the "oops I killed the entire map" scale.
+
+
+
+
+####====----
+##==--
+#=-     DAKKA v0.03
+#-
+
+- SSG switched from "faster SSG" to "two shots before every reload". Alt-fire
+    changed from dragon's breath to gyrojets.
+
+- Chaingun grenades no longer remote detonated - instead, they shoot up and rain
+    grenades down upon thy demons, to smite them justly and nobly.
+
+- Rocket launcher alt-fire slowed down so that the primary fire has a reason to
+    exist. Seriously, who ever used not-altfire?
+
+- BFG primary fire is now really long. And it's really fast. And it has a neat
+    spiral effect. It's a giant laser beam.
+
+
+
+
+####====----
+##==--
+#=-     DAKKA v0.02
+#-
+
+- Mainly bugfixes as far as I can remember, largely for online play.
+
+- Chaingun grenades were constantly exploding online, and in general desyncing
+    like a motherfucker.
+
+- The SSG was broken for some reason. Forgot how.
+
+
+
+
+####====----
+##==--
+#=-     DAKKA v0.01
+#-
+
+- Scrapped all the weapon code from its parent mod, "Better Doom Weapons" (don't
+    look for it, it's garbage) beside the fists, and redid it from scratch. The
+    emphasis is now on speed of weaponry, and utility in all weapons.
+
+- In general, the primary fires and switch speeds of each weapon got massively
+    sped up, and the alt-fires for everything except the pistols were completely
+    scrapped and replaced with something else. To summarize:
+
+    Fist:
+    - OLD: Simply switched punching hands. Seriously. That was it.
+    - NEW: Heavy punch.
+
+    PISTOL:
+    - OLD: Shotgun-style burst.
+    - NEW: Shotgun-style burst.
+
+    SHOTGUN:
+    - OLD: "Slug" shot that was actually a railgun slug.
+    - NEW: Grenade.
+
+    SUPER SHOTGUN:
+    - OLD: Two "slug" shots.
+    - NEW: Wall of ripping fire projectiles. Did not set anything on fire, since
+           there was no good way to back then.
+
+    CHAINGUN:
+    - OLD: Automatic shotgun-style burst fire.
+    - NEW: Remote-detonated grenades.
+
+    ROCKET LAUNCHER:
+    - OLD: Preset double-diamond spread of mini-missiles. Could oneshot a baron.
+    - NEW: Load up to three rockets into the barrel, then shoot them at your
+           enemies like grenades. Tumbling rocket sprites were added later.
+
+    PLASMA RIFLE:
+    - OLD: Ripping yellow plasma.
+    - NEW: Automatic laser shotgun.
+
+    BFG9000:
+    - OLD: BFG2704 fire mode.
+    - NEW: Automatic plasma rocket launcher.
