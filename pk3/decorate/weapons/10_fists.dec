@@ -1,10 +1,11 @@
 actor LeftPunchNext:        Boolean {}
 actor DakkaFistConnected:   Boolean {}
-actor DakkaFistSpeed:       Counter { Inventory.MaxAmount 10 }
+actor DakkaFistSpeed:       Counter { Inventory.MaxAmount 15 }
 actor DakkaFistTap_Main:    Counter {}
 actor DakkaFistTap_Alt:     Counter {}
 actor DakkaFistFinisher:    Boolean {}
 actor DakkaFistInAlt:       Boolean {}
+actor DakkaFistAttackOver:  Boolean {}
 
 
 actor DWep_Fist: DoomWeapon
@@ -28,6 +29,7 @@ actor DWep_Fist: DoomWeapon
         loop
 
       Deselect:
+        "####" A 0 A_JumpIfInventory("DakkaFistAttackOver", 1, "InstantDeselect")
         "####" A 0 A_JumpIfInventory("DakkaFistInAlt", 1, "AltDeselect")
         DFIT AAA 0 A_Lower
         DFIT A 1 A_Lower
@@ -38,18 +40,23 @@ actor DWep_Fist: DoomWeapon
         "####" K 0 A_ZoomFactor(1.0, ZOOM_NOSCALETURNING)
         "####" KIG 1
         TNT1 A 2
+        goto InstantDeselect
+      
+      InstantDeselect:
         TNT1 AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA 0 A_Lower
         TNT1 A 0 A_Lower
         wait
 
       Ready:
+        TNT1 A 0 A_TakeInventory("DakkaFistAttackOver")
         DFIT A 1 A_WeaponReady
-        loop
+        wait
         
         
       Fire:
         TNT1 A 0 A_TakeInventory("DakkaFistSpeed")
         TNT1 A 0 A_TakeInventory("DakkaFistConnected")
+        TNT1 A 0 A_TakeInventory("DakkaFistAttackOver")
         TNT1 A 0 A_JumpIfInventory("LeftPunchNext", 1, "FireLeft")
         RFIT Z 0 A_GiveInventory("LeftPunchNext")
         goto Fire6
@@ -62,6 +69,7 @@ actor DWep_Fist: DoomWeapon
       Hold:
         TNT1 A 0 A_TakeInventory("DakkaFistSpeed", 1)
         TNT1 A 0 A_TakeInventory("DakkaFistConnected")
+        TNT1 A 0 A_TakeInventory("DakkaFistAttackOver")
         TNT1 A 0 A_JumpIfInventory("LeftPunchNext", 1, "HoldLeft")
         RFIT Z 0 A_GiveInventory("LeftPunchNext")
         goto HoldCommon
@@ -130,6 +138,7 @@ actor DWep_Fist: DoomWeapon
       AltFire:
         TNT1 A 0 A_ClearRefire
         TNT1 A 0 A_GiveInventory("DakkaFistInAlt")
+        TNT1 A 0 A_TakeInventory("DakkaFistAttackOver")
         TNT1 A 0 A_PlaySound("dakka/fistcharge1", 5)
         
         DFIT A 0 offset(0, 40) A_ZoomFactor(0.97, ZOOM_NOSCALETURNING)
@@ -144,6 +153,7 @@ actor DWep_Fist: DoomWeapon
       AltFire_FromPrimary:
         TNT1 A 0 A_ClearRefire
         TNT1 A 0 A_GiveInventory("DakkaFistInAlt")
+        TNT1 A 0 A_TakeInventory("DakkaFistAttackOver")
         TNT1 A 0 A_PlaySound("dakka/fistcharge1", 5)
         
         TNT1 A 0 A_ZoomFactor(0.97, ZOOM_NOSCALETURNING)
@@ -176,7 +186,9 @@ actor DWep_Fist: DoomWeapon
         TNT1 A 0 A_JumpIfInventory("AltClicked", 1, "AltFire_Medium")
         TNT1 A 1 A_FireBullets(0, 0, 1, 0, "FistTrackingPuff", FBF_NORANDOM | FBF_NORANDOMPUFFZ, 112)
         
+        LFIT H 0 A_FireBullets(0, 0, 1, 0, "FistHeavyTrackingPuff", FBF_NORANDOM | FBF_NORANDOMPUFFZ, 112)
         LFIT H 1 A_ZoomFactor(1.05, ZOOM_NOSCALETURNING | ZOOM_INSTANT)
+        LFIT J 0 A_FireBullets(0, 0, 1, 0, "FistHeavyTrackingPuff", FBF_NORANDOM | FBF_NORANDOMPUFFZ, 112)
         LFIT J 1 A_ZoomFactor(1.22, ZOOM_NOSCALETURNING | ZOOM_INSTANT)
         
         LFIT L 0 A_TakeInventory("DakkaFistConnected")
@@ -227,7 +239,9 @@ actor DWep_Fist: DoomWeapon
         TNT1 A 0 A_JumpIfInventory("AltClicked", 1, "AltFire_Strong")
         TNT1 A 1 A_FireBullets(0, 0, 1, 0, "FistTrackingPuff", FBF_NORANDOM | FBF_NORANDOMPUFFZ, 112)
         
+        LFIT H 0 A_FireBullets(0, 0, 1, 0, "FistHeavyTrackingPuff", FBF_NORANDOM | FBF_NORANDOMPUFFZ, 112)
         LFIT H 1 A_ZoomFactor(1.02, ZOOM_NOSCALETURNING | ZOOM_INSTANT)
+        LFIT J 0 A_FireBullets(0, 0, 1, 0, "FistHeavyTrackingPuff", FBF_NORANDOM | FBF_NORANDOMPUFFZ, 112)
         LFIT J 1 A_ZoomFactor(1.21, ZOOM_NOSCALETURNING | ZOOM_INSTANT)
         
         LFIT L 0 A_TakeInventory("DakkaFistConnected")
@@ -262,7 +276,9 @@ actor DWep_Fist: DoomWeapon
         TNT1 A 0 A_ZoomFactor(0.85, ZOOM_NOSCALETURNING)
         TNT1 AAAAAAAAAAAA 1 A_FireBullets(0, 0, 1, 0, "FistTrackingPuff", FBF_NORANDOM | FBF_NORANDOMPUFFZ, 112)
         
+        LFIT H 0 A_FireBullets(0, 0, 1, 0, "FistHeavyTrackingPuff", FBF_NORANDOM | FBF_NORANDOMPUFFZ, 112)
         LFIT H 1 A_ZoomFactor(1.00, ZOOM_NOSCALETURNING | ZOOM_INSTANT)
+        LFIT J 0 A_FireBullets(0, 0, 1, 0, "FistHeavyTrackingPuff", FBF_NORANDOM | FBF_NORANDOMPUFFZ, 112)
         LFIT J 1 A_ZoomFactor(1.2,  ZOOM_NOSCALETURNING | ZOOM_INSTANT)
         
         LFIT L 0 A_TakeInventory("DakkaFistConnected")
@@ -293,6 +309,7 @@ actor DWep_Fist: DoomWeapon
 
       AttackEnd:
         TNT1 A 0 A_TakeInventory("DakkaFistInAlt")
+        TNT1 A 0 A_GiveInventory("DakkaFistAttackOver")
         DIFT A 0               A_Refire
         DFIT A 1 offset(0, 40) A_WeaponReady(WRF_NOBOB)
         DIFT A 0               A_Refire
@@ -346,6 +363,8 @@ actor FistPunchPuff: BulletPuff
     }
 }
 
+
+
 actor FistTrackingPuff: BulletPuff
 {
     +HITTRACER
@@ -362,7 +381,29 @@ actor FistTrackingPuff: BulletPuff
     {
       Spawn:
         TNT1 A 0
-        TNT1 A 8 ACS_NamedExecuteWithResult("Dakka_FistHit", 0, 3, 1)
+        TNT1 A 8 ACS_NamedExecuteWithResult("Dakka_FistHit", 0, 1, 1)
+        stop
+    }
+}
+
+
+actor FistHeavyTrackingPuff: BulletPuff
+{
+    +HITTRACER
+    +PUFFGETSOWNER
+    +PUFFONACTORS
+    +NOEXTREMEDEATH
+    +NODAMAGETHRUST
+    +BLOODLESSIMPACT
+
+    SeeSound    "dakka/silent"
+    AttackSound "dakka/silent"
+
+    States
+    {
+      Spawn:
+        TNT1 A 0
+        TNT1 A 8 ACS_NamedExecuteWithResult("Dakka_FistHit", 0, 8, 1)
         stop
     }
 }
