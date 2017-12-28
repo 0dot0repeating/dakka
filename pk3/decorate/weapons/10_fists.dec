@@ -35,6 +35,9 @@ actor DWep_Fist: DoomWeapon
       Deselect:
         "####" A 0 A_JumpIfInventory("DakkaFistAttackOver", 1, "InstantDeselect")
         "####" A 0 A_JumpIfInventory("DakkaFistInAlt", 1, "AltDeselect")
+        goto DeselectNormal
+      
+      DeselectNormal:
         DFIT AAA 0 A_Lower
         DFIT A 1 A_Lower
         loop
