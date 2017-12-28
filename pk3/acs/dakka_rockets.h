@@ -150,8 +150,6 @@ script "Dakka_ImpalerAltPush" (int normX, int normY, int normZ, int power)
     
     int thrustMult;
     
-    Log(n:0);
-    
     if (monMass <= 0)
     {
         thrustMult = itof(min(32767, power));
