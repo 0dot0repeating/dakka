@@ -1,278 +1,203 @@
-sprite DPSTA0, 320, 240
+Sprite "DPSTA0", 320, 200
 {
-    patch PISTOL1, 137, 106 {}
+	Patch "PISTOL1", 137, 106
 }
 
-sprite DPSTB0, 320, 240
+Sprite "DPSTB0", 320, 200
 {
-    patch PISTOL2, 137, 100 {}
+	Patch "PISTOL2", 137, 100
 }
 
-sprite DPSTC0, 320, 240
+Sprite "DPSTC0", 320, 200
 {
-    patch PISTOL3, 135, 98 {}
+	Patch "PISTOL3", 135, 98
 }
 
-sprite DPSTD0, 320, 240
+Sprite "DPSTD0", 320, 200
 {
-    patch PISTOL4, 133, 92 {}
+	Patch "PISTOL4", 133, 92
 }
 
-sprite DPSTE0, 320, 240
+Sprite "DPSTE0", 320, 200
 {
-    patch PISTOL5, 133, 87 {}
+	Patch "PISTOL5", 133, 87
 }
 
-sprite DPSTF0, 320, 240
+Sprite "DPSTF0", 320, 200
 {
-    patch PISTOL2, 137, 100 {}
-    patch PISTOLF, 139, 79 {}
+	Patch "PISTOL2", 137, 100
+	Patch "PISTOLF", 139, 79
 }
 
-sprite DPSFA0, 320, 240
+Sprite "DPSFA0", 320, 200
 {
-    patch PISTOLF, 139, 79 {}
-}
-
-
-
-sprite RPSTA0, 320, 240
-{
-    patch PISTOL1, 167, 106 {}
-}
-
-sprite RPSTB0, 320, 240
-{
-    patch PISTOL2, 167, 100 {}
-}
-
-sprite RPSTC0, 320, 240
-{
-    patch PISTOL3, 165, 98 {}
-}
-
-sprite RPSTD0, 320, 240
-{
-    patch PISTOL4, 163, 92 {}
-}
-
-sprite RPSTE0, 320, 240
-{
-    patch PISTOL5, 163, 87 {}
-}
-
-sprite RPSTF0, 320, 240
-{
-    patch PISTOL2, 167, 100 {}
-    patch PISTOLF, 169, 79 {}
-}
-
-sprite RPKFA0, 320, 240
-{
-    patch PISTOLF, 169, 79 {}
+	Patch "PISTOLF", 139, 79
 }
 
 
 
-sprite LPSTA0, 320, 240
+Sprite "DPS2A0", 320, 200
 {
-    patch PISTOL1, 96, 106 { FlipX }
+	Patch "PISTOL1", 96, 106 { FlipX }
+	Patch "PISTOL1", 167, 106
 }
 
-sprite LPSTB0, 320, 240
+Sprite "DPS2B0", 320, 200
 {
-    patch PISTOL2, 74, 100 { FlipX }
+	Patch "PISTOL2", 74, 100 { FlipX }
+	Patch "PISTOL2", 167, 100
 }
 
-sprite LPSTC0, 320, 240
+Sprite "DPS2C0", 320, 200
 {
-    patch PISTOL3, 89, 98 { FlipX }
+	Patch "PISTOL3", 89, 98 { FlipX }
+	Patch "PISTOL3", 165, 98
 }
 
-sprite LPSTD0, 320, 240
+Sprite "DPS2D0", 320, 200
 {
-    patch PISTOL4, 96, 92 { FlipX }
+	Patch "PISTOL4", 96, 92 { FlipX }
+	Patch "PISTOL4", 163, 92
 }
 
-sprite LPSTE0, 320, 240
+Sprite "DPS2E0", 320, 200
 {
-    patch PISTOL5, 79, 87 { FlipX }
+	Patch "PISTOL5", 79, 87 { FlipX }
+	Patch "PISTOL5", 163, 87
 }
 
-sprite LPSTF0, 320, 240
+Sprite "DPS2F0", 320, 200
 {
-    patch PISTOL2, 74, 100 { FlipX }
-    patch PISTOLF, 110, 79 { FlipX }
-}
-
-sprite LPKFA0, 320, 240
-{
-    patch PISTOLF, 110, 79 { FlipX }
+	Patch "PISTOL2", 74, 100 { FlipX }
+	Patch "PISTOL2", 167, 100
+	Patch "PISTOLF", 110, 79 { FlipX }
+	Patch "PISTOLF", 169, 79
 }
 
 
 
-sprite BPSTA0, 320, 240
+Sprite "DPS2G0", 320, 200
 {
-    patch PISTOL1, 96, 106 { FlipX }
-    patch PISTOL1, 167, 106 {}
+	Patch "PISTOL2", 74, 100 { FlipX }
+	Patch "PISTOL1", 167, 106
 }
 
-sprite BPSTB0, 320, 240
+Sprite "DPS2H0", 320, 200
 {
-    patch PISTOL2, 74, 100 { FlipX }
-    patch PISTOL2, 167, 100 {}
+	Patch "PISTOL3", 89, 98 { FlipX }
+	Patch "PISTOL1", 167, 106
 }
 
-sprite BPSTC0, 320, 240
+Sprite "DPS2I0", 320, 200
 {
-    patch PISTOL3, 89, 98 { FlipX }
-    patch PISTOL3, 165, 98 {}
+	Patch "PISTOL4", 96, 92 { FlipX }
+	Patch "PISTOL1", 167, 106
 }
 
-sprite BPSTD0, 320, 240
+Sprite "DPS2J0", 320, 200
 {
-    patch PISTOL4, 96, 92 { FlipX }
-    patch PISTOL4, 163, 92 {}
+	Patch "PISTOL5", 79, 87 { FlipX }
+	Patch "PISTOL1", 167, 106
 }
 
-sprite BPSTE0, 320, 240
+
+
+Sprite "DPS2K0", 320, 200
 {
-    patch PISTOL5, 79, 87 { FlipX }
-    patch PISTOL5, 163, 87 {}
+	Patch "PISTOL1", 96, 106 { FlipX }
+	Patch "PISTOL2", 167, 100
 }
 
-sprite BPSTF0, 320, 240
+Sprite "DPS2L0", 320, 200
 {
-    patch PISTOL2, 74, 100 { FlipX }
-    patch PISTOL2, 167, 100 {}
-    patch PISTOLF, 110, 79 { FlipX }
-    patch PISTOLF, 169, 79 {}
+	Patch "PISTOL1", 96, 106 { FlipX }
+	Patch "PISTOL3", 165, 98
 }
 
-sprite BPSTG0, 320, 240
+Sprite "DPS2M0", 320, 200
 {
-    patch PISTOL2, 74, 100 { FlipX }
-    patch PISTOL1, 167, 106 {}
-    patch PISTOLF, 110, 79 { FlipX }
+	Patch "PISTOL1", 96, 106 { FlipX }
+	Patch "PISTOL4", 163, 92
 }
 
-sprite BPSTH0, 320, 240
+Sprite "DPS2N0", 320, 200
 {
-    patch PISTOL3, 89, 98 { FlipX }
-    patch PISTOL1, 167, 106 {}
-    patch PISTOLF, 110, 79 { FlipX }
+	Patch "PISTOL1", 96, 106 { FlipX }
+	Patch "PISTOL5", 163, 87
 }
 
-sprite BPSTI0, 320, 240
+
+
+Sprite "DPS2O0", 320, 200
 {
-    patch PISTOL4, 96, 92 { FlipX }
-    patch PISTOL1, 167, 106 {}
+	Patch "PISTOL5", 79, 87 { FlipX }
+	Patch "PISTOL2", 167, 100
 }
 
-sprite BPSTJ0, 320, 240
+Sprite "DPS2P0", 320, 200
 {
-    patch PISTOL5, 79, 87 { FlipX }
-    patch PISTOL1, 167, 106 {}
+	Patch "PISTOL4", 96, 92 { FlipX }
+	Patch "PISTOL3", 165, 98
 }
 
-sprite BPSTK0, 320, 240
+Sprite "DPS2Q0", 320, 200
 {
-    patch PISTOL5, 79, 87 { FlipX }
-    patch PISTOL2, 167, 100 {}
-    patch PISTOLF, 169, 79 {}
+	Patch "PISTOL2", 74, 100 { FlipX }
+	Patch "PISTOL5", 163, 87
 }
 
-sprite BPSTL0, 320, 240
+Sprite "DPS2R0", 320, 200
 {
-    patch PISTOL4, 96, 92 { FlipX }
-    patch PISTOL3, 165, 98 {}
-    patch PISTOLF, 169, 79 {}
+	Patch "PISTOL3", 89, 98 { FlipX }
+	Patch "PISTOL4", 163, 92
 }
 
-sprite BPSTM0, 320, 240
+Sprite "DPS2S0", 320, 200
 {
-    patch PISTOL3, 89, 98 { FlipX }
-    patch PISTOL4, 163, 92 {}
+	Patch "PISTOL5", 79, 87 { FlipX }
+	Patch "PISTOL2", 167, 100
 }
 
-sprite BPSTN0, 320, 240
+
+Sprite "DPS2T0", 320, 200
 {
-    patch PISTOL2, 74, 100 { FlipX }
-    patch PISTOL5, 163, 87 {}
+	Patch "PISTOL4", 96, 92 { FlipX }
+	Patch "PISTOL2", 167, 100
 }
 
-sprite BPSTO0, 320, 240
+Sprite "DPS2U0", 320, 200
 {
-    patch PISTOL1, 96, 106 { FlipX }
-    patch PISTOL5, 163, 87 {}
+	Patch "PISTOL2", 74, 100 { FlipX }
+	Patch "PISTOL3", 165, 98
 }
 
-sprite BPSTP0, 320, 240
+
+Sprite "DPS2V0", 320, 200
 {
-    patch PISTOL1, 96, 106 { FlipX }
-    patch PISTOL4, 163, 92 {}
+	Patch "PISTOL2", 74, 100 { FlipX }
+	Patch "PISTOL4", 163, 92
 }
 
-sprite BPSTQ0, 320, 240
+Sprite "DPS2W0", 320, 200
 {
-    patch PISTOL1, 96, 106 { FlipX }
-    patch PISTOL3, 165, 98 {}
+	Patch "PISTOL3", 89, 98 { FlipX }
+	Patch "PISTOL2", 167, 100
 }
 
-sprite BPSTR0, 320, 240
+
+// same as DPS2B0
+Sprite "DPS2X0", 320, 200
 {
-    patch PISTOL1, 96, 106 { FlipX }
-    patch PISTOL2, 167, 100 {}
+	Patch "PISTOL2", 74, 100 { FlipX }
+	Patch "PISTOL2", 167, 100
 }
 
-sprite BPSTS0, 320, 240
+Sprite "DPS2Y0", 320, 200
 {
-    patch PISTOL2, 74, 100 { FlipX }
-    patch PISTOL2, 167, 100 {}
-    patch PISTOLF, 110, 79 { FlipX }
+	Patch "PISTOLF", 110, 79 { FlipX }
 }
 
-sprite BPSTT0, 320, 240
+Sprite "DPS2Z0", 320, 200
 {
-    patch PISTOL2, 74, 100 { FlipX }
-    patch PISTOL3, 165, 98 {}
-    patch PISTOLF, 110, 79 { FlipX }
-}
-
-sprite BPSTU0, 320, 240
-{
-    patch PISTOL3, 89, 98 { FlipX }
-    patch PISTOL2, 167, 100 {}
-    patch PISTOLF, 110, 79 { FlipX }
-}
-
-sprite BPSTV0, 320, 240
-{
-    patch PISTOL5, 79, 87 { FlipX }
-    patch PISTOL1, 167, 106 {}
-}
-
-sprite BPSTW0, 320, 240
-{
-    patch PISTOL4, 96, 92 { FlipX }
-    patch PISTOL1, 167, 106 {}
-}
-
-sprite BPSTX0, 320, 240
-{
-    patch PISTOL3, 89, 98 { FlipX }
-    patch PISTOL1, 167, 106 {}
-}
-
-sprite BPSTY0, 320, 240
-{
-    patch PISTOL2, 74, 100 { FlipX }
-    patch PISTOL1, 167, 106 {}
-}
-
-sprite BPSFA0, 320, 240
-{
-    patch PISTOLF, 110, 79 { FlipX }
-    patch PISTOLF, 169, 79 {}
+	Patch "PISTOLF", 169, 79
 }

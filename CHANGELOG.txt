@@ -56,6 +56,12 @@ WEAPON CHANGES:
 - The pistol alt-fire has been heavily nerfed, both in bullet count (4 to 3) and
     fire rate (15 tics to 18 tics).
 
+- The pistols now properly alternate when tapping priamry fire. In the process
+    of doing this, a small animation glitch was also fixed.
+
+- The pistols no longer have the slide bounce back when lowering. Guns do not
+    work that way, and it looks stupid regardless.
+
 - The shotgun's primary fire has been buffed to 125 damage, making it capable of
     killing hell knights, arachnotrons, and barons of hell in one less shot.
 
