@@ -65,6 +65,8 @@ WEAPON CHANGES:
     them. I briefly considered having Dakkaguy load a shell/grenade the moment
     you found one, but then I decided it'd be distracting for no reason.
 
+- The super shotgun's primary fire has a different, beefier sound now.
+
 - The super shotgun's alt-fire now only uses one ammo per shot. Since you
     couldn't use an odd number of gyro shells and could only get an odd amount
     through ammo regeneration, it makes more sense to do it this way.
