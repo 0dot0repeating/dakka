@@ -10,7 +10,7 @@ actor DWep_Chaingun: DoomWeapon
     Weapon.AmmoUse1 1
     Weapon.AmmoUse2 1
     Weapon.AmmoGive1 80
-    Weapon.AmmoGive2 4
+    Weapon.AmmoGive2 3
 
     +NOALERT
     +ALT_AMMO_OPTIONAL
