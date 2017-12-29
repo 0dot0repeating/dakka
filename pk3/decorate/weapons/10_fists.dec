@@ -65,6 +65,7 @@ actor DWep_Fist: DoomWeapon
         
         
       Fire:
+        TNT1 A 0 A_TakeInventory("DakkaFistSpeed", 1)
         TNT1 A 0 A_TakeInventory("DakkaFistConnected")
         TNT1 A 0 A_TakeInventory("DakkaFistAttackOver")
         TNT1 A 0 A_JumpIfInventory("LeftPunchNext", 1, "FireLeft")
@@ -83,28 +84,8 @@ actor DWep_Fist: DoomWeapon
         goto Fire6
       
       
-      Hold:
-        TNT1 A 0 A_TakeInventory("DakkaFistSpeed", 1)
-        TNT1 A 0 A_TakeInventory("DakkaFistConnected")
-        TNT1 A 0 A_TakeInventory("DakkaFistAttackOver")
-        TNT1 A 0 A_JumpIfInventory("LeftPunchNext", 1, "HoldLeft")
-        RFIT Z 0 A_GiveInventory("LeftPunchNext")
-        goto HoldCommon
       
-      HoldLeft:
-        LFIT Z 0 A_TakeInventory("LeftPunchNext")
-        goto HoldCommon
-      
-      HoldCommon:
-        "####" Z 0 A_JumpIfInventory("DakkaFistSpeed", 6, "Hold2")
-        "####" Z 0 A_JumpIfInventory("DakkaFistSpeed", 4, "Hold3")
-        "####" Z 0 A_JumpIfInventory("DakkaFistSpeed", 2, "Hold4")
-        "####" Z 0 A_JumpIfInventory("DakkaFistSpeed", 1, "Hold5")
-        goto Hold6
-      
-      
-      
-      Fire6: Hold6:
+      Fire6:
         "####" B 1
         "####" E 1 A_FireBullets(0, 0, 1, 8, "FistPunchPuff", FBF_NORANDOM | FBF_NOFLASH | FBF_NORANDOMPUFFZ, 80)
         "####" D 1 A_WeaponReady(WRF_NOFIRE | WRF_NOBOB)
@@ -116,7 +97,7 @@ actor DWep_Fist: DoomWeapon
         goto AttackEnd
       
       
-      Fire5: Hold5:
+      Fire5:
         "####" B 1
         "####" E 1 A_FireBullets(0, 0, 1, 8, "FistPunchPuff", FBF_NORANDOM | FBF_NOFLASH | FBF_NORANDOMPUFFZ, 80)
         "####" D 1 A_WeaponReady(WRF_NOFIRE | WRF_NOBOB)
@@ -126,7 +107,7 @@ actor DWep_Fist: DoomWeapon
         goto AttackEnd
       
       
-      Fire4: Hold4:
+      Fire4:
         "####" B 1
         "####" E 1 A_FireBullets(0, 0, 1, 9, "FistPunchPuff", FBF_NORANDOM | FBF_NOFLASH | FBF_NORANDOMPUFFZ, 80)
         "####" C 1 A_WeaponReady(WRF_NOFIRE | WRF_NOBOB)
@@ -135,7 +116,7 @@ actor DWep_Fist: DoomWeapon
         goto AttackEnd
       
       
-      Fire3: Hold3:
+      Fire3:
         "####" E 1 A_FireBullets(0, 0, 1, 9, "FistPunchPuff", FBF_NORANDOM | FBF_NOFLASH | FBF_NORANDOMPUFFZ, 80)
         "####" B 1 A_WeaponReady(WRF_NOFIRE | WRF_NOBOB)
         "####" Z 0 A_JumpIfInventory("DakkaFistTap_Alt", 1, "AltFire_FromPrimary")
@@ -143,7 +124,7 @@ actor DWep_Fist: DoomWeapon
         goto AttackEnd
       
       
-      Fire2: Hold2:
+      Fire2:
         "####" E 1 A_FireBullets(0, 0, 1, 10, "FistPunchPuff", FBF_NORANDOM | FBF_NOFLASH | FBF_NORANDOMPUFFZ, 80)
         "####" Z 0 A_JumpIfInventory("DakkaFistTap_Alt", 1, "AltFire_FromPrimary")
         "####" B 1 A_WeaponReady(WRF_NOFIRE | WRF_NOBOB)
@@ -271,6 +252,9 @@ actor DWep_Fist: DoomWeapon
         "####" L 0  A_WeaponReady(WRF_NOFIRE | WRF_NOBOB)
         "####" L 1  A_ZoomFactor(1.25, ZOOM_NOSCALETURNING)
         
+        "####" L 0 A_JumpIfInventory("DakkaFistConnected", 1, 2)
+        "####" L 0 A_TakeInventory("DakkaFistSpeed")
+        
         "####" K 1  A_ZoomFactor(1.2,  ZOOM_NOSCALETURNING)
         "####" K 1  A_ZoomFactor(1.15, ZOOM_NOSCALETURNING)
         "####" J 1  A_ZoomFactor(1.1,  ZOOM_NOSCALETURNING)
@@ -331,6 +315,9 @@ actor DWep_Fist: DoomWeapon
         "####" L 0  A_WeaponReady(WRF_NOFIRE | WRF_NOBOB)
         "####" L 1  A_ZoomFactor(1.15, ZOOM_NOSCALETURNING)
         
+        "####" L 0 A_JumpIfInventory("DakkaFistConnected", 1, 2)
+        "####" L 0 A_TakeInventory("DakkaFistSpeed")
+        
         "####" K 1  A_ZoomFactor(1.1,  ZOOM_NOSCALETURNING)
         "####" K 1  A_ZoomFactor(1.05, ZOOM_NOSCALETURNING)
         "####" J 1  A_ZoomFactor(1,    ZOOM_NOSCALETURNING)
@@ -369,7 +356,6 @@ actor DWep_Fist: DoomWeapon
         
         "####" N 1 A_FireBullets(0, 0, 1, 0, "FistHeavyTrackingPuff", FBF_NORANDOM | FBF_NOFLASH | FBF_NORANDOMPUFFZ, 112)
         "####" P 0 A_ZoomFactor(1.35, ZOOM_NOSCALETURNING | ZOOM_INSTANT)
-        "####" P 0 A_TakeInventory("DakkaFistConnected")
         "####" P 0 A_PlaySound("dakka/explode", CHAN_WEAPON)
         "####" P 1 A_FireBullets(0, 0, 1, 30, "FistPowerPunch3_1", FBF_NORANDOM | FBF_NOFLASH | FBF_NORANDOMPUFFZ, 112)
         "####" O 0 A_ZoomFactor(1.325, ZOOM_NOSCALETURNING | ZOOM_INSTANT)
@@ -381,7 +367,6 @@ actor DWep_Fist: DoomWeapon
         "####" H 1 A_FireBullets(0, 0, 1, 0, "FistHeavyTrackingPuff", FBF_NORANDOM | FBF_NOFLASH | FBF_NORANDOMPUFFZ, 112)
         "####" J 1 A_FireBullets(0, 0, 1, 0, "FistHeavyTrackingPuff", FBF_NORANDOM | FBF_NOFLASH | FBF_NORANDOMPUFFZ, 112)
         
-        "####" L 0 A_TakeInventory("DakkaFistConnected")
         "####" L 0 A_FireBullets(0, 0, 1, 60, "FistPowerPunch3_2", FBF_NORANDOM | FBF_NOFLASH | FBF_NORANDOMPUFFZ, 112)
         "####" L 0 A_PlaySound("dakka/explode", CHAN_WEAPON)
         "####" L 0 A_ZoomFactor(1.35,  ZOOM_NOSCALETURNING | ZOOM_INSTANT)
@@ -395,6 +380,9 @@ actor DWep_Fist: DoomWeapon
         "####" L 1  A_ZoomFactor(1.2,  ZOOM_NOSCALETURNING)
         "####" L 0  A_WeaponReady(WRF_NOFIRE | WRF_NOBOB)
         "####" L 1  A_ZoomFactor(1.15, ZOOM_NOSCALETURNING)
+        
+        "####" L 0 A_JumpIfInventory("DakkaFistConnected", 1, 2)
+        "####" L 0 A_TakeInventory("DakkaFistSpeed")
         
         "####" K 1  A_ZoomFactor(1.1,  ZOOM_NOSCALETURNING)
         "####" K 1  A_ZoomFactor(1.05, ZOOM_NOSCALETURNING)
@@ -414,11 +402,14 @@ actor DWep_Fist: DoomWeapon
       AttackEnd:
         TNT1 A 0 A_TakeInventory("DakkaFistInAlt")
         TNT1 A 0 A_GiveInventory("DakkaFistAttackOver")
-        DIFT A 0               A_JumpIfInventory("AltFired", 1, "AltHold")
+        DFIT A 0               A_JumpIfInventory("AltFired",  1, "AltHold")
+        DFIT A 0               A_JumpIfInventory("MainFired", 1, "Fire")
         DFIT A 1 offset(0, 40) A_WeaponReady(WRF_NOBOB)
-        DIFT A 0               A_JumpIfInventory("AltFired", 1, "AltHold")
+        DFIT A 0               A_JumpIfInventory("AltFired", 1, "AltHold")
+        DFIT A 0               A_JumpIfInventory("MainFired", 1, "Fire")
         DFIT A 1 offset(0, 35) A_WeaponReady(WRF_NOBOB)
-        DIFT A 0               A_JumpIfInventory("AltFired", 1, "AltHold")
+        DFIT A 0               A_JumpIfInventory("AltFired", 1, "AltHold")
+        DFIT A 0               A_JumpIfInventory("MainFired", 1, "Fire")
         DFIT A 1 offset(0, 32) A_WeaponReady(WRF_NOBOB)
         goto Ready
     }
@@ -442,24 +433,24 @@ actor FistPunchPuff: BulletPuff
       XDeath:
         TNT1 A 0
         TNT1 A 0 A_PlaySound("dakka/punch", CHAN_WEAPON)
-        TNT1 A 0 A_GiveToTarget("DakkaFistConnected")
         TNT1 A 0 A_Quake(1, 3, 0, 96, "")
         TNT1 A 8 A_JumpIf(CallACS("Dakka_FistHit"), "MeatHit")
         stop
       
       MeatHit:
+        TNT1 A 0 A_GiveToTarget("DakkaFistConnected")
         TNT1 A 0 A_GiveToTarget("DakkaFistSpeed", 2)
         TNT1 A 8
         stop
 
       Crash:
         TNT1 A 0 A_PlaySound("dakka/punchwall", CHAN_WEAPON)
-        TNT1 A 0 A_GiveToTarget("DakkaFistConnected")
         TNT1 A 0 A_JumpIf(CallACS("Dakka_FistHit"), "SparkHit")
         BPUF CD 4
         stop
       
       SparkHit:
+        TNT1 A 0 A_GiveToTarget("DakkaFistConnected")
         TNT1 A 0 A_GiveToTarget("DakkaFistSpeed", 2)
         TNT1 A 0 A_Quake(1, 3, 0, 96, "")
         BPUF CD 4
@@ -535,27 +526,44 @@ actor FistPowerPunch1: BulletPuff
       Melee:
       XDeath:
         TNT1 A 0
-        TNT1 A 0 A_PlaySound("dakka/punch", CHAN_WEAPON)
+        TNT1 A 0 A_JumpIf(CallACS("Dakka_FistHit", damage), "MeatHit")
+        goto MeatMiss
+      
+      MeatHit:
         TNT1 A 0 A_GiveToTarget("DakkaFistConnected")
-        TNT1 A 0 ACS_NamedExecuteWithResult("Dakka_FistHit", damage)
-        TNT1 A 0 A_JumpIf(1, "MeatEnd") // inheritance
-        goto MeatEnd
+        TNT1 A 0 A_GiveToTarget("DakkaFistSpeed", 5)
+        TNT1 A 1 A_Jump(256, "MeatEnd")
+        wait
+      
+      MeatMiss:
+        TNT1 A 1 A_Jump(256, "MeatEnd")
+        wait
       
       MeatEnd:
+        TNT1 A 0 A_PlaySound("dakka/punch", CHAN_WEAPON)
         TNT1 A 0 A_Quake(4, 4, 0, 96, "")
         TNT1 A 0 A_Quake(2, 8, 0, 128, "")
         TNT1 A 0 A_Quake(1, 12, 0, 160, "")
         TNT1 A 8
         stop
 
+        
       Crash:
-        TNT1 A 0 A_PlaySound("dakka/punchwall", CHAN_WEAPON)
+        TNT1 A 0 A_JumpIf(CallACS("Dakka_FistHit", damage), "SparkHit")
+        goto SparkMiss
+      
+      SparkHit:
         TNT1 A 0 A_GiveToTarget("DakkaFistConnected")
-        TNT1 A 0 ACS_NamedExecuteWithResult("Dakka_FistHit", damage)
-        TNT1 A 0 A_JumpIf(1, "SparkEnd") // inheritance
-        goto SparkEnd
+        TNT1 A 0 A_GiveToTarget("DakkaFistSpeed", 5)
+        TNT1 A 1 A_Jump(256, "SparkEnd")
+        wait
+      
+      SparkMiss:
+        TNT1 A 1 A_Jump(256, "SparkEnd")
+        wait
       
       SparkEnd:
+        TNT1 A 0 A_PlaySound("dakka/punchwall", CHAN_WEAPON)
         TNT1 A 0 A_Quake(4, 4, 0, 96, "")
         TNT1 A 0 A_Quake(2, 8, 0, 128, "")
         TNT1 A 0 A_Quake(1, 12, 0, 160, "")
@@ -573,6 +581,7 @@ actor FistPowerPunch2: FistPowerPunch1
     {
       
       MeatEnd:
+        TNT1 A 0 A_PlaySound("dakka/punch", CHAN_WEAPON)
         TNT1 A 0 A_Quake(5, 6,  0, 96, "")
         TNT1 A 0 A_Quake(3, 10, 0, 128, "")
         TNT1 A 0 A_Quake(1, 15, 0, 160, "")
@@ -580,6 +589,7 @@ actor FistPowerPunch2: FistPowerPunch1
         stop
       
       SparkEnd:
+        TNT1 A 0 A_PlaySound("dakka/punchwall", CHAN_WEAPON)
         TNT1 A 0 A_Quake(5, 6,  0, 96, "")
         TNT1 A 0 A_Quake(3, 10, 0, 128, "")
         TNT1 A 0 A_Quake(1, 15, 0, 160, "")
@@ -597,12 +607,14 @@ actor FistPowerPunch3_1: FistPowerPunch1
     {
       
       MeatEnd:
+        TNT1 A 0 A_PlaySound("dakka/punch", CHAN_WEAPON)
         TNT1 A 0 A_Quake(3, 3,  0, 64, "")
         TNT1 A 0 A_Quake(1, 8,  0, 96, "")
         TNT1 A 8
         stop
       
       SparkEnd:
+        TNT1 A 0 A_PlaySound("dakka/punchwall", CHAN_WEAPON)
         TNT1 A 0 A_Quake(3, 3,  0, 64, "")
         TNT1 A 0 A_Quake(1, 8,  0, 96, "")
         BPUF CD 4
@@ -621,18 +633,13 @@ actor FistPowerPunch3_2: FistPowerPunch1
     
     States
     {
-      Spawn:
-      Melee:
-      Crash:
-      XDeath:
-        TNT1 A 0
-        TNT1 A 0 A_GiveToTarget("DakkaFistConnected")
-        TNT1 A 0 ACS_NamedExecuteWithResult("Dakka_FistHit", damage)
+      MeatEnd:
+      SparkEnd:
         TNT1 A 0 A_Explode(80, 128, false, false, 64)
+        TNT1 A 8 A_SpawnItemEx("FistShockwave_Client")
         TNT1 A 0 A_Quake(6, 6,  0, 96, "")
         TNT1 A 0 A_Quake(4, 12, 0, 128, "")
         TNT1 A 0 A_Quake(2, 19, 0, 160, "")
-        TNT1 A 8 A_SpawnItemEx("FistShockwave_Client")
         stop
     }
 }
