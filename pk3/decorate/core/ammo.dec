@@ -74,7 +74,7 @@ actor DakkaRockets: Ammo
 
     Inventory.Amount 4
     Inventory.MaxAmount 120
-    Ammo.BackpackAmount 8
+    Ammo.BackpackAmount 12
     Ammo.BackpackMaxAmount 240
 }
 
