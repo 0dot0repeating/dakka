@@ -81,6 +81,9 @@ WEAPON CHANGES:
     them more effective at clearing out trash. In return, they've been nerfed to
     24 damage per explosion, down from 32.
 
+- The chaingun and minigun have had their bullet damage nerfed (20 to 16).
+
+
 
 AMMO CHANGES:
 
