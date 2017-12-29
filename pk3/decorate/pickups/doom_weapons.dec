@@ -38,7 +38,7 @@ actor Pickup_Shotgun: ClassBasedPickup replaces Shotgun
         goto DropCheck
 
       Dropped:
-        "----" A 1 A_SpawnItemEx("Pickup_ShotgunDropped")
+        "----" A 1 A_SpawnItemEx("Pickup_ShotgunDropped", 0,0,0, velx,vely,velz, 0,0,0, tid)
         stop
 
       Unknown:
@@ -95,7 +95,7 @@ actor Pickup_Chaingun: ClassBasedPickup replaces Chaingun
         goto DropCheck
 
       Dropped:
-        "----" A 1 A_SpawnItemEx("Pickup_ChaingunDropped")
+        "----" A 1 A_SpawnItemEx("Pickup_ChaingunDropped", 0,0,0, velx,vely,velz, 0,0,0, tid)
         stop
 
       Unknown:
