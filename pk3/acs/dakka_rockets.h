@@ -198,7 +198,7 @@ script "Dakka_ImpalerAltPush" (int normX, int normY, int normZ, int power)
 // Find target if projectile hit something before it could run any states
 script "Dakka_ImpalerAlt_FindTarget" (int velX, int velY, int velZ, int speed)
 {
-    int myTID     = defaultTID(0);
+    int myTID     = ActivatorTID(); // This is already set to something unique
     int myX       = GetActorX(0);
     int myY       = GetActorY(0);
     int myZ       = GetActorZ(0);
