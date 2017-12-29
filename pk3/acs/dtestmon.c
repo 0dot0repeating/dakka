@@ -1,28 +1,6 @@
-#library "dakka_testmap"
+#library "dtestmon"
 #include "zcommon.acs"
 #include "dakka_commonFuncs.h"
-
-// superceded in DAKKTEST itself, but here to avoid unknown script errors
-script "DAKKTEST_ReportDamage" (void)
-{
-    int hp    = GetActorProperty(0, APROP_Health);
-    int maxhp = GetActorProperty(0, APROP_SpawnHealth);
-    
-    if (hp < maxhp)
-    {
-        Log(s:"\cd[", d:Timer(), s:"]\c- Dealt ", d:maxhp - hp, s:" damage to target"); 
-    }
-    SetActorProperty(0, APROP_Health, maxhp);
-}
-
-// do nothing, but avoid unknown script errors
-script "DAKKTEST_MonitorTID_Ping" (void)
-{
-}
-
-
-// Used in the monster spawner; externalized so that compat patches can have
-//  their monsters tested in DAKKTEST
 
 #define MONSPAWN_COUNT 19
 
@@ -48,6 +26,9 @@ str MonSpawnerSlots[MONSPAWN_COUNT][2] =
     {"WolfensteinSS",    ""},
     {"CommanderKeen",    "NotCommanderKeen"},
 };
+
+// Used in the monster spawner; externalized so that compat patches can have
+//  their monsters tested in DAKKTEST
 
 script "DAKKTEST_GetMonster" (int index, int spawnOrShow)
 {
