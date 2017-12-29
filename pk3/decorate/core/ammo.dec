@@ -52,10 +52,10 @@ actor DakkaRainGrenades: Ammo
 {
     Inventory.Icon "CGRNA0"
 
-    Inventory.Amount 3
-    Inventory.MaxAmount 40
-    Ammo.BackpackAmount 3
-    Ammo.BackpackMaxAmount 80
+    Inventory.Amount 2
+    Inventory.MaxAmount 15
+    Ammo.BackpackAmount 2
+    Ammo.BackpackMaxAmount 30
 }
 
 actor DakkaFlamerFuel: Ammo

@@ -95,6 +95,11 @@ AMMO CHANGES:
     their pickup and ammo regeneration rates cut significantly. This is after
     factoring in that the SSG only uses one per shot now.
 
+- The rain grenades have undergone similar treatment, having been cut down from
+    a default capacity of 40 to 15, with much lower regeneration and pickup
+    rates. They're simply too strong to be carrying around 80 of them along with
+    all your other ammo.
+
 - You now carry up to 120 rockets (240 with a backpack), get 4 rockets from
     small rocket pickups, and get 20 from rocket boxes. This sounds like a buff,
     but the impaler does far less damage per shot than the rocket launcher did;
