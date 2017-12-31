@@ -46,8 +46,9 @@ Step 10 (A): if the arcer doesn't have a tracer, set its tracer to the tracer of
   --- arcer has a tracer ---
 
 Step 11 (A): send the arcer to Arc_FoundTarget, which is its final state jump
-Step 12 (A): spawn next arcer on tracer, set its target and master pointers up
-Step 13 (A): send next arcer to Arc_Spawn
+Step 12 (A): spawn next arcer on tracer
+Step 13 (A): set target and master pointers up on next arcer
+Step 14 (A): send next arcer to Arc_Spawn
 */
 
 #include "arc/arc_const.h"
