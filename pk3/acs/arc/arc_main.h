@@ -122,12 +122,13 @@ script "Arc_Main" (int arcType)
     int spawnZ = GetActorZ(targetTID) + GetActorViewHeight(targetTID);
 
     // Being in the exact center of the target gets boring. Let's vary it up.
-
     int randomOffset = INT_ArcData[arctype][ADATA_INT_RANDOMOFFSET];
+    int targetRadius = GetActorProperty(0, APROP_Radius);
+    int targetHeight = GetActorProperty(0, APROP_Height);
 
-    spawnX += random(-randomOffset, randomOffset);
-    spawnY += random(-randomOffset, randomOffset);
-    spawnZ += random(-randomOffset, randomOffset);
+    spawnX += FixedMul(targetRadius, random(-randomOffset, randomOffset));
+    spawnY += FixedMul(targetRadius, random(-randomOffset, randomOffset));
+    spawnZ += FixedMul(targetHeight, random(0, randomOffset));
 
     // Step 13, with an addition:
     //  - We also set the arcer's angle now that we have a target. It's in
@@ -179,7 +180,7 @@ script "Arc_Main" (int arcType)
     //  ZDoom developers. Fuck that. Graf shot them down anyway.
     //
     // So you're stuck with this ungodly abomination of an ID system that 
-    //  breaks if you so much as breath on it.
+    //  breaks if you so much as breathe on it.
     //
     // These four lines below take away the TID from the arcer target if it
     //  died. Without them... well, take them out, go fire some arcs into a
