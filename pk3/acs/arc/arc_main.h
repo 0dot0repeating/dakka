@@ -8,6 +8,7 @@ script "Arc_Main" (int arcType)
     int arcerTID     = UniqueTID();
     Thing_ChangeTID(0, arcerTID);
     
+    
     // steps 2 to 4
     SetActorState(0, "Arc_Query");
     
@@ -22,6 +23,7 @@ script "Arc_Main" (int arcType)
     // steps 5 to 9
     SetActorState(0, "Arc_Look");
     
+    
     // step 10
     SetActivator(0, AAPTR_TRACER);
     if (ClassifyActor(0) & ACTOR_WORLD)
@@ -33,6 +35,7 @@ script "Arc_Main" (int arcType)
         terminate;
     }
     
+    
     // step 11
     SetActivator(arcerTID);
     
@@ -40,12 +43,19 @@ script "Arc_Main" (int arcType)
     Thing_ChangeTID(0, arcerTID_old);
     SetActorState(0, "Arc_FoundTarget");
     
+    // step 12
+    if (!GetUserVariable(0, "user_keeparcing"))
+    {
+        terminate;
+    }
+    
     // refresh TIDs as they might have changed
     arcerTID_old = ActivatorTID();
     arcerTID     = UniqueTID();
     Thing_ChangeTID(0, arcerTID);
     
-    // step 12
+    
+    // step 13
     SetActivator(0, AAPTR_TRACER);
     
     int tracerX      = GetActorX(0);
@@ -68,7 +78,8 @@ script "Arc_Main" (int arcType)
     SetActorAngle(arcTID, arcAngle);
     SetActorPitch(arcTID, arcPitch);
     
-    // step 13
+    
+    // step 14
     int targetTID_old = ActivatorTID();
     int targetTID_new = UniqueTID();
     Thing_ChangeTID(0, targetTID_new);
@@ -79,7 +90,8 @@ script "Arc_Main" (int arcType)
     Thing_ChangeTID(targetTID_new, targetTID_old);
     Thing_ChangeTID(arcerTID,      arcerTID_old);
     
-    // step 14
+    
+    // step 15
     SetActorState(0, "Arc_Spawn");
 }
 
