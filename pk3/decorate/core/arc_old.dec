@@ -1,0 +1,358 @@
+// Everything in this file is required for the arc code to work properly.
+//  No other DECORATE files are required.
+
+
+
+
+// This is the class that every arcing actor should be based off of,
+//  so that the arc ACS works properly.
+//
+// ========================= REALLY IMPORTANT GOD DAMN =========================
+//
+// (this is in acs/arc_main.h as well because it's THAT IMPORTANT)
+//
+// You REALLY REALLY should understand the process that arcing takes, so here it is,
+//  in very brief detail.
+// 
+// Pointers are in order {target, master, tracer}. "????" means "unset so far".
+//
+// "(D)" means we're running in DECORATE. "(A)" means we're running in ACS.
+//
+// Step 1  (D/A): call arcing script
+//  Pointers: {firer, ????, ????}
+//
+// Step 2  (A): ACS sends arcer to Arc_Query
+//  Pointers: {firer, ????, ????}
+//
+// Step 3  (D): Arc_Query's run, gives ArcItem_DoArc to itself if it wants to arc
+//  Pointers: {firer, ????, ????}
+//
+// Step 4  (A): If no ArcItem_DoArc, clear target data, send arcer to Arc_EndArc, and end
+//  Pointers: {firer, ????, ????}
+//
+// - IF NOT ENDED -
+//
+//      --- LOOP ---
+//
+//      Step 5 (A): Send arcer to Arc_Look
+//       Pointers: {firer, ????, ????}
+//
+//      Step 6 (D): Look around
+//       Pointers: {firer, ????, potential target}
+//
+//      Step 7 (A): Nothing in tracer pointer? Break loop
+//       Pointers: {firer, ????, potential target}
+//
+//      Step 8 (A): Something in tracer pointer? Process it, add T_CHECKED target slot to it
+//       Pointers: {firer, ????, potential target}
+//
+//      --- END LOOP (step 9 goes back to top of loop) ---
+//
+// Step 10 (A): Clear all T_CHECKED target slots
+//  Pointers: {firer, ????, now-irrelevant target}
+//
+// Step 11 (A): No target found? Clear target data, Stick last target (if any) in tracer field,
+//              send arcer to Arc_NoTarget, end
+//  Pointers: {firer, ????, last target (if any)}
+//
+// - IF NOT ENDED -
+//
+// Step 12 (A): Targets found? Calculate best one, stick it in tracer field
+//  Pointers: {firer, ????, best target}
+//
+// Step 13 (D): Do Arc_FoundTarget (now's the time to do damage)
+//  Pointers: {firer, ????, best target}
+//  
+// Step 14 (A): Stick T_HIT target slot on calculated best target (it is now +FRIENDLY)
+//  Pointers: {firer, ????, best target}
+//
+// Step 15 (A): Spawn next arcer object on best target, focus on that one now
+//  Pointers: {empty, empty, empty}
+//
+// Step 16 (A): Set up pointers on new arcer object
+//  Pointers: {firer, current arcer, current target}
+//
+// Step 17 (A): Send new arcer object to Arc_Spawn
+//
+//
+//
+// Now that you've read all that, there's another important detail: all arc
+//  state blocks MUST END on a state with a length of at least 1 tic. If the
+//  entire state block is 0 tics long, the actor will disappear, and bad things
+//  will happen. I don't know what bad things. But something will break.
+//
+// The exceptions are Arc_EndArc and Arc_NoTarget, because the entire arc chain
+//  ends with those. Arc_FoundTarget is *not* an exception, because each newly-
+//  spawned arc actor has its master pointer set to the previous arc actor.
+//  Don't break the chain.
+
+actor Arc_Base
+{
+    Projectile
+
+    +NOINTERACTION
+    +SERVERSIDEONLY
+    +FRIENDLY
+
+    // You won't see this actor online because of +SERVERSIDEONLY, so might
+    //  as well make it so you won't see it in single player either.
+    RenderStyle None
+
+    Radius 0
+    Height 0
+
+    // This is used for A_LookEx to specify just how far we can look.
+    var int user_lookDist;
+
+    States
+    {
+    // The arcing object just needs to exist for a tic, to make sure that
+    //  we can actually use the damn thing.
+    //
+    // Note that arcers spawned by the arc script do NOT have any time to
+    //  run Spawn states (unless you use NoDelay in ZDoom, I guess). You
+    //  can use this behaviour to run initialization stuff before firing
+    //  off the arc, without the need to create a new actor just for that.
+    //
+    // Pointer states here:
+    //  - Target: unchanged (typically original firer)
+    //  - Master: unchanged (typically empty)
+    //  - Tracer: unchanged (typically empty)
+
+      Spawn:
+        TNT1 A 1
+        stop
+
+
+    // The actor is sent to this state when spawned by the arcing script.
+    //  All initialization behaviour should occur here. You don't even
+    //  necessarily have to keep arcing!
+    //
+    // The previous arc actor has been put into this actor's AAPTR_MASTER
+    //  field by the ACS. That way, we can follow a chain all the way back
+    //  to the start!
+    //
+    // Pointer states here:
+    //  - Target: original firer
+    //  - Master: previous arcer
+    //  - Tracer: unchanged
+
+      Arc_Spawn:
+        TNT1 A 1
+        stop
+
+    
+    
+    // This could've been implemented in ACS, but the arc would've been
+    //  less flexible for it. Plus, this also means less of the arc is
+    //  in ACS, and I'm thankful for that.
+    //
+    // When the arc is done checking what it needs to check, let the ACS
+    //  run again by using a state tic length that's greater than 0.
+    //
+    // The ACS will check the actor's inventory for ArcItem_DoArc,
+    //  and if it's present will continue on with the arcing. Otherwise,
+    //  it stops and sends the actor to Arc_EndArc.
+    //
+    // Pointer states here:
+    //  - Target: unchanged (typically original firer)
+    //  - Master: unchanged (typically previous arcer)
+    //  - Tracer: unchanged
+
+      Arc_Query:
+        TNT1 A 1
+        stop
+
+
+
+    // Convenience state block for Arc_Query. You can just jump to this
+    //  and it'll work for saying "yes, I want to keep arcing".
+    //
+    // Pointer states here:
+    //  - Target: unchanged (typically original firer)
+    //  - Master: unchanged (typically previous arcer)
+    //  - Tracer: unchanged
+
+      Arc_KeepArcing:
+        TNT1 A 1 A_GiveInventory("ArcItem_DoArc")
+        stop
+
+
+
+    // Convenience state block for Arc_Query. You can just jump to this
+    //  and it'll work for saying "no, I don't want to keep arcing".
+    //
+    // Pointer states here:
+    //  - Target: unchanged (typically original firer)
+    //  - Master: unchanged (typically previous arcer)
+    //  - Tracer: unchanged
+
+      Arc_StopArcing:
+        TNT1 A 1
+        stop
+
+
+
+    // So we aren't arcing anymore. Yay. This is where you end up.
+    //
+    // The chain of arc scripts end here, and by default, all the targeting data
+    //  has been reset before we got here, so feel free to do whatever you want.
+    //
+    // Pointer states here:
+    //  - Target: unchanged (typically original firer)
+    //  - Master: unchanged (typically previous arcer)
+    //  - Tracer: unchanged
+    
+      Arc_EndArc:
+        TNT1 A 1
+        stop
+
+
+
+    // !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+    // !! THIS SHOULD NOT BE MODIFIED IN SUBCLASSES !!
+    // !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+    //
+    // Sent to this state to look around for targets. user_lookDist is set
+    //  beforehand.
+    //
+    // A_LookEx puts who it finds in target, so we need to move the target
+    //  pointer into the master pointer before we do anything.
+    //
+    // Pointer states here:
+    //  - Target: empty
+    //  - Master: original firer
+    //  - Tracer: previous arcer
+
+      Arc_Look:
+        TNT1 A 0 A_RearrangePointers(AAPTR_NULL, AAPTR_TARGET, AAPTR_MASTER)
+        TNT1 A 0 A_LookEx(LOF_NOSOUNDCHECK, 0, user_lookDist, 0, 360, "Arc_LookYes")
+        goto Arc_LookNo
+
+
+
+    // !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+    // !! THIS SHOULD NOT BE MODIFIED IN SUBCLASSES !!
+    // !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+    //
+    // This is a separate state block because we don't have LOF_NOJUMP.
+    // 
+    // Since the target of a projectile is actually its tracer, we sort that
+    //  out here.
+    //
+    // The code also makes sure not to lose track of the previous arc actor,
+    //  and puts it back into AAPTR_MASTER.
+    //
+    // Pointer states here:
+    //  - Target: original firer
+    //  - Master: previous arcer
+    //  - Tracer: whoever was found by A_LookEx, if anyone
+
+      Arc_LookYes:
+        TNT1 A 0 A_RearrangePointers(AAPTR_MASTER, AAPTR_TRACER, AAPTR_TARGET)
+        TNT1 A 0 A_TakeInventory("ArcItem_NoTarget")
+        TNT1 A 1
+        stop
+
+    
+      Arc_LookNo:
+        TNT1 A 0 A_RearrangePointers(AAPTR_MASTER, AAPTR_TRACER, AAPTR_TARGET)
+        TNT1 A 0 A_GiveInventory("ArcItem_NoTarget")
+        TNT1 A 1
+        stop
+
+
+
+    // Sent to this state when the ACS finds out we didn't actually find
+    //  a target. Arc_Look2 has run, and the ACS has moved the pointers around
+    //  so that our old target is back in AAPTR_TRACER.
+    //
+    // The chain of arc scripts end here, and by default, all the targeting data
+    //  has been reset before we got here, so feel free to do whatever you want.
+    //
+    // Pointer states here:
+    //  - Target: original firer
+    //  - Master: previous arcer
+    //  - Tracer: previous (final) arc target
+
+      Arc_NoTarget:
+        TNT1 A 1
+        stop
+
+    // Sent to this state when the ACS finds out we did find a target, before
+    //  it does anything with the object. Arc_Look2 has run, so pointers are as
+    //  they are coming out of Arc_Look2.
+    //
+    // The arc script won't do any more SetActorStates on this actor once it's
+    //  here, so *now* you can do whatever requires delays.
+    //
+    // BUT MAKE SURE THIS THING LASTS FOR AT LEAST ONE TIC. The next arcer has
+    //  its master field set to this arcer, so make sure it still exists.
+    //
+    // Pointer states here:
+    //  - Target: original firer
+    //  - Master: previous arcer
+    //  - Tracer: new arc target
+      
+      Arc_FoundTarget:
+        TNT1 A 1
+        stop
+    }
+}
+
+
+
+
+// These are counter items.
+
+actor Arc_Counter: Inventory
+{
+    Inventory.MaxAmount 0x7FFFFFFF
+    Inventory.Amount    1
+    +UNDROPPABLE
+}
+
+actor Arc_Boolean: Inventory
+{
+    Inventory.MaxAmount 1
+    Inventory.Amount    1
+    +UNDROPPABLE
+}
+
+// Used in the Arc_Query state of Arc_Base.
+actor ArcItem_DoArc:    Arc_Boolean {}
+
+actor ArcItem_NoTarget: Arc_Boolean {}
+
+
+// These two items are used in arc_target_core.h to toggle whether the given
+//  target has flipped friendliness or not. It flips so that A_LookEx can
+//  find other targets without getting hung up on one forever.
+
+actor ArcUnshootable: CustomInventory
+{
+    States
+    {
+      Spawn:
+        TNT1 A 0
+        stop
+
+      Pickup:
+        TNT1 A 0 A_ChangeFlag("SHOOTABLE", 0)
+        stop
+    }
+}
+
+actor ArcShootable: CustomInventory
+{
+    States
+    {
+      Spawn:
+        TNT1 A 0
+        stop
+
+      Pickup:
+        TNT1 A 0 A_ChangeFlag("SHOOTABLE", 1)
+        stop
+    }
+}
