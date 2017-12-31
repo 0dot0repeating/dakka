@@ -4,18 +4,16 @@ script "Arc_Main" (int arcType)
     if (arcType < 0 || arcType >= ARCTYPES) { terminate; }
     
     // step 1 already finished
-    int arcerTID = defaultTID(0);
-    
-    // sanity check
-    SetActivator(0, AAPTR_TARGET);
-    if (ClassifyActor(0) & ACTOR_WORLD) { terminate; }
-    SetActivator(arcerTID);
+    int arcerTID_old = ActivatorTID();
+    int arcerTID     = UniqueTID();
+    Thing_ChangeTID(0, arcerTID);
     
     // steps 2 to 4
     SetActorState(0, "Arc_Query");
     
     if (!GetUserVariable(0, "user_keeparcing"))
     {
+        Thing_ChangeTID(0, arcerTID_old);
         ACS_NamedExecuteWithResult("Arc_InheritTracer");
         SetActorState(0, "Arc_EndArc");
         terminate;
@@ -29,15 +27,27 @@ script "Arc_Main" (int arcType)
     if (ClassifyActor(0) & ACTOR_WORLD)
     {
         SetActivator(arcerTID);
+        Thing_ChangeTID(0, arcerTID_old);
         ACS_NamedExecuteWithResult("Arc_InheritTracer");
         SetActorState(0, "Arc_NoTarget");
         terminate;
     }
     
     // step 11
-    SetActorState(arcerTID, "Arc_FoundTarget");
+    SetActivator(arcerTID);
+    
+    // set TID back in case the arcing actor needs its old TID for some reason
+    Thing_ChangeTID(0, arcerTID_old);
+    SetActorState(0, "Arc_FoundTarget");
+    
+    // refresh TIDs as they might have changed
+    arcerTID_old = ActivatorTID();
+    arcerTID     = UniqueTID();
+    Thing_ChangeTID(0, arcerTID);
     
     // step 12
+    SetActivator(0, AAPTR_TRACER);
+    
     int tracerX      = GetActorX(0);
     int tracerY      = GetActorY(0);
     int tracerZ      = GetActorZ(0);
@@ -67,6 +77,7 @@ script "Arc_Main" (int arcType)
     SetPointer(AAPTR_TARGET, targetTID_new);
     SetPointer(AAPTR_MASTER, arcerTID);
     Thing_ChangeTID(targetTID_new, targetTID_old);
+    Thing_ChangeTID(arcerTID,      arcerTID_old);
     
     // step 14
     SetActorState(0, "Arc_Spawn");
@@ -78,15 +89,25 @@ script "Arc_Main" (int arcType)
 
 script "Arc_InheritTracer" (void)
 {
-    int arcerTID = defaultTID(0);
+    int arcerTID_old = ActivatorTID();
+    int arcerTID_new = UniqueTID();
+    Thing_ChangeTID(0, arcerTID_new);
     
     // step to previous arcer
     SetActivator(0, AAPTR_MASTER);
-    if (ClassifyActor(0) & ACTOR_WORLD) { terminate; }
+    if (ClassifyActor(0) & ACTOR_WORLD)
+    {
+        Thing_ChangeTID(arcerTID_new,  arcerTID_old);
+        terminate;
+    }
     
     // step to its tracer
     SetActivator(0, AAPTR_TRACER);
-    if (ClassifyActor(0) & ACTOR_WORLD) { terminate; }
+    if (ClassifyActor(0) & ACTOR_WORLD)
+    {
+        Thing_ChangeTID(arcerTID_new,  arcerTID_old);
+        terminate;
+    }
     
     // temporary unique TID
     int tracerTID_old = ActivatorTID();
@@ -94,9 +115,10 @@ script "Arc_InheritTracer" (void)
     Thing_ChangeTID(0, tracerTID_new);
     
     // set up tracer in current arcer
-    SetActivator(arcerTID);
+    SetActivator(arcerTID_new);
     SetPointer(AAPTR_TRACER, tracerTID_new);
     
-    // un-clobber TID
+    // un-clobber TIDs
     Thing_ChangeTID(tracerTID_new, tracerTID_old);
+    Thing_ChangeTID(arcerTID_new,  arcerTID_old);
 }
