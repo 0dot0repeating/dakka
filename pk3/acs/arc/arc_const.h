@@ -41,9 +41,9 @@
 
 
 // Do we *really* need to be in the center of the actor? This adds random variance
-//  to where the new arc actor spawns. It's not based off the target's height
-//  and width because Zandronum doesn't have that, but once it gets it,
-//  it probably will be.
+//  to where the new arc actor spawns; 1.0 means the next arc can spawn anywhere
+//  on the target, and lower values shrink the area the next arc can spawn in,
+//  down to 0 where it just spawns on the center of the target. Which is lame.
 #define ADATA_INT_RANDOMOFFSET  5
 
 
@@ -57,8 +57,8 @@ str STR_ArcData[ARCTYPES][ARCDATA_STR] =
 
 int INT_ArcData[ARCTYPES][ARCDATA_INT] = 
 {
-    {288.0, 0.75,  0.5, false, false, 8.0},
-    {192.0, 0.25,  0.0, false, true,  8.0},
+    {288.0, 0.75,  0.5, false, false, 0.5},
+    {192.0, 0.25,  0.0, false, true,  0.5},
 };
 
 int IsZandronum;
