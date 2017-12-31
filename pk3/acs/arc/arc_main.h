@@ -12,17 +12,17 @@ script "Arc_Main" (int arcType)
     SetActivator(arcerTID);
     
     // steps 2 to 4
-    SetActorState(0, "Arc_Query", false);
+    SetActorState(0, "Arc_Query");
     
     if (!GetUserVariable(0, "user_keeparcing"))
     {
         ACS_NamedExecuteWithResult("Arc_InheritTracer");
-        SetActorState(0, "Arc_EndArc", false);
+        SetActorState(0, "Arc_EndArc");
         terminate;
     }
     
     // steps 5 to 9
-    SetActorState(0, "Arc_Look", false);
+    SetActorState(0, "Arc_Look");
     
     // step 10
     SetActivator(0, AAPTR_TRACER);
@@ -30,12 +30,12 @@ script "Arc_Main" (int arcType)
     {
         SetActivator(arcerTID);
         ACS_NamedExecuteWithResult("Arc_InheritTracer");
-        SetActorState(0, "Arc_NoTarget", false);
+        SetActorState(0, "Arc_NoTarget");
         terminate;
     }
     
     // step 11
-    SetActorState(arcerTID, "Arc_FoundTarget", false);
+    SetActorState(arcerTID, "Arc_FoundTarget");
     
     // step 12
     int tracerX      = GetActorX(0);
@@ -69,7 +69,7 @@ script "Arc_Main" (int arcType)
     Thing_ChangeTID(targetTID_new, targetTID_old);
     
     // step 14
-    SetActorState(0, "Arc_Spawn", false);
+    SetActorState(0, "Arc_Spawn");
 }
 
 
