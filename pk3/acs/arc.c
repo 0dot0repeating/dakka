@@ -55,15 +55,16 @@ Step 14 (A): set target and master pointers up on next arcer
 Step 15 (A): send next arcer to Arc_Spawn
 */
 
-#include "arc/arc_const.h"
-#include "arc/arc_main.h"
-
-
 // ZDoom's no-team index (255) is different than Zandronum's no-team index (4).
 int NoTeamIndex;
+
+#include "arc/arc_const.h"
+#include "arc/arc_target.h"
+#include "arc/arc_main.h"
+
 
 script "Arc_Open" open
 {   
     SetDBEntry("dakka_arc", "client_iszand", 789237);
-    NoTeamIndex = cond(GetDBEntry("pickup", "client_iszand") == 789237, 4, 255);
+    NoTeamIndex = cond(GetDBEntry("dakka_arc", "client_iszand") == 789237, 4, 255);
 }
