@@ -299,17 +299,7 @@ function int magnitudeThree(int x, int y, int z)
 
 function int magnitudeThree_f(int x, int y, int z)
 {
-    int len, ang;
-
-    ang = VectorAngle(x, y);
-    if (((ang + 0.125) % 0.5) > 0.25) { len = FixedDiv(y, sin(ang)); }
-    else { len = FixedDiv(x, cos(ang)); }
-
-    ang = VectorAngle(len, z);
-    if (((ang + 0.125) % 0.5) > 0.25) { len = FixedDiv(z, sin(ang)); }
-    else { len = FixedDiv(len, cos(ang)); }
-
-    return len;
+    return VectorLength(VectorLength(x, y), z);
 }
 
 // All the arguments are to be fixed-point
@@ -947,7 +937,7 @@ function int intFloat(int toround)
 
 function int distance(int x1, int y1, int z1, int x2, int y2, int z2)
 {
-    return magnitudeThree_f(x2-x1, y2-y1, z2-z1);
+    return VectorLength(VectorLength(x2-x1, y2-y1), z2-z1);
 }
 
 function int distance_tid(int tid1, int tid2)
@@ -960,7 +950,7 @@ function int distance_tid(int tid1, int tid2)
     int y2 = GetActorY(tid2);
     int z2 = GetActorZ(tid2);
 
-    return magnitudeThree_f(x2-x1, y2-y1, z2-z1);
+    return VectorLength(VectorLength(x2-x1, y2-y1), z2-z1);
 }
 
 function void printDebugInfo(void)
@@ -1109,7 +1099,7 @@ function int quadSlope(int orgX, int orgY, int pntX, int pntY, int floatY)
 
 function int actorVelMagnitude(int tid)
 {
-    return magnitudeThree_f(GetActorVelX(tid), GetActorVelY(tid), GetActorVelZ(tid));
+    return VectorLength(VectorLength(GetActorVelX(tid), GetActorVelY(tid)), GetActorVelZ(tid));
 }
 
 function int isAmmo(int name)

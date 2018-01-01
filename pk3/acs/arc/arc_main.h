@@ -21,7 +21,7 @@ script "Arc_Main" (int arcType)
     }
     
     // steps 5 to 9
-    SetActorState(0, "Arc_Look");
+    Arc_GetTarget(arcType, arcerTID);
     
     
     // step 10
@@ -87,6 +87,7 @@ script "Arc_Main" (int arcType)
     SetActivator(arcTID);
     SetPointer(AAPTR_TARGET, targetTID_new);
     SetPointer(AAPTR_MASTER, arcerTID);
+    SetUserVariable(0, "user_depth", GetUserVariable(arcerTID, "user_depth") + 1);
     Thing_ChangeTID(targetTID_new, targetTID_old);
     Thing_ChangeTID(arcerTID,      arcerTID_old);
     
