@@ -59,7 +59,7 @@ actor Arc_Base
       
       Spawn:
         TNT1 A 0
-        TNT1 A 1 ACS_NamedExecuteWithResult("Arc_Main", 0)
+        TNT1 A 1
         stop
       
       
@@ -67,7 +67,7 @@ actor Arc_Base
       //  want to keep arcing, call the Arc_Main script here as well.
       
       Arc_Spawn:
-        TNT1 A 1 ACS_NamedExecuteWithResult("Arc_Main", 0)
+        TNT1 A 1
         stop
       
       

@@ -41,7 +41,7 @@ script "Dakka_Lightning" (int which, int startTID, int endTID) clientside
 
     int lesseffects = GetCVar("dakka_cl_lesseffects");
 
-    int particleType = "ChannelerTrail";
+    int particleType = "LanceArcTrail";
     int density = cond(lesseffects, 18.0, 6.0);
     int speed   = 0;
 

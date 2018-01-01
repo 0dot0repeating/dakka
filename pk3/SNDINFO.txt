@@ -239,7 +239,7 @@ $volume dakka/plasmabeam 0.6
 
 
 ////////
-// CHANNELER
+// LANCER
 ///
 
 arc/fire1 sounds/channeler/arcfire1.ogg
@@ -249,10 +249,11 @@ arc/fire4 sounds/channeler/arcfire4.ogg
 
 $random arc/fire { arc/fire1 arc/fire2 arc/fire3 arc/fire4 }
 
-arc/altfire sounds/channeler/arc_altfire.ogg
+arc/altcharge       sounds/channeler/arc_charge.ogg
+arc/altcharge_hold  sounds/channeler/arc_charge_hold.ogg
+arc/altfire         sounds/channeler/arc_altfire.ogg
 
 $volume arc/fire    0.6
-$volume arc/altfire 0.6
 
 arc/fry1    sounds/channeler/arc_fry1.ogg
 arc/fry2    sounds/channeler/arc_fry2.ogg

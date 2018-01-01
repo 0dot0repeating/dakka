@@ -1,34 +1,36 @@
-#define TMPITEM_COUNT       24
+#define TMPITEM_COUNT       26
 
 #define TMP_LEFTFIRE        0
 #define TMP_RIGHTFIRE       1
 #define TMP_LEFTCLICK       2
 #define TMP_RIGHTCLICK      3
-#define TMP_INFINITEAMMO    4
-#define TMP_DAKKACLASS      5
+#define TMP_LEFTRELEASE     4
+#define TMP_RIGHTRELEASE    5
+#define TMP_INFINITEAMMO    6
+#define TMP_DAKKACLASS      7
 
-#define TMP_ABNORMALHEALTH  6
-#define TMP_HEALTH300       7
-#define TMP_HEALTH200       8
-#define TMP_HEALTH50        9
-#define TMP_HEALTH25        10
-#define TMP_HEALTH0         11
+#define TMP_ABNORMALHEALTH  8
+#define TMP_HEALTH300       9
+#define TMP_HEALTH200       10
+#define TMP_HEALTH50        11
+#define TMP_HEALTH25        12
+#define TMP_HEALTH0         13
 
-#define TMP_AMMO1_ABNORMAL  12
-#define TMP_AMMO1_25        13
-#define TMP_AMMO1_0         14
+#define TMP_AMMO1_ABNORMAL  14
+#define TMP_AMMO1_25        15
+#define TMP_AMMO1_0         16
 
-#define TMP_AMMO2_ABNORMAL  15
-#define TMP_AMMO2_25        16
-#define TMP_AMMO2_0         17
+#define TMP_AMMO2_ABNORMAL  17
+#define TMP_AMMO2_25        18
+#define TMP_AMMO2_0         19
 
-#define TMP_KNOWNARMOR      18
-#define TMP_ARMOR100        19
-#define TMP_ARMOR75         20
-#define TMP_ARMOR50         21
-#define TMP_ARMOR25         22
+#define TMP_KNOWNARMOR      20
+#define TMP_ARMOR100        21
+#define TMP_ARMOR75         22
+#define TMP_ARMOR50         23
+#define TMP_ARMOR25         24
 
-#define TMP_GOTBACKPACK     23
+#define TMP_GOTBACKPACK     25
 
 int TempChecks[TMPITEM_COUNT];
 
@@ -38,6 +40,8 @@ int TempItems[TMPITEM_COUNT] =
     "AltFired",
     "MainClicked",
     "AltClicked",
+    "MainReleased",
+    "AltReleased",
     "DakkaInfiniteAmmo",
     "HUD_IsDakkaguy",
     "AbnormalHealth",
@@ -90,6 +94,8 @@ function void Dakka_UpdateTemporaryItems(void)
     TempChecks[TMP_RIGHTFIRE]       = keyDown(BT_ALTATTACK);
     TempChecks[TMP_LEFTCLICK]       = keyPressed(BT_ATTACK);
     TempChecks[TMP_RIGHTCLICK]      = keyPressed(BT_ALTATTACK);
+    TempChecks[TMP_LEFTRELEASE]     = !TempChecks[TMP_LEFTFIRE];
+    TempChecks[TMP_RIGHTRELEASE]    = !TempChecks[TMP_RIGHTFIRE];
 
     int classNum = Pickup_ClassNumber(0);
 

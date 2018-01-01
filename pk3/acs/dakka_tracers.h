@@ -199,7 +199,7 @@ script "Dakka_Tracer_Client" (int which, int startTID, int endTID) clientside
       case TRACE_ARC_FIRER:
       case TRACE_ARC_MASTER:
         speed = 0;
-        particleType = "ChannelerTrail";
+        particleType = "LanceArcTrail";
         density      = cond(lesseffects, 32.0, 8.0);
     }
 

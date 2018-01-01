@@ -68,3 +68,26 @@ script "Arc_Open" open
     SetDBEntry("dakka_arc", "client_iszand", 789237);
     NoTeamIndex = cond(GetDBEntry("dakka_arc", "client_iszand") == 789237, 4, 255);
 }
+
+script "Arc_Damage" (int damage)
+{
+    int myTID_old = ActivatorTID();
+    int myTID_new = UniqueTID();
+    Thing_ChangeTID(0, myTID_new);
+
+    SetActivator(0, AAPTR_TRACER);
+    if (ClassifyActor(0) & ACTOR_WORLD)
+    { 
+        Thing_ChangeTID(myTID_new, myTID_old);
+        terminate;
+    }
+
+    int hisTID     = ActivatorTID();
+    int hisTID_new = defaultTID(-1);
+
+    SetActivator(myTID_new, AAPTR_TARGET);
+
+    Thing_Damage2(hisTID_new, damage, "Normal");
+    Thing_ChangeTID(hisTID_new, hisTID);
+    Thing_ChangeTID(myTID_new, myTID_old);
+}

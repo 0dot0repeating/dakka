@@ -42,6 +42,8 @@ actor AltFired:          Boolean {}
 actor EitherClicked:     Boolean {}
 actor MainClicked:       Boolean {}
 actor AltClicked:        Boolean {}
+actor MainReleased:      Boolean {}
+actor AltReleased:       Boolean {}
 
 actor GiveScrapCounter:  Counter {}
 actor GiveScrapCounter2: Counter {}

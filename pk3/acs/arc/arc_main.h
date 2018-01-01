@@ -35,6 +35,10 @@ script "Arc_Main" (int arcType)
         terminate;
     }
     
+    // get this stuff now, because they might die and their height might change
+    int tracerHeight = GetActorProperty(0, APROP_Height);
+    int tracerRadius = GetActorProperty(0, APROP_Height);
+    
     
     // step 11
     SetActivator(arcerTID);
@@ -58,18 +62,30 @@ script "Arc_Main" (int arcType)
     // step 13
     SetActivator(0, AAPTR_TRACER);
     
-    int tracerX      = GetActorX(0);
-    int tracerY      = GetActorY(0);
-    int tracerZ      = GetActorZ(0);
-    int tracerHeight = GetActorProperty(0, APROP_Height);
-    int tracerRadius = GetActorProperty(0, APROP_Height);
+    int tracerX  = GetActorX(0);
+    int tracerY  = GetActorY(0);
+    int tracerZ  = GetActorZ(0);
     
-    SetActivator(arcerTID, AAPTR_TARGET);
     int arcX     = tracerX;
     int arcY     = tracerY;
     int arcZ     = tracerZ + (tracerHeight / 2);
-    int arcAngle = GetActorAngle(0);
-    int arcPitch = GetActorPitch(0);
+    
+    int dx = arcX - GetActorX(arcerTID);
+    int dy = arcY - GetActorY(arcerTID);
+    int dz = arcZ - GetActorZ(arcerTID);
+    
+    // angle/pitch from arcer to tracer
+    int tracerAngle = VectorAngle(dx, dy);
+    int tracerPitch = -VectorAngle(VectorLength(dx, dy), dz);
+    
+    SetActivator(arcerTID, AAPTR_TARGET);
+    
+    int firerAngle = GetActorAngle(0);
+    int firerPitch = GetActorPitch(0);
+    
+    int headingScalar = INT_ArcData[arcType][ARC_I_KEEPHEADING];
+    int arcAngle = tracerAngle + FixedMul(headingScalar, angleDifference(tracerAngle, firerAngle));
+    int arcPitch = tracerPitch + FixedMul(headingScalar, angleDifference(tracerPitch, firerPitch));
     
     str arcActor = STR_ArcData[arcType][ARC_S_NEXT];
     int arcTID   = UniqueTID();
