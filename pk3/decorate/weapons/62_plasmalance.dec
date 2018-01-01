@@ -1,4 +1,5 @@
 actor LastLanceBarrelUsed: Boolean {}
+actor LanceAltfireCharge:  Counter {}
 
 actor DWep_PlasmaLance: DoomWeapon
 {
@@ -11,19 +12,15 @@ actor DWep_PlasmaLance: DoomWeapon
     Weapon.AmmoType1 "DakkaCells"
     Weapon.AmmoType2 "DakkaCells"
     Weapon.AmmoUse1  1
-    Weapon.AmmoUse2  5
+    Weapon.AmmoUse2  3
     Weapon.AmmoGive1 50
 
     Inventory.PickupMessage "$DAKKA_PK_PLASMALANCE"
+    
+    +NOALERT
 
     States
     {
-      Ready:
-        PLNC F 18 A_WeaponReady
-        PLNC ABCDE 3 A_WeaponReady
-        PLNC F 37 A_WeaponReady
-        loop
-
       Select:
         PLNC FF 0 A_Raise
         PLNC F 1 A_Raise
@@ -35,12 +32,17 @@ actor DWep_PlasmaLance: DoomWeapon
         PLNC F 1 A_Lower
         loop
 
+      Ready:
+        PLNC F 1 A_WeaponReady
+        loop
+
       Fire:
         PLNC G 0 A_JumpIfInventory("LastLanceBarrelUsed", 1, "FireRight")
         goto FireLeft
       
       FireLeft:
         PLNC G 0                      A_CheckReload
+        PLNC G 0                      A_AlertMonsters
         PLNC G 0                      ACS_NamedExecuteWithResult("Dakka_Switcharoo", 13, 0)
         PLNC G 0                      ACS_NamedExecuteAlways("Dakka_Recoil", 0, -115, 1, 8)
         PLNC G 0                      A_GiveInventory("LastLanceBarrelUsed")
@@ -74,6 +76,7 @@ actor DWep_PlasmaLance: DoomWeapon
       
       FireRight:
         PLNC I 0                      A_CheckReload
+        PLNC G 0                      A_AlertMonsters
         PLNC I 0                      ACS_NamedExecuteWithResult("Dakka_Switcharoo", 13, 0)
         PLNC I 0                      ACS_NamedExecuteAlways("Dakka_Recoil", 0, -130, 1, 8)
         PLNC I 0                      A_TakeInventory("LastLanceBarrelUsed")
@@ -107,6 +110,7 @@ actor DWep_PlasmaLance: DoomWeapon
 
       HoldLeft:
         PLNC G 0                      A_CheckReload
+        PLNC G 0                      A_AlertMonsters
         PLNC G 0                      ACS_NamedExecuteWithResult("Dakka_Switcharoo", 13, 0)
         PLNC G 0                      ACS_NamedExecuteAlways("Dakka_Recoil", 0, -115, 1, 8)
         PLNC G 0                      A_GiveInventory("LastLanceBarrelUsed")
@@ -140,6 +144,7 @@ actor DWep_PlasmaLance: DoomWeapon
       
       HoldRight:
         PLNC I 0                      A_CheckReload
+        PLNC G 0                      A_AlertMonsters
         PLNC I 0                      ACS_NamedExecuteWithResult("Dakka_Switcharoo", 13, 0)
         PLNC I 0                      ACS_NamedExecuteAlways("Dakka_Recoil", 0, -115, 1, 8)
         PLNC I 0                      A_TakeInventory("LastLanceBarrelUsed")
@@ -171,13 +176,158 @@ actor DWep_PlasmaLance: DoomWeapon
         PLNC F 1        offset(0, 32) A_JumpIfInventory("MainFired", 1, "FireLeft")
         goto Ready
       
-      
       Flash:
         TNT1 A 3 bright A_Light(3)
-        TNT1 A 3 bright A_Light(2)
+        TNT1 A 1 bright A_Light(2)
         TNT1 A 2 bright A_Light(1)
         goto LightDone
 
+        
+      AltFire:
+        PLNC F 0 A_PlaySound("arc/altcharge",      CHAN_WEAPON)
+        PLNC F 0 A_GunFlash("Charging")
+        
+        PLNC A 1
+        PLNC A 0 A_AlertMonsters(64)
+        PLNC A 0 A_FireCustomMissile("AmmoWaster")
+        PLNC AAABBBB 1 A_JumpIfInventory("AltReleased", 1, "AltFire_Charge0")
+        
+        PLNC B 0 A_JumpIfNoAmmo("Altfire_Charge0")
+        PLNC B 0 A_FireCustomMissile("AmmoWaster")
+        PLNC B 0 A_AlertMonsters(128)
+        PLNC CCCCDDDD 1 A_JumpIfInventory("AltReleased", 1, "AltFire_Charge1")
+        
+        PLNC B 0 A_JumpIfNoAmmo("Altfire_Charge1")
+        PLNC B 0 A_FireCustomMissile("AmmoWaster")
+        PLNC B 0 A_AlertMonsters(224)
+        PLNC E 1 offset(-1, 32) A_JumpIfInventory("AltReleased", 1, "AltFire_Charge2")
+        PLNC E 1 offset( 0, 32) A_JumpIfInventory("AltReleased", 1, "AltFire_Charge2")
+        PLNC E 1 offset( 0, 32) A_JumpIfInventory("AltReleased", 1, "AltFire_Charge2")
+        PLNC B 1 offset( 1, 32) A_JumpIfInventory("AltReleased", 1, "AltFire_Charge2")
+        PLNC B 1 offset( 0, 32) A_JumpIfInventory("AltReleased", 1, "AltFire_Charge2")
+        PLNC B 1 offset( 0, 32) A_JumpIfInventory("AltReleased", 1, "AltFire_Charge2")
+        PLNC C 1 offset( 1, 32) A_JumpIfInventory("AltReleased", 1, "AltFire_Charge2")
+        PLNC C 1 offset(-1, 32) A_JumpIfInventory("AltReleased", 1, "AltFire_Charge2")
+        
+        PLNC B 0 A_JumpIfNoAmmo("Altfire_Charge2")
+        PLNC B 0 A_FireCustomMissile("AmmoWaster")
+        PLNC B 0 A_AlertMonsters(320)
+        PLNC C 1 offset( 1, 32) A_JumpIfInventory("AltReleased", 1, "AltFire_Charge3")
+        PLNC D 1 offset( 0, 32) A_JumpIfInventory("AltReleased", 1, "AltFire_Charge3")
+        PLNC D 1 offset( 1, 32) A_JumpIfInventory("AltReleased", 1, "AltFire_Charge3")
+        PLNC D 1 offset(-1, 32) A_JumpIfInventory("AltReleased", 1, "AltFire_Charge3")
+        PLNC E 1 offset( 0, 32) A_JumpIfInventory("AltReleased", 1, "AltFire_Charge3")
+        PLNC E 1 offset( 1, 32) A_JumpIfInventory("AltReleased", 1, "AltFire_Charge3")
+        PLNC E 1 offset( 0, 32) A_JumpIfInventory("AltReleased", 1, "AltFire_Charge3")
+        PLNC B 1 offset(-1, 32) A_JumpIfInventory("AltReleased", 1, "AltFire_Charge3")
+        
+        PLNC B 0 A_JumpIfNoAmmo("Altfire_Charge3")
+        PLNC B 0 A_FireCustomMissile("AmmoWaster")
+        PLNC B 0 A_AlertMonsters(448)
+        PLNC B 1 offset( 0, 32) A_JumpIfInventory("AltReleased", 1, "AltFire_Charge4")
+        PLNC B 1 offset( 2, 32) A_JumpIfInventory("AltReleased", 1, "AltFire_Charge4")
+        PLNC C 1 offset( 1, 32) A_JumpIfInventory("AltReleased", 1, "AltFire_Charge4")
+        PLNC C 1 offset( 0, 32) A_JumpIfInventory("AltReleased", 1, "AltFire_Charge4")
+        PLNC C 1 offset(-1, 33) A_JumpIfInventory("AltReleased", 1, "AltFire_Charge4")
+        PLNC D 1 offset(-2, 32) A_JumpIfInventory("AltReleased", 1, "AltFire_Charge4")
+        PLNC D 1 offset(-2, 33) A_JumpIfInventory("AltReleased", 1, "AltFire_Charge4")
+        PLNC D 1 offset( 1, 32) A_JumpIfInventory("AltReleased", 1, "AltFire_Charge4")
+        
+        PLNC B 0 A_JumpIfNoAmmo("Altfire_Charge4")
+        PLNC B 0 A_FireCustomMissile("AmmoWaster")
+        PLNC B 0 A_AlertMonsters(576)
+        PLNC E 1 offset( 0, 33) A_JumpIfInventory("AltReleased", 1, "AltFire_Charge5")
+        PLNC E 1 offset(-2, 33) A_JumpIfInventory("AltReleased", 1, "AltFire_Charge5")
+        PLNC B 1 offset(-1, 32) A_JumpIfInventory("AltReleased", 1, "AltFire_Charge5")
+        PLNC B 1 offset( 1, 32) A_JumpIfInventory("AltReleased", 1, "AltFire_Charge5")
+        PLNC C 1 offset(-1, 33) A_JumpIfInventory("AltReleased", 1, "AltFire_Charge5")
+        PLNC C 1 offset( 1, 33) A_JumpIfInventory("AltReleased", 1, "AltFire_Charge5")
+        PLNC D 1 offset( 0, 32) A_JumpIfInventory("AltReleased", 1, "AltFire_Charge5")
+        PLNC D 1 offset(-2, 32) A_JumpIfInventory("AltReleased", 1, "AltFire_Charge5")
+
+        PLNC B 0 A_JumpIfNoAmmo("Altfire_Charge5")
+        PLNC B 0 A_FireCustomMissile("AmmoWaster")
+        PLNC B 0 A_AlertMonsters(704)
+        PLNC E 1 offset(-2, 33) A_JumpIfInventory("AltReleased", 1, "AltFire_Charge6")
+        PLNC E 1 offset( 3, 32) A_JumpIfInventory("AltReleased", 1, "AltFire_Charge6")
+        PLNC B 1 offset(-1, 33) A_JumpIfInventory("AltReleased", 1, "AltFire_Charge6")
+        PLNC B 1 offset( 1, 33) A_JumpIfInventory("AltReleased", 1, "AltFire_Charge6")
+        PLNC C 1 offset(-3, 32) A_JumpIfInventory("AltReleased", 1, "AltFire_Charge6")
+        PLNC C 1 offset( 3, 33) A_JumpIfInventory("AltReleased", 1, "AltFire_Charge6")
+        PLNC D 1 offset(-1, 32) A_JumpIfInventory("AltReleased", 1, "AltFire_Charge6")
+        PLNC D 1 offset( 2, 33) A_JumpIfInventory("AltReleased", 1, "AltFire_Charge6")
+        PLNC E 1 offset( 2, 33) A_JumpIfInventory("AltReleased", 1, "AltFire_Charge6")
+        PLNC E 1 offset( 0, 32) A_JumpIfInventory("AltReleased", 1, "AltFire_Charge6")
+        PLNC B 1 offset(-1, 33) A_JumpIfInventory("AltReleased", 1, "AltFire_Charge6")
+        PLNC B 1 offset(-3, 33) A_JumpIfInventory("AltReleased", 1, "AltFire_Charge6")
+        PLNC C 1 offset(-1, 32) A_JumpIfInventory("AltReleased", 1, "AltFire_Charge6")
+        PLNC C 1 offset( 2, 33) A_JumpIfInventory("AltReleased", 1, "AltFire_Charge6")
+        PLNC D 1 offset( 0, 32) A_JumpIfInventory("AltReleased", 1, "AltFire_Charge6")
+        PLNC D 1 offset(-1, 33) A_JumpIfInventory("AltReleased", 1, "AltFire_Charge6")
+        
+        PLNC B 0 A_AlertMonsters(832)
+        goto AltFire_Charge6
+      
+      AltFire_Charge0:
+        PLNC B 0 A_FireBullets(12, 2, 2, 0, "LanceArcShot_Power0",  false, 384)
+        goto AltFire_End
+        
+      AltFire_Charge1:
+        PLNC B 0 A_FireBullets(12, 2, 2, 0, "LanceArcShot_Power1",  false, 384)
+        goto AltFire_End
+        
+      AltFire_Charge2:
+        PLNC B 0 A_FireBullets(12, 2, 3, 0, "LanceArcShot_Power2",  false, 384)
+        goto AltFire_End
+        
+      AltFire_Charge3:
+        PLNC B 0 A_FireBullets(12, 2, 3, 0, "LanceArcShot_Power3",  false, 384)
+        goto AltFire_End
+        
+      AltFire_Charge4:
+        PLNC B 0 A_FireBullets(12, 2, 4, 0, "LanceArcShot_Power4",  false, 384)
+        goto AltFire_End
+        
+      AltFire_Charge5:
+        PLNC B 0 A_FireBullets(12, 2, 4, 0, "LanceArcShot_Power5",  false, 384)
+        goto AltFire_End
+      
+      AltFire_Charge6:
+        PLNC B 0 A_FireBullets(12, 2, 4, 0, "LanceArcShot_Power6",  false, 384)
+        goto AltFire_End
+      
+      AltFire_End:
+        PLNC B 0 A_AlertMonsters
+        PLNC K 0 bright A_StopSound(CHAN_WEAPON)
+        PLNC K 0 bright A_PlaySound("arc/altfire", 7)
+        PLNC K 0 bright A_GunFlash("AltFlash")
+        PLNC K 2 bright offset(0, 41)
+        PLNC K 2 bright offset(0, 43)
+        PLNC L 2 bright offset(0, 43)
+        PLNC L 2        offset(0, 43) A_WeaponReady(WRF_NOFIRE | WRF_NOBOB)
+        PLNC L 2        offset(0, 42) A_WeaponReady(WRF_NOFIRE | WRF_NOBOB)
+        PLNC F 2        offset(0, 40) A_WeaponReady(WRF_NOFIRE | WRF_NOBOB)
+        PLNC F 2        offset(0, 38) A_WeaponReady(WRF_NOFIRE | WRF_NOBOB)
+        PLNC F 1        offset(0, 34) A_WeaponReady(WRF_NOFIRE | WRF_NOBOB)
+        PLNC F 1        offset(0, 33) A_WeaponReady(WRF_NOFIRE | WRF_NOBOB)
+        PLNC F 8        offset(0, 32) A_WeaponReady(WRF_NOSECONDARY | WRF_NOBOB)
+        goto Ready
+        
+      Charging:
+        PLNF DEFGHI 8 bright
+        PLNF J -1 bright
+        stop
+      
+      
+      AltFlash:
+        TNT1 A 5 bright A_Light(5)
+        TNT1 A 4 bright A_Light(4)
+        TNT1 A 3 bright A_Light(3)
+        TNT1 A 2 bright A_Light(2)
+        TNT1 A 2 bright A_Light(1)
+        goto LightDone
+      
+      
       Spawn:
         DPLS Z -1
         stop
@@ -255,45 +405,6 @@ actor PLPrimaryHurter
         
       DoHurt:
         TNT1 A 0 A_Explode(user_damage, 4, false, false, 8)
-        stop
-    }
-}
-
-actor LanceMarker1
-{
-    +NOINTERACTION
-    +FORCEXYBILLBOARD
-    
-    States
-    {
-      Spawn:
-        BAL1 A 35 bright
-        stop
-    }
-}
-
-actor LanceMarker2
-{
-    +NOINTERACTION
-    +FORCEXYBILLBOARD
-    
-    States
-    {
-      Spawn:
-        BAL2 A 35 bright
-        stop
-    }
-}
-
-actor LanceMarker3
-{
-    +NOINTERACTION
-    +FORCEXYBILLBOARD
-    
-    States
-    {
-      Spawn:
-        PLSS A 35 bright
         stop
     }
 }
@@ -410,6 +521,93 @@ actor PLPrimaryCloud1
       
       Done:
         TNT1 A 0
+        stop
+    }
+}
+
+
+actor LanceArcShot: Arc_Base
+{
+    +NOEXTREMEDEATH
+    +FORCERADIUSDMG
+
+    +PUFFGETSOWNER
+    +ALWAYSPUFF
+    +PUFFONACTORS
+    +BLOODLESSIMPACT
+    
+    // in order: arc index, max depth, damage
+    Args 0, 3, 40
+
+    States
+    {
+      Spawn:
+        TNT1 A 0
+        TNT1 A 0 A_SetAngle(angle + 180)
+        TNT1 A 0 ACS_NamedExecuteWithResult("Dakka_Tracer", TRACE_ARC_FIRER, 0, -8)
+        TNT1 A 0 A_SpawnItemEx("ChannelerBeamImpact")
+        TNT1 A 1 ACS_NamedExecuteWithResult("Arc_Main", args[0])
+        stop
+
+      Arc_Spawn:
+        TNT1 A 0 ACS_NamedExecuteWithResult("Dakka_Tracer", TRACE_ARC_MASTER, 0, 0)
+        TNT1 A 0 A_PlaySound("arc/fry")
+        TNT1 A 1 ACS_NamedExecuteWithResult("Arc_Main", args[0])
+        stop
+
+      Arc_Query:
+        TNT1 A 0 A_JumpIf(user_depth >= args[1], "Arc_StopArcing")
+        goto Arc_KeepArcing
+
+      Arc_FoundTarget:
+        TNT1 A 1 ACS_NamedExecuteWithResult("Arc_Damage", args[2])
+        stop
+
+      Arc_NoTarget:
+        TNT1 A 0 A_JumpIf(user_depth == 0, "HitNothing")
+        stop
+      
+      HitNothing:
+        TNT1 A 0 A_Explode(args[2], 32, false, false, 32)
+        stop
+    }
+}
+
+actor LanceArcShot_Power0: LanceArcShot { Args 0, 1, 50 }
+actor LanceArcShot_Power1: LanceArcShot { Args 1, 2, 50 }
+actor LanceArcShot_Power2: LanceArcShot { Args 2, 3, 50 }
+actor LanceArcShot_Power3: LanceArcShot { Args 3, 3, 60 }
+actor LanceArcShot_Power4: LanceArcShot { Args 4, 4, 70 }
+actor LanceArcShot_Power5: LanceArcShot { Args 5, 4, 80 }
+actor LanceArcShot_Power6: LanceArcShot { Args 6, 5, 90 }
+
+
+actor LanceArcTrail
+{
+    +NOINTERACTION
+    +CLIENTSIDEONLY
+    +FORCEXYBILLBOARD
+    
+    Radius 0
+    Height 0
+    RenderStyle Add
+    Alpha 1
+    Scale 0.3
+
+    States
+    {
+      Spawn:
+        PLZM M 0
+        PLZM M 0 A_Jump(128, "N")
+        goto Spawn2
+
+      N:
+        PLZM N 0
+        goto Spawn2
+
+      Spawn2:
+        PLZM "#" 8 bright
+        PLZM "####################" 1 bright A_FadeOut(0.1)
         stop
     }
 }

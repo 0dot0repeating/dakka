@@ -156,7 +156,7 @@ script "Arc_CheckTarget" (void)
     SetActivator(arcerTID, AAPTR_TRACER);
     if (ClassifyActor(0) & ACTOR_WORLD)
     {
-        bestScore = maxDist;
+        bestScore = 0x7FFFFFFF;
     }
     else
     {
@@ -183,31 +183,38 @@ script "Arc_CheckTarget" (void)
     int dy   = myY_closest - arcerY;
     int dz   = myZ_closest - arcerZ;
     
-    // A_RadiusGive works with a sphere by default, so just check distance
     int dist = VectorLength(VectorLength(dx, dy), dz);
-    if (dist >= bestScore)
+    
+    // shouldn't need this, but whatever
+    if (dist >= maxDist)
     {
         Thing_ChangeTID(myTID_new, myTID_old);
         terminate;
     }
     
+    int aimX = ATarget_ArcData[ATARGET_AIMX];
+    int aimY = ATarget_ArcData[ATARGET_AIMY];
+    int aimZ = ATarget_ArcData[ATARGET_AIMZ];
+    
+    // angle difference: acos(dot(vec1, vec2) / (mag(vec1) * mag(vec2)))
+    // and the magnitude of aim vector is always 1
+    //
+    // this will never be above 0.5
+    
+    int angleDiff  = acos(FixedDiv(dot3(aimX, aimY, aimZ, dX, dY, dZ), dist));
     
     int endScore    = dist;
     int angleWeight = INT_ArcData[arcType][ARC_I_ANGLEWEIGHT];
+    int angleLimit  = INT_ArcData[arcType][ARC_I_ANGLELIMIT];
+    
+    if (angleLimit > 0 && angleDiff > angleLimit)
+    {
+        Thing_ChangeTID(myTID_new, myTID_old);
+        terminate;
+    }
     
     if (angleWeight > 0)
     {
-        int aimX = ATarget_ArcData[ATARGET_AIMX];
-        int aimY = ATarget_ArcData[ATARGET_AIMY];
-        int aimZ = ATarget_ArcData[ATARGET_AIMZ];
-        
-        // angle difference: acos(dot(vec1, vec2) / (mag(vec1) * mag(vec2)))
-        // and the magnitude of aim vector is always 1
-        //
-        // this will never be above 0.5
-        
-        int angleDiff  = acos(FixedDiv(dot3(aimX, aimY, aimZ, dX, dY, dZ), dist));
-        
         // since lower is better, we want to raise the score for worse values
         //
         // division has the nice property that the closer you get to zero, the
@@ -233,84 +240,3 @@ script "Arc_CheckTarget" (void)
     SetPointer(AAPTR_TRACER, myTID_new);
     Thing_ChangeTID(myTID_new, myTID_old);
 }
-
-
-/*
-    // At this point, we're pretty damn sure we have a valid target.
-    //  Now only distance checks will rule them out.
-
-    // Any score above this can be ruled out.
-    int rangeLimiter = min(maxRange, currentBestScore);
-
-    int targetX = GetActorX(targetTID);
-    int targetY = GetActorY(targetTID);
-    int targetZ = GetActorZ(targetTID) + GetActorViewHeight(targetTID);
-
-    int dX = targetX - APos[APOS_X];
-    int dY = targetY - APos[APOS_Y];
-    int dZ = targetZ - APos[APOS_Z];
-
-    // dX and dY were already implicitly checked by A_LookEx, but not dZ,
-    //  so let's handle that to quickly rule out targets too high or low up.
-    if (abs(dZ) >= rangeLimiter) { return -1; }
-
-
-    // Well, that's all the fast checks out of the way. Time for slow stuff.
-
-    int distanceScore = magnitudeThree_f(dX, dY, dZ);
-
-    // If the distance is higher than the current best score, there's no way
-    //  it can beat it when adjusted, so disqualify it. Also, range limits.
-    if (distanceScore >= rangeLimiter) { return -1; }
-
-
-    // Time to factor in angle difference to the target's score.
-    //
-    // First off, we're just gonna grab this now. If it's 0,
-    //  it saves us a lot of time, because angle won't matter.
-
-    int angleWeight = INT_ArcData[arctype][ADATA_INT_ANGLEWEIGHT];
-    if (angleWeight <= 0) { return distanceScore; }
-
-
-    // Okay, now we need to weigh the angle.
-    // 
-    // Calculate difference between 3D angles.
-    //
-    //      acos(dot3(vec1, vec2) / (mag(vec1) * mag(vec2)))
-    //
-    // Since the arc angle vector's (vec1 here) magnitude always 1,
-    //  this just becomes:
-    //
-    //      acos(dot3(vec1, vec2) / mag(vec2))
-    //
-    //  angleDiff will never be above 0.5.
-
-    int angleDiff = acos(FixedDiv(dot3(APos[APOS_ANGX], APos[APOS_ANGY], APos[APOS_ANGZ], dX, dY, dZ), distanceScore));
-
-
-    // Now calculate the score. We can only go up from distanceScore, or else
-    //  some core assumptions for (very necessary) optimization are broken.
-    //
-    // Basically, this: if the best score is 128, anything at least 128 units
-    //  away cannot, under any circumstances, beat that score. This means we
-    //  can stop looking past 128 units because it's a complete waste of time,
-    //  which allows us to look in layers and stop exactly when it becomes
-    //  pointless.
-    //
-    // As for why we do FixedDiv, it's because of how as 1/x approaches x=0,
-    //  the rate of change gets faster and faster. For us, that means angles
-    //  get weighted much more harshly the further away they stray from the
-    //  zero-line.
-
-    int angleScore = FixedDiv(distanceScore, 1.0 - angleDiff);
-
-    // Angle weight scale goes from 0 to 1.
-    if (angleWeight >= 1.0)
-    {
-        return angleScore;
-    }
-    
-    int weightedScore = distanceScore + FixedMul(angleWeight, angleScore - distanceScore);
-    return weightedScore;
-*/
