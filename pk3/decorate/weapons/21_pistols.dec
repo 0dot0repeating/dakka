@@ -26,6 +26,7 @@ actor DWep_Pistols: DoomWeapon
     Weapon.AmmoType2 "DakkaBullet_10mm"
 
     +UNDROPPABLE
+    +ALT_AMMO_OPTIONAL
 
     Decal BulletChip
 
@@ -213,6 +214,7 @@ actor DWep_Pistols: DoomWeapon
       
       
       AltFire:
+        DPS2 A 0 A_JumpIfNoAmmo("AltNo")
         "----" A 0 ACS_NamedExecuteWithResult("Dakka_Switcharoo", 2, 1)
         DPS2 F    0 A_PlaySound("dakka/pistolaltfire", 5, 0.7)
         DPS2 F    0 A_PlaySound("dakka/pistolaltfire", 6, 0.7)
@@ -231,7 +233,10 @@ actor DWep_Pistols: DoomWeapon
         DPS2 B 2 A_WeaponReady(WRF_NOBOB | WRF_NOFIRE)
         DPS2 A 2 A_WeaponReady(WRF_NOBOB | WRF_NOFIRE)
         goto Ready
-
+      
+      AltNo:
+        DPS2 A 1 A_WeaponReady(WRF_NOSECONDARY)
+        goto Ready
 
       Spawn:
         PIST A -1

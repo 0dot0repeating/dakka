@@ -18,6 +18,7 @@ actor DWep_PlasmaLance: DoomWeapon
     Inventory.PickupMessage "$DAKKA_PK_PLASMALANCE"
     
     +NOALERT
+    +ALT_AMMO_OPTIONAL
 
     States
     {
@@ -184,6 +185,7 @@ actor DWep_PlasmaLance: DoomWeapon
 
         
       AltFire:
+        PLNC F 0 A_JumpIfNoAmmo("AltNo")
         PLNC F 0 A_PlaySound("arc/altcharge",      CHAN_WEAPON)
         PLNC F 0 A_GunFlash("Charging")
         
@@ -311,6 +313,10 @@ actor DWep_PlasmaLance: DoomWeapon
         PLNC F 1        offset(0, 34) A_WeaponReady(WRF_NOFIRE | WRF_NOBOB)
         PLNC F 1        offset(0, 33) A_WeaponReady(WRF_NOFIRE | WRF_NOBOB)
         PLNC F 8        offset(0, 32) A_WeaponReady(WRF_NOSECONDARY | WRF_NOBOB)
+        goto Ready
+        
+      AltNo:
+        PLNC F 1 A_WeaponReady(WRF_NOSECONDARY)
         goto Ready
         
       Charging:
