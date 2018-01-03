@@ -587,7 +587,7 @@ actor LanceArcShot: Arc_Base
     }
 }
 
-actor LanceArcShot_Power0: LanceArcShot { Args 0, 1, 60  }
+actor LanceArcShot_Power0: LanceArcShot { Args 0, 2, 50  }
 actor LanceArcShot_Power1: LanceArcShot { Args 1, 2, 60  }
 actor LanceArcShot_Power2: LanceArcShot { Args 2, 2, 70  }
 actor LanceArcShot_Power3: LanceArcShot { Args 3, 3, 70  }
