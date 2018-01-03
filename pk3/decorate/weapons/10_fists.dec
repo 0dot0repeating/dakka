@@ -235,12 +235,11 @@ actor DWep_Fist: DoomWeapon
         "####" Z 1 A_FireBullets(0, 0, 1, 0, "FistTrackingPuff", FBF_NORANDOM | FBF_NOFLASH | FBF_NORANDOMPUFFZ, 112)
         
         "####" Z 0 A_JumpIfInventory("AltClicked", 1, "AltFire_Medium")
-        "####" Z 1 A_FireBullets(0, 0, 1, 0, "FistTrackingPuff", FBF_NORANDOM | FBF_NOFLASH | FBF_NORANDOMPUFFZ, 112)
+        "####" Z 0 A_ZoomFactor(1.01, ZOOM_NOSCALETURNING | ZOOM_INSTANT)
+        "####" Z 1 A_FireBullets(0, 0, 1, 0, "FistHeavyTrackingPuff", FBF_NORANDOM | FBF_NOFLASH | FBF_NORANDOMPUFFZ, 112)
         
-        "####" H 0 A_FireBullets(0, 0, 1, 0, "FistHeavyTrackingPuff", FBF_NORANDOM | FBF_NOFLASH | FBF_NORANDOMPUFFZ, 112)
-        "####" H 1 A_ZoomFactor(1.05, ZOOM_NOSCALETURNING | ZOOM_INSTANT)
-        "####" J 0 A_FireBullets(0, 0, 1, 0, "FistHeavyTrackingPuff", FBF_NORANDOM | FBF_NOFLASH | FBF_NORANDOMPUFFZ, 112)
-        "####" J 1 A_ZoomFactor(1.22, ZOOM_NOSCALETURNING | ZOOM_INSTANT)
+        "####" I 0 A_FireBullets(0, 0, 1, 0, "FistHeavyTrackingPuff", FBF_NORANDOM | FBF_NOFLASH | FBF_NORANDOMPUFFZ, 112)
+        "####" I 1 A_ZoomFactor(1.22, ZOOM_NOSCALETURNING | ZOOM_INSTANT)
         
         "####" L 0 A_TakeInventory("DakkaFistConnected")
         "####" L 0 ACS_NamedExecuteWithResult("Dakka_Switcharoo", 0, 1)
@@ -257,15 +256,11 @@ actor DWep_Fist: DoomWeapon
         "####" L 0 A_JumpIfInventory("DakkaFistConnected", 1, 2)
         "####" L 0 A_TakeInventory("DakkaFistSpeed")
         
-        "####" K 1  A_ZoomFactor(1.2,  ZOOM_NOSCALETURNING)
-        "####" K 1  A_ZoomFactor(1.15, ZOOM_NOSCALETURNING)
-        "####" J 1  A_ZoomFactor(1.1,  ZOOM_NOSCALETURNING)
+        "####" K 1  A_ZoomFactor(1.1,  ZOOM_NOSCALETURNING)
+        "####" I 0  A_ZoomFactor(1,    ZOOM_NOSCALETURNING)
         "####" I 1 A_JumpIfInventory("AltFired", 1, "AltHold_Quick3")
-        "####" I 1  A_ZoomFactor(1.05, ZOOM_NOSCALETURNING)
         "####" H 1 A_JumpIfInventory("AltFired", 1, "AltHold_Quick2")
-        "####" H 1  A_ZoomFactor(1,    ZOOM_NOSCALETURNING)
         "####" G 1 A_JumpIfInventory("AltFired", 1, "AltHold_Quick1")
-        
         "####" Z 1 A_JumpIfInventory("AltFired", 1, "AltHold")
         goto AttackEnd
       
@@ -295,12 +290,11 @@ actor DWep_Fist: DoomWeapon
         "####" Z 1 A_FireBullets(0, 0, 1, 0, "FistTrackingPuff", FBF_NORANDOM | FBF_NOFLASH | FBF_NORANDOMPUFFZ, 112)
         
         "####" Z 0 A_JumpIfInventory("AltClicked", 1, "AltFire_Strong")
-        "####" Z 1 A_FireBullets(0, 0, 1, 0, "FistTrackingPuff", FBF_NORANDOM | FBF_NOFLASH | FBF_NORANDOMPUFFZ, 112)
+        "####" Z 0 A_ZoomFactor(1.01, ZOOM_NOSCALETURNING | ZOOM_INSTANT)
+        "####" Z 1 A_FireBullets(0, 0, 1, 0, "FistHeavyTrackingPuff", FBF_NORANDOM | FBF_NOFLASH | FBF_NORANDOMPUFFZ, 112)
         
-        "####" H 0 A_FireBullets(0, 0, 1, 0, "FistHeavyTrackingPuff", FBF_NORANDOM | FBF_NOFLASH | FBF_NORANDOMPUFFZ, 112)
-        "####" H 1 A_ZoomFactor(1.02, ZOOM_NOSCALETURNING | ZOOM_INSTANT)
-        "####" J 0 A_FireBullets(0, 0, 1, 0, "FistHeavyTrackingPuff", FBF_NORANDOM | FBF_NOFLASH | FBF_NORANDOMPUFFZ, 112)
-        "####" J 1 A_ZoomFactor(1.21, ZOOM_NOSCALETURNING | ZOOM_INSTANT)
+        "####" I 0 A_FireBullets(0, 0, 1, 0, "FistHeavyTrackingPuff", FBF_NORANDOM | FBF_NOFLASH | FBF_NORANDOMPUFFZ, 112)
+        "####" I 1 A_ZoomFactor(1.22, ZOOM_NOSCALETURNING | ZOOM_INSTANT)
         
         "####" L 0 A_TakeInventory("DakkaFistConnected")
         "####" L 0 ACS_NamedExecuteWithResult("Dakka_Switcharoo", 0, 1)
@@ -322,13 +316,10 @@ actor DWep_Fist: DoomWeapon
         "####" L 0 A_TakeInventory("DakkaFistSpeed")
         
         "####" K 1  A_ZoomFactor(1.1,  ZOOM_NOSCALETURNING)
-        "####" K 1  A_ZoomFactor(1.05, ZOOM_NOSCALETURNING)
-        "####" J 1  A_ZoomFactor(1,    ZOOM_NOSCALETURNING)
-        "####" J 1
+        "####" I 0  A_ZoomFactor(1,    ZOOM_NOSCALETURNING)
         "####" I 1 A_JumpIfInventory("AltFired", 1, "AltHold_Quick3")
         "####" H 1 A_JumpIfInventory("AltFired", 1, "AltHold_Quick2")
         "####" G 1 A_JumpIfInventory("AltFired", 1, "AltHold_Quick1")
-        "####" Z 1 A_JumpIfInventory("AltFired", 1, "AltHold")
         goto AttackEnd
       
       
@@ -368,8 +359,7 @@ actor DWep_Fist: DoomWeapon
         "####" M 1 A_FireBullets(0, 0, 1, 0, "FistHeavyTrackingPuff", FBF_NORANDOM | FBF_NOFLASH | FBF_NORANDOMPUFFZ, 112)
         
         
-        "####" H 1 A_FireBullets(0, 0, 1, 0, "FistHeavyTrackingPuff", FBF_NORANDOM | FBF_NOFLASH | FBF_NORANDOMPUFFZ, 112)
-        "####" J 1 A_FireBullets(0, 0, 1, 0, "FistHeavyTrackingPuff", FBF_NORANDOM | FBF_NOFLASH | FBF_NORANDOMPUFFZ, 112)
+        "####" I 1 A_FireBullets(0, 0, 1, 0, "FistHeavyTrackingPuff", FBF_NORANDOM | FBF_NOFLASH | FBF_NORANDOMPUFFZ, 112)
         
         "####" L 0 A_FireBullets(0, 0, 1, 60, "FistPowerPunch3_2", FBF_NORANDOM | FBF_NOFLASH | FBF_NORANDOMPUFFZ, 112)
         "####" L 0 A_PlaySound("dakka/explode", CHAN_WEAPON)
@@ -389,14 +379,10 @@ actor DWep_Fist: DoomWeapon
         "####" L 0 A_TakeInventory("DakkaFistSpeed")
         
         "####" K 1  A_ZoomFactor(1.1,  ZOOM_NOSCALETURNING)
-        "####" K 1  A_ZoomFactor(1.05, ZOOM_NOSCALETURNING)
-        "####" J 1  A_ZoomFactor(1,    ZOOM_NOSCALETURNING)
-        "####" J 1
+        "####" I 0  A_ZoomFactor(1,    ZOOM_NOSCALETURNING)
         "####" I 1 A_JumpIfInventory("AltFired", 1, "AltHold_Quick3")
         "####" H 1 A_JumpIfInventory("AltFired", 1, "AltHold_Quick2")
         "####" G 1 A_JumpIfInventory("AltFired", 1, "AltHold_Quick1")
-        "####" Z 1 A_JumpIfInventory("AltFired", 1, "AltHold")
-        "####" Z 1 A_JumpIfInventory("AltFired", 1, "AltHold")
         goto AttackEnd
       
       
