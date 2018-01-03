@@ -125,6 +125,8 @@ $random dakka/shotfire      { dakka/sf1 dakka/sf2 dakka/sf3 }
 dakka/shotreload            sounds/shotgun/shotgun_reload.ogg
 dakka/shotgrenade           sounds/shotgun/shotgun_grenade.ogg
 
+$volume dakka/shotgrenade   0.8
+
 
 
 ////////
@@ -139,8 +141,9 @@ dakka/ssgopen               sounds/ssg/ssg_open.ogg
 dakka/ssgload               sounds/ssg/ssg_load.ogg
 dakka/ssgclose              sounds/ssg/ssg_close.ogg
 
-$volume dakka/ssgfire       0.9
-$volume dakka/ssgaltfire    0.9
+$volume dakka/ssgfire       0.83
+$volume dakka/ssgfire2      0.9
+$volume dakka/ssgaltfire    0.83
 $volume dakka/ssgopen       0.6
 $volume dakka/ssgload       0.6
 $volume dakka/ssgclose      0.6
@@ -180,7 +183,7 @@ dakka/minigun/flamestop     sounds/minigun/minigun_flamestop.ogg
 dakka/minigun/flameloop     sounds/minigun/minigun_flameloop.ogg
 dakka/firecrackle           sounds/minigun/minigun_firecrackle.ogg
 
-$volume dakka/minigunfire           0.6
+$volume dakka/minigunfire           0.55
 $volume dakka/minigun/flamestart    0.6
 $volume dakka/minigun/flamestop     0.6
 $volume dakka/minigun/flameloop     0.75
@@ -275,6 +278,6 @@ dakka/bfg_altfire           sounds/bfg/bfg_altfire.ogg
 dakka/bfgexplode            sounds/bfg/bfg_explode.ogg
 
 
-$volume dakka/bfg_altfire   0.55
+$volume dakka/bfg_altfire   0.65
 
 $limit dakka/bfg_altfire 0
