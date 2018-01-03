@@ -162,13 +162,10 @@ StatusBar Normal, fullscreenoffsets, 0.85
         DrawImage  "HUD_AM20", -96, -63;
     }
     
-    Alpha 0.6667
+    Alpha 0.9
     {
         DrawImage "HUD_WBAR", -223+center, -32;
-    }
-    
-    Alpha 0.8
-    {
+        
         InInventory DWep_Scrappers { DrawImage "HWEP1_1", -202+center, -28; }
         
         InInventory DWep_Pistol || DWep_Pistols { DrawImage "HWEP21_1", -144+center, -26; }
