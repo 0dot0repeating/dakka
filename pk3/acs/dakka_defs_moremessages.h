@@ -7,14 +7,11 @@
 //  4  - SSG
 //  5  - Chaingun
 //  6  - Minigun
-//  7  - Rocket Launcher
-//  8  - Plasma rifle
-//  9  - Channeler
-//  10 - Plasma lance
-//  11 - BFG9000
-//  12 - Impaler
+//  7  - Impaler
+//  8  - Lancer
+//  9  - BFG9000
 
-#define MMSG_SLOTS  13
+#define MMSG_SLOTS  10
 #define MMSG_COUNT  11
 
 
@@ -22,11 +19,13 @@ int MMSG_ExtraMessages[MMSG_SLOTS][MMSG_COUNT] =
 {
     { // Fists
         "And so I rip and tear, for I have seen the demons, and seen that they have huge guts.",
-        "Yes, it's better for killing demons than the normal shotgun. Is that bad?",
-        "There's nothing wrong with you that I can't fix... with my hands!",
         "More mods should do this whole 'random pickup messages' thing. It's fun!",
-        "Get berserked, beat spiderdemons to death.",
+        "There's nothing wrong with you that I can't fix... with my hands!",
+        "Try not to pay attention to the giant tumors on his arms.",
+        "Is this what the right to bear arms is about?",
         "Here comes the night train!",
+        "Fists explode, right?",
+        "You are already dead.",
         "Guns are for wusses.",
     },
     { // Scrappers
@@ -44,9 +43,9 @@ int MMSG_ExtraMessages[MMSG_SLOTS][MMSG_COUNT] =
     { // Pistols
         "I still can't tell where the back and top of the slide actually meets on these things.",
         "You could probably beat the map with only these... but do you really want to?",
-        "The pistol actually has four barrels. No, don't look down them!",
+        "The pistol actually has three barrels. No, don't look down them!",
+        "People actually put pistol pickups in their maps?",
         "Oh yeah. These things. The pistols. Right. Yeah.",
-        "People actually put pistol pickups in a map?",
         "Just be glad it's not an assault rifle.",
         "Well, you gotta have them... I guess.",
     },
@@ -102,50 +101,30 @@ int MMSG_ExtraMessages[MMSG_SLOTS][MMSG_COUNT] =
         "Now go, and terminate.",
         "What's ammo?",
     },
-    { // Rocket launcher
-        "Giving this the same fire rate as the Doom pistol will surely have no negative repercussions.",
-        "Go ahead, stuff two more rockets in the barrel. That won't cause problems.",
-        "Because if it wasn't exploded before, it's gonna explode now.",
-        "Is that a rocket in your pants, or are you happy to see me?",
-        "You are a pain. Luckily, I have the painkiller!",
-        "Seriously, how does this thing even reload?",
-        "Maybe you should look into being a ranger.",
-        "You got the impaler's uglier brother!",
-        "Bastard guns for bastard people.",
-        "Hey guys, I brought the salsa!",
-        "Accept no substitutes.",
+    { // Impaler
+        "If you ignore fire rate, this is totally weaker than the vanilla rocket launcher.",
+        "Reach out and touch someone. With someone else. Then watch them explode.",
+        "You don't get to keep it if you keep making dick jokes about it.",
+        "What's that? I can't hear you over these endless explosions!",
+        "Would you believe this was once a pressure washer?",
+        "Oh my god this mod rips off Duke Nukem 3D so much.",
+        "And this is why you can hold up to 240 rockets.",
+        "It's certainly one way to loosen a rusty bolt.",
+        "The magazine for it is bigger than your head.",
+        "Jesus christ this dumb thing is so heavy.",
+        "You picked up a cartoony church organ!",
     },
-    { // Plasma rifle
-        "The top of the gun is not a mirror. Doesn't stop you trying to admire yourself on it.",
-        "Because the ranch dressing rifle didn't pan out so well in marketing.",
-        "Effective range: four feet. What did you expect, it's plasma.",
-        "And yet your cell phone still only lasts six hours.",
-        "Gotta meet that laser quota somehow.",
-        "Lasers have recoil, right guys?",
-        "The culmination of power creep.",
-        "I'm good at balance, I swear!",
-        "But can it play Tetris?",
-        "Plasma? Lasers.",
-    },
-    { // Channeler
-        "If hell was invading, then why do they have UAC weapons lying around? \cgCHECKMATE, ATHEISTS.\c-",
-        "It was a good day when we taught electricity to only fry demons.",
-        "The original design was to just shoot batteries at the demons.",
-        "They \castill\c- haven't duck-taped a flashlight to it?",
-        "If you think you're dodging this, you're in for a shock.",
-        "Can also be used as a defibrilator in a pinch.",
-        "Zip, zap, zop! I'm gonna make you pop!",
-        "It's positively electrifying!",
-        "Aiming is overrated anyway.",
-    },
-    { // Plasma lance
+    { // Lancer
         "You see, when a marine and a ranger love each other very much...",
+        "It was a good day when we taught electricity to only fry demons.",
         "Hey wait a second, this isn't a lance at all! I was lied to!",
-        "Fuck it, just add more barrels to everything.",
+        "If you think you're dodging this, you're in for a shock.",
         "Yeah just slap lights all over it, it's fine.",
         "The side grip makes it fire 50% faster.",
         "It's the nail for the demons' coffins.",
+        "Zip, zap, zop! I'm gonna make you pop!",
         "What? Your nailgun is evolving!",
+        "It's positively electrifying!",
         "Way to get a point across.",
     },
     { // BFG9000
@@ -161,18 +140,5 @@ int MMSG_ExtraMessages[MMSG_SLOTS][MMSG_COUNT] =
         "B-but Dakka-kun, I don't know if I can take it...",
         "You know you want to thrust your rod upon them.",
         "They can't ignore your girth now.",
-    },
-    { // Impaler
-        "If you ignore fire rate, this is totally weaker than the vanilla rocket launcher.",
-        "Reach out and touch someone. With someone else. Then watch them explode.",
-        "You don't get to keep it if you keep making dick jokes about it.",
-        "What's that? I can't hear you over these endless explosions!",
-        "Would you believe this was once a pressure washer?",
-        "Oh my god this mod rips off Duke Nukem 3D so much.",
-        "And this is why you can hold up to 240 rockets.",
-        "The magazine for it is bigger than your head.",
-        "Jesus christ this dumb thing is so heavy.",
-        "Actually, maybe accept this substitute.",
-        "You picked up a cartoony church organ!",
     },
 };
