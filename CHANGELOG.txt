@@ -5,7 +5,7 @@ NOTE: Most of this changelog was retroactive; anything before 0.05 was for sure,
 
 ####====----
 ##==--
-#=-     DAKKA v1.0
+#=-     DAKKA v0.10
 #-
 
 GENERAL CHANGES:
