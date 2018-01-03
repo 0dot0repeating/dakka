@@ -101,19 +101,19 @@ int PKP_PickupNamed[PK_SCRIPTEDCOUNT] =
 // And the data itself.
 int CMSG_ScriptedMessages[MSG_SCRIPTEDCOUNT][8] =
 {
-    {It_Fist,               Cl_Dakkaguy,  -1, 0,   0,0, true, true},
-    {It_Chainsaw,           Cl_Dakkaguy,  -1, 1,   0,0, true, true},
-    {It_Pistol,             Cl_Dakkaguy,  -1, 2,   0,0, true, true},
-    {It_Shotgun,            Cl_Dakkaguy,  -1, 3,   0,0, true, true},
-    {It_SuperShotgun,       Cl_Dakkaguy,  -1, 4,   0,0, true, true},
-    {It_Chaingun,           Cl_Dakkaguy,  -1, 5,   0,0, true, true},
-    {It_ST_Minigun,         Cl_Dakkaguy,  -1, 6,   0,0, true, true},
-    {It_RocketLauncher,     Cl_Dakkaguy,  -1, 12,  0,0, true, true},
-    {It_ST_GrenadeLauncher, Cl_Dakkaguy,  -1, 12,  0,0, true, true},
-    {It_PlasmaRifle,        Cl_Dakkaguy,  -1, 10,  0,0, true, true},
-    {It_ST_Railgun,         Cl_Dakkaguy,  -1, 10,  0,0, true, true},
-    {It_BFG9000,            Cl_Dakkaguy,  -1, 11,  0,0, true, true},
-    {It_ST_BFG10k,          Cl_Dakkaguy,  -1, 11,  0,0, true, true},
+    {It_Fist,               Cl_Dakkaguy,  -1, 0,  0,0, true, true},
+    {It_Chainsaw,           Cl_Dakkaguy,  -1, 1,  0,0, true, true},
+    {It_Pistol,             Cl_Dakkaguy,  -1, 2,  0,0, true, true},
+    {It_Shotgun,            Cl_Dakkaguy,  -1, 3,  0,0, true, true},
+    {It_SuperShotgun,       Cl_Dakkaguy,  -1, 4,  0,0, true, true},
+    {It_Chaingun,           Cl_Dakkaguy,  -1, 5,  0,0, true, true},
+    {It_ST_Minigun,         Cl_Dakkaguy,  -1, 6,  0,0, true, true},
+    {It_RocketLauncher,     Cl_Dakkaguy,  -1, 7,  0,0, true, true},
+    {It_ST_GrenadeLauncher, Cl_Dakkaguy,  -1, 7,  0,0, true, true},
+    {It_PlasmaRifle,        Cl_Dakkaguy,  -1, 8,  0,0, true, true},
+    {It_ST_Railgun,         Cl_Dakkaguy,  -1, 8,  0,0, true, true},
+    {It_BFG9000,            Cl_Dakkaguy,  -1, 9,  0,0, true, true},
+    {It_ST_BFG10k,          Cl_Dakkaguy,  -1, 9,  0,0, true, true},
 };
 
 int CMSG_MessageNamed[MSG_SCRIPTEDCOUNT] =
