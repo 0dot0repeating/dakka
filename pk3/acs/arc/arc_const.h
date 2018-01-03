@@ -31,17 +31,21 @@ str STR_ArcData[ARCTYPES][ARC_S_COLUMNS] =
 //  facing. fixed point.
 #define ARC_I_KEEPHEADING   3
 
+// if 0, arcs will always spawn on the center of their target. if 1, arcs will
+//  spawn anywhere on the target's hitbox, at random.
+#define ARC_I_RANDOMOFFSET  4
+
 // askdjasd
-#define ARC_I_COLUMNS       4
+#define ARC_I_COLUMNS       5
 
 
 str INT_ArcData[ARCTYPES][ARC_I_COLUMNS] =
 {
-    {320, 5.0, 0.2, 0.75},
-    {320, 5.0, 0.2, 0.75},
-    {320, 5.0, 0.2, 0.75},
-    {320, 5.0, 0.2, 0.75},
-    {320, 5.0, 0.2, 0.75},
-    {320, 5.0, 0.2, 0.75},
-    {320, 5.0, 0.2, 0.75},
+    {320, 5.0, 0.2, 0.75, 0.6},
+    {320, 5.0, 0.2, 0.75, 0.6},
+    {320, 5.0, 0.2, 0.75, 0.6},
+    {320, 5.0, 0.2, 0.75, 0.6},
+    {320, 5.0, 0.2, 0.75, 0.6},
+    {320, 5.0, 0.2, 0.75, 0.6},
+    {320, 5.0, 0.2, 0.75, 0.6},
 };

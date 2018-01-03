@@ -37,7 +37,7 @@ script "Arc_Main" (int arcType)
     
     // get this stuff now, because they might die and their height might change
     int tracerHeight = GetActorProperty(0, APROP_Height);
-    int tracerRadius = GetActorProperty(0, APROP_Height);
+    int tracerRadius = GetActorProperty(0, APROP_Radius);
     
     
     // step 11
@@ -69,6 +69,12 @@ script "Arc_Main" (int arcType)
     int arcX     = tracerX;
     int arcY     = tracerY;
     int arcZ     = tracerZ + (tracerHeight / 2);
+    
+    int randomOffset = abs(INT_ArcData[arcType][ARC_I_RANDOMOFFSET]);
+    
+    arcX += FixedMul(tracerRadius, random(-randomOffset, randomOffset));
+    arcY += FixedMul(tracerRadius, random(-randomOffset, randomOffset));
+    arcZ += FixedMul(tracerHeight, random(-randomOffset / 2, randomOffset / 2));
     
     int dx = arcX - GetActorX(arcerTID);
     int dy = arcY - GetActorY(arcerTID);
