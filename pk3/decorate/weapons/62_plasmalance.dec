@@ -53,26 +53,26 @@ actor DWep_PlasmaLance: DoomWeapon
         PLNC G 1 bright offset(0, 37) A_PlaySound("arc/fire", 5, 0.75)
         PLNC G 1 bright offset(0, 36)
         PLNC H 1 bright offset(0, 39) A_WeaponReady(WRF_NOFIRE | WRF_NOBOB)
-        PLNC H 0                      A_JumpIfInventory("MainFired", 1, "HoldRight")
+        PLNC H 0                      A_Refire("HoldRight")
         goto FireLeftDone
       
       FireLeftDone:
         PLNC H 0                      A_WeaponReady(WRF_NOFIRE | WRF_NOBOB)
-        PLNC H 1        offset(0, 38) A_JumpIfInventory("MainFired", 1, "HoldRight")
+        PLNC H 1        offset(0, 38) A_Refire("HoldRight")
         PLNC H 0                      A_WeaponReady(WRF_NOPRIMARY | WRF_NOBOB)
-        PLNC H 1        offset(0, 38) A_JumpIfInventory("MainFired", 1, "HoldRight")
+        PLNC H 1        offset(0, 38) A_Refire("HoldRight")
         PLNC F 0                      A_WeaponReady(WRF_NOPRIMARY | WRF_NOBOB)
-        PLNC F 1        offset(0, 35) A_JumpIfInventory("MainFired", 1, "HoldRight")
+        PLNC F 1        offset(0, 35) A_Refire("HoldRight")
         PLNC F 0                      A_WeaponReady(WRF_NOPRIMARY | WRF_NOBOB)
-        PLNC F 1        offset(0, 35) A_JumpIfInventory("MainFired", 1, "HoldRight")
+        PLNC F 1        offset(0, 35) A_Refire("HoldRight")
         PLNC F 0                      A_WeaponReady(WRF_NOPRIMARY | WRF_NOBOB)
-        PLNC F 1        offset(0, 33) A_JumpIfInventory("MainFired", 1, "FireRight")
+        PLNC F 1        offset(0, 33) A_Refire("FireRight")
         PLNC F 0                      A_WeaponReady(WRF_NOPRIMARY | WRF_NOBOB)
-        PLNC F 1        offset(0, 33) A_JumpIfInventory("MainFired", 1, "FireRight")
+        PLNC F 1        offset(0, 33) A_Refire("FireRight")
         PLNC F 0                      A_WeaponReady(WRF_NOPRIMARY | WRF_NOBOB)
-        PLNC F 1        offset(0, 32) A_JumpIfInventory("MainFired", 1, "FireRight")
+        PLNC F 1        offset(0, 32) A_Refire("FireRight")
         PLNC F 0                      A_WeaponReady(WRF_NOPRIMARY | WRF_NOBOB)
-        PLNC F 1        offset(0, 32) A_JumpIfInventory("MainFired", 1, "FireRight")
+        PLNC F 1        offset(0, 32) A_Refire("FireRight")
         goto Ready
       
       FireRight:
@@ -87,26 +87,26 @@ actor DWep_PlasmaLance: DoomWeapon
         PLNC I 1 bright offset(0, 37) A_PlaySound("arc/fire", 6, 0.75)
         PLNC I 1 bright offset(0, 36)
         PLNC J 1 bright offset(0, 39) A_WeaponReady(WRF_NOFIRE | WRF_NOBOB)
-        PLNC J 0                      A_JumpIfInventory("MainFired", 1, "HoldLeft")
+        PLNC J 0                      A_Refire("HoldLeft")
         goto FireRightDone
       
       FireRightDone:
         PLNC J 0                      A_WeaponReady(WRF_NOFIRE | WRF_NOBOB)
-        PLNC J 1        offset(0, 37) A_JumpIfInventory("MainFired", 1, "HoldLeft")
+        PLNC J 1        offset(0, 37) A_Refire("HoldLeft")
         PLNC J 0                      A_WeaponReady(WRF_NOPRIMARY | WRF_NOBOB)
-        PLNC J 1        offset(0, 37) A_JumpIfInventory("MainFired", 1, "HoldLeft")
+        PLNC J 1        offset(0, 37) A_Refire("HoldLeft")
         PLNC F 0                      A_WeaponReady(WRF_NOPRIMARY | WRF_NOBOB)
-        PLNC F 1        offset(0, 35) A_JumpIfInventory("MainFired", 1, "HoldLeft")
+        PLNC F 1        offset(0, 35) A_Refire("HoldLeft")
         PLNC F 0                      A_WeaponReady(WRF_NOPRIMARY | WRF_NOBOB)
-        PLNC F 1        offset(0, 35) A_JumpIfInventory("MainFired", 1, "HoldLeft")
+        PLNC F 1        offset(0, 35) A_Refire("HoldLeft")
         PLNC F 0                      A_WeaponReady(WRF_NOPRIMARY | WRF_NOBOB)
-        PLNC F 1        offset(0, 33) A_JumpIfInventory("MainFired", 1, "FireLeft")
+        PLNC F 1        offset(0, 33) A_Refire("FireLeft")
         PLNC F 0                      A_WeaponReady(WRF_NOPRIMARY | WRF_NOBOB)
-        PLNC F 1        offset(0, 33) A_JumpIfInventory("MainFired", 1, "FireLeft")
+        PLNC F 1        offset(0, 33) A_Refire("FireLeft")
         PLNC F 0                      A_WeaponReady(WRF_NOPRIMARY | WRF_NOBOB)
-        PLNC F 1        offset(0, 32) A_JumpIfInventory("MainFired", 1, "FireLeft")
+        PLNC F 1        offset(0, 32) A_Refire("FireLeft")
         PLNC F 0                      A_WeaponReady(WRF_NOPRIMARY | WRF_NOBOB)
-        PLNC F 1        offset(0, 32) A_JumpIfInventory("MainFired", 1, "FireLeft")
+        PLNC F 1        offset(0, 32) A_Refire("FireLeft")
         goto Ready
 
       HoldLeft:
