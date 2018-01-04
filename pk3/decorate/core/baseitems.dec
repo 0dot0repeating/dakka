@@ -84,6 +84,7 @@ actor GotScrapper:      Boolean {}
 actor GotBackpackItem:  Boolean {}
 
 actor HUD_IsDakkaguy:   Boolean {}
+actor HUD_AmmoRegen:    Boolean {}
 
 actor HUD_Armor25:      Boolean {}
 actor HUD_Armor50:      Boolean {}

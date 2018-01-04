@@ -91,7 +91,13 @@ DHud_Ammo2
 
 DHud_AmmoGray
 {
-    #B0B0B0 #B0B0B0  0 255
+    #909090 #909090  0 255
+}
+
+DHud_AmmoRegen
+{
+    #8DBFD9 #BFEAFF  0 208
+    #BFEAFF #F2FBFF  209 255
 }
 
 /*

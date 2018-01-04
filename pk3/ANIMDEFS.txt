@@ -3,3 +3,407 @@ texture DLAVFAL1    range   DLAVFAL4      tics 8
 flat    FDWATER1    range   FDWATER4      tics 8
 flat    DAKLAVA1    range   DAKLAVA4      tics 8
 flat    DFIRBLU1    range   DFIRBLU2      tics 8
+
+texture HUD_AM15
+    pic HUD_AM15 tics 6
+    pic HUD_AM16 tics 3
+    pic HUD_AM17 tics 3
+    pic HUD_AM18 tics 4
+    pic HUD_AM17 tics 3
+    pic HUD_AM16 tics 3
+
+texture HUD_AM25
+    pic HUD_AM25 tics 6
+    pic HUD_AM26 tics 3
+    pic HUD_AM27 tics 3
+    pic HUD_AM28 tics 4
+    pic HUD_AM27 tics 3
+    pic HUD_AM26 tics 3
+
+texture HUD_WBR2
+    pic HUD_WBR2 tics 6
+    pic HUD_WBR3 tics 3
+    pic HUD_WBR4 tics 3
+    pic HUD_WBR5 tics 4
+    pic HUD_WBR4 tics 3
+    pic HUD_WBR3 tics 3
+
+texture AMBAR_1A
+    pic AMBAR_1A tics 6
+    pic AMBAR_1B tics 3
+    pic AMBAR_1C tics 3
+    pic AMBAR_1D tics 4
+    pic AMBAR_1C tics 3
+    pic AMBAR_1B tics 3
+
+texture AMBAR_2A
+    pic AMBAR_2A tics 6
+    pic AMBAR_2B tics 3
+    pic AMBAR_2C tics 3
+    pic AMBAR_2D tics 4
+    pic AMBAR_2C tics 3
+    pic AMBAR_2B tics 3
+
+texture AMBAR_3A
+    pic AMBAR_3A tics 6
+    pic AMBAR_3B tics 3
+    pic AMBAR_3C tics 3
+    pic AMBAR_3D tics 4
+    pic AMBAR_3C tics 3
+    pic AMBAR_3B tics 3
+
+texture AMBAR_4A
+    pic AMBAR_4A tics 6
+    pic AMBAR_4B tics 3
+    pic AMBAR_4C tics 3
+    pic AMBAR_4D tics 4
+    pic AMBAR_4C tics 3
+    pic AMBAR_4B tics 3
+
+
+
+texture RWP_111A
+    pic RWP_111A tics 6
+    pic RWP_111B tics 3
+    pic RWP_111C tics 3
+    pic RWP_111D tics 4
+    pic RWP_111C tics 3
+    pic RWP_111B tics 3
+
+texture RWP_112A
+    pic RWP_112A tics 6
+    pic RWP_112B tics 3
+    pic RWP_112C tics 3
+    pic RWP_112D tics 4
+    pic RWP_112C tics 3
+    pic RWP_112B tics 3
+
+
+
+texture RWP_211A
+    pic RWP_211A tics 6
+    pic RWP_211B tics 3
+    pic RWP_211C tics 3
+    pic RWP_211D tics 4
+    pic RWP_211C tics 3
+    pic RWP_211B tics 3
+
+texture RWP_212A
+    pic RWP_212A tics 6
+    pic RWP_212B tics 3
+    pic RWP_212C tics 3
+    pic RWP_212D tics 4
+    pic RWP_212C tics 3
+    pic RWP_212B tics 3
+
+texture RWP_221A
+    pic RWP_221A tics 6
+    pic RWP_221B tics 3
+    pic RWP_221C tics 3
+    pic RWP_221D tics 4
+    pic RWP_221C tics 3
+    pic RWP_221B tics 3
+
+texture RWP_222A
+    pic RWP_222A tics 6
+    pic RWP_222B tics 3
+    pic RWP_222C tics 3
+    pic RWP_222D tics 4
+    pic RWP_222C tics 3
+    pic RWP_222B tics 3
+
+
+
+texture RWP_311A
+    pic RWP_311A tics 6
+    pic RWP_311B tics 3
+    pic RWP_311C tics 3
+    pic RWP_311D tics 4
+    pic RWP_311C tics 3
+    pic RWP_311B tics 3
+    
+texture RWP_312A
+    pic RWP_312A tics 6
+    pic RWP_312B tics 3
+    pic RWP_312C tics 3
+    pic RWP_312D tics 4
+    pic RWP_312C tics 3
+    pic RWP_312B tics 3
+    
+texture RWP_321A
+    pic RWP_321A tics 6
+    pic RWP_321B tics 3
+    pic RWP_321C tics 3
+    pic RWP_321D tics 4
+    pic RWP_321C tics 3
+    pic RWP_321B tics 3
+    
+texture RWP_322A
+    pic RWP_322A tics 6
+    pic RWP_322B tics 3
+    pic RWP_322C tics 3
+    pic RWP_322D tics 4
+    pic RWP_322C tics 3
+    pic RWP_322B tics 3
+
+
+
+texture RWP_411A
+    pic RWP_411A tics 6
+    pic RWP_411B tics 3
+    pic RWP_411C tics 3
+    pic RWP_411D tics 4
+    pic RWP_411C tics 3
+    pic RWP_411B tics 3
+    
+texture RWP_412A
+    pic RWP_412A tics 6
+    pic RWP_412B tics 3
+    pic RWP_412C tics 3
+    pic RWP_412D tics 4
+    pic RWP_412C tics 3
+    pic RWP_412B tics 3
+    
+texture RWP_421A
+    pic RWP_421A tics 6
+    pic RWP_421B tics 3
+    pic RWP_421C tics 3
+    pic RWP_421D tics 4
+    pic RWP_421C tics 3
+    pic RWP_421B tics 3
+    
+texture RWP_422A
+    pic RWP_422A tics 6
+    pic RWP_422B tics 3
+    pic RWP_422C tics 3
+    pic RWP_422D tics 4
+    pic RWP_422C tics 3
+    pic RWP_422B tics 3
+
+
+
+texture RWP_511A
+    pic RWP_511A tics 6
+    pic RWP_511B tics 3
+    pic RWP_511C tics 3
+    pic RWP_511D tics 4
+    pic RWP_511C tics 3
+    pic RWP_511B tics 3
+    
+texture RWP_512A
+    pic RWP_512A tics 6
+    pic RWP_512B tics 3
+    pic RWP_512C tics 3
+    pic RWP_512D tics 4
+    pic RWP_512C tics 3
+    pic RWP_512B tics 3
+
+
+
+texture RWP_611A
+    pic RWP_611A tics 6
+    pic RWP_611B tics 3
+    pic RWP_611C tics 3
+    pic RWP_611D tics 4
+    pic RWP_611C tics 3
+    pic RWP_611B tics 3
+    
+texture RWP_612A
+    pic RWP_612A tics 6
+    pic RWP_612B tics 3
+    pic RWP_612C tics 3
+    pic RWP_612D tics 4
+    pic RWP_612C tics 3
+    pic RWP_612B tics 3
+
+
+
+texture RWP_711A
+    pic RWP_711A tics 6
+    pic RWP_711B tics 3
+    pic RWP_711C tics 3
+    pic RWP_711D tics 4
+    pic RWP_711C tics 3
+    pic RWP_711B tics 3
+    
+texture RWP_712A
+    pic RWP_712A tics 6
+    pic RWP_712B tics 3
+    pic RWP_712C tics 3
+    pic RWP_712D tics 4
+    pic RWP_712C tics 3
+    pic RWP_712B tics 3
+
+
+
+texture FS_WPAMA
+    pic FS_WPAMA tics 6
+    pic FS_WPAMB tics 3
+    pic FS_WPAMC tics 3
+    pic FS_WPAMD tics 4
+    pic FS_WPAMC tics 3
+    pic FS_WPAMB tics 3
+
+
+
+texture FS_AMO1A
+    pic FS_AMO1A tics 6
+    pic FS_AMO1B tics 3
+    pic FS_AMO1C tics 3
+    pic FS_AMO1D tics 4
+    pic FS_AMO1C tics 3
+    pic FS_AMO1B tics 3
+
+texture FS_AMO2A
+    pic FS_AMO2A tics 6
+    pic FS_AMO2B tics 3
+    pic FS_AMO2C tics 3
+    pic FS_AMO2D tics 4
+    pic FS_AMO2C tics 3
+    pic FS_AMO2B tics 3
+
+texture FS_AMO3A
+    pic FS_AMO3A tics 6
+    pic FS_AMO3B tics 3
+    pic FS_AMO3C tics 3
+    pic FS_AMO3D tics 4
+    pic FS_AMO3C tics 3
+    pic FS_AMO3B tics 3
+
+texture FS_AMO4A
+    pic FS_AMO4A tics 6
+    pic FS_AMO4B tics 3
+    pic FS_AMO4C tics 3
+    pic FS_AMO4D tics 4
+    pic FS_AMO4C tics 3
+    pic FS_AMO4B tics 3
+
+texture FS_AMO5A
+    pic FS_AMO5A tics 6
+    pic FS_AMO5B tics 3
+    pic FS_AMO5C tics 3
+    pic FS_AMO5D tics 4
+    pic FS_AMO5C tics 3
+    pic FS_AMO5B tics 3
+
+texture FS_AMO6A
+    pic FS_AMO6A tics 6
+    pic FS_AMO6B tics 3
+    pic FS_AMO6C tics 3
+    pic FS_AMO6D tics 4
+    pic FS_AMO6C tics 3
+    pic FS_AMO6B tics 3
+
+texture FS_AMO7A
+    pic FS_AMO7A tics 6
+    pic FS_AMO7B tics 3
+    pic FS_AMO7C tics 3
+    pic FS_AMO7D tics 4
+    pic FS_AMO7C tics 3
+    pic FS_AMO7B tics 3
+
+texture FS_AMO8A
+    pic FS_AMO8A tics 6
+    pic FS_AMO8B tics 3
+    pic FS_AMO8C tics 3
+    pic FS_AMO8D tics 4
+    pic FS_AMO8C tics 3
+    pic FS_AMO8B tics 3
+
+texture FS_AMO9A
+    pic FS_AMO9A tics 6
+    pic FS_AMO9B tics 3
+    pic FS_AMO9C tics 3
+    pic FS_AMO9D tics 4
+    pic FS_AMO9C tics 3
+    pic FS_AMO9B tics 3
+
+texture FS_AMO0A
+    pic FS_AMO0A tics 6
+    pic FS_AMO0B tics 3
+    pic FS_AMO0C tics 3
+    pic FS_AMO0D tics 4
+    pic FS_AMO0C tics 3
+    pic FS_AMO0B tics 3
+
+
+
+texture FS_AMB1A
+    pic FS_AMB1A tics 6
+    pic FS_AMB1B tics 3
+    pic FS_AMB1C tics 3
+    pic FS_AMB1D tics 4
+    pic FS_AMB1C tics 3
+    pic FS_AMB1B tics 3
+
+texture FS_AMB2A
+    pic FS_AMB2A tics 6
+    pic FS_AMB2B tics 3
+    pic FS_AMB2C tics 3
+    pic FS_AMB2D tics 4
+    pic FS_AMB2C tics 3
+    pic FS_AMB2B tics 3
+
+texture FS_AMB3A
+    pic FS_AMB3A tics 6
+    pic FS_AMB3B tics 3
+    pic FS_AMB3C tics 3
+    pic FS_AMB3D tics 4
+    pic FS_AMB3C tics 3
+    pic FS_AMB3B tics 3
+
+texture FS_AMB4A
+    pic FS_AMB4A tics 6
+    pic FS_AMB4B tics 3
+    pic FS_AMB4C tics 3
+    pic FS_AMB4D tics 4
+    pic FS_AMB4C tics 3
+    pic FS_AMB4B tics 3
+
+texture FS_AMB5A
+    pic FS_AMB5A tics 6
+    pic FS_AMB5B tics 3
+    pic FS_AMB5C tics 3
+    pic FS_AMB5D tics 4
+    pic FS_AMB5C tics 3
+    pic FS_AMB5B tics 3
+
+texture FS_AMB6A
+    pic FS_AMB6A tics 6
+    pic FS_AMB6B tics 3
+    pic FS_AMB6C tics 3
+    pic FS_AMB6D tics 4
+    pic FS_AMB6C tics 3
+    pic FS_AMB6B tics 3
+
+texture FS_AMB7A
+    pic FS_AMB7A tics 6
+    pic FS_AMB7B tics 3
+    pic FS_AMB7C tics 3
+    pic FS_AMB7D tics 4
+    pic FS_AMB7C tics 3
+    pic FS_AMB7B tics 3
+
+texture FS_AMB8A
+    pic FS_AMB8A tics 6
+    pic FS_AMB8B tics 3
+    pic FS_AMB8C tics 3
+    pic FS_AMB8D tics 4
+    pic FS_AMB8C tics 3
+    pic FS_AMB8B tics 3
+
+texture FS_AMB9A
+    pic FS_AMB9A tics 6
+    pic FS_AMB9B tics 3
+    pic FS_AMB9C tics 3
+    pic FS_AMB9D tics 4
+    pic FS_AMB9C tics 3
+    pic FS_AMB9B tics 3
+
+texture FS_AMB0A
+    pic FS_AMB0A tics 6
+    pic FS_AMB0B tics 3
+    pic FS_AMB0C tics 3
+    pic FS_AMB0D tics 4
+    pic FS_AMB0C tics 3
+    pic FS_AMB0B tics 3
