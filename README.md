@@ -1,28 +1,30 @@
 ![DAKKA](/README_logo.png "necessary")
 
+**For Zandronum 3.0, ZDoom 2.8.1, and GZDoom 2.1.1**
+
 It's a mod with guns. The guns make everything easy - not Russian Overkill levels
 of easy, but still pretty damn easy. Eventually, I'll change up the monsters to
 fix this. Today's not that day.
 
-***IMPORTANT:*** This mod is intended for Zandronum 3.0 and ZDoom 2.8.1. Ever
-since GZDoom switched over to OpenAL, stereo sounds have been playing incredibly
-wrong - downmixed to mono and *much* quieter - and since Dakka uses a mix of mono
-sounds and stereo sounds, this will result in some weapons sounding much quieter
-than they should. There is nothing I can do about this.
-
 Any version at and before 0.06-alpha6-2 were made in the days of Zandronum 1.3.
 ZDoom 2.5.0 and Zandronum 2.0 will run them without a hitch.
+
+Early OpenAL implementations in GZDoom will play stereo sounds incorrectly - if
+the chaingun alt-fire sounds super muffled compared to its primary fire, that's
+the bug. Either switch to one of the port versions above, or update to the latest
+GZDoom.
 
 **DOWNLOAD:** http://jinotra.in/downloads/mods/doom/dakka/
 
 
 
-### FRESH FROM THIS REPO
+## HOW TO GET A GIT BUILD
+
+**[Visual instructions](http://jinotra.in/static/downloads/dakkaVids/how2dakkaGit.webm)**
 
 Above the latest-commit bar, on the very right, there's a download icon.
 
-Click that, choose ".ZIP" (or ".TAR.GZ" if you know you can open it), then unzip
-the ZIP file into its own directory.
+Click that, choose ".ZIP", then unzip the ZIP file into its own directory.
 
 Go into the pk3/ directory, select everything in there, and zip it all up.
 Change the extension of the new ZIP file to ".pk3", and you should be good to go.
@@ -32,63 +34,61 @@ the folder, not its contents. Don't do that.
 
 
 
-## COLORFUL HELL
+## WHAT'S CHANGED SINCE 0.06?
+
+The `CHANGELOG.txt` file will tell you in greater detail what's changed, but the
+most important things:
+
+- The rocket launcher has been dropped and replaced with the **IMPALER.**
+  Originally in the BFG slot before I decided that was stupid, it's a triple
+  barreled, fully automatic deliverer of explosive death. The primary fire is
+  a 300RPM torrent of missiles, while the alt-fire... well, it impales enemies
+  and carries them away. Then they explode. Because why shouldn't you be able
+  to weaponize the demons themselves?
+
+- The plasma rifle and channeler have been dropped in favor of the **LANCER.**
+  Taking the best of both guns and combining it into one, you have a double-barreled
+  demon busting machine that anyone can appreciate. Do you want to pepper your
+  enemies with plasma nails, or do you want to charge up a lightning storm to
+  roast everyone in front of you? Either way, the lancer has you covered.
+
+- Dakkaguy's limp-wrist punching days are over. Instead, you can pummel your foes
+  with an utterly ridiculous barrage of jabs, or cave their face in with a hook
+  to the face that'd leave anyone reeling in pain, if not splattered all over the
+  walls. Or give them a one-two-**THREE** to bust the skulls of both the poor sap
+  in front of your fist, and all his buddies next to him.
+
+- [The HUD isn't ugly anymore!](https://imgur.com/a/VLIrg) Seriously, what was I
+  *thinking* with those rounded corners and that awful alignment?
+
+
+
+## ADD-ONS
+
+Right now, there's two addons:
+
+### Ancient Aliens
+
+This mod has support for the Ancient Aliens map pack. Download `dakka_aaliens.wad`
+from the `addons/` directory (use the "Raw" button), and load the mods in this order:
+
+- `aaliens.wad`
+- DAKKA
+- `dakka_aaliens.wad`
+
+
+### Colorful Hell (outdated)
 
 This mod has outdated support for Colorful Hell - the latest version it supports
-is version 85. In case you're still using that version, grab colorful\_dakka\_85.pk3
-from the addons/ directory (protip: hit the "Raw" button), and load the mods in the order: 
+is version 85. In case you're still using that version, grab `colorful_dakka_85.pk3`
+from the `addons/` directory (use the "Raw" button), and load the mods in the order: 
 
 - Any maps you're using
-- Dakka
-- colourfullHell85.pk3
-- colorful\_dakka\_85.pk3
+- DAKKA
+- `colourfullHell85.pk3`
+- `colorful_dakka_85.pk3`
 
-Note that Colorful Hell will *not* run in Zandronum 3.0. You will need QZDoom or 
-GZDoom to play Dakka with Colorful Hell.
-
-Obviously, since the support is outdated, expect it to be spotty with newer
-versions of Colorful Hell. Also, I do not play games with Colorful Hell, so it's
-not extensively playtested on top of that.
-
-Right now, my priority is getting Dakka actually *finished*. Once that's done,
-then I might start worrying about addons.
-
-
-
-## Wait, why's it missing stuff?
-
-... is it? Besides intentional removals and restructuring, everything should be
-back in place now. Unless you actually used the dakka\_jumpmod or dakka\_rearm
-CVars, it probably got removed to make way for something else.
-
-
-
-## Which would be?
-
-Going down the list:
-
-
-### Rocket launcher
-
-Replaced by the impaler, since it's more distinct than "the Doom rocket launcher
-but better". Plus I've always wanted to make an automatic multi-barreled rocket
-launcher, and *of course* I'm fulfilling that desire.
-
-
-### Plasma rifle, channeler
-
-Replaced by the plasma lance. I was always waffling on the plasma rifle, and while
-the channeler was an impressive tech demo... it sounded like shit and looked out
-of place. So in comes the plasma lance to solve both of those issues. The primary
-fire is a more interesting take on the plasma rifle, and the alt-fire takes from
-the channeler without stepping on the chaingun's toes.
-
-Plus, it's a plasma nailgun, and who wouldn't want that?
-
-  
-
-... actually, I think that's it for things removed. Everything else should be
-present. Check the changelog, it should be in there. If not, I dunno.
+This addon will be updated in the future, once DAKKA 0.10 gets released.
 
 
 

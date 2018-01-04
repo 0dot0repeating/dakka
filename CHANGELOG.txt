@@ -20,15 +20,7 @@ GENERAL CHANGES:
 - The dakka_bundleplasma and dakka_bundlebfg CVars are gone, as they no longer
     serve any purpose.
 
-- Sound levels have been looked over and normalized, for the most part. But only
-    in Zandronum, since GZDoom's OpenAL implementation plays first person stereo
-    sounds as downmixed mono sounds that are far quieter than they should be.
-    FMod - the backend Zandronum uses - handles it just fine. Nothing I can do
-    about this, and downmixing the stereo sounds results in muffled garbage, so
-    I'm targeting Zandronum for the time being.
-
-    Dunno what I'll do when Zandronum switches over to OpenAL. Hopefully the bug
-    will be fixed by then?
+- Sound levels have been looked over and normalized, for the most part.
 
 
 NEW WEAPONS:
