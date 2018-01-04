@@ -87,9 +87,9 @@ actor DWep_Fist: DoomWeapon
       
       
       Fire6:
-        "####" B 1
         "####" E 1 A_FireBullets(0, 0, 1, 8, "FistPunchPuff", FBF_NORANDOM | FBF_NOFLASH | FBF_NORANDOMPUFFZ, 80)
         "####" D 1 A_WeaponReady(WRF_NOFIRE | WRF_NOBOB)
+        "####" B 1 A_WeaponReady(WRF_NOFIRE | WRF_NOBOB)
         "####" A 1 A_WeaponReady(WRF_NOFIRE | WRF_NOBOB)
         "####" Z 0 A_JumpIfInventory("DakkaFistTap_Alt", 1, "AltFire_FromPrimary")
         "####" Z 1 A_WeaponReady(WRF_NOFIRE | WRF_NOBOB)
@@ -99,9 +99,9 @@ actor DWep_Fist: DoomWeapon
       
       
       Fire5:
-        "####" B 1
         "####" E 1 A_FireBullets(0, 0, 1, 8, "FistPunchPuff", FBF_NORANDOM | FBF_NOFLASH | FBF_NORANDOMPUFFZ, 80)
         "####" D 1 A_WeaponReady(WRF_NOFIRE | WRF_NOBOB)
+        "####" B 1 A_WeaponReady(WRF_NOFIRE | WRF_NOBOB)
         "####" A 1 A_WeaponReady(WRF_NOFIRE | WRF_NOBOB)
         "####" Z 0 A_JumpIfInventory("DakkaFistTap_Alt", 1, "AltFire_FromPrimary")
         "####" Z 1 A_WeaponReady(WRF_NOFIRE | WRF_NOBOB)
@@ -109,9 +109,9 @@ actor DWep_Fist: DoomWeapon
       
       
       Fire4:
-        "####" B 1
         "####" E 1 A_FireBullets(0, 0, 1, 9, "FistPunchPuff", FBF_NORANDOM | FBF_NOFLASH | FBF_NORANDOMPUFFZ, 80)
         "####" C 1 A_WeaponReady(WRF_NOFIRE | WRF_NOBOB)
+        "####" A 1 A_WeaponReady(WRF_NOFIRE | WRF_NOBOB)
         "####" Z 0 A_JumpIfInventory("DakkaFistTap_Alt", 1, "AltFire_FromPrimary")
         "####" Z 1 A_WeaponReady(WRF_NOFIRE | WRF_NOBOB)
         goto AttackEnd
