@@ -26,7 +26,7 @@ script "Score_Award" (int scoreHeals)
         Score_ModRewardCount(pln, 1);
     }
 
-    FadeRange(255, 234, 0, 1.0 - powFloat(0.65, scoreHeals), 255, 234, 0, 0.0, 0.75);
+    FadeRange(128, 212, 255, 1.0 - powFloat(0.65, scoreHeals), 128, 212, 255, 0, 0.75);
 
     if (newLives > 0)
     {
@@ -238,11 +238,6 @@ function void Score_ProcessRewards(void)
             AmmoRegen_RegenCounters[pln][i] = curRegen % 1.0;
         }
 
-        if ((inRegen > 0) && (inRegen % 24 == 0))
-        {
-            FadeRange(128, 192, 255, random(0.1, 0.15), 128, 192, 255, 0, 0.4);
-        }
-
         Score_ModRegenSpent(pln, 1);
     }
 
@@ -253,11 +248,14 @@ function void Score_ProcessRewards(void)
 
     if (inRegen && newRegenTime == 0)
     {
+        FadeRange(128, 212, 255, 0.3, 128, 212, 255, 0, 0.5);
+        
         Score_SetRegenSpent(pln, 0);
         if (looperTID != 0) { SetActorState(looperTID, "RegenDone"); }
         AmmoRegen_SoundLooperTIDs[pln] = 0;
     }
-
+    
+    SetInventory("HUD_AmmoRegen", newRegenTime > 0);
 
 
     int extraLives = Score_GetExtraLives(pln);
