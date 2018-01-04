@@ -4,14 +4,14 @@ It's a mod with guns. The guns make everything easy - not Russian Overkill level
 of easy, but still pretty damn easy. Eventually, I'll change up the monsters to
 fix this. Today's not that day.
 
-***IMPORTANT:*** The latest version of this mod only works in Zandronum 
-versions at least 3.0 and ZDoom versions at least 2.8.0. This shouldn't be an issue
-anymore, considering Zandronum 3.0 finally released and ZDoom is long past 2.8.0
-(well, QZDoom and GZDoom), but just make sure anyway, alright?
+***IMPORTANT:*** This mod is intended for Zandronum 3.0 and ZDoom 2.8.1. Ever
+since GZDoom switched over to OpenAL, stereo sounds have been playing incredibly
+wrong - downmixed to mono and *much* quieter - and since Dakka uses a mix of mono
+sounds and stereo sounds, this will result in some weapons sounding much quieter
+than they should. There is nothing I can do about this.
 
 Any version at and before 0.06-alpha6-2 were made in the days of Zandronum 1.3.
-ZDoom 2.5.0 and Zandronum 2.0 will run them without a hitch. Newer versions *should*,
-but no promises.
+ZDoom 2.5.0 and Zandronum 2.0 will run them without a hitch.
 
 **DOWNLOAD:** http://jinotra.in/downloads/mods/doom/dakka/
 
