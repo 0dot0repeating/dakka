@@ -49,7 +49,11 @@ script "Dakka_FistHit" (int thrustpower, int lockpower, int locktics)
         int angleDiff  = middle(-lockpower, angleDifference(firerAngle, punchAngle), lockpower);
         
         SetActivator(firerTID);
-        ACS_NamedExecuteWithResult("Dakka_FistLockon", angleDiff, locktics);
+        
+        if (ConsolePlayerNumber() != -1)
+        {
+            ACS_NamedExecuteWithResult("Dakka_FistLockon", angleDiff, locktics);
+        }
     }
 }
 
