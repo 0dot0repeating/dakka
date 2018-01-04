@@ -185,14 +185,13 @@ actor DWep_PlasmaLance: DoomWeapon
 
         
       AltFire:
-        PLNC F 0 A_JumpIfNoAmmo("AltNo")
+        PLNC F 0 offset(0, 32) A_JumpIfNoAmmo("AltNo")
         PLNC F 0 A_PlaySound("arc/altcharge",      CHAN_WEAPON)
         PLNC F 0 A_GunFlash("Charging")
         
-        PLNC A 1 offset(0, 32)
         PLNC A 0 A_AlertMonsters(64)
         PLNC A 0 A_FireCustomMissile("AmmoWaster")
-        PLNC AAABBBB 1 A_JumpIfInventory("AltReleased", 1, "AltFire_Charge0")
+        PLNC AAAABBBB 1 A_JumpIfInventory("AltReleased", 1, "AltFire_Charge0")
         
         PLNC B 0 A_JumpIfNoAmmo("Altfire_Charge0")
         PLNC B 0 A_FireCustomMissile("AmmoWaster")
