@@ -94,8 +94,8 @@ function void Dakka_UpdateTemporaryItems(void)
     TempChecks[TMP_RIGHTFIRE]       = keyDown(BT_ALTATTACK);
     TempChecks[TMP_LEFTCLICK]       = keyPressed(BT_ATTACK);
     TempChecks[TMP_RIGHTCLICK]      = keyPressed(BT_ALTATTACK);
-    TempChecks[TMP_LEFTRELEASE]     = !TempChecks[TMP_LEFTFIRE];
-    TempChecks[TMP_RIGHTRELEASE]    = !TempChecks[TMP_RIGHTFIRE];
+    TempChecks[TMP_LEFTRELEASE]     = keyReleased(BT_ATTACK);
+    TempChecks[TMP_RIGHTRELEASE]    = keyReleased(BT_ALTATTACK);
 
     int classNum = Pickup_ClassNumber(0);
 
