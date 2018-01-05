@@ -202,23 +202,10 @@ script "Dakka_ArcSpark" (int ptr)
         int randY = random(0.1, 0.6) * randSign();
         int randZ = random(0.1, 0.6) * randSign();
         
-        int randAngle = VectorAngle(randX, randY);
-        int randPitch = VectorAngle(VectorLength(randX, randY), randZ);
-        int randVel   = random(2.0, 6.0);
-        
         int spawnX = myCenterX + FixedMul(randX, myXYRadius);
         int spawnY = myCenterY + FixedMul(randY, myXYRadius);
         int spawnZ = myCenterZ + FixedMul(randZ, myZRadius);
         
         SpawnForced("LanceArcMidSpark", spawnX, spawnY, spawnZ);
-        //SpawnForced("LanceArcSpark", spawnX, spawnY, spawnZ, sparkTID);
-        
-        SetActivator(sparkTID);
-        SetActorAngle(0, randAngle);
-        SetActorPitch(0, randPitch);
-        SetActorVelocity(0, FixedMul(FixedMul(cos(randAngle), cos(randPitch)), randVel),
-                            FixedMul(FixedMul(sin(randAngle), cos(randPitch)), randVel),
-                            FixedMul(sin(randPitch), randVel), false, false);
-        Thing_ChangeTID(0, 0);
     }
 }
