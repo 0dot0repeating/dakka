@@ -80,7 +80,7 @@ script "Dakka_ImpalerAltHit" (int power)
         terminate;
     }
     
-    if (CheckFlag(0, "BOSS") || CheckFlag(0, "DONTRIP"))
+    if (!CheckFlag(0, "SHOOTABLE") || CheckFlag(0, "BOSS") || CheckFlag(0, "DONTRIP"))
     {
         SetActorState(projTID, "Detonate");
         terminate;
