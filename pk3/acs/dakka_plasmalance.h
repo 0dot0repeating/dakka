@@ -85,7 +85,8 @@ script "Dakka_CheckLanceHit" (int isimpaler)
     // First check we aren't the thing directly hit
     int projTID   = CurLanceData[LANCE_TID];
     int myTID_old = ActivatorTID();
-    int myTID_new = defaultTID(0);
+    int myTID_new = UniqueTID();
+    Thing_ChangeTID(0, myTID_new);
     
     SetActivator(projTID, AAPTR_TRACER);
     if (ActivatorTID() == myTID_new)
@@ -135,13 +136,6 @@ script "Dakka_CheckLanceHit" (int isimpaler)
     int normRejY = FixedDiv(rejY, rejectDist);
     int normRejZ = FixedDiv(rejZ, rejectDist);
     
-    //Log(s:"\n\cbCheck position: <", f:adjX, s:", ", f:adjY, s:", ", f:adjZ, s:">");
-    //Log(s:"\ceNormalized velocity (check): <", f:normX, s:", ", f:normY, s:", ", f:normZ, s:">");
-    //Log(s:"\ckProject dist: ", f:projectDist, s:" <", f:projX, s:", ", f:projY, s:", ", f:projZ, s:">");
-    //Log(s:"\ciReject dist: ",  f:rejectDist,  s:" <", f:rejX,  s:", ", f:rejY,  s:", ", f:rejZ,  s:">");
-    //SpawnForced("LanceMarker1", startX + projX, startY + projY, startZ + projZ);
-    //SpawnForced("LanceMarker2", startX + rejX,  startY + rejY,  startZ + rejZ);
-    
     int maxProject = CurLanceData[LANCE_LENGTH];
     int maxReject  = CurLanceData[LANCE_RADIUS];
     
@@ -152,43 +146,79 @@ script "Dakka_CheckLanceHit" (int isimpaler)
     int closestY = startY + FixedMul(normY, projectToUse) + FixedMul(normRejY, rejectToUse);
     int closestZ = startZ + FixedMul(normZ, projectToUse) + FixedMul(normRejZ, rejectToUse);
     
-    //SpawnForced("LanceMarker3", closestX, closestY, closestZ);
-    
     if (middle(myX - myWidth, closestX, myX + myWidth)  == closestX
      && middle(myY - myWidth, closestY, myY + myWidth)  == closestY
      && middle(myZ,           closestZ, myZ + myHeight) == closestZ)
     {
         ACS_NamedExecuteWithResult("Dakka_OnLanceHit", projectToUse, rejectToUse, isimpaler);
-        //Log(s:"\cf", n:0, s:"\cd hit\c- (p ", f:projectToUse, s:", r ", f:rejectToUse, s:")\n");
     }
-    //else
-    //{
-    //    Log(s:"\cf", n:0, s:"\ca not hit\c- (p ", f:projectToUse, s:", r ", f:rejectToUse, s:")\n");
-    //}
 }
 
 
 
 script "Dakka_OnLanceHit" (int projectDist, int rejectDist, int isimpaler)
-{
+{   
     int monX      = GetactorX(0);
     int monY      = GetActorY(0);
     int monZ      = GetActorZ(0);
     int monHeight = GetActorProperty(0, APROP_Height);
     
-    
     int projTID   = CurLanceData[LANCE_TID];
     SetActivator(projTID, AAPTR_TARGET);
-    int hurterTID = UniqueTID();
-    int myTID     = defaultTID(0);
     
-    str hurterType = "PLPrimaryHurter";
-    if (isimpaler) { hurterType = "ImpalerPrimaryHurter"; }
+    int firerTID_old = ActivatorTID();
+    int firerTID_new = UniqueTID();
+    Thing_ChangeTID(0, firerTID_new);
+    
+    int hurterTID  = UniqueTID();
+    str hurterType = cond(isimpaler, "ImpalerPrimaryHurter", "PLPrimaryHurter");
     SpawnForced(hurterType, monX, monY, monZ + (monHeight / 2), hurterTID);
     
-    
     SetActivator(hurterTID);
-    SetPointer(AAPTR_TARGET, myTID);
+    SetPointer(AAPTR_TARGET, firerTID_new);
     SetUserVariable(0, "user_damage", CurLanceData[LANCE_DAMAGE]);
     SetActorState(0, "DoHurt");
+    Thing_ChangeTID(firerTID_new, firerTID_old);
+}
+
+
+script "Dakka_ArcSpark" (int ptr)
+{
+    SetActivator(0, ptr);
+    
+    int myXYRadius = GetActorProperty(0, APROP_Radius);
+    int myZRadius  = GetActorProperty(0, APROP_Height) / 2;
+    
+    int myCenterX  = GetActorX(0);
+    int myCenterY  = GetActorY(0);
+    int myCenterZ  = GetActorZ(0) + myZRadius;
+    
+    int sparkTID   = UniqueTID();
+    int sparkCount = random(3, 6);
+    
+    for (int i = 0; i < 5; i++)
+    {
+        int randX = random(0.1, 0.6) * randSign();
+        int randY = random(0.1, 0.6) * randSign();
+        int randZ = random(0.1, 0.6) * randSign();
+        
+        int randAngle = VectorAngle(randX, randY);
+        int randPitch = VectorAngle(VectorLength(randX, randY), randZ);
+        int randVel   = random(2.0, 6.0);
+        
+        int spawnX = myCenterX + FixedMul(randX, myXYRadius);
+        int spawnY = myCenterY + FixedMul(randY, myXYRadius);
+        int spawnZ = myCenterZ + FixedMul(randZ, myZRadius);
+        
+        SpawnForced("LanceArcMidSpark", spawnX, spawnY, spawnZ);
+        //SpawnForced("LanceArcSpark", spawnX, spawnY, spawnZ, sparkTID);
+        
+        SetActivator(sparkTID);
+        SetActorAngle(0, randAngle);
+        SetActorPitch(0, randPitch);
+        SetActorVelocity(0, FixedMul(FixedMul(cos(randAngle), cos(randPitch)), randVel),
+                            FixedMul(FixedMul(sin(randAngle), cos(randPitch)), randVel),
+                            FixedMul(sin(randPitch), randVel), false, false);
+        Thing_ChangeTID(0, 0);
+    }
 }
