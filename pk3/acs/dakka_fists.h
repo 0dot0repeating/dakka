@@ -27,7 +27,7 @@ script "Dakka_FistHit" (int thrustpower, int lockpower, int locktics)
     int firerAngle = GetActorAngle(0);
     
     SetActivator(myTID, AAPTR_TRACER);
-    if ((ClassifyActor(0) & ACTOR_WORLD) || (!CheckFlag(0, "SHOOTABLE")))
+    if (ClassifyActor(0) & ACTOR_WORLD)
     {
         SetResultValue(false);
         terminate;
