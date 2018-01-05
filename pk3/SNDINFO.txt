@@ -230,10 +230,10 @@ arc/fry1    sounds/plasmalance/arc_fry1.ogg
 arc/fry2    sounds/plasmalance/arc_fry2.ogg
 arc/fry3    sounds/plasmalance/arc_fry3.ogg
 
-$random arc/fry { arc/fry1 arc/fry2 arc/fry3 }
-
-$volume arc/fry 0.7
-$limit arc/fry 5
+$random     arc/fry { arc/fry1 arc/fry2 arc/fry3 }
+$volume     arc/fry 0.7
+$limit      arc/fry 5
+$rolloff    arc/fry 768 2048
 
 
 
