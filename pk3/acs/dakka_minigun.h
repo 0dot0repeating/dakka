@@ -140,7 +140,7 @@ script "Dakka_MinigunBurn" (void)
     Thing_ChangeTID(myTID_new, myTID_old);
 }
 
-#define AFTERBURNDAMAGE     25
+#define AFTERBURNDAMAGE     20
 
 script "Dakka_MinigunAfterburn" (int firerTID, int myTID)
 {
