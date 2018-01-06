@@ -89,7 +89,7 @@ int PKP_ReceiveItems[PICKUPCOUNT][CLASSCOUNT][PK_RECEIVECOUNT] =
     },
     { // Dropped
         {"Chaingun"},
-        {"DWep_Chaingun"},
+        {"DWep_Minigun"},
     },
 
     

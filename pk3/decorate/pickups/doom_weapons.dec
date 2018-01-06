@@ -99,7 +99,7 @@ actor Pickup_ChaingunDropped: ClassBasedPickup
     States
     {
       Spawn:
-        DCGN Z -1
+        DMNG Z -1
         stop
 
       Pickup:
