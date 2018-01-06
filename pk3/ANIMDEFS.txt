@@ -294,14 +294,6 @@ texture FS_AMO6A
     pic FS_AMO6C tics 3
     pic FS_AMO6B tics 3
 
-texture FS_AMO7A
-    pic FS_AMO7A tics 6
-    pic FS_AMO7B tics 3
-    pic FS_AMO7C tics 3
-    pic FS_AMO7D tics 4
-    pic FS_AMO7C tics 3
-    pic FS_AMO7B tics 3
-
 texture FS_AMO8A
     pic FS_AMO8A tics 6
     pic FS_AMO8B tics 3
