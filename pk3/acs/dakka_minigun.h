@@ -226,8 +226,8 @@ script "Dakka_MinigunAfterburn" (int firerTID, int myTID)
             int myXYRadius = GetActorProperty(0, APROP_Radius);
             int myZRadius  = GetActorProperty(0, APROP_Height) / 2;
             
-            int randX = random( 0.1, 0.4) * randSign();
-            int randY = random( 0.1, 0.4) * randSign();
+            int randX = random( 0.1, 0.6) * randSign();
+            int randY = random( 0.1, 0.6) * randSign();
             int randZ = random(-0.8, 0.4);
             
             SpawnForced("MinigunAfterburnFlame", myX + FixedMul(myXYRadius, randX),

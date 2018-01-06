@@ -576,7 +576,8 @@ actor MinigunAfterburnFlame
       Spawn:
         CFCF A 0
         CFCF A 0 A_SetScale(frandom(0.6, 0.8))
-        CFCF ABCDEFGHIJKLMNOP 2 bright
+        CFCF ABCDEFGHIJKL 2 bright A_SetScale(scalex + frandom(0.0225, 0.065))
+        CFCF MNOP 2 bright A_FadeOut(frandom(0.15, 0.2))
         stop
     }
 }
