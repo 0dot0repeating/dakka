@@ -578,6 +578,7 @@ actor LanceArcShot: Arc_Base
 
       Arc_FoundTarget:
         TNT1 A 0 ACS_NamedExecuteWithResult("Dakka_ArcSpark", AAPTR_TRACER)
+        TNT1 AA 0 A_SpawnItemEx("LanceArcSpark", 0,0,0, frandom(-7, 7), 0, frandom(2, 14), frandom(0, 360))
         TNT1 A 1 ACS_NamedExecuteWithResult("Arc_Damage", args[2])
         stop
 
@@ -590,7 +591,7 @@ actor LanceArcShot: Arc_Base
       
       HitNothing:
         TNT1 A 0 A_Explode(args[2], 32, false, false, 32)
-        TNT1 AAAAA 0 A_SpawnItemEx("LanceArcSpark", 0,0,0, frandom(-7, 7), 0, frandom(2, 14), frandom(0, 360))
+        TNT1 AAAAAA 0 A_SpawnItemEx("LanceArcSpark", 0,0,0, frandom(-7, 7), 0, frandom(2, 14), frandom(0, 360))
         TNT1 A 0 A_SpawnItemEx("LanceArcEndSpark")
         stop
     }
@@ -646,8 +647,6 @@ actor LanceArcSpark
     -NOGRAVITY
     
     Gravity 0.7
-    +DOOMBOUNCE
-    BounceFactor 0.25
     
     RenderStyle Add
     Alpha 1
@@ -658,7 +657,7 @@ actor LanceArcSpark
     States
     {
       Spawn:
-        PLZM FG 3 bright
+        PLZM FG 3 bright A_FadeOut(0.13)
         loop
       
       Death:
