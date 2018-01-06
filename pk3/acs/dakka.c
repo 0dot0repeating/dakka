@@ -87,8 +87,8 @@
 #include "dakka_minigun.h"
 
 
-// Old rocket launcher stuff, new impaler stuff.
-#include "dakka_rockets.h"
+// This determines how the impaler alt-fire actually impales.
+#include "dakka_impaler.h"
 
 
 // Plasma lance hit detection.
