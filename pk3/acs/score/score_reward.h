@@ -154,7 +154,6 @@ int AmmoRegen_AmmoTypes[AMMOREGENCOUNT] =
     "DakkaGyroShells",
     
     "DakkaBullet_5mm",
-    "DakkaRainGrenades",
     "DakkaFlamerFuel",
     "DakkaRockets",
     
@@ -167,11 +166,10 @@ int AmmoRegen_PerSecond[AMMOREGENCOUNT] =
     15.0,
     3.0,
     0.75,
-    0.55,
+    0.4,
 
     20.0,
-    0.75,
-    2.5,
+    2.0,
     3.0,
 
     5.0,
