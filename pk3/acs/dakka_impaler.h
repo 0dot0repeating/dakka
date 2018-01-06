@@ -1,12 +1,3 @@
-script "Dakka_RLFull" (void)
-{
-    int ret = (CheckInventory("DakkaRockets") - CheckInventory("DakkaRocketsLoaded")) > 0;
-    ret |= CheckInventory("DakkaInfiniteAmmo");
-    SetResultValue(ret);
-}
-
-
-
 script "Dakka_ImpalerAltFly" (void)
 {
     SetUserVariable(0, "user_updated",  true);
