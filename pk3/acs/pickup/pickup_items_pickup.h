@@ -29,7 +29,7 @@ int PKP_Messages[PICKUPCOUNT][CLASSCOUNT] =
     },
     {
         "$GOTCHAINGUN",
-        "$DAKKA_PK_CHAINGUN",
+        "$DAKKA_PK_MINIGUN",
     },
     {
         "$GOTLAUNCHER",

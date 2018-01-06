@@ -60,6 +60,22 @@ texture AMBAR_4A
     pic AMBAR_4C tics 3
     pic AMBAR_4B tics 3
 
+texture AMBAR_5A
+    pic AMBAR_5A tics 6
+    pic AMBAR_5B tics 3
+    pic AMBAR_5C tics 3
+    pic AMBAR_5D tics 4
+    pic AMBAR_5C tics 3
+    pic AMBAR_5B tics 3
+
+texture AMBAR_6A
+    pic AMBAR_6A tics 6
+    pic AMBAR_6B tics 3
+    pic AMBAR_6C tics 3
+    pic AMBAR_6D tics 4
+    pic AMBAR_6C tics 3
+    pic AMBAR_6B tics 3
+
 
 
 texture RWP_111A
@@ -163,22 +179,6 @@ texture RWP_412A
     pic RWP_412D tics 4
     pic RWP_412C tics 3
     pic RWP_412B tics 3
-    
-texture RWP_421A
-    pic RWP_421A tics 6
-    pic RWP_421B tics 3
-    pic RWP_421C tics 3
-    pic RWP_421D tics 4
-    pic RWP_421C tics 3
-    pic RWP_421B tics 3
-    
-texture RWP_422A
-    pic RWP_422A tics 6
-    pic RWP_422B tics 3
-    pic RWP_422C tics 3
-    pic RWP_422D tics 4
-    pic RWP_422C tics 3
-    pic RWP_422B tics 3
 
 
 

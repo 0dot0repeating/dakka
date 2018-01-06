@@ -85,22 +85,11 @@ actor Pickup_Chaingun: ClassBasedPickup replaces Chaingun
     States
     {
       Spawn:
-        MGUN A 0
-        "----" A 0 A_SetUserVar("user_index", It_Chaingun)
-        "----" A 0 A_SetUserVar("user_dropped", 0)
-        goto DropCheck
-
-      Unknown:
-      Dakka:
-        DCGN Z -1
-        stop
-
-      Minigun:
         DMNG Z -1
         stop
 
       Pickup:
-        "----" A 0 A_JumpIf(CallACS("Pickup_Pickup", It_Chaingun, false) == 1, "PickedUp")
+        TNT1 A 0 A_JumpIf(CallACS("Pickup_Pickup", It_Chaingun, false) == 1, "PickedUp")
         goto NotPickedUp
     }
 }
