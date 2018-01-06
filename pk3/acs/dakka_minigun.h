@@ -140,7 +140,7 @@ script "Dakka_MinigunBurn" (void)
     Thing_ChangeTID(myTID_new, myTID_old);
 }
 
-#define AFTERBURNDAMAGE     30
+#define AFTERBURNDAMAGE     25
 
 script "Dakka_MinigunAfterburn" (int firerTID, int myTID)
 {
@@ -167,6 +167,7 @@ script "Dakka_MinigunAfterburn" (int firerTID, int myTID)
     
     // we need to track total burn time to deal accurate afterburn damage
     int timeBurning = 0;
+    int flameTimer  = 0;
     
     while (true)
     {
@@ -191,12 +192,12 @@ script "Dakka_MinigunAfterburn" (int firerTID, int myTID)
         
         //Log(s:"(", n:0, s:"\c-) Burn damage: ", d:burnDamage, s:" (", d:initialBurn, s:", ", d:burnTimer, s:")");
         
+        myX = GetActorX(0);
+        myY = GetActorY(0);
+        myZ = GetActorZ(0) + (GetActorProperty(0, APROP_Height) / 2);
+        
         if (burnDamage > 0)
         {
-            myX = GetActorX(0);
-            myY = GetActorY(0);
-            myZ = GetActorZ(0) + (GetActorProperty(0, APROP_Height) / 2);
-            
             SetActivator(pointerTID, AAPTR_TARGET);
             
             int fireTID = UniqueTID();
@@ -218,8 +219,26 @@ script "Dakka_MinigunAfterburn" (int firerTID, int myTID)
             SetActorState(fireTID, "Burn");
         }
         
+        if (flameTimer == 0)
+        {
+            SetActivator(pointerTID, AAPTR_TRACER);
+            
+            int myXYRadius = GetActorProperty(0, APROP_Radius);
+            int myZRadius  = GetActorProperty(0, APROP_Height) / 2;
+            
+            int randX = random( 0.1, 0.4) * randSign();
+            int randY = random( 0.1, 0.4) * randSign();
+            int randZ = random(-0.8, 0.4);
+            
+            SpawnForced("MinigunAfterburnFlame", myX + FixedMul(myXYRadius, randX),
+                                                 myY + FixedMul(myXYRadius, randY),
+                                                 myZ + FixedMul(myZRadius,  randZ));
+            flameTimer = random(3, 7);
+        }
+        
         if (burnTimer == 1) { break; }
         timeBurning++;
+        flameTimer--;
         Delay(1);
     }
     

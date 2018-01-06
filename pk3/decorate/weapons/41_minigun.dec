@@ -404,7 +404,7 @@ actor MinigunFlame
         goto Spawn2
 
       Spawn2:
-        TNT1 A 0 ACS_NamedExecuteWithResult("Dakka_SetupMinigunBurn", 32, 6, 70)
+        TNT1 A 0 ACS_NamedExecuteWithResult("Dakka_SetupMinigunBurn", 32, 5, 105)
         TNT1 A 0 A_RadiusGive("MinigunBurnItem", 96, RGF_PLAYERS | RGF_MONSTERS | RGF_OBJECTS)
         TNT1 A 0 ACS_NamedExecuteWithResult("Dakka_UnsetupMinigunBurn")
         TNT1 A 1 A_SetUserVar("user_counter", user_counter - 1)
@@ -440,6 +440,7 @@ actor MinigunBurner
     +SERVERSIDEONLY
     +NOINTERACTION
     +FORCERADIUSDMG
+    +NODAMAGETHRUST
     +FOILINVUL
     
     DamageType Fire
@@ -558,6 +559,24 @@ actor MinigunFlameVisual_Main: MinigunFlameVisual
     {
       NoFancy:
         DFLM EHJNO 1 bright
+        stop
+    }
+}
+
+actor MinigunAfterburnFlame
+{
+    +NOINTERACTION
+    +CLIENTSIDEONLY
+    
+    RenderStyle Add
+    Alpha 0.8
+    
+    States
+    {
+      Spawn:
+        CFCF A 0
+        CFCF A 0 A_SetScale(frandom(0.6, 0.8))
+        CFCF ABCDEFGHIJKLMNOP 2 bright
         stop
     }
 }
