@@ -201,7 +201,8 @@ script "Dakka_MinigunAfterburn" (int firerTID, int myTID)
             
             int fireTID = UniqueTID();
             SpawnForced("MinigunBurner", myX,myY,myZ, fireTID);
-            SetUserVariable(fireTID, "user_damage", burnDamage);
+            SetUserVariable(fireTID, "user_damage",     burnDamage);
+            SetUserVariable(fireTID, "user_painfactor", cond(initialBurn, 3, 15));
             
             if (!(ClassifyActor(0) & ACTOR_WORLD))
             {
