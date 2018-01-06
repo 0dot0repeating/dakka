@@ -444,6 +444,7 @@ actor MinigunBurner
     
     DamageType Fire
     var int user_damage;
+    var int user_painfactor; // 3 if directly burning, 15    otherwise
     
     States
     {
@@ -452,7 +453,7 @@ actor MinigunBurner
         stop
       
       Burn:
-        TNT1 A 0 A_ChangeFlag("PAINLESS", random(1,8) != 1)
+        TNT1 A 0 A_ChangeFlag("PAINLESS", random(1, user_painfactor) != 1)
         TNT1 A 0 A_Explode(user_damage, 8, 0, false, 8)
         stop
     }
