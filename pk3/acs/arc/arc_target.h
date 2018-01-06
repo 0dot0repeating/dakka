@@ -120,10 +120,11 @@ script "Arc_CheckTarget" (void)
     // Third check: are they allied to each other?
     int myPln    = PlayerNumber();
     int firerPln = ATarget_ArcData[ATARGET_PLAYERNUM];
-    int allied   = false;
     
     if (myPln >= 0 && firerPln >= 0)
     {
+        int allied = false;
+        
         if (GameType() == GAME_NET_DEATHMATCH)
         {
             int myTeam    = GetPlayerInfo(myPln, PLAYERINFO_TEAM);
@@ -136,16 +137,12 @@ script "Arc_CheckTarget" (void)
             // If your friends can be hurt, they *will* be hurt
             allied = (GetCVar("teamdamage") <= 0);
         }
-    }
-    else
-    {
-        allied = (GetActorProperty(0, APROP_Friendly) == ATarget_ArcData[ATARGET_FRIENDLY]);
-    }
     
-    if (allied)
-    {
-        Thing_ChangeTID(myTID_new, myTID_old);
-        terminate;
+        if (allied)
+        {
+            Thing_ChangeTID(myTID_new, myTID_old);
+            terminate;
+        }
     }
     
     
