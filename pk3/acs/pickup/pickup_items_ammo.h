@@ -54,11 +54,11 @@ int PKP_DefaultAmmoCount[AMMOCOUNT] =
     60,             // scrap
     100,            // 10mm
     16,             // shells
-    4,              // grenades
+    6,              // grenades
     4,              // gyro
     160,            // 5mm
     8,              // rain
-    24,             // flamer
+    10,             // flamer
     20,             // rockets
     50,             // cells
 
@@ -77,8 +77,8 @@ int PKP_DefaultAmmoCount[AMMOCOUNT] =
     50,             // firemace
 
     // HEXEN (2)
-    90,             // mana 1
-    45,             // mana 2
+    100,            // mana 1
+    50,             // mana 2
 
     // STRIFE (7)
     //  (this will probably *never* come into play, since strife's one big hub)
