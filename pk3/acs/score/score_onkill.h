@@ -15,7 +15,7 @@ function void ClearPoints(int pln, int bonustime)
 //
 // EFFICIENCY:
 // - Spree: the more dudes you kill in quick succession, the more points you get.
-// - One stone: kill dudes in the same shot, get even more points on top of spree
+// - Efficiency: kill dudes in the same shot, get even more points on top of spree
 // - Infighter: cause an infight, and everyone gets points
 //
 // STYLE:
@@ -26,15 +26,9 @@ function void ClearPoints(int pln, int bonustime)
 //
 // DARING:
 // - Brawler: use your fists to get kills
-// - Bone-dry: kill enemies with no more than 25 hp
-// - Sore loser: kill enemies while dead (overrides bone-dry)
-// - Point blank: get close, get points
-//
-//
-// note: rain grenades kinda break with One Stone because of how long they linger,
-//       since monsters only know WHO killed them, not with WHAT
-//       I could do damage types but *fuck that*
-//       I really wish I could be more granular, but >acs
+// - Redline: kill enemies with no more than 25 hp
+// - Swan Song: kill enemies while dead (overrides bone-dry)
+// - Point Blank: get close, get points
 
 int TmpBonuses[BONUSCOUNT];
 
