@@ -236,6 +236,11 @@ script "Dakka_MinigunAfterburn" (int firerTID, int myTID)
         myY = GetActorY(0);
         myZ = GetActorZ(0) + (GetActorProperty(0, APROP_Height) / 2);
         
+        // Do this for sound purposes
+        SetActivator(pointerTID);
+        Warp(0, myX, myY, myZ, 0, WARPF_ABSOLUTEPOSITION | WARPF_NOCHECKPOSITION | WARPF_INTERPOLATE);
+        SetActivator(pointerTID, AAPTR_TRACER);
+        
         if (burnDamage > 0 && !isDead(0))
         {
             SetActivator(pointerTID, AAPTR_TARGET);
@@ -282,5 +287,11 @@ script "Dakka_MinigunAfterburn" (int firerTID, int myTID)
         Delay(1);
     }
     
+    for (int i = 0; i < 48; i++)
+    {
+        int vol = 0.3 - (i + 1) * 0.00625;
+        SoundVolume(pointerTID, CHAN_BODY, vol);
+        Delay(1);
+    }
     Thing_Remove(pointerTID);
 }
