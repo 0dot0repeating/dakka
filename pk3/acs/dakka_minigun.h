@@ -236,7 +236,7 @@ script "Dakka_MinigunAfterburn" (int firerTID, int myTID)
         myY = GetActorY(0);
         myZ = GetActorZ(0) + (GetActorProperty(0, APROP_Height) / 2);
         
-        if (burnDamage > 0)
+        if (burnDamage > 0 && !isDead(0))
         {
             SetActivator(pointerTID, AAPTR_TARGET);
             
