@@ -62,9 +62,9 @@ actor DakkaFlamerFuel: Ammo
 {
     Inventory.Icon "AGASA0"
 
-    Inventory.Amount 5
+    Inventory.Amount 4
     Inventory.MaxAmount 40
-    Ammo.BackpackAmount 5
+    Ammo.BackpackAmount 4
     Ammo.BackpackMaxAmount 80
 }
 
