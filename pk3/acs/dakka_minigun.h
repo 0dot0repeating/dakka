@@ -49,11 +49,6 @@ script "Dakka_InheritVelocity" (int ptr, int percentForward, int percentSide, in
     
     SetActivator(myTID_new);
     SetActorVelocity(0, modVelX, modVelY, 0, true, false);
-    
-    int newVelX = GetActorVelX(0);
-    int newVelY = GetActorVelY(0);
-    int newVel  = VectorLength(newVelX, newVelY);
-    
     Thing_ChangeTID(myTID_new, myTID_old);
 }
 
