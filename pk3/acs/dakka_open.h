@@ -10,19 +10,6 @@ script "Dakka_Open" open
 
     while (true)
     {
-        // Update CVars for everyone
-        
-        int i;
-
-        for (i = 0; i < PLAYERMAX; i++)
-        {
-            if (!(PlayerInGame(i) || PlayerIsSpectator(i))) { continue; }
-            
-            // Update CVars for players
-            Sender_SetData(i, S2C_D_BUNDLEPLASMA, GetCVar("dakka_bundleplasma") == 1);
-            Sender_SetData(i, S2C_D_BUNDLEBFG,    GetCVar("dakka_bundlebfg")    == 1);
-        }
-
         // Absorbed from PICKUP_OPEN
         Sender_UpdateClients();
         Sender_ActuallySend();
