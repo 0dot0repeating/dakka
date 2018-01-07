@@ -163,7 +163,6 @@ OptionMenu "Dakka_UserOptions"
     Control "Slot 1, fist first",     "fistswitch"
     Control "Slot 2, pistol first",   "pistswitch"
     Control "Slot 3, shotgun first",  "shotswitch"
-    Control "Slot 4, chaingun first", "chainswitch"
 }
 
 
