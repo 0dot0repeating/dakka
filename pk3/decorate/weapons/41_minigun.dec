@@ -13,8 +13,8 @@ actor DWep_Minigun: DoomWeapon
     Weapon.AmmoType2 "DakkaFlamerFuel"
     Weapon.AmmoUse1 1
     Weapon.AmmoUse2 1
-    Weapon.AmmoGive1 160
-    Weapon.AmmoGive2 10
+    Weapon.AmmoGive1 80
+    Weapon.AmmoGive2 6
 
     Weapon.Kickback 50
 
