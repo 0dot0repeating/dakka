@@ -172,14 +172,20 @@ dakka/minigun/flamepuff     sounds/minigun/minigun_firepuff.ogg
 dakka/minigun/flamestart    sounds/minigun/minigun_flamestart.ogg
 dakka/minigun/flamestop     sounds/minigun/minigun_flamestop.ogg
 dakka/minigun/flameloop     sounds/minigun/minigun_flameloop.ogg
-dakka/firecrackle           sounds/minigun/minigun_firecrackle.ogg
+
+// same sound, just offset differently
+dakka/firecrackle1          sounds/minigun/minigun_firecrackle.ogg
+dakka/firecrackle2          sounds/minigun/minigun_firecrackle2.ogg
+dakka/firecrackle3          sounds/minigun/minigun_firecrackle3.ogg
+dakka/firecrackle4          sounds/minigun/minigun_firecrackle4.ogg
+$random dakka/firecrackle   { dakka/firecrackle1 dakka/firecrackle2 dakka/firecrackle3 dakka/firecrackle4 }
 
 $volume dakka/minigunfire           0.55
 $volume dakka/minigun/flamestart    0.6
 $volume dakka/minigun/flamestop     0.6
 $volume dakka/minigun/flameloop     0.75
 
-
+$limit dakka/firecrackle 0
 
 ////////
 // IMPALER
