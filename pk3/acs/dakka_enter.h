@@ -34,7 +34,7 @@ script "Dakka_Spawn" (int respawned)
     }
     else
     {
-        Dakka_DoLevelSpawn(!respawned);
+        Dakka_DoLevelSpawn(!respawned, false);
     }
 
     curScore = Score_GetScore(pln);
@@ -95,7 +95,7 @@ script "Dakka_Return" return
     }
     else
     {
-        Dakka_DoLevelSpawn(false);
+        Dakka_DoLevelSpawn(true, true);
     }
 }
 

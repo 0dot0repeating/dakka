@@ -356,7 +356,13 @@ function void Dakka_BackpackStart(void)
 }
 
 
-function void Dakka_DoLevelSpawn(int entered)
+// Four cases:
+// - Starting new hub:          entered true,  returning false, doesn't have hub tracker
+// - Entering new map in hub:   entered true,  returning false, has hub tracker
+// - Returning to map in hub:   entered true,  returning true,  has hub tracker
+// - Respawning:                entered false, returning false, might have hub tracker
+
+function void Dakka_DoLevelSpawn(int entered, int returning)
 {
     // Detect if we're moving around in the same hub
     int hasHubTracker = CheckInventory("HubTracker");
@@ -365,7 +371,9 @@ function void Dakka_DoLevelSpawn(int entered)
     int ignoreHubs = GetCVar("dakka_ignorehubs");
 
     // Handle respawns normally
-    int intraHubEnter = !ignoreHubs && hasHubTracker && entered;
+    int newHub     =  entered && !hasHubTracker;
+    int intraHub   = (entered &&  hasHubTracker) || returning;
+    int freshStart = newHub || ignoreHubs;
 
     GiveInventory("HubTracker", 1);
 
@@ -376,7 +384,7 @@ function void Dakka_DoLevelSpawn(int entered)
     int pln       = PlayerNumber();
     int classNum  = Pickup_ClassNumber(0);
 
-    if (!intraHubEnter)
+    if (freshStart)
     {
         Dakka_BackpackStart();
 
@@ -384,45 +392,28 @@ function void Dakka_DoLevelSpawn(int entered)
         Dakka_StartMode_Ammo(   classNum, entered, lostAmmo);
         Dakka_StartMode_Health( classNum, entered);
 
-        if (entered)
-        {
-            // in acs/score_levelstart.h
-            Score_Reset(pln);
-        }
+        // in acs/score_levelstart.h
+        Score_Reset(pln);
     }
 
     if (classNum == Cl_Dakkaguy)
     {
-        if (!intraHubEnter)
+        if (freshStart)
         {
             Dakka_ScrapperStart(0);
         }
 
-        if (entered)
+        if (newHub)
         {
             int hasShotgun  = CheckInventory("DWep_Shotgun");
-            int hasChaingun = CheckInventory("DWep_Chaingun");
-            int hasBFG      = CheckInventory("DWep_BFG9000");
 
-            Sender_SetData(pln, S2C_D_BFGSTART,    hasBFG);
+            if (hasShotgun) { GiveInventory("DakkaShotgunTracker", 1); }
+            else            { TakeInventory("DakkaShotgunTracker", 0x7FFFFFFF); }
 
-            if (!intraHubEnter)
-            {
-                if (hasShotgun) { GiveInventory("DakkaShotgunTracker", 1); }
-                else            { TakeInventory("DakkaShotgunTracker", 0x7FFFFFFF); }
-
-                if (hasChaingun) { GiveInventory("DakkaChaingunTracker", 1); }
-                else             { TakeInventory("DakkaChaingunTracker", 0x7FFFFFFF); }
-            }
-
-            // We don't handle S2C_D_SHOT2SSG or S2C_CHAIN2MINI here because
-            //  the CVar controlling them could change mid-game. That's handled
-            //  in the enter loop.
+            // We don't handle S2C_D_SHOT2SSG here because the CVar controlling
+            //  that could change mid-game. That's handled in the enter loop.
             //
-            // We don't need to worry about dakka_bundleplasma and dakka_bundlebfg.
-            //  Those are handled in pickup/dakka_wepdisplay.h.
-            //
-            // The CVars might also play oddly with sv_coop_loseinventory and
+            // The CVar might play oddly with sv_coop_loseinventory and
             //  sv_coop_loseweapons. But even then, you can still get the
             //  shotguns and chainguns through enemy drops, so I'm not exactly
             //  going to lose any sleep over it.
