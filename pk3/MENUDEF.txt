@@ -140,7 +140,6 @@ OptionMenu Dakka_GameOptions
     StaticText ""
 
     Slider "Shotgun to SSG",      "dakka_shotgun2ssg",      0, 100, 1, 0
-    Slider "Chaingun to minigun", "dakka_chaingun2minigun", 0, 100, 1, 0
 }
 
 OptionMenu "Dakka_UserOptions"
