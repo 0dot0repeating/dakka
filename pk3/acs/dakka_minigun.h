@@ -12,6 +12,51 @@ script "Dakka_MinigunReady" (void)
     }
 }
 
+script "Dakka_InheritVelocity" (int ptr, int percentForward, int percentSide, int percentBackward)
+{
+    percentForward  = itof(cond(percentForward  == 0, 100, percentForward))  / 100;
+    percentSide     = itof(cond(percentSide     == 0, 100, percentSide))     / 100;
+    percentBackward = itof(cond(percentBackward == 0, 100, percentBackward)) / 100;
+    
+    int myTID_old = ActivatorTID();
+    int myTID_new = UniqueTID();
+    Thing_ChangeTID(0, myTID_new);
+
+    SetActivator(0, ptr);
+    if (ClassifyActor(0) & ACTOR_WORLD)
+    {
+        Thing_ChangeTID(myTID_new, myTID_old);
+        terminate;
+    }
+    
+    int ptrVelX   = GetActorVelX(0);
+    int ptrVelY   = GetActorVelY(0);
+    
+    int ptrAng     = GetActorAngle(0);
+    int ptrAngX    = cos(ptrAng);
+    int ptrAngY    = sin(ptrAng);
+    
+    int velForward = dot2(ptrVelX, ptrVelY, ptrAngX, ptrAngY);
+    int velForX    = FixedMul(ptrAngX, velForward);
+    int velForY    = FixedMul(ptrAngY, velForward);
+    int velSideX   = ptrVelX - velForX;
+    int velSideY   = ptrVelY - velForY;
+    
+    int velForwardPercent = cond(velForward > 0, percentForward, percentBackward);
+    
+    int modVelX = FixedMul(velForX, velForwardPercent) + FixedMul(velSideX, percentSide);
+    int modVelY = FixedMul(velForY, velForwardPercent) + FixedMul(velSideY, percentSide);
+    
+    SetActivator(myTID_new);
+    SetActorVelocity(0, modVelX, modVelY, 0, true, false);
+    
+    int newVelX = GetActorVelX(0);
+    int newVelY = GetActorVelY(0);
+    int newVel  = VectorLength(newVelX, newVelY);
+    
+    Thing_ChangeTID(myTID_new, myTID_old);
+}
+
 #define MB_FIRERTID     0
 #define MB_FIRERTID_OLD 1
 #define MB_FIRERPLN     2
