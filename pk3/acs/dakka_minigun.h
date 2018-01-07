@@ -213,19 +213,26 @@ script "Dakka_MinigunAfterburn" (int firerTID, int myTID)
     {
         SetActivator(pointerTID, AAPTR_TRACER);
         if (ClassifyActor(0) & ACTOR_WORLD) { break; }
+        
+        // Handle this here or else this CVar will do jack shit
+        int powerlevel      = middle(0, GetCVar("dakka_powerlevel") + POWERLEVEL_CENTER,   POWERLEVEL_COUNT  -1);
+        int powermult       = DakkaPowerMults[powerlevel];
+        
         int burnDamage = 0;
         
         initialBurn = CheckInventory("MinigunNewBurn");
-        burnDamage += initialBurn;
+        burnDamage += FixedMul(initialBurn, powermult);
         TakeInventory("MinigunNewBurn", 0x7FFFFFFF);
         
         burnTimer   = CheckInventory("MinigunBurnTimer");
         
         if (burnTimer > 0)
         {
+            int adjustedBurnDmg = FixedMul(AFTERBURNDAMAGE, powermult);
+            
             // split the calculation by seconds and by tics to delay overflows
-            int afterburn_prev = (( timeBurning    / 35) * AFTERBURNDAMAGE) + (( (timeBurning    % 35) * AFTERBURNDAMAGE) / 35);
-            int afterburn_next = (((timeBurning+1) / 35) * AFTERBURNDAMAGE) + ((((timeBurning+1) % 35) * AFTERBURNDAMAGE) / 35);
+            int afterburn_prev = (( timeBurning    / 35) * adjustedBurnDmg) + (( (timeBurning    % 35) * adjustedBurnDmg) / 35);
+            int afterburn_next = (((timeBurning+1) / 35) * adjustedBurnDmg) + ((((timeBurning+1) % 35) * adjustedBurnDmg) / 35);
             burnDamage += afterburn_next - afterburn_prev;
             TakeInventory("MinigunBurnTimer", 1);
         }
