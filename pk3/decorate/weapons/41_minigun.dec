@@ -396,12 +396,12 @@ actor MinigunFlame
     States
     {
       Spawn:
-        DFLM E 0 bright
-        DFLM E 0 bright ACS_NamedExecuteWithResult("Dakka_InheritVelocity", AAPTR_TARGET, 70, 70, 30)
-        DFLM E 0 bright A_ScaleVelocity(random(90, 110) / 100.0)
-        DFLM E 0 bright A_SetUserVar("user_counter", 15)
-        DFLM E 0 bright A_SpawnItemEx("MinigunFlameV", 0,0,0, velx,vely,velz, angle, SXF_ABSOLUTEANGLE | SXF_ABSOLUTEVELOCITY | SXF_CLIENTSIDE)
-        DFLM E 1 bright A_Explode(4, 64, 0, 0, 32)
+        TNT1 E 0 bright
+        TNT1 E 0 bright ACS_NamedExecuteWithResult("Dakka_InheritVelocity", AAPTR_TARGET, 80, 80, 30)
+        TNT1 E 0 bright A_ScaleVelocity(random(90, 110) / 100.0)
+        TNT1 E 0 bright A_SetUserVar("user_counter", 15)
+        TNT1 E 0 bright A_SpawnItemEx("MinigunFlameV", 0,0,0, velx,vely,velz, angle, SXF_ABSOLUTEANGLE | SXF_ABSOLUTEVELOCITY | SXF_CLIENTSIDE)
+        TNT1 E 1 bright A_Explode(4, 64, 0, 0, 32)
         goto Spawn2
 
       Spawn2:
@@ -491,15 +491,15 @@ actor MinigunFlameV: MinigunFlame
         goto Fancy
 
       NoFancy:
-        TNT1 A 0 A_SpawnItemEx("MinigunFlameVisual_Main", 0,0,0, 0,0,random(0, 100)/50.0, 0, SXF_ABSOLUTEPOSITION)
+        TNT1 A 0 A_SpawnItemEx("MinigunFlameVisual_Main", 0,            0,            0,         velx/2,vely/2,(velz/2) + random(0, 100)/50.0, 0, SXF_ABSOLUTEPOSITION | SXF_ABSOLUTEVELOCITY)
         TNT1 A 1 A_SetUserVar("user_counter", user_counter - 1)
         TNT1 A 0 A_JumpIf(user_counter > 0, "NoFancy")
         goto EndItAll
 
       Fancy:
-        TNT1 A  0 A_SpawnItemEx("MinigunFlameVisual_Main",       0,             0,             0, 0,0,random(0, 100)/50.0, 0, SXF_ABSOLUTEPOSITION)
-        TNT1 A 0 A_SpawnItemEx("MinigunFlameVisual", (momx/3) *  1, (momy/3) *  1, (momz/3) *  1, 0,0,random(0, 100)/50.0, 0, SXF_ABSOLUTEPOSITION)
-        TNT1 A 0 A_SpawnItemEx("MinigunFlameVisual", (momx/3) *  2, (momy/3) *  2, (momz/3) *  2, 0,0,random(0, 100)/50.0, 0, SXF_ABSOLUTEPOSITION)
+        TNT1 A 0 A_SpawnItemEx("MinigunFlameVisual_Main", 0,            0,            0,         velx/2,vely/2,(velz/2) + random(0, 100)/50.0, 0, SXF_ABSOLUTEPOSITION | SXF_ABSOLUTEVELOCITY)
+        TNT1 A 0 A_SpawnItemEx("MinigunFlameVisual",     (velx/3.0)*1, (vely/3.0)*1, (velz/3)*1, velx/2,vely/2,(velz/2) + random(0, 100)/50.0, 0, SXF_ABSOLUTEPOSITION | SXF_ABSOLUTEVELOCITY)
+        TNT1 A 0 A_SpawnItemEx("MinigunFlameVisual",     (velx/3.0)*2, (vely/3.0)*2, (velz/3)*2, velx/2,vely/2,(velz/2) + random(0, 100)/50.0, 0, SXF_ABSOLUTEPOSITION | SXF_ABSOLUTEVELOCITY)
         TNT1 A 1 A_SetUserVar("user_counter", user_counter - 1)
         TNT1 A 0 A_JumpIf(user_counter > 0, "Fancy")
         goto EndItAll
