@@ -12,6 +12,3 @@ addmenukey "Slot 2, pistol first" pistswitch
 
 alias shotswitch "pukename Dakka_SwitchWeps 4 5"
 addmenukey "Slot 3, shotgun first" shotswitch
-
-alias chainswitch "pukename Dakka_SwitchWeps 6 7"
-addmenukey "Slot 4, chaingun first" chainswitch
