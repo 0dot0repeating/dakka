@@ -444,7 +444,7 @@ actor MinigunBurner
     +NODAMAGETHRUST
     +FOILINVUL
     
-    DamageType Fire
+    DamageType MinigunFire
     var int user_damage;
     var int user_painfactor; // 3 if directly burning, 15    otherwise
     

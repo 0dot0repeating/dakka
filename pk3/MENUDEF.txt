@@ -44,29 +44,57 @@ OptionValue Dakka_BackpackStart
 
 OptionValue Dakka_PowerLevel
 {
-    -10, "0.1x damage"
-    -9,  "0.25x damage"
-    -8,  "0.33x damage"
-    -7,  "0.4x damage"
-    -6,  "0.5x damage"
-    -5,  "0.6x damage"
-    -4,  "0.66x damage"
-    -3,  "0.75x damage"
-    -2,  "0.8x damage"
-    -1,  "0.9x damage"
-     0,  "1x damage"
-     1,  "1.25x damage"
-     2,  "1.33x damage"
-     3,  "1.5x damage"
-     4,  "1.66x damage"
-     5,  "1.75x damage"
-     6,  "2x damage"
-     7,  "2.5x damage"
-     8,  "3x damage"
-     9,  "4x damage"
-     10, "5x damage"
+    -11, "10x weaker"
+    -10, "5x weaker"
+    -9,  "4x weaker"
+    -8,  "3x weaker"
+    -7,  "2.5x weaker"
+    -6,  "2x weaker"
+    -5,  "1.66x weaker"
+    -4,  "1.5x weaker"
+    -3,  "1.33x weaker"
+    -2,  "1.25x weaker"
+    -1,  "1.1x weaker"
+     0,  "Standard"
+     1,  "1.1x stronger"
+     2,  "1.25x stronger"
+     3,  "1.33x stronger"
+     4,  "1.5x stronger"
+     5,  "1.66x stronger"
+     6,  "1.75x stronger"
+     7,  "2x stronger"
+     8,  "2.5x stronger"
+     9,  "3x stronger"
+     10, "4x stronger"
+     11, "5x stronger"
 }
 
+OptionValue Dakka_DefenseLevel
+{
+    -12, "5x weaker"
+    -11, "4x weaker"
+    -10, "3x weaker"
+     -9, "2.5x weaker"
+     -8, "2x weaker"
+     -7, "1.75x weaker"
+     -6, "1.66x weaker"
+     -5, "1.5x weaker"
+     -4, "1.33x weaker"
+     -3, "1.25x weaker"
+     -2, "1.2x weaker"
+     -1, "1.1x weaker"
+      0, "Standard"
+      1, "1.1x tougher"
+      2, "1.25x tougher"
+      3, "1.33x tougher"
+      4, "1.5x tougher"
+      5, "1.66x tougher"
+      6, "2x tougher"
+      7, "3x tougher"
+      8, "4x tougher"
+      9, "5x tougher"
+     10, "10x tougher"
+}
 
 
 ListMenu Dakka_Options
@@ -115,12 +143,13 @@ OptionMenu Dakka_GameOptions
 
 
     StaticText ""
-    StaticText "Uncategorized options"
+    StaticText "General options"
 
-    Slider "Scrap factor",      "dakka_scrapfactor", 0, 1000, 10, 0
-    Option "Transfer score",    "dakka_keepscore", "Dakka_KeepScore"
-    Option "Do resets in hub",  "dakka_ignorehubs", "OnOff"
-    Option "Power level",       "dakka_powerlevel", "Dakka_PowerLevel"
+    Slider "Scrap factor",          "dakka_scrapfactor",    0, 1000, 10, 0
+    Option "Transfer score",        "dakka_keepscore",      "Dakka_KeepScore"
+    Option "Do resets in hub",      "dakka_ignorehubs",     "OnOff"
+    Option "Damage multiplier",     "dakka_powerlevel",     "Dakka_PowerLevel"
+    Option "Defense multiplier",    "dakka_defenselevel",   "Dakka_DefenseLevel"
 
     StaticText ""
     StaticText "Level start options"
