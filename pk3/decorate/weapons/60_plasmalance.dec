@@ -28,7 +28,7 @@ actor DWep_PlasmaLance: DoomWeapon
         loop
 
       Deselect:
-        PLNC F 0 A_Light(0)
+        PLNC F 0 A_GunFlash("LightDone")
         PLNC FFF 0 A_Lower
         PLNC F 1 A_Lower
         loop
