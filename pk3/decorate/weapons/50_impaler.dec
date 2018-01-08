@@ -36,6 +36,7 @@ actor DWep_Impaler: DoomWeapon
         loop
 
       Deselect:
+        DKIP F 0 A_GunFlash("LightDone")
         DKIP AAA 0 A_Lower
         DKIP A 1 A_Lower
         loop

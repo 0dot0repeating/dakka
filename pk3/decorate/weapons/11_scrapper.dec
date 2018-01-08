@@ -29,8 +29,9 @@ actor DWep_Scrappers: DoomWeapon
         loop
 
       Deselect:
+        SCPR A   0 A_GunFlash("LightDone")
         SCPR AAA 0 A_Lower
-        SCPR A 1 A_Lower
+        SCPR A   1 A_Lower
         loop
 
       Ready:
