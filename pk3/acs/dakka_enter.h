@@ -16,7 +16,8 @@ script "Dakka_Spawn" (int respawned)
 {
     if (GameType() == GAME_TITLE_MAP) { terminate; }
 
-    int pln = PlayerNumber();
+    int pln      = PlayerNumber();
+    int classNum = Pickup_ClassNumber(0);
 
     int curScore, lastScore;
 
@@ -45,6 +46,9 @@ script "Dakka_Spawn" (int respawned)
         curScore  = Score_GetScore(pln);
 
         PlayerTIDs[pln] = defaultTID(-1);
+        
+        // Doesn't need its own script
+        if (classNum == Cl_Dakkaguy) { SetInventory("DWep_Fist", 1); }
 
         // Handle the dakka_shotgun2ssg and dakka_chaingun2minigun CVars.
         // - In dakka_gunstoguns.h
