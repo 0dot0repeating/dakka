@@ -180,7 +180,7 @@ script "Dakka_MinigunBurn" (void)
     Thing_ChangeTID(myTID_new, myTID_old);
 }
 
-#define AFTERBURNDAMAGE     20
+#define AFTERBURNDAMAGE     15
 
 script "Dakka_MinigunAfterburn" (int firerTID, int myTID)
 {
@@ -206,8 +206,9 @@ script "Dakka_MinigunAfterburn" (int firerTID, int myTID)
     SetPointer(AAPTR_TRACER, myTID);
     
     // we need to track total burn time to deal accurate afterburn damage
-    int timeBurning = 0;
-    int flameTimer  = 0;
+    int timeBurning    = 0;
+    int flameTimer     = 0;
+    int directBurnTime = 0;
     
     while (true)
     {
@@ -221,6 +222,16 @@ script "Dakka_MinigunAfterburn" (int firerTID, int myTID)
         int burnDamage = 0;
         
         initialBurn = CheckInventory("MinigunNewBurn");
+        
+        if (initialBurn > 0)
+        {
+            initialBurn += min((directBurnTime++) / 12, 6);
+        }
+        else
+        {
+            directBurnTime = max(0, directBurnTime - 3);
+        }
+        
         burnDamage += FixedMul(initialBurn, powermult);
         TakeInventory("MinigunNewBurn", 0x7FFFFFFF);
         
