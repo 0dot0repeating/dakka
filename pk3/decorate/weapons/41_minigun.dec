@@ -406,7 +406,7 @@ actor MinigunFlame
         goto Spawn2
 
       Spawn2:
-        TNT1 A 0 ACS_NamedExecuteWithResult("Dakka_SetupMinigunBurn", 32, 8, 105)
+        TNT1 A 0 ACS_NamedExecuteWithResult("Dakka_SetupMinigunBurn", 32, 3, 105)
         TNT1 A 0 A_RadiusGive("MinigunBurnItem", 96, RGF_PLAYERS | RGF_MONSTERS | RGF_OBJECTS)
         TNT1 A 0 ACS_NamedExecuteWithResult("Dakka_UnsetupMinigunBurn")
         TNT1 A 1 A_SetUserVar("user_counter", user_counter - 1)
