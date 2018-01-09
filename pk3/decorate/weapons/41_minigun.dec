@@ -38,7 +38,7 @@ actor DWep_Minigun: DoomWeapon
         goto Deselect2
      
       Deselect2:
-        DMNG A 0 A_GunFlash("LightDone")
+        DMNG A 0 A_Light0
         DMNG A 0 A_StopSound(6)
         DMNG A 0 A_StopSound(7)
         DMNG AAA 0 A_Lower
