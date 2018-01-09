@@ -27,7 +27,7 @@ actor DWep_Pistol: DoomWeapon
         loop
 
       Deselect:
-        DPST C 0 A_GunFlash("LightDone")
+        DPST C 0 A_Light0
         DPST CCC 0 A_Lower
         DPST C 1 A_Lower
         loop
