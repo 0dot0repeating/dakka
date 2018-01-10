@@ -14,9 +14,9 @@ script "Dakka_MinigunReady" (void)
 
 script "Dakka_InheritVelocity" (int ptr, int percentForward, int percentSide, int percentBackward)
 {
-    percentForward  = itof(cond(percentForward  == 0, 100, percentForward))  / 100;
-    percentSide     = itof(cond(percentSide     == 0, 100, percentSide))     / 100;
-    percentBackward = itof(cond(percentBackward == 0, 100, percentBackward)) / 100;
+    percentForward  = itof(percentForward)  / 100;
+    percentSide     = itof(percentSide)     / 100;
+    percentBackward = itof(percentBackward) / 100;
     
     int myTID_old = ActivatorTID();
     int myTID_new = UniqueTID();
@@ -180,7 +180,7 @@ script "Dakka_MinigunBurn" (void)
     Thing_ChangeTID(myTID_new, myTID_old);
 }
 
-#define AFTERBURNDAMAGE     15
+#define AFTERBURNDAMAGE     20
 
 script "Dakka_MinigunAfterburn" (int firerTID, int myTID)
 {
@@ -251,7 +251,7 @@ script "Dakka_MinigunAfterburn" (int firerTID, int myTID)
         
         if (initialBurn > 0)
         {
-            initialBurn += min(directBurnTime / 20, 7);
+            initialBurn += min(directBurnTime / 16, 10);
             directBurnTime = min(directBurnTime + 2, 210);
         }
         else
