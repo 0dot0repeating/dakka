@@ -16,8 +16,9 @@ script "Dakka_Recoil" (int degrees, int ticsup, int ticsdown) clientside
     int qCurve, oldPitch, newPitch, pitchDiff, i;
     int amplitude = degrees / 2;
     int doDownRecoil = 1;
-    ticsup = abs(ticsup);
-
+    ticsup   = abs(ticsup);
+    ticsdown = FixedMul(ticsdown, FixedSqrt(recoilFactor));
+    
     if (ticsdown < 0)
     {
         if (GetCVar("freelook")) { doDownRecoil = 0; }
