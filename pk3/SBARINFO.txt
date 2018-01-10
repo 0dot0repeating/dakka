@@ -759,7 +759,6 @@ StatusBar Automap, fullscreenoffsets, 0.85
         DrawImage  "HUD_AM20", -96, -63;
     }
     
-    DrawImage "FSH_WPAM", -182, -42;
     
     InInventory HUD_AmmoRegen
     {
@@ -784,26 +783,24 @@ StatusBar Automap, fullscreenoffsets, 0.85
         }
     
     
-        DrawImage "FS_WPAMA", -182, -42;
+        DrawImage "FS_WPAMA", -175, -42;
         
-        WeaponAmmo DakkaScrap           { DrawImage "FS_AMO1A", -182, -31; }
-        WeaponAmmo DakkaBullet_10mm     { DrawImage "FS_AMO2A", -175, -31; }
-        WeaponAmmo DakkaShells          { DrawImage "FS_AMO3A", -168, -31; }
-        WeaponAmmo DakkaShotGrenades    { DrawImage "FS_AMO4A", -161, -31; }
-        WeaponAmmo DakkaGyroShells      { DrawImage "FS_AMO5A", -154, -31; }
-        WeaponAmmo DakkaBullet_5mm      { DrawImage "FS_AMO6A", -147, -31; }
-        WeaponAmmo DakkaRainGrenades    { DrawImage "FS_AMO7A", -140, -31; }
+        WeaponAmmo DakkaScrap           { DrawImage "FS_AMO1A", -175, -31; }
+        WeaponAmmo DakkaBullet_10mm     { DrawImage "FS_AMO2A", -168, -31; }
+        WeaponAmmo DakkaShells          { DrawImage "FS_AMO3A", -161, -31; }
+        WeaponAmmo DakkaShotGrenades    { DrawImage "FS_AMO4A", -154, -31; }
+        WeaponAmmo DakkaGyroShells      { DrawImage "FS_AMO5A", -147, -31; }
+        WeaponAmmo DakkaBullet_5mm      { DrawImage "FS_AMO6A", -140, -31; }
         WeaponAmmo DakkaFlamerFuel      { DrawImage "FS_AMO8A", -133, -31; }
         WeaponAmmo DakkaRockets         { DrawImage "FS_AMO9A", -126, -31; }
         WeaponAmmo DakkaCells           { DrawImage "FS_AMO0A", -119, -31; }
         
-        DrawBar "FS_AMB1A", "FSH_AMBK", DakkaScrap,        vertical, -180, -29;
-        DrawBar "FS_AMB2A", "FSH_AMBK", DakkaBullet_10mm,  vertical, -173, -29;
-        DrawBar "FS_AMB3A", "FSH_AMBK", DakkaShells,       vertical, -166, -29;
-        DrawBar "FS_AMB4A", "FSH_AMBK", DakkaShotGrenades, vertical, -159, -29;
-        DrawBar "FS_AMB5A", "FSH_AMBK", DakkaGyroShells,   vertical, -152, -29;
-        DrawBar "FS_AMB6A", "FSH_AMBK", DakkaBullet_5mm,   vertical, -145, -29;
-        DrawBar "FS_AMB7A", "FSH_AMBK", DakkaRainGrenades, vertical, -138, -29;
+        DrawBar "FS_AMB1A", "FSH_AMBK", DakkaScrap,        vertical, -173, -29;
+        DrawBar "FS_AMB2A", "FSH_AMBK", DakkaBullet_10mm,  vertical, -166, -29;
+        DrawBar "FS_AMB3A", "FSH_AMBK", DakkaShells,       vertical, -159, -29;
+        DrawBar "FS_AMB4A", "FSH_AMBK", DakkaShotGrenades, vertical, -152, -29;
+        DrawBar "FS_AMB5A", "FSH_AMBK", DakkaGyroShells,   vertical, -145, -29;
+        DrawBar "FS_AMB6A", "FSH_AMBK", DakkaBullet_5mm,   vertical, -138, -29;
         DrawBar "FS_AMB8A", "FSH_AMBK", DakkaFlamerFuel,   vertical, -131, -29;
         DrawBar "FS_AMB9A", "FSH_AMBK", DakkaRockets,      vertical, -124, -29;
         DrawBar "FS_AMB0A", "FSH_AMBK", DakkaCells,        vertical, -117, -29;
@@ -850,52 +847,48 @@ StatusBar Automap, fullscreenoffsets, 0.85
             DrawImage  "HUD_AM20", -96, -63;
         }
     
-        DrawImage "FSH_WPAM", -182, -42;
+        DrawImage "FSH_WPAM", -175, -42;
         
-        WeaponAmmo DakkaScrap           { DrawImage "FSH_AMO1", -182, -31; }
-        WeaponAmmo DakkaBullet_10mm     { DrawImage "FSH_AMO2", -175, -31; }
-        WeaponAmmo DakkaShells          { DrawImage "FSH_AMO3", -168, -31; }
-        WeaponAmmo DakkaShotGrenades    { DrawImage "FSH_AMO4", -161, -31; }
-        WeaponAmmo DakkaGyroShells      { DrawImage "FSH_AMO5", -154, -31; }
-        WeaponAmmo DakkaBullet_5mm      { DrawImage "FSH_AMO6", -147, -31; }
-        WeaponAmmo DakkaRainGrenades    { DrawImage "FSH_AMO7", -140, -31; }
+        WeaponAmmo DakkaScrap           { DrawImage "FSH_AMO1", -175, -31; }
+        WeaponAmmo DakkaBullet_10mm     { DrawImage "FSH_AMO2", -168, -31; }
+        WeaponAmmo DakkaShells          { DrawImage "FSH_AMO3", -161, -31; }
+        WeaponAmmo DakkaShotGrenades    { DrawImage "FSH_AMO4", -154, -31; }
+        WeaponAmmo DakkaGyroShells      { DrawImage "FSH_AMO5", -147, -31; }
+        WeaponAmmo DakkaBullet_5mm      { DrawImage "FSH_AMO6", -140, -31; }
         WeaponAmmo DakkaFlamerFuel      { DrawImage "FSH_AMO8", -133, -31; }
         WeaponAmmo DakkaRockets         { DrawImage "FSH_AMO9", -126, -31; }
         WeaponAmmo DakkaCells           { DrawImage "FSH_AMO0", -119, -31; }
         
-        DrawBar "FSH_AMB1", "FSH_AMBK", DakkaScrap,        vertical, -180, -29;
-        DrawBar "FSH_AMB2", "FSH_AMBK", DakkaBullet_10mm,  vertical, -173, -29;
-        DrawBar "FSH_AMB3", "FSH_AMBK", DakkaShells,       vertical, -166, -29;
-        DrawBar "FSH_AMB4", "FSH_AMBK", DakkaShotGrenades, vertical, -159, -29;
-        DrawBar "FSH_AMB5", "FSH_AMBK", DakkaGyroShells,   vertical, -152, -29;
-        DrawBar "FSH_AMB6", "FSH_AMBK", DakkaBullet_5mm,   vertical, -145, -29;
-        DrawBar "FSH_AMB7", "FSH_AMBK", DakkaRainGrenades, vertical, -138, -29;
+        DrawBar "FSH_AMB1", "FSH_AMBK", DakkaScrap,        vertical, -173, -29;
+        DrawBar "FSH_AMB2", "FSH_AMBK", DakkaBullet_10mm,  vertical, -166, -29;
+        DrawBar "FSH_AMB3", "FSH_AMBK", DakkaShells,       vertical, -159, -29;
+        DrawBar "FSH_AMB4", "FSH_AMBK", DakkaShotGrenades, vertical, -152, -29;
+        DrawBar "FSH_AMB5", "FSH_AMBK", DakkaGyroShells,   vertical, -145, -29;
+        DrawBar "FSH_AMB6", "FSH_AMBK", DakkaBullet_5mm,   vertical, -138, -29;
         DrawBar "FSH_AMB8", "FSH_AMBK", DakkaFlamerFuel,   vertical, -131, -29;
         DrawBar "FSH_AMB9", "FSH_AMBK", DakkaRockets,      vertical, -124, -29;
         DrawBar "FSH_AMB0", "FSH_AMBK", DakkaCells,        vertical, -117, -29;
     }
         
-    InInventory DWep_Scrappers      { DrawImage "FSH_WP11", -182, -42; }
-    InInventory DWep_Pistol         { DrawImage "FSH_WP21", -172, -37; }
-    InInventory DWep_Pistols        { DrawImage "FSH_WP22", -172, -42; }
-    InInventory DWep_Shotgun        { DrawImage "FSH_WP31", -162, -37; }
-    InInventory DWep_SuperShotgun   { DrawImage "FSH_WP32", -162, -42; }
-    InInventory DWep_Chaingun       { DrawImage "FSH_WP41", -152, -37; }
-    InInventory DWep_Minigun        { DrawImage "FSH_WP42", -152, -42; }
-    InInventory DWep_Impaler        { DrawImage "FSH_WP51", -142, -42; }
-    InInventory DWep_PlasmaLance    { DrawImage "FSH_WP61", -132, -42; }
-    InInventory DWep_BFG9000        { DrawImage "FSH_WP71", -122, -42; }
+    InInventory DWep_Scrappers      { DrawImage "FSH_WP11", -175, -42; }
+    InInventory DWep_Pistol         { DrawImage "FSH_WP21", -166, -37; }
+    InInventory DWep_Pistols        { DrawImage "FSH_WP22", -166, -42; }
+    InInventory DWep_Shotgun        { DrawImage "FSH_WP31", -157, -37; }
+    InInventory DWep_SuperShotgun   { DrawImage "FSH_WP32", -157, -42; }
+    InInventory DWep_Minigun        { DrawImage "FSH_WP41", -148, -42; }
+    InInventory DWep_Impaler        { DrawImage "FSH_WP51", -139, -42; }
+    InInventory DWep_PlasmaLance    { DrawImage "FSH_WP61", -130, -42; }
+    InInventory DWep_BFG9000        { DrawImage "FSH_WP71", -121, -42; }
     
-    IsSelected DWep_Scrappers      { DrawImage "FSH_WP13", -182, -42; }
-    IsSelected DWep_Pistol         { DrawImage "FSH_WP23", -173, -37; }
-    IsSelected DWep_Pistols        { DrawImage "FSH_WP24", -173, -42; }
-    IsSelected DWep_Shotgun        { DrawImage "FSH_WP33", -163, -37; }
-    IsSelected DWep_SuperShotgun   { DrawImage "FSH_WP34", -163, -42; }
-    IsSelected DWep_Chaingun       { DrawImage "FSH_WP43", -153, -37; }
-    IsSelected DWep_Minigun        { DrawImage "FSH_WP44", -153, -42; }
-    IsSelected DWep_Impaler        { DrawImage "FSH_WP53", -143, -42; }
-    IsSelected DWep_PlasmaLance    { DrawImage "FSH_WP63", -133, -42; }
-    IsSelected DWep_BFG9000        { DrawImage "FSH_WP73", -123, -42; }
+    IsSelected DWep_Scrappers      { DrawImage "FSH_WP13", -175, -42; }
+    IsSelected DWep_Pistol         { DrawImage "FSH_WP23", -166, -37; }
+    IsSelected DWep_Pistols        { DrawImage "FSH_WP24", -166, -42; }
+    IsSelected DWep_Shotgun        { DrawImage "FSH_WP33", -157, -37; }
+    IsSelected DWep_SuperShotgun   { DrawImage "FSH_WP34", -157, -42; }
+    IsSelected DWep_Minigun        { DrawImage "FSH_WP43", -148, -42; }
+    IsSelected DWep_Impaler        { DrawImage "FSH_WP53", -139, -42; }
+    IsSelected DWep_PlasmaLance    { DrawImage "FSH_WP63", -130, -42; }
+    IsSelected DWep_BFG9000        { DrawImage "FSH_WP73", -121, -42; }
     
     InInventory YellowCard
     {
