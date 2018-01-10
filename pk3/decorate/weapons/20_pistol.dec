@@ -83,7 +83,7 @@ actor DWep_Pistol: DoomWeapon
         stop
 
       Spawn:
-        PIST A -1
+        DPST Z -1
         stop
     }
 }
