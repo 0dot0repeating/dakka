@@ -81,7 +81,7 @@ WEAPON CHANGES:
 
 - The minigun's alt-fire now properly sets enemies on fire! The flames will deal
     minimal contact damage that builds up the longer you hold the flamethrower
-    on an enemy, and enemies that are on fire take 15 afterburn damage a second
+    on an enemy, and enemies that are on fire take 20 afterburn damage a second
     for as long as they're on fire. Enemies set alight burn for three seconds -
     this is reset with every flame that burns them.
   
@@ -101,7 +101,7 @@ AMMO CHANGES:
     their pickup and ammo regeneration rates cut significantly. This is after
     factoring in that the SSG only uses one per shot now.
 
-- Flamer fuel has also been nerfed heavily. It now has a max ammo count of 60,
+- Flamer fuel has also been nerfed heavily. It now has a max ammo count of 40,
     and you now only get 8 flamer fuel from bullet boxes and 12 from cell packs.
 
 - You now carry up to 120 rockets (240 with a backpack), get 4 rockets from
