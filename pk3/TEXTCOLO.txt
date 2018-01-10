@@ -186,14 +186,9 @@ DTitle_SuperShotgun
     #402810 #FFC050 0 255
 }
 
-DTitle_Chaingun
-{
-    #303030 #F8F8FF 0 255
-}
-
 DTitle_Minigun
 {
-    #202020 #B8B8C0 0 255
+    #303030 #F8F8FF 0 255
 }
 
 DTitle_PlasmaLance
