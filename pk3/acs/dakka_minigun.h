@@ -209,11 +209,37 @@ script "Dakka_MinigunAfterburn" (int firerTID, int myTID)
     int timeBurning    = 0;
     int flameTimer     = 0;
     int directBurnTime = 0;
+    int flamesPutOut   = false;
+    
+    int myXYRadius, myZRadius, randX, randY, randZ, i;
     
     while (true)
     {
         SetActivator(pointerTID, AAPTR_TRACER);
         if (ClassifyActor(0) & ACTOR_WORLD) { break; }
+        
+        if (GetActorProperty(0, APROP_WaterLevel) > 1)
+        {
+            flamesPutOut = true;
+            
+            SetActivator(pointerTID, AAPTR_TRACER);
+            
+            myXYRadius = GetActorProperty(0, APROP_Radius);
+            myZRadius  = GetActorProperty(0, APROP_Height) / 2;
+            
+            for (i = 0; i < 8; i++)
+            {
+                randX = random( 0.1, 0.6) * randSign();
+                randY = random( 0.1, 0.6) * randSign();
+                randZ = random(-0.8, 0.4);
+                
+                SpawnForced("MinigunSteam", myX + FixedMul(myXYRadius, randX),
+                                            myY + FixedMul(myXYRadius, randY),
+                                            myZ + FixedMul(myZRadius,  randZ));
+            }
+            
+            break;
+        }
         
         // Handle this here or else this CVar will do jack shit
         int powerlevel      = middle(0, GetCVar("dakka_powerlevel") + POWERLEVEL_CENTER,   POWERLEVEL_COUNT  -1);
@@ -286,12 +312,12 @@ script "Dakka_MinigunAfterburn" (int firerTID, int myTID)
         {
             SetActivator(pointerTID, AAPTR_TRACER);
             
-            int myXYRadius = GetActorProperty(0, APROP_Radius);
-            int myZRadius  = GetActorProperty(0, APROP_Height) / 2;
+            myXYRadius = GetActorProperty(0, APROP_Radius);
+            myZRadius  = GetActorProperty(0, APROP_Height) / 2;
             
-            int randX = random( 0.1, 0.6) * randSign();
-            int randY = random( 0.1, 0.6) * randSign();
-            int randZ = random(-0.8, 0.4);
+            randX = random( 0.1, 0.6) * randSign();
+            randY = random( 0.1, 0.6) * randSign();
+            randZ = random(-0.8, 0.4);
             
             SpawnForced("MinigunAfterburnFlame", myX + FixedMul(myXYRadius, randX),
                                                  myY + FixedMul(myXYRadius, randY),
@@ -305,11 +331,15 @@ script "Dakka_MinigunAfterburn" (int firerTID, int myTID)
         Delay(1);
     }
     
-    for (int i = 0; i < 48; i++)
+    int decayTime = cond(flamesPutOut, 12, 48);
+    int decayInc  = 0.3 / decayTime;
+    
+    for (i = 0; i < decayTime; i++)
     {
-        int vol = 0.3 - (i + 1) * 0.00625;
+        int vol = 0.3 - (i + 1) * decayInc;
         SoundVolume(pointerTID, CHAN_BODY, vol);
         Delay(1);
     }
+    
     Thing_Remove(pointerTID);
 }
