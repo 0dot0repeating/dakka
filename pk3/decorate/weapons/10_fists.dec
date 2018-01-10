@@ -14,12 +14,18 @@ actor DWep_Fist: DoomWeapon
 
     Weapon.SlotNumber 1
     Weapon.SelectionOrder 3700
-    +WEAPON.MELEEWEAPON
-    +UNDROPPABLE
-    +NOALERT
+    
+    Weapon.BobStyle InverseSmooth
+    Weapon.BobSpeed 2.5
+    Weapon.BobRangeX 0.5
+    Weapon.BobRangeY 0.4
 
     Inventory.PickupMessage "$DAKKA_PK_FISTS"
     Obituary "$DAKKA_MP_FISTS"
+    
+    +WEAPON.MELEEWEAPON
+    +UNDROPPABLE
+    +NOALERT
 
     States
     {

@@ -9,11 +9,16 @@ actor DWep_PlasmaLance: DoomWeapon
     Weapon.SelectionOrder 100
     Weapon.SlotPriority 1
 
-    Weapon.AmmoType1 "DakkaCells"
-    Weapon.AmmoType2 "DakkaCells"
-    Weapon.AmmoUse1  1
-    Weapon.AmmoUse2  3
-    Weapon.AmmoGive1 50
+    Weapon.AmmoType1    "DakkaCells"
+    Weapon.AmmoType2    "DakkaCells"
+    Weapon.AmmoUse1     1
+    Weapon.AmmoUse2     3
+    Weapon.AmmoGive1    50
+    
+    Weapon.BobStyle InverseSmooth
+    Weapon.BobSpeed 2.5
+    Weapon.BobRangeX 0.3
+    Weapon.BobRangeY 0.4
 
     Inventory.PickupMessage "$DAKKA_PK_PLASMALANCE"
     

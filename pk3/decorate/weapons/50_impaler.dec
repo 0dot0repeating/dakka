@@ -7,11 +7,16 @@ actor DWep_Impaler: DoomWeapon
     Weapon.SlotNumber 5
     Weapon.SelectionOrder 300
 
+    Weapon.AmmoType1    "DakkaRockets"
+    Weapon.AmmoType2    "DakkaRockets"
     Weapon.AmmoUse1     1
     Weapon.AmmoUse2     3
     Weapon.AmmoGive1    15
-    Weapon.AmmoType1    "DakkaRockets"
-    Weapon.AmmoType2    "DakkaRockets"
+    
+    Weapon.BobStyle InverseSmooth
+    Weapon.BobSpeed 2.5
+    Weapon.BobRangeX 0.3
+    Weapon.BobRangeY 0.4
 
     Inventory.PickupMessage "$DAKKA_PK_IMPALER"
     Obituary "$DAKKA_MP_IMPALER"

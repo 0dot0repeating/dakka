@@ -9,6 +9,11 @@ actor DWep_Pistol: DoomWeapon
     Weapon.AmmoGive 0
     Weapon.AmmoType1 "DakkaBullet_10mm"
     Weapon.AmmoType2 "DakkaBullet_10mm"
+    
+    Weapon.BobStyle InverseSmooth
+    Weapon.BobSpeed 2.5
+    Weapon.BobRangeX 0.3
+    Weapon.BobRangeY 0.4
 
     +WEAPON.WIMPY_WEAPON
     +UNDROPPABLE
