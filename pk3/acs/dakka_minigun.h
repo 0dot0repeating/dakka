@@ -251,8 +251,8 @@ script "Dakka_MinigunAfterburn" (int firerTID, int myTID)
         
         if (initialBurn > 0)
         {
-            initialBurn += min(directBurnTime / 16, 10);
-            directBurnTime = min(directBurnTime + 2, 210);
+            initialBurn += min(directBurnTime / 16, 9);
+            directBurnTime = min(directBurnTime + 2, 194);
         }
         else
         {
