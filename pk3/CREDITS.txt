@@ -1,0 +1,44 @@
+GRAPHICS
+=========
+
+- Fist punching graphics: Based on the Hexen fighter fist, Doom-ified by Bloax, extended by ijon
+- Scrapper sprites: Base sprite by Mor'ladim, animated by ijon
+- Scrapper projectiles: ijon
+- Pistol sprites: id Software, interpolated by Per Kristian
+- Shotgun sprites: id Software, interpolated by Per Kristian
+- Grenade sprites: from Skulltag
+- Super shotgun sprites: id Software, interpolated by Per Kristian
+- Super shotgun mini-rocket sprites: by Minigunner
+- Minigun sprites: from Skulltag, interpolated by Minigunner (how appropriate)
+- Minigun flame sprites: Duke Nukem 3D (projectiles) / Hexen (on enemies)
+- Flamer fuel sprite: Eriance
+- Impaler: by zrrion the insect, animated by ijon
+- Lancer: Insomniac Games, in Disruptor
+- Lancer projectile sprites: by Fuzzyblaze/Infernex
+- BFG9000: id software
+
+- Smoke sprites: from Metroid: Dreadnought, probably procedurally generated
+- TITLEMAP/DAKKTEST extra textures: cc4-tex.wad (DAKNUM* by ijon)
+- Clean BIGFONT (for the score line): Blue Shadow
+- Status Report font (score breakdown): Jimmy
+
+
+
+SOUNDS
+=======
+
+- Fist sounds: stock sounds
+- Pistol: Obsidian Software, in Fallout: New Vegas
+- Shotgun primary fire: unknown
+- Shotgun secondary fire: stock sound (I think?)
+- Super shotgun primary fire: Obsidian Software, in Fallout: New Vegas
+- Super shotgun alt-fire: Gearbox Software, in Borderlands 2
+- Minigun primary fire: from Skulltag
+- Minigun flamethrower (all sounds): People Can Fly, in Painkiller
+- Impaler: Monolith Productions, in F.E.A.R.
+- Impaler explosions: Streum On Studios, in EYE: Divine Cybermancy
+- Lancer primary fire: MachineGames, in Wolfenstein: New Order
+- Lancer alt-fire: Epic Games, in Unreal Tournament 2004
+- BFG alt-fire: Obsidian Software, in Fallout: New Vegas
+
+- Score reward sounds: People Can Fly, in Painkiller
