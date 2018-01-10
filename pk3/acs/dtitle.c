@@ -278,7 +278,6 @@ function void ShowWeaponTips(int doFade, int forceColor, int overrideColor, int 
     int pistolsColor    = "DTitle_Pistols";
     int shotgunColor    = "DTitle_Shotgun";
     int ssgColor        = "DTitle_SuperShotgun";
-    int chaingunColor   = "DTitle_Chaingun";
     int minigunColor    = "DTitle_Minigun";
     int impalerColor    = "Red";
     int plasmaColor     = "DTitle_PlasmaLance";
@@ -292,7 +291,6 @@ function void ShowWeaponTips(int doFade, int forceColor, int overrideColor, int 
         pistolsColor    = overrideColor;
         shotgunColor    = overrideColor;
         ssgColor        = overrideColor;
-        chaingunColor   = overrideColor;
         minigunColor    = overrideColor;
         impalerColor    = overrideColor;
         plasmaColor     = overrideColor;
@@ -302,23 +300,22 @@ function void ShowWeaponTips(int doFade, int forceColor, int overrideColor, int 
     SetHudSize(320, 200, 0);
     SetFont("ARCFONT");
     
-    HudMessage(s:"Fists";         msgMode | HUDMSG_COLORSTRING, 21, fistColor,        40.4,  80.0, duration, 1.0, 1.0);
-    HudMessage(s:"Scrappers";     msgMode | HUDMSG_COLORSTRING, 22, scrapperColor,    40.4,  88.0, duration, 1.0, 1.0);
+    HudMessage(s:"Fists";         msgMode | HUDMSG_COLORSTRING, 21, fistColor,       70.4,  85.0, duration, 1.0, 1.0);
+    HudMessage(s:"Scrappers";     msgMode | HUDMSG_COLORSTRING, 22, scrapperColor,   70.4,  93.0, duration, 1.0, 1.0);
                                   
-    HudMessage(s:"Pistol";        msgMode | HUDMSG_COLORSTRING, 23, pistolColor,     115.4,  80.0, duration, 1.0, 1.0);
-    HudMessage(s:"Two pistols";   msgMode | HUDMSG_COLORSTRING, 24, pistolsColor,    115.4,  88.0, duration, 1.0, 1.0);
+    HudMessage(s:"Pistol";        msgMode | HUDMSG_COLORSTRING, 23, pistolColor,     160.4,  85.0, duration, 1.0, 1.0);
+    HudMessage(s:"Two pistols";   msgMode | HUDMSG_COLORSTRING, 24, pistolsColor,    160.4,  93.0, duration, 1.0, 1.0);
                                   
-    HudMessage(s:"Shotgun";       msgMode | HUDMSG_COLORSTRING, 25, shotgunColor,    205.4,  80.0, duration, 1.0, 1.0);
-    HudMessage(s:"Super Shotgun"; msgMode | HUDMSG_COLORSTRING, 26, ssgColor,        205.4,  88.0, duration, 1.0, 1.0);
+    HudMessage(s:"Shotgun";       msgMode | HUDMSG_COLORSTRING, 25, shotgunColor,    250.4,  85.0, duration, 1.0, 1.0);
+    HudMessage(s:"S. Shotgun";    msgMode | HUDMSG_COLORSTRING, 26, ssgColor,        250.4,  93.0, duration, 1.0, 1.0);
                                   
-    HudMessage(s:"Chaingun";      msgMode | HUDMSG_COLORSTRING, 27, chaingunColor,   280.4,  80.0, duration, 1.0, 1.0);
-    HudMessage(s:"Minigun";       msgMode | HUDMSG_COLORSTRING, 28, minigunColor,    280.4,  88.0, duration, 1.0, 1.0);
+    HudMessage(s:"Minigun";       msgMode | HUDMSG_COLORSTRING, 28, minigunColor,    70.4,  109.0, duration, 1.0, 1.0);
                                   
-    HudMessage(s:"Impaler";       msgMode | HUDMSG_COLORSTRING, 29, impalerColor,    80.4,  104.0, duration, 1.0, 1.0);
+    HudMessage(s:"Impaler";       msgMode | HUDMSG_COLORSTRING, 29, impalerColor,    130.4, 109.0, duration, 1.0, 1.0);
                                   
-    HudMessage(s:"Lancer";        msgMode | HUDMSG_COLORSTRING, 30, plasmaColor,     160.4, 104.0, duration, 1.0, 1.0);
+    HudMessage(s:"Lancer";        msgMode | HUDMSG_COLORSTRING, 30, plasmaColor,     190.4, 109.0, duration, 1.0, 1.0);
                                   
-    HudMessage(s:"BFG9000";       msgMode | HUDMSG_COLORSTRING, 31, bfgColor,        240.4, 104.0, duration, 1.0, 1.0);
+    HudMessage(s:"BFG9000";       msgMode | HUDMSG_COLORSTRING, 31, bfgColor,        250.4, 109.0, duration, 1.0, 1.0);
 }
 
 script "titlemap_weptips" (int flash, int duration)
@@ -572,7 +569,10 @@ script "titlemap_dumbtips" (void)
     SetFont("ARCFONT");
     
     HudMessage(s:dumbHeader;   HUDMSG_FADEINOUT | HUDMSG_COLORSTRING, 51, "Gold",  160.4, 70.1, dumbDuration, 1.0, 1.0);
+    
+    SetHudClipRect(40, 0, 240, 200, 240);
     HudMessage(s:dumbReplaced; HUDMSG_FADEINOUT | HUDMSG_COLORSTRING, 52, "White", 160.4, 85.1, dumbDuration, 1.0, 1.0);
+    SetHudClipRect(0, 0, 0, 0, 0);
     SetResultValue(dumbDelay);
 }
 
@@ -611,6 +611,8 @@ script "titlemap_gametips" (void)
     SetFont("ARCFONT");
     
     HudMessage(s:dumbHeader;   HUDMSG_FADEINOUT | HUDMSG_COLORSTRING, 51, "Green", 160.4, 70.1, dumbDuration, 1.0, 1.0);
+    SetHudClipRect(40, 0, 240, 200, 240);
     HudMessage(s:dumbReplaced; HUDMSG_FADEINOUT | HUDMSG_COLORSTRING, 52, "White", 160.4, 85.1, dumbDuration, 1.0, 1.0);
+    SetHudClipRect(0, 0, 0, 0, 0);
     SetResultValue(dumbDelay);
 }
