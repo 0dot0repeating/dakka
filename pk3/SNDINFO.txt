@@ -24,6 +24,37 @@ $rolloff dakka/revive    512 3072
 $rolloff dakka/fizzle    128  512
 $rolloff dakka/ammoregen 128  512
 
+$limit   dakka/revive    0
+$limit   dakka/fizzle    0
+$limit   dakka/ammoregen 0
+
+
+
+////////
+// VAMPIRISM
+///
+
+dakka/vampire_pickup        sounds/vampire/vampire_pickup.ogg
+dakka/vampire_loop          sounds/vampire/vampire_loop.ogg
+dakka/vampire_end           sounds/vampire/vampire_end.ogg
+
+dakka/vampire_heal1         sounds/vampire/vampire_heal1.ogg
+dakka/vampire_heal2         sounds/vampire/vampire_heal2.ogg
+dakka/vampire_heal3         sounds/vampire/vampire_heal3.ogg
+dakka/vampire_heal4         sounds/vampire/vampire_heal4.ogg
+dakka/vampire_heal5         sounds/vampire/vampire_heal5.ogg
+$random dakka/vampire_heal  { dakka/vampire_heal1 dakka/vampire_heal2 dakka/vampire_heal3 dakka/vampire_heal4 dakka/vampire_heal5 }
+
+$volume  dakka/vampire_loop 0.5
+$rolloff dakka/vampire_loop 128  512
+$limit   dakka/vampire_loop 0
+
+$rolloff dakka/vampire_end  128  512
+$limit   dakka/vampire_end  0
+
+$rolloff dakka/vampire_heal 128  512
+$limit   dakka/vampire_heal 5
+
 
 
 ////////
@@ -227,12 +258,11 @@ arc/fire3 sounds/plasmalance/arcfire3.ogg
 arc/fire4 sounds/plasmalance/arcfire4.ogg
 
 $random arc/fire { arc/fire1 arc/fire2 arc/fire3 arc/fire4 }
+$volume arc/fire 0.6
 
 arc/altcharge       sounds/plasmalance/arc_charge.ogg
 arc/altcharge_hold  sounds/plasmalance/arc_charge_hold.ogg
 arc/altfire         sounds/plasmalance/arc_altfire.ogg
-
-$volume arc/fire    0.6
 
 arc/fry1    sounds/plasmalance/arc_fry1.ogg
 arc/fry2    sounds/plasmalance/arc_fry2.ogg

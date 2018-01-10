@@ -5,11 +5,11 @@ actor Dakka_Zombiedude: Zombieman replaces Zombieman
     States
     {
       Death:
-        "----" A 0 ACS_NamedExecuteWithResult("Dakka_Score", -1)
+        "----" A 0 ACS_NamedExecuteWithResult("Dakka_OnKill", -1)
         goto Super::Death
 
       XDeath:
-        "----" A 0 ACS_NamedExecuteWithResult("Dakka_Score", -1)
+        "----" A 0 ACS_NamedExecuteWithResult("Dakka_OnKill", -1)
         goto Super::XDeath
     }
 }
@@ -21,11 +21,11 @@ actor Dakka_Shotgundude: ShotgunGuy replaces ShotgunGuy
     States
     {
       Death:
-        "----" A 0 ACS_NamedExecuteWithResult("Dakka_Score", -1)
+        "----" A 0 ACS_NamedExecuteWithResult("Dakka_OnKill", -1)
         goto Super::Death
 
       XDeath:
-        "----" A 0 ACS_NamedExecuteWithResult("Dakka_Score", -1)
+        "----" A 0 ACS_NamedExecuteWithResult("Dakka_OnKill", -1)
         goto Super::XDeath
     }
 }
@@ -37,11 +37,11 @@ actor Dakka_Chaingundude: ChaingunGuy replaces ChaingunGuy
     States
     {
       Death:
-        "----" A 0 ACS_NamedExecuteWithResult("Dakka_Score", -1)
+        "----" A 0 ACS_NamedExecuteWithResult("Dakka_OnKill", -1)
         goto Super::Death
 
       XDeath:
-        "----" A 0 ACS_NamedExecuteWithResult("Dakka_Score", -1)
+        "----" A 0 ACS_NamedExecuteWithResult("Dakka_OnKill", -1)
         goto Super::XDeath
     }
 }
@@ -51,11 +51,11 @@ actor Dakka_Impdude: DoomImp replaces DoomImp
     States
     {
       Death:
-        "----" A 0 ACS_NamedExecuteWithResult("Dakka_Score", -1)
+        "----" A 0 ACS_NamedExecuteWithResult("Dakka_OnKill", -1)
         goto Super::Death
 
       XDeath:
-        "----" A 0 ACS_NamedExecuteWithResult("Dakka_Score", -1)
+        "----" A 0 ACS_NamedExecuteWithResult("Dakka_OnKill", -1)
         goto Super::XDeath
     }
 }
@@ -65,7 +65,7 @@ actor Dakka_Demondude: Demon replaces Demon
     States
     {
       Death:
-        "----" A 0 ACS_NamedExecuteWithResult("Dakka_Score", -1)
+        "----" A 0 ACS_NamedExecuteWithResult("Dakka_OnKill", -1)
         goto Super::Death
     }
 }
@@ -75,7 +75,7 @@ actor Dakka_Shydude: Spectre replaces Spectre
     States
     {
       Death:
-        "----" A 0 ACS_NamedExecuteWithResult("Dakka_Score", -1)
+        "----" A 0 ACS_NamedExecuteWithResult("Dakka_OnKill", -1)
         goto Super::Death
     }
 }
@@ -85,7 +85,7 @@ actor Dakka_Cacodude: Cacodemon replaces Cacodemon
     States
     {
       Death:
-        "----" A 0 ACS_NamedExecuteWithResult("Dakka_Score", -1)
+        "----" A 0 ACS_NamedExecuteWithResult("Dakka_OnKill", -1)
         goto Super::Death
     }
 }
@@ -95,7 +95,7 @@ actor Dakka_Souldude: LostSoul replaces LostSoul
     States
     {
       Death:
-        "----" A 0 ACS_NamedExecuteWithResult("Dakka_Score", -1)
+        "----" A 0 ACS_NamedExecuteWithResult("Dakka_OnKill", -1)
         goto Super::Death
     }
 }
@@ -105,7 +105,7 @@ actor Dakka_Paindude: PainElemental replaces PainElemental
     States
     {
       Death:
-        "----" A 0 ACS_NamedExecuteWithResult("Dakka_Score", -1)
+        "----" A 0 ACS_NamedExecuteWithResult("Dakka_OnKill", -1)
         goto Super::Death
     }
 }
@@ -115,7 +115,7 @@ actor Dakka_Bonehead: Revenant replaces Revenant
     States
     {
       Death:
-        "----" A 0 ACS_NamedExecuteWithResult("Dakka_Score", -1)
+        "----" A 0 ACS_NamedExecuteWithResult("Dakka_OnKill", -1)
         goto Super::Death
     }
 }
@@ -128,7 +128,7 @@ actor Dakka_Spiderdude: Arachnotron replaces Arachnotron
     States
     {
       Death:
-        "----" A 0 ACS_NamedExecuteWithResult("Dakka_Score", -1)
+        "----" A 0 ACS_NamedExecuteWithResult("Dakka_OnKill", -1)
         goto Super::Death
     }
 }
@@ -138,7 +138,7 @@ actor Dakka_Fatdude: Fatso replaces Fatso
     States
     {
       Death:
-        "----" A 0 ACS_NamedExecuteWithResult("Dakka_Score", -1)
+        "----" A 0 ACS_NamedExecuteWithResult("Dakka_OnKill", -1)
         goto Super::Death
     }
 }
@@ -148,7 +148,7 @@ actor Dakka_Knightdude: HellKnight replaces HellKnight
     States
     {
       Death:
-        "----" A 0 ACS_NamedExecuteWithResult("Dakka_Score", -1)
+        "----" A 0 ACS_NamedExecuteWithResult("Dakka_OnKill", -1)
         goto Super::Death
     }
 }
@@ -158,7 +158,7 @@ actor Dakka_Nobledude: BaronOfHell replaces BaronOfHell
     States
     {
       Death:
-        "----" A 0 ACS_NamedExecuteWithResult("Dakka_Score", -1)
+        "----" A 0 ACS_NamedExecuteWithResult("Dakka_OnKill", -1)
         goto Super::Death
     }
 }
@@ -168,7 +168,7 @@ actor Dakka_Skinnydude: Archvile replaces Archvile
     States
     {
       Death:
-        "----" A 0 ACS_NamedExecuteWithResult("Dakka_Score", -1)
+        "----" A 0 ACS_NamedExecuteWithResult("Dakka_OnKill", -1)
         goto Super::Death
     }
 }
@@ -178,7 +178,7 @@ actor Dakka_Cyberdude: Cyberdemon replaces Cyberdemon
     States
     {
       Death:
-        "----" A 0 ACS_NamedExecuteWithResult("Dakka_Score", -1)
+        "----" A 0 ACS_NamedExecuteWithResult("Dakka_OnKill", -1)
         goto Super::Death
     }
 }
@@ -188,7 +188,7 @@ actor Dakka_Smartdude: SpiderMastermind replaces SpiderMastermind
     States
     {
       Death:
-        "----" A 0 ACS_NamedExecuteWithResult("Dakka_Score", -1)
+        "----" A 0 ACS_NamedExecuteWithResult("Dakka_OnKill", -1)
         goto Super::Death
     }
 }
@@ -200,11 +200,11 @@ actor Dakka_Commiedude: WolfensteinSS replaces WolfensteinSS
     States
     {
       Death:
-        "----" A 0 ACS_NamedExecuteWithResult("Dakka_Score", -1)
+        "----" A 0 ACS_NamedExecuteWithResult("Dakka_OnKill", -1)
         goto Super::Death
 
       XDeath:
-        "----" A 0 ACS_NamedExecuteWithResult("Dakka_Score", -1)
+        "----" A 0 ACS_NamedExecuteWithResult("Dakka_OnKill", -1)
         goto Super::XDeath
     }
 }
@@ -214,7 +214,7 @@ actor Dakka_Underagedude: CommanderKeen replaces CommanderKeen
     States
     {
       Death:
-        "----" A 0 ACS_NamedExecuteWithResult("Dakka_Score", -1)
+        "----" A 0 ACS_NamedExecuteWithResult("Dakka_OnKill", -1)
         goto Super::Death
     }
 }

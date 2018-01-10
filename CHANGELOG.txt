@@ -8,28 +8,25 @@ NOTE: Most of this changelog was retroactive; anything before 0.05 was for sure,
 #=-     DAKKA v0.10
 #-
 
-GENERAL CHANGES:
 
-- Dakka now replaces player classes again. Dakkaguy stands tall and proud,
-    probably on top of a pile of spent minigun casings and dead demons.
-
-- The HUD has been completely redone, because honestly? It was pretty damn ugly.
-    The functionality is the same, but it's much sleeker and sharper, and comes
-    with better inventory support to boot.
-
-- The dakka_bundleplasma and dakka_bundlebfg CVars are gone, as they no longer
-    serve any purpose.
-
-- Sound levels have been looked over and normalized, for the most part.
-
-
-NEW WEAPONS:
+COOL STUFF:
 
 - While the fists are still fists, they've been completely reworked and might as
     well go here. The primary fire throws out weak punches that quickly build up
     to blistering speed, while the alt-fire is a charged punch, which can be
     charged up to three times to loose a bone-splintering one-two-three salvo
     that also hurts everyone near the poor sap you just broke in half.
+
+- The minigun's alt-fire now properly sets enemies on fire! The flames will deal
+    minimal contact damage that builds up the longer you hold the flamethrower
+    on an enemy, and enemies that are on fire take 20 afterburn damage a second
+    for as long as they're on fire. Enemies set alight burn for three seconds -
+    this is reset with every flame that burns them.
+  
+    The upshot of it is that the flamethrower is now an excellent tool for
+    wiping out weaker enemies, good at softening up hordes, and still effective
+    for melting any single target. It no longer annihilates spider masterminds,
+    however.
 
 - The rocket launcher has been replaced with the IMPALER, a triple-barreled
     cannon that buffets your foes with far, far too many rockets. The primary
@@ -41,6 +38,13 @@ NEW WEAPONS:
     LANCER. The primary fire launches plasma nails that penetrate enemies and
     hit what's behind them, while the alt-fire charges up the weapon to release
     a torrent of lightning that arcs through everything in front of you.
+
+- Since the minigun's taken over the chaingun slot, something new needs to
+    replace the berserk pickups. And that something is... the vampire sphere!
+    For 30 seconds after picking it up, every kill you get heals you! The lower
+    your health is, the more it heals you, encouraging you to stay in the fight
+    longer and kill even faster. And now you can't say Dakka's berserk pickup
+    doesn't heal you.
 
 
 WEAPON CHANGES:
@@ -79,17 +83,6 @@ WEAPON CHANGES:
 
 - The minigun now does only 12 damage per bullet (down from 20).
 
-- The minigun's alt-fire now properly sets enemies on fire! The flames will deal
-    minimal contact damage that builds up the longer you hold the flamethrower
-    on an enemy, and enemies that are on fire take 20 afterburn damage a second
-    for as long as they're on fire. Enemies set alight burn for three seconds -
-    this is reset with every flame that burns them.
-  
-    The upshot of it is that the flamethrower is now an excellent tool for
-    wiping out weaker enemies, good at softening up hordes, and still effective
-    for melting any single target. It no longer annihilates spider masterminds,
-    however.
-
 
 AMMO CHANGES:
 
@@ -108,6 +101,21 @@ AMMO CHANGES:
     small rocket pickups, and get 20 from rocket boxes. This sounds like a buff,
     but the impaler does far less damage per shot than the rocket launcher did;
     it's actually a significant nerf!
+
+
+GENERAL CHANGES:
+
+- Dakka now replaces player classes again. Dakkaguy stands tall and proud,
+    probably on top of a pile of spent minigun casings and dead demons.
+
+- The HUD has been completely redone, because honestly? It was pretty damn ugly.
+    The functionality is the same, but it's much sleeker and sharper, and comes
+    with better inventory support to boot.
+
+- The dakka_bundleplasma and dakka_bundlebfg CVars are gone, as they no longer
+    serve any purpose.
+
+- Sound levels have been looked over and normalized, for the most part.
 
 
 
