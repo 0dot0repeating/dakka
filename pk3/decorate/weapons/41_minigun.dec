@@ -407,17 +407,21 @@ actor MinigunFlame
         TNT1 E 0 bright A_ScaleVelocity(random(90, 110) / 100.0)
         TNT1 E 0 bright A_SetUserVar("user_counter", 15)
         TNT1 E 0 bright A_SpawnItemEx("MinigunFlameV", 0,0,0, velx,vely,velz, angle, SXF_ABSOLUTEANGLE | SXF_ABSOLUTEVELOCITY | SXF_CLIENTSIDE)
-        TNT1 E 1 bright A_Explode(4, 64, 0, 0, 32)
         goto Spawn2
 
       Spawn2:
+        TNT1 A 0 A_JumpIf(waterlevel > 1, "SteamEnd")
         TNT1 A 0 ACS_NamedExecuteWithResult("Dakka_SetupMinigunBurn", 32, 3, 105)
         TNT1 A 0 A_RadiusGive("MinigunBurnItem", 96, RGF_PLAYERS | RGF_MONSTERS | RGF_OBJECTS)
         TNT1 A 0 ACS_NamedExecuteWithResult("Dakka_UnsetupMinigunBurn")
         TNT1 A 1 A_SetUserVar("user_counter", user_counter - 1)
         TNT1 A 0 A_JumpIf(user_counter > 0, "Spawn2")
         goto EndItAll
-
+      
+      SteamEnd:
+        TNT1 A 1 A_Explode(1, 64, false, false, 64)
+        stop
+        
       EndItAll:
         TNT1 A 1
         stop
@@ -498,12 +502,14 @@ actor MinigunFlameV: MinigunFlame
         goto Fancy
 
       NoFancy:
+        TNT1 A 0 A_JumpIf(waterlevel > 1, "Steam")
         TNT1 A 0 A_SpawnItemEx("MinigunFlameVisual_Main", 0,            0,            0,         velx/2,vely/2,(velz/2) + random(0, 100)/50.0, 0, SXF_ABSOLUTEPOSITION | SXF_ABSOLUTEVELOCITY)
         TNT1 A 1 A_SetUserVar("user_counter", user_counter - 1)
         TNT1 A 0 A_JumpIf(user_counter > 0, "NoFancy")
         goto EndItAll
 
       Fancy:
+        TNT1 A 0 A_JumpIf(waterlevel > 1, "Steam")
         TNT1 A 0 A_SpawnItemEx("MinigunFlameVisual_Main", 0,            0,            0,         velx/2,vely/2,(velz/2) + random(0, 100)/50.0, 0, SXF_ABSOLUTEPOSITION | SXF_ABSOLUTEVELOCITY)
         TNT1 A 0 A_SpawnItemEx("MinigunFlameVisual",     (velx/3.0)*1, (vely/3.0)*1, (velz/3)*1, velx/2,vely/2,(velz/2) + random(0, 100)/50.0, 0, SXF_ABSOLUTEPOSITION | SXF_ABSOLUTEVELOCITY)
         TNT1 A 0 A_SpawnItemEx("MinigunFlameVisual",     (velx/3.0)*2, (vely/3.0)*2, (velz/3)*2, velx/2,vely/2,(velz/2) + random(0, 100)/50.0, 0, SXF_ABSOLUTEPOSITION | SXF_ABSOLUTEVELOCITY)
@@ -511,11 +517,16 @@ actor MinigunFlameV: MinigunFlame
         TNT1 A 0 A_JumpIf(user_counter > 0, "Fancy")
         goto EndItAll
 
+      Steam:
+        TNT1 A 1 A_SpawnItemEx("MinigunSteam", 0,0,0, velx/2, vely/2, velz/2, angle, SXF_ABSOLUTEANGLE | SXF_ABSOLUTEVELOCITY)
+        stop
+        
       EndItAll:
         TNT1 A 1
         stop
 
       Death:
+        TNT1 A 0 A_JumpIf(waterlevel > 1, "Steam")
         TNT1 A 0 A_JumpIf(user_counter > 0, 1)
         goto EndItAll
         
@@ -571,6 +582,47 @@ actor MinigunFlameVisual_Main: MinigunFlameVisual
         stop
     }
 }
+
+
+actor MinigunSteam
+{
+    Radius 0
+    Height 0
+
+    +NOINTERACTION
+    +CLIENTSIDEONLY
+    +FORCEXYBILLBOARD
+
+    RenderStyle Add
+    Scale 0.7
+    Alpha 0.25
+    
+    States
+    {
+      Spawn:
+        SMK1 A 0
+        SMK1 A 0 A_SetScale(frandom(0.7, 1))
+        SMK1 A 0 A_Jump(256, "A", "B", "C", "D")
+        goto A
+      
+      A:
+        SMK1 ABCDEFGHIJKLMNOPQR 2 bright A_ChangeVelocity(velx * 0.8, vely * 0.8, (velz * 0.8) + frandom(0.4, 0.7), CVF_REPLACE)
+        stop
+      
+      B:
+        SMK2 ABCDEFGHIJKLMNOPQR 2 bright A_ChangeVelocity(velx * 0.8, vely * 0.8, (velz * 0.8) + frandom(0.4, 0.7), CVF_REPLACE)
+        stop
+      
+      C:
+        SMK3 ABCDEFGHIJKLMNOP 2 bright A_ChangeVelocity(velx * 0.8, vely * 0.8, (velz * 0.8) + frandom(0.4, 0.7), CVF_REPLACE)
+        stop
+      
+      D:
+        SMK4 ABCDEFGHIJKLMNOP 2 bright A_ChangeVelocity(velx * 0.8, vely * 0.8, (velz * 0.8) + frandom(0.4, 0.7), CVF_REPLACE)
+        stop
+    }
+}
+
 
 actor MinigunAfterburnFlame
 {
