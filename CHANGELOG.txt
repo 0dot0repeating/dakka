@@ -45,14 +45,19 @@ NEW WEAPONS:
 
 WEAPON CHANGES:
 
+- All the weapons now bob in a bouncier manner.
+
 - The pistol alt-fire has been heavily nerfed, both in bullet count (4 to 3) and
     fire rate (15 tics to 18 tics).
 
-- The pistols now properly alternate when tapping priamry fire. In the process
+- The pistols now properly alternate when tapping primary fire. In the process
     of doing this, a small animation glitch was also fixed.
 
 - The pistols no longer have the slide bounce back when lowering. Guns do not
     work that way, and it looks stupid regardless.
+
+- The dual pistol primary fire has had its spread significantly reduced, making
+    it a much more capable medium range weapon.
 
 - The shotgun's primary fire has been buffed to 125 damage, making it capable of
     killing hell knights, arachnotrons, and barons of hell in one less shot.
@@ -69,12 +74,21 @@ WEAPON CHANGES:
     couldn't use an odd number of gyro shells and could only get an odd amount
     through ammo regeneration, it makes more sense to do it this way.
 
-- Chaingun rain grenades have a slight full-damage radius now, which should make
-    them more effective at clearing out trash. In return, they've been nerfed to
-    24 damage per explosion, down from 32.
+- The chaingun's gone. The minigun took its place, which is part of why the dual
+    pistols have better accuracy.
 
-- The chaingun and minigun have had their bullet damage nerfed (20 to 16).
+- The minigun now does only 12 damage per bullet (down from 20).
 
+- The minigun's alt-fire now properly sets enemies on fire! The flames will deal
+    minimal contact damage that builds up the longer you hold the flamethrower
+    on an enemy, and enemies that are on fire take 15 afterburn damage a second
+    for as long as they're on fire. Enemies set alight burn for three seconds -
+    this is reset with every flame that burns them.
+  
+    The upshot of it is that the flamethrower is now an excellent tool for
+    wiping out weaker enemies, good at softening up hordes, and still effective
+    for melting any single target. It no longer annihilates spider masterminds,
+    however.
 
 
 AMMO CHANGES:
@@ -87,10 +101,8 @@ AMMO CHANGES:
     their pickup and ammo regeneration rates cut significantly. This is after
     factoring in that the SSG only uses one per shot now.
 
-- The rain grenades have undergone similar treatment, having been cut down from
-    a default capacity of 40 to 15, with much lower regeneration and pickup
-    rates. They're simply too strong to be carrying around 80 of them along with
-    all your other ammo.
+- Flamer fuel has also been nerfed heavily. It now has a max ammo count of 60,
+    and you now only get 8 flamer fuel from bullet boxes and 12 from cell packs.
 
 - You now carry up to 120 rockets (240 with a backpack), get 4 rockets from
     small rocket pickups, and get 20 from rocket boxes. This sounds like a buff,
