@@ -158,32 +158,32 @@ DTitle_AllWhite
 
 DTitle_Fists
 {
-    #203040 #C0F0FF 0 255
+    #402010 #ffad73 0 255
 }
 
 DTitle_Scrappers
 {
-    #102040 #40E0FF 0 255
+    #401500 #ff7733 0 255
 }
 
 DTitle_Pistol
 {
-    #4d4026 #fff4b3 0 255
+    #203040 #C0F0FF 0 255
 }
 
 DTitle_Pistols
 {
-    #403520 #ffd966 0 255
+    #102040 #40E0FF 0 255
 }
 
 DTitle_Shotgun
 {
-    #403020 #FFE0A0 0 255
+    #403020 #ffcc99 0 255
 }
 
 DTitle_SuperShotgun
 {
-    #402810 #FFC050 0 255
+    #402810 #ffae5c 0 255
 }
 
 DTitle_Minigun

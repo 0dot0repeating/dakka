@@ -373,24 +373,29 @@ script "titlemap_scoretips" (int flash, int duration)
 }
 
 
-#define GAMETIPCOUNT    14
+#define GAMETIPCOUNT    18
 
 int GameTips[GAMETIPCOUNT] =
 {
     // General
-    "Dakkaguy takes reduced damage from his own explosions, but \canot\c- reduced thrust. This means exactly what you think it means.",
+    "Dakkaguy takes reduced damage from his own explosions. So go on, rocket jump to that key and break the map. You know you want to...",
     "Your weapons can still be swapped out while in a firing animation, so take advantage of it!",
+    "By default, your ammo gets reset when you beat a map. Don't hoard it - use it!",
     
     // Fist
     "Your fists are silent, which is perfect for breaking those maps that force you to shoot a switch at the start.\n\nOr you could just shoot the switch anyway, since it lets you kill more demons.",
     "You can charge up the fist's alt-fire up to three times, and at max charge, your punch will ruin the day of both whoever you hit and his buddies next to him!",
+    "Hitting a target with a heavy punch lets you do light punches at full speed. But if you miss, you lose all your speed on your light punches. So don't miss!",
     
     // Scrappers
     "Spent ammo of all kinds refuels your scrappers. Respect the environment; scrap some demons before that meter tops off.",
     "Scrappers + small places = very dead demons.",
     
+    // Pistols
+    "The minigun tends to be overkill on weaker enemies, so why not use that pistol ammo? You weren't using it anyway.",
+    
     // SSG
-    "Dakkaguy can reload the super shotgun with his buttcheeks. Take advantage of that, and fill the downtime with more dakka!",
+    "Dakkaguy can reload the super shotgun with his buttcheeks. This makes it great for a quick, heavy burst of close-range damage!",
     "You know how Dakkaguy reloads the super shotgun even if it isn't empty yet? You can still shoot when he does that.",
     "The super shotgun has no refire delay, so hitting both mouse buttons in quick succession will fire whichever button you hit first, twice. Bring the pain!",
     
@@ -400,9 +405,10 @@ int GameTips[GAMETIPCOUNT] =
     
     // Impaler
     "The impaler's alt-fire impales demons, surprisingly enough. Use it to bring stragglers close to their friends and blow them all up!",
+    "The impaler's primary fire has most of its explosion directed forward, while the alt-fire's explosion is all around. Keeping this in mind will save you rockets.",
     
     // Lancer
-    "Plasma nails pierce through enemies, similarly to the impaler primary fire. They don't penetrate nearly as far, but it's still extra damage, right?",
+    "Plasma nails pierce through enemies, so line them up and get a two-for-one deal on your cells!",
     "The lancer's arcs like to travel forward as much as possible. Line up your enemies when using it; it's more effective that way.",
 };
 
@@ -420,7 +426,7 @@ int GameHeaders[GAMEHEADERCOUNT] =
 };
 
 
-#define DUMBTIPCOUNT 91
+#define DUMBTIPCOUNT 93
 
 int DumbTips[DUMBTIPCOUNT] = 
 {
@@ -438,12 +444,12 @@ int DumbTips[DUMBTIPCOUNT] =
     "Ford, you're turning into a penguin. Stop it.",
     "How was I supposed to know the big red glowing button labeled \"SELF DESTRUCT, DO NOT PUSH\" was going to do something?",
     "You know how the Doomguy has a pet rabbit? Well, Dakkaguy has a pet rocket. It's a friendly rocket. Never made a mess in the house, never barked at anyone - it was a well behaved rocket. Well, one day, as Hell was invading, some imp picked up the innocent rocket and slashed it. The rocket exploded in his face.\n\nDeserved it, too. Fucking fascist.",
-    "Would it be considered sporting to update Samsara just to break the addons? No? Too bad.",
+    "This mod's been around for four years in some form or another. And pretty much all of those other forms are terrible!",
     "No wang for you.",
     "Roll to fondle yourself.",
     "What are you gonna do, stab me?",
     "To defeat the Cyberdemon, shoot at it until it dies.",
-    "protip: git gud",
+    "Is there insurance against getting played like a damn fiddle?",
     "Hey, chaingun! The hell with respect!",
     "Dakka's guns work by one rule: would it be cool if they worked like that? If no, then they don't work like that.",
     "If a tree falls in the woods and no one is around to hear it, it should've had LifeAlert.",
@@ -459,12 +465,12 @@ int DumbTips[DUMBTIPCOUNT] =
     "\"All you had to do was not punch an astronaut.\"\n\n\"Sometimes it's hard not to punch an astronaut...\"",
     "Soylent pink is made of demons! \caDEMONS!",
     "Do not pet the cacodemon.",
-    "The UAC should build a wall to keep the demons out!\nAnd then make Hell pay for it!",
+    "The UAC should build a wall to keep the demons out! And then make Hell pay for it!",
     "Insert coin to continue.",
     "Welcome to die!",
     "Those demon bastards are gonna pay for screwing up my vacation.",
     "Just because you can't cram four shells into a double-barreled shotgun and have it actually work doesn't mean I won't try anyway.",
-    "ayy lmao",
+    "As it turns out, the demons were in your heart all along.\n\nThat's probably a bad thing.",
     "Stay awhile and listen!",
     "Greetings, mortal. Are you ready to die?",
     "Eat the path. Literally eat this dirt path. Here's some ketchup and a knife. Get to it.",
@@ -515,6 +521,8 @@ int DumbTips[DUMBTIPCOUNT] =
     "Sometimes things get a little ugly. Sometimes things get real ugly. Sometimes things just don't work out at all like how you'd expect them to.\n\nSo anyway, officer, about the dead guy...",
     "Maybe... maybe I'm the chump.",
     "Slated for a 1.0 release in 2097!",
+    "DAKKA: It's better than getting your legs chopped off!",
+    "If it moves, shoot it. If it doesn't move, kick it so it moves a bit. Then shoot it.",
 };
 
 
@@ -570,7 +578,7 @@ script "titlemap_dumbtips" (void)
     
     HudMessage(s:dumbHeader;   HUDMSG_FADEINOUT | HUDMSG_COLORSTRING, 51, "Gold",  160.4, 70.1, dumbDuration, 1.0, 1.0);
     
-    SetHudClipRect(40, 0, 240, 200, 240);
+    SetHudClipRect(30, 0, 262, 200, 260); // buffer for right side of letters
     HudMessage(s:dumbReplaced; HUDMSG_FADEINOUT | HUDMSG_COLORSTRING, 52, "White", 160.4, 85.1, dumbDuration, 1.0, 1.0);
     SetHudClipRect(0, 0, 0, 0, 0);
     SetResultValue(dumbDelay);
@@ -611,7 +619,8 @@ script "titlemap_gametips" (void)
     SetFont("ARCFONT");
     
     HudMessage(s:dumbHeader;   HUDMSG_FADEINOUT | HUDMSG_COLORSTRING, 51, "Green", 160.4, 70.1, dumbDuration, 1.0, 1.0);
-    SetHudClipRect(40, 0, 240, 200, 240);
+    
+    SetHudClipRect(30, 0, 262, 200, 260); // buffer for right side of letters
     HudMessage(s:dumbReplaced; HUDMSG_FADEINOUT | HUDMSG_COLORSTRING, 52, "White", 160.4, 85.1, dumbDuration, 1.0, 1.0);
     SetHudClipRect(0, 0, 0, 0, 0);
     SetResultValue(dumbDelay);
