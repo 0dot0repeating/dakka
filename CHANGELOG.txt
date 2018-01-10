@@ -41,10 +41,10 @@ COOL STUFF:
 
 - Since the minigun's taken over the chaingun slot, something new needs to
     replace the berserk pickups. And that something is... the vampire sphere!
-    For 30 seconds after picking it up, every kill you get heals you! The lower
-    your health is, the more it heals you, encouraging you to stay in the fight
-    longer and kill even faster. And now you can't say Dakka's berserk pickup
-    doesn't heal you.
+    For 30 seconds after picking it up, every kill you get heals you! Tougher
+    enemies grant more health, as does having less health to begin with,
+    encouraging you to stay in the fight longer and kill even faster. And now
+    you can't say Dakka's berserk pickup doesn't heal you.
 
 
 WEAPON CHANGES:
