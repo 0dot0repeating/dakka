@@ -380,30 +380,44 @@ script "titlemap_scoretips" (int flash, int duration)
 
 int GameTips[GAMETIPCOUNT] =
 {
-    "The super shotgun has no refire delay, so hitting both mouse buttons in quick succession will fire whichever button you hit first, twice. Bring the pain!",
-    "The impaler's alt-fire impales demons, surprisingly enough. Use it to bring stragglers close to their friends and blow them all up!",
-    "Plasma nails pierce through enemies, similarly to the impaler primary fire. They don't penetrate nearly as far, but it's still extra damage, right?",
-    "Dakkaguy can reload the super shotgun with his buttcheeks. Take advantage of that, and fill the downtime with more dakka!",
+    // General
     "Dakkaguy takes reduced damage from his own explosions, but \canot\c- reduced thrust. This means exactly what you think it means.",
-    "Shotgun grenades: they might not actually be rockets, but who cares?",
-    "Rain grenades are best employed in multiples. Anything that manages to survive won't be able to retaliate under the storm of explosions.",
-    "Your fists are silent, which is perfect for breaking those maps that force you to shoot a switch at the start.\n\nOr you could just shoot the switch anyway, since it lets you kill more demons.",
-    "Spent ammo of all kinds refuels your scrappers. Respect the environment; scrap some demons before that meter tops off.",
-    "The fatter the enemy, the better the minigun roasts them.\n\nThis is not a social commentary.\nNo, not even now. Shut up.",
-    "Scrappers + small places = very dead demons.",
-    "You can reload-cancel the SSG, as long as it didn't start the reload empty. This applies both to idle reloads and manual reloads.",
-    "Minigun flames pierce invulnerability.\nBecause why not?",
     "Your weapons can still be swapped out while in a firing animation, so take advantage of it!",
+    
+    // Fist
+    "Your fists are silent, which is perfect for breaking those maps that force you to shoot a switch at the start.\n\nOr you could just shoot the switch anyway, since it lets you kill more demons.",
+    "You can charge up the fist's alt-fire up to three times, and at max charge, your punch will ruin the day of both whoever you hit and his buddies next to him!",
+    
+    // Scrappers
+    "Spent ammo of all kinds refuels your scrappers. Respect the environment; scrap some demons before that meter tops off.",
+    "Scrappers + small places = very dead demons.",
+    
+    // SSG
+    "Dakkaguy can reload the super shotgun with his buttcheeks. Take advantage of that, and fill the downtime with more dakka!",
+    "You know how Dakkaguy reloads the super shotgun even if it isn't empty yet? You can still shoot when he does that.",
+    "The super shotgun has no refire delay, so hitting both mouse buttons in quick succession will fire whichever button you hit first, twice. Bring the pain!",
+    
+    // Minigun
+    "The minigun's flamethrower is great at weeding out weaker enemies in a crowd - if the flamethrower itself doesn't kill them, the afterburn will.",
+    "Minigun flames pierce invulnerability.\nBecause why not?",
+    
+    // Impaler
+    "The impaler's alt-fire impales demons, surprisingly enough. Use it to bring stragglers close to their friends and blow them all up!",
+    
+    // Lancer
+    "Plasma nails pierce through enemies, similarly to the impaler primary fire. They don't penetrate nearly as far, but it's still extra damage, right?",
+    "The lancer's arcs like to travel forward as much as possible. Line up your enemies when using it; it's more effective that way.",
 };
 
 
-#define GAMEHEADERCOUNT 5
+#define GAMEHEADERCOUNT 6
 
 int GameHeaders[GAMEHEADERCOUNT] =
 {
     "Quick Tip:",
     "Tip in a Can:",
     "I bet you knew this already:",
+    "Here's how this thing works:",
     "Loading, please wait...",
     "PRO DAKKA STRATS",
 };
@@ -441,7 +455,6 @@ int DumbTips[DUMBTIPCOUNT] =
     "Now with 100% more percentages!",
     "Perhaps the same could be said of all religions.",
     "Only you can prevent the world from being plunged balls-deep into an asspocalypse! Do your part today! Join the Buttpain Army!",
-    "\cfDID YOU KNOW:\c- Silicon Knights bought some rights from Epic to use Unreal Engine 3 in one of their games, \cdToo Human\c-, for the Xbox 360. Epic then used UE3 to make \cdGears of War\c-, also for the Xbox 360. Silicon Knights sued Epic for working on Gears of War - again, made in UE3 - instead of making UE3 usable. Then it was discovered Too Human had parts of the UE3 engine in it \caanyway\c-.\n\nSilicon Knights did not think this through.",
     "RIP Cyberrunner 2013-2013 - it was too fast for Doom",
     "In the beginning were the words, and the words were \"fucking hacker il report u\".",
     "The year is 2047. The cybernetic revolution is full force. Cyborgs walk the street, and while some still give them trouble, the majority simply regard it as everyday life. Man and machine have conjoined inseparably, and even as transcendence nears us, The Space Pirate has still not seen an update.",
@@ -487,7 +500,7 @@ int DumbTips[DUMBTIPCOUNT] =
     "\cgSWORN TO AVENGE\n\cgCONDEMN TO HELL\n\cgTEMPT NOT THE BLADE\n\crALL FEAR THE SENTINEL",
     "Strange I was chosen, the fool divine\nTo challenge the master of riddle and rhyme\nAnother mountain for me to climb\nI must find the answer\nBefore I run out of time",
     "The stairway to heaven is currently out of order. Please use the ladder instead.",
-    "You gain Brouzouf\nYour leg is broken\nYou gain Brouzouf\nYou gain Brouzouf\nYou gain Brouzouf\nMy legs are OK\nYou gain Brouzouf",
+    "Where is the brouzouf? I was told there'd be brouzouf!",
     "Are you lost? Or have you already been lost since the very beginning?",
     "The only accident I fear will be your head falling into a vat of acid with me wearing your fucking moron face as a party mask.",
     "When will rocket jumping be included at the Olympics? It's a valid sport!",
@@ -503,7 +516,8 @@ int DumbTips[DUMBTIPCOUNT] =
     "I'm sorry, this line has been disconnected.",
     "I just called to say... I love you.",
     "Sometimes things get a little ugly. Sometimes things get real ugly. Sometimes things just don't work out at all like how you'd expect them to.\n\nSo anyway, officer, about the dead guy...",
-    "Maybe... maybe I'm the chump.\n\n\n\n\n... nah.",
+    "Maybe... maybe I'm the chump.",
+    "Slated for a 1.0 release in 2097!",
 };
 
 

@@ -39,6 +39,16 @@ the folder, not its contents. Don't do that.
 The `CHANGELOG.txt` file will tell you in greater detail what's changed, but the
 most important things:
 
+- Dakkaguy's limp-wrist punching days are over. Instead, you can pummel your foes
+  with an utterly ridiculous barrage of jabs, or cave their face in with a hook
+  to the face that'd leave anyone reeling in pain, if not splattered all over the
+  walls. Or give them a one-two-**THREE** to bust the skulls of both the poor sap
+  in front of your fist, and all his buddies next to him.
+
+- The minigun's flamethrower now properly sets things on fire! Focus it on a
+  demon to cleanse his sinful presence, or sweep a crowd and wipe out all those
+  pesky hitscanners within it!
+
 - The rocket launcher has been dropped and replaced with the **IMPALER.**
   Originally in the BFG slot before I decided that was stupid, it's a triple
   barreled, fully automatic deliverer of explosive death. The primary fire is
@@ -51,12 +61,6 @@ most important things:
   demon busting machine that anyone can appreciate. Do you want to pepper your
   enemies with plasma nails, or do you want to charge up a lightning storm to
   roast everyone in front of you? Either way, the lancer has you covered.
-
-- Dakkaguy's limp-wrist punching days are over. Instead, you can pummel your foes
-  with an utterly ridiculous barrage of jabs, or cave their face in with a hook
-  to the face that'd leave anyone reeling in pain, if not splattered all over the
-  walls. Or give them a one-two-**THREE** to bust the skulls of both the poor sap
-  in front of your fist, and all his buddies next to him.
 
 - [The HUD isn't ugly anymore!](https://imgur.com/a/VLIrg) Seriously, what was I
   *thinking* with those rounded corners and that awful alignment?
