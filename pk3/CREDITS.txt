@@ -17,6 +17,7 @@ GRAPHICS
 - Lancer projectile sprites: by Fuzzyblaze/Infernex
 - BFG9000: id software
 
+- Vampirism pickup: Mr.Enchanter and NoozeArts
 - Smoke sprites: from Metroid: Dreadnought, probably procedurally generated
 - TITLEMAP/DAKKTEST extra textures: cc4-tex.wad (DAKNUM* by ijon)
 - Clean BIGFONT (for the score line): Blue Shadow
@@ -42,3 +43,4 @@ SOUNDS
 - BFG alt-fire: Obsidian Software, in Fallout: New Vegas
 
 - Score reward sounds: People Can Fly, in Painkiller
+- Vampirism sounds: People Can Fly, in Painkiller

@@ -75,6 +75,10 @@
 // Rotate sound slots so weapon firing sounds can overlap with each other.
 #include "dakka_rotatesound.h"
 
+// Kill things, get health.
+#include "dakka_vampirism.h"
+
+
 // Punch the things.
 #include "dakka_fists.h"
 
@@ -82,16 +86,13 @@
 //  to handle the triggers and whatnot
 #include "dakka_ssg.h"
 
-
-// If you don't have flamer fuel, throw in WRF_NOSECONDARY for the minigun's spindown.
+// Handles both the minigun's spindown and the flamethrower.
 #include "dakka_minigun.h"
-
 
 // This determines how the impaler alt-fire actually impales.
 #include "dakka_impaler.h"
 
-
-// Plasma lance hit detection.
+// Plasma lance hit detection. Also used in the impaler.
 #include "dakka_plasmalance.h"
 
 // BFG BEAM SON
@@ -117,3 +118,6 @@
 
 // This also has the RESPAWN script.
 #include "dakka_enter.h"
+
+// Monsters call this script when they die.
+#include "dakka_onkill.h"

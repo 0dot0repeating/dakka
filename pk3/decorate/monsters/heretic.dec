@@ -3,11 +3,11 @@ actor Dakka_Heretic_BarfyDude: Beast replaces Beast
     States
     {
       Death:
-        "----" A 0 ACS_NamedExecuteWithResult("Dakka_Score", -1)
+        "----" A 0 ACS_NamedExecuteWithResult("Dakka_OnKill", -1)
         goto Super::Death
 
       XDeath:
-        "----" A 0 ACS_NamedExecuteWithResult("Dakka_Score", -1)
+        "----" A 0 ACS_NamedExecuteWithResult("Dakka_OnKill", -1)
         goto Super::XDeath
     }
 }
@@ -17,7 +17,7 @@ actor Dakka_Heretic_ShankDude: Clink replaces Clink
     States
     {
       Death:
-        "----" A 0 ACS_NamedExecuteWithResult("Dakka_Score", -1)
+        "----" A 0 ACS_NamedExecuteWithResult("Dakka_OnKill", -1)
         goto Super::Death
     }
 }
@@ -27,7 +27,7 @@ actor Dakka_Heretic_HelmetDude: Ironlich replaces Ironlich
     States
     {
       Death:
-        "----" A 0 ACS_NamedExecuteWithResult("Dakka_Score", -1)
+        "----" A 0 ACS_NamedExecuteWithResult("Dakka_OnKill", -1)
         goto Super::Death
     }
 }
@@ -37,7 +37,7 @@ actor Dakka_Heretic_SkellyDude: Knight replaces Knight
     States
     {
       Death:
-        "----" A 0 ACS_NamedExecuteWithResult("Dakka_Score", -1)
+        "----" A 0 ACS_NamedExecuteWithResult("Dakka_OnKill", -1)
         goto Super::Death
     }
 }
@@ -47,7 +47,7 @@ actor Dakka_Heretic_SpookySkellyDude: KnightGhost replaces KnightGhost
     States
     {
       Death:
-        "----" A 0 ACS_NamedExecuteWithResult("Dakka_Score", 250)
+        "----" A 0 ACS_NamedExecuteWithResult("Dakka_OnKill", 250)
         goto Super::Death
     }
 }
@@ -57,7 +57,7 @@ actor Dakka_Heretic_HammerDude: Minotaur replaces Minotaur
     States
     {
       Death:
-        "----" A 0 ACS_NamedExecuteWithResult("Dakka_Score", -1)
+        "----" A 0 ACS_NamedExecuteWithResult("Dakka_OnKill", -1)
         goto Super::Death
     }
 }
@@ -67,7 +67,7 @@ actor Dakka_Heretic_PunchDude: Mummy replaces Mummy
     States
     {
       Death:
-        "----" A 0 ACS_NamedExecuteWithResult("Dakka_Score", -1)
+        "----" A 0 ACS_NamedExecuteWithResult("Dakka_OnKill", -1)
         goto Super::Death
     }
 }
@@ -77,7 +77,7 @@ actor Dakka_Heretic_GhostpunchDude: MummyGhost replaces MummyGhost
     States
     {
       Death:
-        "----" A 0 ACS_NamedExecuteWithResult("Dakka_Score", 100)
+        "----" A 0 ACS_NamedExecuteWithResult("Dakka_OnKill", 100)
         goto Super::Death
     }
 }
@@ -87,7 +87,7 @@ actor Dakka_Heretic_BestNamedDude: MummyLeader replaces MummyLeader
     States
     {
       Death:
-        "----" A 0 ACS_NamedExecuteWithResult("Dakka_Score", -1)
+        "----" A 0 ACS_NamedExecuteWithResult("Dakka_OnKill", -1)
         goto Super::Death
     }
 }
@@ -97,7 +97,7 @@ actor Dakka_Heretic_BestNamedGhostDude: MummyLeaderGhost replaces MummyLeaderGho
     States
     {
       Death:
-        "----" A 0 ACS_NamedExecuteWithResult("Dakka_Score", 125)
+        "----" A 0 ACS_NamedExecuteWithResult("Dakka_OnKill", 125)
         goto Super::Death
     }
 }
@@ -107,7 +107,7 @@ actor Dakka_Heretic_Medudesa: Snake replaces Snake
     States
     {
       Death:
-        "----" A 0 ACS_NamedExecuteWithResult("Dakka_Score", -1)
+        "----" A 0 ACS_NamedExecuteWithResult("Dakka_OnKill", -1)
         goto Super::Death
     }
 }
@@ -117,7 +117,7 @@ actor Dakka_Heretic_SnakeWizardDude: Sorcerer1 replaces Sorcerer1
     States
     {
       Death:
-        "----" A 0 ACS_NamedExecuteWithResult("Dakka_Score", 2500)
+        "----" A 0 ACS_NamedExecuteWithResult("Dakka_OnKill", 2500)
         goto Super::Death
     }
 }
@@ -127,7 +127,7 @@ actor Dakka_Heretic_SnakelessWizardDude: Sorcerer2 replaces Sorcerer2
     States
     {
       Death:
-        "----" A 0 ACS_NamedExecuteWithResult("Dakka_Score", 7500)
+        "----" A 0 ACS_NamedExecuteWithResult("Dakka_OnKill", 7500)
         goto Super::Death
     }
 }
@@ -137,7 +137,7 @@ actor Dakka_Heretic_BlasterMaster: Wizard replaces Wizard
     States
     {
       Death:
-        "----" A 0 ACS_NamedExecuteWithResult("Dakka_Score", -1)
+        "----" A 0 ACS_NamedExecuteWithResult("Dakka_OnKill", -1)
         goto Super::Death
     }
 }
@@ -147,11 +147,11 @@ actor Dakka_Heretic_ImpDude: HereticImp replaces HereticImp
     States
     {
       Death:
-        "----" A 0 ACS_NamedExecuteWithResult("Dakka_Score", -1)
+        "----" A 0 ACS_NamedExecuteWithResult("Dakka_OnKill", -1)
         goto Super::Death
 
       XDeath:
-        "----" A 0 ACS_NamedExecuteWithResult("Dakka_Score", -1)
+        "----" A 0 ACS_NamedExecuteWithResult("Dakka_OnKill", -1)
         goto Super::XDeath
     }
 }
@@ -161,11 +161,11 @@ actor Dakka_Heretic_SuperImpDude: HereticImpLeader replaces HereticImpLeader
     States
     {
       Death:
-        "----" A 0 ACS_NamedExecuteWithResult("Dakka_Score", -1)
+        "----" A 0 ACS_NamedExecuteWithResult("Dakka_OnKill", -1)
         goto Super::Death
 
       XDeath:
-        "----" A 0 ACS_NamedExecuteWithResult("Dakka_Score", -1)
+        "----" A 0 ACS_NamedExecuteWithResult("Dakka_OnKill", -1)
         goto Super::XDeath
     }
 }

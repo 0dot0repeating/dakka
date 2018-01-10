@@ -1,5 +1,7 @@
 [ enu default ]
 
+DAKKA_PK_VAMPIRE            = "Vampirism!";
+
 DAKKA_PK_FISTS              = "Two hands!";
 DAKKA_MP_FISTS              = "%k smacked down %o.";
 DAKKA_MP_FISTS_SLAM         = "%k smashed %o.";
@@ -42,9 +44,9 @@ OB_MPTELEFRAG               = "%k scrambled %o.";
 OB_RAILGUN                  = "%k punched some holes in %o.";
 
 OB_FRIENDLY1                = "Dammit, %k, that's not a demon!";
-OB_FRIENDLY2                = "%k has gone postal.";
+OB_FRIENDLY2                = "%k became the demons.";
 OB_FRIENDLY3                = "%k has become an equal-opportunity murderer.";
-OB_FRIENDLY4                = "%k forgot that his friends also have rocket launchers.";
+OB_FRIENDLY4                = "%k made it look like an accident.";
 
 
 QUITMSG     = "But... why?";
