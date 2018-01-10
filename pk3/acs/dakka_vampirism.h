@@ -43,21 +43,39 @@ function void Dakka_VampireHeal(int monHealth)
     int myHealth    = GetActorProperty(0, APROP_Health);
     int myMaxHealth = getMaxHealth();
     int healthOver  = myHealth - myMaxHealth;
-    int baseHeal    = random(3, 5);
+    int baseHeal    = random(3, 6);
     int healDivisor = 75;
-    int maxHeal     = 20;
+    int maxHeal     = 30;
     
-    if (healthOver >= 0)
+    
+    if (healthOver <= -50)
+    {
+        if (healthOver <= -75)
+        {
+            baseHeal    = random(5, 8);
+            healDivisor = 50;
+            maxHeal     = 50;
+        }
+        else
+        {
+            baseHeal    = random(4, 7);
+            healDivisor = 60;
+            maxHeal     = 40;
+        }
+    }
+    else if (healthOver >= 0)
     {
         if (healthOver >= 100)
         {
             baseHeal    = random(1, 3);
             healDivisor = 150;
+            maxHeal     = 10;
         }
         else
         {
             baseHeal    = random(2, 4);
             healDivisor = 100;
+            maxHeal     = 20;
         }
     }
     
