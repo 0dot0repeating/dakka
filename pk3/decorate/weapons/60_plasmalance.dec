@@ -300,19 +300,19 @@ actor DWep_PlasmaLance: DoomWeapon
         
       AltFire_Charge4:
         PLNC B 0 ACS_NamedExecuteWithResult("Dakka_Switcharoo", 13, 1)
-        PLNC B 0 ACS_NamedExecuteAlways("Dakka_Recoil", 0, 10, 2, 24)
+        PLNC B 0 ACS_NamedExecuteAlways("Dakka_Recoil", 0, 10, 2, 23)
         PLNC B 0 A_FireBullets(12, 2, 4, 0, "LanceArcShot_Power4",  false, 832)
         goto AltFire_End
         
       AltFire_Charge5:
         PLNC B 0 ACS_NamedExecuteWithResult("Dakka_Switcharoo", 13, 1)
-        PLNC B 0 ACS_NamedExecuteAlways("Dakka_Recoil", 0, 12, 2, 28)
+        PLNC B 0 ACS_NamedExecuteAlways("Dakka_Recoil", 0, 12, 2, 26)
         PLNC B 0 A_FireBullets(12, 2, 4, 0, "LanceArcShot_Power5",  false, 928)
         goto AltFire_End
       
       AltFire_Charge6:
         PLNC B 0 ACS_NamedExecuteWithResult("Dakka_Switcharoo", 13, 1)
-        PLNC B 0 ACS_NamedExecuteAlways("Dakka_Recoil", 0, 14, 2, 35)
+        PLNC B 0 ACS_NamedExecuteAlways("Dakka_Recoil", 0, 14, 2, 30)
         PLNC B 0 A_FireBullets(12, 2, 4, 0, "LanceArcShot_Power6",  false, 1024)
         goto AltFire_End
       
