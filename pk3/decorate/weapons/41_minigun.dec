@@ -9,12 +9,17 @@ actor DWep_Minigun: DoomWeapon
     Weapon.SlotNumber 4
     Weapon.SelectionOrder 350
 
-    Weapon.AmmoType1 "DakkaBullet_5mm"
-    Weapon.AmmoType2 "DakkaFlamerFuel"
-    Weapon.AmmoUse1 1
-    Weapon.AmmoUse2 1
-    Weapon.AmmoGive1 80
-    Weapon.AmmoGive2 6
+    Weapon.AmmoType1    "DakkaBullet_5mm"
+    Weapon.AmmoType2    "DakkaFlamerFuel"
+    Weapon.AmmoUse1     1
+    Weapon.AmmoUse2     1
+    Weapon.AmmoGive1    80
+    Weapon.AmmoGive2    6
+    
+    Weapon.BobStyle InverseSmooth
+    Weapon.BobSpeed 2.5
+    Weapon.BobRangeX 0.3
+    Weapon.BobRangeY 0.4
 
     Weapon.Kickback 50
 

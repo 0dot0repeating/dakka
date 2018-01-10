@@ -10,11 +10,16 @@ actor DWep_Scrappers: DoomWeapon
     Weapon.SlotNumber 1
     Weapon.SelectionOrder 1100
 
-    Weapon.AmmoUse1 6
-    Weapon.AmmoUse2 12
-    Weapon.AmmoGive1 48
     Weapon.AmmoType1    "DakkaScrap"
     Weapon.AmmoType2    "DakkaScrap"
+    Weapon.AmmoUse1     6
+    Weapon.AmmoUse2     12
+    Weapon.AmmoGive1    48
+    
+    Weapon.BobStyle InverseSmooth
+    Weapon.BobSpeed 2.5
+    Weapon.BobRangeX 0.3
+    Weapon.BobRangeY 0.4
 
     Inventory.PickupMessage "$DAKKA_PK_SCRAPPER"
     Obituary "$DAKKA_MP_SCRAPPER"

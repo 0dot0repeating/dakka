@@ -19,11 +19,17 @@ actor DWep_Pistols: DoomWeapon
 
     Weapon.SlotNumber 2
     Weapon.SelectionOrder 1500
-    Weapon.AmmoUse1 1
-    Weapon.AmmoUse2 6
-    Weapon.AmmoGive 20
-    Weapon.AmmoType1 "DakkaBullet_10mm"
-    Weapon.AmmoType2 "DakkaBullet_10mm"
+    
+    Weapon.AmmoType1    "DakkaBullet_10mm"
+    Weapon.AmmoType2    "DakkaBullet_10mm"
+    Weapon.AmmoUse1     1
+    Weapon.AmmoUse2     6
+    Weapon.AmmoGive     20
+    
+    Weapon.BobStyle InverseSmooth
+    Weapon.BobSpeed 2.5
+    Weapon.BobRangeX 0.3
+    Weapon.BobRangeY 0.4
 
     +UNDROPPABLE
     +ALT_AMMO_OPTIONAL

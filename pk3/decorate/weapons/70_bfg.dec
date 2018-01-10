@@ -12,14 +12,16 @@ actor DWep_BFG9000: DoomWeapon
     Weapon.SlotNumber 7
     Weapon.SelectionOrder 1000
 
-    Weapon.AmmoType1 "DakkaCells"
-    Weapon.AmmoType2 "DakkaCells"
-
-    Weapon.AmmoGive1 100
-    Weapon.AmmoGive2 0
-
-    Weapon.AmmoUse1  50
-    Weapon.AmmoUse2  5
+    Weapon.AmmoType1    "DakkaCells"
+    Weapon.AmmoType2    "DakkaCells"
+    Weapon.AmmoUse1     50
+    Weapon.AmmoUse2     5
+    Weapon.AmmoGive1    100
+    
+    Weapon.BobStyle InverseSmooth
+    Weapon.BobSpeed 2.5
+    Weapon.BobRangeX 0.2
+    Weapon.BobRangeY 0.3
 
     Inventory.PickupMessage "$DAKKA_PK_BFG9000"
     Obituary "$DAKKA_MP_BFG9000SPLASH"
