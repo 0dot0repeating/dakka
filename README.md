@@ -63,9 +63,9 @@ most important things:
   roast everyone in front of you? Either way, the lancer has you covered.
 
 - The berserk pickup, now vacant due to the minigun changing spots, is now occupied
-  by the **VAMPIRE SPHERE.** Every kill you make grants you health, and the less
-  health you have, the more health you get back. Strong encouragement to stay in
-  the fight and keep killing demons, don't you think?
+  by the **VAMPIRE SPHERE.** Every kill you make grants you health, with more
+  health being granted for tougher enemies and being low on health yourself.
+  Good encouragement to stay in the fight and keep killing demons, don't you think?
 
 - [The HUD isn't ugly anymore!](https://imgur.com/a/VLIrg) Seriously, what was I
   *thinking* with those rounded corners and that awful alignment?
