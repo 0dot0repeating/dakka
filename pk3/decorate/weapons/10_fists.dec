@@ -539,7 +539,7 @@ actor FistPowerPunch1: BulletPuff
       
       MeatHit:
         TNT1 A 0 A_GiveToTarget("DakkaFistConnected")
-        TNT1 A 0 A_GiveToTarget("DakkaFistSpeed", 5)
+        TNT1 A 0 A_GiveToTarget("DakkaFistSpeed", 16)
         TNT1 A 1 A_Jump(256, "MeatEnd")
         wait
       
