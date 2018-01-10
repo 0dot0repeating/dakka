@@ -175,7 +175,7 @@ OptionMenu "Dakka_UserOptions"
 {
     Title "DAKKA (User options)"
 
-    Slider "Recoil factor", "dakka_cl_recoil", 0, 1000, 25, 0
+    Slider "Recoil factor", "dakka_cl_recoil", 0, 300, 10, 0
     Option "Jerky recoil", "dakka_cl_jerkyrecoil", "OnOff"
 
     StaticText ""
