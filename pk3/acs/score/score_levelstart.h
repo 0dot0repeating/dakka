@@ -62,7 +62,7 @@ function void Score_CalcMapPoints(void)
     
     MapStart_FullHealPoints = max(5000, ((fullHealPoints + 2500) / 5000) * 5000);
     
-    Log(s:"\ca", d:totalMons, s:"   \cf", d:totalPoints, s:"   \cd", d:MapStart_FullHealPoints);
+    //Log(s:"\ca", d:totalMons, s:"   \cf", d:totalPoints, s:"   \cd", d:MapStart_FullHealPoints);
 
     // Adjust everyone's base score to match the percentage from the last map if it's non-zero
     for (i = 0; i < PLAYERMAX; i++)
@@ -84,7 +84,7 @@ script "Score_Count" (void)
     
     Score_TotalNums[0] += 1;
     Score_TotalNums[1] += points;
-    Log(s:"\cd[", s:name, s:"] \cf(", d:points, s:")");
+    //Log(s:"\cd[", s:name, s:"] \cf(", d:points, s:")");
 }
 
 
