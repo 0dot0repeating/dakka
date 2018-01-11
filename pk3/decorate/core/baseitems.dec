@@ -102,6 +102,11 @@ actor HUD_RedArmor:     Boolean {}
 actor HUD_AnyDoomKeys:  Boolean {}
 actor HUD_AnyCardKeys:  Boolean {}
 
+// Multiple vampire heal scripts could be running at once, hence being a counter
+actor HUD_VampireFlash1: Counter { +INTERHUBSTRIP }
+actor HUD_VampireFlash2: Counter { +INTERHUBSTRIP }
+actor HUD_VampireFlash3: Counter { +INTERHUBSTRIP }
+
 actor DakkaUnshootable: Trigger
 {
     States
