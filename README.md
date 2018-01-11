@@ -74,7 +74,7 @@ most important things:
 
 ## ADD-ONS
 
-Right now, there's two addons:
+Right now, there's only one addon:
 
 ### Ancient Aliens
 
@@ -84,20 +84,6 @@ from the `addons/` directory (use the "Raw" button), and load the mods in this o
 - `aaliens.wad`
 - DAKKA
 - `dakka_aaliens.wad`
-
-
-### Colorful Hell (outdated)
-
-This mod has outdated support for Colorful Hell - the latest version it supports
-is version 85. In case you're still using that version, grab `colorful_dakka_85.pk3`
-from the `addons/` directory (use the "Raw" button), and load the mods in the order: 
-
-- Any maps you're using
-- DAKKA
-- `colourfullHell85.pk3`
-- `colorful_dakka_85.pk3`
-
-This addon will be updated in the future, once DAKKA 0.10 gets released.
 
 
 
