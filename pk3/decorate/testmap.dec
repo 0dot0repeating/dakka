@@ -149,12 +149,12 @@ actor DAKKTEST_EnableRadiusDamage: Trigger
     }
 }
 
-actor NotABaron:        Dakka_Nobledude    {}
-actor NotACyberdemon:   Dakka_Cyberdude    {}
-actor NotASpiderdemon:  Dakka_Smartdude    {}
-actor NotAMancubus:     Dakka_Fatdude      {}
-actor NotAnArachnotron: Dakka_Spiderdude   {}
-actor NotCommanderKeen: Dakka_Underagedude {}
+actor NotABaron:        BaronOfHell         {}
+actor NotACyberdemon:   Cyberdemon          {}
+actor NotASpiderdemon:  SpiderMastermind    {}
+actor NotAMancubus:     Fatso               {}
+actor NotAnArachnotron: Arachnotron         {}
+actor NotCommanderKeen: CommanderKeen       {}
 
 
 actor DakkaCustomBridge: CustomBridge 29651
