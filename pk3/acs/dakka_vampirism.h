@@ -36,9 +36,9 @@ script "Dakka_Vampire" (int powerupTics)
     SetActorState(looperTID, "VampireDone");
 }
 
-function void Dakka_VampireHeal(int monHealth)
+script "Dakka_VampireHeal" (int monHealth)
 {
-    if (!CheckInventory("DakkaVampireTimer")) { return; }
+    if (!CheckInventory("DakkaVampireTimer")) { terminate; }
     
     int myHealth    = GetActorProperty(0, APROP_Health);
     int myMaxHealth = getMaxHealth();
@@ -93,5 +93,17 @@ function void Dakka_VampireHeal(int monHealth)
     
     SetActivator(soundTID);
     SetPointer(AAPTR_TARGET, myTID_new);
-    Thing_ChangeTID(myTID_new, myTID_old);
+    
+    SetActivator(myTID_new);
+    Thing_ChangeTID(0, myTID_old);
+    
+    GiveInventory("HUD_VampireFlash1", 1);
+    Delay(2);
+    TakeInventory("HUD_VampireFlash1", 1);
+    GiveInventory("HUD_VampireFlash2", 1);
+    Delay(2);
+    TakeInventory("HUD_VampireFlash2", 1);
+    GiveInventory("HUD_VampireFlash3", 1);
+    Delay(2);
+    TakeInventory("HUD_VampireFlash3", 1);
 }

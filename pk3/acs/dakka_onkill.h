@@ -4,5 +4,5 @@ script "Dakka_OnKill" (int points)
     
     int spawnHP = GetActorProperty(0, APROP_SpawnHealth);
     SetActivator(0, AAPTR_TARGET);
-    Dakka_VampireHeal(spawnHP);
+    ACS_NamedExecuteWithResult("Dakka_VampireHeal", spawnHP);
 }

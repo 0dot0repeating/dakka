@@ -46,6 +46,25 @@ StatusBar Normal, fullscreenoffsets, 0.85
         DrawNumber 4, "DK_HUDBIG", DHud_Health, health, alignment(left), 24, -24;
     }
     
+    InInventory HUD_VampireFlash1
+    {
+        Alpha 0.4 { DrawImage  "HUD_HPVM", 0, -32; }
+    }
+    else
+    {
+        InInventory HUD_VampireFlash2
+        {
+            Alpha 0.2 { DrawImage  "HUD_HPVM", 0, -32; }
+        }
+        else
+        {
+            InInventory HUD_VampireFlash3
+            {
+                Alpha 0.1 { DrawImage  "HUD_HPVM", 0, -32; }
+            }
+        }
+    }
+    
     InInventory BasicArmor, 1
     {
         InInventory HUD_KnownArmor
@@ -355,6 +374,25 @@ StatusBar Fullscreen, fullscreenoffsets, 0.85
         DrawNumber 4, "DK_HUDBIG", DHud_Health, health, alignment(left), 24, -24;
     }
     
+    InInventory HUD_VampireFlash1
+    {
+        Alpha 0.4 { DrawImage  "HUD_HPVM", 0, -32; }
+    }
+    else
+    {
+        InInventory HUD_VampireFlash2
+        {
+            Alpha 0.2 { DrawImage  "HUD_HPVM", 0, -32; }
+        }
+        else
+        {
+            InInventory HUD_VampireFlash3
+            {
+                Alpha 0.1 { DrawImage  "HUD_HPVM", 0, -32; }
+            }
+        }
+    }
+    
     InInventory BasicArmor, 1
     {
         InInventory HUD_KnownArmor
@@ -641,6 +679,25 @@ StatusBar Automap, fullscreenoffsets, 0.85
     {
         DrawImage  "HUD_HP01", 0, -32;
         DrawNumber 4, "DK_HUDBIG", DHud_Health, health, alignment(left), 24, -24;
+    }
+    
+    InInventory HUD_VampireFlash1
+    {
+        Alpha 0.4 { DrawImage  "HUD_HPVM", 0, -32; }
+    }
+    else
+    {
+        InInventory HUD_VampireFlash2
+        {
+            Alpha 0.2 { DrawImage  "HUD_HPVM", 0, -32; }
+        }
+        else
+        {
+            InInventory HUD_VampireFlash3
+            {
+                Alpha 0.1 { DrawImage  "HUD_HPVM", 0, -32; }
+            }
+        }
     }
     
     InInventory BasicArmor, 1
