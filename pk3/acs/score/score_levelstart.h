@@ -20,8 +20,9 @@ function void Score_CalcMapPoints(void)
             value = GetActorProperty(testmonTID, APROP_SpawnHealth);
             Thing_Remove(testmonTID);
         }
-        
+    
         int count = ThingCountName(name, 0);
+        //Log(s:"\cd[", s:name, s:"] \cf(", d:value, s:")\c- Count: ", d:count);
 
         totalMons   += count;
         totalPoints += count * value;
@@ -35,6 +36,8 @@ function void Score_CalcMapPoints(void)
     int fullHealPoints = averagePoints * fullHealMult;
     
     MapStart_FullHealPoints = max(5000, ((fullHealPoints + 2500) / 5000) * 5000);
+    
+    //Log(s:"\ca", d:totalMons, s:"   \cf", d:totalPoints, s:"   \cd", d:MapStart_FullHealPoints);
 
     // Adjust everyone's base score to match the percentage from the last map if it's non-zero
     for (i = 0; i < PLAYERMAX; i++)
