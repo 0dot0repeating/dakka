@@ -67,6 +67,11 @@ most important things:
   health being granted for tougher enemies and being low on health yourself.
   Good encouragement to stay in the fight and keep killing demons, don't you think?
 
+- Dakka no longer replaces enemies, guaranteeing at least partial compatibility
+  with any monster mod out there! Until Zandronum gets `RGF_NOSIGHT`, there will
+  still be a need for compatibility patches for the score system, but DEHACKED
+  patches will no longer break!
+
 - [The HUD isn't ugly anymore!](https://imgur.com/a/VLIrg) Seriously, what was I
   *thinking* with those rounded corners and that awful alignment?
 
@@ -74,25 +79,26 @@ most important things:
 
 ## ADD-ONS
 
-Right now, there's two addons:
+Right now, there's three compatibility patches, and they all get used the same way.
 
-### Ancient Aliens
+- **Ancient Aliens (`dakka_aaliens.wad`):** This adds the gibbed marine and dead
+  lost soul to the score system since Ancient Aliens replaces them with custom
+  enemies, and adjusts their score values upwards to match their increased danger.
 
-This mod has support for the Ancient Aliens map pack. Download `dakka_aaliens.wad`
-from the `addons/` directory (use the "Raw" button), and load the mods in this order:
+- **Scythe 2 (`dakka_scythe2.wad`):** This boosts the score values of the Nazi
+  and Commander Keen actors dramatically, as they're replaced with evil marines
+  and afrits respectively, and are much more dangerous than their replacements.
 
-- `aaliens.wad`
-- DAKKA
-- `dakka_aaliens.wad`
+- **Colourful Hell (`dakka_colorfulhell.wad`):** This adds the Colourful Hell
+  enemies to the score system, so that loading Dakka and Colourful Hell together
+  doesn't result in every map giving you score rewards every 5000 points.
 
+To use any of these addons, download them from the `addons/` directory (use the
+"Raw" button), and load the mods in this order:
 
-### Scythe 2
-
-Very similar setup. Download `dakka_scythe2.wad`, and load the mods in this order:
-
-- `scythe2.wad`
-- DAKKA
-- `dakka_scythe2.wad`
+- The other maps/monsters in question
+- **DAKKA**
+- The compatibility patch
 
 
 
