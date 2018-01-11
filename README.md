@@ -10,9 +10,9 @@ Any version at and before 0.06-alpha6-2 were made in the days of Zandronum 1.3.
 ZDoom 2.5.0 and Zandronum 2.0 will run them without a hitch.
 
 Early OpenAL implementations in GZDoom will play stereo sounds incorrectly - if
-the chaingun alt-fire sounds super muffled compared to its primary fire, that's
-the bug. Either switch to one of the port versions above, or update to the latest
-GZDoom.
+the pistols and super shotgun sound quiet and muffled compared to the impaler,
+that's the bug. Either switch to one of the port versions above, or update to the
+latest GZDoom.
 
 **DOWNLOAD:** http://jinotra.in/downloads/mods/doom/dakka/
 
