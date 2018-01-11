@@ -398,6 +398,7 @@ actor PLPrimaryShot: FastProjectile
       Death:
         PLZM A 0 ACS_NamedExecuteWithResult("Dakka_InitLanceHit", 112, 24, 25)
         PLZM A 0 A_RadiusGive("PLPrimaryHitChecker", 384, RGF_MONSTERS | RGF_OBJECTS | RGF_VOODOO | RGF_CUBE)
+        PLZM AAAA 0 A_SpawnItemEx("LanceArcSpark", 0,0,0, frandom(-4, 4), 0, frandom(1, 8), frandom(0, 360))
         PLZM HIJKL 4 bright
         stop
     }
