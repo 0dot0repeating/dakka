@@ -1,5 +1,35 @@
 actor DakkaScoreItem:    Counter { +INTERHUBSTRIP }
 
+actor ScoreMonsterFinder
+{
+    +NOINTERACTION
+    +SERVERSIDEONLY
+    
+    States
+    {
+    // (1 << 10) is RGF_NOSIGHT, but we can't just use that since Zandronum doesn't recognize it
+    //  - keep in mind, this doesn't ever get used in Zandronum, but even then it'll still parse this
+      Spawn:
+        TNT1 A 1
+        stop
+      
+      Find:
+        TNT1 A 1 A_RadiusGive("ScoreCalcItem", 16383, RGF_MONSTERS | RGF_CUBE | (1 << 10))
+        stop
+    }
+}
+
+actor ScoreCalcItem: Trigger
+{
+    States
+    {
+      Pickup:
+        TNT1 A 0 ACS_NamedExecuteWithResult("Score_Count")
+        stop
+    }
+}
+
+
 actor RegenSoundLooper
 {
     +NOINTERACTION

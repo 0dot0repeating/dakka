@@ -1,32 +1,57 @@
+int Score_TotalNums[2];
+
 function void Score_CalcMapPoints(void)
 {
     if (MapStart_FullHealPoints > 0) { return; }
 
     int i;
-
-    int monTypes    = ACS_NamedExecuteWithResult("Score_MonsterTypeCount");
-    int testmonTID  = UniqueTID();
     int totalMons   = 0;
     int totalPoints = 0;
-
-    for (i = 0; i < monTypes; i++)
-    {
-        str name  = ACS_NamedExecuteWithResult("Score_MonsterAtIndex", i);
-        int value = ACS_NamedExecuteWithResult("Score_RewardAtIndex",  i);
-        
-        if (value < 0)
-        {
-            SpawnForced(name, 0,0,0, testmonTID);
-            value = GetActorProperty(testmonTID, APROP_SpawnHealth);
-            Thing_Remove(testmonTID);
-        }
     
-        int count = ThingCountName(name, 0);
-        //Log(s:"\cd[", s:name, s:"] \cf(", d:value, s:")\c- Count: ", d:count);
-
-        totalMons   += count;
-        totalPoints += count * value;
+    // Rough check to see if we should have RGF_NOSIGHT
+    int testTID = UniqueTID();
+    SpawnForced("Boolean", 0,0,0, testTID);
+    int useNoSight = cond(GetActorProperty(testTID, APROP_DamageType) == 0, false, true);
+    Thing_Remove(useNoSight);
+    
+    if (useNoSight)
+    {
+        Score_TotalNums[0] = 0;
+        Score_TotalNums[1] = 0;
+        
+        // This will have a lot of Score_Report scripts run
+        SpawnForced("ScoreMonsterFinder", 0,0,0, testTID);
+        SetActorState(testTID, "Find");
+        Thing_Remove(testTID);
+        
+        totalMons   = Score_TotalNums[0];
+        totalPoints = Score_TotalNums[1];
     }
+    else
+    {
+        int monTypes    = ACS_NamedExecuteWithResult("Score_MonsterTypeCount");
+        int testmonTID  = UniqueTID();
+
+        for (i = 0; i < monTypes; i++)
+        {
+            str name  = ACS_NamedExecuteWithResult("Score_MonsterAtIndex", i);
+            int value = ACS_NamedExecuteWithResult("Score_RewardAtIndex",  i);
+            
+            if (value < 0)
+            {
+                SpawnForced(name, 0,0,0, testTID);
+                value = GetActorProperty(testTID, APROP_SpawnHealth);
+                Thing_Remove(testTID);
+            }
+        
+            int count = ThingCountName(name, 0);
+            //Log(s:"\cd[", s:name, s:"] \cf(", d:value, s:")\c- Count: ", d:count);
+
+            totalMons   += count;
+            totalPoints += count * value;
+        }
+    }
+    
     
     int averagePoints = 0;
     if (totalMons > 0) { averagePoints  = totalPoints / totalMons; }
@@ -37,7 +62,7 @@ function void Score_CalcMapPoints(void)
     
     MapStart_FullHealPoints = max(5000, ((fullHealPoints + 2500) / 5000) * 5000);
     
-    //Log(s:"\ca", d:totalMons, s:"   \cf", d:totalPoints, s:"   \cd", d:MapStart_FullHealPoints);
+    Log(s:"\ca", d:totalMons, s:"   \cf", d:totalPoints, s:"   \cd", d:MapStart_FullHealPoints);
 
     // Adjust everyone's base score to match the percentage from the last map if it's non-zero
     for (i = 0; i < PLAYERMAX; i++)
@@ -49,6 +74,19 @@ function void Score_CalcMapPoints(void)
         Score_SetScore(i, FixedMul(MapStart_FullHealPoints, percent + 1));
     }
 }
+
+
+script "Score_Count" (void)
+{
+    str name   = GetActorClass(0);
+    int points = ACS_NamedExecuteWithResult("Score_Lookup", name);
+    if (points == -1) { points = GetActorProperty(0, APROP_SpawnHealth); }
+    
+    Score_TotalNums[0] += 1;
+    Score_TotalNums[1] += points;
+    Log(s:"\cd[", s:name, s:"] \cf(", d:points, s:")");
+}
+
 
 
 // This reads dakka_keepscore.
