@@ -24,6 +24,8 @@ $rolloff dakka/revive    512 3072
 $rolloff dakka/fizzle    128  512
 $rolloff dakka/ammoregen 128  512
 
+$volume dakka/ammoregen 0.6
+
 $limit   dakka/revive    0
 $limit   dakka/fizzle    0
 $limit   dakka/ammoregen 0
