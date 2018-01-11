@@ -74,7 +74,7 @@ most important things:
 
 ## ADD-ONS
 
-Right now, there's only one addon:
+Right now, there's two addons:
 
 ### Ancient Aliens
 
@@ -84,6 +84,15 @@ from the `addons/` directory (use the "Raw" button), and load the mods in this o
 - `aaliens.wad`
 - DAKKA
 - `dakka_aaliens.wad`
+
+
+### Scythe 2
+
+Very similar setup. Download `dakka_scythe2.wad`, and load the mods in this order:
+
+- `scythe2.wad`
+- DAKKA
+- `dakka_scythe2.wad`
 
 
 
