@@ -3,35 +3,40 @@ function void Score_CalcMapPoints(void)
     if (MapStart_FullHealPoints > 0) { return; }
 
     int i;
-    int name, count;
 
+    int monTypes    = ACS_NamedExecuteWithResult("Score_MonsterTypeCount");
+    int testmonTID  = UniqueTID();
     int totalMons   = 0;
     int totalPoints = 0;
 
-    for (i = 0; i < MONTYPES; i++)
+    for (i = 0; i < monTypes; i++)
     {
-        name = Monster_KnownMons[i];
-        count = ThingCountName(name, 0);
+        str name  = ACS_NamedExecuteWithResult("Score_MonsterAtIndex", i);
+        int value = ACS_NamedExecuteWithResult("Score_RewardAtIndex",  i);
+        
+        if (value < 0)
+        {
+            SpawnForced(name, 0,0,0, testmonTID);
+            value = GetActorProperty(testmonTID, APROP_SpawnHealth);
+            Thing_Remove(testmonTID);
+        }
+        
+        int count = ThingCountName(name, 0);
 
         totalMons   += count;
-        totalPoints += count * Monster_Points[i];
+        totalPoints += count * value;
     }
-
-    int averagePoints;
-
-    if (totalMons == 0) { averagePoints = 0; }
-    else { averagePoints  = totalPoints / totalMons; }
-
     
+    int averagePoints = 0;
+    if (totalMons > 0) { averagePoints  = totalPoints / totalMons; }
+    
+    // Controls for low and high monster counts
     int fullHealMult = middle(P_FULLHEAL_MIN, FixedMul(totalMons, P_FULLHEAL_PERCENT), P_FULLHEAL_MAX);
-
     int fullHealPoints = averagePoints * fullHealMult;
-    fullHealPoints = ((fullHealPoints + 2500) / 5000) * 5000; // Round to nearest 5000
-
-    MapStart_FullHealPoints = max(5000, fullHealPoints);
+    
+    MapStart_FullHealPoints = max(5000, ((fullHealPoints + 2500) / 5000) * 5000);
 
     // Adjust everyone's base score to match the percentage from the last map if it's non-zero
-    
     for (i = 0; i < PLAYERMAX; i++)
     {
         if (!PlayerInGame(i)) { continue; }

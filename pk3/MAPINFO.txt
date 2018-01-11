@@ -1,6 +1,7 @@
 gameinfo
 {
     playerclasses = "Dakkaguy"
+    forcekillscripts = true
 }
 
 map titlemap "DAKKA"
