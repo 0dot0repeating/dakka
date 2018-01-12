@@ -1,6 +1,6 @@
-actor MinigunFireState: Counter {}
 actor MinigunFlamethrowing: Boolean {}
-actor GoToC: Boolean {}
+actor DakkaMinigun_NextFrame:   Counter { Inventory.MaxAmount 3 }
+actor DakkaMinigun_RecoilLevel: Counter { Inventory.MaxAmount 6 }
 
 actor DWep_Minigun: DoomWeapon
 {
@@ -76,160 +76,700 @@ actor DWep_Minigun: DoomWeapon
 
       Fire:
         "----" A 0 ACS_NamedExecuteWithResult("Dakka_Switcharoo", 6, 0)
+        DMNG A 0 A_TakeInventory("DakkaMinigun_RecoilLevel")
+        DMNG A 0 A_PlaySound("dakka/minigunspinup", CHAN_WEAPON)
+        DMNG AB 2
+        DMNG CDABDCB 1
+        goto Fire_Slow
+      
+      Fire_Slow:
+        DMNG A 0 A_StopSound(5)
+        DMNG A 0 A_JumpIfInventory("AltFired", 1, "Fire_Fast")
+        DMNG A 0 A_PlaySound("dakka/minigunfire_slow", 6, 1.0, true)
+        goto Hold_Slow
+      
+      Hold_Slow:
+        DMNG A 0 A_JumpIfInventory("AltFired", 1, "Fire_Fast")
+        
+        DMNG A 0 A_GunFlash
         DMNG A 0 A_AlertMonsters
-        DMNG B 0 A_GiveInventory("GiveScrapCounter", 7)
-        DMNG A 0 A_JumpIfInventory("MinigunFireState", 5, "FireA5_Double")
-        DMNG A 0 ACS_NamedExecuteAlways("Dakka_Recoil", 0, -150, 1, 9)
-        DMNG A 0 bright A_FireBullets(7.5, 7.5, -1, 12, "DakkaPuff", FBF_NORANDOM | FBF_USEAMMO)
-        goto FireAnim
-
-      FireAnim:
-        DMNG A 0 A_JumpIfInventory("MinigunFireState", 5, "FireA5")
-        DMNG A 0 A_GiveInventory("MinigunFireState")
-        DMNG A 0 A_JumpIfInventory("MinigunFireState", 4, "FireA4")
-        DMNG A 0 A_JumpIfInventory("MinigunFireState", 3, "FireA3")
-        DMNG A 0 A_JumpIfInventory("MinigunFireState", 2, "FireA2")
-        DMNG A 0 A_JumpIfInventory("MinigunFireState", 1, "FireA1")
-        goto FireA1
+        DMNG A 0 ACS_NamedExecuteAlways("Dakka_Recoil", 0, random(-200, -100), 1, random(11, 15))
+        DMNG A 0 A_Jump(128, "Slow_Painless")
+        DMNG A 0 bright A_FireBullets(5.5, 2.5, -1, 12, "DakkaPuff", FBF_NORANDOM | FBF_USEAMMO)
+        goto Slow_Recoil
       
-      FireA1:
-        DMNG A 0 A_PlaySound("dakka/minigunfire", 4)
-        DMNG A 1 bright offset(0, 34) A_GunFlash
-        DMNG B 2 bright offset(0, 33) A_WeaponReady(WRF_NOFIRE | WRF_NOBOB)
-        DMNG C 2 offset(0, 32) A_WeaponReady(WRF_NOFIRE | WRF_NOBOB)
-        DMNG D 2 A_WeaponReady(WRF_NOFIRE | WRF_NOBOB)
-        DMNG C 0 A_Refire
-        DMNG A 3 A_WeaponReady(WRF_NOBOB | CallACS("Dakka_MinigunReady"))
-        DMNG B 3 A_WeaponReady(WRF_NOBOB | CallACS("Dakka_MinigunReady"))
-        DMNG C 4 A_WeaponReady(WRF_NOBOB | CallACS("Dakka_MinigunReady"))
-        DMNG D 5 A_WeaponReady(WRF_NOBOB | CallACS("Dakka_MinigunReady"))
+      Slow_Painless:
+        DMNG A 0 bright A_FireBullets(5.5, 2.5, -1, 12, "DakkaPuff_Painless", FBF_NORANDOM | FBF_USEAMMO)
+        goto Slow_Recoil
+      
+      
+      Slow_Recoil:
+        DMNG A 0 A_GiveInventory("DakkaMinigun_RecoilLevel")
+        
+        DMNG A 0 A_JumpIfInventory("DakkaMinigun_RecoilLevel", 5, "SlowRecoil5")
+        DMNG A 0 A_JumpIfInventory("DakkaMinigun_RecoilLevel", 4, "SlowRecoil4")
+        DMNG A 0 A_JumpIfInventory("DakkaMinigun_RecoilLevel", 3, "SlowRecoil3")
+        DMNG A 0 A_JumpIfInventory("DakkaMinigun_RecoilLevel", 2, "SlowRecoil2")
+        goto SlowRecoil1
+      
+      
+      SlowRecoil1:
+        DMNG A 0 A_JumpIfInventory("DakkaMinigun_NextFrame", 3, "SlowRecoil1_DB")
+        DMNG A 0 A_JumpIfInventory("DakkaMinigun_NextFrame", 2, "SlowRecoil1_CA")
+        DMNG A 0 A_JumpIfInventory("DakkaMinigun_NextFrame", 1, "SlowRecoil1_BD")
+        goto SlowRecoil1_AC
+      
+      SlowRecoil1_AC:
+        DMNG A 0 A_TakeInventory("DakkaMinigun_NextFrame")
+        DMNG A 1 offset(0, 35)
+        DMNG C 1 offset(0, 34)
+        DMNG C 0 A_Refire("Hold_Slow")
+        goto FireEnd_Recoil1
+      
+      SlowRecoil1_BD:
+        DMNG B 0 A_TakeInventory("DakkaMinigun_NextFrame")
+        DMNG B 0 A_GiveInventory("DakkaMinigun_NextFrame", 1)
+        DMNG B 1 offset(0, 35)
+        DMNG D 1 offset(0, 34)
+        DMNG D 0 A_Refire("Hold_Slow")
+        goto FireEnd_Recoil1
+      
+      SlowRecoil1_CA:
+        DMNG C 0 A_TakeInventory("DakkaMinigun_NextFrame")
+        DMNG C 0 A_GiveInventory("DakkaMinigun_NextFrame", 2)
+        DMNG C 1 offset(0, 35)
+        DMNG A 1 offset(0, 34)
+        DMNG A 0 A_Refire("Hold_Slow")
+        goto FireEnd_Recoil1
+      
+      SlowRecoil1_DB:
+        DMNG D 0 A_TakeInventory("DakkaMinigun_NextFrame")
+        DMNG D 0 A_GiveInventory("DakkaMinigun_NextFrame", 3)
+        DMNG D 1 offset(0, 35)
+        DMNG B 1 offset(0, 34)
+        DMNG B 0 A_Refire("Hold_Slow")
+        goto FireEnd_Recoil1
+      
+      
+      SlowRecoil2:
+        DMNG A 0 A_JumpIfInventory("DakkaMinigun_NextFrame", 3, "SlowRecoil2_DB")
+        DMNG A 0 A_JumpIfInventory("DakkaMinigun_NextFrame", 2, "SlowRecoil2_CA")
+        DMNG A 0 A_JumpIfInventory("DakkaMinigun_NextFrame", 1, "SlowRecoil2_BD")
+        goto SlowRecoil2_AC
+      
+      SlowRecoil2_AC:
+        DMNG A 0 A_TakeInventory("DakkaMinigun_NextFrame")
+        DMNG A 1 offset(0, 37)
+        DMNG C 1 offset(0, 36)
+        DMNG C 0 A_Refire("Hold_Slow")
+        goto FireEnd_Recoil2
+      
+      SlowRecoil2_BD:
+        DMNG B 0 A_TakeInventory("DakkaMinigun_NextFrame")
+        DMNG B 0 A_GiveInventory("DakkaMinigun_NextFrame", 1)
+        DMNG B 1 offset(0, 37)
+        DMNG D 1 offset(0, 36)
+        DMNG D 0 A_Refire("Hold_Slow")
+        goto FireEnd_Recoil2
+      
+      SlowRecoil2_CA:
+        DMNG C 0 A_TakeInventory("DakkaMinigun_NextFrame")
+        DMNG C 0 A_GiveInventory("DakkaMinigun_NextFrame", 2)
+        DMNG C 1 offset(0, 37)
+        DMNG A 1 offset(0, 36)
+        DMNG A 0 A_Refire("Hold_Slow")
+        goto FireEnd_Recoil2
+      
+      SlowRecoil2_DB:
+        DMNG D 0 A_TakeInventory("DakkaMinigun_NextFrame")
+        DMNG D 0 A_GiveInventory("DakkaMinigun_NextFrame", 3)
+        DMNG D 1 offset(0, 37)
+        DMNG B 1 offset(0, 36)
+        DMNG B 0 A_Refire("Hold_Slow")
+        goto FireEnd_Recoil2
+      
+      
+      SlowRecoil3:
+        // bring it back down to 3 when coming from fast firing
+        DMNG A 0 A_TakeInventory("DakkaMinigun_RecoilLevel")
+        DMNG A 0 A_GiveInventory("DakkaMinigun_RecoilLevel", 3)
+        DMNG A 0 A_JumpIfInventory("DakkaMinigun_NextFrame", 3, "SlowRecoil3_DB")
+        DMNG A 0 A_JumpIfInventory("DakkaMinigun_NextFrame", 2, "SlowRecoil3_CA")
+        DMNG A 0 A_JumpIfInventory("DakkaMinigun_NextFrame", 1, "SlowRecoil3_BD")
+        goto SlowRecoil3_AC
+      
+      SlowRecoil3_AC:
+        DMNG A 0 A_TakeInventory("DakkaMinigun_NextFrame")
+        DMNG A 1 offset(0, 38)
+        DMNG C 1 offset(0, 37)
+        DMNG C 0 A_Refire("Hold_Slow")
+        goto FireEnd_Recoil3
+      
+      SlowRecoil3_BD:
+        DMNG B 0 A_TakeInventory("DakkaMinigun_NextFrame")
+        DMNG B 0 A_GiveInventory("DakkaMinigun_NextFrame", 1)
+        DMNG B 1 offset(0, 38)
+        DMNG D 1 offset(0, 37)
+        DMNG D 0 A_Refire("Hold_Slow")
+        goto FireEnd_Recoil3
+      
+      SlowRecoil3_CA:
+        DMNG C 0 A_TakeInventory("DakkaMinigun_NextFrame")
+        DMNG C 0 A_GiveInventory("DakkaMinigun_NextFrame", 2)
+        DMNG C 1 offset(0, 38)
+        DMNG A 1 offset(0, 37)
+        DMNG A 0 A_Refire("Hold_Slow")
+        goto FireEnd_Recoil3
+      
+      SlowRecoil3_DB:
+        DMNG D 0 A_TakeInventory("DakkaMinigun_NextFrame")
+        DMNG D 0 A_GiveInventory("DakkaMinigun_NextFrame", 3)
+        DMNG D 1 offset(0, 38)
+        DMNG B 1 offset(0, 37)
+        DMNG B 0 A_Refire("Hold_Slow")
+        goto FireEnd_Recoil3
+      
+      
+      SlowRecoil4:
+        DMNG A 0 A_TakeInventory("DakkaMinigun_RecoilLevel")
+        DMNG A 0 A_GiveInventory("DakkaMinigun_RecoilLevel", 3)
+        DMNG A 0 A_JumpIfInventory("DakkaMinigun_NextFrame", 3, "SlowRecoil4_DB")
+        DMNG A 0 A_JumpIfInventory("DakkaMinigun_NextFrame", 2, "SlowRecoil4_CA")
+        DMNG A 0 A_JumpIfInventory("DakkaMinigun_NextFrame", 1, "SlowRecoil4_BD")
+        goto SlowRecoil4_AC
+      
+      SlowRecoil4_AC:
+        DMNG A 0 A_TakeInventory("DakkaMinigun_NextFrame")
+        DMNG A 1 offset(0, 40)
+        DMNG C 1 offset(0, 39)
+        DMNG C 0 A_Refire("Hold_Slow")
+        goto FireEnd_Recoil4
+      
+      SlowRecoil4_BD:
+        DMNG B 0 A_TakeInventory("DakkaMinigun_NextFrame")
+        DMNG B 0 A_GiveInventory("DakkaMinigun_NextFrame", 1)
+        DMNG B 1 offset(0, 40)
+        DMNG D 1 offset(0, 39)
+        DMNG D 0 A_Refire("Hold_Slow")
+        goto FireEnd_Recoil4
+      
+      SlowRecoil4_CA:
+        DMNG C 0 A_TakeInventory("DakkaMinigun_NextFrame")
+        DMNG C 0 A_GiveInventory("DakkaMinigun_NextFrame", 2)
+        DMNG C 1 offset(0, 40)
+        DMNG A 1 offset(0, 39)
+        DMNG A 0 A_Refire("Hold_Slow")
+        goto FireEnd_Recoil4
+      
+      SlowRecoil4_DB:
+        DMNG D 0 A_TakeInventory("DakkaMinigun_NextFrame")
+        DMNG D 0 A_GiveInventory("DakkaMinigun_NextFrame", 3)
+        DMNG D 1 offset(0, 40)
+        DMNG B 1 offset(0, 39)
+        DMNG B 0 A_Refire("Hold_Slow")
+        goto FireEnd_Recoil4
+      
+      
+      SlowRecoil5:
+        DMNG A 0 A_TakeInventory("DakkaMinigun_RecoilLevel")
+        DMNG A 0 A_GiveInventory("DakkaMinigun_RecoilLevel", 4)
+        DMNG A 0 A_JumpIfInventory("DakkaMinigun_NextFrame", 3, "SlowRecoil5_DB")
+        DMNG A 0 A_JumpIfInventory("DakkaMinigun_NextFrame", 2, "SlowRecoil5_CA")
+        DMNG A 0 A_JumpIfInventory("DakkaMinigun_NextFrame", 1, "SlowRecoil5_BD")
+        goto SlowRecoil5_AC
+      
+      SlowRecoil5_AC:
+        DMNG A 0 A_TakeInventory("DakkaMinigun_NextFrame")
+        DMNG A 1 offset(0, 42)
+        DMNG C 1 offset(0, 41)
+        DMNG C 0 A_Refire("Hold_Slow")
+        goto FireEnd_Recoil5
+      
+      SlowRecoil5_BD:
+        DMNG B 0 A_TakeInventory("DakkaMinigun_NextFrame")
+        DMNG B 0 A_GiveInventory("DakkaMinigun_NextFrame", 1)
+        DMNG B 1 offset(0, 42)
+        DMNG D 1 offset(0, 41)
+        DMNG D 0 A_Refire("Hold_Slow")
+        goto FireEnd_Recoil5
+      
+      SlowRecoil5_CA:
+        DMNG C 0 A_TakeInventory("DakkaMinigun_NextFrame")
+        DMNG C 0 A_GiveInventory("DakkaMinigun_NextFrame", 2)
+        DMNG C 1 offset(0, 42)
+        DMNG A 1 offset(0, 41)
+        DMNG A 0 A_Refire("Hold_Slow")
+        goto FireEnd_Recoil5
+      
+      SlowRecoil5_DB:
+        DMNG D 0 A_TakeInventory("DakkaMinigun_NextFrame")
+        DMNG D 0 A_GiveInventory("DakkaMinigun_NextFrame", 3)
+        DMNG D 1 offset(0, 42)
+        DMNG B 1 offset(0, 41)
+        DMNG B 0 A_Refire("Hold_Slow")
+        goto FireEnd_Recoil5
+      
+      
+      
+      Fire_Fast:
+        DMNG A 0 A_PlaySound("dakka/minigunfire_fast", 6, 1.0, true)
+        goto Hold_Fast
+      
+      Hold_Fast:
+        DMNG A 0 A_JumpIfInventory("AltFired", 1, 1)
+        goto Fire_Slow
+        
+        DMNG A 0 A_AlertMonsters
+        DMNG A 0 A_GunFlash("FlashFastA")
+        DMNG A 0 A_Jump(128, "Fast_Painless")
+        DMNG A 0 A_FireBullets(14, 6, -1, 6, "DakkaPuff",          FBF_NORANDOM)
+        DMNG A 0 A_FireBullets(14, 6,  1, 6, "DakkaPuff_Painless", FBF_NORANDOM | FBF_USEAMMO)
+        goto Fast_Recoil
+      
+      Fast_Painless:
+        DMNG A 0 A_FireBullets(14, 6,  2, 6, "DakkaPuff_Painless", FBF_NORANDOM | FBF_USEAMMO)
+        goto Fast_Recoil
+        
+      
+      Fast_Recoil:
+        DMNG A 0 A_GiveInventory("DakkaMinigun_RecoilLevel")
+        
+        DMNG A 0 A_JumpIfInventory("DakkaMinigun_RecoilLevel", 6, "FastRecoil6")
+        DMNG A 0 A_JumpIfInventory("DakkaMinigun_RecoilLevel", 5, "FastRecoil5")
+        DMNG A 0 A_JumpIfInventory("DakkaMinigun_RecoilLevel", 4, "FastRecoil4")
+        DMNG A 0 A_JumpIfInventory("DakkaMinigun_RecoilLevel", 3, "FastRecoil3")
+        DMNG A 0 A_JumpIfInventory("DakkaMinigun_RecoilLevel", 2, "FastRecoil2")
+        goto FastRecoil1
+      
+      
+      FastRecoil1:
+        DMNG A 0 ACS_NamedExecuteAlways("Dakka_Recoil", 0, random(-200, -100), 1, random(8, 13))
+        DMNG A 0 A_JumpIfInventory("DakkaMinigun_NextFrame", 3, "FastRecoil1_D")
+        DMNG A 0 A_JumpIfInventory("DakkaMinigun_NextFrame", 2, "FastRecoil1_C")
+        DMNG A 0 A_JumpIfInventory("DakkaMinigun_NextFrame", 1, "FastRecoil1_B")
+        goto FastRecoil1_A
+      
+      FastRecoil1_A:
+        DMNG A 0 A_TakeInventory("DakkaMinigun_NextFrame")
+        DMNG A 0 A_GiveInventory("DakkaMinigun_NextFrame", random(2,3))
+        DMNG A 1 offset(0, 35) A_GunFlash("FlashFastA")
+        DMNG A 0 A_Refire("Hold_Fast")
+        goto FireEnd_Recoil1
+      
+      FastRecoil1_B:
+        DMNG B 0 A_TakeInventory("DakkaMinigun_NextFrame")
+        DMNG A 0 A_GiveInventory("DakkaMinigun_NextFrame", 3)
+        DMNG B 1 offset(0, 35) A_GunFlash("FlashFastB")
+        DMNG B 0 A_Refire("Hold_Fast")
+        goto FireEnd_Recoil1
+      
+      FastRecoil1_C:
+        DMNG C 0 A_TakeInventory("DakkaMinigun_NextFrame")
+        DMNG C 1 offset(0, 35) A_GunFlash("FlashFastA")
+        DMNG C 0 A_Refire("Hold_Fast")
+        goto FireEnd_Recoil1
+      
+      FastRecoil1_D:
+        DMNG D 0 A_TakeInventory("DakkaMinigun_NextFrame")
+        DMNG A 0 A_GiveInventory("DakkaMinigun_NextFrame", random(1,2))
+        DMNG D 1 offset(0, 35) A_GunFlash("FlashFastB")
+        DMNG D 0 A_Refire("Hold_Fast")
+        goto FireEnd_Recoil1
+      
+      
+      FastRecoil2:
+        DMNG A 0 ACS_NamedExecuteAlways("Dakka_Recoil", 0, random(-250, -150), 1, random(10, 15))
+        DMNG A 0 A_JumpIfInventory("DakkaMinigun_NextFrame", 3, "FastRecoil2_D")
+        DMNG A 0 A_JumpIfInventory("DakkaMinigun_NextFrame", 2, "FastRecoil2_C")
+        DMNG A 0 A_JumpIfInventory("DakkaMinigun_NextFrame", 1, "FastRecoil2_B")
+        goto FastRecoil2_A
+      
+      FastRecoil2_A:
+        DMNG A 0 A_TakeInventory("DakkaMinigun_NextFrame")
+        DMNG A 0 A_GiveInventory("DakkaMinigun_NextFrame", random(1,2))
+        DMNG A 1 offset(0, 37) A_GunFlash("FlashFastA")
+        DMNG A 0 A_Refire("Hold_Fast")
+        goto FireEnd_Recoil2
+      
+      FastRecoil2_B:
+        DMNG B 0 A_TakeInventory("DakkaMinigun_NextFrame")
+        DMNG A 0 A_GiveInventory("DakkaMinigun_NextFrame", 3)
+        DMNG B 1 offset(0, 37) A_GunFlash("FlashFastA")
+        DMNG B 0 A_Refire("Hold_Fast")
+        goto FireEnd_Recoil2
+      
+      FastRecoil2_C:
+        DMNG C 0 A_TakeInventory("DakkaMinigun_NextFrame")
+        DMNG C 1 offset(0, 37) A_GunFlash("FlashFastB")
+        DMNG C 0 A_Refire("Hold_Fast")
+        goto FireEnd_Recoil2
+      
+      FastRecoil2_D:
+        DMNG D 0 A_TakeInventory("DakkaMinigun_NextFrame")
+        DMNG A 0 A_GiveInventory("DakkaMinigun_NextFrame", random(1,2))
+        DMNG D 1 offset(0, 37) A_GunFlash("FlashFastB")
+        DMNG D 0 A_Refire("Hold_Fast")
+        goto FireEnd_Recoil2
+      
+      
+      FastRecoil3:
+        DMNG A 0 ACS_NamedExecuteAlways("Dakka_Recoil", 0, random(-200, -100), 1, random(8, 13))
+        DMNG A 0 A_JumpIfInventory("DakkaMinigun_NextFrame", 3, "FastRecoil3_D")
+        DMNG A 0 A_JumpIfInventory("DakkaMinigun_NextFrame", 2, "FastRecoil3_C")
+        DMNG A 0 A_JumpIfInventory("DakkaMinigun_NextFrame", 1, "FastRecoil3_B")
+        goto FastRecoil3_A
+      
+      FastRecoil3_A:
+        DMNG A 0 A_TakeInventory("DakkaMinigun_NextFrame")
+        DMNG A 0 A_GiveInventory("DakkaMinigun_NextFrame", random(1,2))
+        DMNG A 1 offset(0, 39) A_GunFlash("FlashFastA")
+        DMNG A 0 A_Refire("Hold_Fast")
+        goto FireEnd_Recoil3
+      
+      FastRecoil3_B:
+        DMNG B 0 A_TakeInventory("DakkaMinigun_NextFrame")
+        DMNG A 0 A_GiveInventory("DakkaMinigun_NextFrame", 3)
+        DMNG B 1 offset(0, 39) A_GunFlash("FlashFastA")
+        DMNG B 0 A_Refire("Hold_Fast")
+        goto FireEnd_Recoil3
+      
+      FastRecoil3_C:
+        DMNG C 0 A_TakeInventory("DakkaMinigun_NextFrame")
+        DMNG C 1 offset(0, 39) A_GunFlash("FlashFastB")
+        DMNG C 0 A_Refire("Hold_Fast")
+        goto FireEnd_Recoil3
+      
+      FastRecoil3_D:
+        DMNG D 0 A_TakeInventory("DakkaMinigun_NextFrame")
+        DMNG A 0 A_GiveInventory("DakkaMinigun_NextFrame", random(1,2))
+        DMNG D 1 offset(0, 39) A_GunFlash("FlashFastB")
+        DMNG D 0 A_Refire("Hold_Fast")
+        goto FireEnd_Recoil3
+      
+      
+      FastRecoil4:
+        DMNG A 0 ACS_NamedExecuteAlways("Dakka_Recoil", 0, random(-250, -150), 1, random(10, 15))
+        DMNG A 0 A_JumpIfInventory("DakkaMinigun_NextFrame", 3, "FastRecoil4_D")
+        DMNG A 0 A_JumpIfInventory("DakkaMinigun_NextFrame", 2, "FastRecoil4_C")
+        DMNG A 0 A_JumpIfInventory("DakkaMinigun_NextFrame", 1, "FastRecoil4_B")
+        goto FastRecoil4_A
+      
+      FastRecoil4_A:
+        DMNG A 0 A_TakeInventory("DakkaMinigun_NextFrame")
+        DMNG A 0 A_GiveInventory("DakkaMinigun_NextFrame", random(1,2))
+        DMNG A 1 offset(0, 41) A_GunFlash("FlashFastA")
+        DMNG A 0 A_Refire("Hold_Fast")
+        goto FireEnd_Recoil4
+      
+      FastRecoil4_B:
+        DMNG B 0 A_TakeInventory("DakkaMinigun_NextFrame")
+        DMNG A 0 A_GiveInventory("DakkaMinigun_NextFrame", 3)
+        DMNG B 1 offset(0, 41) A_GunFlash("FlashFastA")
+        DMNG B 0 A_Refire("Hold_Fast")
+        goto FireEnd_Recoil4
+      
+      FastRecoil4_C:
+        DMNG C 0 A_TakeInventory("DakkaMinigun_NextFrame")
+        DMNG C 1 offset(0, 41) A_GunFlash("FlashFastB")
+        DMNG C 0 A_Refire("Hold_Fast")
+        goto FireEnd_Recoil4
+      
+      FastRecoil4_D:
+        DMNG D 0 A_TakeInventory("DakkaMinigun_NextFrame")
+        DMNG A 0 A_GiveInventory("DakkaMinigun_NextFrame", random(1,2))
+        DMNG D 1 offset(0, 41) A_GunFlash("FlashFastB")
+        DMNG D 0 A_Refire("Hold_Fast")
+        goto FireEnd_Recoil4
+      
+      
+      FastRecoil5:
+        DMNG A 0 ACS_NamedExecuteAlways("Dakka_Recoil", 0, random(-200, -100), 1, random(8, 13))
+        DMNG A 0 A_JumpIfInventory("DakkaMinigun_NextFrame", 3, "FastRecoil5_D")
+        DMNG A 0 A_JumpIfInventory("DakkaMinigun_NextFrame", 2, "FastRecoil5_C")
+        DMNG A 0 A_JumpIfInventory("DakkaMinigun_NextFrame", 1, "FastRecoil5_B")
+        goto FastRecoil5_A
+      
+      FastRecoil5_A:
+        DMNG A 0 A_TakeInventory("DakkaMinigun_NextFrame")
+        DMNG A 0 A_GiveInventory("DakkaMinigun_NextFrame", random(1,2))
+        DMNG A 1 offset(0, 43) A_GunFlash("FlashFastA")
+        DMNG A 0 A_Refire("Hold_Fast")
+        goto FireEnd_Recoil5
+      
+      FastRecoil5_B:
+        DMNG B 0 A_TakeInventory("DakkaMinigun_NextFrame")
+        DMNG A 0 A_GiveInventory("DakkaMinigun_NextFrame", 3)
+        DMNG B 1 offset(0, 43) A_GunFlash("FlashFastA")
+        DMNG B 0 A_Refire("Hold_Fast")
+        goto FireEnd_Recoil5
+      
+      FastRecoil5_C:
+        DMNG C 0 A_TakeInventory("DakkaMinigun_NextFrame")
+        DMNG C 1 offset(0, 43) A_GunFlash("FlashFastB")
+        DMNG C 0 A_Refire("Hold_Fast")
+        goto FireEnd_Recoil5
+      
+      FastRecoil5_D:
+        DMNG D 0 A_TakeInventory("DakkaMinigun_NextFrame")
+        DMNG A 0 A_GiveInventory("DakkaMinigun_NextFrame", random(1,2))
+        DMNG D 1 offset(0, 43) A_GunFlash("FlashFastB")
+        DMNG D 0 A_Refire("Hold_Fast")
+        goto FireEnd_Recoil5
+      
+      
+      FastRecoil6:
+        DMNG A 0 ACS_NamedExecuteAlways("Dakka_Recoil", 0, random(-250, -150), 1, random(10, 15))
+        DMNG A 0 A_TakeInventory("DakkaMinigun_RecoilLevel", 2)
+        DMNG A 0 A_JumpIfInventory("DakkaMinigun_NextFrame", 3, "FastRecoil6_D")
+        DMNG A 0 A_JumpIfInventory("DakkaMinigun_NextFrame", 2, "FastRecoil6_C")
+        DMNG A 0 A_JumpIfInventory("DakkaMinigun_NextFrame", 1, "FastRecoil6_B")
+        goto FastRecoil6_A
+      
+      FastRecoil6_A:
+        DMNG A 0 A_TakeInventory("DakkaMinigun_NextFrame")
+        DMNG A 0 A_GiveInventory("DakkaMinigun_NextFrame", random(1,2))
+        DMNG A 1 offset(0, 44) A_GunFlash("FlashFastA")
+        DMNG A 0 A_Refire("Hold_Fast")
+        goto FireEnd_Recoil5
+      
+      FastRecoil6_B:
+        DMNG B 0 A_TakeInventory("DakkaMinigun_NextFrame")
+        DMNG A 0 A_GiveInventory("DakkaMinigun_NextFrame", 3)
+        DMNG B 1 offset(0, 44) A_GunFlash("FlashFastA")
+        DMNG B 0 A_Refire("Hold_Fast")
+        goto FireEnd_Recoil5
+      
+      FastRecoil6_C:
+        DMNG C 0 A_TakeInventory("DakkaMinigun_NextFrame")
+        DMNG C 1 offset(0, 44) A_GunFlash("FlashFastB")
+        DMNG C 0 A_Refire("Hold_Fast")
+        goto FireEnd_Recoil5
+      
+      FastRecoil6_D:
+        DMNG D 0 A_TakeInventory("DakkaMinigun_NextFrame")
+        DMNG A 0 A_GiveInventory("DakkaMinigun_NextFrame", random(1,2))
+        DMNG D 1 offset(0, 44) A_GunFlash("FlashFastB")
+        DMNG D 0 A_Refire("Hold_Fast")
+        goto FireEnd_Recoil5
+      
+      
+      // welcome to "where the fuck are my anonymous functions"
+      
+      FireEnd_Recoil5:
+        DMNG A 0 A_StopSound(6)
+        DMNG A 0 A_PlaySound("dakka/minigunspindown", 5)
+        DMNG A 0               A_Refire("Fire_Slow")
+        DMNG A 1               A_WeaponReady(WRF_NOFIRE | WRF_NOBOB)
+        DMNG B 0               A_Refire("Fire_Slow")
+        DMNG B 1 offset(0, 41) A_WeaponReady(WRF_NOFIRE | WRF_NOBOB)
+        DMNG C 0               A_Refire("Fire_Slow")
+        DMNG C 1               A_WeaponReady(WRF_NOFIRE | WRF_NOBOB)
+        DMNG D 0               A_Refire("Fire_Slow")
+        DMNG D 0               A_TakeInventory("DakkaMinigun_RecoilLevel", 1)
+        DMNG D 1 offset(0, 38) A_WeaponReady(WRF_NOFIRE | WRF_NOBOB)
+        DMNG A 0               A_Refire("Fire_Slow")
+        DMNG A 1               A_WeaponReady(WRF_NOFIRE | WRF_NOBOB)
+        DMNG B 0               A_Refire("Fire_Slow")
+        DMNG B 0               A_TakeInventory("DakkaMinigun_RecoilLevel", 1)
+        DMNG B 1 offset(0, 35) A_WeaponReady(WRF_NOFIRE | WRF_NOBOB)
+        DMNG C 0               A_Refire("Fire_Slow")
+        DMNG C 1               A_WeaponReady(WRF_NOFIRE | WRF_NOBOB)
+        DMNG D 0               A_Refire("Fire_Slow")
+        DMNG D 0               A_TakeInventory("DakkaMinigun_RecoilLevel", 1)
+        DMNG D 1 offset(0, 34) A_WeaponReady(WRF_NOFIRE | WRF_NOBOB)
+        
+        DMNG A 0 A_Refire("Fire_Slow")
+        DMNG A 1 A_WeaponReady(WRF_NOPRIMARY | WRF_NOBOB)
+        DMNG A 0 A_Refire("Fire_Slow")
+        DMNG A 0               A_TakeInventory("DakkaMinigun_RecoilLevel", 1)
+        DMNG A 1 offset(0, 33) A_WeaponReady(WRF_NOPRIMARY | WRF_NOBOB)
+        DMNG B 0 A_Refire("Fire_Slow")
+        DMNG B 1 A_WeaponReady(WRF_NOPRIMARY | WRF_NOBOB)
+        DMNG B 0 A_Refire("Fire_Slow")
+        DMNG B 1 offset(0, 32) A_WeaponReady(WRF_NOPRIMARY | WRF_NOBOB)
+        goto FireEnd_Common
+        
+        
+      FireEnd_Recoil4:
+        DMNG A 0 A_StopSound(6)
+        DMNG A 0 A_PlaySound("dakka/minigunspindown", 5)
+        DMNG A 0               A_Refire("Fire_Slow")
+        DMNG A 1               A_WeaponReady(WRF_NOFIRE | WRF_NOBOB)
+        DMNG B 0               A_Refire("Fire_Slow")
+        DMNG B 1 offset(0, 39) A_WeaponReady(WRF_NOFIRE | WRF_NOBOB)
+        DMNG C 0               A_Refire("Fire_Slow")
+        DMNG C 1               A_WeaponReady(WRF_NOFIRE | WRF_NOBOB)
+        DMNG D 0               A_Refire("Fire_Slow")
+        DMNG D 0               A_TakeInventory("DakkaMinigun_RecoilLevel", 1)
+        DMNG D 1 offset(0, 36) A_WeaponReady(WRF_NOFIRE | WRF_NOBOB)
+        DMNG A 0               A_Refire("Fire_Slow")
+        DMNG A 1               A_WeaponReady(WRF_NOFIRE | WRF_NOBOB)
+        DMNG B 0               A_Refire("Fire_Slow")
+        DMNG B 0               A_TakeInventory("DakkaMinigun_RecoilLevel", 1)
+        DMNG B 1 offset(0, 34) A_WeaponReady(WRF_NOFIRE | WRF_NOBOB)
+        DMNG C 0               A_Refire("Fire_Slow")
+        DMNG C 1               A_WeaponReady(WRF_NOFIRE | WRF_NOBOB)
+        DMNG D 0               A_Refire("Fire_Slow")
+        DMNG D 0               A_TakeInventory("DakkaMinigun_RecoilLevel", 1)
+        DMNG D 1 offset(0, 33) A_WeaponReady(WRF_NOFIRE | WRF_NOBOB)
+        
+        DMNG A 0 A_Refire("Fire_Slow")
+        DMNG A 1 A_WeaponReady(WRF_NOPRIMARY | WRF_NOBOB)
+        DMNG A 0 A_Refire("Fire_Slow")
+        DMNG A 1 offset(0, 32) A_WeaponReady(WRF_NOPRIMARY | WRF_NOBOB)
+        DMNG B 0 A_Refire("Fire_Slow")
+        DMNG B 1 A_WeaponReady(WRF_NOPRIMARY | WRF_NOBOB)
+        DMNG B 0 A_Refire("Fire_Slow")
+        DMNG B 1 A_WeaponReady(WRF_NOPRIMARY | WRF_NOBOB)
+        goto FireEnd_Common
+        
+        
+      FireEnd_Recoil3:
+        DMNG A 0 A_StopSound(6)
+        DMNG A 0 A_PlaySound("dakka/minigunspindown", 5)
+        DMNG A 0               A_Refire("Fire_Slow")
+        DMNG A 1               A_WeaponReady(WRF_NOFIRE | WRF_NOBOB)
+        DMNG B 0               A_Refire("Fire_Slow")
+        DMNG B 1 offset(0, 37) A_WeaponReady(WRF_NOFIRE | WRF_NOBOB)
+        DMNG C 0               A_Refire("Fire_Slow")
+        DMNG C 1               A_WeaponReady(WRF_NOFIRE | WRF_NOBOB)
+        DMNG D 0               A_Refire("Fire_Slow")
+        DMNG D 0               A_TakeInventory("DakkaMinigun_RecoilLevel", 1)
+        DMNG D 1 offset(0, 35) A_WeaponReady(WRF_NOFIRE | WRF_NOBOB)
+        DMNG A 0               A_Refire("Fire_Slow")
+        DMNG A 1               A_WeaponReady(WRF_NOFIRE | WRF_NOBOB)
+        DMNG B 0               A_Refire("Fire_Slow")
+        DMNG B 0               A_TakeInventory("DakkaMinigun_RecoilLevel", 1)
+        DMNG B 1 offset(0, 33) A_WeaponReady(WRF_NOFIRE | WRF_NOBOB)
+        DMNG C 0               A_Refire("Fire_Slow")
+        DMNG C 1               A_WeaponReady(WRF_NOFIRE | WRF_NOBOB)
+        DMNG D 0               A_Refire("Fire_Slow")
+        DMNG D 1 offset(0, 32) A_WeaponReady(WRF_NOFIRE | WRF_NOBOB)
+        
+        DMNG A 0 A_Refire("Fire_Slow")
+        DMNG A 1 A_WeaponReady(WRF_NOPRIMARY | WRF_NOBOB)
+        DMNG A 0 A_Refire("Fire_Slow")
+        DMNG A 1 A_WeaponReady(WRF_NOPRIMARY | WRF_NOBOB)
+        DMNG B 0 A_Refire("Fire_Slow")
+        DMNG B 1 A_WeaponReady(WRF_NOPRIMARY | WRF_NOBOB)
+        DMNG B 0 A_Refire("Fire_Slow")
+        DMNG B 1 A_WeaponReady(WRF_NOPRIMARY | WRF_NOBOB)
+        goto FireEnd_Common
+        
+        
+      FireEnd_Recoil2:
+        DMNG A 0 A_StopSound(6)
+        DMNG A 0 A_PlaySound("dakka/minigunspindown", 5)
+        DMNG A 0               A_Refire("Fire_Slow")
+        DMNG A 1               A_WeaponReady(WRF_NOFIRE | WRF_NOBOB)
+        DMNG B 0               A_Refire("Fire_Slow")
+        DMNG B 1 offset(0, 35) A_WeaponReady(WRF_NOFIRE | WRF_NOBOB)
+        DMNG C 0               A_Refire("Fire_Slow")
+        DMNG C 1               A_WeaponReady(WRF_NOFIRE | WRF_NOBOB)
+        DMNG D 0               A_Refire("Fire_Slow")
+        DMNG D 0               A_TakeInventory("DakkaMinigun_RecoilLevel", 1)
+        DMNG D 1 offset(0, 33) A_WeaponReady(WRF_NOFIRE | WRF_NOBOB)
+        DMNG A 0               A_Refire("Fire_Slow")
+        DMNG A 1               A_WeaponReady(WRF_NOFIRE | WRF_NOBOB)
+        DMNG B 0               A_Refire("Fire_Slow")
+        DMNG B 1 offset(0, 32) A_WeaponReady(WRF_NOFIRE | WRF_NOBOB)
+        DMNG C 0               A_Refire("Fire_Slow")
+        DMNG C 1               A_WeaponReady(WRF_NOFIRE | WRF_NOBOB)
+        DMNG D 0               A_Refire("Fire_Slow")
+        DMNG D 1               A_WeaponReady(WRF_NOFIRE | WRF_NOBOB)
+        
+        DMNG A 0 A_Refire("Fire_Slow")
+        DMNG A 1 A_WeaponReady(WRF_NOPRIMARY | WRF_NOBOB)
+        DMNG A 0 A_Refire("Fire_Slow")
+        DMNG A 1 A_WeaponReady(WRF_NOPRIMARY | WRF_NOBOB)
+        DMNG B 0 A_Refire("Fire_Slow")
+        DMNG B 1 A_WeaponReady(WRF_NOPRIMARY | WRF_NOBOB)
+        DMNG B 0 A_Refire("Fire_Slow")
+        DMNG B 1 A_WeaponReady(WRF_NOPRIMARY | WRF_NOBOB)
+        goto FireEnd_Common
+        
+        
+      FireEnd_Recoil1:
+        DMNG A 0 A_StopSound(6)
+        DMNG A 0 A_PlaySound("dakka/minigunspindown", 5)
+        DMNG A 0               A_Refire("Fire_Slow")
+        DMNG A 1               A_WeaponReady(WRF_NOFIRE | WRF_NOBOB)
+        DMNG B 0               A_Refire("Fire_Slow")
+        DMNG B 1 offset(0, 33) A_WeaponReady(WRF_NOFIRE | WRF_NOBOB)
+        DMNG C 0               A_Refire("Fire_Slow")
+        DMNG C 1               A_WeaponReady(WRF_NOFIRE | WRF_NOBOB)
+        DMNG D 0               A_Refire("Fire_Slow")
+        DMNG D 1 offset(0, 32) A_WeaponReady(WRF_NOFIRE | WRF_NOBOB)
+        DMNG A 0               A_Refire("Fire_Slow")
+        DMNG A 1               A_WeaponReady(WRF_NOFIRE | WRF_NOBOB)
+        DMNG B 0               A_Refire("Fire_Slow")
+        DMNG B 1               A_WeaponReady(WRF_NOFIRE | WRF_NOBOB)
+        DMNG C 0               A_Refire("Fire_Slow")
+        DMNG C 1               A_WeaponReady(WRF_NOFIRE | WRF_NOBOB)
+        DMNG D 0               A_Refire("Fire_Slow")
+        DMNG D 1               A_WeaponReady(WRF_NOFIRE | WRF_NOBOB)
+        
+        DMNG A 0 A_Refire("Fire_Slow")
+        DMNG A 1 A_WeaponReady(WRF_NOPRIMARY | WRF_NOBOB)
+        DMNG A 0 A_Refire("Fire_Slow")
+        DMNG A 1 A_WeaponReady(WRF_NOPRIMARY | WRF_NOBOB)
+        DMNG B 0 A_Refire("Fire_Slow")
+        DMNG B 1 A_WeaponReady(WRF_NOPRIMARY | WRF_NOBOB)
+        DMNG B 0 A_Refire("Fire_Slow")
+        DMNG B 1 A_WeaponReady(WRF_NOPRIMARY | WRF_NOBOB)
+        goto FireEnd_Common
+        
+      
+      FireEnd_Common:
+        DMNG C 0 A_Refire("Fire_Slow")
+        DMNG C 1 A_WeaponReady(WRF_NOPRIMARY | WRF_NOBOB)
+        DMNG C 0 A_Refire("Fire_Slow")
+        DMNG C 1 A_WeaponReady(WRF_NOPRIMARY | WRF_NOBOB)
+        DMNG D 0 A_Refire("Fire_Slow")
+        DMNG D 1 A_WeaponReady(WRF_NOPRIMARY | WRF_NOBOB)
+        DMNG D 0 A_Refire("Fire_Slow")
+        DMNG D 1 A_WeaponReady(WRF_NOPRIMARY | WRF_NOBOB)
+        
+        DMNG A 0 A_Refire("Fire_Slow")
+        DMNG A 1 A_WeaponReady(WRF_NOPRIMARY | WRF_NOBOB)
+        DMNG A 0 A_Refire("Fire_Slow")
+        DMNG A 1 A_WeaponReady(WRF_NOPRIMARY | WRF_NOBOB)
+        DMNG A 0 A_Refire("Fire_Slow")
+        DMNG A 1 A_WeaponReady(WRF_NOPRIMARY | WRF_NOBOB)
+        DMNG B 0 A_Refire("Fire_Slow")
+        DMNG B 1 A_WeaponReady(WRF_NOPRIMARY | WRF_NOBOB)
+        DMNG B 0 A_Refire("Fire_Slow")
+        DMNG B 1 A_WeaponReady(WRF_NOPRIMARY | WRF_NOBOB)
+        DMNG B 0 A_Refire("Fire_Slow")
+        DMNG B 1 A_WeaponReady(WRF_NOPRIMARY | WRF_NOBOB)
+       
+        DMNG CD    3 A_WeaponReady(WRF_NOBOB)
+        DMNG ABCD  4 A_WeaponReady(WRF_NOBOB)
+        DMNG ABCDA 5 A_WeaponReady(WRF_NOBOB)
         goto Ready
       
-      FireA2:
-        DMNG A 0 A_PlaySound("dakka/minigunfire", 4)
-        DMNG A 1 offset(0, 34) bright A_GunFlash
-        DMNG B 1 offset(0, 33) bright A_WeaponReady(WRF_NOFIRE | WRF_NOBOB)
-        DMNG C 1 A_WeaponReady(WRF_NOFIRE | WRF_NOBOB)
-        DMNG D 2 offset(0, 32) A_WeaponReady(WRF_NOFIRE | WRF_NOBOB)
-        DMNG C 0 A_Refire
-        DMNG A 2 A_WeaponReady(WRF_NOBOB | CallACS("Dakka_MinigunReady"))
-        DMNG B 2 A_WeaponReady(WRF_NOBOB | CallACS("Dakka_MinigunReady"))
-        DMNG A 0 A_TakeInventory("MinigunFireState", 1)
-        DMNG C 2 A_WeaponReady(WRF_NOBOB | CallACS("Dakka_MinigunReady"))
-        DMNG D 3 A_WeaponReady(WRF_NOBOB | CallACS("Dakka_MinigunReady"))
-        DMNG A 3 A_WeaponReady(WRF_NOBOB | CallACS("Dakka_MinigunReady"))
-        DMNG B 3 A_WeaponReady(WRF_NOBOB | CallACS("Dakka_MinigunReady"))
-        DMNG C 4 A_WeaponReady(WRF_NOBOB | CallACS("Dakka_MinigunReady"))
-        DMNG D 5 A_WeaponReady(WRF_NOBOB | CallACS("Dakka_MinigunReady"))
-        goto Ready
-      
-      FireA3:
-        DMNG A 0 A_PlaySound("dakka/minigunfire", 4)
-        DMNG A 1 offset(0, 34) bright A_GunFlash
-        DMNG C 1 offset(0, 33) A_WeaponReady(WRF_NOFIRE | WRF_NOBOB)
-        DMNG D 1 A_WeaponReady(WRF_NOFIRE | WRF_NOBOB)
-        DMNG C 0 A_Refire
-        DMNG AB 1 A_WeaponReady(WRF_NOBOB | CallACS("Dakka_MinigunReady"))
-        DMNG A 0 A_TakeInventory("MinigunFireState", 1)
-        DMNG CD 2 A_WeaponReady(WRF_NOBOB | CallACS("Dakka_MinigunReady"))
-        DMNG B 2 A_WeaponReady(WRF_NOBOB | CallACS("Dakka_MinigunReady"))
-        DMNG A 0 A_TakeInventory("MinigunFireState", 1)
-        DMNG C 2 A_WeaponReady(WRF_NOBOB | CallACS("Dakka_MinigunReady"))
-        DMNG D 2 A_WeaponReady(WRF_NOBOB | CallACS("Dakka_MinigunReady"))
-        DMNG A 3 A_WeaponReady(WRF_NOBOB | CallACS("Dakka_MinigunReady"))
-        DMNG B 3 A_WeaponReady(WRF_NOBOB | CallACS("Dakka_MinigunReady"))
-        DMNG C 4 A_WeaponReady(WRF_NOBOB | CallACS("Dakka_MinigunReady"))
-        DMNG D 5 A_WeaponReady(WRF_NOBOB | CallACS("Dakka_MinigunReady"))
-        goto Ready
-      
-      FireA4:
-        DMNG A 0 A_PlaySound("dakka/minigunfire", 4)
-        DMNG A 1 offset(0, 35) bright A_GunFlash
-        DMNG C 1 offset(0, 34) A_WeaponReady(WRF_NOFIRE | WRF_NOBOB)
-        DMNG C 0 A_Refire
-        DMNG AB 1 offset(0, 33) A_WeaponReady(WRF_NOBOB | CallACS("Dakka_MinigunReady"))
-        DMNG CD 1 offset(0, 32) A_WeaponReady(WRF_NOBOB | CallACS("Dakka_MinigunReady"))
-        DMNG A 0 A_TakeInventory("MinigunFireState", 1)
-        DMNG ABCD 1 A_WeaponReady(WRF_NOBOB | CallACS("Dakka_MinigunReady"))
-        DMNG A 0 A_TakeInventory("MinigunFireState", 1)
-        DMNG A 2 A_WeaponReady(WRF_NOBOB | CallACS("Dakka_MinigunReady"))
-        DMNG B 2 A_WeaponReady(WRF_NOBOB | CallACS("Dakka_MinigunReady"))
-        DMNG A 0 A_TakeInventory("MinigunFireState", 1)
-        DMNG C 2 A_WeaponReady(WRF_NOBOB | CallACS("Dakka_MinigunReady"))
-        DMNG D 3 A_WeaponReady(WRF_NOBOB | CallACS("Dakka_MinigunReady"))
-        DMNG A 3 A_WeaponReady(WRF_NOBOB | CallACS("Dakka_MinigunReady"))
-        DMNG B 3 A_WeaponReady(WRF_NOBOB | CallACS("Dakka_MinigunReady"))
-        DMNG C 4 A_WeaponReady(WRF_NOBOB | CallACS("Dakka_MinigunReady"))
-        DMNG D 5 A_WeaponReady(WRF_NOBOB | CallACS("Dakka_MinigunReady"))
-        goto Ready
-
-
-      FireA5_Double:
-        DMNG A 0 bright A_FireBullets(7.5, 7.5, 2, 6, "DakkaPuff", FBF_NORANDOM | FBF_USEAMMO)
-        goto FireA5
-
-      FireA5:
-        DMNG A 0 A_PlaySound("dakka/minigunfire", 4)
-        DMNG A 0 A_JumpIfInventory("GoToC", 1, "FireA5_C")
-        goto FireA5_A
-
-      FireA5_A:
-        DMNG A 0 ACS_NamedExecuteAlways("Dakka_Recoil", 0, -250, 1, 9)
-        DMNG A 0 A_GiveInventory("GoToC")
-        DMNG A 1 bright offset(0, 36) A_GunFlash
-        DMNG C 0 A_Refire
-        DMNG CA 1 bright offset(0, 35) A_WeaponReady(WRF_NOBOB | CallACS("Dakka_MinigunReady"))
-        DMNG A 0 A_TakeInventory("MinigunFireState", 1)
-        DMNG CA 1 offset(0, 34) A_WeaponReady(WRF_NOBOB | CallACS("Dakka_MinigunReady"))
-        DMNG BC 1 offset(0, 33) A_WeaponReady(WRF_NOBOB | CallACS("Dakka_MinigunReady"))
-        DMNG D  1 offset(0, 32) A_WeaponReady(WRF_NOBOB | CallACS("Dakka_MinigunReady"))
-        DMNG A 0 A_TakeInventory("MinigunFireState", 1)
-        DMNG ABCD 1 A_WeaponReady(WRF_NOBOB | CallACS("Dakka_MinigunReady"))
-        DMNG A 0 A_TakeInventory("MinigunFireState", 1)
-        DMNG ABCD 2 A_WeaponReady(WRF_NOBOB | CallACS("Dakka_MinigunReady"))
-        DMNG A 0 A_TakeInventory("MinigunFireState", 1)
-        DMNG A 3 A_WeaponReady(WRF_NOBOB | CallACS("Dakka_MinigunReady"))
-        DMNG B 3 A_WeaponReady(WRF_NOBOB | CallACS("Dakka_MinigunReady"))
-        DMNG C 4 A_WeaponReady(WRF_NOBOB | CallACS("Dakka_MinigunReady"))
-        DMNG D 5 A_WeaponReady(WRF_NOBOB | CallACS("Dakka_MinigunReady"))
-        goto Ready
-
-      FireA5_C:
-        DMNG A 0 ACS_NamedExecuteAlways("Dakka_Recoil", 0, -25, 5, 24)
-        DMNG A 0 A_TakeInventory("GoToC")
-        DMNG C 1 bright offset(0, 37) A_GunFlash
-        DMNG C 0 A_Refire
-        DMNG AC 1 bright offset(0, 35) A_WeaponReady(WRF_NOBOB | CallACS("Dakka_MinigunReady"))
-        DMNG A 0 A_TakeInventory("MinigunFireState", 1)
-        DMNG AC 1 offset(0, 34) A_WeaponReady(WRF_NOBOB | CallACS("Dakka_MinigunReady"))
-        DMNG AB 1 offset(0, 33) A_WeaponReady(WRF_NOBOB | CallACS("Dakka_MinigunReady"))
-        DMNG CD 1 offset(0, 32) A_WeaponReady(WRF_NOBOB | CallACS("Dakka_MinigunReady"))
-        DMNG A 0 A_TakeInventory("MinigunFireState", 1)
-        DMNG ABCD 1 A_WeaponReady(WRF_NOBOB | CallACS("Dakka_MinigunReady"))
-        DMNG A 0 A_TakeInventory("MinigunFireState", 1)
-        DMNG ABCD 2 A_WeaponReady(WRF_NOBOB | CallACS("Dakka_MinigunReady"))
-        DMNG A 0 A_TakeInventory("MinigunFireState", 1)
-        DMNG A 3 A_WeaponReady(WRF_NOBOB | CallACS("Dakka_MinigunReady"))
-        DMNG B 3 A_WeaponReady(WRF_NOBOB | CallACS("Dakka_MinigunReady"))
-        DMNG C 4 A_WeaponReady(WRF_NOBOB | CallACS("Dakka_MinigunReady"))
-        DMNG D 5 A_WeaponReady(WRF_NOBOB | CallACS("Dakka_MinigunReady"))
-        goto Ready
 
       Flash:
-        DMNF A 0 A_JumpIfInventory("GoToC", 1, "FlashC")
-        DMNF A 1 bright offset(0, 34) A_Light(3)
-        DMNF A 1 bright offset(0, 32)
-        DMNF A 1 bright offset(0, 32) A_Light(2)
-        DMNF B 1 bright A_Light(1)
+        DMNF A 1 bright A_Light(random(2, 3))
+        DMNF B 1 bright
+        TNT1 A 1        A_Light(1)
+        goto LightDone
+      
+
+      FlashFastA:
+        DMNF A 2 bright A_Light(random(2, 4))
+        TNT1 A 1        A_Light(1)
+        goto LightDone
+      
+
+      FlashFastB:
+        DMNF B 2 bright A_Light(random(2, 4))
+        TNT1 A 1        A_Light(1)
         goto LightDone
 
-      FlashC:
-        DMNF B 1 bright A_Light(random(3,5))
-        DMNF B 1 bright A_Light(3)
-        TNT1 A 1 A_Light(2)
-        TNT1 A 1 A_Light(1)
-        goto LightDone
-
+        
+        
+        
 
       AltFire:
         DMNG A 0 A_JumpIfInventory("DakkaFlamerFuel", 1, 1)
