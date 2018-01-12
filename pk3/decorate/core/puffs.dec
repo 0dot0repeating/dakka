@@ -96,6 +96,11 @@ actor DakkaPuff_Right: DakkaPuff
         goto Melee
     }
 }
+
+actor DakkaPuff_Painless: DakkaPuff
+{
+    +PAINLESS
+}
     
 
 actor DakkaBulletSpark

@@ -206,11 +206,15 @@ $volume dakka/chaingunaltfire   0.75
 // MINIGUN
 ///
 
-// Same sound, but with a few ms of delay on 1 and 2
-dakka/minigunfire1          sounds/minigun/minigun_fire.ogg
-dakka/minigunfire2          sounds/minigun/minigun_fire2.ogg
-dakka/minigunfire3          sounds/minigun/minigun_fire3.ogg
-$random dakka/minigunfire   { dakka/minigunfire1 dakka/minigunfire2 dakka/minigunfire3 }
+dakka/minigunspinup         sounds/minigun/minigun_spinup.ogg
+dakka/minigunspindown       sounds/minigun/minigun_spindown.ogg
+dakka/minigunfire_slow      sounds/minigun/minigun_fire_slow.ogg
+dakka/minigunfire_fast      sounds/minigun/minigun_fire_fast.ogg
+
+$volume dakka/minigunspinup    0.7
+$volume dakka/minigunspindown  0.7
+$volume dakka/minigunfire_slow 1
+$volume dakka/minigunfire_fast 0.9
 
 dakka/minigun/flamepuff     sounds/minigun/minigun_firepuff.ogg
 dakka/minigun/flamestart    sounds/minigun/minigun_flamestart.ogg
