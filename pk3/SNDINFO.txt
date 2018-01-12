@@ -125,7 +125,14 @@ $volume dakka/scrapperaltfire 0.7
 // PISTOL(S)
 ///
 
-dakka/pistolfire            sounds/pistols/pistol_fire.ogg
+// Same sound, but with a few ms of delay on 1 through 4
+dakka/pistolfire0           sounds/pistols/pistol_fire.ogg
+dakka/pistolfire1           sounds/pistols/pistol_fire1.ogg
+dakka/pistolfire2           sounds/pistols/pistol_fire2.ogg
+dakka/pistolfire3           sounds/pistols/pistol_fire3.ogg
+dakka/pistolfire4           sounds/pistols/pistol_fire4.ogg
+$random dakka/pistolfire    { dakka/pistolfire0 dakka/pistolfire1 dakka/pistolfire2 dakka/pistolfire3 dakka/pistolfire4 }
+
 dakka/pistolaltfire         sounds/pistols/pistol_altfire.ogg
 
 $limit dakka/pistolfire     0
@@ -199,7 +206,11 @@ $volume dakka/chaingunaltfire   0.75
 // MINIGUN
 ///
 
-dakka/minigunfire           sounds/minigun/minigun_fire.ogg
+// Same sound, but with a few ms of delay on 1 and 2
+dakka/minigunfire1          sounds/minigun/minigun_fire.ogg
+dakka/minigunfire2          sounds/minigun/minigun_fire2.ogg
+dakka/minigunfire3          sounds/minigun/minigun_fire3.ogg
+$random dakka/minigunfire   { dakka/minigunfire1 dakka/minigunfire2 dakka/minigunfire3 }
 
 dakka/minigun/flamepuff     sounds/minigun/minigun_firepuff.ogg
 dakka/minigun/flamestart    sounds/minigun/minigun_flamestart.ogg
