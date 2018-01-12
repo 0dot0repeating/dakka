@@ -34,7 +34,9 @@ SOUNDS
 - Shotgun secondary fire: stock sound (I think?)
 - Super shotgun primary fire: Obsidian Software, in Fallout: New Vegas
 - Super shotgun alt-fire: Gearbox Software, in Borderlands 2
-- Minigun primary fire: from Skulltag
+- Minigun motor sounds: from Serious Sam 3
+- Minigun primary fire - slow: from Serious Sam 3 (sped up)
+- Minigun primary fire - fast: from Halo 4 (massively sped up)
 - Minigun flamethrower (all sounds): People Can Fly, in Painkiller
 - Impaler: Monolith Productions, in F.E.A.R.
 - Impaler explosions: Streum On Studios, in EYE: Divine Cybermancy
