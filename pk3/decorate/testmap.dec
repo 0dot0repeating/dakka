@@ -149,6 +149,36 @@ actor DAKKTEST_EnableRadiusDamage: Trigger
     }
 }
 
+actor DAKKTEST_Bright: Trigger
+{
+    States
+    {
+      Pickup:
+        TNT1 A 0 A_ChangeFlag("BRIGHT", true)
+        stop
+    }
+}
+
+actor DAKKTEST_Unbright: Trigger
+{
+    States
+    {
+      Pickup:
+        TNT1 A 0 A_ChangeFlag("BRIGHT", false)
+        stop
+    }
+}
+
+actor DAKKTEST_NoDamage: Trigger
+{
+    States
+    {
+      Pickup:
+        TNT1 A 0 A_ChangeFlag("NODAMAGE", true)
+        stop
+    }
+}
+
 actor NotABaron:        BaronOfHell         {}
 actor NotACyberdemon:   Cyberdemon          {}
 actor NotASpiderdemon:  SpiderMastermind    {}
