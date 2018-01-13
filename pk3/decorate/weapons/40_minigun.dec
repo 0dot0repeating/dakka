@@ -426,7 +426,7 @@ actor DWep_Minigun: DoomWeapon
       
       
       FastRecoil1:
-        DMNG A 0 ACS_NamedExecuteAlways("Dakka_Recoil", 0, random(-200, -100), 1, random(8, 13))
+        DMNG A 0 ACS_NamedExecuteAlways("Dakka_Recoil", 0, random(-400, -100), 1, random(8, 15))
         DMNG A 0 A_JumpIfInventory("DakkaMinigun_NextFrame", 3, "FastRecoil1_D")
         DMNG A 0 A_JumpIfInventory("DakkaMinigun_NextFrame", 2, "FastRecoil1_C")
         DMNG A 0 A_JumpIfInventory("DakkaMinigun_NextFrame", 1, "FastRecoil1_B")
