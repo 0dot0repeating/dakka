@@ -12,7 +12,7 @@ function void Score_CalcMapPoints(void)
     int testTID = UniqueTID();
     SpawnForced("Boolean", 0,0,0, testTID);
     int useNoSight = cond(GetActorProperty(testTID, APROP_DamageType) == 0, false, true);
-    Thing_Remove(useNoSight);
+    Thing_Remove(testTID);
     
     if (useNoSight)
     {
