@@ -177,7 +177,7 @@ actor DWep_Minigun: DoomWeapon
         
         DMNG A 0 A_GunFlash
         DMNG A 0 A_AlertMonsters
-        DMNG A 0 ACS_NamedExecuteAlways("Dakka_Recoil", 0, random(-200, -100), 1, random(11, 15))
+        DMNG A 0 ACS_NamedExecuteAlways("Dakka_Recoil", 0, random(-150, -60), 1, random(11, 15))
         DMNG A 0 A_Jump(128, "Slow_Painless")
         DMNG A 0 bright A_FireBullets(4.5, 2, -1, 12, "DakkaPuff", FBF_NORANDOM | FBF_USEAMMO)
         goto Slow_Recoil
@@ -427,7 +427,7 @@ actor DWep_Minigun: DoomWeapon
       
       
       FastRecoil1:
-        DMNG A 0 ACS_NamedExecuteAlways("Dakka_Recoil", 0, random(-200, -100), 1, random(6, 15))
+        DMNG A 0 ACS_NamedExecuteAlways("Dakka_Recoil", 0, random(-150, -60), 1, random(6, 15))
         DMNG A 0 A_JumpIfInventory("DakkaMinigun_NextFrame", 3, "FastRecoil1_D")
         DMNG A 0 A_JumpIfInventory("DakkaMinigun_NextFrame", 2, "FastRecoil1_C")
         DMNG A 0 A_JumpIfInventory("DakkaMinigun_NextFrame", 1, "FastRecoil1_B")
@@ -462,7 +462,7 @@ actor DWep_Minigun: DoomWeapon
       
       
       FastRecoil2:
-        DMNG A 0 ACS_NamedExecuteAlways("Dakka_Recoil", 0, random(-200, -100), 1, random(6, 15))
+        DMNG A 0 ACS_NamedExecuteAlways("Dakka_Recoil", 0, random(-150, -60), 1, random(6, 15))
         DMNG A 0 A_JumpIfInventory("DakkaMinigun_NextFrame", 3, "FastRecoil2_D")
         DMNG A 0 A_JumpIfInventory("DakkaMinigun_NextFrame", 2, "FastRecoil2_C")
         DMNG A 0 A_JumpIfInventory("DakkaMinigun_NextFrame", 1, "FastRecoil2_B")
@@ -497,7 +497,7 @@ actor DWep_Minigun: DoomWeapon
       
       
       FastRecoil3:
-        DMNG A 0 ACS_NamedExecuteAlways("Dakka_Recoil", 0, random(-200, -100), 1, random(6, 15))
+        DMNG A 0 ACS_NamedExecuteAlways("Dakka_Recoil", 0, random(-150, -60), 1, random(6, 15))
         DMNG A 0 A_JumpIfInventory("DakkaMinigun_NextFrame", 3, "FastRecoil3_D")
         DMNG A 0 A_JumpIfInventory("DakkaMinigun_NextFrame", 2, "FastRecoil3_C")
         DMNG A 0 A_JumpIfInventory("DakkaMinigun_NextFrame", 1, "FastRecoil3_B")
@@ -532,7 +532,7 @@ actor DWep_Minigun: DoomWeapon
       
       
       FastRecoil4:
-        DMNG A 0 ACS_NamedExecuteAlways("Dakka_Recoil", 0, random(-200, -100), 1, random(6, 15))
+        DMNG A 0 ACS_NamedExecuteAlways("Dakka_Recoil", 0, random(-150, -60), 1, random(6, 15))
         DMNG A 0 A_JumpIfInventory("DakkaMinigun_NextFrame", 3, "FastRecoil4_D")
         DMNG A 0 A_JumpIfInventory("DakkaMinigun_NextFrame", 2, "FastRecoil4_C")
         DMNG A 0 A_JumpIfInventory("DakkaMinigun_NextFrame", 1, "FastRecoil4_B")
@@ -567,7 +567,7 @@ actor DWep_Minigun: DoomWeapon
       
       
       FastRecoil5:
-        DMNG A 0 ACS_NamedExecuteAlways("Dakka_Recoil", 0, random(-350, -250), 1, random(6, 15))
+        DMNG A 0 ACS_NamedExecuteAlways("Dakka_Recoil", 0, random(-250, -150), 1, random(6, 15))
         DMNG A 0 A_JumpIfInventory("DakkaMinigun_NextFrame", 3, "FastRecoil5_D")
         DMNG A 0 A_JumpIfInventory("DakkaMinigun_NextFrame", 2, "FastRecoil5_C")
         DMNG A 0 A_JumpIfInventory("DakkaMinigun_NextFrame", 1, "FastRecoil5_B")
@@ -602,7 +602,7 @@ actor DWep_Minigun: DoomWeapon
       
       
       FastRecoil6:
-        DMNG A 0 ACS_NamedExecuteAlways("Dakka_Recoil", 0, random(-200, -100), 1, random(6, 15))
+        DMNG A 0 ACS_NamedExecuteAlways("Dakka_Recoil", 0, random(-150, -60), 1, random(6, 15))
         DMNG A 0 A_TakeInventory("DakkaMinigun_RecoilLevel", 2)
         DMNG A 0 A_JumpIfInventory("DakkaMinigun_NextFrame", 3, "FastRecoil6_D")
         DMNG A 0 A_JumpIfInventory("DakkaMinigun_NextFrame", 2, "FastRecoil6_C")
