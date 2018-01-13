@@ -1,4 +1,5 @@
 actor MinigunFlamethrowing: Boolean {}
+actor DakkaMinigun_WoundUp: Boolean {}
 actor DakkaMinigun_NextFrame:   Counter { Inventory.MaxAmount 3 }
 actor DakkaMinigun_RecoilLevel: Counter { Inventory.MaxAmount 6 }
 
@@ -39,7 +40,12 @@ actor DWep_Minigun: DoomWeapon
         loop
 
       Deselect:
+        DMNG A 0 A_JumpIfInventory("DakkaMinigun_WoundUp", 1, "UnwindDeselect")
         DMNG A 0 A_JumpIfInventory("MinigunFlamethrowing", 1, "FlameDeselect")
+        goto Deselect2
+      
+      UnwindDeselect:
+        DMNG A 0 A_PlaySound("dakka/minigunspindown", 5)
         goto Deselect2
      
       Deselect2:
@@ -77,10 +83,87 @@ actor DWep_Minigun: DoomWeapon
       Fire:
         "----" A 0 ACS_NamedExecuteWithResult("Dakka_Switcharoo", 6, 0)
         DMNG A 0 A_TakeInventory("DakkaMinigun_RecoilLevel")
+        DMNG A 0 A_GiveInventory("DakkaMinigun_WoundUp")
         DMNG A 0 A_PlaySound("dakka/minigunspinup", CHAN_WEAPON)
-        DMNG AB 2
-        DMNG CDABDCB 1
-        goto Fire_Slow
+        DMNG AB 2 A_WeaponReady(WRF_NOFIRE | WRF_NOBOB)
+        DMNG B 0 A_Refire("Windup_Stage2")
+        DMNG B 0 A_PlaySound("dakka/minigunspindown", 5)
+        DMNG B 0 A_TakeInventory("DakkaMinigun_WoundUp")
+        goto WindDown_Stage1
+      
+      Windup_Stage2:
+        DMNG CD 1 A_WeaponReady(WRF_NOFIRE | WRF_NOBOB)
+        DMNG D 0 A_Refire("Windup_Stage3")
+        DMNG D 0 A_PlaySound("dakka/minigunspindown", 5)
+        DMNG D 0 A_TakeInventory("DakkaMinigun_WoundUp")
+        goto WindDown_Stage2
+      
+      Windup_Stage3:
+        DMNG ABD 1 A_WeaponReady(WRF_NOFIRE | WRF_NOBOB)
+        DMNG D 0 A_Refire("Windup_Stage4")
+        DMNG D 0 A_PlaySound("dakka/minigunspindown", 5)
+        DMNG D 0 A_TakeInventory("DakkaMinigun_WoundUp")
+        goto WindDown_Stage3
+      
+      Windup_Stage4:
+        DMNG CB 1 A_WeaponReady(WRF_NOFIRE | WRF_NOBOB)
+        DMNG B 0 A_Refire("Fire_Slow")
+        DMNG B 0 A_PlaySound("dakka/minigunspindown", 5)
+        DMNG B 0 A_TakeInventory("DakkaMinigun_WoundUp")
+        goto WindDown_Stage4
+        
+        
+      WindDown_Stage4:
+        DMNG A 0 A_Refire("Fire_Slow")
+        DMNG A 1 A_WeaponReady(WRF_NOFIRE | WRF_NOBOB)
+        DMNG B 0 A_Refire("Fire_Slow")
+        DMNG B 1 A_WeaponReady(WRF_NOFIRE | WRF_NOBOB)
+        DMNG C 0 A_Refire("Fire_Slow")
+        DMNG C 1 A_WeaponReady(WRF_NOFIRE | WRF_NOBOB)
+        DMNG D 0 A_Refire("Fire_Slow")
+        DMNG D 1 A_WeaponReady(WRF_NOFIRE | WRF_NOBOB)
+        goto WindDown_Stage3
+      
+      WindDown_Stage3:
+        DMNG A 0 A_Refire("Fire_Slow")
+        DMNG A 1 A_WeaponReady(WRF_NOPRIMARY | WRF_NOBOB)
+        DMNG A 0 A_Refire("Fire_Slow")
+        DMNG A 1 A_WeaponReady(WRF_NOPRIMARY | WRF_NOBOB)
+        DMNG B 0 A_Refire("Fire_Slow")
+        DMNG B 1 A_WeaponReady(WRF_NOPRIMARY | WRF_NOBOB)
+        DMNG B 0 A_Refire("Fire_Slow")
+        DMNG B 1 A_WeaponReady(WRF_NOPRIMARY | WRF_NOBOB)
+        DMNG C 0 A_Refire("Fire_Slow")
+        DMNG C 1 A_WeaponReady(WRF_NOPRIMARY | WRF_NOBOB)
+        DMNG C 0 A_Refire("Fire_Slow")
+        DMNG C 1 A_WeaponReady(WRF_NOPRIMARY | WRF_NOBOB)
+        DMNG D 0 A_Refire("Fire_Slow")
+        DMNG D 1 A_WeaponReady(WRF_NOPRIMARY | WRF_NOBOB)
+        DMNG D 0 A_Refire("Fire_Slow")
+        DMNG D 1 A_WeaponReady(WRF_NOPRIMARY | WRF_NOBOB)
+        goto WindDown_Stage2
+        
+      WindDown_Stage2:
+        DMNG A 0 A_Refire("Fire_Slow")
+        DMNG A 1 A_WeaponReady(WRF_NOPRIMARY | WRF_NOBOB)
+        DMNG A 0 A_Refire("Fire_Slow")
+        DMNG A 1 A_WeaponReady(WRF_NOPRIMARY | WRF_NOBOB)
+        DMNG A 0 A_Refire("Fire_Slow")
+        DMNG A 1 A_WeaponReady(WRF_NOPRIMARY | WRF_NOBOB)
+        DMNG B 0 A_Refire("Fire_Slow")
+        DMNG B 1 A_WeaponReady(WRF_NOPRIMARY | WRF_NOBOB)
+        DMNG B 0 A_Refire("Fire_Slow")
+        DMNG B 1 A_WeaponReady(WRF_NOPRIMARY | WRF_NOBOB)
+        DMNG B 0 A_Refire("Fire_Slow")
+        DMNG B 1 A_WeaponReady(WRF_NOPRIMARY | WRF_NOBOB)
+        goto WindDown_Stage1
+     
+       WindDown_Stage1:
+        DMNG CD    3 A_WeaponReady(WRF_NOBOB)
+        DMNG ABCD  4 A_WeaponReady(WRF_NOBOB)
+        DMNG ABCDA 5 A_WeaponReady(WRF_NOBOB)
+        goto Ready
+      
       
       Fire_Slow:
         DMNG A 0 A_StopSound(5)
@@ -558,6 +641,7 @@ actor DWep_Minigun: DoomWeapon
       FireEnd_Recoil5:
         DMNG A 0 A_StopSound(6)
         DMNG A 0 A_PlaySound("dakka/minigunspindown", 5)
+        DMNG A 0 A_TakeInventory("DakkaMinigun_WoundUp")
         DMNG A 0               A_Refire("Fire_Slow")
         DMNG A 1               A_WeaponReady(WRF_NOFIRE | WRF_NOBOB)
         DMNG B 0               A_Refire("Fire_Slow")
@@ -593,6 +677,7 @@ actor DWep_Minigun: DoomWeapon
       FireEnd_Recoil4:
         DMNG A 0 A_StopSound(6)
         DMNG A 0 A_PlaySound("dakka/minigunspindown", 5)
+        DMNG A 0 A_TakeInventory("DakkaMinigun_WoundUp")
         DMNG A 0               A_Refire("Fire_Slow")
         DMNG A 1               A_WeaponReady(WRF_NOFIRE | WRF_NOBOB)
         DMNG B 0               A_Refire("Fire_Slow")
@@ -627,6 +712,7 @@ actor DWep_Minigun: DoomWeapon
       FireEnd_Recoil3:
         DMNG A 0 A_StopSound(6)
         DMNG A 0 A_PlaySound("dakka/minigunspindown", 5)
+        DMNG A 0 A_TakeInventory("DakkaMinigun_WoundUp")
         DMNG A 0               A_Refire("Fire_Slow")
         DMNG A 1               A_WeaponReady(WRF_NOFIRE | WRF_NOBOB)
         DMNG B 0               A_Refire("Fire_Slow")
@@ -660,6 +746,7 @@ actor DWep_Minigun: DoomWeapon
       FireEnd_Recoil2:
         DMNG A 0 A_StopSound(6)
         DMNG A 0 A_PlaySound("dakka/minigunspindown", 5)
+        DMNG A 0 A_TakeInventory("DakkaMinigun_WoundUp")
         DMNG A 0               A_Refire("Fire_Slow")
         DMNG A 1               A_WeaponReady(WRF_NOFIRE | WRF_NOBOB)
         DMNG B 0               A_Refire("Fire_Slow")
@@ -692,6 +779,7 @@ actor DWep_Minigun: DoomWeapon
       FireEnd_Recoil1:
         DMNG A 0 A_StopSound(6)
         DMNG A 0 A_PlaySound("dakka/minigunspindown", 5)
+        DMNG A 0 A_TakeInventory("DakkaMinigun_WoundUp")
         DMNG A 0               A_Refire("Fire_Slow")
         DMNG A 1               A_WeaponReady(WRF_NOFIRE | WRF_NOBOB)
         DMNG B 0               A_Refire("Fire_Slow")

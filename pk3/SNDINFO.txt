@@ -214,7 +214,7 @@ dakka/minigunfire_fast      sounds/minigun/minigun_fire_fast.ogg
 $volume dakka/minigunspinup    0.7
 $volume dakka/minigunspindown  0.7
 $volume dakka/minigunfire_slow 1
-$volume dakka/minigunfire_fast 0.9
+$volume dakka/minigunfire_fast 1
 
 dakka/minigun/flamepuff     sounds/minigun/minigun_firepuff.ogg
 dakka/minigun/flamestart    sounds/minigun/minigun_flamestart.ogg
