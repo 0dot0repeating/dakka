@@ -24,6 +24,7 @@ actor DWep_Scrappers: DoomWeapon
     Inventory.PickupMessage "$DAKKA_PK_SCRAPPER"
     Obituary "$DAKKA_MP_SCRAPPER"
 
+    +ALT_AMMO_OPTIONAL
     +NOALERT
 
     States
@@ -283,7 +284,11 @@ actor DWep_Scrappers: DoomWeapon
         goto Fire // anyway
 
       AltFire:
-        "----" A 0 ACS_NamedExecuteWithResult("Dakka_Switcharoo", 1, 1)
+        RSCP A 0 A_JumpIfNoAmmo("AltNo")
+        goto AltFire2
+      
+      AltFire2:
+        RSCP A 0 ACS_NamedExecuteWithResult("Dakka_Switcharoo", 1, 1)
         RSCP A 0 A_AlertMonsters
         RSCP A 0 A_TakeInventory("ScrapperAltTimer")
         RSCP A 0 A_GiveInventory("ScrapperAltTimer", 2)
@@ -309,8 +314,20 @@ actor DWep_Scrappers: DoomWeapon
         SCPR M 2 A_WeaponReady(WRF_NOFIRE | WRF_NOBOB)
         SCPR N 0 A_JumpIfInventory("MainFired", 1, "AltToPrimary2")
         SCPR N 0 A_Refire
+        SCPR N 0 A_JumpIfNoAmmo("AltEnd_NoAmmo")
         SCPR N 2 A_WeaponReady(WRF_NOPRIMARY | WRF_NOBOB)
         SCPR N 0 A_JumpIfInventory("MainFired", 1, "AltToPrimary2")
+        goto Ready
+      
+      AltEnd_NoAmmo:
+        SCPR N 2 A_WeaponReady(WRF_NOFIRE | WRF_NOBOB)
+        SCPR N 0 A_JumpIfInventory("MainFired", 1, "AltToPrimary2")
+        goto Ready
+      
+      AltNo:
+        SCPR A 0 A_TakeInventory("ScrapperAtoP")
+        SCPR A 0 A_TakeInventory("ScrapperAltTimer")
+        SCPR A 1 A_WeaponReady(WRF_NOSECONDARY)
         goto Ready
 
       Spawn:
