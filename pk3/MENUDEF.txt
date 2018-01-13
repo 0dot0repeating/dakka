@@ -96,6 +96,12 @@ OptionValue Dakka_DefenseLevel
      10, "10x tougher"
 }
 
+OptionValue Dakka_RecoilInterp
+{
+    0, "On"
+    1, "Off"
+}
+
 
 ListMenu Dakka_Options
 {
@@ -175,8 +181,9 @@ OptionMenu "Dakka_UserOptions"
 {
     Title "DAKKA (User options)"
 
-    Slider "Recoil factor", "dakka_cl_recoil", 0, 300, 10, 0
-    Option "Jerky recoil", "dakka_cl_jerkyrecoil", "OnOff"
+    Slider "Recoil factor",      "dakka_cl_recoil", 0, 300, 10, 0
+    Option "Bouncy recoil",      "dakka_cl_jerkyrecoil", "OnOff"
+    Option "Interpolate recoil", "dakka_cl_norecoilinterp", "Dakka_RecoilInterp"
 
     StaticText ""
 

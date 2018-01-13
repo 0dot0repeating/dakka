@@ -5,6 +5,8 @@ script "Dakka_Recoil" (int degrees, int ticsup, int ticsdown) clientside
     if (degrees == 0) { terminate; }
 
     int recoilFactor = percFloat(0, middle(0, GetCVar("dakka_cl_recoil"), 1000));
+    int interpolate  = !GetUserCVar(PlayerNumber(), "dakka_cl_norecoilinterp");
+    
     if (recoilFactor <= 0 && ticsup >= 0) { terminate; }
     if (GetCVar("sv_nofreelook")) { terminate; }
 
@@ -37,13 +39,13 @@ script "Dakka_Recoil" (int degrees, int ticsup, int ticsdown) clientside
             newPitch = qCurve * pow((i+1)-ticsup, 2);
             pitchDiff = (newPitch - oldPitch) / 360;
 
-            ChangeActorPitch(0, GetActorPitch(0) + pitchDiff, true);
+            ChangeActorPitch(0, GetActorPitch(0) + pitchDiff, interpolate);
             Delay(1);
         }
     }
     else
     {
-        ChangeActorPitch(0, GetActorPitch(0) - (degrees / 360), true);
+        ChangeActorPitch(0, GetActorPitch(0) - (degrees / 360), interpolate);
     }
 
     int totalDown = 0;
@@ -67,7 +69,7 @@ script "Dakka_Recoil" (int degrees, int ticsup, int ticsdown) clientside
                     pitchDiff = (newPitch - oldPitch) / 360;
                     totalDown += pitchDiff;
 
-                    ChangeActorPitch(0, GetActorPitch(0) + pitchDiff, true);
+                    ChangeActorPitch(0, GetActorPitch(0) + pitchDiff, interpolate);
                     Delay(1);
                 }
             }
@@ -82,17 +84,17 @@ script "Dakka_Recoil" (int degrees, int ticsup, int ticsdown) clientside
                     pitchDiff = (newPitch - oldPitch) / 360;
                     totalDown += pitchDiff;
 
-                    ChangeActorPitch(0, GetActorPitch(0) + pitchDiff, true);
+                    ChangeActorPitch(0, GetActorPitch(0) + pitchDiff, interpolate);
                     Delay(1);
                 }
             }
 
             int pitchLeft = (degrees / 360) - totalDown;
-            ChangeActorPitch(0, GetActorPitch(0) + pitchLeft, true);
+            ChangeActorPitch(0, GetActorPitch(0) + pitchLeft, interpolate);
         }
         else
         {
-            ChangeActorPitch(0, GetActorPitch(0) + (degrees / 360), true);
+            ChangeActorPitch(0, GetActorPitch(0) + (degrees / 360), interpolate);
         }
     }
 }
