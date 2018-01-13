@@ -194,6 +194,9 @@ script "Dakka_MinigunAfterburn" (int firerTID, int myTID)
     
     if (burnTimer > 0) { terminate; }
     
+    int alreadyBright = CheckFlag(myTID, "BRIGHT");
+    if (!alreadyBright) { GiveActorInventory(myTID, "DakkaMinigun_Bright", 1); }
+    
     // since TIDs change, keep track of firer and target through actor pointers
     int pointerTID = UniqueTID();
     int myX = GetActorX(0);
@@ -330,6 +333,12 @@ script "Dakka_MinigunAfterburn" (int firerTID, int myTID)
         timeBurning++;
         flameTimer--;
         Delay(1);
+    }
+    
+    if (!alreadyBright)
+    {
+        SetActivator(pointerTID, AAPTR_TRACER);
+        GiveInventory("DakkaMinigun_Unbright", 1);
     }
     
     int decayTime = cond(flamesPutOut, 12, 48);
