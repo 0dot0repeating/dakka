@@ -143,24 +143,43 @@ StatusBar Normal, fullscreenoffsets, 0.85
     
     InInventory HUD_AmmoRegen
     {
-        UsesAmmo
+        IsSelected DWep_Fist
         {
-            DrawImage  "HUD_AM15", -104, -32;
-            DrawNumber 4, "DK_HUDBIG", DHud_AmmoRegen, ammo1, alignment(right), -25, -24;
+            DrawImage "HUD_FS12", -104, -32;
+            DrawImage "HUD_FS22",  -96, -63;
+            
+            InInventory DakkaFistSpeed, 1   { DrawImage "HUD_SB12", -99, -28; }
+            InInventory DakkaFistSpeed, 2   { DrawImage "HUD_SB22", -91, -28; }
+            InInventory DakkaFistSpeed, 4   { DrawImage "HUD_SB32", -83, -28; }
+            InInventory DakkaFistSpeed, 6   { DrawImage "HUD_SB42", -75, -28; }
+            InInventory DakkaFistSpeed, 9   { DrawImage "HUD_SB52", -67, -28; }
+            InInventory DakkaFistSpeed, 13  { DrawImage "HUD_SB62", -59, -28; }
+            
+            InInventory DakkaFistAltLevel, 1    { DrawImage "HUD_PB12", -91, -59; }
+            InInventory DakkaFistAltLevel, 2    { DrawImage "HUD_PB22", -77, -59; }
+            InInventory DakkaFistAltLevel, 3    { DrawImage "HUD_PB32", -63, -59; }
         }
         else
         {
-            DrawImage  "HUD_AM14", -104, -32;
-        }
-        
-        UsesSecondaryAmmo
-        {
-            DrawImage  "HUD_AM25", -96, -63;
-            DrawNumber 4, "DK_HUDBIG", DHud_AmmoRegen, ammo2, alignment(right), -25, -56;
-        }
-        else
-        {
-            DrawImage  "HUD_AM24", -96, -63;
+            UsesAmmo
+            {
+                DrawImage  "HUD_AM15", -104, -32;
+                DrawNumber 4, "DK_HUDBIG", DHud_AmmoRegen, ammo1, alignment(right), -25, -24;
+            }
+            else
+            {
+                DrawImage  "HUD_AM14", -104, -32;
+            }
+            
+            UsesSecondaryAmmo
+            {
+                DrawImage  "HUD_AM25", -96, -63;
+                DrawNumber 4, "DK_HUDBIG", DHud_AmmoRegen, ammo2, alignment(right), -25, -56;
+            }
+            else
+            {
+                DrawImage  "HUD_AM24", -96, -63;
+            }
         }
     
         Alpha 0.9
@@ -208,44 +227,63 @@ StatusBar Normal, fullscreenoffsets, 0.85
     }
     else
     {
-        UsesAmmo
+        IsSelected DWep_Fist
         {
-            InInventory Ammo1Empty
-            {
-                DrawImage  "HUD_AM13", -104, -32;
-                DrawNumber 4, "DK_HUDBIG", DHud_AmmoGray, ammo1, alignment(right), -25, -24;
-            }
-            else
-            {
-                InInventory Ammo1Under25 { DrawImage  "HUD_AM12", -104, -32; }
-                else                     { DrawImage  "HUD_AM11", -104, -32; }
-                
-                DrawNumber 4, "DK_HUDBIG", DHud_Ammo1, ammo1, alignment(right), -25, -24;
-            }
+            DrawImage "HUD_FS11", -104, -32;
+            DrawImage "HUD_FS21",  -96, -63;
+            
+            InInventory DakkaFistSpeed, 1   { DrawImage "HUD_SB11", -99, -28; }
+            InInventory DakkaFistSpeed, 2   { DrawImage "HUD_SB21", -91, -28; }
+            InInventory DakkaFistSpeed, 4   { DrawImage "HUD_SB31", -83, -28; }
+            InInventory DakkaFistSpeed, 6   { DrawImage "HUD_SB41", -75, -28; }
+            InInventory DakkaFistSpeed, 9   { DrawImage "HUD_SB51", -67, -28; }
+            InInventory DakkaFistSpeed, 13  { DrawImage "HUD_SB61", -59, -28; }
+            
+            InInventory DakkaFistAltLevel, 1    { DrawImage "HUD_PB11", -91, -59; }
+            InInventory DakkaFistAltLevel, 2    { DrawImage "HUD_PB21", -77, -59; }
+            InInventory DakkaFistAltLevel, 3    { DrawImage "HUD_PB31", -63, -59; }
         }
         else
         {
-            DrawImage  "HUD_AM10", -104, -32;
-        }
-        
-        UsesSecondaryAmmo
-        {
-            InInventory Ammo2Empty
+            UsesAmmo
             {
-                DrawImage  "HUD_AM23", -96, -63;
-                DrawNumber 4, "DK_HUDBIG", DHud_AmmoGray, ammo2, alignment(right), -25, -56;
+                InInventory Ammo1Empty
+                {
+                    DrawImage  "HUD_AM13", -104, -32;
+                    DrawNumber 4, "DK_HUDBIG", DHud_AmmoGray, ammo1, alignment(right), -25, -24;
+                }
+                else
+                {
+                    InInventory Ammo1Under25 { DrawImage  "HUD_AM12", -104, -32; }
+                    else                     { DrawImage  "HUD_AM11", -104, -32; }
+                    
+                    DrawNumber 4, "DK_HUDBIG", DHud_Ammo1, ammo1, alignment(right), -25, -24;
+                }
             }
             else
             {
-                InInventory Ammo2Under25 { DrawImage  "HUD_AM22", -96, -63; }
-                else                     { DrawImage  "HUD_AM21", -96, -63; }
-                
-                DrawNumber 4, "DK_HUDBIG", DHud_Ammo2, ammo2, alignment(right), -25, -56;
+                DrawImage  "HUD_AM10", -104, -32;
             }
-        }
-        else
-        {
-            DrawImage  "HUD_AM20", -96, -63;
+            
+            UsesSecondaryAmmo
+            {
+                InInventory Ammo2Empty
+                {
+                    DrawImage  "HUD_AM23", -96, -63;
+                    DrawNumber 4, "DK_HUDBIG", DHud_AmmoGray, ammo2, alignment(right), -25, -56;
+                }
+                else
+                {
+                    InInventory Ammo2Under25 { DrawImage  "HUD_AM22", -96, -63; }
+                    else                     { DrawImage  "HUD_AM21", -96, -63; }
+                    
+                    DrawNumber 4, "DK_HUDBIG", DHud_Ammo2, ammo2, alignment(right), -25, -56;
+                }
+            }
+            else
+            {
+                DrawImage  "HUD_AM20", -96, -63;
+            }
         }
     
         Alpha 0.9
@@ -471,24 +509,43 @@ StatusBar Fullscreen, fullscreenoffsets, 0.85
     
     InInventory HUD_AmmoRegen
     {
-        UsesAmmo
+        IsSelected DWep_Fist
         {
-            DrawImage  "HUD_AM15", -104, -32;
-            DrawNumber 4, "DK_HUDBIG", DHud_AmmoRegen, ammo1, alignment(right), -25, -24;
+            DrawImage "HUD_FS12", -104, -32;
+            DrawImage "HUD_FS22",  -96, -63;
+            
+            InInventory DakkaFistSpeed, 1   { DrawImage "HUD_SB12", -99, -28; }
+            InInventory DakkaFistSpeed, 2   { DrawImage "HUD_SB22", -91, -28; }
+            InInventory DakkaFistSpeed, 4   { DrawImage "HUD_SB32", -83, -28; }
+            InInventory DakkaFistSpeed, 6   { DrawImage "HUD_SB42", -75, -28; }
+            InInventory DakkaFistSpeed, 9   { DrawImage "HUD_SB52", -67, -28; }
+            InInventory DakkaFistSpeed, 13  { DrawImage "HUD_SB62", -59, -28; }
+            
+            InInventory DakkaFistAltLevel, 1    { DrawImage "HUD_PB12", -91, -59; }
+            InInventory DakkaFistAltLevel, 2    { DrawImage "HUD_PB22", -77, -59; }
+            InInventory DakkaFistAltLevel, 3    { DrawImage "HUD_PB32", -63, -59; }
         }
         else
         {
-            DrawImage  "HUD_AM14", -104, -32;
-        }
-        
-        UsesSecondaryAmmo
-        {
-            DrawImage  "HUD_AM25", -96, -63;
-            DrawNumber 4, "DK_HUDBIG", DHud_AmmoRegen, ammo2, alignment(right), -25, -56;
-        }
-        else
-        {
-            DrawImage  "HUD_AM24", -96, -63;
+            UsesAmmo
+            {
+                DrawImage  "HUD_AM15", -104, -32;
+                DrawNumber 4, "DK_HUDBIG", DHud_AmmoRegen, ammo1, alignment(right), -25, -24;
+            }
+            else
+            {
+                DrawImage  "HUD_AM14", -104, -32;
+            }
+            
+            UsesSecondaryAmmo
+            {
+                DrawImage  "HUD_AM25", -96, -63;
+                DrawNumber 4, "DK_HUDBIG", DHud_AmmoRegen, ammo2, alignment(right), -25, -56;
+            }
+            else
+            {
+                DrawImage  "HUD_AM24", -96, -63;
+            }
         }
     
     
@@ -515,45 +572,64 @@ StatusBar Fullscreen, fullscreenoffsets, 0.85
         DrawBar "FS_AMB0A", "FSH_AMBK", DakkaCells,        vertical, -117, -29;
     }
     else
+    {
+        IsSelected DWep_Fist
         {
-        UsesAmmo
-        {
-            InInventory Ammo1Empty
-            {
-                DrawImage  "HUD_AM13", -104, -32;
-                DrawNumber 4, "DK_HUDBIG", DHud_AmmoGray, ammo1, alignment(right), -25, -24;
-            }
-            else
-            {
-                InInventory Ammo1Under25 { DrawImage  "HUD_AM12", -104, -32; }
-                else                     { DrawImage  "HUD_AM11", -104, -32; }
-                
-                DrawNumber 4, "DK_HUDBIG", DHud_Ammo1, ammo1, alignment(right), -25, -24;
-            }
+            DrawImage "HUD_FS11", -104, -32;
+            DrawImage "HUD_FS21",  -96, -63;
+            
+            InInventory DakkaFistSpeed, 1   { DrawImage "HUD_SB11", -99, -28; }
+            InInventory DakkaFistSpeed, 2   { DrawImage "HUD_SB21", -91, -28; }
+            InInventory DakkaFistSpeed, 4   { DrawImage "HUD_SB31", -83, -28; }
+            InInventory DakkaFistSpeed, 6   { DrawImage "HUD_SB41", -75, -28; }
+            InInventory DakkaFistSpeed, 9   { DrawImage "HUD_SB51", -67, -28; }
+            InInventory DakkaFistSpeed, 13  { DrawImage "HUD_SB61", -59, -28; }
+            
+            InInventory DakkaFistAltLevel, 1    { DrawImage "HUD_PB11", -91, -59; }
+            InInventory DakkaFistAltLevel, 2    { DrawImage "HUD_PB21", -77, -59; }
+            InInventory DakkaFistAltLevel, 3    { DrawImage "HUD_PB31", -63, -59; }
         }
         else
         {
-            DrawImage  "HUD_AM10", -104, -32;
-        }
-    
-        UsesSecondaryAmmo
-        {
-            InInventory Ammo2Empty
+            UsesAmmo
             {
-                DrawImage  "HUD_AM23", -96, -63;
-                DrawNumber 4, "DK_HUDBIG", DHud_AmmoGray, ammo2, alignment(right), -25, -56;
+                InInventory Ammo1Empty
+                {
+                    DrawImage  "HUD_AM13", -104, -32;
+                    DrawNumber 4, "DK_HUDBIG", DHud_AmmoGray, ammo1, alignment(right), -25, -24;
+                }
+                else
+                {
+                    InInventory Ammo1Under25 { DrawImage  "HUD_AM12", -104, -32; }
+                    else                     { DrawImage  "HUD_AM11", -104, -32; }
+                    
+                    DrawNumber 4, "DK_HUDBIG", DHud_Ammo1, ammo1, alignment(right), -25, -24;
+                }
             }
             else
             {
-                InInventory Ammo2Under25 { DrawImage  "HUD_AM22", -96, -63; }
-                else                     { DrawImage  "HUD_AM21", -96, -63; }
-                
-                DrawNumber 4, "DK_HUDBIG", DHud_Ammo2, ammo2, alignment(right), -25, -56;
+                DrawImage  "HUD_AM10", -104, -32;
             }
-        }
-        else
-        {
-            DrawImage  "HUD_AM20", -96, -63;
+            
+            UsesSecondaryAmmo
+            {
+                InInventory Ammo2Empty
+                {
+                    DrawImage  "HUD_AM23", -96, -63;
+                    DrawNumber 4, "DK_HUDBIG", DHud_AmmoGray, ammo2, alignment(right), -25, -56;
+                }
+                else
+                {
+                    InInventory Ammo2Under25 { DrawImage  "HUD_AM22", -96, -63; }
+                    else                     { DrawImage  "HUD_AM21", -96, -63; }
+                    
+                    DrawNumber 4, "DK_HUDBIG", DHud_Ammo2, ammo2, alignment(right), -25, -56;
+                }
+            }
+            else
+            {
+                DrawImage  "HUD_AM20", -96, -63;
+            }
         }
     
         DrawImage "FSH_WPAM", -175, -42;
@@ -776,67 +852,45 @@ StatusBar Automap, fullscreenoffsets, 0.85
     }
     
     
-    UsesAmmo
-    {
-        InInventory Ammo1Empty
-        {
-            DrawImage  "HUD_AM13", -104, -32;
-            DrawNumber 4, "DK_HUDBIG", DHud_AmmoGray, ammo1, alignment(right), -25, -24;
-        }
-        else
-        {
-            InInventory Ammo1Under25 { DrawImage  "HUD_AM12", -104, -32; }
-            else                     { DrawImage  "HUD_AM11", -104, -32; }
-            
-            DrawNumber 4, "DK_HUDBIG", DHud_Ammo1, ammo1, alignment(right), -25, -24;
-        }
-    }
-    else
-    {
-        DrawImage  "HUD_AM10", -104, -32;
-    }
-    
-    UsesSecondaryAmmo
-    {
-        InInventory Ammo2Empty
-        {
-            DrawImage  "HUD_AM23", -96, -63;
-            DrawNumber 4, "DK_HUDBIG", DHud_AmmoGray, ammo2, alignment(right), -25, -56;
-        }
-        else
-        {
-            InInventory Ammo2Under25 { DrawImage  "HUD_AM22", -96, -63; }
-            else                     { DrawImage  "HUD_AM21", -96, -63; }
-            
-            DrawNumber 4, "DK_HUDBIG", DHud_Ammo2, ammo2, alignment(right), -25, -56;
-        }
-    }
-    else
-    {
-        DrawImage  "HUD_AM20", -96, -63;
-    }
-    
-    
     InInventory HUD_AmmoRegen
     {
-        UsesAmmo
+        IsSelected DWep_Fist
         {
-            DrawImage  "HUD_AM15", -104, -32;
-            DrawNumber 4, "DK_HUDBIG", DHud_AmmoRegen, ammo1, alignment(right), -25, -24;
+            DrawImage "HUD_FS12", -104, -32;
+            DrawImage "HUD_FS22",  -96, -63;
+            
+            InInventory DakkaFistSpeed, 1   { DrawImage "HUD_SB12", -99, -28; }
+            InInventory DakkaFistSpeed, 2   { DrawImage "HUD_SB22", -91, -28; }
+            InInventory DakkaFistSpeed, 4   { DrawImage "HUD_SB32", -83, -28; }
+            InInventory DakkaFistSpeed, 6   { DrawImage "HUD_SB42", -75, -28; }
+            InInventory DakkaFistSpeed, 9   { DrawImage "HUD_SB52", -67, -28; }
+            InInventory DakkaFistSpeed, 13  { DrawImage "HUD_SB62", -59, -28; }
+            
+            InInventory DakkaFistAltLevel, 1    { DrawImage "HUD_PB12", -91, -59; }
+            InInventory DakkaFistAltLevel, 2    { DrawImage "HUD_PB22", -77, -59; }
+            InInventory DakkaFistAltLevel, 3    { DrawImage "HUD_PB32", -63, -59; }
         }
         else
         {
-            DrawImage  "HUD_AM14", -104, -32;
-        }
-        
-        UsesSecondaryAmmo
-        {
-            DrawImage  "HUD_AM25", -96, -63;
-            DrawNumber 4, "DK_HUDBIG", DHud_AmmoRegen, ammo2, alignment(right), -25, -56;
-        }
-        else
-        {
-            DrawImage  "HUD_AM24", -96, -63;
+            UsesAmmo
+            {
+                DrawImage  "HUD_AM15", -104, -32;
+                DrawNumber 4, "DK_HUDBIG", DHud_AmmoRegen, ammo1, alignment(right), -25, -24;
+            }
+            else
+            {
+                DrawImage  "HUD_AM14", -104, -32;
+            }
+            
+            UsesSecondaryAmmo
+            {
+                DrawImage  "HUD_AM25", -96, -63;
+                DrawNumber 4, "DK_HUDBIG", DHud_AmmoRegen, ammo2, alignment(right), -25, -56;
+            }
+            else
+            {
+                DrawImage  "HUD_AM24", -96, -63;
+            }
         }
     
     
@@ -863,45 +917,64 @@ StatusBar Automap, fullscreenoffsets, 0.85
         DrawBar "FS_AMB0A", "FSH_AMBK", DakkaCells,        vertical, -117, -29;
     }
     else
+    {
+        IsSelected DWep_Fist
         {
-        UsesAmmo
-        {
-            InInventory Ammo1Empty
-            {
-                DrawImage  "HUD_AM13", -104, -32;
-                DrawNumber 4, "DK_HUDBIG", DHud_AmmoGray, ammo1, alignment(right), -25, -24;
-            }
-            else
-            {
-                InInventory Ammo1Under25 { DrawImage  "HUD_AM12", -104, -32; }
-                else                     { DrawImage  "HUD_AM11", -104, -32; }
-                
-                DrawNumber 4, "DK_HUDBIG", DHud_Ammo1, ammo1, alignment(right), -25, -24;
-            }
+            DrawImage "HUD_FS11", -104, -32;
+            DrawImage "HUD_FS21",  -96, -63;
+            
+            InInventory DakkaFistSpeed, 1   { DrawImage "HUD_SB11", -99, -28; }
+            InInventory DakkaFistSpeed, 2   { DrawImage "HUD_SB21", -91, -28; }
+            InInventory DakkaFistSpeed, 4   { DrawImage "HUD_SB31", -83, -28; }
+            InInventory DakkaFistSpeed, 6   { DrawImage "HUD_SB41", -75, -28; }
+            InInventory DakkaFistSpeed, 9   { DrawImage "HUD_SB51", -67, -28; }
+            InInventory DakkaFistSpeed, 13  { DrawImage "HUD_SB61", -59, -28; }
+            
+            InInventory DakkaFistAltLevel, 1    { DrawImage "HUD_PB11", -91, -59; }
+            InInventory DakkaFistAltLevel, 2    { DrawImage "HUD_PB21", -77, -59; }
+            InInventory DakkaFistAltLevel, 3    { DrawImage "HUD_PB31", -63, -59; }
         }
         else
         {
-            DrawImage  "HUD_AM10", -104, -32;
-        }
-    
-        UsesSecondaryAmmo
-        {
-            InInventory Ammo2Empty
+            UsesAmmo
             {
-                DrawImage  "HUD_AM23", -96, -63;
-                DrawNumber 4, "DK_HUDBIG", DHud_AmmoGray, ammo2, alignment(right), -25, -56;
+                InInventory Ammo1Empty
+                {
+                    DrawImage  "HUD_AM13", -104, -32;
+                    DrawNumber 4, "DK_HUDBIG", DHud_AmmoGray, ammo1, alignment(right), -25, -24;
+                }
+                else
+                {
+                    InInventory Ammo1Under25 { DrawImage  "HUD_AM12", -104, -32; }
+                    else                     { DrawImage  "HUD_AM11", -104, -32; }
+                    
+                    DrawNumber 4, "DK_HUDBIG", DHud_Ammo1, ammo1, alignment(right), -25, -24;
+                }
             }
             else
             {
-                InInventory Ammo2Under25 { DrawImage  "HUD_AM22", -96, -63; }
-                else                     { DrawImage  "HUD_AM21", -96, -63; }
-                
-                DrawNumber 4, "DK_HUDBIG", DHud_Ammo2, ammo2, alignment(right), -25, -56;
+                DrawImage  "HUD_AM10", -104, -32;
             }
-        }
-        else
-        {
-            DrawImage  "HUD_AM20", -96, -63;
+            
+            UsesSecondaryAmmo
+            {
+                InInventory Ammo2Empty
+                {
+                    DrawImage  "HUD_AM23", -96, -63;
+                    DrawNumber 4, "DK_HUDBIG", DHud_AmmoGray, ammo2, alignment(right), -25, -56;
+                }
+                else
+                {
+                    InInventory Ammo2Under25 { DrawImage  "HUD_AM22", -96, -63; }
+                    else                     { DrawImage  "HUD_AM21", -96, -63; }
+                    
+                    DrawNumber 4, "DK_HUDBIG", DHud_Ammo2, ammo2, alignment(right), -25, -56;
+                }
+            }
+            else
+            {
+                DrawImage  "HUD_AM20", -96, -63;
+            }
         }
     
         DrawImage "FSH_WPAM", -175, -42;

@@ -399,3 +399,97 @@ texture FS_AMB0A
     pic FS_AMB0D tics 4
     pic FS_AMB0C tics 3
     pic FS_AMB0B tics 3
+
+
+
+texture HUD_FS12
+    pic HUD_FS12 tics 6
+    pic HUD_FS13 tics 3
+    pic HUD_FS14 tics 3
+    pic HUD_FS15 tics 4
+    pic HUD_FS14 tics 3
+    pic HUD_FS13 tics 3
+    
+texture HUD_FS22
+    pic HUD_FS22 tics 6
+    pic HUD_FS23 tics 3
+    pic HUD_FS24 tics 3
+    pic HUD_FS25 tics 4
+    pic HUD_FS24 tics 3
+    pic HUD_FS23 tics 3
+
+
+
+texture HUD_SB12
+    pic HUD_SB12 tics 6
+    pic HUD_SB13 tics 3
+    pic HUD_SB14 tics 3
+    pic HUD_SB15 tics 4
+    pic HUD_SB14 tics 3
+    pic HUD_SB13 tics 3
+
+texture HUD_SB22
+    pic HUD_SB22 tics 6
+    pic HUD_SB23 tics 3
+    pic HUD_SB24 tics 3
+    pic HUD_SB25 tics 4
+    pic HUD_SB24 tics 3
+    pic HUD_SB23 tics 3
+
+texture HUD_SB32
+    pic HUD_SB32 tics 6
+    pic HUD_SB33 tics 3
+    pic HUD_SB34 tics 3
+    pic HUD_SB35 tics 4
+    pic HUD_SB34 tics 3
+    pic HUD_SB33 tics 3
+
+texture HUD_SB42
+    pic HUD_SB42 tics 6
+    pic HUD_SB43 tics 3
+    pic HUD_SB44 tics 3
+    pic HUD_SB45 tics 4
+    pic HUD_SB44 tics 3
+    pic HUD_SB43 tics 3
+
+texture HUD_SB52
+    pic HUD_SB52 tics 6
+    pic HUD_SB53 tics 3
+    pic HUD_SB54 tics 3
+    pic HUD_SB55 tics 4
+    pic HUD_SB54 tics 3
+    pic HUD_SB53 tics 3
+
+texture HUD_SB62
+    pic HUD_SB62 tics 6
+    pic HUD_SB63 tics 3
+    pic HUD_SB64 tics 3
+    pic HUD_SB65 tics 4
+    pic HUD_SB64 tics 3
+    pic HUD_SB63 tics 3
+
+
+
+texture HUD_PB12
+    pic HUD_PB12 tics 6
+    pic HUD_PB13 tics 3
+    pic HUD_PB14 tics 3
+    pic HUD_PB15 tics 4
+    pic HUD_PB14 tics 3
+    pic HUD_PB13 tics 3
+
+texture HUD_PB22
+    pic HUD_PB22 tics 6
+    pic HUD_PB23 tics 3
+    pic HUD_PB24 tics 3
+    pic HUD_PB25 tics 4
+    pic HUD_PB24 tics 3
+    pic HUD_PB23 tics 3
+
+texture HUD_PB32
+    pic HUD_PB32 tics 6
+    pic HUD_PB33 tics 3
+    pic HUD_PB34 tics 3
+    pic HUD_PB35 tics 4
+    pic HUD_PB34 tics 3
+    pic HUD_PB33 tics 3
