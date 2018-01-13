@@ -402,19 +402,19 @@ actor DGyroTrail
         goto Smoke1
 
       Smoke1:
-        SMK1 ABCDEFGHIJKLMNOPQR 1
+        SMK1 ABCDEFGHIJKLMNOPQR 1 bright
         stop
 
       Smoke2:
-        SMK2 ABCDEFGHIJKLMNOPQR 1
+        SMK2 ABCDEFGHIJKLMNOPQR 1 bright
         stop
 
       Smoke3:
-        SMK3 ABCDEFGHIJKLMNOP 1
+        SMK3 ABCDEFGHIJKLMNOP 1 bright
         stop
 
       Smoke4:
-        SMK4 ABCDEFGHIJKLMNOP 1
+        SMK4 ABCDEFGHIJKLMNOP 1 bright
         stop
     }
 }
