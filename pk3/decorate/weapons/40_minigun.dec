@@ -1074,6 +1074,26 @@ actor MinigunBurnItem: Trigger
     }
 }
 
+actor DakkaMinigun_Bright: Trigger
+{
+    States
+    {
+      Pickup:
+        TNT1 A 0 A_ChangeFlag("BRIGHT", true)
+        stop
+    }
+}
+
+actor DakkaMinigun_Unbright: Trigger
+{
+    States
+    {
+      Pickup:
+        TNT1 A 0 A_ChangeFlag("BRIGHT", false)
+        stop
+    }
+}
+
 actor MinigunBurner
 {
     +SERVERSIDEONLY

@@ -228,7 +228,6 @@ dakka/firecrackle3          sounds/minigun/minigun_firecrackle3.ogg
 dakka/firecrackle4          sounds/minigun/minigun_firecrackle4.ogg
 $random dakka/firecrackle   { dakka/firecrackle1 dakka/firecrackle2 dakka/firecrackle3 dakka/firecrackle4 }
 
-$volume dakka/minigunfire           0.55
 $volume dakka/minigun/flamestart    0.6
 $volume dakka/minigun/flamestop     0.6
 $volume dakka/minigun/flameloop     0.75
