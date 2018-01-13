@@ -373,7 +373,7 @@ script "titlemap_scoretips" (int flash, int duration)
 }
 
 
-#define GAMETIPCOUNT    18
+#define GAMETIPCOUNT    19
 
 int GameTips[GAMETIPCOUNT] =
 {
@@ -400,6 +400,7 @@ int GameTips[GAMETIPCOUNT] =
     "The super shotgun has no refire delay, so hitting both mouse buttons in quick succession will fire whichever button you hit first, twice. Bring the pain!",
     
     // Minigun
+    "The minigun primary fire has two speeds: full auto if you just hold the primary fire, and \caFULLER AUTO\c- if you hold both fire buttons!",
     "The minigun's flamethrower is great at weeding out weaker enemies in a crowd - if the flamethrower itself doesn't kill them, the afterburn will.",
     "Minigun flames pierce invulnerability.\nBecause why not?",
     

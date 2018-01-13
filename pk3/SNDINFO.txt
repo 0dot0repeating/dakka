@@ -271,14 +271,14 @@ $rolloff dakka/impalerfly   1 640
 dakka/plasmaexplode         sounds/plasmarifle/plasma_explode.ogg
 $limit dakka/plasmaexplode  0
 
-//arc/fire1 sounds/plasmalance/arcfire1.ogg
-//arc/fire2 sounds/plasmalance/arcfire2.ogg
-//arc/fire3 sounds/plasmalance/arcfire3.ogg
-//arc/fire4 sounds/plasmalance/arcfire4.ogg
-//$random arc/fire { arc/fire1 arc/fire2 arc/fire3 arc/fire4 }
+arc/fire1 sounds/plasmalance/arcfire1.ogg
+arc/fire2 sounds/plasmalance/arcfire2.ogg
+arc/fire3 sounds/plasmalance/arcfire3.ogg
+arc/fire4 sounds/plasmalance/arcfire4.ogg
+$random arc/fire { arc/fire1 arc/fire2 arc/fire3 arc/fire4 }
 
-arc/fire    sounds/plasmalance/arcfire_alt.ogg
-$volume arc/fire 0.4
+//arc/fire    sounds/plasmalance/arcfire_alt.ogg
+$volume arc/fire 0.6
 
 arc/altcharge       sounds/plasmalance/arc_charge.ogg
 arc/altcharge_hold  sounds/plasmalance/arc_charge_hold.ogg
