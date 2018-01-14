@@ -45,6 +45,7 @@ actor DWep_Minigun: DoomWeapon
         goto Deselect2
       
       UnwindDeselect:
+        DMNG A 0 A_TakeInventory("DakkaMinigun_WoundUp")
         DMNG A 0 A_PlaySound("dakka/minigunspindown", 5)
         goto Deselect2
      
@@ -76,7 +77,7 @@ actor DWep_Minigun: DoomWeapon
         goto Deselect2
 
       Ready:
-        DMNG A 0 A_TakeInventory("MinigunFireState")
+        DMNG A 0 A_TakeInventory("DakkaMinigun_WoundUp")
         DMNG A 1 A_WeaponReady
         loop
 
@@ -866,7 +867,6 @@ actor DWep_Minigun: DoomWeapon
 
         DMNG A 0 A_AlertMonsters
         DMNG A 0 A_GiveInventory("MinigunFlamethrowing")
-        DMNG A 0 A_TakeInventory("MinigunFireState")
         DMNG A 0 A_PlaySound("dakka/minigun/flamepuff", CHAN_WEAPON)
         DMNG A 0 A_PlaySound("dakka/minigun/flamestart", 5)
         DMNG A 0 A_PlaySound("dakka/minigun/flameloop",  6, 1, 1)
@@ -912,7 +912,6 @@ actor DWep_Minigun: DoomWeapon
         goto AltEnd_NoAmmo
 
         DMNG A 0 A_AlertMonsters
-        DMNG A 0 A_TakeInventory("MinigunFireState")
 
         "----" A 0 ACS_NamedExecuteWithResult("Dakka_Switcharoo", 6, 1)
         "----" A 0 A_Light(5)
