@@ -6,10 +6,11 @@ script "Score_Award" (int scoreHeals)
     int i;
     int pln = PlayerNumber();
     int newLives = 0;
+    
+    LocalAmbientSound("dakka/pointreward", 127);
 
     for (i = 0; i < scoreHeals; i++)
     {
-        LocalAmbientSound("dakka/pointreward", 127);
         
         int curRewards = Score_GetRewardCount(pln);
 
@@ -31,11 +32,7 @@ script "Score_Award" (int scoreHeals)
     if (newLives > 0)
     {
         Delay(24);
-
-        for (i = 0; i < newLives; i++)
-        {
-            LocalAmbientSound("dakka/fullheal", 127);
-        }
+        LocalAmbientSound("dakka/fullheal", 127);
 
         FadeRange(192, 224, 255, 1.0 - powFloat(0.5, newLives), 192, 124, 255, 0.0, 0.75);
     }
