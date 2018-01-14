@@ -30,7 +30,7 @@ actor DakkaShells: Ammo
 
 actor DakkaShotGrenades: Ammo
 {
-    Inventory.Icon "ROCKA0"
+    Inventory.Icon "DGRNZ0"
 
     Inventory.Amount    2
     Inventory.MaxAmount 20
@@ -40,7 +40,7 @@ actor DakkaShotGrenades: Ammo
 
 actor DakkaGyroShells: Ammo
 {
-    Inventory.Icon "SBOXA0"
+    Inventory.Icon "DGSHZ0"
 
     Inventory.Amount 2
     Inventory.MaxAmount 15
