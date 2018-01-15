@@ -353,7 +353,7 @@ actor DWep_PlasmaLance: DoomWeapon
       
       
       Spawn:
-        DPLS Z -1
+        PLNC Z -1
         stop
     }
 }
