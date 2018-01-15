@@ -1,19 +1,19 @@
-server noarchive int  dakka_scrapfactor         = 100;
+server int  dakka_scrapfactor         = 100;
 
-server noarchive int  dakka_keepscore           = 0;
-server noarchive bool dakka_ignorehubs          = false;
+server int  dakka_keepscore           = 0;
+server bool dakka_ignorehubs          = false;
 
-server noarchive int  dakka_startmode_weapons   = 0;
-server noarchive int  dakka_startmode_ammo      = 1;
-server noarchive int  dakka_startmode_health    = 1;
+server int  dakka_startmode_weapons   = 0;
+server int  dakka_startmode_ammo      = 1;
+server int  dakka_startmode_health    = 1;
 
-server noarchive bool dakka_scrapperstart       = false;
-server noarchive int  dakka_backpackstart       = 0;
+server bool dakka_scrapperstart       = false;
+server int  dakka_backpackstart       = 0;
 
-server noarchive int  dakka_shotgun2ssg         = 0;
+server int  dakka_shotgun2ssg         = 0;
 
-server noarchive int  dakka_powerlevel          = 0;
-server noarchive int  dakka_defenselevel        = 0;
+server int  dakka_powerlevel          = 0;
+server int  dakka_defenselevel        = 0;
 
 server noarchive bool dakka_bug_nossginvcheck   = false;
 
