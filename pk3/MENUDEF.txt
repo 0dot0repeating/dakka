@@ -107,33 +107,70 @@ ListMenu Dakka_Options
 {
 	IfGame(Doom, Chex)
 	{
-		Position 77, 92
+		StaticPatch 94, 2, "M_DOOM"
+		Position 77, 72
+        
 		IfOption(ReadThis)
 		{
-			Position 77, 84
+			Position 97, 64
 		}
 	}
+    
 	IfGame(Strife)
 	{
-		Position 77, 65
+		StaticPatch 84, 2, "M_STRIFE"
+		Position 77, 45
 	}
+    
 	IfGame(Heretic)
 	{
-		Position 100, 76
+		StaticPatch 88, 0, "M_HTIC"
+		StaticPatch 40, 10, "M_SKL01"
+		StaticPatch 232, 10, "M_SKL00"
+		Position 90, 56
 	}
+    
 	IfGame(Hexen)
 	{
-		Position 100, 76
+		StaticPatch 88, 0, "M_HTIC"
+		StaticPatch 37, 80, "FBULB0"
+		StaticPatch 278, 80, "FBULA0"
+		Position 90, 56
 	}
-
-    Font "CONFONT", "White"
-
-    StaticTextCentered 160, 70, "NOTE! Only user options"
-    StaticTextCentered 160, 78, "are saved between sessions."
+        
+    //Font "CONFONT", "White"
+    //StaticTextCentered 160, 70, "NOTE! Only user options"
+    //StaticTextCentered 160, 78, "are saved between sessions."
 	
-    Font "DBIGFON2", "Gray"
-    TextItem "Game Options", "g", "Dakka_GameOptions"
-    TextItem "User Options", "u", "Dakka_UserOptions"
+    IfGame(Doom)
+    {
+        Font "DBIGFON2", "Grey"
+        TextItem "Game Options", "g", "Dakka_GameOptions"
+        TextItem "User Options", "u", "Dakka_UserOptions"
+        
+        Font "DBIGFON2", "Brick"
+        TextItem "Read This!",   "h", "ReadThisMenu"
+    }
+	
+    IfGame(Chex,Strife)
+    {
+        Font "BIGFONT", "Untranslated"
+        TextItem "Game Options", "g", "Dakka_GameOptions"
+        TextItem "User Options", "u", "Dakka_UserOptions"
+        
+        Font "BIGFONT", "Brick"
+        TextItem "Read This!",   "h", "ReadThisMenu"
+    }
+	
+    IfGame(Heretic,Hexen)
+    {
+        Font "BIGFONT", "Untranslated"
+        TextItem "Game Options", "g", "Dakka_GameOptions"
+        TextItem "User Options", "u", "Dakka_UserOptions"
+        
+        Font "BIGFONT", "Gold"
+        TextItem "Read This",    "h", "ReadThisMenu"
+    }
 
 }
 
@@ -207,26 +244,38 @@ ListMenu MainMenu
 {
 	IfGame(Doom, Chex)
 	{
+		StaticPatch 94, 2, "M_DOOM"
 		Position 97, 72
+        
 		IfOption(ReadThis)
 		{
 			Position 97, 64
 		}
 	}
+    
 	IfGame(Strife)
 	{
+		StaticPatch 84, 2, "M_STRIFE"
 		Position 97, 45
 	}
+    
 	IfGame(Heretic)
 	{
+		StaticPatch 88, 0, "M_HTIC"
+		StaticPatch 40, 10, "M_SKL01"
+		StaticPatch 232, 10, "M_SKL00"
 		Position 110, 56
 	}
+    
 	IfGame(Hexen)
 	{
+		StaticPatch 88, 0, "M_HTIC"
+		StaticPatch 37, 80, "FBULB0"
+		StaticPatch 278, 80, "FBULA0"
 		Position 110, 56
 	}
 	
-	IfGame(Doom, Strife, Chex)
+	IfGame(Doom)
 	{
 		PatchItem "M_NGAME", "n", "PlayerclassMenu"
 		ifOption(SwapMenu)
@@ -245,11 +294,32 @@ ListMenu MainMenu
 
         Font "DBIGFON2", "Brick"
         TextItem "Dakka", "d", "Dakka_Options"
-
-		ifOption(ReadThis)
+        
+        Font "BIGFONT", "Red"
+		PatchItem "M_QUITG", "q", "QuitMenu"
+	}
+	
+	IfGame(Strife, Chex)
+	{
+		PatchItem "M_NGAME", "n", "PlayerclassMenu"
+		ifOption(SwapMenu)
 		{
-			PatchItem "M_RDTHIS","r", "ReadThisMenu"
+			PatchItem "M_LOADG", "l", "LoadGameMenu"
+			PatchItem "M_SAVEG", "s", "SaveGameMenu"
+			PatchItem "M_OPTION","o", "OptionsMenu"
 		}
+		else
+		{
+			PatchItem "M_OPTION","o", "OptionsMenu"
+			PatchItem "M_LOADG", "l", "LoadGameMenu"
+			PatchItem "M_SAVEG", "s", "SaveGameMenu"
+		}
+
+
+        Font "DBIGFON2", "Brick"
+        TextItem "Dakka", "d", "Dakka_Options"
+        
+        Font "BIGFONT", "Red"
 		PatchItem "M_QUITG", "q", "QuitMenu"
 	}
 	
@@ -258,7 +328,9 @@ ListMenu MainMenu
 		TextItem "$MNU_NEWGAME", "n", "PlayerclassMenu"
 		TextItem "$MNU_OPTIONS", "o", "OptionsMenu"
 		TextItem "$MNU_GAMEFILES", "g", "GameFilesMenu"
-		TextItem "$MNU_INFO", "i", "ReadThisMenu"
+        Font "BIGFONT", "Gold"
+        TextItem "Dakka", "d", "Dakka_Options"
+        Font "BIGFONT", "Untranslated"
 		TextItem "$MNU_QUITGAME", "q", "QuitMenu"
 	}
 }
