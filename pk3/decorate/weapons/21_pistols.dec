@@ -42,9 +42,6 @@ actor DWep_Pistols: DoomWeapon
     States
     {
       Select:
-        DPS2 D 0 A_JumpIfInventory("DWep_Pistol", 1, 2)
-        DPS2 D 0 A_GiveInventory("DWep_Pistol")
-
         DPS2 DD 0 A_Raise
         DPS2 D 1 A_Raise
         loop
@@ -56,6 +53,11 @@ actor DWep_Pistols: DoomWeapon
         loop
 
       Ready:
+        DPS2 D 0 A_JumpIfInventory("DWep_Pistol", 1, "Ready2")
+        DPS2 D 0 A_GiveInventory("DWep_Pistol")
+        goto Ready2
+      
+      Ready2:
         DPS2 A 1 A_WeaponReady
         loop
 
