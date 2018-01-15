@@ -196,7 +196,7 @@ StatusBar Normal, fullscreenoffsets, 0.85
             
             InInventory DWep_Minigun     { DrawImage "RWP_411A", -26+center, -28; }
             InInventory DWep_Impaler     { DrawImage "RWP_511A", 36+center, -27; }
-            InInventory DWep_PlasmaLance { DrawImage "RWP_611A", 96+center, -29; }
+            InInventory DWep_PlasmaLance { DrawImage "RWP_611A", 95+center, -29; }
             InInventory DWep_BFG9000     { DrawImage "RWP_711A", 157+center, -28; }
             
             
@@ -210,7 +210,7 @@ StatusBar Normal, fullscreenoffsets, 0.85
             
             IsSelected DWep_Minigun     { DrawImage "RWP_412A", -26+center, -28; }
             IsSelected DWep_Impaler     { DrawImage "RWP_512A", 36+center, -27; }
-            IsSelected DWep_PlasmaLance { DrawImage "RWP_612A", 96+center, -29; }
+            IsSelected DWep_PlasmaLance { DrawImage "RWP_612A", 95+center, -29; }
             IsSelected DWep_BFG9000     { DrawImage "RWP_712A", 157+center, -28; }
         }
         
@@ -300,7 +300,7 @@ StatusBar Normal, fullscreenoffsets, 0.85
             
             InInventory DWep_Minigun     { DrawImage "HWEP4_1", -26+center, -28; }
             InInventory DWep_Impaler     { DrawImage "HWEP5_1", 36+center, -27; }
-            InInventory DWep_PlasmaLance { DrawImage "HWEP6_1", 96+center, -29; }
+            InInventory DWep_PlasmaLance { DrawImage "HWEP6_1", 95+center, -29; }
             InInventory DWep_BFG9000     { DrawImage "HWEP7_1", 157+center, -28; }
             
             
@@ -314,7 +314,7 @@ StatusBar Normal, fullscreenoffsets, 0.85
             
             IsSelected DWep_Minigun     { DrawImage "HWEP4_2", -26+center, -28; }
             IsSelected DWep_Impaler     { DrawImage "HWEP5_2", 36+center, -27; }
-            IsSelected DWep_PlasmaLance { DrawImage "HWEP6_2", 96+center, -29; }
+            IsSelected DWep_PlasmaLance { DrawImage "HWEP6_2", 95+center, -29; }
             IsSelected DWep_BFG9000     { DrawImage "HWEP7_2", 157+center, -28; }
         }
         
