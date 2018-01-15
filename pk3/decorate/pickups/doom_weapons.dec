@@ -223,8 +223,8 @@ actor Pickup_PlasmaRifle: ClassBasedPickup replaces PlasmaRifle
     States
     {
       Spawn:
-        DPLS Z 0
-        DPLS Z -1 A_JumpIf(CallACS("Pickup_Dropped") != 0, "Dropped")
+        PLNC Z 0
+        PLNC Z -1 A_JumpIf(CallACS("Pickup_Dropped") != 0, "Dropped")
         stop
       
       Dropped:
@@ -242,7 +242,7 @@ actor Pickup_PlasmaRifleDropped: ClassBasedPickup
     States
     {
       Spawn:
-        DPLS Z -1
+        PLNC Z -1
         stop
 
       Pickup:
