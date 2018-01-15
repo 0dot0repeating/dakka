@@ -6,7 +6,11 @@ script "Dakka_Open" open
     Pickup_IsZandronum(); // side effect sets IsZandronum
     IsServer = true;
 
-    Score_CalcMapPoints();
+    if (MapStart_FullHealPoints == 0)
+    {
+        // In score/score_levelstart.h
+        Score_CalcMapPoints();
+    }
 
     while (true)
     {

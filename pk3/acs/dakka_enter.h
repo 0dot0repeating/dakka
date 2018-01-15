@@ -15,6 +15,13 @@ int DakkaEnterLocks[PLAYERMAX];
 script "Dakka_Spawn" (int respawned)
 {
     if (GameType() == GAME_TITLE_MAP) { terminate; }
+    
+    // Apparently ENTER can run before OPEN in plain ol ZDoom too - fuckin fantastic
+    if (MapStart_FullHealPoints == 0)
+    {
+        // In score/score_levelstart.h
+        Score_CalcMapPoints();
+    }
 
     int pln      = PlayerNumber();
     int classNum = Pickup_ClassNumber(0);

@@ -15,6 +15,7 @@ GRAPHICS
 - Impaler: by zrrion the insect, animated by ijon
 - Lancer: Insomniac Games, in Disruptor
 - Lancer projectile sprites: by Fuzzyblaze/Infernex
+- Lancer pickup sprite: ijon
 - BFG9000: id software
 
 - Vampirism pickup: Mr.Enchanter and NoozeArts
@@ -22,6 +23,7 @@ GRAPHICS
 - TITLEMAP/DAKKTEST extra textures: cc4-tex.wad (DAKNUM* by ijon)
 - Clean BIGFONT (for the score line): Blue Shadow
 - Status Report font (score breakdown): Jimmy
+- HUD (including numbers): ijon
 
 
 
