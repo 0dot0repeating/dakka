@@ -67,7 +67,7 @@ actor DWep_Pistol: DoomWeapon
         DPST E 1 bright
         DPST E 1 A_Light(2)
         DPST E 1 A_Light(1)
-        DPST E 1 A_Light(0)
+        DPST E 2 A_Light(0)
         DPST E 4 A_WeaponReady(WRF_NOBOB | WRF_NOFIRE)
         DPST D 3 A_WeaponReady(WRF_NOBOB | WRF_NOFIRE)
         DPST B 2 A_WeaponReady(WRF_NOBOB | WRF_NOFIRE)
