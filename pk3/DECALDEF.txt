@@ -8,14 +8,51 @@ decal PlasmaScorchNorm
     randomflipy
 }
 
-decal PlasmaScorchBigger
+decal PlasmaScorchBigger_Impact
 {
     pic PLASMA1
     shade "00 00 00"
-    x-scale 0.45
-    y-scale 0.45
+    x-scale 0.6
+    y-scale 0.6
     randomflipx
     randomflipy
+}
+
+colorchanger FadeToBlack
+{
+   Color "00 00 00"
+   FadeStart 0.25
+   FadeTime 2
+}
+
+decal PlasmaScorchBigger_1
+{
+	pic BFGLITE1
+	shade "80 EA FF"
+
+    x-scale 0.6
+    y-scale 0.6
+
+	fullbright
+	randomflipx
+    randomflipy
+	animator FadeToBlack
+	lowerdecal PlasmaScorchBigger_Impact
+}
+
+decal PlasmaScorchBigger
+{
+	pic BFGLITE1
+	shade "80 EA FF"
+
+    x-scale 0.55
+    y-scale 0.55
+
+	fullbright
+	randomflipx
+    randomflipy
+	animator FadeToBlack
+	lowerdecal PlasmaScorchBigger_1
 }
 
 decal BulletScorch
@@ -25,6 +62,17 @@ decal BulletScorch
     shade "00 00 00"
     x-scale 0.25
     y-scale 0.25
+    randomflipx
+    randomflipy
+}
+
+decal FireScorch
+{
+    pic SCORCH1
+    translucent 0.07
+    shade "00 00 00"
+    x-scale 0.4
+    y-scale 0.4
     randomflipx
     randomflipy
 }
@@ -70,7 +118,7 @@ decal BFGLightningSmall1
 
 	fullbright
 	randomflipx
-	animator GoAway2
+	animator FadeToBlack
 	lowerdecal BFGScorchSmall
 }
 
@@ -84,7 +132,7 @@ decal BFGLightningSmall2
 
 	fullbright
 	randomflipy
-	animator GoAway2
+	animator FadeToBlack
 	lowerdecal BFGScorchSmall
 }
 
