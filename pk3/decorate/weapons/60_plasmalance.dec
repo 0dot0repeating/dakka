@@ -375,6 +375,7 @@ actor PLPrimaryShot: FastProjectile
     +HITTRACER
     
     RenderStyle Add
+    Decal "PlasmaScorchNorm"
     
     var int user_velx;
     var int user_vely;
@@ -560,6 +561,8 @@ actor LanceArcShot: Arc_Base
     +ALWAYSPUFF
     +PUFFONACTORS
     +BLOODLESSIMPACT
+    
+    Decal "PlasmaScorchBigger"
     
     // in order: arc index, max depth, damage
     Args 0, 3, 40
