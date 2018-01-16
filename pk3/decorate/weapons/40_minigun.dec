@@ -1011,13 +1011,13 @@ actor MinigunFlame
     Projectile
     Speed 25
 
+    +RIPPER
+    +NOBOSSRIP
+    +DONTREFLECT
     +MTHRUSPECIES
-    +THRUACTORS
     +BLOODLESSIMPACT
     +NODAMAGETHRUST
-    +FORCERADIUSDMG
-    +FOILINVUL
-    +PIERCEARMOR
+    +HITTRACER
 
     RenderStyle Add
     Scale 0.2
@@ -1026,6 +1026,7 @@ actor MinigunFlame
     Obituary "$DAKKA_MP_MINIGUN_FLAME"
 
     var int user_counter;
+    var int user_spawned;
     
     Decal "FireScorch"
     
@@ -1035,8 +1036,9 @@ actor MinigunFlame
         TNT1 E 0 bright
         TNT1 E 0 bright ACS_NamedExecuteWithResult("Dakka_InheritVelocity", AAPTR_TARGET, 80, 0, 30)
         TNT1 E 0 bright A_ScaleVelocity(random(90, 110) / 100.0)
-        TNT1 E 0 bright A_SetUserVar("user_counter", 15)
         TNT1 E 0 bright A_SpawnItemEx("MinigunFlameV", 0,0,0, velx,vely,velz, angle, SXF_ABSOLUTEANGLE | SXF_ABSOLUTEVELOCITY | SXF_CLIENTSIDE)
+        TNT1 E 0 bright A_SetUserVar("user_counter", 15)
+        TNT1 E 0 bright A_SetUserVar("user_spawned", true)
         goto Spawn2
 
       Spawn2:
@@ -1057,7 +1059,10 @@ actor MinigunFlame
         stop
 
       Death:
-        TNT1 A 1
+        TNT1 A 0 A_JumpIf(user_spawned, 2)
+        TNT1 A 0 A_SpawnItemEx("MinigunFlameV_Dead", 0,0,0, 0,0,0, angle, SXF_ABSOLUTEANGLE | SXF_CLIENTSIDE)
+        TNT1 A 0 ACS_NamedExecuteWithResult("Dakka_SetupMinigunBurn", 32, 4, 105)
+        TNT1 A 1 ACS_NamedExecuteWithResult("Dakka_MinigunBurn", AAPTR_TRACER)
         stop
     }
 }
@@ -1102,8 +1107,8 @@ actor MinigunBurner
     +NOINTERACTION
     +FORCERADIUSDMG
     +NODAMAGETHRUST
-    +FOILINVUL
     +BLOODLESSIMPACT
+    +FOILINVUL
     
     DamageType MinigunFire
     var int user_damage;
@@ -1146,8 +1151,9 @@ actor MinigunFlameV: MinigunFlame
     States
     {
       Spawn:
-        DFLM E 0 bright
-        DFMN E 0 bright A_SetUserVar("user_counter", 15)
+        DFLM E 0
+        DFLM E 0 bright A_SetUserVar("user_spawned", true)
+        DFLM E 0 bright A_SetUserVar("user_counter", 15)
         DFLM E 0 bright A_ScaleVelocity(random(90, 110) / 100.0)
         DFLM E 0 bright A_JumpIf(CallACS("Dakka_LessEffects"), "NoFancy")
         goto Fancy
@@ -1178,6 +1184,8 @@ actor MinigunFlameV: MinigunFlame
       Death:
         TNT1 A 0 A_JumpIf(waterlevel > 1, "Steam")
         TNT1 A 0 A_SpawnItemEx("MinigunImpactFlame", frandom(-15,15), 0, frandom(-10,5), frandom(-2,2),0,frandom(0,2), random(0,360))
+        TNT1 A 0 A_JumpIf(user_spawned, "Death2")
+        TNT1 A 0 bright A_SetUserVar("user_counter", 15)
         goto Death2
       
       Death2:
@@ -1190,7 +1198,16 @@ actor MinigunFlameV: MinigunFlame
         loop
     }
 }
-        
+
+actor MinigunFlameV_Dead: MinigunFlameV
+{
+    States
+    {
+      Spawn:
+        goto Death
+    }
+}
+
 
 actor MinigunFlameVisual
 {

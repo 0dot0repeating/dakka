@@ -96,8 +96,14 @@ script "Dakka_UnsetupMinigunBurn" (void)
 
 // Ripped these checks out of Arc_CheckTarget for the most part
 
-script "Dakka_MinigunBurn" (void)
+script "Dakka_MinigunBurn" (int ptr)
 {
+    if (ptr)
+    {
+        SetActivator(0, ptr);
+        if (ClassifyActor(0) & ACTOR_WORLD) { terminate; }
+    }
+    
     int firerTID  = MinigunBurnInfo[MB_FIRERTID];
     int myTID_old = ActivatorTID();
     int myTID_new = UniqueTID();
