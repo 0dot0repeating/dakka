@@ -155,8 +155,10 @@ $random dakka/shotfire      { dakka/sf1 dakka/sf2 dakka/sf3 }
 
 dakka/shotreload            sounds/shotgun/shotgun_reload.ogg
 dakka/shotgrenade           sounds/shotgun/shotgun_grenade.ogg
+dakka/grenadeclick          sounds/shotgun/shotgun_grenadebeep.ogg
 
 $volume dakka/shotgrenade   0.8
+$volume dakka/grenadeclick  1
 
 
 
@@ -183,8 +185,8 @@ dakka/gyrojet               sounds/ssg/gyrojet_fire.ogg
 dakka/gyrojetexplode        sounds/ssg/gyrojet_explode.ogg
 
 $limit dakka/gyrojetexplode 0
-$volume dakka/gyrojetexplode 0.125
-$rolloff dakka/gyrojetexplode 32 1024
+$volume dakka/gyrojetexplode 0.4
+$rolloff dakka/gyrojetexplode 512 2048
 
 
 
