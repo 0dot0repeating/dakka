@@ -158,6 +158,14 @@ dakka/shotgrenade           sounds/shotgun/shotgun_grenade.ogg
 dakka/grenadeclick          sounds/shotgun/shotgun_grenadebeep.ogg
 dakka/minigrenadeexplode    sounds/ssg/gyrojet_explode.ogg
 
+dakka/grenadeexplode1       sounds/impaler/impaler_explode1.ogg
+dakka/grenadeexplode2       sounds/impaler/impaler_explode2.ogg
+dakka/grenadeexplode3       sounds/impaler/impaler_explode3.ogg
+
+$random  dakka/grenadeexplode       { dakka/grenadeexplode1 dakka/grenadeexplode2 dakka/grenadeexplode3 }
+$limit   dakka/grenadeexplode       5
+$rolloff dakka/grenadeexplode       512 2048
+
 $volume dakka/shotgrenade   0.8
 $volume dakka/grenadeclick  1
 
@@ -261,7 +269,7 @@ dakka/impalerexplode2       sounds/impaler/impaler_explode2.ogg
 dakka/impalerexplode3       sounds/impaler/impaler_explode3.ogg
 
 $random  dakka/impalerexplode       { dakka/impalerexplode1 dakka/impalerexplode2 dakka/impalerexplode3 }
-$limit   dakka/impalerexplode       5
+$limit   dakka/impalerexplode       0
 $rolloff dakka/impalerexplode       512 2048
 
 dakka/impalerfly            sounds/impaler/impaler_fly.ogg
