@@ -184,6 +184,7 @@ actor ShotgunGrenade
     -NOGRAVITY
     Gravity 0.6
 
+    ProjectileKickback 100
     Obituary "$DAKKA_MP_SHOTGUN_GRENADE"
     
     var int user_velx;
@@ -299,6 +300,7 @@ actor ShotgunMiniGrenade
     Obituary "$DAKKA_MP_SHOTGUN_GRENADE"
     Decal "BulletScorch"
     
+    ProjectileKickback 100
     ReactionTime 14
 
     States
