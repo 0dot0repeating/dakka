@@ -133,7 +133,7 @@ script "Dakka_StickyGrenade" (int manual, int autoTimer)
             //  - it ain't ACS without a hack
             if (GetActorProperty(projTID, APROP_DamageType) != 0)
             {
-                for (int i = 0; i <= 0.6; i += 0.05)
+                for (int i = 0; i <= 0.5; i += 0.025)
                 {
                     newStickyTID = DShotgun_TestWallStick(projX, projY, projZ, projAngle + i, projRadius);
                     if (!newStickyTID && (i != 0)) { newStickyTID = DShotgun_TestWallStick(projX, projY, projZ, projAngle - i, projRadius); }
@@ -259,7 +259,23 @@ script "Dakka_StickyGrenade" (int manual, int autoTimer)
         
         SetActivator(ptrTID, AAPTR_MASTER);
         int warpFlags = WARPF_INTERPOLATE | WARPF_ABSOLUTEPOSITION | WARPF_ABSOLUTEANGLE | cond(stuckToObject, WARPF_NOCHECKPOSITION, 0);
-        if (!Warp(0, newProjX, newProjY, newProjZ, newProjAngle, warpFlags)) { break; }
+        if (!Warp(0, newProjX, newProjY, newProjZ, newProjAngle, warpFlags))
+        {
+            int floorZ = GetActorFloorZ(0);
+            int ceilZ  = GetActorCeilingZ(0);
+            
+            // So that the grenade counts as being on the floor/ceiling when it explodes
+            if (newProjZ <= floorZ)
+            {
+                Warp(0, newProjX, newProjY, floorZ, newProjAngle | WARPF_NOCHECKPOSITION, warpFlags);
+            }
+            else if (newProjZ + projHeight >= ceilZ)
+            {
+                Warp(0, newProjX, newProjY, ceilZ - projHeight, newProjAngle | WARPF_NOCHECKPOSITION, warpFlags);
+            }
+            
+            break;
+        }
         SetActorAngle(0, newProjAngle); // for zandronum
         
         t++;
