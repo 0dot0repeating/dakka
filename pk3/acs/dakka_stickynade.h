@@ -36,6 +36,7 @@ function int DShotgun_TestWallStick(int projX, int projY, int projZ, int projAng
     return 0;
 }
 
+
 script "Dakka_StickyGrenade" (int manual, int autoTimer)
 {
     int projTID_old = ActivatorTID();
@@ -128,11 +129,11 @@ script "Dakka_StickyGrenade" (int manual, int autoTimer)
             
             int newStickyTID = 0;
             
-            // stop this from running in zandronum until it supports Warpit
+            // don't even bother in zandronum until it supports Warp better
             //  - it ain't ACS without a hack
             if (GetActorProperty(projTID, APROP_DamageType) != 0)
             {
-                for (int i = 0; i <= 0.5; i += 0.1)
+                for (int i = 0; i <= 0.6; i += 0.05)
                 {
                     newStickyTID = DShotgun_TestWallStick(projX, projY, projZ, projAngle + i, projRadius);
                     if (!newStickyTID && (i != 0)) { newStickyTID = DShotgun_TestWallStick(projX, projY, projZ, projAngle - i, projRadius); }
