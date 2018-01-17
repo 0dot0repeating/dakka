@@ -66,7 +66,7 @@ actor DakkaPuff: BulletPuff
 
       Trace:
         TNT1 A 0 bright ACS_NamedExecuteWithResult("Dakka_Tracer", TRACE_BULLET, 0, -6)
-        DPUF AB 2 bright
+        DPUF AB 4 bright
         goto Melee
         
       Melee:
