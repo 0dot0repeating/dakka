@@ -96,6 +96,12 @@ OptionValue Dakka_DefenseLevel
      10, "10x tougher"
 }
 
+OptionValue Dakka_FlamethrowerStyle
+{
+    0, "New"
+    1, "Old"
+}
+
 OptionValue OffOn
 {
     0, "On"
@@ -224,11 +230,12 @@ OptionMenu "Dakka_UserOptions"
 
     StaticText ""
 
-    Option "Disable score rewards",      "dakka_cl_noscorerewards", "OnOff"
-    Option "Disable score entirely",     "dakka_cl_noscore",        "OnOff"
-    Option "Less effects",               "dakka_cl_lesseffects",    "OnOff"
-    Option "Dumb pickup messages",       "dakka_cl_moremessages",   "OnOff"
-    Option "Grenades auto-explode",      "dakka_cl_autodetonate",   "OnOff"
+    Option "Disable score rewards",      "dakka_cl_noscorerewards",     "OnOff"
+    Option "Disable score entirely",     "dakka_cl_noscore",            "OnOff"
+    Option "Less effects",               "dakka_cl_lesseffects",        "OnOff"
+    Option "Dumb pickup messages",       "dakka_cl_moremessages",       "OnOff"
+    Option "Flamethrower style",         "dakka_cl_flamethrowerstyle",  "Dakka_FlamethrowerStyle"
+    Option "Grenades auto-explode",      "dakka_cl_autodetonate",       "OnOff"
 
     StaticText ""
     StaticText "Keybinds"
