@@ -12,6 +12,25 @@ script "Dakka_MinigunReady" (void)
     }
 }
 
+
+script "Dakka_MinigunFireStyle" (void) clientside
+{
+    int pln;
+    
+    if (IsZandronum)
+    {
+        pln = ConsolePlayerNumber();
+    }
+    else
+    {
+        SetActivator(0, AAPTR_TARGET);
+        pln = PlayerNumber();
+    }
+    
+    SetResultValue(GetUserCVar(pln, "dakka_cl_flamethrowerstyle"));
+}
+
+
 script "Dakka_InheritVelocity" (int ptr, int percentForward, int percentSide, int percentBackward)
 {
     percentForward  = itof(percentForward)  / 100;
@@ -109,7 +128,14 @@ script "Dakka_MinigunBurn" (int ptr)
     int myTID_new = UniqueTID();
     Thing_ChangeTID(0, myTID_new);
     
-    // First check: did we target the firer?
+    // First check: is this even shootable?
+    if (!CheckFlag(0, "SHOOTABLE"))
+    {
+        Thing_ChangeTID(myTID_new, myTID_old);
+        terminate;
+    }   
+    
+    // Second check: did we target the firer?
     int testnum = random(1, 0x7FFFFFFF);
     
     SetInventory("SameThingChecker", testnum);
@@ -126,7 +152,7 @@ script "Dakka_MinigunBurn" (int ptr)
         terminate;
     }
     
-    // Second check: are they allied to each other?
+    // Third check: are they allied to each other?
     int myPln    = PlayerNumber();
     int firerPln = MinigunBurnInfo[MB_FIRERPLN];
     
@@ -155,7 +181,7 @@ script "Dakka_MinigunBurn" (int ptr)
         }
     }
     
-    // Third check: are we actually in range?
+    // Fourth check: are we actually in range?
     int myX = GetActorX(0);
     int myY = GetActorY(0);
     int myZ = GetActorZ(0);
