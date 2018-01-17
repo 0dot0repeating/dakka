@@ -96,7 +96,7 @@ OptionValue Dakka_DefenseLevel
      10, "10x tougher"
 }
 
-OptionValue Dakka_RecoilInterp
+OptionValue OffOn
 {
     0, "On"
     1, "Off"
@@ -220,14 +220,15 @@ OptionMenu "Dakka_UserOptions"
 
     Slider "Recoil factor",      "dakka_cl_recoil", 0, 300, 10, 0
     Option "Bouncy recoil",      "dakka_cl_jerkyrecoil", "OnOff"
-    Option "Interpolate recoil", "dakka_cl_norecoilinterp", "Dakka_RecoilInterp"
+    Option "Interpolate recoil", "dakka_cl_norecoilinterp", "OffOn"
 
     StaticText ""
 
-    Option "Disable score rewards",  "dakka_cl_noscorerewards", "OnOff"
-    Option "Disable score entirely", "dakka_cl_noscore",        "OnOff"
-    Option "Less effects",           "dakka_cl_lesseffects",    "OnOff"
-    Option "Dumb pickup messages",   "dakka_cl_moremessages",   "OnOff"
+    Option "Disable score rewards",      "dakka_cl_noscorerewards", "OnOff"
+    Option "Disable score entirely",     "dakka_cl_noscore",        "OnOff"
+    Option "Less effects",               "dakka_cl_lesseffects",    "OnOff"
+    Option "Dumb pickup messages",       "dakka_cl_moremessages",   "OnOff"
+    Option "Grenades auto-explode",      "dakka_cl_autodetonate",   "OnOff"
 
     StaticText ""
     StaticText "Keybinds"

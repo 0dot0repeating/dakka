@@ -78,6 +78,9 @@
 // Punch the things.
 #include "dakka_fists.h"
 
+// This is how the sticky grenades for the shotgun and SSG stick.
+#include "dakka_stickynade.h"
+
 // Auto-reload the SSG when it's in your pants. Also scripts called by the SSG,
 //  to handle the triggers and whatnot
 #include "dakka_ssg.h"
