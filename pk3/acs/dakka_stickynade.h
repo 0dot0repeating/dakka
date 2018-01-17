@@ -1,3 +1,41 @@
+function int DShotgun_TestWallStick(int projX, int projY, int projZ, int projAngle, int projRadius)
+{
+    int stickyTID   = UniqueTID();
+    
+    int projEdgeX   = FixedMul(projRadius, cos(projAngle));
+    int projEdgeY   = FixedMul(projRadius, sin(projAngle));
+    int projEdgeMult = FixedDiv(projRadius + 8.0, max(abs(projEdgeX), abs(projEdgeY)));
+    //Log(s:"\cd<", f:projEdgeX, s:", ", f:projEdgeY, s:">   \cf", f:projAngle, s:"   \ck", f:projEdgeMult);
+    
+    projEdgeX = projX + FixedMul(projEdgeX, projEdgeMult);
+    projEdgeY = projY + FixedMul(projEdgeY, projEdgeMult);
+    
+    // check if stuck to upper or lower part of sector
+    SpawnForced("ShotgunStickyPoint", projEdgeX, projEdgeY, projZ, stickyTID);
+    
+    int stickyZ = GetActorZ(stickyTID);
+    int floorZ  = GetActorFloorZ(stickyTID);
+    int ceilZ   = GetActorCeilingZ(stickyTID);
+    
+    Thing_Remove(stickyTID);
+    
+    if (stickyZ <= floorZ)
+    {
+        //Log(s:"stuck to lower part of wall (", f:stickyZ, s:" vs ", f:floorZ, s:")");
+        SpawnForced("ShotgunStickyPoint_Floor", projEdgeX, projEdgeY, floorZ, stickyTID);
+        return stickyTID;
+    }
+    
+    if (stickyZ >= ceilZ)
+    {
+        //Log(s:"stuck to upper part of wall (", f:stickyZ, s:" vs ", f:ceilZ, s:")");
+        SpawnForced("ShotgunStickyPoint_Ceiling", projEdgeX, projEdgeY, ceilZ, stickyTID);
+        return stickyTID;
+    }
+    
+    return 0;
+}
+
 script "Dakka_StickyGrenade" (int manual, int autoTimer)
 {
     int projTID_old = ActivatorTID();
@@ -76,49 +114,42 @@ script "Dakka_StickyGrenade" (int manual, int autoTimer)
         
         if (projCeilZ <= projZ + projHeight)
         {
-            Log(s:"stuck to ceiling");
+            //Log(s:"stuck to ceiling");
             SpawnForced("ShotgunStickyPoint_Ceiling", projX, projY, projCeilZ, stickyTID);
         }
         else if (projFloorZ >= projZ)
         {
-            Log(s:"stuck to floor");
+            //Log(s:"stuck to floor");
             SpawnForced("ShotgunStickyPoint_Floor", projX, projY, projFloorZ, stickyTID);
         }
         else
         {
-            Log(s:"stuck to wall");
-            int projEdgeX   = FixedMul(projRadius, cos(projAngle));
-            int projEdgeY   = FixedMul(projRadius, sin(projAngle));
-            int projEdgeMult = FixedDiv(projRadius + 8.0, max(abs(projEdgeX), abs(projEdgeY)));
-            Log(s:"\cd<", f:projEdgeX, s:", ", f:projEdgeY, s:">   ", f:projEdgeMult);
+            //Log(s:"stuck to wall");
             
-            projEdgeX = projX + FixedMul(projEdgeX, projEdgeMult);
-            projEdgeY = projY + FixedMul(projEdgeY, projEdgeMult);
+            int newStickyTID = 0;
             
-            // check if stuck to upper or lower part of sector
-            // but only in gzdoom, because zandronum can't warp worth shit
-            SpawnForced("ShotgunStickyPoint", projEdgeX, projEdgeY, projZ, stickyTID);
-            
-            // it ain't ACS without a hack
+            // stop this from running in zandronum until it supports Warpit
+            //  - it ain't ACS without a hack
             if (GetActorProperty(projTID, APROP_DamageType) != 0)
             {
-                int newZ;
-                
-                if (GetActorZ(stickyTID) <= GetActorFloorZ(stickyTID))
+                for (int i = 0; i <= 0.5; i += 0.1)
                 {
-                    Log(s:"stuck to lower part of wall (", f:GetActorZ(stickyTID), s:" vs ", f:GetActorFloorZ(stickyTID), s:")");
-                    newZ = GetActorFloorZ(stickyTID);
-                    Thing_Remove(stickyTID);
-                    SpawnForced("ShotgunStickyPoint_Floor", projEdgeX, projEdgeY, newZ, stickyTID);
-                }
-                else if (GetActorZ(stickyTID) >= GetActorCeilingZ(stickyTID))
-                {
-                    Log(s:"stuck to upper part of wall (", f:GetActorZ(stickyTID), s:" vs ", f:GetActorCeilingZ(stickyTID), s:")");
-                    newZ = GetActorCeilingZ(stickyTID);
-                    Thing_Remove(stickyTID);
-                    SpawnForced("ShotgunStickyPoint_Ceiling", projEdgeX, projEdgeY, newZ, stickyTID);
+                    newStickyTID = DShotgun_TestWallStick(projX, projY, projZ, projAngle + i, projRadius);
+                    if (!newStickyTID && (i != 0)) { newStickyTID = DShotgun_TestWallStick(projX, projY, projZ, projAngle - i, projRadius); }
+                    if (newStickyTID) { break; }
                 }
             }
+            
+            //Log(s:"\cqnewStickyTID: \cd", d:newStickyTID);
+            
+            if (newStickyTID)
+            {
+                stickyTID = newStickyTID;
+            }
+            else
+            {
+                SpawnForced("ShotgunStickyPoint", projX, projY, projZ, stickyTID);
+            }   
         }
         
         stickyStartAngle = projAngle;
@@ -129,7 +160,7 @@ script "Dakka_StickyGrenade" (int manual, int autoTimer)
     }
     else
     {
-        Log(s:"stuck to thing");
+        //Log(s:"stuck to thing");
         
         stickyTID_old = ActivatorTID();
         Thing_ChangeTID(0, stickyTID);
