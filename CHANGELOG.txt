@@ -83,6 +83,9 @@ WEAPON CHANGES:
 
 - The minigun now does only 12 damage per bullet (down from 20).
 
+- The BFG beam's damage radius has been shrunk, and it now uses 80 cells
+    per shot (up from 50).
+
 
 AMMO CHANGES:
 
