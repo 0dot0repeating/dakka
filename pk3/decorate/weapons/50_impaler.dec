@@ -345,6 +345,7 @@ actor ImpalerAltMissile: FastProjectile
       Death:
         MIS3 A 0 A_JumpIf(user_detonated, "AlreadyDied")
         MIS3 A 0 A_StopSound(CHAN_BODY)
+        MIS3 A 0 A_ChangeFlag("NOINTERACTION", 1)  // I think this prevents infinite-death loops
         MIS3 A 0 ACS_NamedExecuteWithResult("Dakka_ImpalerAltHit", 350)
         MIS3 A 0 A_ChangeFlag("NOTIMEFREEZE", 1)
         MIS3 AA 0 bright A_SpawnItemEx("ImpalerSmoke", frandom(-2, 2), 0, frandom(-2, 2), 0,0,0, frandom(0, 360))
