@@ -373,7 +373,7 @@ actor MiniGrenadeExplosion_Client
 	{
 	  Spawn:
 	    MISL B 0 bright
-		MISL B 0 A_PlaySound("dakka/gyrojetexplode")
+		MISL B 0 A_PlaySound("dakka/minigrenadeexplode")
 		goto RingSpawn
 	
 	  RingSpawn:
