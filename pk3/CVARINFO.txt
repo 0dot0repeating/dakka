@@ -25,5 +25,5 @@ user bool dakka_cl_norecoilinterp       = false;
 user bool dakka_cl_lesseffects          = false;
 user bool dakka_cl_noscorerewards       = false;
 user bool dakka_cl_noscore              = false;
-user bool dakka_cl_autodetonate         = false;
+user bool dakka_cl_autodetonate         = true;
 user int  dakka_cl_flamethrowerstyle    = 0;
