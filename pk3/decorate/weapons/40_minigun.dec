@@ -1226,27 +1226,27 @@ actor MinigunFlameV
         goto Fire1
 
       Fire1:
-        TNT1 A 1 A_SpawnItemEx("MinigunNewFlame1", frandom(-3,3), 0,0, (velx/2)+frandom(-1.5, 1.5), (vely/2)+frandom(-0.4, 0.4), (velz/2)+frandom(-0.2, 0.2), 0, SXF_ABSOLUTEVELOCITY|SXF_ABSOLUTEANGLE, 0)
+        TNT1 A 1 A_SpawnItemEx("MinigunNewFlame1", frandom(-3,3) - (velx/2.0), -vely/2.0, -velz/2.0, (velx/2)+frandom(-1.5, 1.5), (vely/2)+frandom(-0.4, 0.4), (velz/2)+frandom(-0.2, 0.2), 0, SXF_ABSOLUTEPOSITION|SXF_ABSOLUTEVELOCITY|SXF_ABSOLUTEANGLE, 0)
         goto NewFireLoop
 
       Fire2:
-        TNT1 A 1 A_SpawnItemEx("MinigunNewFlame2", frandom(-3,3), 0,0, (velx/2)+frandom(-1.5, 1.5), (vely/2)+frandom(-0.6, 0.6), (velz/2)+frandom(-0.3, 0.3), 0, SXF_ABSOLUTEVELOCITY|SXF_ABSOLUTEANGLE, 24)
+        TNT1 A 1 A_SpawnItemEx("MinigunNewFlame2", frandom(-3,3) - (velx/2.0), -vely/2.0, -velz/2.0, (velx/2)+frandom(-1.5, 1.5), (vely/2)+frandom(-0.6, 0.6), (velz/2)+frandom(-0.3, 0.3), 0, SXF_ABSOLUTEPOSITION|SXF_ABSOLUTEVELOCITY|SXF_ABSOLUTEANGLE, 24)
         goto NewFireLoop
 
       Fire3:
-        TNT1 A 1 A_SpawnItemEx("MinigunNewFlame3", frandom(-3,3), 0,0, (velx/2)+frandom(-1.5, 1.5), (vely/2)+frandom(-0.8, 0.8), (velz/2)+frandom(-0.4, 0.4), 0, SXF_ABSOLUTEVELOCITY|SXF_ABSOLUTEANGLE, 48)
+        TNT1 A 1 A_SpawnItemEx("MinigunNewFlame3", frandom(-3,3) - (velx/2.0), -vely/2.0, -velz/2.0, (velx/2)+frandom(-1.5, 1.5), (vely/2)+frandom(-0.8, 0.8), (velz/2)+frandom(-0.4, 0.4), 0, SXF_ABSOLUTEPOSITION|SXF_ABSOLUTEVELOCITY|SXF_ABSOLUTEANGLE, 48)
         goto NewFireLoop
 
       Fire4:
-        TNT1 A 1 A_SpawnItemEx("MinigunNewFlame4", frandom(-3,3), 0,0, (velx/2)+frandom(-1.5, 1.5), (vely/2)+frandom(-1.1, 1.1), (velz/2)+frandom(-0.6, 0.6), 0, SXF_ABSOLUTEVELOCITY|SXF_ABSOLUTEANGLE, 72)
+        TNT1 A 1 A_SpawnItemEx("MinigunNewFlame4", frandom(-3,3) - (velx/2.0), -vely/2.0, -velz/2.0, (velx/2)+frandom(-1.5, 1.5), (vely/2)+frandom(-1.1, 1.1), (velz/2)+frandom(-0.6, 0.6), 0, SXF_ABSOLUTEPOSITION|SXF_ABSOLUTEVELOCITY|SXF_ABSOLUTEANGLE, 72)
         goto NewFireLoop
 
       Fire5:
-        TNT1 A 1 A_SpawnItemEx("MinigunNewFlame5", frandom(-3,3), 0,0, (velx/2)+frandom(-1.5, 1.5), (vely/2)+frandom(-1.5, 1.5), (velz/2)+frandom(-0.9, 0.9), 0, SXF_ABSOLUTEVELOCITY|SXF_ABSOLUTEANGLE, 96)
+        TNT1 A 1 A_SpawnItemEx("MinigunNewFlame5", frandom(-3,3) - (velx/2.0), -vely/2.0, -velz/2.0, (velx/2)+frandom(-1.5, 1.5), (vely/2)+frandom(-1.5, 1.5), (velz/2)+frandom(-0.9, 0.9), 0, SXF_ABSOLUTEPOSITION|SXF_ABSOLUTEVELOCITY|SXF_ABSOLUTEANGLE, 96)
         goto NewFireLoop
 
       Fire6:
-        TNT1 A 1 A_SpawnItemEx("MinigunNewFlame6", frandom(-3,3), 0,0, (velx/2)+frandom(-1.5, 1.5), (vely/2)+frandom(-2.0, 2.0), (velz/2)+frandom(-1.4, 1.4), 0, SXF_ABSOLUTEVELOCITY|SXF_ABSOLUTEANGLE, 120)
+        TNT1 A 1 A_SpawnItemEx("MinigunNewFlame6", frandom(-3,3) - (velx/2.0), -vely/2.0, -velz/2.0, (velx/2)+frandom(-1.5, 1.5), (vely/2)+frandom(-2.0, 2.0), (velz/2)+frandom(-1.4, 1.4), 0, SXF_ABSOLUTEPOSITION|SXF_ABSOLUTEVELOCITY|SXF_ABSOLUTEANGLE, 120)
         goto NewFireLoop
 
 
@@ -1262,27 +1262,27 @@ actor MinigunFlameV
         goto Fire1_LE
 
       Fire1_LE:
-        TNT1 A 1 A_SpawnItemEx("MinigunNewFlame1", frandom(-3,3), 0,0, (velx/2)+frandom(-1.5, 1.5), (vely/2)+frandom(-0.4, 0.4), (velz/2)+frandom(-0.2, 0.2), 0, SXF_ABSOLUTEVELOCITY|SXF_ABSOLUTEANGLE, 128)
+        TNT1 A 1 A_SpawnItemEx("MinigunNewFlame1", frandom(-3,3) - (velx/2.0), -vely/2.0, -velz/2.0, (velx/2)+frandom(-1.5, 1.5), (vely/2)+frandom(-0.4, 0.4), (velz/2)+frandom(-0.2, 0.2), 0, SXF_ABSOLUTEPOSITION|SXF_ABSOLUTEVELOCITY|SXF_ABSOLUTEANGLE, 128)
         goto NewFireLoop_LE
 
       Fire2_LE:
-        TNT1 A 1 A_SpawnItemEx("MinigunNewFlame2", frandom(-3,3), 0,0, (velx/2)+frandom(-1.5, 1.5), (vely/2)+frandom(-0.6, 0.6), (velz/2)+frandom(-0.3, 0.3), 0, SXF_ABSOLUTEVELOCITY|SXF_ABSOLUTEANGLE, 140)
+        TNT1 A 1 A_SpawnItemEx("MinigunNewFlame2", frandom(-3,3) - (velx/2.0), -vely/2.0, -velz/2.0, (velx/2)+frandom(-1.5, 1.5), (vely/2)+frandom(-0.6, 0.6), (velz/2)+frandom(-0.3, 0.3), 0, SXF_ABSOLUTEPOSITION|SXF_ABSOLUTEVELOCITY|SXF_ABSOLUTEANGLE, 140)
         goto NewFireLoop_LE
 
       Fire3_LE:
-        TNT1 A 1 A_SpawnItemEx("MinigunNewFlame3", frandom(-3,3), 0,0, (velx/2)+frandom(-1.5, 1.5), (vely/2)+frandom(-0.8, 0.8), (velz/2)+frandom(-0.4, 0.4), 0, SXF_ABSOLUTEVELOCITY|SXF_ABSOLUTEANGLE, 152)
+        TNT1 A 1 A_SpawnItemEx("MinigunNewFlame3", frandom(-3,3) - (velx/2.0), -vely/2.0, -velz/2.0, (velx/2)+frandom(-1.5, 1.5), (vely/2)+frandom(-0.8, 0.8), (velz/2)+frandom(-0.4, 0.4), 0, SXF_ABSOLUTEPOSITION|SXF_ABSOLUTEVELOCITY|SXF_ABSOLUTEANGLE, 152)
         goto NewFireLoop_LE
 
       Fire4_LE:
-        TNT1 A 1 A_SpawnItemEx("MinigunNewFlame4", frandom(-3,3), 0,0, (velx/2)+frandom(-1.5, 1.5), (vely/2)+frandom(-1.1, 1.1), (velz/2)+frandom(-0.6, 0.6), 0, SXF_ABSOLUTEVELOCITY|SXF_ABSOLUTEANGLE, 164)
+        TNT1 A 1 A_SpawnItemEx("MinigunNewFlame4", frandom(-3,3) - (velx/2.0), -vely/2.0, -velz/2.0, (velx/2)+frandom(-1.5, 1.5), (vely/2)+frandom(-1.1, 1.1), (velz/2)+frandom(-0.6, 0.6), 0, SXF_ABSOLUTEPOSITION|SXF_ABSOLUTEVELOCITY|SXF_ABSOLUTEANGLE, 164)
         goto NewFireLoop_LE
 
       Fire5_LE:
-        TNT1 A 1 A_SpawnItemEx("MinigunNewFlame5", frandom(-3,3), 0,0, (velx/2)+frandom(-1.5, 1.5), (vely/2)+frandom(-1.5, 1.5), (velz/2)+frandom(-0.9, 0.9), 0, SXF_ABSOLUTEVELOCITY|SXF_ABSOLUTEANGLE, 176)
+        TNT1 A 1 A_SpawnItemEx("MinigunNewFlame5", frandom(-3,3) - (velx/2.0), -vely/2.0, -velz/2.0, (velx/2)+frandom(-1.5, 1.5), (vely/2)+frandom(-1.5, 1.5), (velz/2)+frandom(-0.9, 0.9), 0, SXF_ABSOLUTEPOSITION|SXF_ABSOLUTEVELOCITY|SXF_ABSOLUTEANGLE, 176)
         goto NewFireLoop_LE
 
       Fire6_LE:
-        TNT1 A 1 A_SpawnItemEx("MinigunNewFlame6", frandom(-3,3), 0,0, (velx/2)+frandom(-1.5, 1.5), (vely/2)+frandom(-2.0, 2.0), (velz/2)+frandom(-1.4, 1.4), 0, SXF_ABSOLUTEVELOCITY|SXF_ABSOLUTEANGLE, 188)
+        TNT1 A 1 A_SpawnItemEx("MinigunNewFlame6", frandom(-3,3) - (velx/2.0), -vely/2.0, -velz/2.0, (velx/2)+frandom(-1.5, 1.5), (vely/2)+frandom(-2.0, 2.0), (velz/2)+frandom(-1.4, 1.4), 0, SXF_ABSOLUTEPOSITION|SXF_ABSOLUTEVELOCITY|SXF_ABSOLUTEANGLE, 188)
         goto NewFireLoop_LE
 
 
