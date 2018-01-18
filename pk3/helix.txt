@@ -41,7 +41,7 @@ I = cp
 
 [[(ca)(cp)   -sa   (ca)(sp)]    [[x]
  [(sa)(cp)    ca   (sa)(sp)]  *  [y]
- [-sp         0    cp]      ]    [z]]
+ [-sp         0    cp      ]]    [z]]
 
 
   [[x']
