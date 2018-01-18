@@ -75,6 +75,9 @@
 #include "dakka_vampirism.h"
 
 
+// Used for a few projectiles; handles setting angle/pitch on death.
+#include "dakka_projangle.h"
+
 // Punch the things.
 #include "dakka_fists.h"
 
