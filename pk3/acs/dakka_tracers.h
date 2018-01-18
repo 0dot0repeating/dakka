@@ -1,5 +1,4 @@
 #define TRACE_BULLET        0
-#define TRACE_PLASMA        1
 #define TRACE_ARC_FIRER     2
 #define TRACE_ARC_MASTER    3
 #define TRACE_BFG           4
@@ -48,7 +47,6 @@ script "Dakka_Tracer" (int which, int yoff, int zoff)
         pointX = 12.0;
         break;
 
-      case TRACE_PLASMA:
       case TRACE_ARC_FIRER:
       case TRACE_BFG:
         pointX = 20.0;
@@ -62,29 +60,11 @@ script "Dakka_Tracer" (int which, int yoff, int zoff)
     // Negative y should mean left, not right, dammit
     int pointY = -itof(yoff);
     int pointZ =  itof(zoff);
-
-
-    // Rotation matrix time.
-    // See helix.txt to see how I got to this.
-    //
-    // x' = cos( angle)cos( pitch)x + -sin( angle)y + cos( angle)sin( pitch)z
-    // y' = sin(-angle)cos(-pitch)x +  cos(-angle)y + sin(-angle)sin(-pitch)z
-    // z' =            sin(-pitch)x                 +            cos(-pitch)z
     
-    int rotateX = FixedMul(pointX, FixedMul(cos( myAngle), cos( myPitch)))
-                - FixedMul(pointY,          sin( myAngle))
-                + FixedMul(pointZ, FixedMul(cos( myAngle), sin( myPitch)));
-
-    int rotateY = FixedMul(pointX, FixedMul(sin( myAngle), cos( myPitch)))
-                + FixedMul(pointY,          cos( myAngle))
-                + FixedMul(pointZ, FixedMul(sin( myAngle), sin( myPitch)));
-
-    int rotateZ = FixedMul(pointX,                        -sin( myPitch))
-                + FixedMul(pointZ,                         cos( myPitch));
-
-    int spawnX = myX + rotateX;
-    int spawnY = myY + rotateY;
-    int spawnZ = myZ + rotateZ;
+    Rotate3D(pointX, pointY, pointZ, myAngle, myPitch);
+    int spawnX = myX + Rotate3D_Ret[0];
+    int spawnY = myY + Rotate3D_Ret[1];
+    int spawnZ = myZ + Rotate3D_Ret[2];
 
     
     int tracerTID1 = UniqueTID();
@@ -187,13 +167,6 @@ script "Dakka_Tracer_Client" (int which, int startTID, int endTID) clientside
             particleType = "DakkaTracer";
             density      = 12.0;
         }
-        break;
-
-      case TRACE_PLASMA:
-        speed = 0;
-
-        particleType = "DakkaPlasmaTrail";
-        density      = cond(lesseffects, 36.0, 12.0);
         break;
 
       case TRACE_ARC_FIRER:

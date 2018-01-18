@@ -1200,3 +1200,26 @@ function int stringBlank(int string)
     int safeString = StrParam(s:string);
     return StrLen(safeString) == 0;
 }
+
+
+int Rotate3D_Ret[3];
+
+function void Rotate3D(int x, int y, int z, int yaw, int pitch)
+{
+    // x' =  cos(angle) cos(pitch)x + -sin(angle)y + cos(angle) sin(pitch)z
+    // y' =  sin(angle) cos(pitch)x +  cos(angle)y + sin(angle) sin(pitch)z
+    // z' =            -sin(pitch)x                +            cos(pitch)z
+    //
+    // helix.txt shows how (very abbreviated)
+    
+    Rotate3D_Ret[0] = FixedMul(x, FixedMul(cos(yaw), cos(pitch)))
+                    - FixedMul(y,          sin(yaw))
+                    + FixedMul(z, FixedMul(cos(yaw), sin(pitch)));
+                
+    Rotate3D_Ret[1] = FixedMul(x, FixedMul(sin(yaw), cos(pitch)))
+                    + FixedMul(y,          cos(yaw))
+                    + FixedMul(z, FixedMul(sin(yaw), sin(pitch)));
+
+    Rotate3D_Ret[2] = FixedMul(x,                   -sin(pitch))
+                    + FixedMul(z,                    cos(pitch));
+}
