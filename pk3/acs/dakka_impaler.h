@@ -15,49 +15,22 @@ script "Dakka_ImpalerAltHit" (int power)
     int projY   = GetActorY(0);
     int projZ   = GetActorZ(0);
     
-    // If the projectile hit a target literally the moment it spawned, this will kick in
-    int projNotInited = !GetUserVariable(0, "user_updated");
-    int projVX, projVY, projVZ, projSpeed;
+    ACS_NamedExecuteWithResult("Dakka_ProjDeathUpdate");
+
+    int projVX    = GetUserVariable(0, "user_velx");
+    int projVY    = GetUserVariable(0, "user_vely");
+    int projVZ    = GetUserVariable(0, "user_velz");
+    int projSpeed = VectorLength(VectorLength(projVX, projVY), projVZ); 
     
-    if (projNotInited)
-    {
-        projSpeed = GetActorProperty(0, APROP_Speed);
-        
-        // Use firer angle/pitch since the velocity user vars wouldn't have been set
-        SetActivator(0, AAPTR_TARGET);
-        int firerAngle = GetActorAngle(0);
-        int firerPitch = GetActorPitch(0);
-        
-        projVX = FixedMul(projSpeed, FixedMul(cos(firerAngle), cos(firerPitch)));
-        projVY = FixedMul(projSpeed, FixedMul(sin(firerAngle), cos(firerPitch)));
-        projVZ = FixedMul(projSpeed, -sin(firerPitch));
-        
-        SetActivator(projTID);
-    }
-    else
-    {
-        projVX    = GetUserVariable(0, "user_velx");
-        projVY    = GetUserVariable(0, "user_vely");
-        projVZ    = GetUserVariable(0, "user_velz");
-        projSpeed = VectorLength(VectorLength(projVX, projVY), projVZ); 
-    }
-    
-    int projNVX, projNVY, projNVZ;
-    
-    if (projSpeed == 0)
-    {
-        projNVX = 0;
-        projNVY = 0;
-        projNVZ = 0;
-    }
-    else
+    int projNVX = 0, projNVY = 0, projNVZ = 0;
+    if (projSpeed != 0)
     {
         projNVX = FixedDiv(projVX, projSpeed);
         projNVY = FixedDiv(projVY, projSpeed);
         projNVZ = FixedDiv(projVZ, projSpeed);
     }
     
-    if (projNotInited)
+    if (!GetUserVariable(0, "user_t"))
     {
         ACS_NamedExecuteWithResult("Dakka_ImpalerAlt_FindTarget", projVX, projVY, projVZ, projSpeed);
     }

@@ -22,33 +22,20 @@ script "Dakka_InitLanceHit" (int length, int radius, int damage, int isimpaler)
     int myY = GetActorY(0);
     int myZ = GetActorZ(0);
     
-    int velX, velY, velZ, mag;
+    ACS_NamedExecuteWithResult("Dakka_ProjDeathUpdate");
+    int velX = GetUserVariable(0, "user_velx");
+    int velY = GetUserVariable(0, "user_vely");
+    int velZ = GetUserVariable(0, "user_velz");
     
-    if (!GetUserVariable(0, "user_init"))
-    {
-        mag = GetActorProperty(0, APROP_Speed);
-        
-        SetActivator(0, AAPTR_TARGET);
-        int firerAngle = GetActorAngle(0);
-        int firerPitch = GetActorPitch(0);
-        
-        velX = FixedMul(mag, FixedMul(cos(firerAngle), cos(firerPitch)));
-        velY = FixedMul(mag, FixedMul(sin(firerAngle), cos(firerPitch)));
-        velZ = FixedMul(mag, -sin(firerPitch));
-        
-        SetActivator(myTID);
-    }
-    else
-    {
-        velx = GetUserVariable(0, "user_velx");
-        vely = GetUserVariable(0, "user_vely");
-        velz = GetUserVariable(0, "user_velz");
-        mag  = VectorLength(VectorLength(velx, vely), velz);
-    }
+    int mag  = VectorLength(VectorLength(velX, velY), velZ);
+    int normX = 0, normY = 0, normZ = 0;
     
-    int normX = FixedDiv(velx, mag);
-    int normY = FixedDiv(vely, mag);
-    int normZ = FixedDiv(velz, mag);
+    if (mag != 0)
+    {
+        normX = FixedDiv(velX, mag);
+        normY = FixedDiv(velY, mag);
+        normZ = FixedDiv(velZ, mag);
+    }
     
     //Log(s:"\cdPlain velocity (init): len ", f:mag, s:" <", f:velX, s:", ", f:velY, s:", ", f:velZ, s:">");
     //Log(s:"\cqNormalized velocity (init): <", f:normX, s:", ", f:normY, s:", ", f:normZ, s:">");

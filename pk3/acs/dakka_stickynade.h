@@ -43,19 +43,11 @@ script "Dakka_StickyGrenade" (int manual, int autoTimer)
     int projTID     = UniqueTID();
     Thing_ChangeTID(0, projTID);
     
-    int projX      = GetActorX(0);
-    int projY      = GetActorY(0);
-    int projZ      = GetActorZ(0);
-    int projVelX   = GetUserVariable(0, "user_velx"); // multiplied by 65536 in
-    int projVelY   = GetUserVariable(0, "user_vely"); // the DECORATE, so we can
-    int projVelZ   = GetUserVariable(0, "user_velz"); // just grab them raw here
-    int projHeight = GetActorProperty(0, APROP_Height);
-    int projRadius = GetActorProperty(0, APROP_Radius);
-    int projAngle  = VectorAngle(projVelX, projVelY);
-    
     SetActivator(0, AAPTR_TARGET);
+    
     if (ClassifyActor(0) & ACTOR_WORLD)
     {
+        SetActorState(projTID, "Detonate");
         Thing_ChangeTID(projTID, projTID_old);
         terminate;
     }
@@ -65,7 +57,7 @@ script "Dakka_StickyGrenade" (int manual, int autoTimer)
         if (GetUserCVar(PlayerNumber(), "dakka_cl_autodetonate"))
         {
             SetActorState(projTID, "Detonate");
-            Thing_ChangeTID(projTID,   projTID_old);
+            Thing_ChangeTID(projTID, projTID_old);
             terminate;
         }
     }
@@ -73,28 +65,26 @@ script "Dakka_StickyGrenade" (int manual, int autoTimer)
     str firerStartWeapon = GetWeapon();
     int firerTID_old = ActivatorTID();
     int firerTID     = UniqueTID();
-    
     Thing_ChangeTID(0, firerTID);
     
-    int projVel    = VectorLength(VectorLength(projVelX, projVelY), projVelZ);
-    int projNormX, projNormY, projNormZ;
+    SetActivator(projTID);
     
-    if (projVel == 0)
-    {
-        int firerAngle = GetActorAngle(0);
-        int firerPitch = GetActorPitch(0);
-        projAngle = firerAngle;
-        
-        projNormX = FixedMul(cos(firerAngle), cos(firerPitch));
-        projNormY = FixedMul(sin(firerAngle), cos(firerPitch));
-        projNormZ = -sin(firerPitch);
-        
-        projVel  = GetActorProperty(projTID, APROP_Speed);
-        projVelX = FixedMul(projVel, projNormX);
-        projVelY = FixedMul(projVel, projNormY);
-        projVelZ = FixedMul(projVel, projNormZ);
-    }
-    else
+    int projX      = GetActorX(0);
+    int projY      = GetActorY(0);
+    int projZ      = GetActorZ(0);
+    int projHeight = GetActorProperty(0, APROP_Height);
+    int projRadius = GetActorProperty(0, APROP_Radius);
+    
+    ACS_NamedExecuteWithResult("Dakka_ProjDeathUpdate");
+    int projVelX   = GetUserVariable(0, "user_velx");
+    int projVelY   = GetUserVariable(0, "user_vely");
+    int projVelZ   = GetUserVariable(0, "user_velz");
+    int projAngle  = VectorAngle(projVelX, projVelY);
+    
+    int projVel    = VectorLength(VectorLength(projVelX, projVelY), projVelZ);
+    int projNormX = 0, projNormY = 0, projNormZ = 0;
+    
+    if (projVel != 0)
     {
         projNormX = FixedDiv(projVelX, projVel);
         projNormY = FixedDiv(projVelY, projVel);
