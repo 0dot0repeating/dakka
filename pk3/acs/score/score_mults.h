@@ -3,6 +3,7 @@ function int SMult_Base(void)
     return GetActorProperty(0, APROP_SpawnHealth);
 }
 
+
 int Tmp_FireModesUsed[SCOREFIREMODES];
 
 function int SMult_WeaponSwitch(int pln, int myhp)
@@ -57,6 +58,8 @@ function int SMult_WeaponSwitch(int pln, int myhp)
     return 0.0;
 }
 
+
+
 function int SMult_Killstreak(int pln)
 {
     if (pln < 0 || pln >= PLAYERMAX) { return 0.0; }
@@ -80,11 +83,13 @@ function int AddKillstreak(int pln, int myhp)
     int timeAdd = round(KILLSTREAK_TICSPER100HP * myhp * 0.01);
     timeAdd = middle(KILLSTREAK_MINTICS, timeAdd, KILLSTREAK_MAXTICS);
 
-    PlayerKillStreaks[pln][KS_COUNT]   += 1;
-    PlayerKillStreaks[pln][KS_TIME]     = Timer();
-    PlayerKillStreaks[pln][KS_TIMEADD]  = timeAdd;
+    PlayerKillStreaks[pln][KS_COUNT]        += 1;
+    PlayerKillStreaks[pln][KS_SINCELASTHIT] += 1;
+    PlayerKillStreaks[pln][KS_TIME]          = Timer();
+    PlayerKillStreaks[pln][KS_TIMEADD]       = timeAdd;
     return 0;
 }
+
 
 
 function int SMult_BoneDry(void)
@@ -97,6 +102,7 @@ function int SMult_BoneDry(void)
     return BONEDRY_MULTPERHP * hpUnder;
 }
 
+
 function int SMult_SoreLoser(void)
 {
     int hp = GetActorProperty(0, APROP_Health);
@@ -104,6 +110,7 @@ function int SMult_SoreLoser(void)
     if (hp < 0) { return 3.0; }
     return 0;
 }
+
 
 function int SMult_Brawler(void)
 {
@@ -119,6 +126,7 @@ function int SMult_Brawler(void)
     return 0;
 }
 
+
 function int SMult_Air(int pln)
 {
     if (pln < 0 || pln >= PLAYERMAX) { return 0; }
@@ -129,6 +137,7 @@ function int SMult_Air(int pln)
     return min(AIR_MAXMULT, FixedMul(zdiff, AIR_MULT));
 }
 
+
 function int SMult_Curveball(int couldsee)
 {
     int ret;
@@ -138,6 +147,7 @@ function int SMult_Curveball(int couldsee)
     
     return ret;
 }
+
 
 function int SMult_Scrapping(int pln)
 {
@@ -173,6 +183,7 @@ function int SMult_Scrapping(int pln)
     return 0;
 }
 
+
 function int SMult_PointBlank(int mx, int my, int mz, int mradius, int mheight, int px, int py, int pz, int pradius, int pheight)
 {
     int mX_closest = middle(px, safeAdd(mx, mradius), safeAdd(mx, -mradius));
@@ -190,33 +201,10 @@ function int SMult_PointBlank(int mx, int my, int mz, int mradius, int mheight, 
 }
 
 
-
-
-function int SMult_Efficiency(int pln)
+function int SMult_Untouchable(int pln)
 {
-    int lastFireTime  = PlayerKills_LastFired[pln][0];
-    int lastFireKills = PlayerKills_LastFired[pln][1];
-
-    int classNum = Pickup_ClassNumber(0);
-
-    // Switcharoo's updating script also resets PlayerKills_LastFired. If it's
-    //  not being called, we have to assume everything on a different tic does
-    //  not qualify for One Stone.
-    if (classNum == -1 || !SCORE_UpdatesSwitcharoo[classNum])
-    {
-        if (lastFireTime != Timer())
-        {
-            PlayerKills_LastFired[pln][1] = 0;
-            lastFireKills = 0;
-        }
-    }
-
-    int killMult = EFFICIENCY_MULTINC * lastFireKills;
-
-    PlayerKills_LastFired[pln][0]  = Timer();
-    PlayerKills_LastFired[pln][1] += 1;
-
-    return min(EFFICIENCY_MULTMAX, killMult);
+    int multKills = middle(UNTOUCHABLE_MINKILLS, PlayerKillStreaks[pln][KS_SINCELASTHIT] + 1, UNTOUCHABLE_MAXKILLS) - UNTOUCHABLE_MINKILLS;
+    return multKills * UNTOUCHABLE_MULT;
 }
 
 

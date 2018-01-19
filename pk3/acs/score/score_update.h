@@ -37,3 +37,14 @@ function void Score_UpdateClient(int pln)
         Sender_SetData(pln, S2C_D_BONUSSTART + i, BonusValues[pln][i]);
     }
 }
+
+
+script "Score_ResetUntouchable" (void)
+{
+    int pln = PlayerNumber();
+    
+    if (!CheckFlag(0, "NODAMAGE"))
+    {
+        PlayerKillStreaks[pln][KS_SINCELASTHIT] = 0;
+    }
+}
