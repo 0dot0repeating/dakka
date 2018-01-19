@@ -29,10 +29,10 @@ OptionValue Dakka_StartMode_Ammo
 
 OptionValue Dakka_KeepScore
 {
-    0, "keep nothing"
-    1, "keep score"
-    2, "keep score+rewards"
-    3, "keep everything"
+    0, "nothing"
+    1, "score"
+    2, "score+rewards"
+    3, "score+rewards+progress"
 }
 
 OptionValue Dakka_BackpackStart
@@ -118,7 +118,7 @@ ListMenu Dakka_Options
         
 		IfOption(ReadThis)
 		{
-			Position 97, 64
+			Position 77, 64
 		}
 	}
     

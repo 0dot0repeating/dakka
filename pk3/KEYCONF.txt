@@ -2,7 +2,7 @@ addkeysection "Dakka" Dakka
 
 alias dakka_cmd_continuousplay "dakka_startmode_weapons 0; dakka_startmode_ammo 0; dakka_startmode_health 0; dakka_keepscore 3; dakka_backpackstart  0"
 alias dakka_cmd_pistolstart    "dakka_startmode_weapons 2; dakka_startmode_ammo 3; dakka_startmode_health 1; dakka_keepscore 0; dakka_backpackstart -1"
-alias dakka_cmd_defaults       "dakka_startmode_weapons 0; dakka_startmode_ammo 1; dakka_startmode_health 1; dakka_keepscore 0; dakka_backpackstart  0; dakka_scrapperstart 0; dakka_scrapfactor 100; dakka_ignorehubs 0; dakka_powerlevel 0; dakka_shotgun2ssg 0; dakka_chaingun2minigun 0"
+alias dakka_cmd_defaults       "dakka_startmode_weapons 0; dakka_startmode_ammo 1; dakka_startmode_health 1; dakka_keepscore 0; dakka_backpackstart  0; dakka_scrapperstart 0; dakka_scrapfactor 100; dakka_ignorehubs 0; dakka_powerlevel 0; dakka_defenselevel 0; dakka_shotgun2ssg 0; "
 
 alias fistswitch "pukename Dakka_SwitchWeps 0 1"
 addmenukey "Slot 1, fist first" fistswitch
