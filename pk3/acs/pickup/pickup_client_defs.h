@@ -37,7 +37,7 @@
 
 #define S2C_D_BS_BASE         7
 #define S2C_D_BS_SPREE        8
-#define S2C_D_BS_EFFICIENT    9
+#define S2C_D_BS_UNTOUCHABLE  9
 #define S2C_D_BS_INFIGHTER    10
 #define S2C_D_BS_SWITCHAROO   11
 #define S2C_D_BS_SCRAPPING    12

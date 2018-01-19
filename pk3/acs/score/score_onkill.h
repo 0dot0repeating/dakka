@@ -15,7 +15,7 @@ function void ClearPoints(int pln, int bonustime)
 //
 // EFFICIENCY:
 // - Spree: the more dudes you kill in quick succession, the more points you get.
-// - Efficiency: kill dudes in the same shot, get even more points on top of spree
+// - Untouchable: kill dudes without getting hit yourself for more points
 // - Infighter: cause an infight, and everyone gets points
 //
 // STYLE:
@@ -100,7 +100,7 @@ script "Dakka_Score" (int pointValue)
 
     int points_switcharoo   = round(pointValue * SMult_WeaponSwitch(pln, myhp));
     int points_killstreak   = round(pointValue * SMult_Killstreak(pln));
-    int points_efficiency   = round(pointValue * SMult_Efficiency(pln));
+    int points_untouchable  = round(pointValue * SMult_Untouchable(pln));
     int points_bonedry      = round(pointValue * SMult_BoneDry());
     int points_soreloser    = round(pointValue * SMult_SoreLoser());
     int points_brawler      = round(pointValue * SMult_Brawler());
@@ -112,7 +112,7 @@ script "Dakka_Score" (int pointValue)
     Score_ModBothScores(pln, pointValue);
     Score_ModBothScores(pln, points_switcharoo);
     Score_ModBothScores(pln, points_killstreak);
-    Score_ModBothScores(pln, points_efficiency);
+    Score_ModBothScores(pln, points_untouchable);
     Score_ModBothScores(pln, points_bonedry);
     Score_ModBothScores(pln, points_soreloser);
     Score_ModBothScores(pln, points_brawler);
@@ -125,7 +125,7 @@ script "Dakka_Score" (int pointValue)
 
     TmpBonuses[BS_BASE]         = pointValue;
     TmpBonuses[BS_SPREE]        = points_killstreak;
-    TmpBonuses[BS_EFFICIENT]    = points_efficiency;
+    TmpBonuses[BS_UNTOUCHABLE]  = points_untouchable;
     TmpBonuses[BS_INFIGHTER]    = 0;
     TmpBonuses[BS_SWITCHAROO]   = points_switcharoo;
     TmpBonuses[BS_BONEDRY]      = points_bonedry;

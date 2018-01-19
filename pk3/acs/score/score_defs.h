@@ -1,4 +1,4 @@
-#define SCOREWEPS           32
+#define SCOREWEPS           9
 #define SCOREFIREMODES      3
 
 #define S_FIST              0
@@ -6,15 +6,10 @@
 #define S_PISTOL            2
 #define S_SHOTGUN           3
 #define S_SUPERSHOTGUN      4
-#define S_CHAINGUN          5
-#define S_MINIGUN           6
-#define S_ROCKETLAUNCHER    7
-#define S_PLASMARIFLE       8
-#define S_BFG9000           9
-#define S_CHANNELER         10
-#define S_IMPALER           11
-#define S_REVIVAL           12
-#define S_PLASMALANCE       13
+#define S_MINIGUN           5
+#define S_IMPALER           6
+#define S_LANCER            7
+#define S_BFG9000           8
 
 #define SWITCHAROO_TICSPER100HP 24
 #define SWITCHAROO_MINTICS      72
@@ -25,9 +20,14 @@
 #define KILLSTREAK_MAXTICS      360
 #define KILLSTREAK_MULTMAX      0.25
 #define KILLSTREAK_MULTINC      0.025
-#define KS_COUNT    0
-#define KS_TIME     1
-#define KS_TIMEADD  2
+#define KS_COUNT        0
+#define KS_TIME         1
+#define KS_TIMEADD      2
+#define KS_SINCELASTHIT 3
+
+#define UNTOUCHABLE_MINKILLS    10
+#define UNTOUCHABLE_MAXKILLS    20
+#define UNTOUCHABLE_MULT        0.025
 
 #define EFFICIENCY_MULTINC      0.1
 #define EFFICIENCY_MULTMAX      0.5
@@ -53,8 +53,7 @@
 //  1 - secondary (+altattack)
 //  2 - tertiary  (some combo of the two, probably won't be used)
 int PlayerWeapons_LastFired[PLAYERMAX][SCOREWEPS][SCOREFIREMODES];
-int PlayerKills_LastFired[PLAYERMAX][2];
-int PlayerKillStreaks[PLAYERMAX][3];
+int PlayerKillStreaks[PLAYERMAX][4];
 
 
 // Air_JumpHeight stores the max height the player's current jump either has
@@ -126,7 +125,7 @@ int Brawler_MeleeMults[KNOWNMELEE] =
 
 #define BS_BASE         0
 #define BS_SPREE        1
-#define BS_EFFICIENT    2
+#define BS_UNTOUCHABLE  2
 #define BS_INFIGHTER    3
 #define BS_SWITCHAROO   4
 #define BS_SCRAPPING    5
@@ -145,7 +144,7 @@ int BonusNames[BONUSCOUNT] =
 {
     "Base",
     "Spree",
-    "Efficiency",
+    "Untouchable",
     "Infighter",
     "Switcharoo",
     "Scrapping",

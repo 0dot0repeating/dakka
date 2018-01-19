@@ -1,4 +1,4 @@
-script "Dakka_Switcharoo" (int slot, int firemode, int noUpdateEfficiency)
+script "Dakka_Switcharoo" (int slot, int firemode)
 {
     int pln = PlayerNumber();
     if (pln == -1) // called from projectile
@@ -12,10 +12,4 @@ script "Dakka_Switcharoo" (int slot, int firemode, int noUpdateEfficiency)
      || firemode < 0 || firemode >= SCOREFIREMODES) { terminate; }
 
     PlayerWeapons_LastFired[pln][slot][firemode] = Timer() + 1;
-
-    if (!noUpdateEfficiency)
-    {
-        PlayerKills_LastFired[pln][0] = Timer() + 1;
-        PlayerKills_LastFired[pln][1] = 0;
-    }
 }
