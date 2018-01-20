@@ -112,13 +112,7 @@ OptionValue OffOn
 OptionMenu Dakka_GameOptions
 {
     Title "DAKKA (Game options)"
-
-    Command "Continuous play mode", "dakka_cmd_continuousplay"
-    Command "Pistol start mode",    "dakka_cmd_pistolstart"
-    Command "Reset to defaults",    "dakka_cmd_defaults"
-
-
-    StaticText ""
+    
     StaticText "General options"
 
     Slider "Scrap factor",          "dakka_scrapfactor",    0, 1000, 10, 0
