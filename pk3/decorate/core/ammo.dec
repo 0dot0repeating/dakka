@@ -48,16 +48,6 @@ actor DakkaGyroShells: Ammo
     Ammo.BackpackMaxAmount 30
 }
 
-actor DakkaRainGrenades: Ammo
-{
-    Inventory.Icon "CGRNA0"
-
-    Inventory.Amount 2
-    Inventory.MaxAmount 15
-    Ammo.BackpackAmount 2
-    Ammo.BackpackMaxAmount 30
-}
-
 actor DakkaFlamerFuel: Ammo
 {
     Inventory.Icon "AGASA0"
