@@ -175,6 +175,12 @@ OptionMenu "Dakka_UserOptions"
     Control "Slot 1, fist first",     "fistswitch"
     Control "Slot 2, pistol first",   "pistswitch"
     Control "Slot 3, shotgun first",  "shotswitch"
+    
+    StaticText ""
+    StaticText ""
+    StaticText "SSG trigger rolling: When enabled, you"
+    StaticText "can use one fire mode twice by using both"
+    StaticText "primary and alt fire in rapid succession."
 }
 
 
