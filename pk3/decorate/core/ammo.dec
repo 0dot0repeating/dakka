@@ -33,19 +33,9 @@ actor DakkaShotGrenades: Ammo
     Inventory.Icon "DGRNZ0"
 
     Inventory.Amount    2
-    Inventory.MaxAmount 20
+    Inventory.MaxAmount 30
     Ammo.BackpackAmount 4
-    Ammo.BackpackMaxAmount 40
-}
-
-actor DakkaGyroShells: Ammo
-{
-    Inventory.Icon "DGSHZ0"
-
-    Inventory.Amount 2
-    Inventory.MaxAmount 15
-    Ammo.BackpackAmount 2
-    Ammo.BackpackMaxAmount 30
+    Ammo.BackpackMaxAmount 60
 }
 
 actor DakkaFlamerFuel: Ammo
@@ -53,9 +43,9 @@ actor DakkaFlamerFuel: Ammo
     Inventory.Icon "AGASA0"
 
     Inventory.Amount 5
-    Inventory.MaxAmount 40
-    Ammo.BackpackAmount 5
-    Ammo.BackpackMaxAmount 80
+    Inventory.MaxAmount 50
+    Ammo.BackpackAmount 10
+    Ammo.BackpackMaxAmount 100
 }
 
 actor DakkaRockets: Ammo

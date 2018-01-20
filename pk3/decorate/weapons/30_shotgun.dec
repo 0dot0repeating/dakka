@@ -180,6 +180,7 @@ actor ShotgunGrenade
 
     +FORCEXYBILLBOARD
     +MTHRUSPECIES
+    +SKYEXPLODE
     +HITTRACER
 
     -NOGRAVITY
@@ -275,6 +276,7 @@ actor ShotgunMiniGrenade
 
     +FORCEXYBILLBOARD
     +MTHRUSPECIES
+    +SKYEXPLODE
     +HITTRACER
 
     -NOGRAVITY
