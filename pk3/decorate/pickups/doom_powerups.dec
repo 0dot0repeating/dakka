@@ -3,6 +3,7 @@ actor DakkaVampireSphere: Trigger replaces Berserk
     +BIGPOWERUP
     +FANCYPICKUPSOUND
     +ALWAYSPICKUP
+    +COUNTITEM
     
     Inventory.PickupMessage "$DAKKA_PK_VAMPIRE"
     Inventory.PickupSound "misc/p_pkup"
