@@ -280,7 +280,7 @@ script "Dakka_MinigunAfterburn" (int firerTID, int myTID)
         if (!CheckFlag(0, "BRIGHT"))
         {
             GiveInventory("DakkaMinigun_Bright", 1);
-            alreadyBright = !alreadyBright;
+            alreadyBright = false;
         }
         
         // Handle this here or else this CVar will do jack shit
