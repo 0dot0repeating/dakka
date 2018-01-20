@@ -184,6 +184,7 @@ actor ImpalerMissile: FastProjectile
     var int user_t;
 
     +SKYEXPLODE
+    +FORCEXYBILLBOARD
     +FORCERADIUSDMG
     +EXTREMEDEATH
     
@@ -263,6 +264,7 @@ actor ImpalerSmoke
 {
     +NOINTERACTION
     +CLIENTSIDEONLY
+    +FORCEXYBILLBOARD
 
     RenderStyle Add
     Alpha 0.1
@@ -307,6 +309,7 @@ actor ImpalerAltMissile: FastProjectile
 
     +SKYEXPLODE
     +EXTREMEDEATH
+    +FORCEXYBILLBOARD
     +BLOODLESSIMPACT
     +FORCERADIUSDMG
     +HITTRACER
@@ -406,6 +409,7 @@ actor ImpalerExplosion_Client
 {
 	+NOINTERACTION
 	+CLIENTSIDEONLY
+    +FORCEXYBILLBOARD
 	
 	RenderStyle Add
 	
@@ -456,6 +460,7 @@ actor ImpalerExplosionSpark
 	Projectile
 	-NOGRAVITY
 	+THRUACTORS
+    +FORCEXYBILLBOARD
 	+PAINLESS
 	Gravity 0.67
 	Damage 0
@@ -489,6 +494,7 @@ actor ImpalerRingParticle
 {
 	+NOINTERACTION
 	+CLIENTSIDEONLY
+    +FORCEXYBILLBOARD
 	
 	RenderStyle Add
 	Alpha 0.125
@@ -505,6 +511,7 @@ actor ImpalerGrenadeTrail
 {
 	+NOINTERACTION
 	+CLIENTSIDEONLY
+    +FORCEXYBILLBOARD
 	Radius 5
 	Height 5
 	
@@ -521,6 +528,7 @@ actor ImpalerTrailParticle
 {
 	+NOINTERACTION
 	+CLIENTSIDEONLY
+    +FORCEXYBILLBOARD
 	
 	RenderStyle Add
 	Scale 0.35
@@ -563,6 +571,7 @@ actor ImpalerBigTrailParticle
 {
 	+NOINTERACTION
 	+CLIENTSIDEONLY
+    +FORCEXYBILLBOARD
 	
 	RenderStyle Add
 	Scale 0.5
