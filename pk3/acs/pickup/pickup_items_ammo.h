@@ -1,4 +1,4 @@
-#define AMMOCOUNT   29
+#define AMMOCOUNT   28
 
 int PKP_KnownAmmo[AMMOCOUNT] = 
 {
@@ -9,7 +9,6 @@ int PKP_KnownAmmo[AMMOCOUNT] =
     "DakkaShotGrenades",
     "DakkaGyroShells",
     "DakkaBullet_5mm",
-    "DakkaRainGrenades",
     "DakkaFlamerFuel",
     "DakkaRockets",
     "DakkaCells",
@@ -57,7 +56,6 @@ int PKP_DefaultAmmoCount[AMMOCOUNT] =
     6,              // grenades
     4,              // gyro
     160,            // 5mm
-    8,              // rain
     10,             // flamer
     20,             // rockets
     50,             // cells

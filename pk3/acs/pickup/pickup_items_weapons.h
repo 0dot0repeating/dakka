@@ -1,4 +1,4 @@
-#define WEAPONCOUNT 63
+#define WEAPONCOUNT 62
 #define REPLCOUNT   3
 
 #define WEP_NAME    0
@@ -19,7 +19,6 @@ int PKP_KnownGuns[WEAPONCOUNT][3] =
     {"DWep_Pistols",            "DakkaBullet_10mm",         ""},
     {"DWep_Shotgun",            "DakkaShells",              "DakkaShotGrenades"},
     {"DWep_SuperShotgun",       "DakkaShells",              "DakkaGyroShells"},
-    {"DWep_Chaingun",           "DakkaBullet_5mm",          "DakkaRainGrenades"},
     {"DWep_Minigun",            "DakkaBullet_5mm",          "DakkaFlamerFuel"},
     {"DWep_Impaler",            "DakkaRockets",             ""},
     {"DWep_PlasmaLance",        "DakkaCells",               ""},
@@ -103,7 +102,6 @@ int PKP_WeaponPriorities[WEAPONCOUNT] =
     1500,   // DWep_Pistols
     1300,   // DWep_Shotgun
     450,    // DWep_SuperShotgun
-    700,    // DWep_Chaingun
     350,    // DWep_Minigun
     300,    // DWep_Impaler
     100,    // DWep_PlasmaLance
