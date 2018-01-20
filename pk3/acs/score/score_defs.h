@@ -23,11 +23,20 @@
 #define KS_COUNT        0
 #define KS_TIME         1
 #define KS_TIMEADD      2
-#define KS_SINCELASTHIT 3
 
-#define UNTOUCHABLE_MINKILLS    25
-#define UNTOUCHABLE_MAXKILLS    50
-#define UNTOUCHABLE_MULT        0.01
+#define KS_KILLS_SINCELASTHIT 3
+#define KS_HP_SINCELASTHIT    4
+#define KS_KILLS_UNTOUCHABLE  5
+
+#define UNTOUCHABLE_MINKILLS    24    // so it triggers on the 25th kill
+#define UNTOUCHABLE_MINHEALTH   2000
+
+// for every X hp they have, add one to the untouchable kill streak when calculating the score multiplier
+// (see SMult_Untouchable in score/score_mults.h, it's hard to explain in words)
+#define UNTOUCHABLE_KILLBOOST_HPDIVISOR   400
+
+#define UNTOUCHABLE_MAXKILLS    20
+#define UNTOUCHABLE_MULT        0.025
 
 #define EFFICIENCY_MULTINC      0.1
 #define EFFICIENCY_MULTMAX      0.5
@@ -53,7 +62,7 @@
 //  1 - secondary (+altattack)
 //  2 - tertiary  (some combo of the two, probably won't be used)
 int PlayerWeapons_LastFired[PLAYERMAX][SCOREWEPS][SCOREFIREMODES];
-int PlayerKillStreaks[PLAYERMAX][4];
+int PlayerKillStreaks[PLAYERMAX][6];
 
 
 // Air_JumpHeight stores the max height the player's current jump either has

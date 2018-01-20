@@ -100,7 +100,7 @@ script "Dakka_Score" (int pointValue)
 
     int points_switcharoo   = round(pointValue * SMult_WeaponSwitch(pln, myhp));
     int points_killstreak   = round(pointValue * SMult_Killstreak(pln));
-    int points_untouchable  = round(pointValue * SMult_Untouchable(pln));
+    int points_untouchable  = round(pointValue * SMult_Untouchable(pln, myhp));
     int points_bonedry      = round(pointValue * SMult_BoneDry());
     int points_soreloser    = round(pointValue * SMult_SoreLoser());
     int points_brawler      = round(pointValue * SMult_Brawler());
@@ -144,7 +144,8 @@ script "Dakka_Score" (int pointValue)
             LastBonus[pln][i]    = bonustime;
         }
     }
-
+    
+    AddUntouchable(pln, myhp);
     AddKillstreak(pln, myhp);
     Delay(35);
 
