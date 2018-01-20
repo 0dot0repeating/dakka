@@ -1,4 +1,4 @@
-#define TMPITEM_COUNT       26
+#define TMPITEM_COUNT       27
 
 #define TMP_LEFTFIRE        0
 #define TMP_RIGHTFIRE       1
@@ -32,6 +32,8 @@
 
 #define TMP_GOTBACKPACK     25
 
+#define TMP_SSG_ROLLFIRE    26
+
 int TempChecks[TMPITEM_COUNT];
 
 int TempItems[TMPITEM_COUNT] =
@@ -62,6 +64,7 @@ int TempItems[TMPITEM_COUNT] =
     "HUD_Armor50",
     "HUD_Armor25",
     "GotBackpackItem",
+    "DakkaSSG_RollFire",
 };
 
 
@@ -89,6 +92,7 @@ int TempArmorItems[ARMORCOUNT] =
 function void Dakka_UpdateTemporaryItems(void)
 {
     int i;
+    int pln = PlayerNumber();
 
     TempChecks[TMP_LEFTFIRE]        = keyDown(BT_ATTACK);
     TempChecks[TMP_RIGHTFIRE]       = keyDown(BT_ALTATTACK);
@@ -127,7 +131,6 @@ function void Dakka_UpdateTemporaryItems(void)
         TempChecks[TMP_KNOWNARMOR]  = false;
 
         // ARMOR100/75/50/25 isn't used if we have an unknown armor.
-        //
         // I'm lazy.
 
         for (i = 0; i < ARMORCOUNT; i++)
@@ -229,7 +232,9 @@ function void Dakka_UpdateTemporaryItems(void)
         }
     }
 
-    TempChecks[TMP_GOTBACKPACK] = hasBackpack;
+    TempChecks[TMP_GOTBACKPACK]  = hasBackpack;
+    
+    TempChecks[TMP_SSG_ROLLFIRE] = GetUserCVar(pln, "dakka_cl_ssgrollfire");
 
 
     for (i = 0; i < TMPITEM_COUNT; i++)
