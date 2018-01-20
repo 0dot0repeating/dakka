@@ -9,13 +9,30 @@ NOTE: Most of this changelog was retroactive; anything before 0.05 was for sure,
 #-
 
 
-COOL STUFF:
+BIG CHANGES:
 
 - While the fists are still fists, they've been completely reworked and might as
     well go here. The primary fire throws out weak punches that quickly build up
     to blistering speed, while the alt-fire is a charged punch, which can be
     charged up to three times to loose a bone-splintering one-two-three salvo
     that also hurts everyone near the poor sap you just broke in half.
+
+- The shotgun's alt-fire has evolved from a grenade to a cluster grenade! Not
+    only that, but if you go into the options, you can turn these into remote-
+    control cluster grenades, detonated with the reload key!
+
+- The super shotgun's alt-fire has gotten a similar revamp. Instead of a spread
+    of 20 gyrojets, it is instead 2 cluster grenades that detonate on impact,
+    and whose clusters stick to anything before detonating soon after.
+
+- The chaingun's gone. The minigun took its place, which is part of why the dual
+    pistols have better accuracy, and why the minigun has two fire rates.
+
+- The minigun's primary fire now has two fire speeds - by default, it fires at a
+    still-pretty-fast 1050 RPM, but if you hold down both primary and alt fire,
+    it doubles its speed to the 2100 RPM you know and love. It's more accurate
+    at 1050 RPM of course, but accuracy doesn't really matter when you shove the
+    thing straight into something's face, now does it?
 
 - The minigun's alt-fire now properly sets enemies on fire! The flames will deal
     minimal contact damage that builds up the longer you hold the flamethrower
@@ -44,10 +61,10 @@ COOL STUFF:
     For 30 seconds after picking it up, every kill you get heals you! Tougher
     enemies grant more health, as does having less health to begin with,
     encouraging you to stay in the fight longer and kill even faster. And now
-    you can't say Dakka's berserk pickup doesn't heal you.
+    you can't say DAKKA's berserk pickup doesn't heal you.
 
 
-WEAPON CHANGES:
+SMALLER WEAPON CHANGES:
 
 - All the weapons now bob in a bouncier manner.
 
@@ -74,14 +91,12 @@ WEAPON CHANGES:
 
 - The super shotgun's primary fire has a different, beefier sound now.
 
-- The super shotgun's alt-fire now only uses one ammo per shot. Since you
-    couldn't use an odd number of gyro shells and could only get an odd amount
-    through ammo regeneration, it makes more sense to do it this way.
-
-- The chaingun's gone. The minigun took its place, which is part of why the dual
-    pistols have better accuracy.
+- You can now fire the SSG after reloading slightly earlier.
 
 - The minigun now does only 12 damage per bullet (down from 20).
+
+- The minigun's flamethrower has undergone a graphical revamp - if you prefer
+    the older look, you can switch back to it in the user settings.
 
 - The BFG beam's damage radius has been shrunk, and it now uses 80 cells
     per shot (up from 50).
@@ -93,9 +108,12 @@ AMMO CHANGES:
     and rockets realistically shouldn't leave behind any scrap metal, this isn't
     exactly a realistic mod to begin with, and this change encourages variety.
 
-- Gyro shells now have a max ammo count of 15 (30 with a backpack), and have had
-    their pickup and ammo regeneration rates cut significantly. This is after
-    factoring in that the SSG only uses one per shot now.
+- Shotgun grenades have had their capacity buffed to 30 (60 with a backpack),
+    and have had their pickup and regeneration rates buffed. This is because...
+
+- Gyro shells are gone. The SSG alt-fire uses grenades now.
+
+- Since the chaingun is gone, so are rain grenades.
 
 - Flamer fuel has also been nerfed heavily. It now has a max ammo count of 40,
     and you now only get 8 flamer fuel from bullet boxes and 12 from cell packs.
@@ -108,7 +126,7 @@ AMMO CHANGES:
 
 GENERAL CHANGES:
 
-- Dakka now replaces player classes again. Dakkaguy stands tall and proud,
+- DAKKA now replaces player classes again. Dakkaguy stands tall and proud,
     probably on top of a pile of spent minigun casings and dead demons.
 
 - The HUD has been completely redone, because honestly? It was pretty damn ugly.
@@ -119,6 +137,10 @@ GENERAL CHANGES:
     serve any purpose.
 
 - Sound levels have been looked over and normalized, for the most part.
+
+- DAKKA now has help pages, detailing what all the weapons do, as well as the
+    vampire sphere and changes made to armor and health. There's also an awful
+    story in there. But it's the good kind of awful.
 
 
 
