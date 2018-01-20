@@ -45,6 +45,8 @@ script "Score_ResetUntouchable" (void)
     
     if (!CheckFlag(0, "NODAMAGE"))
     {
-        PlayerKillStreaks[pln][KS_SINCELASTHIT] = 0;
+        PlayerKillStreaks[pln][KS_KILLS_SINCELASTHIT] = 0;
+        PlayerKillStreaks[pln][KS_HP_SINCELASTHIT]    = 0;
+        PlayerKillStreaks[pln][KS_KILLS_UNTOUCHABLE]  = 0;
     }
 }

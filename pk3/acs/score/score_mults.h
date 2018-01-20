@@ -84,7 +84,6 @@ function int AddKillstreak(int pln, int myhp)
     timeAdd = middle(KILLSTREAK_MINTICS, timeAdd, KILLSTREAK_MAXTICS);
 
     PlayerKillStreaks[pln][KS_COUNT]        += 1;
-    PlayerKillStreaks[pln][KS_SINCELASTHIT] += 1;
     PlayerKillStreaks[pln][KS_TIME]          = Timer();
     PlayerKillStreaks[pln][KS_TIMEADD]       = timeAdd;
     return 0;
@@ -201,12 +200,27 @@ function int SMult_PointBlank(int mx, int my, int mz, int mradius, int mheight, 
 }
 
 
-function int SMult_Untouchable(int pln)
+function int SMult_Untouchable(int pln, int myhp)
 {
-    int multKills = middle(UNTOUCHABLE_MINKILLS, PlayerKillStreaks[pln][KS_SINCELASTHIT] + 1, UNTOUCHABLE_MAXKILLS) - UNTOUCHABLE_MINKILLS;
-    return multKills * UNTOUCHABLE_MULT;
+    int kills = PlayerKillStreaks[pln][KS_KILLS_SINCELASTHIT];
+    int hp    = PlayerKillStreaks[pln][KS_HP_SINCELASTHIT];
+    
+    if (kills >= UNTOUCHABLE_MINKILLS || hp >= UNTOUCHABLE_MINHEALTH)
+    {
+        PlayerKillStreaks[pln][KS_KILLS_UNTOUCHABLE] += 1 + (myhp / UNTOUCHABLE_KILLBOOST_HPDIVISOR);
+        int multKills = min(PlayerKillStreaks[pln][KS_KILLS_UNTOUCHABLE], UNTOUCHABLE_MAXKILLS);
+        
+        return multKills * UNTOUCHABLE_MULT;
+    }
+    
+    return 0;
 }
 
+function void AddUntouchable(int pln, int myhp)
+{
+    PlayerKillStreaks[pln][KS_KILLS_SINCELASTHIT] += 1;
+    PlayerKillStreaks[pln][KS_HP_SINCELASTHIT]    += myhp;
+}
 
 
 function int SMult_Infighter(void)
