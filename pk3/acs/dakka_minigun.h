@@ -276,6 +276,13 @@ script "Dakka_MinigunAfterburn" (int firerTID, int myTID)
             break;
         }
         
+        // If +BRIGHT gets toggled, we want to handle that
+        if (!CheckFlag(0, "BRIGHT"))
+        {
+            GiveInventory("DakkaMinigun_Bright", 1);
+            alreadyBright = !alreadyBright;
+        }
+        
         // Handle this here or else this CVar will do jack shit
         int powerlevel      = middle(0, GetCVar("dakka_powerlevel") + POWERLEVEL_CENTER,   POWERLEVEL_COUNT  -1);
         int powermult       = DakkaPowerMults[powerlevel];
