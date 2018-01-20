@@ -178,6 +178,7 @@ actor ShotgunGrenade
     Projectile
     Damage (0)
 
+    +FORCEXYBILLBOARD
     +MTHRUSPECIES
     +HITTRACER
 
@@ -208,6 +209,7 @@ actor ShotgunGrenade
       Death:
         DGRN A 0 bright A_Stop
         DGRN A 0 bright A_NoGravity
+        DGRN A 0 bright A_ChangeFlag("FORCEXYBILLBOARD", false)
         DGRN A 0 bright ACS_NamedExecuteWithResult("Dakka_StickyGrenade", true, -1)
         goto DeathWait
       
@@ -271,6 +273,7 @@ actor ShotgunMiniGrenade
 
     Projectile
 
+    +FORCEXYBILLBOARD
     +MTHRUSPECIES
     +HITTRACER
 
@@ -307,6 +310,7 @@ actor ShotNadeTrail
 {
     +NOINTERACTION
     +CLIENTSIDEONLY
+    +FORCEXYBILLBOARD
 
     RenderStyle Add
     Alpha 0.05
@@ -343,6 +347,7 @@ actor GrenadeExplosion_Client
 {
 	+NOINTERACTION
 	+CLIENTSIDEONLY
+    +FORCEXYBILLBOARD
 	
 	RenderStyle Add
 	
@@ -439,6 +444,7 @@ actor MiniGrenadeRingParticle
 {
 	+NOINTERACTION
 	+CLIENTSIDEONLY
+    +FORCEXYBILLBOARD
 	
 	RenderStyle Add
     Scale 0.5

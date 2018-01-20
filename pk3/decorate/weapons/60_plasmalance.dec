@@ -468,6 +468,7 @@ actor PLPrimaryParticle1
 {
     +NOINTERACTION
     +CLIENTSIDEONLY
+    +FORCEXYBILLBOARD
     RenderStyle Add
     
     Scale 0.1
@@ -496,6 +497,7 @@ actor PLPrimaryCloud1
 {
     +NOINTERACTION
     +CLIENTSIDEONLY
+    +FORCEXYBILLBOARD
     RenderStyle Add
     Scale 0.25
     Alpha 0.05

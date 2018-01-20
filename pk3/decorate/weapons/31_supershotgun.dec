@@ -372,6 +372,7 @@ actor DakkaGyrojet: FastProjectile
 
     Projectile
     +MTHRUSPECIES
+    +FORCEXYBILLBOARD
     +FORCERADIUSDMG
     +DEHEXPLOSION
     +SKYEXPLODE
@@ -407,6 +408,7 @@ actor DGyroTrail
 {
     +NOINTERACTION
     +CLIENTSIDEONLY
+    +FORCEXYBILLBOARD
 
     RenderStyle Add
     Alpha 0.02
