@@ -18,7 +18,7 @@ int PKP_KnownGuns[WEAPONCOUNT][3] =
     {"DWep_Pistol",             "DakkaBullet_10mm",         ""},
     {"DWep_Pistols",            "DakkaBullet_10mm",         ""},
     {"DWep_Shotgun",            "DakkaShells",              "DakkaShotGrenades"},
-    {"DWep_SuperShotgun",       "DakkaShells",              "DakkaGyroShells"},
+    {"DWep_SuperShotgun",       "DakkaShells",              "DakkaShotGrenades"},
     {"DWep_Minigun",            "DakkaBullet_5mm",          "DakkaFlamerFuel"},
     {"DWep_Impaler",            "DakkaRockets",             ""},
     {"DWep_PlasmaLance",        "DakkaCells",               ""},
