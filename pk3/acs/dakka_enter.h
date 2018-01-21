@@ -51,8 +51,6 @@ script "Dakka_Spawn" (int respawned)
     {
         lastScore = curScore;
         curScore  = Score_GetScore(pln);
-
-        PlayerTIDs[pln] = defaultTID(-1);
         
         // Doesn't need its own script
         if (classNum == Cl_Dakkaguy) { SetInventory("DWep_Fist", 1); }

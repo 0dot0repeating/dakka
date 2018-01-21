@@ -14,8 +14,6 @@ int IsServer;
 
 int SSG_AutoReloadCooldown[PLAYERMAX];
 
-int PlayerTIDs[PLAYERMAX];
-
 
 #define BACKPACKCOUNT   5
 
