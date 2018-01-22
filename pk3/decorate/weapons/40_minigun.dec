@@ -1011,8 +1011,10 @@ actor MinigunFlame
 
     Projectile
     Speed 25
+    Damage (0)
 
     +RIPPER
+    +PAINLESS
     +NOBOSSRIP
     +DONTREFLECT
     +MTHRUSPECIES
@@ -1149,8 +1151,10 @@ actor MinigunFlameV
     Height 4
 
     Projectile
+    Damage (0)
 
     +RIPPER
+    +PAINLESS
     +NOBOSSRIP
     +DONTREFLECT
     +MTHRUSPECIES
