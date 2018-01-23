@@ -447,16 +447,17 @@ actor DakkaSSG_Grenade
         DGRN A 0 A_JumpIf(user_t < 4, 2)
         DGRN A 0 A_JumpIf(CallACS("Dakka_CheckDetonate"), "EarlyDetonate")
         
-        DGRN A 0 bright A_SpawnItemEx("ShotNadeTrail", -momx,   -momy,   -momz,   0,0,0, 0, SXF_ABSOLUTEPOSITION)
-        DGRN A 0 bright A_SpawnItemEx("ShotNadeTrail", -momx/3, -momy/3, -momz/3, 0,0,0, 0, SXF_ABSOLUTEPOSITION)
-        DGRN A 1 bright A_SpawnItemEx("ShotNadeTrail", -2*momx/3, -2*momy/3, -2*momz/3, 0,0,0, 0, SXF_ABSOLUTEPOSITION)
+        DGRN A 0 bright A_SpawnItemEx("ShotNadeTrail",   -momx/4,   -momy/4,   -momz/4, 0,0,0, 0, SXF_ABSOLUTEPOSITION)
+        DGRN A 0 bright A_SpawnItemEx("ShotNadeTrail", -2*momx/4, -2*momy/4, -2*momz/4, 0,0,0, 0, SXF_ABSOLUTEPOSITION)
+        DGRN A 0 bright A_SpawnItemEx("ShotNadeTrail", -3*momx/4, -3*momy/4, -3*momz/4, 0,0,0, 0, SXF_ABSOLUTEPOSITION)
+        DGRN A 1 bright A_SpawnItemEx("ShotNadeTrail",   -momx,     -momy,     -momz,   0,0,0, 0, SXF_ABSOLUTEPOSITION)
         loop
 
       Death:
         DGRN A 0 bright A_Stop
         DGRN A 0 bright A_NoGravity
-        DGRN A 0 bright A_Explode(60, 128, false, false, 24)
-        DGRN A 0 bright A_Explode(40, 128, true,  false, 24)
+        DGRN A 0 bright A_Explode(40, 128, false, false, 24)
+        DGRN A 0 bright A_Explode(35, 128, true,  false, 24)
         DGRN A 2 A_SpawnItemEx("GrenadeExplosion_Client")
         DGRN A 0 A_JumpIf(CallACS("DSSG_HitEnemy"), "EnemyBlast")
         DGRN A 0 A_JumpIf(z - floorz   < 2, "FloorBlast")
@@ -549,7 +550,7 @@ actor DakkaSSG_MiniGrenade
       Detonate:
         TNT1 A 0 A_Stop
         TNT1 A 0 A_NoGravity
-        TNT1 A 0 A_Explode(18, 96, true, false, 40)
+        TNT1 A 0 A_Explode(16, 96, true, false, 40)
         TNT1 A 4 A_SpawnItemEx("MiniGrenadeExplosion_Client")
         stop
     }
