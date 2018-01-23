@@ -1,9 +1,4 @@
-actor BFGCounter: Inventory
-{
-    inventory.maxamount 4
-    inventory.amount 1
-    +UNDROPPABLE
-}
+actor BFGPointerTID: Counter {}
 
 actor DWep_BFG9000: DoomWeapon
 {
@@ -572,6 +567,31 @@ actor DakkaBFGBeamEnd_Client
 
         DBFP AAAAAAAAAA 0 A_SpawnItemEx("BFGEndTrail", 0,0,0, random(-20,20)/10.0, 0, random(-20,20)/10.0, random(0,360))
         DBFP CDEFGHH 8 bright
+        stop
+    }
+}
+
+
+
+// AAPTR_TARGET is the player this belongs to
+// AAPTR_MASTER is the thing this is currently targeting
+// AAPTR_TRACER is a potential new target
+actor BFGPointerDummy
+{
+    +NOINTERACTION
+    Radius 0
+    Height 0
+    
+    var int user_timeout;
+    
+    States
+    {
+      Spawn:
+        PLSS A -1
+        stop
+      
+      KeepAlive:
+        PLSS A 4
         stop
     }
 }

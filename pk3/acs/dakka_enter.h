@@ -30,6 +30,8 @@ script "Dakka_Spawn" (int respawned)
 
     int myLockVal = DakkaEnterLocks[pln] + 1;
     DakkaEnterLocks[pln] = myLockVal;
+    
+    int bfgPtrTID = 0;
 
     // DM does its own level start, since it needs to do things every spawn,
     //  and variables like dakka_startmode don't apply.
@@ -81,6 +83,9 @@ script "Dakka_Spawn" (int respawned)
 
         // In dakka_ssg.h
         SSG_AutoReload();
+        
+        // In dakka_bfg.h
+        bfgPtrTID = Dakka_GetNewTarget(bfgPtrTID);
 
         // In score/score_reward.h
         Score_DoRewards(lastScore, curScore);
