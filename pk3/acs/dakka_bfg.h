@@ -215,3 +215,52 @@ script "Dakka_BFG_Client" (int startTID, int endTID)
 }
 
 
+
+function int Dakka_GetNewTarget(int ptrTID)
+{
+    int myTID_old = ActivatorTID();
+    int myTID_new = UniqueTID();
+    Thing_ChangeTID(0, myTID_new);
+    
+    if (ptrTID == 0)
+    {
+        ptrTID = UniqueTID();
+        SpawnForced("BFGPointerDummy", GetActorX(0), GetActorY(0), GetActorZ(0), ptrTID);
+        
+        SetActivator(ptrTID);
+        SetPointer(AAPTR_TARGET, myTID_new);
+        SetActivator(myTID_new);
+    }
+    
+    int myAngle = GetActorAngle(0);
+    int myPitch = GetActorPitch(0);
+    
+    int targetTID_old = PickActor(0, myAngle, myPitch, 0x7FFFFFFF, 0, MF_SHOOTABLE, ML_BLOCKING | ML_BLOCKEVERYTHING, PICKAF_RETURNTID);
+    int targetTID_new = UniqueTID();
+    
+    if (PickActor(0, myAngle, myPitch, 0x7FFFFFFF, targetTID_new, MF_SHOOTABLE, ML_BLOCKING | ML_BLOCKEVERYTHING, PICKAF_FORCETID))
+    {
+        SetActivator(ptrTID);
+        SetPointer(AAPTR_TRACER, targetTID_new);
+        SetUserVariable(ptrTID, "user_timeout", 36);
+        
+        SetActivator(myTID_new);
+        Thing_ChangeTID(targetTID_new, targetTID_old);
+    }
+    else
+    {
+        SetUserVariable(ptrTID, "user_timeout", max(0, GetUserVariable(ptrTID, "user_timeout") - 1));
+        
+        if (GetUserVariable(ptrTID, "user_timeout") == 0)
+        {
+            SetActivator(ptrTID);
+            SetPointer(AAPTR_TRACER, 0);
+            SetActivator(myTID_new);
+        }
+    }
+    
+    SetActorState(ptrTID, "KeepAlive");
+    SetInventory("BFGPointerTID", ptrTID);
+    Thing_ChangeTID(myTID_new, myTID_old);
+    return ptrTID;
+}
