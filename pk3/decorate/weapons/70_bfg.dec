@@ -39,10 +39,10 @@ actor DWep_BFG9000: DoomWeapon
         loop
 
       Fire:
-        DBFG B 30 bright A_PlaySound("dakka/bfgfire", CHAN_WEAPON)
+        DBFG B 30 bright A_PlaySound("dakka/bfgfire", 5)
         "----" A 0 ACS_NamedExecuteWithResult("Dakka_Switcharoo", 8, 0)
         DBFG B 0 A_GunFlash
-        DBFG B 0 bright A_PlaySound("dakka/bfgexplode", 5)
+        DBFG B 0 bright A_PlaySound("dakka/bfgfire2", CHAN_WEAPON)
         DBFG B 0 A_FireCustomMissile("AmmoWaster")
         DBFG B 0 A_SpawnItemEx("Dakka_BFGLaser", 0,0,32, 32767 * cos(pitch), 0, 32767 * -sin(pitch), angle, SXF_ABSOLUTEANGLE)
         DBFG B 0 A_FireBullets(0, 0, 1, 0, "BFGLaserPuff", 0)
@@ -70,7 +70,7 @@ actor DWep_BFG9000: DoomWeapon
         goto Ready
 
       Hold:
-        DBFG C 1 bright offset(0, 26) A_PlaySound("dakka/bfgfire", CHAN_WEAPON)
+        DBFG C 1 bright offset(0, 26) A_PlaySound("dakka/bfgfire", 5)
         DBFG C 3 bright
         DBFG B 4 bright offset(0, 32)
         DBFG B 22 bright
@@ -109,15 +109,16 @@ actor DWep_BFG9000: DoomWeapon
         DBFG C 1 offset(0, 35)
         DBFG C 1 offset(0, 33)
         DBFG C 2 offset(0, 30)
-        DBFG C 1 offset(0, 29) A_PlaySound("dakka/ssgclose", 5)
-        DBFG C 1 offset(0, 27)
+        DBFG C 0 offset(0, 29) A_PlaySound("dakka/ssgclose", 5)
+        DBFG C 1 offset(0, 29) A_WeaponReady(WRF_NOFIRE | WRF_NOBOB)
+        DBFG C 1 offset(0, 27) A_WeaponReady(WRF_NOFIRE | WRF_NOBOB)
         
         // BEAT 4 (18 tics)
-        DBFG A 1 offset(0, 38)
-        DBFG A 1 offset(0, 37)
-        DBFG A 2 offset(0, 35)
-        DBFG A 2 offset(0, 33)
-        DBFG A 6 offset(0, 32) A_WeaponReady(WRF_NOFIRE | WRF_NOBOB)
+        DBFG A 1 offset(0, 38) A_WeaponReady(WRF_NOFIRE | WRF_NOBOB)
+        DBFG A 1 offset(0, 37) A_WeaponReady(WRF_NOFIRE | WRF_NOBOB)
+        DBFG A 2 offset(0, 35) A_WeaponReady(WRF_NOFIRE | WRF_NOBOB)
+        DBFG A 2 offset(0, 33) A_WeaponReady(WRF_NOFIRE | WRF_NOBOB)
+        DBFG A 6 offset(0, 32) A_WeaponReady(WRF_NOSECONDARY | WRF_NOBOB)
         goto Ready
 
       Flash:
@@ -151,6 +152,32 @@ actor DWep_BFG9000: DoomWeapon
 
       Spawn:
         DBFG Z -1
+        stop
+    }
+}
+
+
+
+// AAPTR_TARGET is the player this belongs to
+// AAPTR_MASTER is the thing this is currently targeting
+// AAPTR_TRACER is a potential new target
+actor BFGPointerDummy
+{
+    +NOINTERACTION
+    Radius 0
+    Height 0
+    
+    RenderStyle None
+    var int user_timeout;
+    
+    States
+    {
+      Spawn:
+        PLSS A -1
+        stop
+      
+      KeepAlive:
+        PLSS A 4
         stop
     }
 }
@@ -235,7 +262,7 @@ actor BFGHomingShot_Stage1
     Speed 25
     
     Projectile
-    Damage (0)
+    Damage (25)
     
     -NOGRAVITY
     Gravity 0.15
@@ -580,7 +607,7 @@ actor DakkaBFGBeamStart
       Spawn:
         TNT1 A 0
         DBFP C 0 bright A_Explode(128, 160, 0)
-        DBFP C 0 bright A_Explode(96, 256, 0)
+        DBFP C 0 bright A_Explode(96,  256, 0)
         stop
     }
 }
@@ -606,8 +633,8 @@ actor DakkaBFGBeamEnd
       Spawn:
         DBFP C 0
         DBFP C 0 bright A_Explode(96, 256)
+        DBFP C 0 bright A_Explode(128, 160)
         DBFP C 0 A_ChangeFlag("NODAMAGETHRUST", 1)
-        DBFP C 0 bright A_Explode(128, 160, false)
         DBFP C 0 bright A_Explode(96, 256, 0)
         DBFP C 0 bright A_Explode(256, 512, 0)
         stop
@@ -810,31 +837,6 @@ actor DakkaBFGBeamEnd_Client
 
         DBFP AAAAAAAAAA 0 A_SpawnItemEx("BFGEndTrail", 0,0,0, random(-20,20)/10.0, 0, random(-20,20)/10.0, random(0,360))
         DBFP CDEFGHH 8 bright
-        stop
-    }
-}
-
-
-
-// AAPTR_TARGET is the player this belongs to
-// AAPTR_MASTER is the thing this is currently targeting
-// AAPTR_TRACER is a potential new target
-actor BFGPointerDummy
-{
-    +NOINTERACTION
-    Radius 0
-    Height 0
-    
-    var int user_timeout;
-    
-    States
-    {
-      Spawn:
-        PLSS A -1
-        stop
-      
-      KeepAlive:
-        PLSS A 4
         stop
     }
 }
