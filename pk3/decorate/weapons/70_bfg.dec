@@ -263,7 +263,7 @@ actor BFGHomingShot_Stage1
     Speed 25
     
     Projectile
-    Damage (25)
+    Damage (0)
     
     -NOGRAVITY
     Gravity 0.15
@@ -353,7 +353,7 @@ actor BFGHomingShot_Stage2
     Speed 80
 
     Projectile
-    Damage (20)
+    Damage (25)
     DamageType "Disintegrate"
 
     +MTHRUSPECIES
@@ -408,8 +408,8 @@ actor BFGHomingShot_Stage2
         loop
       
       Death2:
-        DBFP C 0 bright A_Explode(20, 96,  true, false, 48)
-        DBFP C 0 bright A_Explode(40, 128, true, false, 48)
+        DBFP C 0 bright A_Explode(30, 96,  true, false, 48)
+        DBFP C 0 bright A_Explode(50, 128, true, false, 48)
 
         DBFP CDEFGHH 2
         stop
