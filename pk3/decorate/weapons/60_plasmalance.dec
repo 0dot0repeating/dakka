@@ -372,6 +372,7 @@ actor PLPrimaryShot: FastProjectile
     +BLOODLESSIMPACT
     +NODAMAGETHRUST
     +SERVERSIDEONLY
+    +MTHRUSPECIES
     +HITTRACER
     
     RenderStyle Add
@@ -560,6 +561,7 @@ actor LanceArcShot: Arc_Base
     +ALWAYSPUFF
     +PUFFONACTORS
     +BLOODLESSIMPACT
+    +MTHRUSPECIES
     
     Decal "PlasmaScorchBigger"
     
