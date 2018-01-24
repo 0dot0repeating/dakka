@@ -10,7 +10,7 @@ actor DWep_BFG9000: DoomWeapon
     Weapon.AmmoType1    "DakkaCells"
     Weapon.AmmoType2    "DakkaCells"
     Weapon.AmmoUse1     80
-    Weapon.AmmoUse2     25
+    Weapon.AmmoUse2     40
     Weapon.AmmoGive1    80
     
     Weapon.BobStyle InverseSmooth
@@ -139,8 +139,8 @@ actor DWep_BFG9000: DoomWeapon
 
       AltFlash:
         DBFF A  1 bright A_Light(8)
-        DBFF B  2 bright
-        DBFF B  2 bright A_Light(7)
+        DBFF B  1 bright
+        DBFF B  1 bright A_Light(7)
         DBFF B  1 bright A_Light(6)
         DBFF C  1 bright A_Light(5)
         DBFF C  1 bright A_Light(4)
@@ -246,7 +246,7 @@ actor BFGHomingShotSpawner
         TNT1 A 0 ACS_NamedExecuteWithResult("DSSG_CalcGrenadeAngle", 25, 7000, 2500)
         TNT1 A 0 A_SpawnItemEx("BFGHomingShot_Stage1", 0,0,0, user_spawnvelx/65536.0, user_spawnvely/65536.0, user_spawnvelz/65536.0, angle, SXF_ABSOLUTEANGLE | SXF_ABSOLUTEVELOCITY | SXF_TRANSFERPOINTERS)
         TNT1 A 0 A_SetUserVar("user_spawncount", user_spawncount+1)
-        TNT1 A 0 A_JumpIf(user_spawncount >= 20, "SpawnEnd")
+        TNT1 A 0 A_JumpIf(user_spawncount >= 25, "SpawnEnd")
         loop
       
       SpawnEnd:
@@ -324,14 +324,14 @@ actor BFGHomingShot_Stage1
         goto Stage2_Fail
        
       Stage2_Fail:
-        DBFP A 0 A_SpawnItemEx("TinyBFGTrail", 0,0,0, frandom(1.5,3),0,frandom(-0.2,0.2), user_angle + frandom(-10, 10))
+        DBFP A 0 A_SpawnItemEx("TinyBFGTrail", 0,0,0, frandom(3,6),0,frandom(-0.9,0.9), user_angle + frandom(-10, 10))
         DBFP A 0 A_SetUserVar("user_angle", user_angle+30)
         DBFP A 0 A_JumpIf(user_angle >= 360, "S2F_Part2")
         loop
       
       S2F_Part2:
-        DBFP C 0 bright A_Explode(20, 96,  true, false, 48)
-        DBFP C 0 bright A_Explode(40, 128, true, false, 48)
+        DBFP C 0 bright A_Explode(30, 96,  true, false, 48)
+        DBFP C 0 bright A_Explode(50, 128, true, false, 48)
         DBFP CDEFGHH 2 bright
         stop
         
@@ -402,7 +402,7 @@ actor BFGHomingShot_Stage2
 
       Death:
         DBFP A 0 A_Stop
-        DBFP A 0 A_SpawnItemEx("TinyBFGTrail", 0,0,0, frandom(1.5,3),0,frandom(-0.5,0.5), user_angle + frandom(-10, 10))
+        DBFP A 0 A_SpawnItemEx("TinyBFGTrail", 0,0,0, frandom(4,8),0,frandom(-1.4,1.4), user_angle + frandom(-10, 10))
         DBFP A 0 A_SetUserVar("user_angle", user_angle+20)
         DBFP A 0 A_JumpIf(user_angle >= 360, "Death2")
         loop
@@ -528,7 +528,7 @@ actor BFGTrail
     States
     {
       Spawn:
-        DBFE BBBBCCCC 1 bright A_FadeOut(0.03)
+        DBFE BBBBCCCC 1 bright A_FadeOut(0.02)
         loop
     }
 }
