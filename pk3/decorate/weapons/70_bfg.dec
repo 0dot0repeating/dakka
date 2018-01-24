@@ -192,8 +192,6 @@ actor BFGCrosshairTarget: FastProjectile
     +THRUACTORS
     +SKYEXPLODE
     +NOTIMEFREEZE
-    -ACTIVATEIMPACT
-    -ACTIVATEPCROSS
     +NOTRIGGER
     
     RenderStyle None

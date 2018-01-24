@@ -661,6 +661,7 @@ actor LanceArcSpark
     
     Projectile
     +THRUACTORS
+    +NOTRIGGER
     -NOGRAVITY
     
     Gravity 0.7

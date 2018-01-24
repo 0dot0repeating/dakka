@@ -464,6 +464,7 @@ actor ImpalerExplosionSpark
 	+THRUACTORS
     +FORCEXYBILLBOARD
 	+PAINLESS
+    +NOTRIGGER
 	Gravity 0.67
 	Damage 0
 	
