@@ -56,6 +56,12 @@ BIG CHANGES:
     hit what's behind them, while the alt-fire charges up the weapon to release
     a torrent of lightning that arcs through everything in front of you.
 
+- The BFG's alt-fire has been reworked! Instead of the boring automatic green
+    rocket launcher it was before, it instead now shoots out a storm of plasma
+    bolts, which hover in the air for a bit before rocketing over to destroy
+    whoever your target is at that moment. Perfect for obliterating hordes from
+    a distance!
+
 - Since the minigun's taken over the chaingun slot, something new needs to
     replace the berserk pickups. And that something is... the vampire sphere!
     For 30 seconds after picking it up, every kill you get heals you! Tougher

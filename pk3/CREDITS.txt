@@ -37,14 +37,14 @@ SOUNDS
 - Super shotgun primary fire: Obsidian Software, in Fallout: New Vegas
 - Super shotgun alt-fire: Gearbox Software, in Borderlands 2
 - Minigun motor sounds: from Serious Sam 3
-- Minigun primary fire - slow: from Serious Sam 3 (sped up)
-- Minigun primary fire - fast: from Halo 4 (massively sped up)
+- Minigun primary fire - slow: Croteam, in Serious Sam 3 (sped up)
+- Minigun primary fire - fast: Bungie, in Halo 4 (massively sped up)
 - Minigun flamethrower (all sounds): People Can Fly, in Painkiller
 - Impaler: Monolith Productions, in F.E.A.R.
 - Impaler explosions: Streum On Studios, in EYE: Divine Cybermancy
 - Lancer primary fire: MachineGames, in Wolfenstein: New Order
 - Lancer alt-fire: Epic Games, in Unreal Tournament 2004
-- BFG alt-fire: Obsidian Software, in Fallout: New Vegas
+- BFG alt-fire: Croteam, in Serious Sam 3
 
 - Score reward sounds: People Can Fly, in Painkiller
 - Vampirism sounds: People Can Fly, in Painkiller
