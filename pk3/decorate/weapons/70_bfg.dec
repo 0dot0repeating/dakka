@@ -192,6 +192,9 @@ actor BFGCrosshairTarget: FastProjectile
     +THRUACTORS
     +SKYEXPLODE
     +NOTIMEFREEZE
+    -ACTIVATEIMPACT
+    -ACTIVATEPCROSS
+    +NOTRIGGER
     
     RenderStyle None
     
@@ -389,7 +392,8 @@ actor BFGHomingShot_Stage2
         goto Spawn2
       
       Spawn2:
-        DBFP "#" 0 bright A_SpawnItemEx("BFGHomingTrail_Stage2", frandom(-4,4), 0, frandom(-4,4), 0,0,0, frandom(0, 360))
+        DBFP "#" 0 bright A_SpawnItemEx("BFGHomingTrail_Stage2", frandom(-4,4) - (velx/2), frandom(-4,4) - (vely/2), frandom(-4,4) - (velz/2), 0,0,0, 0, SXF_ABSOLUTEPOSITION)
+        DBFP "#" 0 bright A_SpawnItemEx("BFGHomingTrail_Stage2", frandom(-4,4),            frandom(-4,4),            frandom(-4,4),            0,0,0, 0, SXF_ABSOLUTEPOSITION)
         DBFP "#" 0 bright A_SetUserVar("user_t", user_t + 1)
         DBFP "#" 1 bright A_JumpIf(CallACS("Dakka_BFGHomeIn", 8, 80) == false, "WentTooFar")
         goto Spawn
@@ -439,21 +443,27 @@ actor BFGHomingTrail_Stage2
     +NOINTERACTION
     +CLIENTSIDEONLY
     +FORCEXYBILLBOARD
+    +NOTIMEFREEZE
 
     RenderStyle Add
     Alpha 0.5
-    Scale 0.3
+    Scale 0.5
 
     States
     {
       Spawn:
+        TNT1 A 2
+        DBFE B 0 bright A_ChangeFlag("NOTIMEFREEZE", 0)
+        goto Spawn2
+      
+      Spawn2:
         DBFE B 1 bright A_FadeOut(0.03)
-        DBFE B 0 bright A_Jump(64, "Spawn2")
+        DBFE B 0 bright A_Jump(64, "Spawn2C")
         loop
         
-      Spawn2:
+      Spawn2C:
         DBFE C 1 bright A_FadeOut(0.03)
-        DBFE C 0 bright A_Jump(64, "Spawn")
+        DBFE C 0 bright A_Jump(64, "Spawn2")
         loop
     }
 }
