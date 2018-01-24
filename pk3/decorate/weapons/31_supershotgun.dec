@@ -444,9 +444,6 @@ actor DakkaSSG_Grenade
       Spawn:
         DGRN A 0
         DGRN A 0 ACS_NamedExecuteWithResult("Dakka_ProjUpdate")
-        DGRN A 0 A_JumpIf(user_t < 4, 2)
-        DGRN A 0 A_JumpIf(CallACS("Dakka_CheckDetonate"), "EarlyDetonate")
-        
         DGRN A 0 bright A_SpawnItemEx("ShotNadeTrail",   -momx/4,   -momy/4,   -momz/4, 0,0,0, 0, SXF_ABSOLUTEPOSITION)
         DGRN A 0 bright A_SpawnItemEx("ShotNadeTrail", -2*momx/4, -2*momy/4, -2*momz/4, 0,0,0, 0, SXF_ABSOLUTEPOSITION)
         DGRN A 0 bright A_SpawnItemEx("ShotNadeTrail", -3*momx/4, -3*momy/4, -3*momz/4, 0,0,0, 0, SXF_ABSOLUTEPOSITION)
