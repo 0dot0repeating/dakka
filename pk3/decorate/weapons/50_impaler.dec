@@ -187,6 +187,7 @@ actor ImpalerMissile: FastProjectile
     +FORCEXYBILLBOARD
     +FORCERADIUSDMG
     +EXTREMEDEATH
+    +MTHRUSPECIES
     
     Decal Scorch
     
@@ -312,6 +313,7 @@ actor ImpalerAltMissile: FastProjectile
     +FORCEXYBILLBOARD
     +BLOODLESSIMPACT
     +FORCERADIUSDMG
+    +MTHRUSPECIES
     +HITTRACER
     
     MissileType "ImpalerSmoke"
