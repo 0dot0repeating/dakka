@@ -215,6 +215,8 @@ script "Dakka_BFG_Client" (int startTID, int endTID)
 }
 
 
+#define BFGPICKFLAGS_THINGS (MF_SHOOTABLE)
+#define BFGPICKFLAGS_LINES  (ML_BLOCKING | ML_BLOCKEVERYTHING | ML_BLOCKPROJECTILE)
 
 function int Dakka_GetNewTarget(int ptrTID)
 {
@@ -235,16 +237,16 @@ function int Dakka_GetNewTarget(int ptrTID)
     int myAngle = GetActorAngle(0);
     int myPitch = GetActorPitch(0);
     
-    int targetTID_old = PickActor(0, myAngle, myPitch, 0x7FFFFFFF, 0, MF_SHOOTABLE, ML_BLOCKING | ML_BLOCKEVERYTHING, PICKAF_RETURNTID);
+    int targetTID_old = PickActor(0, myAngle, myPitch, 0x7FFFFFFF, 0, BFGPICKFLAGS_THINGS, BFGPICKFLAGS_LINES, PICKAF_RETURNTID);
     int targetTID_new = UniqueTID();
     
     int t = Timer();
     
-    if (PickActor(0, myAngle, myPitch, 0x7FFFFFFF, targetTID_new, MF_SHOOTABLE, ML_BLOCKING | ML_BLOCKEVERYTHING, PICKAF_FORCETID))
+    if (PickActor(0, myAngle, myPitch, 0x7FFFFFFF, targetTID_new, BFGPICKFLAGS_THINGS, BFGPICKFLAGS_LINES, PICKAF_FORCETID))
     {
         SetActivator(ptrTID);
         SetPointer(AAPTR_TRACER, targetTID_new);
-        SetUserVariable(0, "user_timeout", t + 72);
+        SetUserVariable(0, "user_timeout", t + 36);
         
         SetActivator(myTID_new);
         Thing_ChangeTID(targetTID_new, targetTID_old);
@@ -351,7 +353,8 @@ script "Dakka_BFGHomeIn" (int speedadd, int speedmax, int evenIfBehind)
     int tx,ty,tz;
     
     SetActivator(0, AAPTR_TRACER);
-    if (ClassifyActor(0) & ACTOR_WORLD)
+    
+    if ((ClassifyActor(0) & ACTOR_WORLD) || isDead(0))
     {
         if (GetUserVariable(myTID_new, "user_hadtarget"))
         {
