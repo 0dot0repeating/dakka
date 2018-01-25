@@ -148,6 +148,7 @@ GENERAL CHANGES:
     vampire sphere and changes made to armor and health. There's also an awful
     story in there. But it's the good kind of awful.
 
+- Bullet tracers no longer inexplicably get dragged down when hitting sky walls.
 
 
 
