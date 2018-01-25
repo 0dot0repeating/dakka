@@ -33,6 +33,7 @@ actor DakkaPuff: BulletPuff
     +PUFFONACTORS
     +FORCEXYBILLBOARD
     +NOTIMEFREEZE
+    +NOINTERACTION
     +SKYEXPLODE
 
     Radius 0
