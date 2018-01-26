@@ -13,7 +13,7 @@
 
 script "Score_GiveRewards" (int rewardCount)
 {
-    Score_ModScore(PlayerNumber(), MapStart_FullHealPoints * max(rewardCount, 0));
+    Score_ModScore(PlayerNumber(), Score_Thresholds[ST_FULLHEAL] * max(rewardCount, 0));
 }
 
 script "Score_GiveLives" (int lifeCount)

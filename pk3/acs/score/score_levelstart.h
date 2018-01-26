@@ -2,7 +2,7 @@ int Score_TotalNums[2];
 
 function void Score_CalcMapPoints(void)
 {
-    if (MapStart_FullHealPoints > 0) { return; }
+    if (Score_Thresholds[ST_FULLHEAL] > 0) { return; }
 
     int i;
     int totalMons   = 0;
@@ -60,9 +60,11 @@ function void Score_CalcMapPoints(void)
     int fullHealMult = middle(P_FULLHEAL_MIN, FixedMul(totalMons, P_FULLHEAL_PERCENT), P_FULLHEAL_MAX);
     int fullHealPoints = averagePoints * fullHealMult;
     
-    MapStart_FullHealPoints = max(5000, ((fullHealPoints + 2500) / 5000) * 5000);
+    Score_Thresholds[ST_FULLHEAL] = max(5000, ((fullHealPoints + 2500) / 5000) * 5000);
+    Score_Thresholds[ST_UT_KILLS] = middle(P_UTKILLS_MIN, totalMons   / 10, P_UTKILLS_MAX);
+    Score_Thresholds[ST_UT_HP]    = middle(P_UTHP_MIN,    totalPoints / 10, P_UTHP_MAX);
     
-    //Log(s:"\ca", d:totalMons, s:"   \cf", d:totalPoints, s:"   \cd", d:MapStart_FullHealPoints);
+    Log(s:"\ca", d:totalMons, s:"   \cf", d:totalPoints, s:"   \cd", d:Score_Thresholds[ST_FULLHEAL], s:" (", d:fullHealPoints, s:")");
 
     // Adjust everyone's base score to match the percentage from the last map if it's non-zero
     for (i = 0; i < PLAYERMAX; i++)
@@ -71,7 +73,7 @@ function void Score_CalcMapPoints(void)
         int percent = Score_GetScorePercent(i);
 
         // We add 1 because FixedMul loves rounding down, and we don't actually want that!
-        Score_SetScore(i, FixedMul(MapStart_FullHealPoints, percent + 1));
+        Score_SetScore(i, FixedMul(Score_Thresholds[ST_FULLHEAL], percent + 1));
     }
 }
 

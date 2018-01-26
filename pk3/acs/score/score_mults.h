@@ -205,7 +205,7 @@ function int SMult_Untouchable(int pln, int myhp)
     int kills = PlayerKillStreaks[pln][KS_KILLS_SINCELASTHIT];
     int hp    = PlayerKillStreaks[pln][KS_HP_SINCELASTHIT];
     
-    if (kills >= UNTOUCHABLE_MINKILLS || hp >= UNTOUCHABLE_MINHEALTH)
+    if (kills >= Score_Thresholds[ST_UT_KILLS] || hp >= Score_Thresholds[ST_UT_HP])
     {
         PlayerKillStreaks[pln][KS_KILLS_UNTOUCHABLE] += 1 + (myhp / UNTOUCHABLE_KILLBOOST_HPDIVISOR);
         int multKills = min(PlayerKillStreaks[pln][KS_KILLS_UNTOUCHABLE], UNTOUCHABLE_MAXKILLS);

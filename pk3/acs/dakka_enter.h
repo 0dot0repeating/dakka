@@ -17,7 +17,7 @@ script "Dakka_Spawn" (int respawned)
     if (GameType() == GAME_TITLE_MAP) { terminate; }
     
     // Apparently ENTER can run before OPEN in plain ol ZDoom too - fuckin fantastic
-    if (MapStart_FullHealPoints == 0)
+    if (Score_Thresholds[ST_FULLHEAL] == 0)
     {
         // In score/score_levelstart.h
         Score_CalcMapPoints();
