@@ -159,8 +159,8 @@ OptionMenu "Dakka_UserOptions"
 
     Option "Disable score rewards",      "dakka_cl_noscorerewards",     "OnOff"
     Option "Disable score entirely",     "dakka_cl_noscore",            "OnOff"
-    Option "Less effects",               "dakka_cl_lesseffects",        "OnOff"
     Option "Dumb pickup messages",       "dakka_cl_moremessages",       "OnOff"
+    Option "Less effects",               "dakka_cl_lesseffects",        "OnOff"
 
     StaticText ""
     StaticText "Keybinds"
