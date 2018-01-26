@@ -49,12 +49,12 @@ function void Score_DoRewards(int lastScore, int curScore)
     // Update this because yeah
     Score_CalcScorePercent(pln);
 
-    int scoreThreshold = MapStart_FullHealPoints;
+    int scoreThreshold = Score_Thresholds[ST_FULLHEAL];
 
     if (scoreThreshold == 0)
     {
         Score_CalcMapPoints();
-        scoreThreshold = MapStart_FullHealPoints;
+        scoreThreshold = Score_Thresholds[ST_FULLHEAL];
     }
 
     int lastScoreHeals = lastScore / scoreThreshold;

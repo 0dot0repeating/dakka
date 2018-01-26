@@ -80,7 +80,17 @@ int Air_FloorHeight[PLAYERMAX];
 #define P_FULLHEAL_MAX      250
 #define P_FULLHEAL_PERCENT  0.7
 
-int MapStart_FullHealPoints = 0;
+// This is used to cap how much you need to be considered untouchable.
+#define P_UTKILLS_MIN       20
+#define P_UTKILLS_MAX       100
+#define P_UTHP_MIN          2000
+#define P_UTHP_MAX          10000
+
+#define ST_FULLHEAL     0
+#define ST_UT_KILLS     1
+#define ST_UT_HP        2
+
+int Score_Thresholds[3] = {0};
 
 
 // CLASSCOUNT_DEFINED is defined in pickup/pickup_classes.h
@@ -287,13 +297,13 @@ function int Score_GetScorePercent(int pln)
 
 function void Score_CalcScorePercent(int pln)
 {
-    if (MapStart_FullHealPoints <= 0)
+    if (Score_Thresholds[ST_FULLHEAL] <= 0)
     {
         MapScoreData[REWARDDATA_SCOREPERCENT + pln] = 0;
     }
     else
     {
-        MapScoreData[REWARDDATA_SCOREPERCENT + pln] = FixedDiv(Score_GetScore(pln), MapStart_FullHealPoints) % 1.0;
+        MapScoreData[REWARDDATA_SCOREPERCENT + pln] = FixedDiv(Score_GetScore(pln), Score_Thresholds[ST_FULLHEAL]) % 1.0;
     }
 }
 
