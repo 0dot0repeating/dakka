@@ -84,11 +84,11 @@ actor DWep_BFG9000: DoomWeapon
         DBFG B 0 A_FireCustomMissile("BFGHomingShotSpawner", 0, true, 0, 0, 0, 5)
         
         // BEAT 1 (14 tics)
-        DBFG C 1 bright offset(0, 34) A_GunFlash
-        DBFG C 3 bright offset(0, 39)
-        DBFG C 2 bright offset(0, 38)
+        DBFG C 1 bright offset(0, 38) A_GunFlash
+        DBFG C 3 bright offset(0, 45)
+        DBFG C 2 bright offset(0, 44)
+        DBFG C 2 bright offset(0, 41)
         DBFG C 2 bright offset(0, 37)
-        DBFG C 2 bright offset(0, 35)
         DBFG C 2 bright offset(0, 32)
         DBFG C 2 bright offset(0, 28) A_PlaySound("dakka/ssgopen", 5)
         
@@ -297,7 +297,7 @@ actor BFGHomingShot_Stage1
     {
       Spawn:
         DBFP A 0 bright 
-        DBFP A 0 bright ACS_NamedExecuteWithResult("Dakka_InheritVelocity", AAPTR_TARGET, 110, 20, 30)
+        DBFP A 0 bright ACS_NamedExecuteWithResult("Dakka_InheritVelocity", AAPTR_TARGET, 130, 50, 30)
         DBFP A 0 bright A_SetUserVar("user_hometime", random(12, 35))
         goto SpawnLoop
       
