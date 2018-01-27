@@ -35,7 +35,7 @@ script "Dakka_FistHit" (int thrustpower, int lockpower, int locktics)
     
     SetResultValue(true);
     
-    if (thrustpower > 0)
+    if (thrustpower > 0 && !(CheckFlag(0, "DORMANT") || CheckFlag(0, "INVULNERABLE")))
     {
         ACS_NamedExecuteWithResult("Dakka_FistThrust", firerAngle, thrustpower);
     }
