@@ -72,21 +72,21 @@ script "Dakka_InheritVelocity" (int ptr, int percentForward, int percentSide, in
 }
 
 #define MB_FIRERTID     0
-#define MB_FIRERTID_OLD 1
-#define MB_FIRERPLN     2
-#define MB_FIRERTEAM    3
-#define MB_FRIENDLY     4
-#define MB_BURNERX      5
-#define MB_BURNERY      6
-#define MB_BURNERZ      7
-#define MB_BURNDIST     8
-#define MB_BURNINITIAL  9
-#define MB_BURNTIME     10
+#define MB_FIRERPLN     1
+#define MB_FIRERTEAM    2
+#define MB_BURNERX      3
+#define MB_BURNERY      4
+#define MB_BURNERZ      5
+#define MB_BURNDIST     6
+#define MB_BURNINITIAL  7
+#define MB_BURNTIME     8
 
-int MinigunBurnInfo[11];
+int MinigunBurnInfo[10];
 
-script "Dakka_SetupMinigunBurn" (int dist, int initial, int duration)
+script "Dakka_StartMinigunBurn" (int dist, int initial, int duration, int burnTracer)
 {
+    int myTID = defaultTID(0);
+    
     MinigunBurnInfo[MB_BURNERX]     = GetActorX(0);
     MinigunBurnInfo[MB_BURNERY]     = GetActorY(0);
     MinigunBurnInfo[MB_BURNERZ]     = GetActorZ(0);
@@ -96,24 +96,28 @@ script "Dakka_SetupMinigunBurn" (int dist, int initial, int duration)
     
     SetActivator(0, AAPTR_TARGET);
     int firerTID_old = ActivatorTID();
-    int firerTID_new = UniqueTID();
-    Thing_ChangeTID(0, firerTID_new);
+    int firerTID     = UniqueTID();
+    Thing_ChangeTID(0, firerTID);
     
-    MinigunBurnInfo[MB_FIRERTID]     = firerTID_new;
-    MinigunBurnInfo[MB_FIRERTID_OLD] = firerTID_old;
+    MinigunBurnInfo[MB_FIRERTID]     = firerTID;
     MinigunBurnInfo[MB_FIRERPLN]     = PlayerNumber();
     MinigunBurnInfo[MB_FIRERTEAM]    = GetPlayerInfo(PlayerNumber(), PLAYERINFO_TEAM);
-    MinigunBurnInfo[MB_FRIENDLY]     = GetActorProperty(0, APROP_Friendly);
+    
+    SetActivator(myTID);
+    
+    if (burnTracer)
+    {
+        ACS_NamedExecuteWithResult("Dakka_MinigunBurn", AAPTR_TRACER);
+    }
+    else
+    {
+        GiveInventory("MinigunBurnPropagator", 1);
+    }
+    
+    Thing_ChangeTID(firerTID, firerTID_old);
 }
 
-script "Dakka_UnsetupMinigunBurn" (void)
-{
-    Thing_ChangeTID(MinigunBurnInfo[MB_FIRERTID], MinigunBurnInfo[MB_FIRERTID_OLD]);
-}
 
-
-
-// Ripped these checks out of Arc_CheckTarget for the most part
 
 script "Dakka_MinigunBurn" (int ptr)
 {
@@ -121,102 +125,49 @@ script "Dakka_MinigunBurn" (int ptr)
     {
         SetActivator(0, ptr);
         if (ClassifyActor(0) & ACTOR_WORLD) { terminate; }
-    }
+    }  
     
-    int firerTID  = MinigunBurnInfo[MB_FIRERTID];
-    int myTID_old = ActivatorTID();
-    int myTID_new = UniqueTID();
-    Thing_ChangeTID(0, myTID_new);
-    
-    // First check: is this even shootable?
     if (!CheckFlag(0, "SHOOTABLE"))
     {
-        Thing_ChangeTID(myTID_new, myTID_old);
-        terminate;
-    }   
-    
-    // Second check: did we target the firer?
-    int testnum = random(1, 0x7FFFFFFF);
-    
-    SetInventory("SameThingChecker", testnum);
-    SetActivator(firerTID);
-    
-    int sameDude = (testnum == CheckInventory("SameThingChecker"));
-    
-    SetActivator(myTID_new);
-    TakeInventory("SameThingChecker", 0x7FFFFFFF);
-    
-    if (sameDude)
-    {
-        Thing_ChangeTID(myTID_new, myTID_old);
         terminate;
     }
     
-    // Third check: are they allied to each other?
-    int myPln    = PlayerNumber();
-    int firerPln = MinigunBurnInfo[MB_FIRERPLN];
-    
-    if (myPln >= 0 && firerPln >= 0)
+    if (ActivatorTID() == MinigunBurnInfo[MB_FIRERTID])
     {
-        int allied = false;
-    
-        if (GameType() == GAME_NET_DEATHMATCH)
-        {
-            int myTeam    = GetPlayerInfo(myPln, PLAYERINFO_TEAM);
-            int firerTeam = MinigunBurnInfo[MB_FIRERTEAM];
-            int noTeamIndex = cond(IsZandronum, 4, 255);
-            
-            allied = ((myTeam == firerTeam) && (myTeam != noTeamIndex) && (firerTeam != noTeamIndex));
-        }
-        else
-        {
-            // If your friends can be hurt, they *will* be hurt
-            allied = (GetCVar("teamdamage") <= 0);
-        }
-        
-        if (allied)
-        {
-            Thing_ChangeTID(myTID_new, myTID_old);
-            terminate;
-        }
+        terminate;
     }
     
-    // Fourth check: are we actually in range?
-    int myX = GetActorX(0);
-    int myY = GetActorY(0);
-    int myZ = GetActorZ(0);
-    int myRadius = GetActorProperty(0, APROP_Radius);
-    int myHeight = GetActorProperty(0, APROP_Height);
+    int myPln     = PlayerNumber();
+    int myTeam    = GetPlayerInfo(myPln, PLAYERINFO_TEAM);
+    int firerPln  = MinigunBurnInfo[MB_FIRERPLN];
+    int firerTeam = MinigunBurnInfo[MB_FIRERTEAM];
+    
+    if (ACS_NamedExecuteWithResult("ProjCheck_IsAllied", myPln, myTeam, firerPln, firerTeam))
+    {
+        terminate;
+    }
     
     int burnX = MinigunBurnInfo[MB_BURNERX];
     int burnY = MinigunBurnInfo[MB_BURNERY];
     int burnZ = MinigunBurnInfo[MB_BURNERZ];
-
-    int myX_closest = middle(burnX, safeAdd(myX, myRadius), safeAdd(myX, -myRadius));
-    int myY_closest = middle(burnY, safeAdd(myY, myRadius), safeAdd(myY, -myRadius));
-    int myZ_closest = middle(burnZ, safeAdd(myZ, myHeight), myZ);
     
-    int dx   = myX_closest - burnX;
-    int dy   = myY_closest - burnY;
-    int dz   = myZ_closest - burnZ;
-    
-    int dist = VectorLength(VectorLength(dx, dy), dz);
-    
-    if (dist > MinigunBurnInfo[MB_BURNDIST])
+    if (ACS_NamedExecuteWithResult("ProjCheck_ShortestDist", burnX, burnY, burnZ) > MinigunBurnInfo[MB_BURNDIST])
     {
-        Thing_ChangeTID(myTID_new, myTID_old);
         terminate;
     }
     
-    ACS_NamedExecuteWithResult("Dakka_MinigunAfterburn", firerTID, myTID_new);
-    Thing_ChangeTID(myTID_new, myTID_old);
+    ACS_NamedExecuteWithResult("Dakka_MinigunAfterburn", MinigunBurnInfo[MB_FIRERTID]);
 }
+
+
 
 #define AFTERBURNDAMAGE     20
 
-script "Dakka_MinigunAfterburn" (int firerTID, int myTID)
+script "Dakka_MinigunAfterburn" (int firerTID)
 {
-    SetActivator(myTID);
+    int myTID_old = ActivatorTID();
+    int myTID     = UniqueTID();
+    Thing_ChangeTID(0, myTID);
     
     int initialBurn = CheckInventory("MinigunNewBurn");
     int burnTimer   = CheckInventory("MinigunBurnTimer");
@@ -239,6 +190,8 @@ script "Dakka_MinigunAfterburn" (int firerTID, int myTID)
     SetActivator(pointerTID);
     SetPointer(AAPTR_TARGET, firerTID);
     SetPointer(AAPTR_TRACER, myTID);
+    
+    Thing_ChangeTID(myTID, myTID_old);
     
     // we need to track total burn time to deal accurate afterburn damage
     int timeBurning    = 0;

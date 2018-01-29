@@ -29,12 +29,10 @@ script "Dakka_Tracer" (int which, int yoff, int zoff)
     }
 
     if (ClassifyActor(0) & ACTOR_WORLD) { terminate; }
-
-    int myTID = defaultTID(-1);
-
+    
     int myX = GetActorX(0);
     int myY = GetActorY(0);
-    int myZ = GetActorZ(0) + GetActorViewHeight(myTID);
+    int myZ = GetActorZ(0) + GetActorViewHeight(0);
 
     int myAngle = GetActorAngle(0);
     int myPitch = GetActorPitch(0);
@@ -68,9 +66,8 @@ script "Dakka_Tracer" (int which, int yoff, int zoff)
 
     
     int tracerTID1 = UniqueTID();
-    SpawnForced("TracerDummy", spawnX, spawnY, spawnZ, tracerTID1);
-
     int tracerTID2 = UniqueTID();
+    SpawnForced("TracerDummy", spawnX, spawnY, spawnZ, tracerTID1);
     SpawnForced("TracerDummy",  shotX,  shotY,  shotZ, tracerTID2);
 
     switch (which)

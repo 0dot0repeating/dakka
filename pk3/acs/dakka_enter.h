@@ -51,9 +51,6 @@ script "Dakka_Spawn" (int respawned)
 
     while (DakkaEnterLocks[pln] == myLockVal)
     {
-        lastScore = curScore;
-        curScore  = Score_GetScore(pln);
-        
         // Doesn't need its own script
         if (classNum == Cl_Dakkaguy) { SetInventory("DWep_Fist", 1); }
 
@@ -88,6 +85,8 @@ script "Dakka_Spawn" (int respawned)
         bfgPtrTID = Dakka_GetNewTarget(bfgPtrTID);
 
         // In score/score_reward.h
+        lastScore = curScore;
+        curScore  = Score_GetScore(pln);
         Score_DoRewards(lastScore, curScore);
 
         // In score/score_update.h
