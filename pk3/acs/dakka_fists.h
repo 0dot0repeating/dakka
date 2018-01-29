@@ -23,12 +23,15 @@ script "Dakka_FistHit" (int thrustpower, int lockpower, int locktics)
         terminate;
     }
     
-    int firerTID   = defaultTID(0);
-    int firerAngle = GetActorAngle(0);
+    int firerAngle   = GetActorAngle(0);
+    int firerTID_old = ActivatorTID();
+    int firerTID     = UniqueTID();
+    Thing_ChangeTID(0, firerTID);
     
     SetActivator(myTID, AAPTR_TRACER);
     if (ClassifyActor(0) & ACTOR_WORLD)
     {
+        Thing_ChangeTID(firerTID, firerTID_old);
         SetResultValue(false);
         terminate;
     }
@@ -55,6 +58,8 @@ script "Dakka_FistHit" (int thrustpower, int lockpower, int locktics)
             ACS_NamedExecuteWithResult("Dakka_FistLockon", angleDiff, locktics);
         }
     }
+    
+    Thing_ChangeTID(firerTID, firerTID_old);
 }
 
 

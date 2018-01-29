@@ -75,8 +75,7 @@ function void Score_DoRewards(int lastScore, int curScore)
 script "Score_CheckRevival" (void)
 {
     int pln = PlayerNumber();
-    int myTID = defaultTID(-1);
-
+    
     int extraLives = Score_GetExtraLives(pln);
     int hasLives   = Score_GetHasLives(pln);
 
@@ -120,6 +119,9 @@ script "Score_CheckRevival" (void)
         Score_ModExtraLives(pln, -1);
 
         int revivalTID = UniqueTID();
+        int myTID_old  = ActivatorTID();
+        int myTID      = UniqueTID();
+        Thing_ChangeTID(0, myTID);
 
         SpawnForced("DakkaReviveExplosion", GetActorX(0), GetActorY(0), GetActorZ(0) + 32.0, revivalTID);
         GiveInventory("RevivalIntervention", 1);
@@ -127,8 +129,10 @@ script "Score_CheckRevival" (void)
         SetActivator(revivalTID);
         SetPointer(AAPTR_TARGET, myTID);
         SetActorAngle(0, GetActorAngle(myTID));
+        
         SetActivator(myTID);
-
+        Thing_ChangeTID(myTID, myTID_old);
+        
         FadeRange(255, 223, 155, 0.75,    255, 79, 0, 0.0, 1.0);
 
         // we took out 1, so now it's actually 0 in the array
@@ -177,7 +181,6 @@ int AmmoRegen_RegenCounters[PLAYERMAX][AMMOREGENCOUNT];
 function void Score_ProcessRewards(void)
 {
     int pln = PlayerNumber();
-    int myTID = defaultTID(-1);
 
     int regenTime = Score_GetRegenTimer(pln);
     int inRegen   = Score_GetRegenSpent(pln);
@@ -197,6 +200,10 @@ function void Score_ProcessRewards(void)
 
         if (looperTID == 0)
         {
+            int myTID_old = ActivatorTID();
+            int myTID     = UniqueTID();
+            Thing_ChangeTID(0, myTID);
+            
             looperTID = UniqueTID();
             Spawn("RegenSoundLooper", GetActorX(0), GetActorY(0), GetActorZ(0), looperTID);
             AmmoRegen_SoundLooperTIDs[pln] = looperTID;
@@ -204,6 +211,8 @@ function void Score_ProcessRewards(void)
             SetActivator(looperTID);
             SetPointer(AAPTR_TARGET, myTID);
             SetActivator(myTID);
+    
+            Thing_ChangeTID(myTID, myTID_old);
         }
 
         int  curTic_bySecond = itof( Timer() % 36);
