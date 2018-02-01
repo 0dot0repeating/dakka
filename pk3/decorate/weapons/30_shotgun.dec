@@ -294,8 +294,7 @@ actor ShotgunMiniGrenade
       Spawn:
         DGRN A 0
         DGRN A 0 bright A_SpawnItemEx("ShotNadeTrail", -momx,   -momy,   -momz,   0,0,0, 0, SXF_ABSOLUTEPOSITION)
-        DGRN A 0 bright A_SpawnItemEx("ShotNadeTrail", -momx/3, -momy/3, -momz/3, 0,0,0, 0, SXF_ABSOLUTEPOSITION)
-        DGRN A 0 bright A_SpawnItemEx("ShotNadeTrail", -2*momx/3, -2*momy/3, -2*momz/3, 0,0,0, 0, SXF_ABSOLUTEPOSITION)
+        DGRN A 0 bright A_SpawnItemEx("ShotNadeTrail", -momx/2, -momy/2, -momz/2, 0,0,0, 0, SXF_ABSOLUTEPOSITION)
         DGRN A 1 A_Countdown
         loop
 
@@ -315,7 +314,7 @@ actor ShotNadeTrail
     +FORCEXYBILLBOARD
 
     RenderStyle Add
-    Alpha 0.05
+    Alpha 0.125
     Scale 0.1
 
     States
