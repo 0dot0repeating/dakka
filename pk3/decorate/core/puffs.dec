@@ -118,6 +118,7 @@ actor DakkaBulletSpark
     +NOTIMEFREEZE
     +FORCEXYBILLBOARD
     +DONTSPLASH
+    +NOTRIGGER
 
     Gravity 0.5
     BounceFactor 0.1
@@ -158,6 +159,7 @@ actor DakkaTracer
     +NOTIMEFREEZE
     +FORCEXYBILLBOARD
     +DONTSPLASH
+    +NOTRIGGER
 
     Radius 0
     Height 0
