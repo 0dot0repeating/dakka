@@ -464,7 +464,7 @@ actor DakkaSSG_Grenade
         
       NormalBlast:
         TNT1 A 0 ACS_NamedExecuteWithResult("DSSG_CalcGrenadeAngle", 10, 8000, 6000)
-        TNT1 A 0 A_SpawnItemEx("DakkaSSG_MiniGrenade", 0,0,0, -user_spawnvelx/65536.0, -user_spawnvely/65536.0, -user_spawnvelz/65536.0, angle, SXF_ABSOLUTEANGLE | SXF_ABSOLUTEVELOCITY | SXF_TRANSFERPOINTERS)
+        TNT1 A 0 A_SpawnItemEx("DakkaSSG_MiniGrenade", 0,0,0, -user_spawnvelx/65536.0, -user_spawnvely/65536.0, -user_spawnvelz/65536.0, angle+180, SXF_ABSOLUTEANGLE | SXF_ABSOLUTEVELOCITY | SXF_TRANSFERPOINTERS)
         TNT1 A 0 A_SetUserVar("user_spawncount", user_spawncount+1)
         TNT1 A 0 A_JumpIf(user_spawncount >= 4, "SpawnEnd")
         loop
