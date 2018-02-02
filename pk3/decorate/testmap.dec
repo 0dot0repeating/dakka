@@ -179,12 +179,25 @@ actor DAKKTEST_NoDamage: Trigger
     }
 }
 
-actor NotABaron:        BaronOfHell         {}
-actor NotACyberdemon:   Cyberdemon          {}
-actor NotASpiderdemon:  SpiderMastermind    {}
-actor NotAMancubus:     Fatso               {}
-actor NotAnArachnotron: Arachnotron         {}
-actor NotCommanderKeen: CommanderKeen       {}
+actor NotAZombieman:      Zombieman           {}
+actor NotAShotgunner:     ShotgunGuy          {}
+actor NotAChaingunner:    ChaingunGuy         {}
+actor NotAnImp:           DoomImp             {}
+actor NotADemon:          Demon               {}
+actor NotASpectre:        Spectre             {}
+actor NotATomato:         Cacodemon           {}
+actor NotABonehead:       Revenant            {}
+actor NotASkull:          LostSoul            {}
+actor NotAMeatball:       PainElemental       {}
+actor NotAHellKnight:     HellKnight          {}
+actor NotABaron:          BaronOfHell         {}
+actor NotAMancubus:       Fatso               {}
+actor NotAnArachnotron:   Arachnotron         {}
+actor NotAnAlien:         Archvile            {}
+actor NotACyberdemon:     Cyberdemon          {}
+actor NotASpiderdemon:    SpiderMastermind    {}
+actor NotANazi:           WolfensteinSS       {}
+actor NotCommanderKeen:   CommanderKeen       {}
 
 
 actor DakkaCustomBridge: CustomBridge 29651
