@@ -194,18 +194,15 @@ actor DWep_PlasmaLance: DoomWeapon
         PLNC F 0 A_PlaySound("arc/altcharge",      CHAN_WEAPON)
         PLNC F 0 A_GunFlash("Charging")
         
-        PLNC A 0 A_AlertMonsters(64)
         PLNC A 0 A_FireCustomMissile("AmmoWaster")
         PLNC AAAABBBB 1 A_JumpIfInventory("AltReleased", 1, "AltFire_Charge0")
         
         PLNC B 0 A_JumpIfNoAmmo("Altfire_Charge0")
         PLNC B 0 A_FireCustomMissile("AmmoWaster")
-        PLNC B 0 A_AlertMonsters(128)
         PLNC CCCCDDDD 1 A_JumpIfInventory("AltReleased", 1, "AltFire_Charge1")
         
         PLNC B 0 A_JumpIfNoAmmo("Altfire_Charge1")
         PLNC B 0 A_FireCustomMissile("AmmoWaster")
-        PLNC B 0 A_AlertMonsters(224)
         PLNC E 1 offset(-1, 32) A_JumpIfInventory("AltReleased", 1, "AltFire_Charge2")
         PLNC E 1 offset( 0, 32) A_JumpIfInventory("AltReleased", 1, "AltFire_Charge2")
         PLNC E 1 offset( 0, 32) A_JumpIfInventory("AltReleased", 1, "AltFire_Charge2")
@@ -217,7 +214,6 @@ actor DWep_PlasmaLance: DoomWeapon
         
         PLNC B 0 A_JumpIfNoAmmo("Altfire_Charge2")
         PLNC B 0 A_FireCustomMissile("AmmoWaster")
-        PLNC B 0 A_AlertMonsters(320)
         PLNC C 1 offset( 1, 32) A_JumpIfInventory("AltReleased", 1, "AltFire_Charge3")
         PLNC D 1 offset( 0, 32) A_JumpIfInventory("AltReleased", 1, "AltFire_Charge3")
         PLNC D 1 offset( 1, 32) A_JumpIfInventory("AltReleased", 1, "AltFire_Charge3")
@@ -229,7 +225,6 @@ actor DWep_PlasmaLance: DoomWeapon
         
         PLNC B 0 A_JumpIfNoAmmo("Altfire_Charge3")
         PLNC B 0 A_FireCustomMissile("AmmoWaster")
-        PLNC B 0 A_AlertMonsters(448)
         PLNC B 1 offset( 0, 32) A_JumpIfInventory("AltReleased", 1, "AltFire_Charge4")
         PLNC B 1 offset( 2, 32) A_JumpIfInventory("AltReleased", 1, "AltFire_Charge4")
         PLNC C 1 offset( 1, 32) A_JumpIfInventory("AltReleased", 1, "AltFire_Charge4")
@@ -241,7 +236,6 @@ actor DWep_PlasmaLance: DoomWeapon
         
         PLNC B 0 A_JumpIfNoAmmo("Altfire_Charge4")
         PLNC B 0 A_FireCustomMissile("AmmoWaster")
-        PLNC B 0 A_AlertMonsters(576)
         PLNC E 1 offset( 0, 33) A_JumpIfInventory("AltReleased", 1, "AltFire_Charge5")
         PLNC E 1 offset(-2, 33) A_JumpIfInventory("AltReleased", 1, "AltFire_Charge5")
         PLNC B 1 offset(-1, 32) A_JumpIfInventory("AltReleased", 1, "AltFire_Charge5")
@@ -253,7 +247,6 @@ actor DWep_PlasmaLance: DoomWeapon
 
         PLNC B 0 A_JumpIfNoAmmo("Altfire_Charge5")
         PLNC B 0 A_FireCustomMissile("AmmoWaster")
-        PLNC B 0 A_AlertMonsters(704)
         PLNC E 1 offset(-2, 33) A_JumpIfInventory("AltReleased", 1, "AltFire_Charge6")
         PLNC E 1 offset( 3, 32) A_JumpIfInventory("AltReleased", 1, "AltFire_Charge6")
         PLNC B 1 offset(-1, 33) A_JumpIfInventory("AltReleased", 1, "AltFire_Charge6")
@@ -271,7 +264,6 @@ actor DWep_PlasmaLance: DoomWeapon
         PLNC D 1 offset( 0, 32) A_JumpIfInventory("AltReleased", 1, "AltFire_Charge6")
         PLNC D 1 offset(-1, 33) A_JumpIfInventory("AltReleased", 1, "AltFire_Charge6")
         
-        PLNC B 0 A_AlertMonsters(832)
         goto AltFire_Charge6
       
       AltFire_Charge0:
