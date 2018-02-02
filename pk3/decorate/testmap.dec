@@ -179,6 +179,53 @@ actor DAKKTEST_NoDamage: Trigger
     }
 }
 
+
+actor DAKKTEST_GonnaKickYourAss: Boolean {}
+
+actor DAKKTEST_AssKicker
+{
+    Radius 32
+    Height 72
+    Mass 0x7FFFFFFF
+    
+    +SOLID
+    +SHOOTABLE
+    +NODAMAGE
+    +QUICKTORETALIATE
+    Health 1
+    PainChance 255
+    
+    States
+    {
+      Spawn:
+        BBRN A -1
+        stop
+      
+      Pain:
+        BBRN A 0 A_JumpIfInventory("DAKKTEST_GonnaKickYourAss", 1, "KickYourAss")
+        BBRN A 0 A_ChangeFlag("INVULNERABLE", 1)
+        BBRN A 0 A_GiveInventory("DAKKTEST_GonnaKickYourAss")
+        BBRN A 0 A_PrintBold("oi bruv u wanna go ill rek ur shit 1v1 hit me again i fukn dare u dickless shite")
+        BBRN BABABAAABAAA 1
+        BBRN A 0 A_ChangeFlag("INVULNERABLE", 0)
+        BBRN BBABBABBABABAABABABBABB 1
+        BBRN BAAABBBBAAABABBAABAAABBAAABBBAAAABB 1
+        BBRN BABABAAABAAABBABBABBABABAABABABBABB 1
+        BBRN AABBAAABBBAABBABBBABABABAABBBBABABB 1
+        goto Spawn
+      
+      KickYourAss:
+        BBRN A 0 ACS_NamedExecuteWithResult("DAKKTEST_KickAsses")
+        BBRN A 0 A_ChangeFlag("INVULNERABLE", 1)
+        BBRN A 0 A_PrintBold("right then fukn ave it")
+        BBRN AABBAAABBBAABBABBBABABABAABBBBABABB 1
+        BBRN A -1 Exit_Normal(0)
+        stop
+    }
+}
+
+
+
 actor NotAZombieman:      Zombieman           {}
 actor NotAShotgunner:     ShotgunGuy          {}
 actor NotAChaingunner:    ChaingunGuy         {}
