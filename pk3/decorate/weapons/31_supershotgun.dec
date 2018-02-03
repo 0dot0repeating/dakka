@@ -84,7 +84,7 @@ actor DWep_SuperShotgun: DoomWeapon
         DSSG A 0 A_GiveInventory("GiveScrapCounter", 80)
         DSSG A 0 ACS_NamedExecuteWithResult("DSSG_ChangeShots")
         DSSG A 0 ACS_NamedExecuteWithResult("Dakka_Switcharoo", 4, 0)
-        DSSG A 0 ACS_NamedExecuteAlways("Dakka_Recoil", 0, 9, 1, 15)
+        DSSG A 0 ACS_NamedExecuteAlways("Dakka_Recoil", 0, 9, 2, 15)
         
         DSSG A 0 A_FireBullets(14.6, 9.4, 20, 12, "DakkaPuff", FBF_NORANDOM | FBF_USEAMMO)
 
@@ -141,7 +141,7 @@ actor DWep_SuperShotgun: DoomWeapon
         DSSG A 0 A_GiveInventory("GiveScrapCounter", 80)
         DSSG A 0 ACS_NamedExecuteWithResult("DSSG_ChangeShots")
         DSSG A 0 ACS_NamedExecuteWithResult("Dakka_Switcharoo", 4, 0)
-        DSSG A 0 ACS_NamedExecuteAlways("Dakka_Recoil", 0, 9, 1, 28)
+        DSSG A 0 ACS_NamedExecuteAlways("Dakka_Recoil", 0, 9, 3, 28)
         
         DSSG A 0 A_FireBullets(14.6, 9.4, 20, 12, "DakkaPuff", FBF_NORANDOM | FBF_USEAMMO)
 
@@ -182,7 +182,7 @@ actor DWep_SuperShotgun: DoomWeapon
         DSSG A 0 A_GiveInventory("GiveScrapCounter", 80)
         DSSG A 0 ACS_NamedExecuteWithResult("DSSG_ChangeShots")
         DSSG A 0 ACS_NamedExecuteWithResult("Dakka_Switcharoo", 4, 1)
-        DSSG A 0 ACS_NamedExecuteAlways("Dakka_Recoil", 0, 9, 1, 15)
+        DSSG A 0 ACS_NamedExecuteAlways("Dakka_Recoil", 0, 9, 2, 15)
         
         DSSG A 0 A_PlaySound("dakka/ssgaltfire", CallACS("Dakka_RotateSound"))
         DSSG A 0 A_FireCustomMissile("DakkaSSGGrenadeSpawner", 0, false, -2)
