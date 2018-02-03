@@ -96,8 +96,10 @@ function int Dakka_GetNewTarget(int ptrTID)
 
 
 
-script "Dakka_SetupBFGStage2" (int facetracer)
+script "Dakka_SetupBFGStage2" (int facetracer, int changestate)
 {
+    if (!IsServer) { terminate; }
+    
     int myTID_old = ActivatorTID();
     int myTID_new = UniqueTID();
     Thing_ChangeTID(0, myTID_new);
@@ -105,6 +107,7 @@ script "Dakka_SetupBFGStage2" (int facetracer)
     SetActivator(0, AAPTR_TARGET);
     if (ClassifyActor(0) & ACTOR_WORLD)
     {
+        if (changestate) { SetActorState(0, "Stage2_Fail"); }
         Thing_ChangeTID(myTID_new, myTID_old);
         SetResultValue(false);
         terminate;
@@ -113,6 +116,7 @@ script "Dakka_SetupBFGStage2" (int facetracer)
     SetActivator(CheckInventory("BFGPointerTID"), AAPTR_TRACER);
     if (ClassifyActor(0) & ACTOR_WORLD)
     {
+        if (changestate) { SetActorState(0, "Stage2_Fail"); } 
         Thing_ChangeTID(myTID_new, myTID_old);
         SetResultValue(false);
         terminate;
@@ -143,8 +147,15 @@ script "Dakka_SetupBFGStage2" (int facetracer)
     SetActorAngle(0,  VectorAngle(dx, dy));
     SetActorPitch(0, -VectorAngle(VectorLength(dx, dy), dz));
     
+    Log(s:"T-POS: <", f:GetActorX(targetTID_new), s:", ", f:GetActorY(targetTID_new), s:", ", f:GetActorZ(targetTID_new), s:">");
+    Log(s:"DELTA: <", f:dx, s:", ", f:dy, s:", ", f:dz, s:">");
+    Log(s:"NEW ANGLE: ", f:GetActorAngle(0) * 360);
+    Log(s:"NEW PITCH: ", f:GetActorPitch(0) * 360);
+    
     Thing_ChangeTID(myTID_new,     myTID_old);
     Thing_ChangeTID(targetTID_new, targetTID_old);
+
+    if (changestate) { SetActorState(0, "Stage2_Success"); } 
     SetResultValue(true);
 }
 
@@ -152,6 +163,8 @@ script "Dakka_SetupBFGStage2" (int facetracer)
 
 script "Dakka_BFGHomeIn" (int speedadd, int speedmax, int evenIfBehind)
 {
+    if (!IsServer) { terminate; }
+    
     speedadd = itof(speedadd);
     speedmax = itof(speedmax);
     

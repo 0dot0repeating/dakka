@@ -33,6 +33,8 @@ actor Dakkaguy: PlayerPawn
     PainChance Dakka_NoDamage,      0
     PainChance Dakka_RetreatSignal, 0
     
+    +THRUSPECIES
+    
     States
     {
       Spawn:

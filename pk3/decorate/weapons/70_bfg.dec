@@ -583,6 +583,7 @@ actor BFGHomingShotSpawner
     
     Projectile
     +NOINTERACTION
+    +SERVERSIDEONLY
     
     var int user_spawncount;
     var int user_spawnvelx;
@@ -601,12 +602,23 @@ actor BFGHomingShotSpawner
     {
       Spawn:
         TNT1 A 0
+        TNT1 A 0 A_JumpIf(CallACS("Dakka_IsClient") == false, 1)
+        goto NETCODE
+        
         TNT1 A 0 ACS_NamedExecuteWithResult("Dakka_ProjUpdate")
         goto SpawnCommon
-      
+        
       Death:
+        TNT1 A 0 A_JumpIf(CallACS("Dakka_IsClient") == false, 1)
+        goto NETCODE
+        
         TNT1 A 0 ACS_NamedExecuteWithResult("Dakka_ProjDeathUpdate")
         goto SpawnCommon
+      
+      NETCODE:
+        TNT1 A 0
+        stop
+      
       
       SpawnCommon:
         TNT1 A 0 ACS_NamedExecuteWithResult("DSSG_CalcGrenadeAngle", 25, 7000, 2500)
@@ -664,7 +676,7 @@ actor BFGHomingShot_Stage1
       Spawn:
         DBFP A 0 bright 
         DBFP A 0 bright ACS_NamedExecuteWithResult("Dakka_InheritVelocity", AAPTR_TARGET, 130, 50, 30)
-        DBFP A 0 bright A_SetUserVar("user_hometime", random(12, 35))
+        DBFP A 0 bright A_SetUserVar("user_hometime", random(11, 34))
         goto SpawnLoop
       
       SpawnLoop:
@@ -684,26 +696,34 @@ actor BFGHomingShot_Stage1
       
       Stage2:
       Death:
-        DBFP A 0 A_Stop
-        DBFP A 0 A_NoGravity
-        DBFP A 0 A_JumpIf(CallACS("Dakka_SetupBFGStage2", true) == true, "Stage2_Success")
-        goto Stage2_Fail
+        DBFP "#" 0 A_SpawnItemEx("BFGHomingShot_ToStage2", 0,0,0, velx,vely,velz, angle, SXF_TRANSFERPOINTERS | SXF_ABSOLUTEANGLE | SXF_ABSOLUTEVELOCITY | SXF_TRANSFERPITCH)
+        DBFP "#" 0 bright A_Stop
+        DBFP "#" 1 bright A_SpawnItemEx("BFGHomingTrail_Stage1")
+        stop
+    }
+}
+
+actor BFGHomingShot_ToStage2
+{
+    +SERVERSIDEONLY
+    
+    States
+    {
+      Spawn:
+        TNT1 A 0 // this is a fucking retarded hack to make things work in zandronum
+        TNT1 A 1 // I actually do need both of these states
+        TNT1 A -1 ACS_NamedExecuteWithResult("Dakka_SetupBFGStage2", true, true)
+        wait
        
       Stage2_Fail:
-        DBFP A 0 A_SpawnItemEx("TinyBFGTrail", 0,0,0, frandom(3,6),0,frandom(-0.9,0.9), user_angle + frandom(-10, 10))
-        DBFP A 0 A_SetUserVar("user_angle", user_angle+30)
-        DBFP A 0 A_JumpIf(user_angle >= 360, "S2F_Part2")
-        loop
-      
-      S2F_Part2:
-        DBFP C 0 bright A_Explode(30, 96,  true, false, 48)
-        DBFP C 0 bright A_Explode(50, 128, true, false, 48)
-        DBFP CDEFGHH 2 bright
+        TNT1 A 0 A_SpawnItemEx("BFGMaelstromExplosion")
+        TNT1 A 0 bright A_Explode(30, 96,  true, false, 48)
+        TNT1 A 4 bright A_Explode(50, 128, true, false, 48)
         stop
         
       Stage2_Success:
-        DBFP AAAAA 0 A_SpawnItemEx("TinyBFGTrail", 0,0,0, frandom(0,4), 0, frandom(-2,2), frandom(0, 360))
-        DBFP A 0 A_SpawnItemEx("BFGHomingShot_Stage2", 0,0,0, 8 * cos(angle) * cos(pitch),
+        TNT1 AAAAA 0 A_SpawnItemEx("TinyBFGTrail", 0,0,0, frandom(0,4), 0, frandom(-2,2), frandom(0, 360))
+        TNT1 A 4 A_SpawnItemEx("BFGHomingShot_Stage2", 0,0,0, 8 * cos(angle) * cos(pitch),
                                                               8 * sin(angle) * cos(pitch),
                                                               8 * -sin(pitch),
                                                               angle, SXF_TRANSFERPOINTERS | SXF_ABSOLUTEANGLE | SXF_ABSOLUTEVELOCITY | SXF_TRANSFERPITCH)
@@ -767,17 +787,35 @@ actor BFGHomingShot_Stage2
         goto Spawn
 
       Death:
-        DBFP A 0 A_Stop
+        TNT1 A 0 A_SpawnItemEx("BFGStage2Explosion")
+        TNT1 A 0 A_Explode(30, 96,  true, false, 48)
+        TNT1 A 4 A_Explode(50, 128, true, false, 48)
+        stop
+    }
+}
+
+actor BFGStage2Explosion
+{
+    +NOINTERACTION
+    +CLIENTSIDEONLY
+    
+    var int user_angle;
+    
+    +FORCEXYBILLBOARD
+    Renderstyle Add
+    Alpha 0.75
+    Scale 0.6
+    
+    States
+    {
+      Spawn:
         DBFP A 0 A_SpawnItemEx("TinyBFGTrail", 0,0,0, frandom(4,8),0,frandom(-1.4,1.4), user_angle + frandom(-10, 10))
-        DBFP A 0 A_SetUserVar("user_angle", user_angle+20)
-        DBFP A 0 A_JumpIf(user_angle >= 360, "Death2")
+        TNT1 A 0 A_SetUserVar("user_angle", user_angle+20)
+        TNT1 A 0 A_JumpIf(user_angle >= 360, "Done")
         loop
       
-      Death2:
-        DBFP C 0 bright A_Explode(30, 96,  true, false, 48)
-        DBFP C 0 bright A_Explode(50, 128, true, false, 48)
-
-        DBFP CDEFGHH 2
+      Done:
+        DBFP CDEFGHH 2 bright
         stop
     }
 }
@@ -866,6 +904,7 @@ actor BFGMaelstromShotSpawner
     
     Projectile
     +NOINTERACTION
+    +SERVERSIDEONLY
     
     var int user_spawncount;
     var int user_spawnvelx;
@@ -884,12 +923,23 @@ actor BFGMaelstromShotSpawner
     {
       Spawn:
         TNT1 A 0
+        TNT1 A 0 A_JumpIf(CallACS("Dakka_IsClient") == false, 1)
+        goto NETCODE
+        
         TNT1 A 0 ACS_NamedExecuteWithResult("Dakka_ProjUpdate")
         goto SpawnCommon
       
       Death:
+        TNT1 A 0 A_JumpIf(CallACS("Dakka_IsClient") == false, 1)
+        goto NETCODE
+        
         TNT1 A 0 ACS_NamedExecuteWithResult("Dakka_ProjDeathUpdate")
         goto SpawnCommon
+      
+      NETCODE:
+        TNT1 A 0
+        stop
+      
       
       SpawnCommon:
         TNT1 A 0 ACS_NamedExecuteWithResult("DSSG_CalcGrenadeAngle", 25, 4000, 2000)
@@ -931,7 +981,6 @@ actor BFGMaelstromShot
     Obituary "$DAKKA_MP_BFG9000_BLAST"
     
     var int user_t;
-    var int user_angle;
     
     var int user_hadtarget;
     var int user_targetx;
@@ -964,17 +1013,36 @@ actor BFGMaelstromShot
         goto Spawn
 
       Death:
-        DBFP A 0 A_Stop
-        DBFP A 0 A_SpawnItemEx("TinyBFGTrail", 0,0,0, frandom(2,4),0,frandom(-0.25,0.25), user_angle + frandom(-10, 10))
-        DBFP A 0 A_SetUserVar("user_angle", user_angle+30)
-        DBFP A 0 A_JumpIf(user_angle >= 360, "Death2")
+        TNT1 A 0 bright A_Stop
+        TNT1 A 0 bright A_SpawnItemEx("BFGMaelstromExplosion")
+        TNT1 A 0 bright A_Explode(5,  96,  true, false, 48)
+        TNT1 A 4 bright A_Explode(10, 128, true, false, 48)
+        stop
+    }
+}
+
+actor BFGMaelstromExplosion
+{
+    +NOINTERACTION
+    +CLIENTSIDEONLY
+    
+    var int user_angle;
+    
+    +FORCEXYBILLBOARD
+    Renderstyle Add
+    Alpha 0.75
+    Scale 0.3
+    
+    States
+    {
+      Spawn:
+        TNT1 A 0 A_SpawnItemEx("TinyBFGTrail", 0,0,0, frandom(2,4),0,frandom(-0.25,0.25), user_angle + frandom(-10, 10))
+        TNT1 A 0 A_SetUserVar("user_angle", user_angle+30)
+        TNT1 A 0 A_JumpIf(user_angle >= 360, "Done")
         loop
       
-      Death2:
-        DBFP C 0 bright A_Explode(5,  96,  true, false, 48)
-        DBFP C 0 bright A_Explode(10, 128, true, false, 48)
-
-        DBFP CDEFGHH 2
+      Done:
+        DBFP CDEFGHH 2 bright
         stop
     }
 }
