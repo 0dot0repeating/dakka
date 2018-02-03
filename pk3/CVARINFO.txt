@@ -18,7 +18,7 @@ server int  dakka_defenselevel        = 0;
 server noarchive bool dakka_bug_nossginvcheck   = false;
 
 
-user int  dakka_cl_recoilup             = 0;
+user int  dakka_cl_recoil               = 0;
 user int  dakka_cl_recoildown           = 100;
 user int  dakka_cl_recoilmodedown       = 2;
 user bool dakka_cl_norecoilinterp       = false;

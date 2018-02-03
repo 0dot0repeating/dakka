@@ -47,7 +47,7 @@ script "Dakka_Recoil" (int degrees_raw, int ticsup, int ticsdown) clientside
     if (GetCVar("sv_nofreelook") || !GetCVar("freelook")) { terminate; }
     
     
-    int upFactor    = itof(middle(0, GetUserCVar(pln, "dakka_cl_recoilup"),   1000)) / 100;
+    int upFactor    = itof(middle(0, GetUserCVar(pln, "dakka_cl_recoil"),     1000)) / 100;
     int downFactor  = itof(middle(0, GetUserCVar(pln, "dakka_cl_recoildown"), 100))  / 100;
     int interpolate = !GetUserCVar(pln, "dakka_cl_norecoilinterp");
     
