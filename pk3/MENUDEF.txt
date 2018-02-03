@@ -152,7 +152,7 @@ OptionMenu "Dakka_UserOptions"
 {
     Title "DAKKA (User options)"
 
-    Slider "Recoil factor",         "dakka_cl_recoilup",   0, 200, 10, 0
+    Slider "Recoil factor",         "dakka_cl_recoil",     0, 200, 10, 0
     Slider "Recoil reset factor",   "dakka_cl_recoildown", 0, 100,  5, 0
     Option "Recoil reset mode",     "dakka_cl_recoilmodedown", "Dakka_RecoilMode"
     Option "Interpolate recoil",    "dakka_cl_norecoilinterp", "OffOn"
