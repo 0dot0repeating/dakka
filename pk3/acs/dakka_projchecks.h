@@ -85,3 +85,8 @@ script "ProjCheck_ShortestDist" (int projX, int projY, int projZ)
     
     SetResultValue(VectorLength(VectorLength(dx, dy), dz));
 }
+
+script "Dakka_IsClient" (void)
+{
+    SetResultValue(!IsServer);
+}

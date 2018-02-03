@@ -8,6 +8,33 @@ function void Dakka_FistTap(void)
     else { TakeInventory("DakkaFistTap_Alt", 1); }
 }
 
+
+// this exists purely because of zandronum desyncing this shit online
+script "Dakka_ModFistSpeed" (int ptr, int amt)
+{
+    if (amt == 0) { terminate; }
+    
+    SetActivator(0, ptr);
+    if (amt > 0) { GiveInventory("DakkaFistSpeed",  amt); }
+    else         { TakeInventory("DakkaFistSpeed", -amt); }
+}
+
+// same
+script "Dakka_AltFistStepUp" (int stepto)
+{
+    if (inputPressed(BT_ALTATTACK))
+    {
+        SetInventory("DakkaFist_StepUp", stepto);
+    }
+}
+
+// s a m e
+script "Dakka_AltFistRelease" (void)
+{
+    GiveInventory("DakkaFist_Release", 1);
+}
+
+
 script "Dakka_FistHit" (int thrustpower, int lockpower, int locktics)
 {
     int myTID = defaultTID(0);
