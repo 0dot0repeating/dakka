@@ -75,9 +75,9 @@ function int Dakka_GetNewTarget(int ptrTID)
                 // I feel like this shouldn't work because this starts right on top of us
                 //   and yet it does work
                 SpawnForced("BFGCrosshairTarget", GetActorX(0), GetActorY(0), GetActorZ(0) + GetActorViewHeight(0), targetTID_new);
-                SetActorVelocity(0, 32767 * FixedMul(cos(myAngle), cos(myPitch)),
-                                    32767 * FixedMul(sin(myAngle), cos(myPitch)),
-                                    32767 * -sin(myPitch), false, false);
+                SetActorVelocity(targetTID_new, 32767 * FixedMul(cos(myAngle), cos(myPitch)),
+                                                32767 * FixedMul(sin(myAngle), cos(myPitch)),
+                                                32767 * -sin(myPitch), false, false);
             }
             
             SetActivator(ptrTID);
