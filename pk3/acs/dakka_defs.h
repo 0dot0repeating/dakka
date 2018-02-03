@@ -11,8 +11,8 @@ int IsZandronum = -1;
 int IsServer;
 
 
-
-int SSG_AutoReloadCooldown[PLAYERMAX];
+// 0 is SSG, 1 is BFG
+int AutoReloadCooldowns[PLAYERMAX][2];
 
 
 #define BACKPACKCOUNT   5
