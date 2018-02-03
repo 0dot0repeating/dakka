@@ -64,8 +64,6 @@ function void Score_CalcMapPoints(void)
     Score_Thresholds[ST_UT_KILLS] = middle(P_UTKILLS_MIN, totalMons   / 10, P_UTKILLS_MAX);
     Score_Thresholds[ST_UT_HP]    = middle(P_UTHP_MIN,    totalPoints / 10, P_UTHP_MAX);
     
-    Log(s:"\ca", d:totalMons, s:"   \cf", d:totalPoints, s:"   \cd", d:Score_Thresholds[ST_FULLHEAL], s:" (", d:fullHealPoints, s:")");
-
     // Adjust everyone's base score to match the percentage from the last map if it's non-zero
     for (i = 0; i < PLAYERMAX; i++)
     {

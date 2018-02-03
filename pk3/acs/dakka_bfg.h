@@ -147,11 +147,6 @@ script "Dakka_SetupBFGStage2" (int facetracer, int changestate)
     SetActorAngle(0,  VectorAngle(dx, dy));
     SetActorPitch(0, -VectorAngle(VectorLength(dx, dy), dz));
     
-    Log(s:"T-POS: <", f:GetActorX(targetTID_new), s:", ", f:GetActorY(targetTID_new), s:", ", f:GetActorZ(targetTID_new), s:">");
-    Log(s:"DELTA: <", f:dx, s:", ", f:dy, s:", ", f:dz, s:">");
-    Log(s:"NEW ANGLE: ", f:GetActorAngle(0) * 360);
-    Log(s:"NEW PITCH: ", f:GetActorPitch(0) * 360);
-    
     Thing_ChangeTID(myTID_new,     myTID_old);
     Thing_ChangeTID(targetTID_new, targetTID_old);
 
