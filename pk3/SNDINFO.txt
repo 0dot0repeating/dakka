@@ -315,7 +315,10 @@ $rolloff    arc/fry 768 2048
 
 dakka/bfgfire               sounds/bfg/bfg_fire.ogg
 dakka/bfgfire2              sounds/bfg/bfg_explode.ogg
+dakka/bfgabortcharge        sounds/bfg/bfg_abortcharge.ogg
+
 dakka/bfgaltfire            sounds/bfg/bfg_altfire.ogg
+
 dakka/bfgexplode            sounds/bfg/bfg_explode.ogg
 
 $rolloff dakka/bfgexplode   512 2048

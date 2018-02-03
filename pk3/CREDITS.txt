@@ -48,3 +48,10 @@ SOUNDS
 
 - Score reward sounds: People Can Fly, in Painkiller
 - Vampirism sounds: People Can Fly, in Painkiller
+
+
+
+OTHER STUFF
+============
+
+TerminusEst13: made up for my crippling lack of a sound library many times

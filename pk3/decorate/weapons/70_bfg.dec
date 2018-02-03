@@ -1,4 +1,8 @@
-actor BFGPointerTID: Counter {}
+actor BFGPointerTID:        Counter {}
+actor BFGInMaelstrom:       Boolean {}
+actor BFGChargingMaelstrom: Boolean {}
+actor BFGRecoil:            Counter {}
+actor BFGNeedsReload:       Boolean {}
 
 actor DWep_BFG9000: DoomWeapon
 {
@@ -9,7 +13,7 @@ actor DWep_BFG9000: DoomWeapon
 
     Weapon.AmmoType1    "DakkaCells"
     Weapon.AmmoType2    "DakkaCells"
-    Weapon.AmmoUse1     80
+    Weapon.AmmoUse1     1
     Weapon.AmmoUse2     40
     Weapon.AmmoGive1    80
     
@@ -17,6 +21,8 @@ actor DWep_BFG9000: DoomWeapon
     Weapon.BobSpeed 2.5
     Weapon.BobRangeX 0.2
     Weapon.BobRangeY 0.3
+    
+    +NOALERT
 
     Inventory.PickupMessage "$DAKKA_PK_BFG9000"
     Obituary "$DAKKA_MP_BFG9000SPLASH"
@@ -29,59 +35,378 @@ actor DWep_BFG9000: DoomWeapon
         loop
 
       Deselect:
+        DBFG A 0 A_JumpIfInventory("BFGInMaelstrom",        1, "ShutUpAndDeselect")
+        DBFG A 0 A_JumpIfInventory("BFGChargingMaelstrom",  1, "BweewooDeselect")
+        goto Deselect2
+      
+      BweewooDeselect:
+        DBFG A 0 A_PlaySound("dakka/bfgabortcharge", 5)
+        DBFG A 0 A_TakeInventory("BFGChargingMaelstrom")
+        goto Deselect2
+      
+      ShutUpAndDeselect:
+        DBFG A 0 A_PlaySound("dakka/minigunspindown", CHAN_WEAPON)
+        DBFG A 0 A_TakeInventory("BFGInMaelstrom")
+        goto Deselect2
+        
+      Deselect2:
         DBFG A   0 A_Light0
         DBFG AAA 0 A_Lower
         DBFG A   1 A_Lower
         loop
 
       Ready:
+        DBFG A 0 A_TakeInventory("BFGChargingMaelstrom")
+        DBFG A 0 A_TakeInventory("BFGInMaelstrom")
+        DBFG A 0 A_JumpIfInventory("BFGNeedsReload", 1, "AltReload")
+        goto Ready2
+      
+      Ready2:
         DBFG A 1 A_WeaponReady
-        loop
+        wait
 
       Fire:
-        DBFG B 30 bright A_PlaySound("dakka/bfgfire", 5)
-        "----" A 0 ACS_NamedExecuteWithResult("Dakka_Switcharoo", 8, 0)
-        DBFG B 0 A_GunFlash
-        DBFG B 0 bright A_PlaySound("dakka/bfgfire2", CHAN_WEAPON)
-        DBFG B 0 A_FireCustomMissile("AmmoWaster")
-        DBFG B 0 A_SpawnItemEx("Dakka_BFGLaser", 0,0,32, 32767 * cos(pitch), 0, 32767 * -sin(pitch), angle, SXF_ABSOLUTEANGLE)
-        DBFG B 0 A_FireBullets(0, 0, 1, 0, "BFGLaserPuff", 0)
-        DBFG A 0 A_GiveInventory("GiveScrapCounter2", 80)
-        DBFG A 0 ACS_NamedExecuteAlways("Dakka_Recoil", 0, 10, 4, 18)
-        DBFG B 0 A_JumpIfInventory("PowerSpread", 1, "Spread")
-        DBFG B 0 A_JumpIfInventory("RuneSpread", 1, "Spread")
-        goto Fire2
+        DBFG B 0 A_GiveInventory("BFGChargingMaelstrom")
+        DBFG B 0 bright A_PlaySound("dakka/bfgfire", 5)
+        goto Charge_Stage1
 
-      Spread:
-        DBFG B 0 A_SpawnItemEx("Dakka_BFGLaser", 0,0,32, 32767 * cos(pitch), 0, 32767 * -sin(pitch), angle-15, SXF_ABSOLUTEANGLE)
-        DBFG B 0 A_SpawnItemEx("Dakka_BFGLaser", 0,0,32, 32767 * cos(pitch), 0, 32767 * -sin(pitch), angle+15, SXF_ABSOLUTEANGLE)
-        goto Fire2
+      Fire_From2:
+        DBFG B 0 A_GiveInventory("BFGChargingMaelstrom")
+        DBFG B 0 bright A_PlaySound("dakka/bfgfire", 5)
+        goto Charge_Stage3
 
+      Fire_From4:
+        DBFG B 0 A_GiveInventory("BFGChargingMaelstrom")
+        DBFG B 0 bright A_PlaySound("dakka/bfgfire", 5)
+        goto Charge_Stage5
+      
+      Charge_Stage1:
+        DBFG B 1 bright offset( 1, 32) A_WeaponReady(WRF_NOPRIMARY | WRF_NOBOB)
+        DBFG B 1 bright offset(-1, 32) A_WeaponReady(WRF_NOPRIMARY | WRF_NOBOB)
+        DBFG B 1 bright offset( 0, 32) A_WeaponReady(WRF_NOPRIMARY | WRF_NOBOB)
+        DBFG B 1 bright offset( 1, 32) A_WeaponReady(WRF_NOPRIMARY | WRF_NOBOB)
+        DBFG B 1 bright offset(-1, 32) A_WeaponReady(WRF_NOPRIMARY | WRF_NOBOB)
+        DBFG B 0 bright A_Refire("Charge_Stage2")
+        goto ChargeAbort_Stage12
+      
+      Charge_Stage2:
+        DBFG B 1 bright offset( 0, 32) A_WeaponReady(WRF_NOPRIMARY | WRF_NOBOB)
+        DBFG B 1 bright offset(-1, 32) A_WeaponReady(WRF_NOPRIMARY | WRF_NOBOB)
+        DBFG B 1 bright offset( 0, 32) A_WeaponReady(WRF_NOPRIMARY | WRF_NOBOB)
+        DBFG B 1 bright offset( 2, 32) A_WeaponReady(WRF_NOPRIMARY | WRF_NOBOB)
+        DBFG B 1 bright offset(-1, 32) A_WeaponReady(WRF_NOPRIMARY | WRF_NOBOB)
+        DBFG B 0 bright A_Refire("Charge_Stage3")
+        goto ChargeAbort_Stage12
+        
+      Charge_Stage3:
+        DBFG B 1 bright offset(-2, 33) A_WeaponReady(WRF_NOPRIMARY | WRF_NOBOB)
+        DBFG B 1 bright offset( 0, 33) A_WeaponReady(WRF_NOPRIMARY | WRF_NOBOB)
+        DBFG B 1 bright offset(-1, 33) A_WeaponReady(WRF_NOPRIMARY | WRF_NOBOB)
+        DBFG B 1 bright offset( 2, 32) A_WeaponReady(WRF_NOPRIMARY | WRF_NOBOB)
+        DBFG B 1 bright offset( 0, 33) A_WeaponReady(WRF_NOPRIMARY | WRF_NOBOB)
+        DBFG B 0 bright A_Refire("Charge_Stage4")
+        goto ChargeAbort_Stage34
+        
+      Charge_Stage4:
+        DBFG B 1 bright offset(-2, 33) A_WeaponReady(WRF_NOPRIMARY | WRF_NOBOB)
+        DBFG B 1 bright offset( 1, 32) A_WeaponReady(WRF_NOPRIMARY | WRF_NOBOB)
+        DBFG B 1 bright offset(-2, 32) A_WeaponReady(WRF_NOPRIMARY | WRF_NOBOB)
+        DBFG B 1 bright offset( 3, 32) A_WeaponReady(WRF_NOPRIMARY | WRF_NOBOB)
+        DBFG B 1 bright offset( 1, 34) A_WeaponReady(WRF_NOPRIMARY | WRF_NOBOB)
+        DBFG B 0 bright A_Refire("Charge_Stage5")
+        goto ChargeAbort_Stage34
+        
+      Charge_Stage5:
+        DBFG B 1 bright offset(-2, 34) A_WeaponReady(WRF_NOPRIMARY | WRF_NOBOB)
+        DBFG B 1 bright offset( 1, 32) A_WeaponReady(WRF_NOPRIMARY | WRF_NOBOB)
+        DBFG B 1 bright offset( 3, 33) A_WeaponReady(WRF_NOPRIMARY | WRF_NOBOB)
+        DBFG B 1 bright offset(-1, 32) A_WeaponReady(WRF_NOPRIMARY | WRF_NOBOB)
+        DBFG B 1 bright offset( 0, 34) A_WeaponReady(WRF_NOPRIMARY | WRF_NOBOB)
+        DBFG B 0 bright A_Refire("Charge_Stage6")
+        goto ChargeAbort_Stage56
+        
+      Charge_Stage6:
+        DBFG B 1 bright offset( 3, 33) A_WeaponReady(WRF_NOPRIMARY | WRF_NOBOB)
+        DBFG B 1 bright offset(-1, 34) A_WeaponReady(WRF_NOPRIMARY | WRF_NOBOB)
+        DBFG B 1 bright offset( 2, 32) A_WeaponReady(WRF_NOPRIMARY | WRF_NOBOB)
+        DBFG B 1 bright offset(-3, 35) A_WeaponReady(WRF_NOPRIMARY | WRF_NOBOB)
+        DBFG B 1 bright offset( 2, 33) A_WeaponReady(WRF_NOPRIMARY | WRF_NOBOB)
+        DBFG B 0 bright A_Refire("Fire2")
+        goto ChargeAbort_Stage56
+      
+      
+      ChargeAbort_Stage12:
+        DBFG A 0                       A_TakeInventory("BFGChargingMaelstrom")
+        DBFG A 0 bright                A_PlaySound("dakka/bfgabortcharge", 5)
+        DBFG A 0 bright                A_Refire("Fire")
+        DBFG A 1 bright offset( 1, 32) A_WeaponReady(WRF_NOPRIMARY | WRF_NOBOB)
+        DBFG A 0 bright                A_Refire("Fire")
+        DBFG A 1 bright offset(-1, 32) A_WeaponReady(WRF_NOPRIMARY | WRF_NOBOB)
+        DBFG A 0 bright                A_Refire("Fire")
+        DBFG A 1 bright offset( 0, 32) A_WeaponReady(WRF_NOPRIMARY | WRF_NOBOB)
+        DBFG A 0 bright                A_Refire("Fire")
+        DBFG A 1 bright                A_WeaponReady(WRF_NOPRIMARY | WRF_NOBOB)
+        DBFG A 0 bright                A_Refire("Fire")
+        DBFG A 1 bright                A_WeaponReady(WRF_NOPRIMARY | WRF_NOBOB)
+        DBFG A 0 bright                A_Refire("Fire")
+        DBFG A 1 bright                A_WeaponReady(WRF_NOPRIMARY | WRF_NOBOB)
+        DBFG A 0 bright                A_Refire("Fire")
+        DBFG A 1 bright                A_WeaponReady(WRF_NOPRIMARY | WRF_NOBOB)
+        goto Ready
+      
+      ChargeAbort_Stage34:
+        DBFG A 0                       A_TakeInventory("BFGChargingMaelstrom")
+        DBFG A 0 bright                A_PlaySound("dakka/bfgabortcharge", 5)
+        DBFG A 0 bright                A_Refire("Fire_From2")
+        DBFG A 1 bright offset(-2, 33) A_WeaponReady(WRF_NOPRIMARY | WRF_NOBOB)
+        DBFG A 0 bright                A_Refire("Fire_From2")
+        DBFG A 1 bright offset( 1, 32) A_WeaponReady(WRF_NOPRIMARY | WRF_NOBOB)
+        DBFG A 0 bright                A_Refire("Fire_From2")
+        DBFG A 1 bright offset(-2, 33) A_WeaponReady(WRF_NOPRIMARY | WRF_NOBOB)
+        DBFG A 0 bright                A_Refire("Fire_From2")
+        DBFG A 1 bright offset( 1, 32) A_WeaponReady(WRF_NOPRIMARY | WRF_NOBOB)
+        DBFG A 0 bright                A_Refire("Fire_From2")
+        DBFG A 1 bright offset(-1, 32) A_WeaponReady(WRF_NOPRIMARY | WRF_NOBOB)
+        DBFG A 0 bright                A_Refire("Fire")
+        DBFG A 1 bright offset( 0, 32) A_WeaponReady(WRF_NOPRIMARY | WRF_NOBOB)
+        DBFG A 0 bright                A_Refire("Fire")
+        DBFG A 1 bright                A_WeaponReady(WRF_NOPRIMARY | WRF_NOBOB)
+        DBFG A 0 bright                A_Refire("Fire")
+        DBFG A 1 bright                A_WeaponReady(WRF_NOPRIMARY | WRF_NOBOB)
+        DBFG A 0 bright                A_Refire("Fire")
+        DBFG A 1 bright                A_WeaponReady(WRF_NOPRIMARY | WRF_NOBOB)
+        DBFG A 0 bright                A_Refire("Fire")
+        DBFG A 1 bright                A_WeaponReady(WRF_NOPRIMARY | WRF_NOBOB)
+        goto Ready
+      
+      ChargeAbort_Stage56:
+        DBFG A 0                       A_TakeInventory("BFGChargingMaelstrom")
+        DBFG A 0 bright                A_PlaySound("dakka/bfgabortcharge", 5)
+        DBFG A 0 bright                A_Refire("Fire_From4")
+        DBFG A 1 bright offset( 3, 33) A_WeaponReady(WRF_NOPRIMARY | WRF_NOBOB)
+        DBFG A 0 bright                A_Refire("Fire_From4")
+        DBFG A 1 bright offset(-1, 34) A_WeaponReady(WRF_NOPRIMARY | WRF_NOBOB)
+        DBFG A 0 bright                A_Refire("Fire_From4")
+        DBFG A 1 bright offset( 2, 32) A_WeaponReady(WRF_NOPRIMARY | WRF_NOBOB)
+        DBFG A 0 bright                A_Refire("Fire_From4")
+        DBFG A 1 bright offset(-2, 33) A_WeaponReady(WRF_NOPRIMARY | WRF_NOBOB)
+        DBFG A 0 bright                A_Refire("Fire_From4")
+        DBFG A 1 bright offset( 1, 32) A_WeaponReady(WRF_NOPRIMARY | WRF_NOBOB)
+        DBFG A 0 bright                A_Refire("Fire_From2")
+        DBFG A 1 bright offset(-2, 33) A_WeaponReady(WRF_NOPRIMARY | WRF_NOBOB)
+        DBFG A 0 bright                A_Refire("Fire_From2")
+        DBFG A 1 bright offset( 1, 32) A_WeaponReady(WRF_NOPRIMARY | WRF_NOBOB)
+        DBFG A 0 bright                A_Refire("Fire_From2")
+        DBFG A 1 bright offset(-1, 32) A_WeaponReady(WRF_NOPRIMARY | WRF_NOBOB)
+        DBFG A 0 bright                A_Refire("Fire")
+        DBFG A 1 bright offset( 0, 32) A_WeaponReady(WRF_NOPRIMARY | WRF_NOBOB)
+        DBFG A 0 bright                A_Refire("Fire")
+        DBFG A 1 bright                A_WeaponReady(WRF_NOPRIMARY | WRF_NOBOB)
+        DBFG A 0 bright                A_Refire("Fire")
+        DBFG A 1 bright                A_WeaponReady(WRF_NOPRIMARY | WRF_NOBOB)
+        DBFG A 0 bright                A_Refire("Fire")
+        DBFG A 1 bright                A_WeaponReady(WRF_NOPRIMARY | WRF_NOBOB)
+        DBFG A 0 bright                A_Refire("Fire")
+        DBFG A 1 bright                A_WeaponReady(WRF_NOPRIMARY | WRF_NOBOB)
+        goto Ready
+      
+        
+      
       Fire2:
-        DBFG B 2 bright offset(0, 38)
-        DBFG C 5 bright offset(0, 43)
-        DBFG C 2 bright offset(0, 41)
-        DBFG C 2 bright offset(0, 38)
-        DBFG C 2 bright offset(0, 35)
-        DBFG C 1 bright offset(0, 29)
-        DBFG C 1 bright offset(0, 29) A_ReFire
+        DBFG B 0 A_TakeInventory("BFGRecoil")
+        DBFG B 0 A_TakeInventory("BFGChargingMaelstrom")
+        DBFG B 0 A_GiveInventory("BFGInMaelstrom")
+        DBFG B 0 A_PlaySound("dakka/minigunfire_fast", CHAN_WEAPON, 1.0, true)
+      
+      Hold:
+        DBFG B 0 A_GunFlash
+        DBFG B 0 A_AlertMonsters
+        DBFG B 0 A_GiveInventory("GiveScrapCounter2", 1)
+        DBFG B 0 ACS_NamedExecuteAlways("Dakka_Recoil", 0, random(-250, -100), 2, random(16, 24))
+        DBFG B 0 ACS_NamedExecuteWithResult("Dakka_Switcharoo", 8, 0)
+        DBFG B 0 A_FireCustomMissile("BFGMaelstromShotSpawner")
+        
+        DBFG C 0 A_JumpIfInventory("BFGRecoil", 2, "Recoil3")
+        DBFG C 0 A_JumpIfInventory("BFGRecoil", 1, "Recoil2")
+        goto Recoil1
+      
+      Recoil1:
+        DBFG C 0 A_GiveInventory("BFGRecoil")
+        DBFG C 0 A_Jump(256, "Recoil1A", "Recoil1B", "Recoil1C", "Recoil1D", "Recoil1E", "Recoil1F", "Recoil1G")
+        goto Recoil1A
+      
+      Recoil1A:
+        DBFG C 1 bright offset(-2, 35)
+        goto FireEnd
+      
+      Recoil1B:
+        DBFG C 1 bright offset(-1, 34)
+        goto FireEnd
+      
+      Recoil1C:
+        DBFG C 1 bright offset( 0, 33)
+        goto FireEnd
+      
+      Recoil1D:
+        DBFG C 1 bright offset( 1, 34)
+        goto FireEnd
+      
+      Recoil1E:
+        DBFG C 1 bright offset( 2, 35)
+        goto FireEnd
+      
+      Recoil1F:
+        DBFG C 1 bright offset(-3, 33)
+        goto FireEnd
+      
+      Recoil1G:
+        DBFG C 1 bright offset( 3, 35)
+        goto FireEnd
+      
+      
+      Recoil2:
+        DBFG C 0 A_GiveInventory("BFGRecoil")
+        DBFG C 0 A_Jump(256, "Recoil2A", "Recoil2B", "Recoil2C", "Recoil2D", "Recoil2E", "Recoil2F", "Recoil2G")
+        goto Recoil2A
+      
+      Recoil2A:
+        DBFG C 1 bright offset(-2, 38)
+        goto FireEnd
+      
+      Recoil2B:
+        DBFG C 1 bright offset(-1, 37)
+        goto FireEnd
+      
+      Recoil2C:
+        DBFG C 1 bright offset( 0, 39)
+        goto FireEnd
+      
+      Recoil2D:
+        DBFG C 1 bright offset( 1, 36)
+        goto FireEnd
+      
+      Recoil2E:
+        DBFG C 1 bright offset( 2, 35)
+        goto FireEnd
+      
+      Recoil2F:
+        DBFG C 1 bright offset(-3, 37)
+        goto FireEnd
+      
+      Recoil2G:
+        DBFG C 1 bright offset( 3, 39)
+        goto FireEnd
+      
+      
+      Recoil3:
+        DBFG C 0 A_Jump(256, "Recoil3A", "Recoil3B", "Recoil3C", "Recoil3D", "Recoil3E", "Recoil3F", "Recoil3G")
+        goto Recoil3A
+      
+      Recoil3A:
+        DBFG C 1 bright offset(-2, 42)
+        goto FireEnd
+      
+      Recoil3B:
+        DBFG C 1 bright offset(-1, 43)
+        goto FireEnd
+      
+      Recoil3C:
+        DBFG C 1 bright offset( 0, 41)
+        goto FireEnd
+      
+      Recoil3D:
+        DBFG C 1 bright offset( 1, 43)
+        goto FireEnd
+      
+      Recoil3E:
+        DBFG C 1 bright offset( 2, 42)
+        goto FireEnd
+      
+      Recoil3F:
+        DBFG C 1 bright offset(-3, 44)
+        goto FireEnd
+      
+      Recoil3G:
+        DBFG C 1 bright offset( 3, 42)
+        goto FireEnd
+        
+        
+      FireEnd:
+        DBFG C 0 A_Refire("Hold")
+        DBFG C 0 A_PlaySound("dakka/minigunspindown", CHAN_WEAPON)
+        DBFG C 0 A_TakeInventory("BFGInMaelstrom")
+        DBFG C 0 A_TakeInventory("BFGRecoil")
+        
+        DBFG C 0 bright offset(0, 43) A_Refire("Fire2")
+        DBFG C 1 bright               A_WeaponReady(WRF_NOFIRE | WRF_NOBOB)
+        DBFG C 0 bright               A_Refire("Fire2")
+        DBFG C 1 bright               A_WeaponReady(WRF_NOFIRE | WRF_NOBOB)
+        DBFG C 0 bright               A_Refire("Fire2")
+        DBFG C 1 bright               A_WeaponReady(WRF_NOFIRE | WRF_NOBOB)
+        DBFG C 0 bright               A_Refire("Fire2")
+        DBFG C 1 bright               A_WeaponReady(WRF_NOFIRE | WRF_NOBOB)
+        DBFG C 0 bright               A_Refire("Fire2")
+        DBFG C 1 bright               A_WeaponReady(WRF_NOFIRE | WRF_NOBOB)
+        
+        DBFG C 0 bright offset(0, 41) A_Refire("Fire2")
+        DBFG C 1 bright               A_WeaponReady(WRF_NOFIRE | WRF_NOBOB)
+        DBFG C 0 bright               A_Refire("Fire2")
+        DBFG C 1 bright               A_WeaponReady(WRF_NOFIRE | WRF_NOBOB)
+        
+        DBFG C 0 bright offset(0, 38) A_Refire("Fire2")
+        DBFG C 1 bright               A_WeaponReady(WRF_NOFIRE | WRF_NOBOB)
+        DBFG C 0 bright               A_Refire("Fire2")
+        DBFG C 1 bright               A_WeaponReady(WRF_NOFIRE | WRF_NOBOB)
+        
+        DBFG C 0 bright offset(0, 35) A_Refire("Fire2")
+        DBFG C 1 bright               A_WeaponReady(WRF_NOFIRE | WRF_NOBOB)
+        DBFG C 0 bright               A_Refire("Fire2")
+        DBFG C 1 bright               A_WeaponReady(WRF_NOFIRE | WRF_NOBOB)
+        
+        DBFG C 0 bright offset(0, 29) A_Refire("Fire2")
+        DBFG C 1 bright               A_WeaponReady(WRF_NOFIRE | WRF_NOBOB)
+        DBFG C 0 bright               A_Refire("Fire2")
+        DBFG C 1 bright               A_WeaponReady(WRF_NOFIRE | WRF_NOBOB)
+        
         DBFG C 3 bright A_WeaponReady(WRF_NOBOB)
         DBFG B 4 bright offset(0, 32) A_WeaponReady(WRF_NOBOB)
         goto Ready
 
-      Hold:
-        DBFG C 1 bright offset(0, 26) A_PlaySound("dakka/bfgfire", 5)
-        DBFG C 3 bright
-        DBFG B 4 bright offset(0, 32)
-        DBFG B 22 bright
-        goto Fire+1
+        
+      Flash:
+        DBFF A  0 bright A_Jump(128, 2)
+        DBFF A  2 bright A_Light(11)
+        DBFF B  1 bright A_Light(10)
+        DBFF B  1 bright A_Light(9)
+        DBFF C  1 bright A_Light(8)
+        DBFF C  1 bright A_Light(7)
+        DBFF C  1 bright A_Light(5)
+        DBFF D  1 bright A_Light(3)
+        DBFF D  1 bright A_Light(1)
+        DBFF E  1 bright A_Light(0)
+        Goto LightDone
+        
+        
 
       AltFire:
-        DBFG B 0 A_PlaySound("dakka/bfgaltfire", CHAN_WEAPON)
+        DBFG A 0 A_JumpIfInventory("BFGChargingMaelstrom", 1, "AltFire_FromCharge")
+        goto AltFire2
+      
+      AltFire_FromCharge:
+        DBFG B 0 A_TakeInventory("BFGChargingMaelstrom")
+        DBFG B 0 A_StopSound(5)
+        DBFG B 0 A_PlaySound("dakka/bfgabortcharge", 7)
+        goto AltFire2
+      
+      AltFire2:
+        DBFG A 0 A_ClearRefire
+        DBFG B 0 A_AlertMonsters
+        DBFG A 0 A_PlaySound("dakka/bfgaltfire", CHAN_WEAPON)
         DBFG A 0 A_GiveInventory("GiveScrapCounter2", 20)
         DBFG A 0 ACS_NamedExecuteAlways("Dakka_Recoil", 0, 14, 4, 24)
-        "----" A 0 ACS_NamedExecuteWithResult("Dakka_Switcharoo", 8, 1)
-        DBFG B 0 A_FireCustomMissile("BFGHomingShotSpawner", 0, true, 0, 0, 0, 5)
+        DBFG A 0 ACS_NamedExecuteWithResult("Dakka_Switcharoo", 8, 1)
+        DBFG A 0 ACS_NamedExecuteWithResult("Dakka_BFGAltfired", 35)
+        DBFG A 0 A_FireCustomMissile("BFGHomingShotSpawner", 0, true, 0, 0, 0, 5)
         
         // BEAT 1 (14 tics)
         DBFG C 1 bright offset(0, 38) A_GunFlash
@@ -90,26 +415,29 @@ actor DWep_BFG9000: DoomWeapon
         DBFG C 2 bright offset(0, 41)
         DBFG C 2 bright offset(0, 37)
         DBFG C 2 bright offset(0, 32)
-        DBFG C 2 bright offset(0, 28) A_PlaySound("dakka/ssgopen", 5)
+        DBFG C 0 bright               A_PlaySound("dakka/ssgopen", 5)
+        DBFG C 2 bright offset(0, 28)
         
         // BEAT 2 (15 tics)
         DBFG A 2 offset(0, 38)
-        DBFG A 2 offset(0, 36)
-        DBFG A 1 offset(0, 33)
-        DBFG A 3 offset(0, 32)
-        DBFG A 1 offset(0, 33)
+        DBFG A 2 offset(0, 36) A_WeaponReady(WRF_NOFIRE | WRF_NOBOB)
+        DBFG A 1 offset(0, 33) A_WeaponReady(WRF_NOFIRE | WRF_NOBOB)
+        DBFG A 3 offset(0, 32) A_WeaponReady(WRF_NOFIRE | WRF_NOBOB)
+        DBFG A 1 offset(0, 33) A_WeaponReady(WRF_NOFIRE | WRF_NOBOB)
+        DBFG A 0               A_PlaySound("dakka/ssgload", 5)
         DBFG A 2 offset(0, 35) A_PlaySound("dakka/ssgload", 5)
-        DBFG A 2 offset(0, 37)
+        DBFG A 2 offset(0, 37) A_WeaponReady(WRF_NOFIRE | WRF_NOBOB)
         
         // BEAT 3 (14 tics)
-        DBFG C 1 offset(0, 28)
-        DBFG C 1 offset(0, 31)
-        DBFG C 2 offset(0, 34)
-        DBFG C 4 offset(0, 36)
-        DBFG C 1 offset(0, 35)
-        DBFG C 1 offset(0, 33)
-        DBFG C 2 offset(0, 30)
-        DBFG C 0 offset(0, 29) A_PlaySound("dakka/ssgclose", 5)
+        DBFG C 1 offset(0, 28) A_WeaponReady(WRF_NOFIRE | WRF_NOBOB)
+        DBFG C 1 offset(0, 31) A_WeaponReady(WRF_NOFIRE | WRF_NOBOB)
+        DBFG C 2 offset(0, 34) A_WeaponReady(WRF_NOFIRE | WRF_NOBOB)
+        DBFG C 4 offset(0, 36) A_WeaponReady(WRF_NOFIRE | WRF_NOBOB)
+        DBFG C 1 offset(0, 35) A_WeaponReady(WRF_NOFIRE | WRF_NOBOB)
+        DBFG C 1 offset(0, 33) A_WeaponReady(WRF_NOFIRE | WRF_NOBOB)
+        DBFG C 2 offset(0, 30) A_WeaponReady(WRF_NOFIRE | WRF_NOBOB)
+        DBFG C 0               A_PlaySound("dakka/ssgclose", 5)
+        DBFG C 0               A_TakeInventory("BFGNeedsReload")
         DBFG C 1 offset(0, 29) A_WeaponReady(WRF_NOFIRE | WRF_NOBOB)
         DBFG C 1 offset(0, 27) A_WeaponReady(WRF_NOFIRE | WRF_NOBOB)
         
@@ -120,22 +448,34 @@ actor DWep_BFG9000: DoomWeapon
         DBFG A 2 offset(0, 33) A_WeaponReady(WRF_NOFIRE | WRF_NOBOB)
         DBFG A 6 offset(0, 32) A_WeaponReady(WRF_NOSECONDARY | WRF_NOBOB)
         goto Ready
-
-      Flash:
-        DBFF B  4 bright A_Light(12)
-        DBFF B  1 bright A_Light(11)
-        DBFF B  1 bright A_Light(10)
-        DBFF B  1 bright A_Light(9)
-        DBFF A  1 bright A_Light(8)
-        DBFF A  1 bright A_Light(7)
-        DBFF A  1 bright A_Light(6)
-        DBFF A  1 bright A_Light(5)
-        DBFF A  1 bright A_Light(4)
-        DBFF C  1 bright A_Light(3)
-        DBFF C  1 bright A_Light(2)
-        DBFF D  1 bright A_Light(1)
-        DBFF E  1 bright A_Light(0)
-        Goto LightDone
+        
+        
+      AltReload:
+        // BEAT 1 (4 tics)
+        DBFG A 0               A_PlaySound("dakka/ssgload", 5)
+        DBFG A 2 offset(0, 34) A_WeaponReady(WRF_NOFIRE | WRF_NOBOB)
+        DBFG A 2 offset(0, 39) A_WeaponReady(WRF_NOFIRE | WRF_NOBOB)
+        
+        // BEAT 3 (14 tics)
+        DBFG C 1 offset(0, 28) A_WeaponReady(WRF_NOFIRE | WRF_NOBOB)
+        DBFG C 1 offset(0, 31) A_WeaponReady(WRF_NOFIRE | WRF_NOBOB)
+        DBFG C 2 offset(0, 34) A_WeaponReady(WRF_NOFIRE | WRF_NOBOB)
+        DBFG C 4 offset(0, 36) A_WeaponReady(WRF_NOFIRE | WRF_NOBOB)
+        DBFG C 1 offset(0, 35) A_WeaponReady(WRF_NOFIRE | WRF_NOBOB)
+        DBFG C 1 offset(0, 33) A_WeaponReady(WRF_NOFIRE | WRF_NOBOB)
+        DBFG C 2 offset(0, 30) A_WeaponReady(WRF_NOFIRE | WRF_NOBOB)
+        DBFG C 0               A_PlaySound("dakka/ssgclose", 5)
+        DBFG C 0               A_TakeInventory("BFGNeedsReload")
+        DBFG C 1 offset(0, 29) A_WeaponReady(WRF_NOFIRE | WRF_NOBOB)
+        DBFG C 1 offset(0, 27) A_WeaponReady(WRF_NOFIRE | WRF_NOBOB)
+        
+        // BEAT 4 (18 tics)
+        DBFG A 1 offset(0, 38) A_WeaponReady(WRF_NOFIRE | WRF_NOBOB)
+        DBFG A 1 offset(0, 37) A_WeaponReady(WRF_NOFIRE | WRF_NOBOB)
+        DBFG A 2 offset(0, 35) A_WeaponReady(WRF_NOFIRE | WRF_NOBOB)
+        DBFG A 2 offset(0, 33) A_WeaponReady(WRF_NOFIRE | WRF_NOBOB)
+        DBFG A 6 offset(0, 32) A_WeaponReady(WRF_NOSECONDARY | WRF_NOBOB)
+        goto Ready
 
       AltFlash:
         DBFF A  1 bright A_Light(8)
@@ -189,12 +529,14 @@ actor BFGCrosshairTarget: FastProjectile
     Height 4
     
     Speed 0
-    +THRUACTORS
     +SKYEXPLODE
     +NOTIMEFREEZE
     +NOTRIGGER
+    +THRUACTORS
+    +BLOODLESSIMPACT
+    +PAINLESS
     
-    RenderStyle None
+    RenderStyle Normal
     
     States
     {
@@ -203,6 +545,28 @@ actor BFGCrosshairTarget: FastProjectile
         stop
       
       Death:
+        PLSS A 3 bright
+        stop
+    }
+}
+
+actor BFGCrosshairTarget_Puff
+{
+    Radius 0
+    Height 0
+    
+    +BLOODLESSIMPACT
+    +NOINTERACTION
+    +NOTIMEFREEZE
+    +ALWAYSPUFF
+    +NOTRIGGER
+    +PUFFONACTORS
+    +SKYEXPLODE
+    +PAINLESS
+    
+    States
+    {
+      Spawn:
         PLSS A 3 bright
         stop
     }
@@ -244,7 +608,7 @@ actor BFGHomingShotSpawner
       
       SpawnCommon:
         TNT1 A 0 ACS_NamedExecuteWithResult("DSSG_CalcGrenadeAngle", 25, 7000, 2500)
-        TNT1 A 0 A_SpawnItemEx("BFGHomingShot_Stage1", 0,0,0, user_spawnvelx/65536.0, user_spawnvely/65536.0, user_spawnvelz/65536.0, angle, SXF_ABSOLUTEANGLE | SXF_ABSOLUTEVELOCITY | SXF_TRANSFERPOINTERS)
+        TNT1 A 0 A_SpawnItemEx("BFGHomingShot_Stage1", 0,0,0, user_spawnvelx/65536.0, user_spawnvely/65536.0, user_spawnvelz/65536.0, angle, SXF_TRANSFERPITCH | SXF_ABSOLUTEANGLE | SXF_ABSOLUTEVELOCITY | SXF_TRANSFERPOINTERS)
         TNT1 A 0 A_SetUserVar("user_spawncount", user_spawncount+1)
         TNT1 A 0 A_JumpIf(user_spawncount >= 25, "SpawnEnd")
         loop
@@ -466,55 +830,6 @@ actor BFGHomingTrail_Stage2
     }
 }
 
-
-actor Dakka_BFGLaser: FastProjectile
-{
-    Radius 2
-    Height 2
-    Speed 4096    // gets massively sped up
-
-    +THRUACTORS
-    +NOTIMEFREEZE
-    +PUFFGETSOWNER
-    +SKYEXPLODE
-
-    RenderStyle none
-    Decal BFGLightning
-
-    States
-    {
-      Spawn:
-        TNT1 A 1
-        loop
-
-      Death:
-        DBFP A 0 ACS_NamedExecuteWithResult("Dakka_Tracer", TRACE_BFG, 0, -14)
-        DBFP A 0 A_SpawnItemEx("DakkaBFGBeamEnd")
-        DBFP A 0 A_SpawnItemEx("DakkaBFGBeamEnd_Client")
-        stop
-    }
-}
-
-
-// This exists purely to make a decal on a wall.
-actor BFGLaserPuff: BulletPuff
-{
-    +NOINTERACTION
-    +CLIENTSIDEONLY
-
-    +PAINLESS
-
-    Decal BFGLightning
-
-    States
-    {
-      Spawn:
-        TNT1 A 0
-        stop
-    }
-}
-
-
 actor BFGTrail
 {
     +NOINTERACTION
@@ -541,310 +856,154 @@ actor TinyBFGTrail: BFGTrail
 }
 
 
-actor DakkaBFGInstantBeam
+actor BFGMaelstromShotSpawner
 {
-    Radius 4
-    Height 4
-
+    Radius 2
+    Height 2
+    Speed  4
+    
+    Projectile
     +NOINTERACTION
-    +SERVERSIDEONLY
-    +PUFFGETSOWNER
-    +FORCERADIUSDMG
-    +NODAMAGETHRUST
-    +EXTREMEDEATH
-    +FORCERADIUSDMG
-
-    RenderStyle None
-
-    Obituary "$DAKKA_MP_BFG9000"
-
+    
+    var int user_spawncount;
+    var int user_spawnvelx;
+    var int user_spawnvely;
+    var int user_spawnvelz;
+    
+    var int user_velx;
+    var int user_vely;
+    var int user_velz;
+    var int user_t;
+    
+    Damage 6
+    Scale 0.25
+    
     States
     {
       Spawn:
         TNT1 A 0
-        TNT1 A 8 A_Explode(32, 20, 0, 0, 20)
+        TNT1 A 0 ACS_NamedExecuteWithResult("Dakka_ProjUpdate")
+        goto SpawnCommon
+      
+      Death:
+        TNT1 A 0 ACS_NamedExecuteWithResult("Dakka_ProjDeathUpdate")
+        goto SpawnCommon
+      
+      SpawnCommon:
+        TNT1 A 0 ACS_NamedExecuteWithResult("DSSG_CalcGrenadeAngle", 25, 4000, 2000)
+        TNT1 A 0 A_SpawnItemEx("BFGMaelstromShot", 0,0,0, user_spawnvelx/65536.0, user_spawnvely/65536.0, user_spawnvelz/65536.0, angle, SXF_TRANSFERPITCH | SXF_ABSOLUTEANGLE | SXF_ABSOLUTEVELOCITY | SXF_TRANSFERPOINTERS)
+        TNT1 A 0 A_SetUserVar("user_spawncount", user_spawncount+1)
+        TNT1 A 0 A_JumpIf(user_spawncount >= 2, "SpawnEnd")
+        loop
+      
+      SpawnEnd:
+        TNT1 A 4
         stop
     }
 }
 
-actor DakkaBFGMainBeam
-{
-    Radius 4
-    Height 4
 
-    +NOINTERACTION
-    +SERVERSIDEONLY
-    +PUFFGETSOWNER
-    +FORCERADIUSDMG
-    +NODAMAGETHRUST
+actor BFGMaelstromShot
+{
+    Radius 3
+    Height 6
+    Speed 80
+
+    Projectile
+    Damage (15)
+    DamageType "Disintegrate"
+
+    +MTHRUSPECIES
+    +RANDOMIZE
     +EXTREMEDEATH
     +FORCERADIUSDMG
+    +SKYEXPLODE
 
-    RenderStyle None
-
-    Obituary "$DAKKA_MP_BFG9000"
-
-    States
-    {
-      Spawn:
-        TNT1 A 0
-        TNT1 A 0 A_Explode(192, 48,  0, 0, 32)
-        stop
-    }
-}
-
-actor DakkaBFGBeamStart
-{
-    Radius 4
-    Height 4
-
-    +NOINTERACTION
-    +SERVERSIDEONLY
-    +PUFFGETSOWNER
-    +FORCERADIUSDMG
-    +NODAMAGETHRUST
-    +EXTREMEDEATH
-    +FORCERADIUSDMG
-
-    RenderStyle None
-
-    Obituary "$DAKKA_MP_BFG9000"
-
-    States
-    {
-      Spawn:
-        TNT1 A 0
-        DBFP C 0 bright A_Explode(128, 160, 0)
-        DBFP C 0 bright A_Explode(96,  256, 0)
-        stop
-    }
-}
-
-actor DakkaBFGBeamEnd
-{
-    Radius 4
-    Height 4
-
-    +NOINTERACTION
-    +SERVERSIDEONLY
-    +PUFFGETSOWNER
-    +FORCERADIUSDMG
-    +EXTREMEDEATH
-    +FORCERADIUSDMG
-
-    RenderStyle None
-
-    Obituary "$DAKKA_MP_BFG9000"
-
-    States
-    {
-      Spawn:
-        DBFP C 0
-        DBFP C 0 bright A_Explode(96, 256)
-        DBFP C 0 bright A_Explode(128, 160)
-        DBFP C 0 A_ChangeFlag("NODAMAGETHRUST", 1)
-        DBFP C 0 bright A_Explode(96, 256, 0)
-        DBFP C 0 bright A_Explode(256, 512, 0)
-        stop
-    }
-}
-
-actor DakkaBFGBeam_Client
-{
-    Radius 0
-    Height 0
-
+    Renderstyle Add
+    Alpha 0.75
     Scale 0.3
-    RenderStyle Add
-    Alpha 0.25
-
-    +NOINTERACTION
-    +CLIENTSIDEONLY
+    Decal "BFGLightningSmall"
     +FORCEXYBILLBOARD
 
-    States
-    {
-      Spawn:
-        TNT1 A 0
-        DBFP AB 4 bright
-        goto Spawn2
-
-      Spawn2:
-        DBFP AAAABBBB 1 bright A_FadeOut(0.003)
-        loop
-    }
-}
-
-
-// Used on the outside of the beam.
-actor DakkaBFGBeam_Helix
-{
-    Radius 0
-    Height 0
-
-    +NOINTERACTION
-    +CLIENTSIDEONLY
-    +FORCEXYBILLBOARD
-
-    RenderStyle Add
-    Scale 0.5
-
-    States
-    {
-      Spawn:
-        DBFE B 0 bright
-        DBFE BBBBCCCC 1 bright A_FadeOut(0.015)
-        loop
-    }
-}
-
-
-// Used in the center of the beam.
-actor DakkaBFGBeam_HelixCenter
-{
-    Radius 0
-    Height 0
-
-    +NOINTERACTION
-    +CLIENTSIDEONLY
-    +FORCEXYBILLBOARD
-
-    RenderStyle Add
-    Scale 0.9
-
-    States
-    {
-      Spawn:
-        TNT1 A 0
-        DBFP AA 0 A_SpawnItemEx("BFGBeam_HelixCenter2", 0,0,0, random(-40,40)/10.0, 0, random(-40,40)/10.0, random(0,360))
-        DBFP AB 4 bright
-        goto Spawn2
-
-      Spawn2:
-        DBFP AAAABBBB 1 A_FadeOut(0.03)
-        loop
-    }
-}
-
-actor BFGBeam_HelixCenter2
-{
-    +NOINTERACTION
-    +CLIENTSIDEONLY
-    +FORCEXYBILLBOARD
-
-    RenderStyle Add
-    Alpha 0.6
-    Scale 0.6
-
-    States
-    {
-      Spawn:
-        TNT1 A 0
-        DBFE BBBBCCCC 1 bright A_FadeOut(0.03)
-        loop
-    }
-}
-
-
-actor DakkaBFGBeam_HelixCenter_LessEffects: DakkaBFGBeam_HelixCenter
-{
-    States
-    {
-      Spawn:
-        DBFP AB 4 bright
-        goto Spawn2
-    }
-}
-
-
-actor BFGEndTrail
-{
-    +NOINTERACTION
-    +CLIENTSIDEONLY
-
-    RenderStyle Add
-    Alpha 0.6
-    Scale 0.75
-
-    States
-    {
-      Spawn:
-        TNT1 A 0
-        DBFE BBBBCCCC 1 bright A_FadeOut(0.005)
-        loop
-    }
-}
-
-actor DakkaBFGBeamEnd_Client
-{
-    Radius 0
-    Height 0
-    +NOINTERACTION
-    +CLIENTSIDEONLY
-
-    RenderStyle Add
+    DeathSound "dakka/bfgexplode"
+    Obituary "$DAKKA_MP_BFG9000_BLAST"
+    
+    var int user_t;
+    var int user_angle;
+    
+    var int user_hadtarget;
+    var int user_targetx;
+    var int user_targety;
+    var int user_targetz;
 
     States
     {
       Spawn:
         DBFP A 0
-        DBFP A 0 A_SpawnItemEx("BFGTrail", 0,0,0, 14.095389311788626,0,-1.3073361412148725, 0)
-        DBFP A 0 A_SpawnItemEx("BFGTrail", 0,0,0, 15.035081932574535,0,-1.3944918839625307, 20)
-        DBFP A 0 A_SpawnItemEx("BFGTrail", 0,0,0, 12.21600407021681,0,-1.1330246557195562, 40)
-        DBFP A 0 A_SpawnItemEx("BFGTrail", 0,0,0, 13.155696691002717,0,-1.2201803984672144, 60)
-        DBFP A 0 A_SpawnItemEx("BFGTrail", 0,0,0, 12.21600407021681,0,-1.1330246557195562, 80)
-        DBFP A 0 A_SpawnItemEx("BFGTrail", 0,0,0, 12.21600407021681,0,-1.1330246557195562, 100)
-        DBFP A 0 A_SpawnItemEx("BFGTrail", 0,0,0, 13.155696691002717,0,-1.2201803984672144, 120)
-        DBFP A 0 A_SpawnItemEx("BFGTrail", 0,0,0, 12.21600407021681,0,-1.1330246557195562, 140)
-        DBFP A 0 A_SpawnItemEx("BFGTrail", 0,0,0, 13.155696691002717,0,-1.2201803984672144, 160)
-        DBFP A 0 A_SpawnItemEx("BFGTrail", 0,0,0, 13.155696691002717,0,-1.2201803984672144, 180)
-        DBFP A 0 A_SpawnItemEx("BFGTrail", 0,0,0, 15.035081932574535,0,-1.3944918839625307, 200)
-        DBFP A 0 A_SpawnItemEx("BFGTrail", 0,0,0, 14.095389311788626,0,-1.3073361412148725, 220)
-        DBFP A 0 A_SpawnItemEx("BFGTrail", 0,0,0, 14.095389311788626,0,-1.3073361412148725, 240)
-        DBFP A 0 A_SpawnItemEx("BFGTrail", 0,0,0, 12.21600407021681,0,-1.1330246557195562, 260)
-        DBFP A 0 A_SpawnItemEx("BFGTrail", 0,0,0, 14.095389311788626,0,-1.3073361412148725, 280)
-        DBFP A 0 A_SpawnItemEx("BFGTrail", 0,0,0, 12.21600407021681,0,-1.1330246557195562, 300)
-        DBFP A 0 A_SpawnItemEx("BFGTrail", 0,0,0, 15.035081932574535,0,-1.3944918839625307, 320)
-        DBFP A 0 A_SpawnItemEx("BFGTrail", 0,0,0, 13.155696691002717,0,-1.2201803984672144, 340)
-        DBFP A 0 A_SpawnItemEx("BFGTrail", 0,0,0, 12.0,0,0.0, 0)
-        DBFP A 0 A_SpawnItemEx("BFGTrail", 0,0,0, 16.0,0,0.0, 20)
-        DBFP A 0 A_SpawnItemEx("BFGTrail", 0,0,0, 14.0,0,0.0, 40)
-        DBFP A 0 A_SpawnItemEx("BFGTrail", 0,0,0, 16.0,0,0.0, 60)
-        DBFP A 0 A_SpawnItemEx("BFGTrail", 0,0,0, 12.0,0,0.0, 80)
-        DBFP A 0 A_SpawnItemEx("BFGTrail", 0,0,0, 13.0,0,0.0, 100)
-        DBFP A 0 A_SpawnItemEx("BFGTrail", 0,0,0, 12.0,0,0.0, 120)
-        DBFP A 0 A_SpawnItemEx("BFGTrail", 0,0,0, 15.0,0,0.0, 140)
-        DBFP A 0 A_SpawnItemEx("BFGTrail", 0,0,0, 12.0,0,0.0, 160)
-        DBFP A 0 A_SpawnItemEx("BFGTrail", 0,0,0, 15.0,0,0.0, 180)
-        DBFP A 0 A_SpawnItemEx("BFGTrail", 0,0,0, 14.0,0,0.0, 200)
-        DBFP A 0 A_SpawnItemEx("BFGTrail", 0,0,0, 13.0,0,0.0, 220)
-        DBFP A 0 A_SpawnItemEx("BFGTrail", 0,0,0, 15.0,0,0.0, 240)
-        DBFP A 0 A_SpawnItemEx("BFGTrail", 0,0,0, 15.0,0,0.0, 260)
-        DBFP A 0 A_SpawnItemEx("BFGTrail", 0,0,0, 16.0,0,0.0, 280)
-        DBFP A 0 A_SpawnItemEx("BFGTrail", 0,0,0, 13.0,0,0.0, 300)
-        DBFP A 0 A_SpawnItemEx("BFGTrail", 0,0,0, 13.0,0,0.0, 320)
-        DBFP A 0 A_SpawnItemEx("BFGTrail", 0,0,0, 16.0,0,0.0, 340)
-        DBFP A 0 A_SpawnItemEx("BFGTrail", 0,0,0, 13.155696691002717,0,1.2201803984672144, 0)
-        DBFP A 0 A_SpawnItemEx("BFGTrail", 0,0,0, 11.276311449430901,0,1.045868912971898, 20)
-        DBFP A 0 A_SpawnItemEx("BFGTrail", 0,0,0, 11.276311449430901,0,1.045868912971898, 40)
-        DBFP A 0 A_SpawnItemEx("BFGTrail", 0,0,0, 11.276311449430901,0,1.045868912971898, 60)
-        DBFP A 0 A_SpawnItemEx("BFGTrail", 0,0,0, 13.155696691002717,0,1.2201803984672144, 80)
-        DBFP A 0 A_SpawnItemEx("BFGTrail", 0,0,0, 13.155696691002717,0,1.2201803984672144, 100)
-        DBFP A 0 A_SpawnItemEx("BFGTrail", 0,0,0, 13.155696691002717,0,1.2201803984672144, 120)
-        DBFP A 0 A_SpawnItemEx("BFGTrail", 0,0,0, 12.21600407021681,0,1.1330246557195562, 140)
-        DBFP A 0 A_SpawnItemEx("BFGTrail", 0,0,0, 14.095389311788626,0,1.3073361412148725, 160)
-        DBFP A 0 A_SpawnItemEx("BFGTrail", 0,0,0, 12.21600407021681,0,1.1330246557195562, 180)
-        DBFP A 0 A_SpawnItemEx("BFGTrail", 0,0,0, 13.155696691002717,0,1.2201803984672144, 200)
-        DBFP A 0 A_SpawnItemEx("BFGTrail", 0,0,0, 13.155696691002717,0,1.2201803984672144, 220)
-        DBFP A 0 A_SpawnItemEx("BFGTrail", 0,0,0, 12.21600407021681,0,1.1330246557195562, 240)
-        DBFP A 0 A_SpawnItemEx("BFGTrail", 0,0,0, 11.276311449430901,0,1.045868912971898, 260)
-        DBFP A 0 A_SpawnItemEx("BFGTrail", 0,0,0, 14.095389311788626,0,1.3073361412148725, 280)
-        DBFP A 0 A_SpawnItemEx("BFGTrail", 0,0,0, 11.276311449430901,0,1.045868912971898, 300)
-        DBFP A 0 A_SpawnItemEx("BFGTrail", 0,0,0, 13.155696691002717,0,1.2201803984672144, 320)
-        DBFP A 0 A_SpawnItemEx("BFGTrail", 0,0,0, 11.276311449430901,0,1.045868912971898, 340)
+        DBFP A 0 ACS_NamedExecuteWithResult("Dakka_SetupBFGStage2", false)
+        goto SpawnLoop
+      
+      SpawnLoop:
+        DBFP A 0 bright A_JumpIf(user_t % 8 < 4, "SpawnB")
+        goto Spawn2
+      
+      SpawnB:
+        DBFP B 0 bright
+        goto Spawn2
+      
+      Spawn2:
+        DBFP "#" 0 bright A_SpawnItemEx("BFGMaelstromTrail", frandom(-4,4) - (velx/2), frandom(-4,4) - (vely/2), frandom(-4,4) - (velz/2), 0,0,0, 0, SXF_ABSOLUTEPOSITION)
+        DBFP "#" 0 bright A_SetUserVar("user_t", user_t + 1)
+        DBFP "#" 1 bright A_JumpIf(CallACS("Dakka_BFGHomeIn", 12, 80) == false, "WentTooFar")
+        goto SpawnLoop
+        
+      WentTooFar:
+        DBFP "#" 1 bright A_Jump(96, "Death")
+        goto Spawn
 
-        DBFP AAAAAAAAAA 0 A_SpawnItemEx("BFGEndTrail", 0,0,0, random(-20,20)/10.0, 0, random(-20,20)/10.0, random(0,360))
-        DBFP CDEFGHH 8 bright
+      Death:
+        DBFP A 0 A_Stop
+        DBFP A 0 A_SpawnItemEx("TinyBFGTrail", 0,0,0, frandom(2,4),0,frandom(-0.25,0.25), user_angle + frandom(-10, 10))
+        DBFP A 0 A_SetUserVar("user_angle", user_angle+30)
+        DBFP A 0 A_JumpIf(user_angle >= 360, "Death2")
+        loop
+      
+      Death2:
+        DBFP C 0 bright A_Explode(5,  96,  true, false, 48)
+        DBFP C 0 bright A_Explode(10, 128, true, false, 48)
+
+        DBFP CDEFGHH 2
         stop
+    }
+}
+
+
+actor BFGMaelstromTrail
+{
+    +NOINTERACTION
+    +CLIENTSIDEONLY
+    +FORCEXYBILLBOARD
+    +NOTIMEFREEZE
+
+    RenderStyle Add
+    Alpha 0.3
+    Scale 0.25
+
+    States
+    {
+      Spawn:
+        TNT1 A 2
+        DBFE B 0 bright A_ChangeFlag("NOTIMEFREEZE", 0)
+        goto Spawn2
+      
+      Spawn2:
+        DBFE B 1 bright A_FadeOut(0.03)
+        DBFE B 0 bright A_Jump(64, "Spawn2C")
+        loop
+        
+      Spawn2C:
+        DBFE C 1 bright A_FadeOut(0.03)
+        DBFE C 0 bright A_Jump(64, "Spawn2")
+        loop
     }
 }

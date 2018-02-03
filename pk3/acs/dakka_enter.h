@@ -78,8 +78,9 @@ script "Dakka_Spawn" (int respawned)
         // In dakka_scrap.h
         Dakka_ProcessScrap();
 
-        // In dakka_ssg.h
+        // In dakka_ssg.h and dakka_bfg.h
         SSG_AutoReload();
+        BFG_AutoReload();
         
         // In dakka_bfg.h
         bfgPtrTID = Dakka_GetNewTarget(bfgPtrTID);

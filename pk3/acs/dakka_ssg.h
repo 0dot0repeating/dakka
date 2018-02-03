@@ -5,23 +5,10 @@ function void SSG_AutoReload(void)
     // Don't tick down auto reload timer if it's in our hands
     if (CheckWeapon("DWep_SuperShotgun")) { return; }
 
-    // Also don't tick it down if we haven't got ammo for it
-    if (CheckInventory("DakkaShells") < 2 && CheckInventory("DakkaShotGrenades") < 2)
-    {
-        return;
-    }
+    int time = max(0, AutoReloadCooldowns[pln][0] - 1);
+    if (time == 0) { SetInventory("DakkaSSG_ShotsFired", 0); }
 
-    int time = max(0, SSG_AutoReloadCooldown[pln] - 1);
-
-    if (time == 0)
-    {
-        if (CheckInventory("DakkaSSG_ShotsFired"))
-        {
-            TakeInventory("DakkaSSG_ShotsFired", 0x7FFFFFFF);
-        }
-    }
-
-    SSG_AutoReloadCooldown[pln] = time;
+    AutoReloadCooldowns[pln][0] = time;
 }
 
 
@@ -42,12 +29,12 @@ script "DSSG_ChangeShots" (int amount)
     if (amount < 0)
     {
         TakeInventory("DakkaSSG_ShotsFired", -amount);
-        SSG_AutoReloadCooldown[pln] = 0;
+        AutoReloadCooldowns[pln][0] = 0;
     }
     else
     {
         GiveInventory("DakkaSSG_ShotsFired",  amount);
-        SSG_AutoReloadCooldown[pln] = 35;
+        AutoReloadCooldowns[pln][0] = 35;
     }
 }
 
