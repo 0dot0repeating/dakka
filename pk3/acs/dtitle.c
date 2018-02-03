@@ -373,7 +373,7 @@ script "titlemap_scoretips" (int flash, int duration)
 }
 
 
-#define GAMETIPCOUNT    19
+#define GAMETIPCOUNT    21
 
 int GameTips[GAMETIPCOUNT] =
 {
@@ -385,7 +385,7 @@ int GameTips[GAMETIPCOUNT] =
     // Fist
     "Your fists are silent, which is perfect for breaking those maps that force you to shoot a switch at the start.\n\nOr you could just shoot the switch anyway, since it lets you kill more demons.",
     "You can charge up the fist's alt-fire up to three times, and at max charge, your punch will ruin the day of both whoever you hit and his buddies next to him!",
-    "Hitting a target with a heavy punch lets you do light punches at full speed. But if you miss, you lose all your speed on your light punches. So don't miss!",
+    "Heavy punches will greatly speed up your light punches, but if you miss, all that speed goes into the trash. So don't miss!",
     
     // Scrappers
     "Spent ammo of all kinds refuels your scrappers. Respect the environment; scrap some demons before that meter tops off.",
@@ -394,19 +394,23 @@ int GameTips[GAMETIPCOUNT] =
     // Pistols
     "The minigun tends to be overkill on weaker enemies, so why not use that pistol ammo? You weren't using it anyway.",
     
+    // Shotgun
+    "If you disable the \cdGrenades auto-detonate\c- setting, shotgun grenades will stick to whatever they hit. Detonate them with the \cfreload\c- key!",
+    "Shotgun grenades can be detonated in midair with the \cfreload\c- key, which causes all the mini-grenades to fly forward instead of all around. Handy!",
+    
     // SSG
     "Dakkaguy can reload the super shotgun with his buttcheeks. This makes it great for a quick, heavy burst of close-range damage!",
     "You know how Dakkaguy reloads the super shotgun even if it isn't empty yet? You can still shoot when he does that.",
-    "The super shotgun has no refire delay, so hitting both mouse buttons in quick succession will fire whichever button you hit first, twice. Bring the pain!",
+    "With \cdSSG trigger rolling\c- enabled, pulling both triggers in rapid succession will use the first trigger twice. This can even let you fire four shells at the same time!",
     
     // Minigun
-    "The minigun primary fire has two speeds: full auto if you just hold the primary fire, and \caFULLER AUTO\c- if you hold both fire buttons!",
+    "The minigun primary fire has two speeds: full auto if you just hold the primary fire, and \caFULLER AUTO\c- if you hold both fire buttons!\n\nIt burns through ammo twice as quickly, but that's the fun part!",
     "The minigun's flamethrower is great at weeding out weaker enemies in a crowd - if the flamethrower itself doesn't kill them, the afterburn will.",
     "Minigun flames pierce invulnerability.\nBecause why not?",
     
     // Impaler
-    "The impaler's alt-fire impales demons, surprisingly enough. Use it to bring stragglers close to their friends and blow them all up!",
     "The impaler's primary fire has most of its explosion directed forward, while the alt-fire's explosion is all around. Keeping this in mind will save you rockets.",
+    "The impaler's alt-fire impales demons, surprisingly enough. Use it to bring stragglers close to their friends and blow them all up!",
     
     // Lancer
     "Plasma nails pierce through enemies, so line them up and get a two-for-one deal on your cells!",
