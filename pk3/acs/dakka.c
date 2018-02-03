@@ -114,6 +114,9 @@
 // Clientside weapon switching script, because A_SelectWeapon don't do shit online.
 #include "dakka_wepswitch.h"
 
+// Zandronum netcode is fun, isn't it?
+#include "dakka_online.h"
+
 
 // Each of these is for their respecting ACS script type.
 #include "dakka_open.h"
