@@ -536,7 +536,7 @@ actor BFGCrosshairTarget: FastProjectile
     +BLOODLESSIMPACT
     +PAINLESS
     
-    RenderStyle Normal
+    RenderStyle None
     
     States
     {
@@ -563,6 +563,8 @@ actor BFGCrosshairTarget_Puff
     +PUFFONACTORS
     +SKYEXPLODE
     +PAINLESS
+    
+    RenderStyle None
     
     States
     {
