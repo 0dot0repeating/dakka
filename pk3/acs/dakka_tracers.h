@@ -1,9 +1,6 @@
 #define TRACE_BULLET        0
 #define TRACE_ARC_FIRER     2
 #define TRACE_ARC_MASTER    3
-#define TRACE_BFG           4
-#define TRACE_BFG_INSTANT   5
-#define TRACE_BFG_DELAYED   6
 
 
 // DakkaTracer is the tracer actor
@@ -46,7 +43,6 @@ script "Dakka_Tracer" (int which, int yoff, int zoff)
         break;
 
       case TRACE_ARC_FIRER:
-      case TRACE_BFG:
         pointX = 20.0;
         break;
 
@@ -83,20 +79,6 @@ script "Dakka_Tracer" (int which, int yoff, int zoff)
         }
         break;
 
-      case TRACE_BFG:
-        // These will be in dakka_bfg.h
-        ACS_NamedExecuteWithResult("Dakka_BFG_Server", tracerTID1, tracerTID2);
-        
-        if (ConsolePlayerNumber() == -1)
-        {
-            ACS_NamedExecuteWithResult("Dakka_BFG_Client", 0, tracerTID1, tracerTID2);
-        }
-        else
-        {
-            ACS_NamedExecuteWithResult("Dakka_BFG_Client", tracerTID1, tracerTID2);
-        }
-        break;
-
       case TRACE_ARC_FIRER:
       case TRACE_ARC_MASTER:
         if (ConsolePlayerNumber() == -1)
@@ -115,6 +97,7 @@ script "Dakka_Tracer" (int which, int yoff, int zoff)
 script "Dakka_Tracer_Client" (int which, int startTID, int endTID) clientside
 {
     int waitTimer = 0;
+    int pln = cond(IsZandronum, ConsolePlayerNumber(), PlayerNumber());
 
     while (!(IsTIDUsed(startTID) && IsTIDUsed(endTID)))
     {
@@ -150,7 +133,7 @@ script "Dakka_Tracer_Client" (int which, int startTID, int endTID) clientside
     switch (which)
     {
       case TRACE_BULLET:
-        if (GetCVar("dakka_cl_notracers") > 0) { break; }
+        if (GetUserCVar(pln, "dakka_cl_notracers") > 0) { break; }
 
         speed = 512.0;
 
