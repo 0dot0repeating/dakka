@@ -127,6 +127,7 @@ script "Dakka_Tracer_Client" (int which, int startTID, int endTID) clientside
     int lesseffects = GetCVar("dakka_cl_lesseffects");
 
     int particleType = "";
+    int lerpAlpha = false;
     int density;
     int speed;
 
@@ -135,20 +136,11 @@ script "Dakka_Tracer_Client" (int which, int startTID, int endTID) clientside
       case TRACE_BULLET:
         if (GetUserCVar(pln, "dakka_cl_notracers") > 0) { break; }
         speed = itof(middle(64, GetUserCVar(pln, "dakka_cl_tracerspeed"), 2048));
-
-        if (lesseffects)
-        {
-            particleType = "DakkaTracerBright";
-            density      = 36.0;
-        }
-        else
-        {
-            particleType = "DakkaTracer";
-        }
         
-        int densityMod = middle(-4, GetUserCVar(pln, "dakka_cl_tracerdensity"), 2);
+        particleType = "DakkaTracer";
+        lerpAlpha = true;
         
-        switch (densityMod)
+        switch (middle(-4, GetUserCVar(pln, "dakka_cl_tracerdensity"), 4))
         {
             case -4: density = 36.0; break;
             case -3: density = 30.0; break;
@@ -157,7 +149,10 @@ script "Dakka_Tracer_Client" (int which, int startTID, int endTID) clientside
             default: density = 12.0; break;
             case  1: density = 8.0;  break;
             case  2: density = 6.0;  break;
+            case  3: density = 4.8;  break;
+            case  4: density = 4.0;  break;
         }
+        
         break;
 
       case TRACE_ARC_FIRER:
@@ -174,6 +169,7 @@ script "Dakka_Tracer_Client" (int which, int startTID, int endTID) clientside
 
     int step;
     int ticDistance = startPoint;
+    int particleTID = UniqueTID();
 
     for (step = startPoint; step < dist; step += density)
     {
@@ -181,8 +177,17 @@ script "Dakka_Tracer_Client" (int which, int startTID, int endTID) clientside
         int spawnY = startY + FixedMul(step, nY);
         int spawnZ = startZ + FixedMul(step, nZ);
 
-        SpawnForced(particleType, spawnX, spawnY, spawnZ);
-
+        if (lerpAlpha)
+        {
+            SpawnForced(particleType, spawnX, spawnY, spawnZ, particleTID);
+            SetActorProperty(particleTID, APROP_Alpha, FixedDiv(ticDistance, speed));
+            Thing_ChangeTID(particleTID, 0);
+        }
+        else
+        {
+            SpawnForced(particleType, spawnX, spawnY, spawnZ);
+        }
+        
         ticDistance += density;
 
         if (speed > 0)

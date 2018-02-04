@@ -171,6 +171,13 @@ actor DakkaTracer
     States
     {
       Spawn:
+        DPUF A 0 bright nodelay A_SetScale(0.4 + (alpha * 0.1))
+        DPUF A 1 bright         A_SetTranslucent(0.4 + (alpha * 0.1), 1)
+        DPUF A 0 bright         A_Stop
+        goto Spawn2
+      
+      Spawn2:
+        DBUF A 0 bright A_SetScale(scalex - 0.1)
         DPUF A 1 bright A_FadeOut(0.1)
         loop
     }
@@ -183,6 +190,13 @@ actor DakkaTracerBright: DakkaTracer
     States
     {
       Spawn:
+        DPUF A 0 bright nodelay A_SetScale(0.4 + (alpha * 0.1))
+        DPUF A 1 bright         A_SetTranslucent(0.8 + (alpha * 0.2), 1)
+        DPUF A 0 bright         A_Stop
+        goto Spawn2
+      
+      Spawn2:
+        DBUF A 0 bright A_SetScale(scalex - 0.1)
         DPUF A 1 bright A_FadeOut(0.2)
         loop
     }

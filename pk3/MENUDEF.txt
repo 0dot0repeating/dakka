@@ -146,6 +146,8 @@ OptionValue Dakka_TracerDensity
      0, "default"
      1, "50% denser"
      2, "100% denser"
+     3, "150% denser"
+     4, "200% denser"
 }
 
 
