@@ -375,8 +375,8 @@ actor PLPrimaryShot: FastProjectile
     
     +FORCERADIUSDMG
     +BLOODLESSIMPACT
+    +FORCEXYBILLBOARD
     +NODAMAGETHRUST
-    +SERVERSIDEONLY
     +MTHRUSPECIES
     +HITTRACER
     
@@ -512,6 +512,7 @@ actor PLPrimaryCloud1
     {
       Spawn:
         PLZM H 0 bright
+        PLZM H 0 bright A_JumpIf(CallACS("Dakka_LessEffects") == true, "Done")
         PLZM H 0 bright A_ChangeVelocity(frandom(-1, 1), frandom(-1, 1), frandom(-1, 1))
         goto FadeA
       

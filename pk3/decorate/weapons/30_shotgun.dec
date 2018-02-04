@@ -387,7 +387,10 @@ actor GrenadeExplosion_Client
 		
 	
 	  SmokeSpawn:
+        MISL B 0 bright A_JumpIf(CallACS("Dakka_LessEffects") == true, "NoSmoke")
 		MISL BBBBBBBBBBBB 0 A_SpawnItemEx("ImpalerBigTrailParticle",   frandom(-6, 6), frandom(-1, 1), frandom(-4, 4), frandom(-3, 3), 0,              frandom(-3, 3), frandom(0, 360))
+        
+      NoSmoke:
 		DMIS GHIJ 2 bright
 		stop
 	}
@@ -436,7 +439,10 @@ actor MiniGrenadeExplosion_Client
 		
 	
 	  SmokeSpawn:
-		MISL BBBBBB 0 A_SpawnItemEx("ImpalerBigTrailParticle",   frandom(-6, 6), frandom(-1, 1), frandom(-4, 4), frandom(-3, 3), 0,              frandom(-3, 3), frandom(0, 360))
+        MISL B 0 bright A_JumpIf(CallACS("Dakka_LessEffects") == true, "NoSmoke")
+		MISL BBBB 0 A_SpawnItemEx("ImpalerBigTrailParticle",   frandom(-6, 6), frandom(-1, 1), frandom(-4, 4), frandom(-3, 3), 0,              frandom(-3, 3), frandom(0, 360))
+        
+      NoSmoke:
 		DMIS GHIJ 2 bright
 		stop
 	}
@@ -488,7 +494,16 @@ actor GrenadeExplosionSpark
 	States
 	{
 	  Spawn:
+        OPRT B 0 bright 
+        OPRT B 0 bright A_JumpIf(CallACS("Dakka_LessEffects") == true, "LessEffects")
+        goto Normal
+      
+      Normal:
 		OPRT B 0 A_SpawnItemEx("MiniGrenadeTrailParticle", 0,0,0, frandom(-1, 1), 0, frandom(-1, 1), random(0, 360), 0)
+	    OPRT B 1 bright A_Countdown
+		loop
+      
+      LessEffects:
 	    OPRT B 1 bright A_Countdown
 		loop
       
