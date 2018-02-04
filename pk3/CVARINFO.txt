@@ -32,4 +32,6 @@ user int  dakka_cl_flamethrowerstyle    = 0;
 
 user bool dakka_cl_lesseffects          = false;
 user bool dakka_cl_notracers            = false;
+user int  dakka_cl_tracerspeed          = 256;
+user int  dakka_cl_tracerdensity        = 0;
 user bool dakka_cl_moremessages         = false;
