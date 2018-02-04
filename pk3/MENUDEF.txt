@@ -1,15 +1,15 @@
 OptionValue Dakka_StartMode_Health
 {
     0, "no change"
-    1, "reset health"
-    2, "max HP + green armor"
-    3, "soulsphere + blue armor"
+    1, "100 health"
+    2, "100 health + green armor"
+    3, "200 health + blue armor"
     4, "megasphere"
 }
 
 OptionValue Dakka_StartMode_Weapons
 {
-    0, "no change"
+    0, "keep them"
     2, "pistol start"
     3, "up to shotgun tier"
     4, "up to chaingun tier"
@@ -20,27 +20,40 @@ OptionValue Dakka_StartMode_Weapons
 
 OptionValue Dakka_StartMode_Ammo
 {
-    0, "no change"
+    0, "keep it"
     1, "reset ammo"
     2, "max out ammo"
     3, "keep only pistol ammo"
     4, "pistol full, rest empty"
 }
 
-OptionValue Dakka_KeepScore
+OptionValue Dakka_ScrapperStart
 {
-    0, "nothing"
-    1, "score"
-    2, "score+rewards"
-    3, "score+rewards+progress"
+     0, "keep them"
+     1, "give on new map"
 }
 
 OptionValue Dakka_BackpackStart
 {
-    -1, "take away"
-     0, "off"
-     1, "on"
+    -1, "take on new map"
+     0, "keep it"
+     1, "give on new map"
 }
+
+OptionValue Dakka_KeepScore
+{
+    0, "reset all"
+    1, "reset rewards"
+    2, "reset bar progress"
+    3, "keep all"
+}
+
+OptionValue Dakka_IgnoreHubs
+{
+    0, "don't reset"
+    1, "do resets"
+}
+
 
 OptionValue Dakka_PowerLevel
 {
@@ -55,7 +68,7 @@ OptionValue Dakka_PowerLevel
     -3,  "1.33x weaker"
     -2,  "1.25x weaker"
     -1,  "1.1x weaker"
-     0,  "Standard"
+     0,  "standard"
      1,  "1.1x stronger"
      2,  "1.25x stronger"
      3,  "1.33x stronger"
@@ -83,7 +96,7 @@ OptionValue Dakka_DefenseLevel
      -3, "1.25x weaker"
      -2, "1.2x weaker"
      -1, "1.1x weaker"
-      0, "Standard"
+      0, "standard"
       1, "1.1x tougher"
       2, "1.25x tougher"
       3, "1.33x tougher"
@@ -98,45 +111,65 @@ OptionValue Dakka_DefenseLevel
 
 OptionValue Dakka_FlamethrowerStyle
 {
-    0, "New"
-    1, "Old"
+    0, "new"
+    1, "old"
 }
 
 OptionValue OffOn
 {
-    0, "On"
-    1, "Off"
+    0, "on"
+    1, "off"
 }
 
 OptionValue Dakka_RecoilMode
 {
-    0, "Linear"
-    1, "Quadratic"
-    2, "Sinusoidal"
+    0, "linear"
+    1, "quadratic"
+    2, "sinusoidal"
 }
+
+OptionValue Dakka_TracerSpeed
+{
+    64,   "snail"
+    128,  "slow"
+    256,  "medium"
+    512,  "fast"
+    2048, "lightning"
+}
+
+OptionValue Dakka_TracerDensity
+{
+    -4, "200% sparser"
+    -3, "150% sparser"
+    -2, "100% sparser"
+    -1, "50% sparser"
+     0, "default"
+     1, "50% denser"
+     2, "100% denser"
+}
+
 
 
 OptionMenu Dakka_GameOptions
 {
     Title "DAKKA (Game options)"
-    
+
     StaticText "General options"
 
     Slider "Scrap factor",          "dakka_scrapfactor",    0, 1000, 10, 0
-    Option "Transfer score",        "dakka_keepscore",      "Dakka_KeepScore"
-    Option "Do resets in hub",      "dakka_ignorehubs",     "OnOff"
     Option "Damage multiplier",     "dakka_powerlevel",     "Dakka_PowerLevel"
     Option "Defense multiplier",    "dakka_defenselevel",   "Dakka_DefenseLevel"
 
     StaticText ""
     StaticText "Level start options"
 
-    Option "Start mode (weapons)", "dakka_startmode_weapons",   "Dakka_StartMode_Weapons"
-    Option "Start mode (ammo)",    "dakka_startmode_ammo",      "Dakka_StartMode_Ammo"
-    Option "Start mode (health)",  "dakka_startmode_health",    "Dakka_StartMode_Health"
-
-    Option "Start w/ scrappers", "dakka_scrapperstart", "OnOff"
-    Option "Start w/ backpack",  "dakka_backpackstart", "Dakka_BackpackStart"
+    Option "Health+armor mode", "dakka_startmode_health",    "Dakka_StartMode_Health"
+    Option "Ammo mode",         "dakka_startmode_ammo",      "Dakka_StartMode_Ammo"
+    Option "Weapon mode",       "dakka_startmode_weapons",   "Dakka_StartMode_Weapons"
+    Option "Scrapper mode",     "dakka_scrapperstart",       "Dakka_ScrapperStart"
+    Option "Backpack mode",     "dakka_backpackstart",       "Dakka_BackpackStart"
+    Option "Score mode",        "dakka_keepscore",           "Dakka_KeepScore"
+    Option "When in a hub",     "dakka_ignorehubs",          "Dakka_IgnoreHubs"
 
     StaticText ""
     StaticText ""
@@ -158,18 +191,27 @@ OptionMenu "Dakka_UserOptions"
     Option "Interpolate recoil",    "dakka_cl_norecoilinterp", "OffOn"
 
     StaticText ""
-    
-    Option "Grenades auto-explode",      "dakka_cl_autodetonate",       "OnOff"
-    Option "SSG trigger rolling",        "dakka_cl_ssgrollfire",        "OnOff"
-    Option "Flamethrower style",         "dakka_cl_flamethrowerstyle",  "Dakka_FlamethrowerStyle"
+
+    Option "Fewer effects",         "dakka_cl_lesseffects",        "OnOff"
+    Option "Bullet tracers",        "dakka_cl_notracers",          "OffOn"
+    Option "Tracer speed",          "dakka_cl_tracerspeed",        "Dakka_TracerSpeed"
+    Option "Tracer density",        "dakka_cl_tracerdensity",      "Dakka_TracerDensity"
 
     StaticText ""
 
-    Option "Disable score rewards",      "dakka_cl_noscorerewards",     "OnOff"
-    Option "Disable score entirely",     "dakka_cl_noscore",            "OnOff"
-    Option "Dumb pickup messages",       "dakka_cl_moremessages",       "OnOff"
-    Option "Bullet tracers",             "dakka_cl_notracers",          "OffOn"
-    Option "Less effects",               "dakka_cl_lesseffects",        "OnOff"
+    Option "No score rewards",      "dakka_cl_noscorerewards",     "OnOff"
+    Option "No score at all",       "dakka_cl_noscore",            "OnOff"
+    
+    StaticText ""
+
+    Option "Grenades auto-explode", "dakka_cl_autodetonate",       "OnOff"
+    Option "SSG trigger rolling",   "dakka_cl_ssgrollfire",        "OnOff"
+    Option "Flamethrower style",    "dakka_cl_flamethrowerstyle",  "Dakka_FlamethrowerStyle"
+
+    StaticText ""
+
+    Option "Dumb pickup messages",  "dakka_cl_moremessages",       "OnOff"
+    
 
     StaticText ""
     StaticText "Keybinds"
@@ -178,12 +220,11 @@ OptionMenu "Dakka_UserOptions"
     Control "Slot 1, fist first",     "fistswitch"
     Control "Slot 2, pistol first",   "pistswitch"
     Control "Slot 3, shotgun first",  "shotswitch"
-    
+
     StaticText ""
     StaticText ""
-    StaticText "SSG trigger rolling: When enabled, you"
-    StaticText "can use one fire mode twice by using both"
-    StaticText "primary and alt fire in rapid succession."
+    StaticText "SSG trigger rolling: Pull both triggers in"
+    StaticText "rapid succession to use one fire mode twice"
 }
 
 
@@ -194,19 +235,19 @@ ListMenu Dakka_Options
 	{
 		StaticPatch 94, 2, "M_DOOM"
 		Position 75, 72
-        
+
 		IfOption(ReadThis)
 		{
 			Position 75, 64
 		}
 	}
-    
+
 	IfGame(Strife)
 	{
 		StaticPatch 84, 2, "M_STRIFE"
 		Position 73, 45
 	}
-    
+
 	IfGame(Heretic)
 	{
 		StaticPatch 88, 0, "M_HTIC"
@@ -214,7 +255,7 @@ ListMenu Dakka_Options
 		StaticPatch 232, 10, "M_SKL00"
 		Position 93, 56
 	}
-    
+
 	IfGame(Hexen)
 	{
 		StaticPatch 88, 0, "M_HTIC"
@@ -222,37 +263,37 @@ ListMenu Dakka_Options
 		StaticPatch 278, 80, "FBULA0"
 		Position 93, 56
 	}
-        
+
     //Font "CONFONT", "White"
     //StaticTextCentered 160, 70, "NOTE! Only user options"
     //StaticTextCentered 160, 78, "are saved between sessions."
-	
+
     IfGame(Doom)
     {
         Font "DBIGFON2", "Grey"
         TextItem "Game Options", "g", "Dakka_GameOptions"
         TextItem "User Options", "u", "Dakka_UserOptions"
-        
+
         Font "DBIGFON2", "Brick"
         TextItem "Read This!",   "h", "ReadThisMenu"
     }
-	
+
     IfGame(Chex,Strife)
     {
         Font "BIGFONT", "Untranslated"
         TextItem "Game Options", "g", "Dakka_GameOptions"
         TextItem "User Options", "u", "Dakka_UserOptions"
-        
+
         Font "BIGFONT", "Brick"
         TextItem "Read This!",   "h", "ReadThisMenu"
     }
-	
+
     IfGame(Heretic,Hexen)
     {
         Font "BIGFONT", "Untranslated"
         TextItem "Game Options", "g", "Dakka_GameOptions"
         TextItem "User Options", "u", "Dakka_UserOptions"
-        
+
         Font "BIGFONT", "Gold"
         TextItem "Read This",    "h", "ReadThisMenu"
     }
@@ -265,19 +306,19 @@ ListMenu MainMenu
 	{
 		StaticPatch 94, 2, "M_DOOM"
 		Position 97, 72
-        
+
 		IfOption(ReadThis)
 		{
 			Position 97, 64
 		}
 	}
-    
+
 	IfGame(Strife)
 	{
 		StaticPatch 84, 2, "M_STRIFE"
 		Position 97, 45
 	}
-    
+
 	IfGame(Heretic)
 	{
 		StaticPatch 88, 0, "M_HTIC"
@@ -285,7 +326,7 @@ ListMenu MainMenu
 		StaticPatch 232, 10, "M_SKL00"
 		Position 110, 56
 	}
-    
+
 	IfGame(Hexen)
 	{
 		StaticPatch 88, 0, "M_HTIC"
@@ -293,7 +334,7 @@ ListMenu MainMenu
 		StaticPatch 278, 80, "FBULA0"
 		Position 110, 56
 	}
-	
+
 	IfGame(Doom)
 	{
 		PatchItem "M_NGAME", "n", "PlayerclassMenu"
@@ -313,11 +354,11 @@ ListMenu MainMenu
 
         Font "DBIGFON2", "Brick"
         TextItem "Dakka", "d", "Dakka_Options"
-        
+
         Font "BIGFONT", "Red"
 		PatchItem "M_QUITG", "q", "QuitMenu"
 	}
-	
+
 	IfGame(Strife, Chex)
 	{
 		PatchItem "M_NGAME", "n", "PlayerclassMenu"
@@ -337,11 +378,11 @@ ListMenu MainMenu
 
         Font "BIGFONT", "Brick"
         TextItem "Dakka", "d", "Dakka_Options"
-        
+
         Font "BIGFONT", "Untranslated"
 		PatchItem "M_QUITG", "q", "QuitMenu"
 	}
-	
+
 	IfGame(Heretic, Hexen)
 	{
 		TextItem "$MNU_NEWGAME", "n", "PlayerclassMenu"

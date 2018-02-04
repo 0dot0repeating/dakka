@@ -134,8 +134,7 @@ script "Dakka_Tracer_Client" (int which, int startTID, int endTID) clientside
     {
       case TRACE_BULLET:
         if (GetUserCVar(pln, "dakka_cl_notracers") > 0) { break; }
-
-        speed = 512.0;
+        speed = itof(middle(64, GetUserCVar(pln, "dakka_cl_tracerspeed"), 2048));
 
         if (lesseffects)
         {
@@ -145,7 +144,19 @@ script "Dakka_Tracer_Client" (int which, int startTID, int endTID) clientside
         else
         {
             particleType = "DakkaTracer";
-            density      = 12.0;
+        }
+        
+        int densityMod = middle(-4, GetUserCVar(pln, "dakka_cl_tracerdensity"), 2);
+        
+        switch (densityMod)
+        {
+            case -4: density = 36.0; break;
+            case -3: density = 30.0; break;
+            case -2: density = 24.0; break;
+            case -1: density = 18.0; break;
+            default: density = 12.0; break;
+            case  1: density = 8.0;  break;
+            case  2: density = 6.0;  break;
         }
         break;
 
