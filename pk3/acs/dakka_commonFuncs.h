@@ -41,6 +41,12 @@ function int safeAdd(int a, int b)
     return a + b;
 }
 
+// convert to fixed point and divide, while avoiding overflows
+function int itofDiv(int x, int div)
+{
+    return ((x / div) << 16) + ((x % div) << 16) / div;
+}
+
 function int abs(int x)
 {
     if (x < 0) { return -x; }
