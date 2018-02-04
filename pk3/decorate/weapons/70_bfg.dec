@@ -623,7 +623,7 @@ actor BFGHomingShotSpawner
       
       
       SpawnCommon:
-        TNT1 A 0 ACS_NamedExecuteWithResult("DSSG_CalcGrenadeAngle", 25, 7000, 2500)
+        TNT1 A 0 ACS_NamedExecuteWithResult("Dakka_CalcProjAngle", 25, 7000, 2500)
         TNT1 A 0 A_SpawnItemEx("BFGHomingShot_Stage1", 0,0,0, user_spawnvelx/65536.0, user_spawnvely/65536.0, user_spawnvelz/65536.0, angle, SXF_TRANSFERPITCH | SXF_ABSOLUTEANGLE | SXF_ABSOLUTEVELOCITY | SXF_TRANSFERPOINTERS)
         TNT1 A 0 A_SetUserVar("user_spawncount", user_spawncount+1)
         TNT1 A 0 A_JumpIf(user_spawncount >= 25, "SpawnEnd")
@@ -944,7 +944,7 @@ actor BFGMaelstromShotSpawner
       
       
       SpawnCommon:
-        TNT1 A 0 ACS_NamedExecuteWithResult("DSSG_CalcGrenadeAngle", 25, 4000, 2000)
+        TNT1 A 0 ACS_NamedExecuteWithResult("Dakka_CalcProjAngle", 25, 4000, 2000)
         TNT1 A 0 A_SpawnItemEx("BFGMaelstromShot", 0,0,0, user_spawnvelx/65536.0, user_spawnvely/65536.0, user_spawnvelz/65536.0, angle, SXF_TRANSFERPITCH | SXF_ABSOLUTEANGLE | SXF_ABSOLUTEVELOCITY | SXF_TRANSFERPOINTERS)
         TNT1 A 0 A_SetUserVar("user_spawncount", user_spawncount+1)
         TNT1 A 0 A_JumpIf(user_spawncount >= 2, "SpawnEnd")

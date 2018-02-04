@@ -55,34 +55,3 @@ script "DSSG_Refire" (void)
 
     SetResultValue(ret && canFire);
 }
-
-
-script "DSSG_CalcGrenadeAngle" (int speed, int spread_angle, int spread_pitch)
-{
-    int randAngle = ACS_NamedExecuteWithResult("Dakka_Spread", -spread_angle, spread_angle) / 360;
-    int randPitch = ACS_NamedExecuteWithResult("Dakka_Spread", -spread_pitch, spread_pitch) / 360;
-    
-    // updated by scripts in dakka_projangle.h, more reliable than reading velocity directly
-    int vx  = GetUserVariable(0, "user_velx");
-    int vy  = GetUserVariable(0, "user_vely");
-    int vz  = GetUserVariable(0, "user_velz");
-    
-    int angle =  VectorAngle(vx, vy);
-    int pitch = -VectorAngle(VectorLength(vx, vy), vz);
-    
-    int spawnVY = speed * FixedMul(sin(randAngle), cos(randPitch));
-    int spawnVX = speed * FixedMul(cos(randAngle), cos(randPitch));
-    int spawnVZ = speed * sin(randPitch);
-    
-    Rotate3D(spawnVX, spawnVY, spawnVZ, angle, pitch);
-    
-    SetUserVariable(0, "user_spawnvelx", Rotate3D_Ret[0]);
-    SetUserVariable(0, "user_spawnvely", Rotate3D_Ret[1]);
-    SetUserVariable(0, "user_spawnvelz", Rotate3D_Ret[2]);
-}
-
-script "DSSG_HitEnemy" (void)
-{
-    SetActivator(0, AAPTR_TRACER);
-    SetResultValue(!(ClassifyActor(0) & ACTOR_WORLD));
-}

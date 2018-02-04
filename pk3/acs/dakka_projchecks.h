@@ -6,31 +6,45 @@ script "Dakka_ProjUpdate" (void)
     SetUserVariable(0, "user_velz", GetActorVelZ(0));
 }
 
-script "Dakka_ProjDeathUpdate" (void)
+script "Dakka_ProjDeathUpdate" (int hasPitch)
 {
     if (!GetUserVariable(0, "user_t"))
     {
-        int myTID_old = ActivatorTID();
-        int myTID     = UniqueTID();
-        Thing_ChangeTID(0, myTID);
+        int firerAngle, firerPitch;
+        int myTID_old, myTID;
+        int projSpeed  = GetActorProperty(0, APROP_Speed);
         
-        SetActivator(0, AAPTR_TARGET);
-        if (ClassifyActor(0) & ACTOR_WORLD)
+        if (hasPitch)
         {
-            Thing_ChangeTID(myTID, myTID_old);
-            terminate;
+            firerAngle = GetActorAngle(0);
+            firerPitch = GetActorPitch(0);
         }
-        
-        int firerAngle = GetActorAngle(0);
-        int firerPitch = GetActorPitch(0);
-        int projSpeed  = GetActorProperty(myTID, APROP_Speed);
+        else
+        {
+            myTID_old = ActivatorTID();
+            myTID     = UniqueTID();
+            Thing_ChangeTID(0, myTID);
+            
+            SetActivator(0, AAPTR_TARGET);
+            if (ClassifyActor(0) & ACTOR_WORLD)
+            {
+                Thing_ChangeTID(myTID, myTID_old);
+                terminate;
+            }
+            
+            firerAngle = GetActorAngle(0);
+            firerPitch = GetActorPitch(0);
+        }
         
         SetUserVariable(myTID, "user_velx",    FixedMul(projSpeed, FixedMul(cos(firerAngle), cos(firerPitch))));
         SetUserVariable(myTID, "user_vely",    FixedMul(projSpeed, FixedMul(sin(firerAngle), cos(firerPitch))));
         SetUserVariable(myTID, "user_velz",    FixedMul(projSpeed, -sin(firerPitch)));
         
-        SetActorPitch(myTID, firerPitch);
-        Thing_ChangeTID(myTID, myTID_old);
+        if (!hasPitch)
+        {
+            SetActorPitch(myTID, firerPitch);
+            Thing_ChangeTID(myTID, myTID_old);
+        }
     }
     else
     {
@@ -89,4 +103,10 @@ script "ProjCheck_ShortestDist" (int projX, int projY, int projZ)
 script "Dakka_IsClient" (void)
 {
     SetResultValue(!IsServer);
+}
+
+script "Dakka_HitEnemy" (void)
+{
+    SetActivator(0, AAPTR_TRACER);
+    SetResultValue(!(ClassifyActor(0) & ACTOR_WORLD));
 }

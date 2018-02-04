@@ -1,7 +1,6 @@
 actor ScrapperSide: Boolean {}
 actor ScrapperAtoP: Boolean {}
 actor ScrapperAltTimer: Counter {}
-actor ScrapTimer: Counter {}
 
 actor DWep_Scrappers: DoomWeapon
 {
@@ -63,12 +62,9 @@ actor DWep_Scrappers: DoomWeapon
         RSCP A 0 A_AlertMonsters
         RSCP A 0 A_GiveInventory("ScrapperSide")
         RSCP A 0 A_TakeInventory("ScrapperAltTimer", 1)
-        RSCP AA 0 A_PlaySound("dakka/scrapperfire", CallACS("Dakka_RotateSound"))
-        RSCP AAAAA 0 A_FireCustomMissile("ScrapperShot",
-                                    CallACS("Dakka_Spread", -1200, 1200) / 65536.0, 0, 11,0,0,
-                                    CallACS("Dakka_Spread", -600, 600) / 65536.0)
-        RSCP A 0 A_FireCustomMissile("AmmoWaster")
         RSCP A 0 ACS_NamedExecuteAlways("Dakka_Recoil", 0, 2, 2, 7)
+        RSCP AA 0 A_PlaySound("dakka/scrapperfire", CallACS("Dakka_RotateSound"))
+        RSCP A 0 A_FireCustomMissile("ScrapperShotSpawner", 0, true, 11)
         RSCP A 1 bright A_Light(6)
         RSCP B 1 bright A_Light(5)
         RSCP C 1 bright A_Light(4)
@@ -90,12 +86,9 @@ actor DWep_Scrappers: DoomWeapon
         RSCP A 0 A_AlertMonsters
         RSCP A 0 A_TakeInventory("ScrapperSide")
         RSCP A 0 A_TakeInventory("ScrapperAltTimer", 1)
-        RSCP AA 0 A_PlaySound("dakka/scrapperfire", CallACS("Dakka_RotateSound"))
-        RSCP AAAAA 0 A_FireCustomMissile("ScrapperShot",
-                                    CallACS("Dakka_Spread", -1200, 1200) / 65536.0, 0, -11,0,0,
-                                    CallACS("Dakka_Spread", -600, 600) / 65536.0)
-        RSCP A 0 A_FireCustomMissile("AmmoWaster")
         RSCP A 0 ACS_NamedExecuteAlways("Dakka_Recoil", 0, 2, 2, 7)
+        RSCP AA 0 A_PlaySound("dakka/scrapperfire", CallACS("Dakka_RotateSound"))
+        RSCP A 0 A_FireCustomMissile("ScrapperShotSpawner", 0, true, -11)
         LSCP A 1 bright A_Light(6)
         LSCP B 1 bright A_Light(5)
         LSCP C 1 bright A_Light(4)
@@ -118,12 +111,9 @@ actor DWep_Scrappers: DoomWeapon
         RSCP A 0 A_AlertMonsters
         RSCP A 0 A_GiveInventory("ScrapperSide")
         RSCP A 0 A_TakeInventory("ScrapperAltTimer", 1)
-        RSCP AA 0 A_PlaySound("dakka/scrapperfire", CallACS("Dakka_RotateSound"))
-        RSCP AAAAA 0 A_FireCustomMissile("ScrapperShot",
-                                    CallACS("Dakka_Spread", -1200, 1200) / 65536.0, 0, 11,0,0,
-                                    CallACS("Dakka_Spread", -600, 600) / 65536.0)
-        RSCP A 0 A_FireCustomMissile("AmmoWaster")
         RSCP A 0 ACS_NamedExecuteAlways("Dakka_Recoil", 0, 2, 2, 7)
+        RSCP AA 0 A_PlaySound("dakka/scrapperfire", CallACS("Dakka_RotateSound"))
+        RSCP A 0 A_FireCustomMissile("ScrapperShotSpawner", 0, true, 11)
         DSCP J 1 bright A_Light(7)
         DSCP K 1 bright A_Light(6)
         DSCP L 1 bright A_Light(5)
@@ -147,12 +137,9 @@ actor DWep_Scrappers: DoomWeapon
         RSCP A 0 A_AlertMonsters
         RSCP A 0 A_TakeInventory("ScrapperSide")
         RSCP A 0 A_TakeInventory("ScrapperAltTimer", 1)
-        RSCP AA 0 A_PlaySound("dakka/scrapperfire", CallACS("Dakka_RotateSound"))
-        RSCP AAAAA 0 A_FireCustomMissile("ScrapperShot",
-                                    CallACS("Dakka_Spread", -1200, 1200) / 65536.0, 0, -11,0,0,
-                                    CallACS("Dakka_Spread", -600, 600) / 65536.0)
-        RSCP A 0 A_FireCustomMissile("AmmoWaster")
         RSCP A 0 ACS_NamedExecuteAlways("Dakka_Recoil", 0, 2, 2, 7)
+        RSCP AA 0 A_PlaySound("dakka/scrapperfire", CallACS("Dakka_RotateSound"))
+        RSCP A 0 A_FireCustomMissile("ScrapperShotSpawner", 0, true, -11)
         DSCP A 1 bright A_Light(7)
         DSCP B 1 bright A_Light(6)
         DSCP C 1 bright A_Light(5)
@@ -177,12 +164,9 @@ actor DWep_Scrappers: DoomWeapon
         RSCP A 0 A_AlertMonsters
         RSCP A 0 A_GiveInventory("ScrapperSide")
         RSCP A 0 A_TakeInventory("ScrapperAltTimer", 1)
-        RSCP AA 0 A_PlaySound("dakka/scrapperfire", CallACS("Dakka_RotateSound"))
-        RSCP AAAAA 0 A_FireCustomMissile("ScrapperShot",
-                                    CallACS("Dakka_Spread", -1200, 1200) / 65536.0, 0, 11,0,0,
-                                    CallACS("Dakka_Spread", -600, 600) / 65536.0)
-        RSCP A 0 A_FireCustomMissile("AmmoWaster")
         RSCP A 0 ACS_NamedExecuteAlways("Dakka_Recoil", 0, 2, 2, 7)
+        RSCP AA 0 A_PlaySound("dakka/scrapperfire", CallACS("Dakka_RotateSound"))
+        RSCP A 0 A_FireCustomMissile("ScrapperShotSpawner", 0, true, 11)
         RSCP L 1 bright A_Light(8)
         RSCP M 1 bright A_Light(7)
         RSCP N 1 bright A_Light(5)
@@ -206,12 +190,9 @@ actor DWep_Scrappers: DoomWeapon
         RSCP A 0 A_AlertMonsters
         LSCP A 0 A_TakeInventory("ScrapperSide")
         RSCP A 0 A_TakeInventory("ScrapperAltTimer", 1)
-        RSCP AA 0 A_PlaySound("dakka/scrapperfire", CallACS("Dakka_RotateSound"))
-        RSCP AAAAA 0 A_FireCustomMissile("ScrapperShot",
-                                    CallACS("Dakka_Spread", -1200, 1200) / 65536.0, 0, -11,0,0,
-                                    CallACS("Dakka_Spread", -600, 600) / 65536.0)
-        RSCP A 0 A_FireCustomMissile("AmmoWaster")
         RSCP A 0 ACS_NamedExecuteAlways("Dakka_Recoil", 0, 2, 2, 7)
+        RSCP AA 0 A_PlaySound("dakka/scrapperfire", CallACS("Dakka_RotateSound"))
+        RSCP A 0 A_FireCustomMissile("ScrapperShotSpawner", 0, true, -11)
         LSCP L 1 bright A_Light(8)
         LSCP M 1 bright A_Light(7)
         LSCP N 1 bright A_Light(5)
@@ -336,81 +317,178 @@ actor DWep_Scrappers: DoomWeapon
     }
 }
 
+
+actor ScrapperShotSpawner
+{
+    Radius 2
+    Height 2
+    Speed  10
+    
+    Projectile
+    +NOINTERACTION
+    +SERVERSIDEONLY
+    
+    var int user_spawncount;
+    var int user_spawnvelx;
+    var int user_spawnvely;
+    var int user_spawnvelz;
+    
+    var int user_velx;
+    var int user_vely;
+    var int user_velz;
+    var int user_t;
+    
+    Damage 6
+    Scale 0.25
+    
+    States
+    {
+      Spawn:
+        TNT1 A 0
+        TNT1 A 0 A_JumpIf(CallACS("Dakka_IsClient") == false, 1)
+        goto NETCODE
+        
+        TNT1 A 0 ACS_NamedExecuteWithResult("Dakka_ProjUpdate")
+        goto SpawnCommon
+        
+      Death:
+        TNT1 A 0 A_JumpIf(CallACS("Dakka_IsClient") == false, 1)
+        goto NETCODE
+        
+        TNT1 A 0 ACS_NamedExecuteWithResult("Dakka_ProjDeathUpdate")
+        goto SpawnCommon
+      
+      NETCODE:
+        TNT1 A 0
+        stop
+        
+      
+      SpawnCommon:
+        TNT1 A 0 ACS_NamedExecuteWithResult("Dakka_CalcProjAngle", 25, 1200, 600)
+        TNT1 A 0 A_SpawnItemEx("ScrapperShot", 0,0,0, user_spawnvelx/65536.0, user_spawnvely/65536.0, user_spawnvelz/65536.0, angle, SXF_ABSOLUTEANGLE | SXF_ABSOLUTEVELOCITY | SXF_TRANSFERPOINTERS)
+        TNT1 A 0 A_SetUserVar("user_spawncount", user_spawncount+1)
+        TNT1 A 0 A_JumpIf(user_spawncount >= 5, "SpawnEnd")
+        loop
+      
+      SpawnEnd:
+        TNT1 A 4
+        stop
+    }
+}
+
 actor ScrapperShot
 {
     Radius 4
     Height 4
 
     Projectile
-    Speed 45
+    Speed 35
 
     -NOGRAVITY
 
     +DOOMBOUNCE
     +SKYEXPLODE
     +MTHRUSPECIES
+    +FORCEXYBILLBOARD
 
-    BounceFactor 0.35
-    WallBounceFactor 0.5
+    BounceFactor 0.65
+    WallBounceFactor 0.75
 
     Scale 0.3
+    
+    var int user_spawnvelx;
+    var int user_spawnvely;
+    var int user_spawnvelz;
+    
+    var int user_velx;
+    var int user_vely;
+    var int user_velz;
+    var int user_t;
+    var int user_deatht;
 
     States
     {
       Spawn:
         SCRS A 0 bright
-        SCRS A 0 A_Jump(64, 2)
-        SCRS A 0 A_PlaySound("dakka/scrapfly", 7)
-        SCRS A 0 A_Jump(255, "Spawn1", "Spawn2", "Spawn3")
+        SCRS A 0 bright A_Jump(64, 2)
+        SCRS A 0 bright A_PlaySound("dakka/scrapfly", 7)
+        
+        SCRS A 0 bright A_SetUserVar("user_deatht", random(7, 11))
+        SCRS A 0 bright A_ChangeFlag("PAINLESS", random(1,8) != 1)
+        SCRS A 0 bright A_Jump(255, "Spawn1", "Spawn2", "Spawn3")
         goto Spawn1
 
       Spawn1:
-        SCRS A 0 A_GiveInventory("ScrapTimer")
-        SCRS A 0 A_SpawnItemEx("ScrapperTrail", -(1*momx)/3.0, (1*momy)/3.0, -(1*momz)/3.0, 0,0,0, 0, SXF_ABSOLUTEANGLE)
-        SCRS A 0 A_SpawnItemEx("ScrapperTrail", -(2*momx)/3.0, (2*momy)/3.0, -(2*momz)/3.0, 0,0,0, 0, SXF_ABSOLUTEANGLE)
-        SCRS A 0 A_SpawnItemEx("ScrapperTrail", 0,              0,           0)
-        SCRS A 1 bright A_JumpIfInventory("ScrapTimer", random(7, 11), "TimeToDie")
-        loop
+        SCRS A 0 bright
+        goto SpawnCommon
 
       Spawn2:
-        SCRS B 0 A_GiveInventory("ScrapTimer")
-        SCRS B 0 A_SpawnItemEx("ScrapperTrail", -(1*momx)/3.0, (1*momy)/3.0, -(1*momz)/3.0, 0,0,0, 0, SXF_ABSOLUTEANGLE)
-        SCRS B 0 A_SpawnItemEx("ScrapperTrail", -(2*momx)/3.0, (2*momy)/3.0, -(2*momz)/3.0, 0,0,0, 0, SXF_ABSOLUTEANGLE)
-        SCRS B 0 A_SpawnItemEx("ScrapperTrail", 0,              0,           0)
-        SCRS B 1 bright A_JumpIfInventory("ScrapTimer", random(7, 11), "TimeToDie")
-        loop
+        SCRS B 0 bright
+        goto SpawnCommon
 
       Spawn3:
-        SCRS C 0 A_GiveInventory("ScrapTimer")
-        SCRS C 0 A_SpawnItemEx("ScrapperTrail", -(1*momx)/3.0, (1*momy)/3.0, -(1*momz)/3.0, 0,0,0, 0, SXF_ABSOLUTEANGLE)
-        SCRS C 0 A_SpawnItemEx("ScrapperTrail", -(2*momx)/3.0, (2*momy)/3.0, -(2*momz)/3.0, 0,0,0, 0, SXF_ABSOLUTEANGLE)
-        SCRS C 0 A_SpawnItemEx("ScrapperTrail", 0,              0,           0)
-        SCRS C 1 bright A_JumpIfInventory("ScrapTimer", random(7, 11), "TimeToDie")
+        SCRS C 0 bright
+        goto SpawnCommon
+      
+      SpawnCommon:
+        SCRS "#" 0 bright A_SpawnItemEx("ScrapperTrail", -(1*momx)/3.0, (1*momy)/3.0, -(1*momz)/3.0, 0,0,0, 0, SXF_ABSOLUTEANGLE)
+        SCRS "#" 0 bright A_SpawnItemEx("ScrapperTrail", -(2*momx)/3.0, (2*momy)/3.0, -(2*momz)/3.0, 0,0,0, 0, SXF_ABSOLUTEANGLE)
+        SCRS "#" 0 bright A_SpawnItemEx("ScrapperTrail", 0,              0,           0)
+        SCRS "#" 0 bright ACS_NamedExecuteWithResult("Dakka_ProjUpdate")
+        SCRS "#" 1 bright A_JumpIf(user_t == user_deatht, "Death")
         loop
 
-      TimeToDie:
-        BAL1 C 0 A_SetTranslucent(1, 1)
-        SCRS A 0 bright A_Die
-        goto Death
-
       Death:
-        BAL1 C 0 A_PlaySound("dakka/scrappersplit")
-        SCRS A 0 A_ChangeFlag("PAINLESS", 1 - (random(0, 8) / 8))
-        BAL1 C 0 A_Explode(2, 96, 0)
-        BAL1 C 0 A_Explode(1, 96, 0)
-        // No, I'm not going to do even remotely complicated calculations in DECORATE.
-        BAL1 CCC 0 A_SpawnItemEx("SplitScrap", 0,0,0, (CallACS("Dakka_ScrapXY") / 65536.0) * frandom(15,20), 0, (CallACS("Dakka_ScrapZ") / 65536.0) + frandom(3,6), random(-60, 60))
-        BAL1 C 0 A_SpawnItemEx("ScrapShotDeath")
+        TNT1 A 0 ACS_NamedExecuteWithResult("Dakka_ProjDeathUpdate")
+        TNT1 A 0 A_SpawnItemEx("ScrapShotDeath", 0,0,0, 0,0,0, 0, SXF_CLIENTSIDE)
+        TNT1 A 0 A_PlaySound("dakka/scrappersplit")
+        TNT1 A 0 A_Explode(3, 96, 0)
+        
+        TNT1 A 0 ACS_NamedExecuteWithResult("Dakka_CalcProjAngle", random(-65, -80), random(-4000, -2000), random(1000, 3000), true)
+        TNT1 A 0 A_SpawnItemEx("SplitScrap", 0,0,0, user_spawnvelx/65536.0, user_spawnvely/65536.0, user_spawnvelz/65536.0, angle, SXF_ABSOLUTEANGLE | SXF_ABSOLUTEVELOCITY | SXF_TRANSFERPOINTERS)
+        
+        TNT1 A 0 ACS_NamedExecuteWithResult("Dakka_CalcProjAngle", random(-65, -80), random(-1000,  1000), random(1000, 3000), true)
+        TNT1 A 0 A_SpawnItemEx("SplitScrap", 0,0,0, user_spawnvelx/65536.0, user_spawnvely/65536.0, user_spawnvelz/65536.0, angle, SXF_ABSOLUTEANGLE | SXF_ABSOLUTEVELOCITY | SXF_TRANSFERPOINTERS)
+        
+        TNT1 A 0 ACS_NamedExecuteWithResult("Dakka_CalcProjAngle", random(-65, -80), random( 2000,  4000), random(1000, 3000), true)
+        TNT1 A 4 A_SpawnItemEx("SplitScrap", 0,0,0, user_spawnvelx/65536.0, user_spawnvely/65536.0, user_spawnvelz/65536.0, angle, SXF_ABSOLUTEANGLE | SXF_ABSOLUTEVELOCITY | SXF_TRANSFERPOINTERS)
         stop
     }
 }
 
+
+actor ScrapperShot_Forward: ScrapperShot
+{
+    Gravity 0.4
+    
+    States
+    {
+      Death:
+        TNT1 A 0 ACS_NamedExecuteWithResult("Dakka_ProjDeathUpdate")
+        TNT1 A 0 A_SpawnItemEx("ScrapShotDeath", 0,0,0, 0,0,0, 0, SXF_CLIENTSIDE)
+        TNT1 A 0 A_PlaySound("dakka/scrappersplit")
+        TNT1 A 0 A_Explode(3, 96, 0)
+        
+        TNT1 A 0 ACS_NamedExecuteWithResult("Dakka_CalcProjAngle", random(-55, -70), random(-4000, -2000), random(0, 500), true)
+        TNT1 A 0 A_SpawnItemEx("SplitScrap", 0,0,0, user_spawnvelx/65536.0, user_spawnvely/65536.0, user_spawnvelz/65536.0, angle, SXF_ABSOLUTEANGLE | SXF_ABSOLUTEVELOCITY | SXF_TRANSFERPOINTERS)
+        
+        TNT1 A 0 ACS_NamedExecuteWithResult("Dakka_CalcProjAngle", random(-55, -70), random(-1000,  1000), random(0, 500), true)
+        TNT1 A 0 A_SpawnItemEx("SplitScrap", 0,0,0, user_spawnvelx/65536.0, user_spawnvely/65536.0, user_spawnvelz/65536.0, angle, SXF_ABSOLUTEANGLE | SXF_ABSOLUTEVELOCITY | SXF_TRANSFERPOINTERS)
+        
+        TNT1 A 0 ACS_NamedExecuteWithResult("Dakka_CalcProjAngle", random(-55, -70), random( 2000,  4000), random(0, 500), true)
+        TNT1 A 4 A_SpawnItemEx("SplitScrap", 0,0,0, user_spawnvelx/65536.0, user_spawnvely/65536.0, user_spawnvelz/65536.0, angle, SXF_ABSOLUTEANGLE | SXF_ABSOLUTEVELOCITY | SXF_TRANSFERPOINTERS)
+        stop    
+    }
+}
+      
+
 actor ScrapShotDeath
 {
     +NOINTERACTION
+    +FORCEXYBILLBOARD
     // Can't be CLIENTSIDEONLY, or it doesn't spawn online. GENIUS
 
-    Scale 0.3
+    Scale 0.5
     RenderStyle Add
 
     States
@@ -425,6 +503,7 @@ actor ScrapperTrail
 {
     +NOINTERACTION
     +CLIENTSIDEONLY
+    +FORCEXYBILLBOARD
 
     RenderStyle Add
     Alpha 0.15
@@ -453,14 +532,13 @@ actor SplitScrap
     Speed 15
 
     -NOGRAVITY
-    +PUFFGETSOWNER
     +DOOMBOUNCE
     +SKYEXPLODE
     +FORCERADIUSDMG
     +NODAMAGETHRUST
     +THRUACTORS
     +BLOODLESSIMPACT
-    +MTHRUSPECIES
+    +FORCEXYBILLBOARD
 
     Gravity 0.65
 
@@ -468,47 +546,51 @@ actor SplitScrap
     WallBounceFactor 0.5
 
     Scale 0.2
+    
+    var int user_harmlesst;
+    var int user_deatht;
+    var int user_t;
 
     States
     {
       Spawn:
-        SCRS A 0 bright
-        SCRS A 0 A_Jump(192, 2)
-        SCRS A 0 A_GiveInventory("ScrapTimer", 3)
-        SCRS A 0 A_Jump(255, "Spawn1", "Spawn2", "Spawn3")
+        SCRS A 0 
+        SCRS A 0 bright A_SetUserVar("user_harmlesst", random( 1,   3))
+        SCRS A 0 bright A_SetUserVar("user_deatht",    random(95, 115))
+        SCRS A 0 bright A_Jump(255, "Spawn1", "Spawn2", "Spawn3")
         goto Spawn1
-
+      
       Spawn1:
-        SCRS A 0 A_ChangeFlag("PAINLESS", 1 - (random(0, 8) / 8))
-        SCRS A 0 A_TakeInventory("ScrapTimer", 1)
-        SCRS A 0 A_JumpIfInventory("ScrapTimer", 1, 2)
-        SCRS A 0 A_Explode(2, 34, 0)
-        SCRS A 0        A_SpawnItemEx("ScrapperTrail2", -(1*momx)/2.0, (1*momy)/2.0, -(1*momz)/2.0, 0,0,0, 0, SXF_ABSOLUTEANGLE)
-        SCRS A 1 bright A_SpawnItemEx("ScrapperTrail2", 0,              0,           0)
-        loop
-
+        SCRS A 0 bright
+        goto SpawnCommon
+      
       Spawn2:
-        SCRS A 0 A_ChangeFlag("PAINLESS", 1 - (random(0, 8) / 8))
-        SCRS A 0 A_TakeInventory("ScrapTimer", 1)
-        SCRS A 0 A_JumpIfInventory("ScrapTimer", 1, 2)
-        SCRS A 0 A_Explode(2, 32, 0)
-        SCRS B 0        A_SpawnItemEx("ScrapperTrail2", -(1*momx)/2.0, (1*momy)/2.0, -(1*momz)/2.0, 0,0,0, 0, SXF_ABSOLUTEANGLE)
-        SCRS B 1 bright A_SpawnItemEx("ScrapperTrail2", 0,              0,           0)
-        loop
-
+        SCRS B 0 bright
+        goto SpawnCommon
+      
       Spawn3:
-        SCRS A 0 A_ChangeFlag("PAINLESS", 1 - (random(0, 8) / 8))
-        SCRS A 0 A_TakeInventory("ScrapTimer", 1)
-        SCRS A 0 A_JumpIfInventory("ScrapTimer", 1, 2)
-        SCRS A 0 A_Explode(2, 32, 0)
-        SCRS C 0        A_SpawnItemEx("ScrapperTrail2", -(1*momx)/2.0, (1*momy)/2.0, -(1*momz)/2.0, 0,0,0, 0, SXF_ABSOLUTEANGLE)
-        SCRS C 1 bright A_SpawnItemEx("ScrapperTrail2", 0,              0,           0)
+        SCRS C 0 bright
+        goto SpawnCommon
+      
+      SpawnCommon:
+        SCRS "#" 0 A_ChangeFlag("PAINLESS", random(1,8) != 1)
+        SCRS "#" 0 A_SpawnItemEx("ScrapperTrail2", -(1*momx)/2.0, (1*momy)/2.0, -(1*momz)/2.0, 0,0,0, 0, SXF_ABSOLUTEANGLE)
+        SCRS "#" 0 A_SpawnItemEx("ScrapperTrail2", 0,              0,           0)
+        
+        SCRS "#" 0 A_SetUserVar("user_t", user_t + 1)
+        SCRS "#" 0 A_JumpIf(user_t > 105,            "Death")
+        SCRS "#" 0 A_JumpIf(user_t > user_harmlesst, "HurtTick")
+        SCRS "#" 1 bright
         loop
+      
+      HurtTick:
+        SCRS "#" 1 bright A_Explode(2, 32, 0)
+        goto SpawnCommon
 
       Death:
         BAL1 C 0 A_ChangeFlag("NOGRAVITY", 1)
-        BAL1 C 0 A_Stop
         BAL1 C 0 A_SetTranslucent(1, 1)
+        BAL1 C 0 A_Stop
         BAL1 CDE 5 bright
         stop
     }
@@ -551,13 +633,24 @@ actor ScrapperGrenade
     Height 4
 
     Projectile
-    Speed 40
+    Speed 30
 
     +MTHRUSPECIES
+    +FORCEXYBILLBOARD
+    +HITTRACER
     -NOGRAVITY
     Gravity 0.65  // I sure do love this gravity value.
 
     Scale 0.35
+    
+    var int user_spawnvelx;
+    var int user_spawnvely;
+    var int user_spawnvelz;
+    
+    var int user_velx;
+    var int user_vely;
+    var int user_velz;
+    var int user_t;
 
     States
     {
@@ -566,97 +659,75 @@ actor ScrapperGrenade
         SCRN A 0 A_PlaySound("dakka/scrapfly", 7)
         SCRN A 0 A_Jump(255, "Spawn1", "Spawn2", "Spawn3")
         goto Spawn1
-
+      
       Spawn1:
-        SCRN A 1 bright
-        SCRN A 0 A_SpawnItemEx("ScrapperTrail3", -(1*momx)/2.0, (1*momy)/2.0, -(1*momz)/2.0, 0,0,0, 0, SXF_ABSOLUTEANGLE)
-        SCRN A 0 A_SpawnItemEx("ScrapperTrail3", 0,              0,           0)
-        SCRN A 1 bright
-        SCRN A 0 A_SpawnItemEx("ScrapperTrail3", -(1*momx)/2.0, (1*momy)/2.0, -(1*momz)/2.0, 0,0,0, 0, SXF_ABSOLUTEANGLE)
-        SCRN A 0 A_SpawnItemEx("ScrapperTrail3", 0,              0,           0)
-        SCRN A 0 A_SpawnItemEx("SplitScrap", 0,0,0, random(0,90)/10.0, 0, random(-30,60)/10.0, random(0, 360))
-
-        SCRN A 1 bright
-        SCRN A 0 A_SpawnItemEx("ScrapperTrail3", -(1*momx)/2.0, (1*momy)/2.0, -(1*momz)/2.0, 0,0,0, 0, SXF_ABSOLUTEANGLE)
-        SCRN A 0 A_SpawnItemEx("ScrapperTrail3", 0,              0,           0)
-        SCRN A 1 bright
-        SCRN A 0 A_SpawnItemEx("ScrapperTrail3", -(1*momx)/2.0, (1*momy)/2.0, -(1*momz)/2.0, 0,0,0, 0, SXF_ABSOLUTEANGLE)
-        SCRN A 0 A_SpawnItemEx("ScrapperTrail3", 0,              0,           0)
-        SCRN A 0 A_SpawnItemEx("SplitScrap", 0,0,0, random(0,90)/10.0, 0, random(-30,60)/10.0, random(0, 360))
-
-        SCRN A 1 bright
-        SCRN A 0 A_SpawnItemEx("ScrapperTrail3", -(1*momx)/2.0, (1*momy)/2.0, -(1*momz)/2.0, 0,0,0, 0, SXF_ABSOLUTEANGLE)
-        SCRN A 0 A_SpawnItemEx("ScrapperTrail3", 0,              0,           0)
-        SCRN A 1 bright
-        SCRN A 0 A_SpawnItemEx("ScrapperTrail3", -(1*momx)/2.0, (1*momy)/2.0, -(1*momz)/2.0, 0,0,0, 0, SXF_ABSOLUTEANGLE)
-        SCRN A 0 A_SpawnItemEx("ScrapperTrail3", 0,              0,           0)
-        SCRN A 0 A_SpawnItemEx("SplitScrap", 0,0,0, random(0,90)/10.0, 0, random(-30,60)/10.0, random(0, 360))
-        goto Spawn2
-
+        SCRN A 0 bright
+        goto SpawnCommon
+      
       Spawn2:
-        SCRN B 1 bright
-        SCRN B 0 A_SpawnItemEx("ScrapperTrail3", -(1*momx)/2.0, (1*momy)/2.0, -(1*momz)/2.0, 0,0,0, 0, SXF_ABSOLUTEANGLE)
-        SCRN B 0 A_SpawnItemEx("ScrapperTrail3", 0,              0,           0)
-        SCRN B 1 bright
-        SCRN B 0 A_SpawnItemEx("ScrapperTrail3", -(1*momx)/2.0, (1*momy)/2.0, -(1*momz)/2.0, 0,0,0, 0, SXF_ABSOLUTEANGLE)
-        SCRN B 0 A_SpawnItemEx("ScrapperTrail3", 0,              0,           0)
-        SCRN B 0 A_SpawnItemEx("SplitScrap", 0,0,0, random(0,90)/10.0, 0, random(-30,60)/10.0, random(0, 360))
-
-        SCRN B 1 bright
-        SCRN B 0 A_SpawnItemEx("ScrapperTrail3", -(1*momx)/2.0, (1*momy)/2.0, -(1*momz)/2.0, 0,0,0, 0, SXF_ABSOLUTEANGLE)
-        SCRN B 0 A_SpawnItemEx("ScrapperTrail3", 0,              0,           0)
-        SCRN B 1 bright
-        SCRN B 0 A_SpawnItemEx("ScrapperTrail3", -(1*momx)/2.0, (1*momy)/2.0, -(1*momz)/2.0, 0,0,0, 0, SXF_ABSOLUTEANGLE)
-        SCRN B 0 A_SpawnItemEx("ScrapperTrail3", 0,              0,           0)
-        SCRN B 0 A_SpawnItemEx("SplitScrap", 0,0,0, random(0,90)/10.0, 0, random(-30,60)/10.0, random(0, 360))
-
-        SCRN B 1 bright
-        SCRN B 0 A_SpawnItemEx("ScrapperTrail3", -(1*momx)/2.0, (1*momy)/2.0, -(1*momz)/2.0, 0,0,0, 0, SXF_ABSOLUTEANGLE)
-        SCRN B 0 A_SpawnItemEx("ScrapperTrail3", 0,              0,           0)
-        SCRN B 1 bright
-        SCRN B 0 A_SpawnItemEx("ScrapperTrail3", -(1*momx)/2.0, (1*momy)/2.0, -(1*momz)/2.0, 0,0,0, 0, SXF_ABSOLUTEANGLE)
-        SCRN B 0 A_SpawnItemEx("ScrapperTrail3", 0,              0,           0)
-        SCRN B 0 A_SpawnItemEx("SplitScrap", 0,0,0, random(0,90)/10.0, 0, random(-30,60)/10.0, random(0, 360))
-        goto Spawn3
-
+        SCRN B 0 bright
+        goto SpawnCommon
+      
       Spawn3:
-        SCRN C 1 bright
-        SCRN C 0 A_SpawnItemEx("ScrapperTrail3", -(1*momx)/2.0, (1*momy)/2.0, -(1*momz)/2.0, 0,0,0, 0, SXF_ABSOLUTEANGLE)
-        SCRN C 0 A_SpawnItemEx("ScrapperTrail3", 0,              0,           0)
-        SCRN C 1 bright
-        SCRN C 0 A_SpawnItemEx("ScrapperTrail3", -(1*momx)/2.0, (1*momy)/2.0, -(1*momz)/2.0, 0,0,0, 0, SXF_ABSOLUTEANGLE)
-        SCRN C 0 A_SpawnItemEx("ScrapperTrail3", 0,              0,           0)
-        SCRN C 0 A_SpawnItemEx("SplitScrap", 0,0,0, random(0,90)/10.0, 0, random(-30,60)/10.0, random(0, 360))
+        SCRN C 0 bright
+        goto SpawnCommon
 
-        SCRN C 1 bright
-        SCRN C 0 A_SpawnItemEx("ScrapperTrail3", -(1*momx)/2.0, (1*momy)/2.0, -(1*momz)/2.0, 0,0,0, 0, SXF_ABSOLUTEANGLE)
-        SCRN C 0 A_SpawnItemEx("ScrapperTrail3", 0,              0,           0)
-        SCRN C 1 bright
-        SCRN C 0 A_SpawnItemEx("ScrapperTrail3", -(1*momx)/2.0, (1*momy)/2.0, -(1*momz)/2.0, 0,0,0, 0, SXF_ABSOLUTEANGLE)
-        SCRN C 0 A_SpawnItemEx("ScrapperTrail3", 0,              0,           0)
-        SCRN C 0 A_SpawnItemEx("SplitScrap", 0,0,0, random(0,90)/10.0, 0, random(-30,60)/10.0, random(0, 360))
-
-        SCRN C 1 bright
-        SCRN C 0 A_SpawnItemEx("ScrapperTrail3", -(1*momx)/2.0, (1*momy)/2.0, -(1*momz)/2.0, 0,0,0, 0, SXF_ABSOLUTEANGLE)
-        SCRN C 0 A_SpawnItemEx("ScrapperTrail3", 0,              0,           0)
-        SCRN C 1 bright
-        SCRN C 0 A_SpawnItemEx("ScrapperTrail3", -(1*momx)/2.0, (1*momy)/2.0, -(1*momz)/2.0, 0,0,0, 0, SXF_ABSOLUTEANGLE)
-        SCRN C 0 A_SpawnItemEx("ScrapperTrail3", 0,              0,           0)
-        SCRN C 0 A_SpawnItemEx("SplitScrap", 0,0,0, random(0,90)/10.0, 0, random(-30,60)/10.0, random(0, 360))
-        goto Spawn1
+      SpawnCommon:
+        SCRN A 1 bright ACS_NamedExecuteWithResult("Dakka_ProjUpdate")
+        SCRN A 0 A_SpawnItemEx("ScrapperTrail3", -(1*momx)/2.0, (1*momy)/2.0, -(1*momz)/2.0, 0,0,0, 0, SXF_ABSOLUTEANGLE)
+        SCRN A 0 A_SpawnItemEx("ScrapperTrail3", 0,              0,           0)
+        SCRN A 0 A_JumpIf(user_t % 3 == 0, "SpawnScrap")
+        loop
+      
+      SpawnScrap:
+        SCRN A 0 A_SpawnItemEx("SplitScrap", 0,0,0, random(0,90)/10.0, 0, random(-30,60)/10.0, random(0, 360), SXF_TRANSFERPOINTERS)
+        goto SpawnCommon
       
       Death:
-        MISL B 0 A_ChangeFlag("NOGRAVITY", 1)
-        MISL B 0 A_SetTranslucent(1, 1)
-        MISL B 0 A_PlaySound("dakka/scrapnadeexplode")
-        MISL B 0 A_SpawnItemEx("ScrapperShot_FromNade", 0,0,0, random(50,90)/10.0,0,random(60,90)/10.0, -45)
-        MISL B 0 A_SpawnItemEx("ScrapperShot_FromNade", 0,0,0, random(50,90)/10.0,0,random(60,90)/10.0, -15)
-        MISL B 0 A_SpawnItemEx("ScrapperShot_FromNade", 0,0,0, random(50,90)/10.0,0,random(60,90)/10.0,  15)
-        MISL B 0 A_SpawnItemEx("ScrapperShot_FromNade", 0,0,0, random(50,90)/10.0,0,random(60,90)/10.0,  45)
-        MISL B 0 A_Explode(20, 96, 0)
-        MISL BCD 4 bright
+        TNT1 A 0 ACS_NamedExecuteWithResult("Dakka_ProjDeathUpdate")
+        TNT1 A 0 A_SpawnItemEx("ScrapShotDeath", 0,0,0, 0,0,0, 0, SXF_CLIENTSIDE)
+        TNT1 A 0 A_PlaySound("dakka/scrapnadeexplode")
+        TNT1 A 0 A_Explode(20, 96, 0)
+        
+        TNT1 A 0 A_JumpIf(CallACS("Dakka_HitEnemy"), "EnemyBlast")
+        TNT1 A 0 A_JumpIf(z - floorz   < 2, "FloorBlast")
+        TNT1 A 0 A_JumpIf(ceilingz - z < 8, "CeilingBlast")
+        goto NormalBlast
+        
+      
+      NormalBlast:
+        TNT1 A 0 ACS_NamedExecuteWithResult("Dakka_CalcProjAngle", random(15, 20), random(12500, 14500), random(-1500, -500), true)
+        TNT1 A 0 A_SpawnItemEx("ScrapperShot", 0,0,0, user_spawnvelx/65536.0, user_spawnvely/65536.0, -user_spawnvelz/65536.0, angle+180, SXF_ABSOLUTEANGLE | SXF_ABSOLUTEVELOCITY | SXF_TRANSFERPOINTERS)
+        
+        TNT1 A 0 ACS_NamedExecuteWithResult("Dakka_CalcProjAngle", random(15, 20), random(15500, 17500), random(-1500, -500), true)
+        TNT1 A 0 A_SpawnItemEx("ScrapperShot", 0,0,0, user_spawnvelx/65536.0, user_spawnvely/65536.0, -user_spawnvelz/65536.0, angle+180, SXF_ABSOLUTEANGLE | SXF_ABSOLUTEVELOCITY | SXF_TRANSFERPOINTERS)
+        
+        TNT1 A 0 ACS_NamedExecuteWithResult("Dakka_CalcProjAngle", random(15, 20), random(18500, 20500), random(-1500, -500), true)
+        TNT1 A 0 A_SpawnItemEx("ScrapperShot", 0,0,0, user_spawnvelx/65536.0, user_spawnvely/65536.0, -user_spawnvelz/65536.0, angle+180, SXF_ABSOLUTEANGLE | SXF_ABSOLUTEVELOCITY | SXF_TRANSFERPOINTERS)
+        
+        TNT1 A 0 ACS_NamedExecuteWithResult("Dakka_CalcProjAngle", random(15, 20), random(21500, 23500), random(-1500, -500), true)
+        TNT1 A 4 A_SpawnItemEx("ScrapperShot", 0,0,0, user_spawnvelx/65536.0, user_spawnvely/65536.0, -user_spawnvelz/65536.0, angle+180, SXF_ABSOLUTEANGLE | SXF_ABSOLUTEVELOCITY | SXF_TRANSFERPOINTERS)
+        stop
+        
+      EnemyBlast:
+        TNT1 A 0 A_SpawnItemEx("ScrapperShot_Forward", 0,0,0, frandom(10,15), 0, frandom(2,5), frandom(-60,-30), SXF_TRANSFERPOINTERS)
+        TNT1 A 0 A_SpawnItemEx("ScrapperShot_Forward", 0,0,0, frandom(10,15), 0, frandom(2,5), frandom(-30,  0), SXF_TRANSFERPOINTERS)
+        TNT1 A 0 A_SpawnItemEx("ScrapperShot_Forward", 0,0,0, frandom(10,15), 0, frandom(2,5), frandom(  0, 30), SXF_TRANSFERPOINTERS)
+        TNT1 A 4 A_SpawnItemEx("ScrapperShot_Forward", 0,0,0, frandom(10,15), 0, frandom(2,5), frandom( 30, 60), SXF_TRANSFERPOINTERS)
+        stop
+        
+      FloorBlast:
+        TNT1 A 0 A_SpawnItemEx("ScrapperShot", 0,0,0, frandom(15,20), 0, frandom(5,8), frandom(-60,-30), SXF_TRANSFERPOINTERS)
+        TNT1 A 0 A_SpawnItemEx("ScrapperShot", 0,0,0, frandom(15,20), 0, frandom(5,8), frandom(-30,  0), SXF_TRANSFERPOINTERS)
+        TNT1 A 0 A_SpawnItemEx("ScrapperShot", 0,0,0, frandom(15,20), 0, frandom(5,8), frandom(  0, 30), SXF_TRANSFERPOINTERS)
+        TNT1 A 4 A_SpawnItemEx("ScrapperShot", 0,0,0, frandom(15,20), 0, frandom(5,8), frandom( 30, 60), SXF_TRANSFERPOINTERS)
+        stop
+        
+      CeilingBlast:
+        TNT1 A 0 A_SpawnItemEx("ScrapperShot", 0,0,0, frandom(8,12), 0, frandom(-8,-6), frandom(-60,-30), SXF_TRANSFERPOINTERS)
+        TNT1 A 0 A_SpawnItemEx("ScrapperShot", 0,0,0, frandom(8,12), 0, frandom(-8,-6), frandom(-30,  0), SXF_TRANSFERPOINTERS)
+        TNT1 A 0 A_SpawnItemEx("ScrapperShot", 0,0,0, frandom(8,12), 0, frandom(-8,-6), frandom(  0, 30), SXF_TRANSFERPOINTERS)
+        TNT1 A 4 A_SpawnItemEx("ScrapperShot", 0,0,0, frandom(8,12), 0, frandom(-8,-6), frandom( 30, 60), SXF_TRANSFERPOINTERS)
         stop
     }
 }
-
-actor ScrapperShot_FromNade: ScrapperShot { +PUFFGETSOWNER }
