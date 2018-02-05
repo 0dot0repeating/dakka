@@ -54,6 +54,7 @@ actor DWep_Impaler: DoomWeapon
         DKIP A 0 A_AlertMonsters
         DKIP A 0 ACS_NamedExecuteWithResult("Dakka_Switcharoo", 6, 0)
         DKIP A 0 ACS_NamedExecuteAlways("Dakka_Recoil", 0, 3, 2, 18)
+        DKIP A 0 ACS_NamedExecuteWithResult("Dakka_UseAmmo", 6, 1)
         DKIP A 0 A_GiveInventory("GiveScrapCounter", 30)
         DKIP A 0 A_JumpIfInventory("ImpalerBarrelCounter", 2, "RightFire")
         DKIP A 0 A_JumpIfInventory("ImpalerBarrelCounter", 1, "LeftFire")
@@ -61,7 +62,7 @@ actor DWep_Impaler: DoomWeapon
 
       RightFire:
         DKIP B 0 A_TakeInventory("ImpalerBarrelCounter")
-        DKIP B 0 A_FireCustomMissile("ImpalerMissile", 0, true, 2)
+        DKIP B 0 A_FireCustomMissile("ImpalerMissile", 0, false, 2)
         DKIP B 0 bright               A_PlaySound("dakka/impalerfire", 5)
         DKIP B 1 bright offset(0, 38) A_GunFlash
         DKIP C 1 bright
@@ -77,7 +78,7 @@ actor DWep_Impaler: DoomWeapon
 
       CenterFire:
         DKIP I 0 A_GiveInventory("ImpalerBarrelCounter")
-        DKIP I 0 A_FireCustomMissile("ImpalerMissile", 0, true, 0)
+        DKIP I 0 A_FireCustomMissile("ImpalerMissile", 0, false, 0)
         DKIP I 0 bright               A_PlaySound("dakka/impalerfire", 6)
         DKIP I 1 bright offset(0, 38) A_GunFlash
         DKIP J 1 bright
@@ -93,7 +94,7 @@ actor DWep_Impaler: DoomWeapon
 
       LeftFire:
         DKIP P 0 A_GiveInventory("ImpalerBarrelCounter")
-        DKIP P 0 A_FireCustomMissile("ImpalerMissile", 0, true, -2)
+        DKIP P 0 A_FireCustomMissile("ImpalerMissile", 0, false, -2)
         DKIP P 0 bright               A_PlaySound("dakka/impalerfire", 7)
         DKIP P 1 bright offset(0, 38) A_GunFlash
         DKIP Q 1 bright
@@ -118,9 +119,10 @@ actor DWep_Impaler: DoomWeapon
         DKIP A 0 ACS_NamedExecuteWithResult("Dakka_Switcharoo", 6, 1)
         DKIP A 0 ACS_NamedExecuteAlways("Dakka_Recoil", 0, 10, 3, 24)
         DKIP A 0 A_GiveInventory("GiveScrapCounter", 90)
-        DKIP A 0 A_FireCustomMissile("ImpalerAltMissile2")
-        DKIP A 0 A_FireCustomMissile("ImpalerAltMissile", 0, false, -2)
-        DKIP A 0 A_FireCustomMissile("ImpalerAltMissile", 0, false,  2)
+        DKIP A 0 ACS_NamedExecuteWithResult("Dakka_UseAmmo", 6, 3)
+        DKIP A 0 A_FireCustomMissile("ImpalerAltMissile2", 0, false)
+        DKIP A 0 A_FireCustomMissile("ImpalerAltMissile",  0, false, -2)
+        DKIP A 0 A_FireCustomMissile("ImpalerAltMissile",  0, false,  2)
         DKP2 E 1 bright offset(0, 38)
         DKP2 F 1 bright offset(0, 43)
         DKP2 G 2 bright offset(0, 44)

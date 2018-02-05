@@ -47,7 +47,6 @@ actor DWep_Minigun: DoomWeapon
       UnwindDeselect:
         DMNG A 0 A_TakeInventory("DakkaMinigun_WoundUp")
         DMNG A 0 A_PlaySound("dakka/minigunspindown", 6)
-        DMNG K 0 ACS_NamedExecuteWithResult("Dakka_AmmoSync", 4)
         goto Deselect2
 
       Deselect2:
@@ -60,7 +59,6 @@ actor DWep_Minigun: DoomWeapon
       FlameDeselect:
         DMNG A 0 A_TakeInventory("MinigunFlamethrowing")
         DMNG K 0 A_PlaySound("dakka/minigun/flamestop", 6)
-        DMNG K 0 ACS_NamedExecuteWithResult("Dakka_AmmoSync", 5)
         goto Deselect3
 
       Deselect3:
@@ -81,7 +79,7 @@ actor DWep_Minigun: DoomWeapon
       Ready:
         DMNG A 0 A_TakeInventory("DakkaMinigun_WoundUp")
         DMNG A 1 A_WeaponReady
-        loop
+        wait
 
       Fire:
         DMNG A 0 A_TakeInventory("DakkaMinigun_RecoilLevel")
@@ -170,6 +168,7 @@ actor DWep_Minigun: DoomWeapon
 
       Fire_Slow:
         DMNG A 0 A_StopSound(5)
+        DMNG A 0 A_GiveInventory("DakkaMinigun_WoundUp")
         DMNG A 0 A_JumpIfInventory("AltFired", 1, "Fire_Fast")
         DMNG A 0 A_PlaySound("dakka/minigunfire_slow", 6, 1.0, true)
         goto Hold_Slow
@@ -181,12 +180,13 @@ actor DWep_Minigun: DoomWeapon
         DMNG A 0 A_AlertMonsters
         DMNG A 0 ACS_NamedExecuteWithResult("Dakka_Switcharoo", 5, 0)
         DMNG A 0 ACS_NamedExecuteAlways("Dakka_Recoil", 0, random(-150, -60), 1, random(11, 15))
+        DMNG A 0 ACS_NamedExecuteWithResult("Dakka_UseAmmo", 4, 1)
         DMNG A 0 A_Jump(128, "Slow_Painless")
-        DMNG A 0 bright A_FireBullets(4.5, 2, -1, 12, "DakkaPuff", FBF_NORANDOM | FBF_USEAMMO)
+        DMNG A 0 bright A_FireBullets(4.5, 2, -1, 12, "DakkaPuff", FBF_NORANDOM)
         goto Slow_Recoil
 
       Slow_Painless:
-        DMNG A 0 bright A_FireBullets(4.5, 2, -1, 12, "DakkaPuff_Painless", FBF_NORANDOM | FBF_USEAMMO)
+        DMNG A 0 bright A_FireBullets(4.5, 2, -1, 12, "DakkaPuff_Painless", FBF_NORANDOM)
         goto Slow_Recoil
 
 
@@ -409,13 +409,14 @@ actor DWep_Minigun: DoomWeapon
         DMNG A 0 A_AlertMonsters
         DMNG A 0 A_GunFlash("FlashFastA")
         DMNG A 0 ACS_NamedExecuteWithResult("Dakka_Switcharoo", 5, 0)
+        DMNG A 0 ACS_NamedExecuteWithResult("Dakka_UseAmmo", 4, 1)
         DMNG A 0 A_Jump(128, "Fast_Painless")
         DMNG A 0 A_FireBullets(14, 6, -1, 6, "DakkaPuff",          FBF_NORANDOM)
-        DMNG A 0 A_FireBullets(14, 6, -1, 6, "DakkaPuff_Painless", FBF_NORANDOM | FBF_USEAMMO)
+        DMNG A 0 A_FireBullets(14, 6, -1, 6, "DakkaPuff_Painless", FBF_NORANDOM)
         goto Fast_Recoil
 
       Fast_Painless:
-        DMNG A 0 A_FireBullets(14, 6,  2, 6, "DakkaPuff_Painless", FBF_NORANDOM | FBF_USEAMMO)
+        DMNG A 0 A_FireBullets(14, 6,  2, 6, "DakkaPuff_Painless", FBF_NORANDOM)
         goto Fast_Recoil
 
 
@@ -646,7 +647,6 @@ actor DWep_Minigun: DoomWeapon
       FireEnd_Recoil5:
         DMNG A 0 A_PlaySound("dakka/minigunspindown", 6)
         DMNG A 0 A_TakeInventory("DakkaMinigun_WoundUp")
-        DMNG A 0 ACS_NamedExecuteWithResult("Dakka_AmmoSync", 4)
         DMNG A 0               A_Refire("Fire_Slow")
         DMNG A 1               A_WeaponReady(WRF_NOFIRE | WRF_NOBOB)
         DMNG B 0               A_Refire("Fire_Slow")
@@ -682,7 +682,6 @@ actor DWep_Minigun: DoomWeapon
       FireEnd_Recoil4:
         DMNG A 0 A_PlaySound("dakka/minigunspindown", 6)
         DMNG A 0 A_TakeInventory("DakkaMinigun_WoundUp")
-        DMNG A 0 ACS_NamedExecuteWithResult("Dakka_AmmoSync", 4)
         DMNG A 0               A_Refire("Fire_Slow")
         DMNG A 1               A_WeaponReady(WRF_NOFIRE | WRF_NOBOB)
         DMNG B 0               A_Refire("Fire_Slow")
@@ -717,7 +716,6 @@ actor DWep_Minigun: DoomWeapon
       FireEnd_Recoil3:
         DMNG A 0 A_PlaySound("dakka/minigunspindown", 6)
         DMNG A 0 A_TakeInventory("DakkaMinigun_WoundUp")
-        DMNG A 0 ACS_NamedExecuteWithResult("Dakka_AmmoSync", 4)
         DMNG A 0               A_Refire("Fire_Slow")
         DMNG A 1               A_WeaponReady(WRF_NOFIRE | WRF_NOBOB)
         DMNG B 0               A_Refire("Fire_Slow")
@@ -751,7 +749,6 @@ actor DWep_Minigun: DoomWeapon
       FireEnd_Recoil2:
         DMNG A 0 A_PlaySound("dakka/minigunspindown", 6)
         DMNG A 0 A_TakeInventory("DakkaMinigun_WoundUp")
-        DMNG A 0 ACS_NamedExecuteWithResult("Dakka_AmmoSync", 4)
         DMNG A 0               A_Refire("Fire_Slow")
         DMNG A 1               A_WeaponReady(WRF_NOFIRE | WRF_NOBOB)
         DMNG B 0               A_Refire("Fire_Slow")
@@ -784,7 +781,6 @@ actor DWep_Minigun: DoomWeapon
       FireEnd_Recoil1:
         DMNG A 0 A_PlaySound("dakka/minigunspindown", 6)
         DMNG A 0 A_TakeInventory("DakkaMinigun_WoundUp")
-        DMNG A 0 ACS_NamedExecuteWithResult("Dakka_AmmoSync", 4)
         DMNG A 0               A_Refire("Fire_Slow")
         DMNG A 1               A_WeaponReady(WRF_NOFIRE | WRF_NOBOB)
         DMNG B 0               A_Refire("Fire_Slow")
@@ -878,7 +874,8 @@ actor DWep_Minigun: DoomWeapon
         "----" A 0 ACS_NamedExecuteWithResult("Dakka_Switcharoo", 5, 1)
         "----" A 0 A_Light(1)
         DMNG E 0 A_GiveInventory("GiveScrapCounter3", 1)
-        DMNG E 0 A_FireCustomMissile("MinigunFlame",  random(-20,20)/5.0, 1, 0, -4)
+        DMNG E 0 ACS_NamedExecuteWithResult("Dakka_UseAmmo", 5, 1)
+        DMNG E 0 A_FireCustomMissile("MinigunFlame",  random(-20,20)/5.0, 0, 0, -4)
         DMNG E 1 bright offset(0, 33) A_WeaponReady(WRF_NOBOB | WRF_NOFIRE)
         DMNG E 0 A_FireCustomMissile("MinigunFlame", random(-20,20)/5.0, 0, 0, -4)
         DMNG E 1 bright offset(0, 33) A_WeaponReady(WRF_NOBOB | WRF_NOFIRE)
@@ -919,7 +916,8 @@ actor DWep_Minigun: DoomWeapon
         "----" A 0 ACS_NamedExecuteWithResult("Dakka_Switcharoo", 5, 1)
         "----" A 0 A_Light(5)
         DMNG G 0 A_GiveInventory("GiveScrapCounter3", 1)
-        DMNG G 0 A_FireCustomMissile("MinigunFlame", random(-20,20)/5.0, 1, 0, -4)
+        DMNG E 0 ACS_NamedExecuteWithResult("Dakka_UseAmmo", 5, 1)
+        DMNG G 0 A_FireCustomMissile("MinigunFlame", random(-20,20)/5.0, 0, 0, -4)
         DMNG G 1 bright offset(0, 37) A_WeaponReady(WRF_NOBOB | WRF_NOFIRE)
         DMNG G 0 A_FireCustomMissile("MinigunFlame", random(-20,20)/5.0, 0, 0, -4)
         DMNG G 1 bright offset(0, 37) A_WeaponReady(WRF_NOBOB | WRF_NOFIRE)
@@ -956,7 +954,6 @@ actor DWep_Minigun: DoomWeapon
         DMNG K 0 A_ClearRefire
         DMNG K 0 A_TakeInventory("MinigunFlamethrowing")
         DMNG K 0 A_PlaySound("dakka/minigun/flamestop", 6)
-        DMNG K 0 ACS_NamedExecuteWithResult("Dakka_AmmoSync", 5)
         DMNG K 0 A_StopSound(7)
         DMNG K 2 bright offset(0, 36) A_WeaponReady(WRF_NOBOB | WRF_NOSECONDARY)
 
@@ -976,7 +973,6 @@ actor DWep_Minigun: DoomWeapon
         DMNG K 0 A_ClearRefire
         DMNG K 0 A_TakeInventory("MinigunFlamethrowing")
         DMNG K 0 A_PlaySound("dakka/minigun/flamestop", 6)
-        DMNG K 0 ACS_NamedExecuteWithResult("Dakka_AmmoSync", 5)
         DMNG K 0 A_StopSound(7)
         DMNG K 2 bright offset(0, 36) A_WeaponReady(WRF_NOBOB | WRF_NOSECONDARY)
 
