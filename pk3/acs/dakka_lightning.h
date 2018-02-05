@@ -10,30 +10,30 @@
 int Lightning_Points[LIGHTNINGSLOTS][MAXPOINTS][5];
 int Lightning_InUse[LIGHTNINGSLOTS];
 
-script "Dakka_Lightning" (int which, int startTID, int endTID) clientside
+script "Dakka_Lightning" (int which, int startTID, int dist) clientside
 {
     int waitTimer = 0;
 
-    while (!(IsTIDUsed(startTID) && IsTIDUsed(endTID)))
+    while (!IsTIDUsed(startTID))
     {
         waitTimer++;
         Delay(1);
         if (waitTimer > 36) { terminate; }
     }
 
-    int startX = GetActorX(startTID);
-    int startY = GetActorY(startTID);
-    int startZ = GetActorZ(startTID);
+    int startX     = GetActorX(startTID);
+    int startY     = GetActorY(startTID);
+    int startZ     = GetActorZ(startTID);
+    int startAngle = GetActorAngle(startTID);
+    int startPitch = GetActorPitch(startTID);
 
-    int endX   = GetActorX(endTID);
-    int endY   = GetActorY(endTID);
-    int endZ   = GetActorZ(endTID);
+    int dX = FixedMul(dist, FixedMul(cos(startAngle), cos(startPitch)));
+    int dY = FixedMul(dist, FixedMul(sin(startAngle), cos(startPitch)));
+    int dZ = FixedMul(dist, -sin(startPitch));
 
-    int dX = endX - startX;
-    int dY = endY - startY;
-    int dZ = endZ - startZ;
-
-    int dist = magnitudeThree_f(dX, dY, dZ);
+    int endX = startX + dX;
+    int endY = startY + dY;
+    int endZ = startZ + dZ;
 
     int nX = FixedDiv(dX, dist);
     int nY = FixedDiv(dY, dist);
@@ -79,25 +79,16 @@ script "Dakka_Lightning" (int which, int startTID, int endTID) clientside
     // Precalculate matrix multipliers to rotate lightning points into place
     // look at helix.txt for how I got to what I did
 
-    int angle =  VectorAngle(nX, nY);
+    int mx_x = FixedMul(cos(startAngle), cos(startPitch));
+    int mx_y = -sin(startAngle);
+    int mx_z = FixedMul(cos(startAngle), sin(startPitch));
 
-    // Think of side A as the line [(0, 0), (m, 0)],
-    //      and side B as the line [(0, 0), (m, nZ)]
-    //
-    // where m = sqrt(nX**2 + nY**2)
-    int pitch = -VectorAngle(magnitudeTwo_f(nX, nY), nZ);
+    int my_x = FixedMul(sin(startAngle), cos(startPitch));
+    int my_y = cos(startAngle);
+    int my_z = FixedMul(sin(startAngle), sin(startPitch));
 
-
-    int mx_x = FixedMul(cos(angle), cos(pitch));
-    int mx_y = -sin(angle);
-    int mx_z = FixedMul(cos(angle), sin(pitch));
-
-    int my_x = FixedMul(sin(angle), cos(pitch));
-    int my_y = cos(angle);
-    int my_z = FixedMul(sin(angle), sin(pitch));
-
-    int mz_x = -sin(pitch);
-    int mz_z = cos(pitch);
+    int mz_x = -sin(startPitch);
+    int mz_z = cos(startPitch);
 
     int curPointX = startX;
     int curPointY = startY;
