@@ -155,6 +155,26 @@ script "Dakka_SetupBFGStage2" (int facetracer, int changestate)
 }
 
 
+int BFGTargetPos[3];
+
+script "Dakka_BFGHomeIn_TargetPos" (void)
+{
+    SetActivator(0, AAPTR_TRACER);
+    
+    if ((ClassifyActor(0) & ACTOR_WORLD) || isDead(0))
+    {
+        SetResultValue(false);
+    }
+    else
+    {
+        BFGTargetPos[0] = GetActorX(0);
+        BFGTargetPos[1] = GetActorY(0);
+        BFGTargetPos[2] = GetActorZ(0) + (GetActorProperty(0, APROP_Height) / 2);
+        
+        SetResultValue(true);
+    }
+}
+
 
 script "Dakka_BFGHomeIn" (int speedadd, int speedmax, int evenIfBehind)
 {
@@ -162,10 +182,6 @@ script "Dakka_BFGHomeIn" (int speedadd, int speedmax, int evenIfBehind)
 
     speedadd = itof(speedadd);
     speedmax = itof(speedmax);
-
-    int myTID_old = ActivatorTID();
-    int myTID_new = UniqueTID();
-    Thing_ChangeTID(0, myTID_new);
 
     int x = GetActorX(0);
     int y = GetActorY(0);
@@ -179,16 +195,25 @@ script "Dakka_BFGHomeIn" (int speedadd, int speedmax, int evenIfBehind)
     int aimZ = -sin(pitch);
 
     int tx,ty,tz;
-
-    SetActivator(0, AAPTR_TRACER);
-
-    if ((ClassifyActor(0) & ACTOR_WORLD) || isDead(0))
+    
+    if (ACS_NamedExecuteWithResult("Dakka_BFGHomeIn_TargetPos"))
     {
-        if (GetUserVariable(myTID_new, "user_hadtarget"))
+        tx = BFGTargetPos[0];
+        ty = BFGTargetPos[1];
+        tz = BFGTargetPos[2];
+        
+        SetUserVariable(0, "user_hadtarget", true);
+        SetUserVariable(0, "user_targetx",   tx);
+        SetUserVariable(0, "user_targety",   ty);
+        SetUserVariable(0, "user_targetz",   tz);
+    }
+    else
+    {
+        if (GetUserVariable(0, "user_hadtarget"))
         {
-            tx = GetUserVariable(myTID_new, "user_targetx");
-            ty = GetUserVariable(myTID_new, "user_targety");
-            tz = GetUserVariable(myTID_new, "user_targetz");
+            tx = GetUserVariable(0, "user_targetx");
+            ty = GetUserVariable(0, "user_targety");
+            tz = GetUserVariable(0, "user_targetz");
         }
         else // I guess just keep going then?
         {
@@ -197,23 +222,10 @@ script "Dakka_BFGHomeIn" (int speedadd, int speedmax, int evenIfBehind)
             tz = z + FixedMul(speedmax, aimZ);
         }
     }
-    else
-    {
-        tx = GetActorX(0);
-        ty = GetActorY(0);
-        tz = GetActorZ(0) + (GetActorProperty(0, APROP_Height) / 2);
-
-        SetUserVariable(myTID_new, "user_hadtarget", true);
-        SetUserVariable(myTID_new, "user_targetx", tx);
-        SetUserVariable(myTID_new, "user_targety", ty);
-        SetUserVariable(myTID_new, "user_targetz", tz);
-    }
 
     int dx = tx - x;
     int dy = ty - y;
     int dz = tz - z;
-
-    SetActivator(myTID_new);
 
     if (!evenIfBehind)
     {
@@ -222,7 +234,6 @@ script "Dakka_BFGHomeIn" (int speedadd, int speedmax, int evenIfBehind)
         if (distInFront < 0)
         {
             SetResultValue(false);
-            Thing_ChangeTID(myTID_new, myTID_old);
             terminate;
         }
     }
@@ -236,10 +247,14 @@ script "Dakka_BFGHomeIn" (int speedadd, int speedmax, int evenIfBehind)
         ndy = FixedDiv(dy, dmag);
         ndz = FixedDiv(dz, dmag);
     }
+    
+    int vx_old = GetActorVelX(0);
+    int vy_old = GetActorVelY(0);
+    int vz_old = GetActorVelZ(0);
 
-    int vx  = GetActorVelX(0) + FixedMul(ndx, speedadd);
-    int vy  = GetActorVelY(0) + FixedMul(ndy, speedadd);
-    int vz  = GetActorVelZ(0) + FixedMul(ndz, speedadd);
+    int vx  = vx_old + FixedMul(ndx, speedadd);
+    int vy  = vy_old + FixedMul(ndy, speedadd);
+    int vz  = vz_old + FixedMul(ndz, speedadd);
     int vel = VectorLength(VectorLength(vx, vy), vz);
 
     if (speedmax > 0 && vel > speedmax)
@@ -249,10 +264,17 @@ script "Dakka_BFGHomeIn" (int speedadd, int speedmax, int evenIfBehind)
         vy = FixedMul(vy, vdiff);
         vz = FixedMul(vz, vdiff);
     }
-
-    SetActorVelocity(0, vx,vy,vz, false,false);
-    SetActorAngle(0,  VectorAngle(vx,vy));
-    SetActorPitch(0, -VectorAngle(VectorLength(vx,vy), vz));
+    
+    int newAngle =  VectorAngle(vx,vy);
+    int newPitch = -VectorAngle(VectorLength(vx,vy), vz);
+    
+    if (vx != vx_old || vy != vy_old || vz != vz_old)
+    {
+        SetActorVelocity(0, vx,vy,vz, false,false);
+    }
+    
+    if (angle != newAngle) { SetActorAngle(0, newAngle); }
+    if (pitch != newPitch) { SetActorPitch(0, newPitch); }
 
     SetResultValue(true);
 }

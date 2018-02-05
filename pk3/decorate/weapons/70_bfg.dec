@@ -1006,12 +1006,13 @@ actor BFGMaelstromShot
       Spawn2:
         DBFP "#" 0 bright A_SpawnItemEx("BFGMaelstromTrail", frandom(-4,4) - (velx/2), frandom(-4,4) - (vely/2), frandom(-4,4) - (velz/2), 0,0,0, 0, SXF_ABSOLUTEPOSITION)
         DBFP "#" 0 bright A_SetUserVar("user_t", user_t + 1)
+        DBFP "#" 0 bright A_JumpIf(user_t < 3, "SpawnLoop")
         DBFP "#" 1 bright A_JumpIf(CallACS("Dakka_BFGHomeIn", 12, 80) == false, "WentTooFar")
         goto SpawnLoop
 
       WentTooFar:
         DBFP "#" 1 bright A_Jump(96, "Death")
-        goto Spawn
+        goto SpawnLoop
 
       Death:
         TNT1 A 0 bright A_Stop
