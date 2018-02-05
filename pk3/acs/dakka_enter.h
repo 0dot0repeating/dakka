@@ -125,4 +125,10 @@ script "Dakka_Disconnect" (int pln) disconnect
 {
     DakkaEnterLocks[pln] = false;
     Score_ResetMask(pln, REWARDMASK_ALL);
+    
+    for (int i = 0; i < SLOOP_COUNT; i++)
+    {
+        Thing_Remove(SoundLooperTIDs[pln][i]);
+        SoundLooperTIDs[pln][i] = 0;
+    }
 }
