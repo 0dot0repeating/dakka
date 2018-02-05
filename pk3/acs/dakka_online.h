@@ -24,18 +24,17 @@ script "Dakka_PlayerNumber" (int ptr)
     SetResultValue(PlayerNumber());
 }
 
-script "Dakka_FollowTarget" (void)
+script "Dakka_SoundLooper" (void)
 {
     int targetPln = ACS_NamedExecuteWithResult("Dakka_PlayerNumber", AAPTR_TARGET);
     
-    if (IsZandronum && targetPln != -1)
+    if (IsZandronum && ConsolePlayerNumber() == -1 && targetPln != -1)
     {
         ACS_NamedExecuteAlways("Dakka_FollowTarget_Player", 0, targetPln);
         terminate;
     }
     
-    int  x, y, z, a;
-    int vx,vy,vz;
+    int first = true;
     
     while (!(ClassifyActor(0) & ACTOR_WORLD))
     {
@@ -44,20 +43,33 @@ script "Dakka_FollowTarget" (void)
         Thing_ChangeTID(0, myTID);
         
         SetActivator(0, AAPTR_TARGET);
-        x = GetActorX(0);
-        y = GetActorY(0);
-        z = GetActorZ(0) + GetActorProperty(0, APROP_Height) / 2;
-        a = GetActorAngle(0);
         
-        vx = GetActorVelX(0);
-        vy = GetActorVelY(0);
-        vz = GetActorVelZ(0);
+        int pln = PlayerNumber();
+        if ((pln > -1 && !PlayerInGame(pln)) || (ClassifyActor(0) & ACTOR_WORLD))
+        {
+            StopSound(myTID, CHAN_BODY);
+            SetActorState(myTID, "Abort");
+            Thing_ChangeTID(myTID, myTID_old);
+            break;
+        }
+        
+        int firerTID_old = ActivatorTID();
+        int firerTID     = UniqueTID();
+        Thing_ChangeTID(0, firerTID);
         
         SetActivator(myTID);
         
-        Warp(0, x,y,z, a, WARPF_ABSOLUTEPOSITION | WARPF_NOCHECKPOSITION | WARPF_INTERPOLATE);
-        SetActorVelocity(0, vx,vy,vz, false,false);
+        Warp(firerTID, 0,0,0, 0, WARPF_NOCHECKPOSITION | WARPF_COPYINTERPOLATION | WARPF_COPYVELOCITY);
+        
+        if (first)
+        {    
+            PlayActorSound(0, SOUND_See,    CHAN_ITEM, 1.0, false, ATTN_NORM);
+            PlayActorSound(0, SOUND_Active, CHAN_BODY, 1.0, true,  ATTN_NORM);
+            first = false;
+        }
+        
         Thing_ChangeTID(0, myTID_old);
+        Thing_ChangeTID(firerTID, firerTID_old);
         Delay(1);
     }
 }
@@ -66,10 +78,7 @@ script "Dakka_FollowTarget_Player" (int pln) clientside
 {
     if (!IsZandronum) { terminate; }
     
-    // angle seems to make a difference with zandronum when HRTF is on
-    // I'm not really sure, to be honest
-    int  x, y, z, a;
-    int vx,vy,vz;
+    int first = true;
     
     while (!(ClassifyActor(0) & ACTOR_WORLD))
     {
@@ -79,20 +88,31 @@ script "Dakka_FollowTarget_Player" (int pln) clientside
         
         SetActivatorToPlayer(pln);
         
-        x = GetActorX(0);
-        y = GetActorY(0);
-        z = GetActorZ(0) + cond((Timer() / 35) % 2, GetActorProperty(0, APROP_Height) / 2, GetActorViewHeight(0));
-        a = GetActorAngle(0);
+        if (!PlayerInGame(pln) || (ClassifyActor(0) & ACTOR_WORLD))
+        {
+            StopSound(myTID, CHAN_BODY);
+            SetActorState(myTID, "Abort");
+            Thing_ChangeTID(myTID, myTID_old);
+            break;
+        }
         
-        vx = GetActorVelX(0);
-        vy = GetActorVelY(0);
-        vz = GetActorVelZ(0);
+        int firerTID_old = ActivatorTID();
+        int firerTID     = UniqueTID();
+        Thing_ChangeTID(0, firerTID);
         
         SetActivator(myTID);
         
-        Warp(0, x,y,z, a, WARPF_ABSOLUTEPOSITION | WARPF_NOCHECKPOSITION | WARPF_INTERPOLATE);
-        SetActorVelocity(0, vx,vy,vz, false,false);
+        Warp(firerTID, 0,0,0, 0, WARPF_NOCHECKPOSITION | WARPF_COPYINTERPOLATION | WARPF_COPYVELOCITY);
+        
+        if (first)
+        {    
+            PlayActorSound(0, SOUND_See,    CHAN_ITEM, 1.0, false, ATTN_NORM);
+            PlayActorSound(0, SOUND_Active, CHAN_BODY, 1.0, true,  ATTN_NORM);
+            first = false;
+        }
+        
         Thing_ChangeTID(0, myTID_old);
+        Thing_ChangeTID(firerTID, firerTID_old);
         Delay(1);
     }
 }
