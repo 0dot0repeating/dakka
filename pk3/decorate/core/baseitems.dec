@@ -71,6 +71,7 @@ actor GiveScrapCounter2: Counter {}
 actor GiveScrapCounter3: Counter {}
 
 actor HubTracker:        Boolean { +INTERHUBSTRIP }
+actor RegenSoundTID:     Counter {}
 
 // Used in the Blursphere's scripted pickup
 actor DakkaVisPulse:     Counter {}

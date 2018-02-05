@@ -1,6 +1,3 @@
-// Gotta do this because ZDoom only has 8 sound slots, because fuck you.
-int AmmoRegen_SoundLooperTIDs[PLAYERMAX];
-
 script "Score_Award" (int scoreHeals)
 {
     int i;
@@ -185,7 +182,7 @@ function void Score_ProcessRewards(void)
     int regenTime = Score_GetRegenTimer(pln);
     int inRegen   = Score_GetRegenSpent(pln);
 
-    int looperTID = AmmoRegen_SoundLooperTIDs[pln];
+    int looperTID = CheckInventory("RegenSoundTID");
     int i;
 
     if (regenTime > 0)
@@ -206,7 +203,7 @@ function void Score_ProcessRewards(void)
             
             looperTID = UniqueTID();
             Spawn("RegenSoundLooper", GetActorX(0), GetActorY(0), GetActorZ(0), looperTID);
-            AmmoRegen_SoundLooperTIDs[pln] = looperTID;
+            SetInventory("RegenSoundTID", looperTID);
 
             SetActivator(looperTID);
             SetPointer(AAPTR_TARGET, myTID);
@@ -254,7 +251,7 @@ function void Score_ProcessRewards(void)
         
         Score_SetRegenSpent(pln, 0);
         if (looperTID != 0) { SetActorState(looperTID, "RegenDone"); }
-        AmmoRegen_SoundLooperTIDs[pln] = 0;
+        TakeInventory("RegenSoundTID", 0x7FFFFFFF);
     }
     
     SetInventory("HUD_AmmoRegen", newRegenTime > 0);
