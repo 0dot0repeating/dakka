@@ -15,7 +15,7 @@
 #define MMSG_COUNT  11
 
 
-int MMSG_ExtraMessages[MMSG_SLOTS][MMSG_COUNT] = 
+int MMSG_ExtraMessages[MMSG_SLOTS][MMSG_COUNT] =
 {
     { // Fists
         "And so I rip and tear, for I have seen the demons, and seen that they have huge guts.",

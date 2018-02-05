@@ -7,23 +7,23 @@ function void Score_CalcMapPoints(void)
     int i;
     int totalMons   = 0;
     int totalPoints = 0;
-    
+
     // Rough check to see if we should have RGF_NOSIGHT
     int testTID = UniqueTID();
     SpawnForced("Boolean", 0,0,0, testTID);
     int useNoSight = cond(GetActorProperty(testTID, APROP_DamageType) == 0, false, true);
     Thing_Remove(testTID);
-    
+
     if (useNoSight)
     {
         Score_TotalNums[0] = 0;
         Score_TotalNums[1] = 0;
-        
+
         // This will have a lot of Score_Report scripts run
         SpawnForced("ScoreMonsterFinder", 0,0,0, testTID);
         SetActorState(testTID, "Find");
         Thing_Remove(testTID);
-        
+
         totalMons   = Score_TotalNums[0];
         totalPoints = Score_TotalNums[1];
     }
@@ -36,14 +36,14 @@ function void Score_CalcMapPoints(void)
         {
             str name  = ACS_NamedExecuteWithResult("Score_MonsterAtIndex", i);
             int value = ACS_NamedExecuteWithResult("Score_RewardAtIndex",  i);
-            
+
             if (value < 0)
             {
                 SpawnForced(name, 0,0,0, testTID);
                 value = GetActorProperty(testTID, APROP_SpawnHealth);
                 Thing_Remove(testTID);
             }
-        
+
             int count = ThingCountName(name, 0);
             //Log(s:"\cd[", s:name, s:"] \cf(", d:value, s:")\c- Count: ", d:count);
 
@@ -51,19 +51,19 @@ function void Score_CalcMapPoints(void)
             totalPoints += count * value;
         }
     }
-    
-    
+
+
     int averagePoints = 0;
     if (totalMons > 0) { averagePoints  = totalPoints / totalMons; }
-    
+
     // Controls for low and high monster counts
     int fullHealMult = middle(P_FULLHEAL_MIN, FixedMul(totalMons, P_FULLHEAL_PERCENT), P_FULLHEAL_MAX);
     int fullHealPoints = averagePoints * fullHealMult;
-    
+
     Score_Thresholds[ST_FULLHEAL] = max(5000, ((fullHealPoints + 2500) / 5000) * 5000);
     Score_Thresholds[ST_UT_KILLS] = middle(P_UTKILLS_MIN, totalMons   / 10, P_UTKILLS_MAX);
     Score_Thresholds[ST_UT_HP]    = middle(P_UTHP_MIN,    totalPoints / 10, P_UTHP_MAX);
-    
+
     // Adjust everyone's base score to match the percentage from the last map if it's non-zero
     for (i = 0; i < PLAYERMAX; i++)
     {
@@ -81,7 +81,7 @@ script "Score_Count" (void)
     str name   = GetActorClass(0);
     int points = ACS_NamedExecuteWithResult("Score_Lookup", name);
     if (points == -1) { points = GetActorProperty(0, APROP_SpawnHealth); }
-    
+
     Score_TotalNums[0] += 1;
     Score_TotalNums[1] += points;
     //Log(s:"\cd[", s:name, s:"] \cf(", d:points, s:")");

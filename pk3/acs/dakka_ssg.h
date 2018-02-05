@@ -23,7 +23,7 @@ script "DSSG_ShotsLeft" (void)
 script "DSSG_ChangeShots" (int amount)
 {
     int pln = PlayerNumber();
-    
+
     if (amount == 0) { amount = 1; }
 
     if (amount < 0)

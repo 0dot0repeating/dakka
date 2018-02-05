@@ -4,25 +4,25 @@ actor Dakkaguy: PlayerPawn
     Radius 16
     Height 56
     Mass 100
-    
+
     Player.ColorRange 112, 127
-    
+
     Player.DisplayName "Dakkaguy"
     Player.JumpZ 8
 
     Player.ForwardMove 1.2
     Player.SideMove 1.25
-    
+
     Player.HexenArmor 0, 20, 5, 15, 10
     Player.HealRadiusType "Health"
-    
+
     Player.StartItem "DakkaClassItem"
-    
+
     Player.StartItem "DWep_Pistols"
     Player.StartItem "DWep_Fist"
     Player.StartItem "DWep_Pistol"
     Player.StartItem "DakkaBullet_10mm", 100
-    
+
     Player.CrouchSprite "DPLC"
 
     // blame vincentprice for these
@@ -32,9 +32,9 @@ actor Dakkaguy: PlayerPawn
     PainChance                      255
     PainChance Dakka_NoDamage,      0
     PainChance Dakka_RetreatSignal, 0
-    
+
     +THRUSPECIES
-    
+
     States
     {
       Spawn:

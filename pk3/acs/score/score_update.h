@@ -42,7 +42,7 @@ function void Score_UpdateClient(int pln)
 script "Score_ResetUntouchable" (void)
 {
     int pln = PlayerNumber();
-    
+
     if (!CheckFlag(0, "NODAMAGE"))
     {
         PlayerKillStreaks[pln][KS_KILLS_SINCELASTHIT] = 0;

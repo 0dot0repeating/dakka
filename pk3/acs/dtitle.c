@@ -18,82 +18,82 @@ script "dakka_titlemap" open
 {
     if (GameType() != GAME_TITLE_MAP) { terminate; }
     if (stricmp(StrParam(n:PRINTNAME_LEVELNAME), "DAKKA")) { terminate; }
-    
+
     SetHudSize(320, 200, true);
     FadeRange(0,0,0, 1.0, 0,0,0, 1.0, 10.0);
-    
+
     SetFont("TITLEPIC");
     HudMessage(s:"A"; HUDMSG_FADEOUT, 1, CR_UNTRANSLATED, 160.4, 100.0, 2.0, 1.0);
 
     Delay(105);
-    
+
     // dakka title stuff here
-    
+
     AmbientSound("dakka/hammerwall", 127);
-    
+
     SetFont("DKLOGOF1");
     HudMessage(s:"A"; HUDMSG_PLAIN, 2, CR_UNTRANSLATED, 160.4, 10.1, 1.0);
     Delay(2);
     SetFont("DKLOGON1");
     HudMessage(s:"A"; HUDMSG_PLAIN, 2, CR_UNTRANSLATED, 160.4, 10.1, 1.0);
-    
+
     Delay(10);
-    
+
     AmbientSound("dakka/hammerwall", 127);
-    
+
     SetFont("DKLOGOF2");
     HudMessage(s:"A"; HUDMSG_PLAIN, 2, CR_UNTRANSLATED, 160.4, 10.1, 1.0);
     Delay(2);
     SetFont("DKLOGON2");
     HudMessage(s:"A"; HUDMSG_PLAIN, 2, CR_UNTRANSLATED, 160.4, 10.1, -1);
-    
+
     Delay(10);
-    
+
     AmbientSound("dakka/hammerwall", 127);
-    
+
     SetFont("DKLOGOF3");
     HudMessage(s:"A"; HUDMSG_PLAIN, 2, CR_UNTRANSLATED, 160.4, 10.1, 1.0);
     Delay(2);
     SetFont("DKLOGON3");
     HudMessage(s:"A"; HUDMSG_PLAIN, 2, CR_UNTRANSLATED, 160.4, 10.1, -1);
-    
+
     Delay(10);
-    
+
     AmbientSound("dakka/hammerwall", 127);
-    
+
     SetFont("DKLOGOF4");
     HudMessage(s:"A"; HUDMSG_PLAIN, 2, CR_UNTRANSLATED, 160.4, 10.1, 1.0);
     Delay(2);
     SetFont("DKLOGON4");
     HudMessage(s:"A"; HUDMSG_PLAIN, 2, CR_UNTRANSLATED, 160.4, 10.1, -1);
-    
+
     Delay(10);
-    
+
     ACS_NamedExecuteWithResult("titlemap_showtips");
-    
+
     AmbientSound("dakka/hammerwall", 127);
-    
+
     SetFont("DKLOGOF5");
     HudMessage(s:"A"; HUDMSG_PLAIN, 2, CR_UNTRANSLATED, 160.4, 10.1, 1.0);
     Delay(2);
     SetFont("DKLOGON5");
     HudMessage(s:"A"; HUDMSG_PLAIN, 2, CR_UNTRANSLATED, 160.4, 10.1, -1);
-    
+
     ACS_NamedExecuteWithResult("titlemap_logoflash");
-    
+
     Delay(35);
-    
+
     SetMusic(TitleMusic[random(0, MUSICCOUNT-1)]);
-    
+
     Delay(35);
-    
+
     ACS_NamedExecuteWithResult("titlemap_playblink");
-    
+
     // 140 + (4 * (10 + 2)) 2 + 35 + x = 350
     Delay(90);
-    
+
     FadeRange(0,0,0, 1.0, 0,0,0, 0.0, 2.0);
-    
+
     ACS_NamedExecuteWithResult("titlemap_camera");
     ACS_NamedExecuteWithResult("titlemap_spinny");
 }
@@ -107,28 +107,28 @@ script "dakka_titlemap" open
 script "titlemap_camera" (void)
 {
     ChangeCamera(2, false, false);
-    
+
     int pivotX = GetActorX(1);
     int pivotY = GetActorY(1);
     int pivotZ = GetActorZ(1);
-    
+
     int ranOnce = false;
-    
+
     while (true)
     {
         int pivotStep  = sin((Timer() * 1.0) / PIVOT_PERIOD);
         int pivotAngle = PIVOTANGLE_MIDDLE + FixedMul(pivotStep, PIVOTANGLE_SWAY);
-        
+
         int fromX = GetActorX(2);
         int fromY = GetActorY(2);
         int fromZ = GetActorZ(2);
-        
+
         int toX = pivotX + FixedMul(PIVOT_DISTANCE, cos(pivotAngle));
         int toY = pivotY + FixedMul(PIVOT_DISTANCE, sin(pivotAngle));
         int toZ = GetActorZ(1);
-        
+
         SetActorAngle(2, pivotAngle - 0.5);
-        
+
         if (!ranOnce)
         {
             SetActorPosition(2, toX, toY, toZ, false);
@@ -138,7 +138,7 @@ script "titlemap_camera" (void)
         {
             SetActorVelocity(2, toX - fromX, toY - fromY, toZ - fromZ, false, false);
         }
-        
+
         Delay(1);
     }
 }
@@ -148,14 +148,14 @@ script "titlemap_spinny" (void)
     while (true)
     {
         SetActorAngle(3, GetActorAngle(3) + 0.05);
-        
+
         int fun = random(1.5, 2.5);
-        
+
         int velX = FixedMul(fun, cos(GetActorAngle(3)));
         int velY = FixedMul(fun, sin(GetActorAngle(3)));
-        
+
         SetActorVelocity(3, velX, velY, 0, true, true);
-        
+
         Delay(1);
     }
 }
@@ -164,7 +164,7 @@ script "titlemap_spinny" (void)
 
 #define DLOGO_FRAMECOUNT 21
 
-int DakkaLogo_Frames[DLOGO_FRAMECOUNT] = 
+int DakkaLogo_Frames[DLOGO_FRAMECOUNT] =
 {
     "DLOGOS01",
     "DLOGOS02",
@@ -192,11 +192,11 @@ int DakkaLogo_Frames[DLOGO_FRAMECOUNT] =
 script "titlemap_logoflash" (void)
 {
     Delay(random(70, 105));
-    
+
     while (true)
     {
         int i;
-        
+
         for (i = 0; i < DLOGO_FRAMECOUNT; i++)
         {
             SetFont(DakkaLogo_Frames[i]);
@@ -204,11 +204,11 @@ script "titlemap_logoflash" (void)
             HudMessage(s:"A"; HUDMSG_PLAIN, 2, CR_UNTRANSLATED, 160.4, 10.1, -1);
             Delay(1);
         }
-        
+
         SetHudSize(320, 200, true);
         SetFont("DKLOGON5");
         HudMessage(s:"A"; HUDMSG_PLAIN, 2, CR_UNTRANSLATED, 160.4, 10.1, -1);
-            
+
         Delay(random(140, 280));
     }
 }
@@ -217,12 +217,12 @@ script "titlemap_playblink" (void)
 {
     SetFont("DKPLAY");
     SetHudSize(320, 200, true);
-    
+
     while (true)
     {
         HudMessage(s:"A"; HUDMSG_PLAIN, 3, CR_UNTRANSLATED, 160.4, 195.2, -1);
         Delay(24);
-        
+
         HudMessage(s:""; HUDMSG_PLAIN, 3, CR_UNTRANSLATED, 160.4, 195.2, -1);
         Delay(24);
     }
@@ -233,20 +233,20 @@ script "titlemap_showtips" (void)
 {
     Delay(12);
     ACS_NamedExecuteWithResult("titlemap_weptips", true, 10.0 + (1.0/3));
-    
+
     Delay(24);
     ACS_NamedExecuteWithResult("titlemap_scoretips", true, 10.0);
-    
+
     Delay(385);
-    
+
     while (true)
     {
         int i;
-        
+
         for (i = 0; i < 3; i++)
         {
             int msgDelay;
-            
+
             if (random(0, 4) == 0)
             {
                 msgDelay = ACS_NamedExecuteWithResult("titlemap_gametips");
@@ -255,13 +255,13 @@ script "titlemap_showtips" (void)
             {
                 msgDelay = ACS_NamedExecuteWithResult("titlemap_dumbtips");
             }
-            
+
             Delay(70 + msgDelay);
         }
-        
+
         ACS_NamedExecuteWithResult("titlemap_weptips",   false, 4.0);
         ACS_NamedExecuteWithResult("titlemap_scoretips", false, 4.0);
-    
+
         Delay(210);
     }
 }
@@ -271,7 +271,7 @@ function void ShowWeaponTips(int doFade, int forceColor, int overrideColor, int 
 {
     int msgMode = HUDMSG_FADEOUT;
     if (doFade) { msgMode = HUDMSG_FADEINOUT; }
-    
+
     int fistColor       = "DTitle_Fists";
     int scrapperColor   = "DTitle_Scrappers";
     int pistolColor     = "DTitle_Pistol";
@@ -282,7 +282,7 @@ function void ShowWeaponTips(int doFade, int forceColor, int overrideColor, int 
     int impalerColor    = "Red";
     int plasmaColor     = "DTitle_PlasmaLance";
     int bfgColor        = "Green";
-    
+
     if (forceColor)
     {
         fistColor       = overrideColor;
@@ -296,25 +296,25 @@ function void ShowWeaponTips(int doFade, int forceColor, int overrideColor, int 
         plasmaColor     = overrideColor;
         bfgColor        = overrideColor;
     }
-    
+
     SetHudSize(320, 200, 0);
     SetFont("ARCFONT");
-    
+
     HudMessage(s:"Fists";         msgMode | HUDMSG_COLORSTRING, 21, fistColor,       70.4,  85.0, duration, 1.0, 1.0);
     HudMessage(s:"Scrappers";     msgMode | HUDMSG_COLORSTRING, 22, scrapperColor,   70.4,  93.0, duration, 1.0, 1.0);
-                                  
+
     HudMessage(s:"Pistol";        msgMode | HUDMSG_COLORSTRING, 23, pistolColor,     160.4,  85.0, duration, 1.0, 1.0);
     HudMessage(s:"Two pistols";   msgMode | HUDMSG_COLORSTRING, 24, pistolsColor,    160.4,  93.0, duration, 1.0, 1.0);
-                                  
+
     HudMessage(s:"Shotgun";       msgMode | HUDMSG_COLORSTRING, 25, shotgunColor,    250.4,  85.0, duration, 1.0, 1.0);
     HudMessage(s:"S. Shotgun";    msgMode | HUDMSG_COLORSTRING, 26, ssgColor,        250.4,  93.0, duration, 1.0, 1.0);
-                                  
+
     HudMessage(s:"Minigun";       msgMode | HUDMSG_COLORSTRING, 28, minigunColor,    70.4,  109.0, duration, 1.0, 1.0);
-                                  
+
     HudMessage(s:"Impaler";       msgMode | HUDMSG_COLORSTRING, 29, impalerColor,    130.4, 109.0, duration, 1.0, 1.0);
-                                  
+
     HudMessage(s:"Lancer";        msgMode | HUDMSG_COLORSTRING, 30, plasmaColor,     190.4, 109.0, duration, 1.0, 1.0);
-                                  
+
     HudMessage(s:"BFG9000";       msgMode | HUDMSG_COLORSTRING, 31, bfgColor,        250.4, 109.0, duration, 1.0, 1.0);
 }
 
@@ -322,20 +322,20 @@ script "titlemap_weptips" (int flash, int duration)
 {
     SetHudSize(320, 200, 0);
     SetFont("ARCFONT");
-    
+
     if (flash)
     {
         AmbientSound("dakka/hammerwall", 127);
         HudMessage(s:"Weapons:"; HUDMSG_PLAIN | HUDMSG_COLORSTRING, 11, "DTitle_AllWhite", 160.4, 70.0, 0);
         Delay(2);
         HudMessage(s:"Weapons:"; HUDMSG_PLAIN, 11, CR_WHITE, 160.4, 70.0, 0);
-        
+
         Delay(10);
-        
+
         AmbientSound("dakka/hammerwall", 127);
         ShowWeaponTips(false, true, "DTitle_AllWhite", duration);
         Delay(2);
-        
+
         // do this here to sync them up
         HudMessage(s:"Weapons:"; HUDMSG_FADEOUT, 11, CR_WHITE, 160.4, 70.0, duration, 1.0);
         ShowWeaponTips(false, false, "", duration);
@@ -358,7 +358,7 @@ script "titlemap_scoretips" (int flash, int duration)
 {
     SetHudSize(320, 200, 0);
     SetFont("ARCFONT");
-    
+
     if (flash)
     {
         AmbientSound("dakka/hammerwall", 127);
@@ -381,37 +381,37 @@ int GameTips[GAMETIPCOUNT] =
     "Dakkaguy takes reduced damage from his own explosions. So go on, rocket jump to that key and break the map. You know you want to...",
     "Your weapons can still be swapped out while in a firing animation, so take advantage of it!",
     "By default, your ammo gets reset when you beat a map. Don't hoard it - use it!",
-    
+
     // Fist
     "Your fists are silent, which is perfect for breaking those maps that force you to shoot a switch at the start.\n\nOr you could just shoot the switch anyway, since it lets you kill more demons.",
     "You can charge up the fist's alt-fire up to three times, and at max charge, your punch will ruin the day of both whoever you hit and his buddies next to him!",
     "Heavy punches will greatly speed up your light punches, but if you miss, all that speed goes into the trash. So don't miss!",
-    
+
     // Scrappers
     "Spent ammo of all kinds refuels your scrappers. Respect the environment; scrap some demons before that meter tops off.",
     "Scrappers + small places = very dead demons.",
-    
+
     // Pistols
     "The minigun tends to be overkill on weaker enemies, so why not use that pistol ammo? You weren't using it anyway.",
-    
+
     // Shotgun
     "If you disable the \cdGrenades auto-detonate\c- setting, shotgun grenades will stick to whatever they hit. Detonate them with the \cfreload\c- key!",
     "Shotgun grenades can be detonated in midair with the \cfreload\c- key, which causes all the mini-grenades to fly forward instead of all around. Handy!",
-    
+
     // SSG
     "Dakkaguy can reload the super shotgun with his buttcheeks. This makes it great for a quick, heavy burst of close-range damage!",
     "You know how Dakkaguy reloads the super shotgun even if it isn't empty yet? You can still shoot when he does that.",
     "With \cdSSG trigger rolling\c- enabled, pulling both triggers in rapid succession will use the first trigger twice. This can even let you fire four shells at the same time!",
-    
+
     // Minigun
     "The minigun primary fire has two speeds: full auto if you just hold the primary fire, and \caFULLER AUTO\c- if you hold both fire buttons!\n\nIt burns through ammo twice as quickly, but that's the fun part!",
     "The minigun's flamethrower is great at weeding out weaker enemies in a crowd - if the flamethrower itself doesn't kill them, the afterburn will.",
     "Minigun flames pierce invulnerability.\nBecause why not?",
-    
+
     // Impaler
     "The impaler's primary fire has most of its explosion directed forward, while the alt-fire's explosion is all around. Keeping this in mind will save you rockets.",
     "The impaler's alt-fire impales demons, surprisingly enough. Use it to bring stragglers close to their friends and blow them all up!",
-    
+
     // Lancer
     "Plasma nails pierce through enemies, so line them up and get a two-for-one deal on your cells!",
     "The lancer's arcs like to travel forward as much as possible. Line up your enemies when using it; it's more effective that way.",
@@ -433,7 +433,7 @@ int GameHeaders[GAMEHEADERCOUNT] =
 
 #define DUMBTIPCOUNT 93
 
-int DumbTips[DUMBTIPCOUNT] = 
+int DumbTips[DUMBTIPCOUNT] =
 {
     "When all you have is a minigun, everything starts looking like something that miniguns are good for. Which is everything.",
     "Balance is for chumps.",
@@ -553,7 +553,7 @@ int LastDumbTip = -1;
 script "titlemap_dumbtips" (void)
 {
     int dumbIndex;
-    
+
     if (LastDumbTip == -1)
     {
         dumbIndex = random(0, DUMBTIPCOUNT - 1);
@@ -563,26 +563,26 @@ script "titlemap_dumbtips" (void)
         dumbIndex = random(0, DUMBTIPCOUNT - 2);
         if (dumbIndex >= LastDumbTip) { dumbIndex += 1; }
     }
-    
+
     LastDumbTip = dumbIndex;
-    
+
     int dumbMessage = DumbTips[dumbIndex];
     int dumbLength  = StrLen(cleanString(dumbMessage));
-    
+
     int dumbDelay    = 105 + FixedMul(dumbLength, 1.5);
     int dumbDuration = max(0, (dumbDelay * 1.0) / 35);
-    
+
     int dumbColor = "\c[White]";
-    
+
     int dumbReplaced = strsub(dumbMessage, "\c-", dumbColor);
-    
+
     int dumbHeader = DumbHeaders[random(0, DUMBHEADERCOUNT-1)];
-    
+
     SetHudSize(320, 200, true);
     SetFont("ARCFONT");
-    
+
     HudMessage(s:dumbHeader;   HUDMSG_FADEINOUT | HUDMSG_COLORSTRING, 51, "Gold",  160.4, 70.1, dumbDuration, 1.0, 1.0);
-    
+
     SetHudClipRect(30, 0, 262, 200, 260); // buffer for right side of letters
     HudMessage(s:dumbReplaced; HUDMSG_FADEINOUT | HUDMSG_COLORSTRING, 52, "White", 160.4, 85.1, dumbDuration, 1.0, 1.0);
     SetHudClipRect(0, 0, 0, 0, 0);
@@ -595,7 +595,7 @@ int LastGameTip = -1;
 script "titlemap_gametips" (void)
 {
     int dumbIndex;
-    
+
     if (LastGameTip == -1)
     {
         dumbIndex = random(0, GAMETIPCOUNT - 1);
@@ -605,26 +605,26 @@ script "titlemap_gametips" (void)
         dumbIndex = random(0, GAMETIPCOUNT - 2);
         if (dumbIndex >= LastGameTip) { dumbIndex += 1; }
     }
-    
+
     LastGameTip = dumbIndex;
-    
+
     int dumbMessage = GameTips[dumbIndex];
     int dumbLength  = StrLen(cleanString(dumbMessage));
-    
+
     int dumbDelay    = 105 + FixedMul(dumbLength, 1.5);
     int dumbDuration = max(0, (dumbDelay * 1.0) / 35);
-    
+
     int dumbColor = "\c[White]";
-    
+
     int dumbReplaced = strsub(dumbMessage, "\c-", dumbColor);
-    
+
     int dumbHeader = GameHeaders[random(0, GAMEHEADERCOUNT-1)];
-    
+
     SetHudSize(320, 200, true);
     SetFont("ARCFONT");
-    
+
     HudMessage(s:dumbHeader;   HUDMSG_FADEINOUT | HUDMSG_COLORSTRING, 51, "Green", 160.4, 70.1, dumbDuration, 1.0, 1.0);
-    
+
     SetHudClipRect(30, 0, 262, 200, 260); // buffer for right side of letters
     HudMessage(s:dumbReplaced; HUDMSG_FADEINOUT | HUDMSG_COLORSTRING, 52, "White", 160.4, 85.1, dumbDuration, 1.0, 1.0);
     SetHudClipRect(0, 0, 0, 0, 0);

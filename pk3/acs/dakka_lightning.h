@@ -73,12 +73,12 @@ script "Dakka_Lightning" (int which, int startTID, int endTID) clientside
         radiusMax = 12.0;
         break;
     }
-        
+
 
 
     // Precalculate matrix multipliers to rotate lightning points into place
     // look at helix.txt for how I got to what I did
-    
+
     int angle =  VectorAngle(nX, nY);
 
     // Think of side A as the line [(0, 0), (m, 0)],

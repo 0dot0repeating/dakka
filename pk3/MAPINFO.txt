@@ -2,7 +2,7 @@ gameinfo
 {
     playerclasses = "Dakkaguy"
     forcekillscripts = true
-    
+
     infopage = "DAKHELP1", "DAKHELP2", "DAKHELP3", "DAKHELP4", "DAKHELP5"
 }
 

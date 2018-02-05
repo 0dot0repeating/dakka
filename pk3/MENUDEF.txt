@@ -203,7 +203,7 @@ OptionMenu "Dakka_UserOptions"
 
     Option "No score rewards",      "dakka_cl_noscorerewards",     "OnOff"
     Option "No score at all",       "dakka_cl_noscore",            "OnOff"
-    
+
     StaticText ""
 
     Option "Grenades auto-explode", "dakka_cl_autodetonate",       "OnOff"
@@ -213,7 +213,7 @@ OptionMenu "Dakka_UserOptions"
     StaticText ""
 
     Option "Dumb pickup messages",  "dakka_cl_moremessages",       "OnOff"
-    
+
 
     StaticText ""
     StaticText "Keybinds"

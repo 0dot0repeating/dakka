@@ -19,23 +19,23 @@ function int Heal_HealthIndex(int item)
 
 
 // Insertion sort of health points. Highest to lowest.
-// 
+//
 // This is called after TMP_HealthPoints has been filled in with points
 //  calculated from PKP_HealingPoints.
 function void Heal_SortHealthPoints(int pointCount)
 {
     int i, j;
-    
+
     for (i = 0; i < pointCount; i++)
     {
         int base = TMP_HealthPoints[i][0];
         int heal = TMP_HealthPoints[i][1];
-        
+
         for (j = i; j > 0; j--)
         {
             int base_comp = TMP_HealthPoints[j-1][0];
             int heal_comp = TMP_HealthPoints[j-1][1];
-            
+
             if (base > base_comp)
             {
                 TMP_HealthPoints[j][0] = base_comp;
@@ -58,16 +58,16 @@ function int Heal_AdjustHealth(int hp, int maxHealth, int type)
       case HSCALE_NONE:
       default:
         break;
-      
+
       case HSCALE_ADD:
         hp += maxHealth;
         break;
-      
+
       case HSCALE_MULT:
         hp = FixedMul(maxHealth, hp);
         break;
     }
-    
+
     return hp;
 }
 
@@ -87,7 +87,7 @@ function void Heal_PickupHealth(int index, int amount)
 {
     int startHealth = GetActorProperty(0, APROP_Health);
     int maxHealth   = getMaxHealth();
-    
+
     // Check for low HP, if this pickup even has low health data.
     int p_lowScalar = PKP_LowHealthValues[index][HLOW_SCALAR];
 
@@ -95,7 +95,7 @@ function void Heal_PickupHealth(int index, int amount)
     {
         int p_lowHealth = PKP_LowHealthValues[index][HLOW_BASE];
         int lowHealth = Heal_AdjustHealth(p_lowHealth, maxHealth, p_lowScalar);
-        
+
         if (startHealth <= lowHealth)
         {
             // We pass index along through this so that the message script
@@ -103,63 +103,63 @@ function void Heal_PickupHealth(int index, int amount)
             PKP_ReturnArray[PARRAY_LOWHEALTH] = index+1;
         }
     }
-    
+
     // since the amount of health given can vary based off of how much health
     //  you have, we need to figure out where the breakpoints are for how much
     //  you should be healed
     //
     // and since health points can be based off of max health, we need to
     //  calculate and sort them to make sure they're right
-    
+
     int healthPointCount = 0;
-    
+
     for (int i = 0; i < HPOINT_COUNT; i++)
     {
         int h_basescale = PKP_HealingPoints[index][i][HPOINT_BASESCALAR];
         int h_base      = PKP_HealingPoints[index][i][HPOINT_BASE];
         int h_healscale = PKP_HealingPoints[index][i][HPOINT_HEALSCALAR];
         int h_heal      = PKP_HealingPoints[index][i][HPOINT_HEAL];
-        
+
 
         // every health entry has to be the same length, so we use HSCALE_BLANK
         //  to mark empty entries
         if (h_basescale == HSCALE_BLANK) { continue; }
-        
+
         int adjust_base = Heal_AdjustHealth(h_base, maxHealth, h_basescale);
         int adjust_heal = h_heal;
-        
+
         switch (h_healscale)
         {
           case HTYPE_CONSTANT:
           default:
             break;
-          
+
           case HTYPE_PERCENT:
             adjust_heal = FixedMul(adjust_heal, maxHealth);
             break;
         }
-        
+
         int point = healthPointCount++;
         TMP_HealthPoints[point][0] = adjust_base;
         TMP_HealthPoints[point][1] = adjust_heal;
     }
-    
-    
+
+
     // well shit we ain't got anything to do
     if (healthPointCount == 0) { return; }
-    
+
     Heal_SortHealthPoints(healthPointCount);
-    
+
     // give health
-    
+
     int pointsLeft  = amount;
-    
+
     while (pointsLeft > 0)
     {
         int curHealth = GetActorProperty(0, APROP_Health);
-        
+
         int g_healindex = -1;
-        
+
         // figure out what health breakpoint we fall below
         //
         // since it's sorted top to bottom, we know if we're above the first
@@ -168,18 +168,18 @@ function void Heal_PickupHealth(int index, int amount)
         for (i = 0; i < healthPointCount; i++)
         {
             int c_health = TMP_HealthPoints[i][0];
-            
+
             if (curHealth >= c_health) { break; }
-            
+
             g_healindex = i;
         }
-        
+
         // hit the max health allowed for this pickup
         if (g_healindex == -1) { break; }
-        
+
         int g_base = TMP_HealthPoints[g_healindex][0];
         int g_heal = TMP_HealthPoints[g_healindex][1];
-        
+
         int g_maxheal    = g_base - curHealth;
 
         // (g_maxheal + (g_heal - 1)) / g_heal
@@ -209,7 +209,7 @@ function void Heal_PickupHealth(int index, int amount)
         int g_pointspend = min(pointsLeft, (g_maxheal + g_heal - 1) / g_heal);
 
         int g_pointheal  = g_pointspend * g_heal;
-        
+
         // never break out of the total healing range
         // eg. given a range of 0 to 300, and healing in 5 point increments, you
         //     can go from 199 to 204 even if 200 is a midpoint, but you can't
@@ -218,7 +218,7 @@ function void Heal_PickupHealth(int index, int amount)
         {
             g_pointheal = min(g_maxheal, g_pointheal);
         }
-        
+
         SetActorProperty(0, APROP_Health, curHealth + g_pointheal);
         pointsLeft -= g_pointspend;
     }

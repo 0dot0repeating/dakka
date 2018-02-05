@@ -110,7 +110,7 @@ Right now, there's three compatibility patches, and they all get used the same w
 - **Colourful Hell (`dakka_colorfulhell.wad`):** This adds the Colourful Hell
     enemies to the score system, so that loading Dakka and Colourful Hell together
     doesn't result in every map giving you score rewards every 5000 points.
-  
+
     This compatibility patch is completely unnecessary in GZDoom.
 
 To use any of these addons, download them from the `addons/` directory (use the

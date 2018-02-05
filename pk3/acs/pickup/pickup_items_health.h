@@ -76,7 +76,7 @@ int PKP_HealthTypes[HEALTHCOUNT] =
 // How many healing points do we want to work with?
 #define HPOINT_COUNT    4
 
-// This defines the point at which its healing applies. 
+// This defines the point at which its healing applies.
 #define HPOINT_BASE         1
 
 // This defines how to modify that base value.
@@ -84,7 +84,7 @@ int PKP_HealthTypes[HEALTHCOUNT] =
 #define HPOINT_BASESCALAR   0
 
 // This defines how much to heal by...
-#define HPOINT_HEAL         3   
+#define HPOINT_HEAL         3
 
 // and this defines how to modify that.
 //  Goes by the HTYPE_* constants.

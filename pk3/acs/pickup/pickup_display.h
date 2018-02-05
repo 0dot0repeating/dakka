@@ -54,7 +54,7 @@ function int Pickup_IsDisplayScripted(int index, int classNum)
 
     return ret;
 }
-    
+
 
 script "Pickup_Display" (int index, int dropped, int firstDisplay)
 {
@@ -123,7 +123,7 @@ script "Pickup_Display_Main" (int index, int dropped, int firstDisplay) clientsi
         oldScript = scriptIndex;
         oldNamed  = named;
         scriptIndex = Pickup_IsDisplayScripted(index, classNum);
-        
+
         // Slight optimization.
         if (oldScript != -1 || scriptIndex != -1)
         {

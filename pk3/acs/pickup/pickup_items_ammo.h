@@ -1,6 +1,6 @@
 #define AMMOCOUNT   27
 
-int PKP_KnownAmmo[AMMOCOUNT] = 
+int PKP_KnownAmmo[AMMOCOUNT] =
 {
     // DAKKA (10)
     "DakkaScrap",

@@ -3,7 +3,7 @@ actor Minigun : Weapon 5014
     SpawnID 214
     Radius 20
     Height 16
-    Weapon.AmmoType "Clip" 
+    Weapon.AmmoType "Clip"
     Weapon.AmmoGive 20
     Weapon.AmmoUse 1
     Weapon.Selectionorder 700
@@ -17,20 +17,20 @@ actor Minigun : Weapon 5014
       Spawn:
         MNGN A -1
         Loop
-        
+
       Ready:
         MNGG A 1 A_WeaponReady
         Loop
-        
+
       Deselect:
         MNGG A 1 A_Lower
         Loop
-        
-      Select: 
-        MNGG A 1 A_Raise 
-        Loop  
-        
-      Fire: 
+
+      Select:
+        MNGG A 1 A_Raise
+        Loop
+
+      Fire:
         MNGG A 0 A_GunFlash
         MNGG A 2 A_FireBullets(5.6, 0, 1, 5, "BulletPuff")
         MNGG B 2 A_FireBullets(5.6, 0, 1, 5, "BulletPuff")
@@ -40,12 +40,12 @@ actor Minigun : Weapon 5014
         MNGG B 4
         MNGG A 8
         MNGG B 8
-        Goto Ready 
-        
-      Flash: 
-        MNGF A 3 BRIGHT A_Light1 
+        Goto Ready
+
+      Flash:
+        MNGF A 3 BRIGHT A_Light1
         MNGF B 3 BRIGHT A_Light0
-        Stop 
+        Stop
     }
 }
 
@@ -63,32 +63,32 @@ actor GrenadeLauncher : DoomWeapon 5011
     Weapon.Kickback 100
     Weapon.SlotNumber 5 // This line isn't in skulltag.pk3, which instead defines the slot directly in DoomPlayer
     Inventory.PickupMessage "$PICKUP_GRENADELAUNCHER" // "You got the grenade launcher!"
-    
+
     States
     {
       Spawn:
         GLAU A -1
         Stop
-        
+
       Ready:
         GRLG A 1 A_WeaponReady
         Loop
-        
+
       Deselect:
         GRLG A 1 A_Lower
         Loop
-        
-      Select: 
+
+      Select:
         GRLG A 1 A_Raise
         Loop
-        
-      Fire: 
+
+      Fire:
         GRLG B 8 A_GunFlash
         GRLG B 12 A_FireSTGrenade
         GRLG B 0 A_ReFire
-        Goto Ready 
-        
-      Flash: 
+        Goto Ready
+
+      Flash:
         GRLF A 3 bright A_Light1
         GRLF B 4 bright
         GRLF C 4 bright A_Light2
@@ -114,32 +114,32 @@ actor Railgun : DoomWeapon 5012
       Ready:
         RLGG A 1 A_WeaponReady
         Loop
-        
+
       Deselect:
         RLGG A 1 A_Lower
         Loop
-        
+
       Select:
         RLGG A 1 A_Raise
         Loop
-        
+
       Fire:
         RLGG E 12 A_FireRailgun
         RLGG F 6 A_CheckForReload(4, "Reloaded")
         RLGG GHIJK 6
         RLGG L 6 A_ResetReloadCounter
-        
+
       Reloaded:
         RLGG A 6
         RLGG M 0 A_ReFire
         Goto Ready
-        
+
       Flash:
         TNT1 A 5 bright A_Light1
         TNT1 A 5 bright A_Light2
         TNT1 A 0 bright A_Light0
         Goto LightDone
-        
+
       Spawn:
         RAIL A -1
         Stop
@@ -165,7 +165,7 @@ actor BFG10K : DoomWeapon 5013
       Spawn:
         BFG2 A -1
         Stop
-        
+
       Ready:
         BG2G A 0 A_PlaySound ("weapons/bfg10kidle")
         BG2G A 1 A_WeaponReady
@@ -181,15 +181,15 @@ actor BFG10K : DoomWeapon 5013
         BG2G D 1 A_WeaponReady
         BG2G D 1 A_WeaponReady
         Loop
-        
+
       Deselect:
         BG2G E 1 A_Lower
         Loop
-        
+
       Select:
         BG2G E 1 A_Raise
         Loop
-        
+
       Fire:
         BG2G E 20 A_PlaySound ("weapons/bfg10kf")
         BG2G F 4
@@ -198,7 +198,7 @@ actor BFG10K : DoomWeapon 5013
         BG2G I 1
         BG2G J 1
         Goto Hold
-        
+
       Hold:
         BG2G K 2 A_GunFlash
         BG2G L 2 A_FireBullets(0,0,1,0,"BFG10kShot")
@@ -206,7 +206,7 @@ actor BFG10K : DoomWeapon 5013
         BG2G N 0 A_ReFire
         BG2G O 35 A_PlaySound ("weapons/bfg10kcool")
         Goto Ready
-        
+
       Flash:
         TNT1 A 2 Bright A_Light1
         TNT1 A 3 Bright
@@ -227,7 +227,7 @@ actor BFG10kShot
     +NOGRAVITY
     +ACTIVATEIMPACT
     +ACTIVATEPCROSS
-    +NOTELEPORT 
+    +NOTELEPORT
     +PUFFONACTORS
     +PUFFGETSOWNER
     +FORCERADIUSDMG

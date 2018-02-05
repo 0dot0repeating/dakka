@@ -9,7 +9,7 @@ actor DWep_Pistol: DoomWeapon
     Weapon.AmmoGive 0
     Weapon.AmmoType1 "DakkaBullet_10mm"
     Weapon.AmmoType2 "DakkaBullet_10mm"
-    
+
     Weapon.BobStyle InverseSmooth
     Weapon.BobSpeed 2.5
     Weapon.BobRangeX 0.3
@@ -73,7 +73,7 @@ actor DWep_Pistol: DoomWeapon
         DPST B 2 A_WeaponReady(WRF_NOBOB | WRF_NOFIRE)
         DPST A 2 A_WeaponReady(WRF_NOBOB | WRF_NOFIRE)
         goto Ready
-      
+
       AltNo:
         DPST A 1 A_WeaponReady(WRF_NOSECONDARY)
         goto Ready

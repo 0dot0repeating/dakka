@@ -39,7 +39,7 @@ BIG CHANGES:
     on an enemy, and enemies that are on fire take 20 afterburn damage a second
     for as long as they're on fire. Enemies set alight burn for three seconds -
     this is reset with every flame that burns them.
-  
+
     The upshot of it is that the flamethrower is now an excellent tool for
     wiping out weaker enemies, good at softening up hordes, and still effective
     for melting any single target. It no longer annihilates spider masterminds,

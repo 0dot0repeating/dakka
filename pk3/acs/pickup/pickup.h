@@ -25,7 +25,7 @@
 //
 //
 //      == pickup_items_pickup ==
-// 
+//
 // This is such a dumb, redundant name. But whatever. This stores purely
 //  cosmetic data used on pickup for each item. Pickup messages, flashes,
 //  pickup sounds, the like.
@@ -38,7 +38,7 @@
 //
 // Since these are special pickup types (not just plain Inventory items), they
 //  need their own metadata kept for them.
-//  
+//
 //
 //      == pickup_scripted ==
 //
@@ -85,7 +85,7 @@
 //  pickup_server_defs is to client-to-server. If you just want to add slots to
 //  this, you should only need to go into here.
 //
-//      
+//
 //      == pickup_server ==
 //
 // The client needs to keep the server in the loop on some things as well. That
@@ -98,7 +98,7 @@
 //  the client enough data about the pickup to run a pickup message script. This
 //  is where those scripts are.
 //
-//      
+//
 //      == pickup_display ==
 //
 // This is what the stuff in pickup_client is mainly for. It controls display
@@ -106,7 +106,7 @@
 //
 //
 //      == pickup_daemon ==
-// 
+//
 // This is where the OPEN script that sends stuff from the server to the client
 //  is at. It also contains the DISCONNECT script resetting the data when the
 //  client leaves/spectates, and the ENTER script force-sending the presumably
@@ -116,7 +116,7 @@
 //          ====================
 //          ===== FUN FACT =====
 //          ====================
-// 
+//
 // If you take only pickup_const.h, pickup_client.h, and pickup_daemon.h, you'll
 //  have yourself a generic system for sending data from the server to the client
 //  via and for ACS. Handy!

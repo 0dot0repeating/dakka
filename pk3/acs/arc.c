@@ -32,7 +32,7 @@ Step 4 (A): if "user_keeparcing" is false, send arcer to Arc_EndArc state, set
             its tracer to the previous arcer's tracer, and end
 
   --- user_keeparcing is true ---
-  
+
 Step 5 (A): send arcer to Arc_Look
 Step 6 (D): arcer gives every possible target around it the ArcLookout item
 Step 7 (D): the ArcLookout item runs the Arc_WeighTarget script on the target
@@ -64,7 +64,7 @@ int NoTeamIndex;
 
 
 script "Arc_Open" open
-{   
+{
     SetDBEntry("dakka_arc", "client_iszand", 789237);
     NoTeamIndex = cond(GetDBEntry("dakka_arc", "client_iszand") == 789237, 4, 255);
 }
@@ -77,7 +77,7 @@ script "Arc_Damage" (int damage)
 
     SetActivator(0, AAPTR_TRACER);
     if (ClassifyActor(0) & ACTOR_WORLD)
-    { 
+    {
         Thing_ChangeTID(myTID_new, myTID_old);
         terminate;
     }

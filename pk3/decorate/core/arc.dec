@@ -10,7 +10,7 @@ Step 4 (A): if "user_keeparcing" is false, send arcer to Arc_EndArc state, set
             its tracer to the previous arcer's tracer, and end
 
   --- user_keeparcing is true ---
-  
+
 Step 5 (A): send arcer to Arc_Look
 Step 6 (D): arcer gives every possible target around it the ArcLookout item
 Step 7 (D): the ArcLookout item runs the Arc_WeighTarget script on the target
@@ -41,66 +41,66 @@ actor Arc_Base
     var int user_lookrange;     // set by Arc_GetTarget
     var int user_bestweight;    // used by the ArcLookout scripts
     var int user_depth;         // how many arcers are before this one?
-    
+
     Projectile
     Radius 1  // These have to be nonzero or else A_RadiusGive can't cross
     Height 1  //  sector boundaries for some stupid reason
-    
+
     +NOINTERACTION
     +SERVERSIDEONLY
     //RenderStyle None
-    
+
     States
     {
       // The actor just needs to exist for at least a single tic, so that the
       //  chain doesn't get broken for stupid reasons. This won't run if the arc
       //  is spawned as part of a chain - even if you use "nodelay" on the first
       //  state, I think.
-      
+
       Spawn:
         TNT1 A 0
         TNT1 A 1
         stop
-      
-      
+
+
       // The arcer is sent to this state when spawned in an arc chain. If you
       //  want to keep arcing, call the Arc_Main script here as well.
-      
+
       Arc_Spawn:
         TNT1 A 1
         stop
-      
-      
+
+
       // The ACS defers to this to determine whether the arcer should arc.
       //  Having a dedicated state block for it means you don't have to have
       //  the checks copypasted in both Spawn and Arc_Spawn.
       //
       // Arc_KeepArcing and Arc_StopArcing are convenience state blocks.
-      
+
       Arc_Query:
         TNT1 A 0
         goto Arc_KeepArcing
-      
+
       Arc_KeepArcing:
         TNT1 A 1 A_SetUserVar("user_keeparcing", true)
         stop
-      
+
       Arc_StopArcing:
         TNT1 A 1 A_SetUserVar("user_keeparcing", false)
         stop
-      
-      
+
+
       // If "user_keeparcing" was set to false, the actor's sent here. No more
       //  state changes will be done by the ACS, so you're free to do whatever
       //  you want here.
       //
       // The tracer will point to the tracer of the previous arcer, if any.
-      
+
       Arc_EndArc:
         TNT1 A 1
         stop
-      
-      
+
+
       // !!!!!!!! DO NOT MODIFY THIS IN SUBCLASSES !!!!!!!!
       //
       // Here we do the actual looking. Unlike the previous iteration of the arc
@@ -110,29 +110,29 @@ actor Arc_Base
       //  best target, and can change with every target evaluated. Since they
       //  all run their checks immediately, this shouldn't come into play, but
       //  you should still be aware of it.
-      
+
       Arc_Look:
         TNT1 A 0
         TNT1 A 1 A_RadiusGive("ArcLookout", user_lookrange, RGF_PLAYERS | RGF_MONSTERS | RGF_OBJECTS)
         stop
-      
-      
+
+
       // No target was found, and the chain ends here. You can do whatever you
       //  want at this point, as the ACS isn't going to do anything else.
       //
       // The tracer will point to the tracer of the previous arcer, if any.
-      
+
       Arc_NoTarget:
         BAL1 A 70 bright
         stop
-      
-      
+
+
       // A target was found, and you can do stuff to that target as you please.
       //  You can evaluate the target here and set "user_keeparcing" to false,
       //  which will end the arc and let you do what you want.
       //
       // The target is stored in the tracer field.
-      
+
       Arc_FoundTarget:
         PLSS A 70 bright
         stop

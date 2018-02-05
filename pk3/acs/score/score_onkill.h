@@ -41,14 +41,14 @@ script "Dakka_Score" (int pointValue)
     int myX = GetActorX(0);
     int myY = GetActorY(0);
     int myZ = GetActorZ(0);
-    
+
     int myRadius  = GetActorProperty(0, APROP_Radius);
     int myHeight  = GetActorProperty(0, APROP_Height);
     int myTID_old = ActivatorTID();
     int myTID     = defaultTID(-1);
 
     if (!SetActivatorToTarget(0))
-    { 
+    {
         Thing_ChangeTID(myTID, myTID_old);
         terminate;
     }
@@ -68,9 +68,9 @@ script "Dakka_Score" (int pointValue)
         Thing_ChangeTID(firerTID, firerTID_old);
         terminate;
     }
-    
+
     if (CToS_ServerData[pln][C2S_D_NOSCORE])
-    {    
+    {
         Thing_ChangeTID(myTID,    myTID_old);
         Thing_ChangeTID(firerTID, firerTID_old);
         terminate;
@@ -83,18 +83,18 @@ script "Dakka_Score" (int pointValue)
     int plHeight = GetActorProperty(0, APROP_Height);
 
     int curveCheck = CheckSight(myTID, firerTID, 0);
-    
+
     SetActivator(myTID);
-    
+
     Warp(0, myX, myY, myZ + GetActorProperty(0, APROP_Height) / 2, 0, WARPF_NOCHECKPOSITION | WARPF_ABSOLUTEPOSITION);
     curveCheck = curveCheck || CheckSight(myTID, firerTID, 0);
-    
+
     Warp(0, myX, myY, myZ + GetActorProperty(0, APROP_Height), 0, WARPF_NOCHECKPOSITION | WARPF_ABSOLUTEPOSITION);
     curveCheck = curveCheck || CheckSight(myTID, firerTID, 0);
-    
+
     Warp(0, myX, myY, myZ, 0, WARPF_NOCHECKPOSITION | WARPF_ABSOLUTEPOSITION);
     SetActivator(firerTID);
-    
+
     Thing_ChangeTID(myTID,    myTID_old);
     Thing_ChangeTID(firerTID, firerTID_old);
 
@@ -144,7 +144,7 @@ script "Dakka_Score" (int pointValue)
             LastBonus[pln][i]    = bonustime;
         }
     }
-    
+
     AddUntouchable(pln, myhp);
     AddKillstreak(pln, myhp);
     Delay(35);
@@ -159,8 +159,8 @@ script "Dakka_Infighter" (int pointValue)
     int points_infighter = round(pointValue * SMult_Infighter());
     int bonustime = Timer();
 
-    int i;    
-    
+    int i;
+
     for (i = 0; i < PLAYERMAX; i++)
     {
         if (!PlayerInGame(i) || CToS_ServerData[i][C2S_D_NOSCORE]) { continue; }

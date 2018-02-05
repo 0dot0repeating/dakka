@@ -65,7 +65,7 @@ function int Pickup_IsZandronum(void)
         SetDBEntry("pickup", "client_iszand", true);
         IsZandronum = GetDBEntry("pickup", "client_iszand") == 1;
     }
-    
+
     return IsZandronum;
 }
 
@@ -99,7 +99,7 @@ function void Sender_ClearData(int pln)
 
 
 // Base function to send data from server to client.
-// 
+//
 // Note that it doesn't actually *send* anything. It only adds it to an array,
 //  to be sent by another function.
 //
@@ -136,7 +136,7 @@ function void Sender_UpdateClients(void)
 
             if (data_server == data_client) { continue; }
 
-            int lastSend    = SToC_LastSendTime[i][j]; 
+            int lastSend    = SToC_LastSendTime[i][j];
 
             if ((lastSend < 0) || (Timer() - lastSend > S2C_RESENDTIME))
             {
@@ -215,7 +215,7 @@ function void Sender_PingBack(int pln, int index, int value)
         SToC_LastClientResponse[pln][index] = value;
     }
 }
-    
+
 
 // ========
 // == SCRIPT DEFINITIONS

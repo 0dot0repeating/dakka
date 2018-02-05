@@ -3,11 +3,11 @@
 script "Dakka_SwitchWeps" (int wep1, int wep2) net clientside
 {
     int wepname;
-    
+
     if (wep1 >= 0 && wep1 < WEAPONCOUNT)
     {
         wepname = PKP_KnownGuns[wep1][0];
-        
+
         if (CheckInventory(wepname) && !CheckWeapon(wepname))
         {
             if (SetWeapon(wepname))
@@ -17,11 +17,11 @@ script "Dakka_SwitchWeps" (int wep1, int wep2) net clientside
             }
         }
     }
-    
+
     if (wep1 >= 0 && wep1 < WEAPONCOUNT)
     {
         wepname = PKP_KnownGuns[wep2][0];
-        
+
         if (CheckInventory(wepname) && !CheckWeapon(wepname))
         {
             if (SetWeapon(wepname))

@@ -18,7 +18,7 @@ function int SMult_WeaponSwitch(int pln, int myhp)
     int maxtics = round(SWITCHAROO_TICSPER100HP * myhp * 0.01);
     maxtics = middle(SWITCHAROO_MINTICS, maxtics, SWITCHAROO_MAXTICS);
     int cutoff = Timer() - maxtics;
-    
+
     int wepsUsed        = 0;
     int fireModesUsed   = 0;
     int s, f, i;
@@ -143,7 +143,7 @@ function int SMult_Curveball(int couldsee)
 
     if (couldsee) { ret = 0; }
     else { ret = CURVEBALL_MULT; }
-    
+
     return ret;
 }
 
@@ -151,7 +151,7 @@ function int SMult_Curveball(int couldsee)
 function int SMult_Scrapping(int pln)
 {
     if (pln < 0 || pln >= PLAYERMAX) { return 0.0; }
-    
+
     int s, f, i;
 
     int latestTic  = -1;
@@ -168,7 +168,7 @@ function int SMult_Scrapping(int pln)
         for (f = 0; f < SCOREFIREMODES; f++)
         {
             i = PlayerWeapons_LastFired[pln][s][f];
-            
+
             if (i > latestTic)
             {
                 latestTic  = i;
@@ -188,11 +188,11 @@ function int SMult_PointBlank(int mx, int my, int mz, int mradius, int mheight, 
     int mX_closest = middle(px, safeAdd(mx, mradius), safeAdd(mx, -mradius));
     int mY_closest = middle(py, safeAdd(my, mradius), safeAdd(my, -mradius));
     int mZ_closest = middle(pz, safeAdd(mz, mheight), mz);
-    
+
     int pX_closest = middle(mX_closest, safeAdd(px, pradius), safeAdd(px, -pradius));
     int pY_closest = middle(mY_closest, safeAdd(py, pradius), safeAdd(py, -pradius));
     int pZ_closest = middle(mZ_closest, safeAdd(pz, pheight), pz);
-    
+
     int dist = distance(mX_closest, mY_closest, mZ_closest, pX_closest, pY_closest, pZ_closest);
     if (dist < POINTBLANK_DIST) { return POINTBLANK_MULT; }
 
@@ -204,15 +204,15 @@ function int SMult_Untouchable(int pln, int myhp)
 {
     int kills = PlayerKillStreaks[pln][KS_KILLS_SINCELASTHIT];
     int hp    = PlayerKillStreaks[pln][KS_HP_SINCELASTHIT];
-    
+
     if (kills >= Score_Thresholds[ST_UT_KILLS] || hp >= Score_Thresholds[ST_UT_HP])
     {
         PlayerKillStreaks[pln][KS_KILLS_UNTOUCHABLE] += 1 + (myhp / UNTOUCHABLE_KILLBOOST_HPDIVISOR);
         int multKills = min(PlayerKillStreaks[pln][KS_KILLS_UNTOUCHABLE], UNTOUCHABLE_MAXKILLS);
-        
+
         return multKills * UNTOUCHABLE_MULT;
     }
-    
+
     return 0;
 }
 

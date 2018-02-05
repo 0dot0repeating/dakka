@@ -28,7 +28,7 @@ int WepDisplay_S2CCheck[WEPDISP_TYPES][2] =
 
 
 // Array lookups are surprisingly expensive. Let's not do them if we don't have to.
-// 
+//
 // Restructuring this script to do as few lookups as possible cut the instruction
 //  count for this down from 170-ish to 77. Good shit.
 script "Dakka_WepDisplay" (int weptype)

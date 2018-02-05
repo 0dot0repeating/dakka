@@ -1,7 +1,7 @@
 actor Pickup_Clip: CustomInventory replaces Clip
 {
     Inventory.PickupMessage "Bullets"
-    
+
     States
     {
       Spawn:
@@ -18,7 +18,7 @@ actor Pickup_Clip: CustomInventory replaces Clip
 actor Pickup_ClipDropped: CustomInventory
 {
     Inventory.PickupMessage "Bullets"
-    
+
     States
     {
       Spawn:
@@ -35,7 +35,7 @@ actor Pickup_ClipDropped: CustomInventory
 actor Pickup_Shell: CustomInventory replaces Shell
 {
     Inventory.PickupMessage "Shells"
-    
+
     States
     {
       Spawn:
@@ -51,7 +51,7 @@ actor Pickup_Shell: CustomInventory replaces Shell
 actor Pickup_RocketAmmo: CustomInventory replaces RocketAmmo
 {
     Inventory.PickupMessage "Rockets"
-    
+
     States
     {
       Spawn:
@@ -67,7 +67,7 @@ actor Pickup_RocketAmmo: CustomInventory replaces RocketAmmo
 actor Pickup_Cell: CustomInventory replaces Cell
 {
     Inventory.PickupMessage "Cells"
-    
+
     States
     {
       Spawn:
@@ -83,7 +83,7 @@ actor Pickup_Cell: CustomInventory replaces Cell
 actor Pickup_ClipBox: CustomInventory replaces ClipBox
 {
     Inventory.PickupMessage "Big bullets"
-    
+
     States
     {
       Spawn:
@@ -101,7 +101,7 @@ actor Pickup_ClipBox: CustomInventory replaces ClipBox
 actor Pickup_ShellBox: CustomInventory replaces ShellBox
 {
     Inventory.PickupMessage "Big shells"
-    
+
     States
     {
       Spawn:
@@ -118,7 +118,7 @@ actor Pickup_ShellBox: CustomInventory replaces ShellBox
 actor Pickup_RocketBox: CustomInventory replaces RocketBox
 {
     Inventory.PickupMessage "Big rockets"
-    
+
     States
     {
       Spawn:
@@ -135,7 +135,7 @@ actor Pickup_RocketBox: CustomInventory replaces RocketBox
 actor Pickup_CellPack: CustomInventory replaces CellPack
 {
     Inventory.PickupMessage "Big cells"
-    
+
     States
     {
       Spawn:
@@ -154,7 +154,7 @@ actor Pickup_Backpack: CustomInventory replaces Backpack
 {
     +ALWAYSPICKUP
     Inventory.PickupMessage "Backpack!"
-    
+
     States
     {
       Spawn:

@@ -39,10 +39,10 @@ function void Score_Draw(int curPoints, int goalPoints, int displayPoints)
 
     int i;
     int cpln = ConsolePlayerNumber();
-    
+
     int noScore         = GetUserCVar(cpln, "dakka_cl_noscore");
     int noScoreRewards  = GetUserCVar(cpln, "dakka_cl_noscorerewards") || noScore;
-    
+
     if (noScore)
     {
         HudMessage(s:""; HUDMSG_PLAIN, 24200, 0,0,0,0);
@@ -214,7 +214,7 @@ function void Score_DrawBonuses(int pln, int noscore)
         name  = BonusNames[i];
         color = BonusColors[i];
         score = bonus;
-            
+
         if (score <= 0) { continue; }
 
         offset += 1;
@@ -223,10 +223,10 @@ function void Score_DrawBonuses(int pln, int noscore)
 
         SetFont("DAKKAFN2");
 
-        HudMessage(s:"+", d:score; HUDMSG_FADEOUT | HUDMSG_COLORSTRING, 24409 + (offset * 2), color, 
+        HudMessage(s:"+", d:score; HUDMSG_FADEOUT | HUDMSG_COLORSTRING, 24409 + (offset * 2), color,
                         455.1, 82.0 + (13.0 * (offset-1)), 0.5, 0.5);
 
-        HudMessage(s:name; HUDMSG_FADEOUT | HUDMSG_COLORSTRING, 24410 + (offset * 2), "DScore_White", 
+        HudMessage(s:name; HUDMSG_FADEOUT | HUDMSG_COLORSTRING, 24410 + (offset * 2), "DScore_White",
                         508.1, 82.0 + (13.0 * (offset-1)), 0.5, 0.5);
     }
 }

@@ -31,31 +31,31 @@ function int Dakka_GetNewTarget(int ptrTID)
     int myTID_old = ActivatorTID();
     int myTID_new = UniqueTID();
     Thing_ChangeTID(0, myTID_new);
-    
+
     if (ptrTID == 0)
     {
         ptrTID = UniqueTID();
         SpawnForced("BFGPointerDummy", GetActorX(0), GetActorY(0), GetActorZ(0), ptrTID);
-        
+
         SetActivator(ptrTID);
         SetPointer(AAPTR_TARGET, myTID_new);
         SetActivator(myTID_new);
     }
-    
+
     int myAngle = GetActorAngle(0);
     int myPitch = GetActorPitch(0);
-    
+
     int targetTID_old = PickActor(0, myAngle, myPitch, 0x7FFFFFFF, 0, BFGPICKFLAGS_THINGS, BFGPICKFLAGS_LINES, PICKAF_RETURNTID);
     int targetTID_new = UniqueTID();
-    
+
     int t = Timer();
-    
+
     if (PickActor(0, myAngle, myPitch, 0x7FFFFFFF, targetTID_new, BFGPICKFLAGS_THINGS, BFGPICKFLAGS_LINES, PICKAF_FORCETID))
     {
         SetActivator(ptrTID);
         SetPointer(AAPTR_TRACER, targetTID_new);
         SetUserVariable(0, "user_timeout", t + 36);
-        
+
         SetActivator(myTID_new);
         Thing_ChangeTID(targetTID_new, targetTID_old);
     }
@@ -65,11 +65,11 @@ function int Dakka_GetNewTarget(int ptrTID)
         int targetDead = (ClassifyActor(0) & ACTOR_WORLD) || isDead(0);
         int timedOut   = GetUserVariable(ptrTID, "user_timeout") <= t;
         SetActivator(myTID_new);
-        
+
         if (targetDead || timedOut)
         {
             LineAttack(0, myAngle, myPitch, 0, "BFGCrosshairTarget_Puff", "None", 0x7FFFFFFF, FHF_NOIMPACTDECAL | FHF_NORANDOMPUFFZ, targetTID_new);
-            
+
             if (!IsTIDUsed(targetTID_new))
             {
                 // I feel like this shouldn't work because this starts right on top of us
@@ -79,11 +79,11 @@ function int Dakka_GetNewTarget(int ptrTID)
                                                 32767 * FixedMul(sin(myAngle), cos(myPitch)),
                                                 32767 * -sin(myPitch), false, false);
             }
-            
+
             SetActivator(ptrTID);
             SetPointer(AAPTR_TRACER, targetTID_new);
             Thing_ChangeTID(targetTID_new, 0);
-            
+
             SetActivator(myTID_new);
         }
     }
@@ -99,11 +99,11 @@ function int Dakka_GetNewTarget(int ptrTID)
 script "Dakka_SetupBFGStage2" (int facetracer, int changestate)
 {
     if (!IsServer) { terminate; }
-    
+
     int myTID_old = ActivatorTID();
     int myTID_new = UniqueTID();
     Thing_ChangeTID(0, myTID_new);
-    
+
     SetActivator(0, AAPTR_TARGET);
     if (ClassifyActor(0) & ACTOR_WORLD)
     {
@@ -112,25 +112,25 @@ script "Dakka_SetupBFGStage2" (int facetracer, int changestate)
         SetResultValue(false);
         terminate;
     }
-    
+
     SetActivator(CheckInventory("BFGPointerTID"), AAPTR_TRACER);
     if (ClassifyActor(0) & ACTOR_WORLD)
     {
-        if (changestate) { SetActorState(0, "Stage2_Fail"); } 
+        if (changestate) { SetActorState(0, "Stage2_Fail"); }
         Thing_ChangeTID(myTID_new, myTID_old);
         SetResultValue(false);
         terminate;
     }
-    
+
     int targetTID_old = ActivatorTID();
     int targetTID_new = UniqueTID();
     Thing_ChangeTID(0, targetTID_new);
-    
+
     SetActivator(myTID_new);
     SetPointer(AAPTR_TRACER, targetTID_new);
-    
+
     int dx,dy,dz;
-    
+
     if (facetracer)
     {
         dx = GetActorX(targetTID_new) - GetActorX(0);
@@ -143,14 +143,14 @@ script "Dakka_SetupBFGStage2" (int facetracer, int changestate)
         dy = GetActorVelY(0);
         dz = GetActorVelZ(0);
     }
-        
+
     SetActorAngle(0,  VectorAngle(dx, dy));
     SetActorPitch(0, -VectorAngle(VectorLength(dx, dy), dz));
-    
+
     Thing_ChangeTID(myTID_new,     myTID_old);
     Thing_ChangeTID(targetTID_new, targetTID_old);
 
-    if (changestate) { SetActorState(0, "Stage2_Success"); } 
+    if (changestate) { SetActorState(0, "Stage2_Success"); }
     SetResultValue(true);
 }
 
@@ -159,29 +159,29 @@ script "Dakka_SetupBFGStage2" (int facetracer, int changestate)
 script "Dakka_BFGHomeIn" (int speedadd, int speedmax, int evenIfBehind)
 {
     if (!IsServer) { terminate; }
-    
+
     speedadd = itof(speedadd);
     speedmax = itof(speedmax);
-    
+
     int myTID_old = ActivatorTID();
     int myTID_new = UniqueTID();
     Thing_ChangeTID(0, myTID_new);
-    
+
     int x = GetActorX(0);
     int y = GetActorY(0);
     int z = GetActorZ(0);
-    
+
     int angle = GetActorAngle(0);
     int pitch = GetActorPitch(0);
-    
+
     int aimX = FixedMul(cos(angle), cos(pitch));
     int aimY = FixedMul(sin(angle), cos(pitch));
     int aimZ = -sin(pitch);
-    
+
     int tx,ty,tz;
-    
+
     SetActivator(0, AAPTR_TRACER);
-    
+
     if ((ClassifyActor(0) & ACTOR_WORLD) || isDead(0))
     {
         if (GetUserVariable(myTID_new, "user_hadtarget"))
@@ -202,23 +202,23 @@ script "Dakka_BFGHomeIn" (int speedadd, int speedmax, int evenIfBehind)
         tx = GetActorX(0);
         ty = GetActorY(0);
         tz = GetActorZ(0) + (GetActorProperty(0, APROP_Height) / 2);
-        
+
         SetUserVariable(myTID_new, "user_hadtarget", true);
         SetUserVariable(myTID_new, "user_targetx", tx);
         SetUserVariable(myTID_new, "user_targety", ty);
         SetUserVariable(myTID_new, "user_targetz", tz);
     }
-    
+
     int dx = tx - x;
     int dy = ty - y;
     int dz = tz - z;
-    
+
     SetActivator(myTID_new);
-    
+
     if (!evenIfBehind)
     {
         int distInFront = dot3(dx,dy,dz, aimX,aimY,aimZ);
-        
+
         if (distInFront < 0)
         {
             SetResultValue(false);
@@ -226,22 +226,22 @@ script "Dakka_BFGHomeIn" (int speedadd, int speedmax, int evenIfBehind)
             terminate;
         }
     }
-    
+
     int dmag = VectorLength(VectorLength(dx, dy), dz);
     int ndx = 0, ndy = 0, ndz = 0;
-    
+
     if (dmag > 0)
     {
         ndx = FixedDiv(dx, dmag);
         ndy = FixedDiv(dy, dmag);
         ndz = FixedDiv(dz, dmag);
     }
-    
+
     int vx  = GetActorVelX(0) + FixedMul(ndx, speedadd);
     int vy  = GetActorVelY(0) + FixedMul(ndy, speedadd);
     int vz  = GetActorVelZ(0) + FixedMul(ndz, speedadd);
     int vel = VectorLength(VectorLength(vx, vy), vz);
-    
+
     if (speedmax > 0 && vel > speedmax)
     {
         int vdiff = FixedDiv(speedmax, vel);
@@ -249,10 +249,10 @@ script "Dakka_BFGHomeIn" (int speedadd, int speedmax, int evenIfBehind)
         vy = FixedMul(vy, vdiff);
         vz = FixedMul(vz, vdiff);
     }
-    
+
     SetActorVelocity(0, vx,vy,vz, false,false);
     SetActorAngle(0,  VectorAngle(vx,vy));
     SetActorPitch(0, -VectorAngle(VectorLength(vx,vy), vz));
-    
+
     SetResultValue(true);
 }

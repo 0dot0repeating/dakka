@@ -2,7 +2,7 @@
 //  - 0: do nothing special
 //  - Anything above 0: Any weapon with a power rating at or below the value of
 //      dakka_startmode_weapons is given to you; anything else is taken away
-//  
+//
 //      2 is the same as 1 effectively, so that you always have fists and pistols
 //
 // Note that this and dakka_startmode_ammo can only work with weapons defined in
@@ -102,7 +102,7 @@ function void Dakka_StartMode_Weapons(int classNum, int entered, int lostWeapons
             GiveInventory(wepName, 1);
 
             // Keep ammo constant
-            
+
             if (gotAmmo1) { TakeInventory(ammo1Name, CheckInventory(ammo1Name) - ammo1Count); }
             if (gotAmmo2) { TakeInventory(ammo2Name, CheckInventory(ammo2Name) - ammo2Count); }
         }
@@ -338,7 +338,7 @@ function void Dakka_BackpackStart(void)
     }
 
     // Give backpack
-    
+
     for (i = 0; i < AMMOCOUNT; i++)
     {
         Backpack_AmmoBefore[i] = CheckInventory(PKP_KnownAmmo[i]);

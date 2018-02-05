@@ -137,7 +137,7 @@ texture RWP_311A
     pic RWP_311D tics 4
     pic RWP_311C tics 3
     pic RWP_311B tics 3
-    
+
 texture RWP_312A
     pic RWP_312A tics 6
     pic RWP_312B tics 3
@@ -145,7 +145,7 @@ texture RWP_312A
     pic RWP_312D tics 4
     pic RWP_312C tics 3
     pic RWP_312B tics 3
-    
+
 texture RWP_321A
     pic RWP_321A tics 6
     pic RWP_321B tics 3
@@ -153,7 +153,7 @@ texture RWP_321A
     pic RWP_321D tics 4
     pic RWP_321C tics 3
     pic RWP_321B tics 3
-    
+
 texture RWP_322A
     pic RWP_322A tics 6
     pic RWP_322B tics 3
@@ -171,7 +171,7 @@ texture RWP_411A
     pic RWP_411D tics 4
     pic RWP_411C tics 3
     pic RWP_411B tics 3
-    
+
 texture RWP_412A
     pic RWP_412A tics 6
     pic RWP_412B tics 3
@@ -189,7 +189,7 @@ texture RWP_511A
     pic RWP_511D tics 4
     pic RWP_511C tics 3
     pic RWP_511B tics 3
-    
+
 texture RWP_512A
     pic RWP_512A tics 6
     pic RWP_512B tics 3
@@ -207,7 +207,7 @@ texture RWP_611A
     pic RWP_611D tics 4
     pic RWP_611C tics 3
     pic RWP_611B tics 3
-    
+
 texture RWP_612A
     pic RWP_612A tics 6
     pic RWP_612B tics 3
@@ -225,7 +225,7 @@ texture RWP_711A
     pic RWP_711D tics 4
     pic RWP_711C tics 3
     pic RWP_711B tics 3
-    
+
 texture RWP_712A
     pic RWP_712A tics 6
     pic RWP_712B tics 3
@@ -409,7 +409,7 @@ texture HUD_FS12
     pic HUD_FS15 tics 4
     pic HUD_FS14 tics 3
     pic HUD_FS13 tics 3
-    
+
 texture HUD_FS22
     pic HUD_FS22 tics 6
     pic HUD_FS23 tics 3

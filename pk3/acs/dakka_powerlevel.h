@@ -89,15 +89,15 @@ function void Dakka_PowerLevel(void)
 {
     int powerLevel   = middle(0, GetCVar("dakka_powerlevel")   + POWERLEVEL_CENTER,   POWERLEVEL_COUNT  -1);
     int defenseLevel = middle(0, GetCVar("dakka_defenselevel") + DEFENSELEVEL_CENTER, DEFENSELEVEL_COUNT-1);
-    
+
     int i;
-    
+
     for (i = 0; i < POWERLEVEL_COUNT; i++)
     {
         if (i == POWERLEVEL_CENTER) { continue; }
         SetInventory(DakkaPowerLevels[i], i == powerLevel);
     }
-    
+
     for (i = 0; i < DEFENSELEVEL_COUNT; i++)
     {
         if (i == DEFENSELEVEL_CENTER) { continue; }
