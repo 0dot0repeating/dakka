@@ -54,6 +54,15 @@ script "Dakka_Spawn" (int respawned)
         // Doesn't need its own script
         if (classNum == Cl_Dakkaguy) { SetInventory("DWep_Fist", 1); }
 
+        // In score/score_reward.h
+        lastScore = curScore;
+        curScore  = Score_GetScore(pln);
+        Score_DoRewards(lastScore, curScore);
+
+        // In score/score_update.h
+        Air_UpdateZHeight();
+
+
         // Handle the dakka_shotgun2ssg and dakka_chaingun2minigun CVars.
         // - In dakka_gunstoguns.h
         Dakka_GunsToGuns();
@@ -72,6 +81,12 @@ script "Dakka_Spawn" (int respawned)
         // In dakka_tempitems.h
         Dakka_UpdateTemporaryItems();
 
+        // In dakka_soundloopers.h
+        Dakka_SoundLoopers();
+
+        // In dakka_vampirism.h
+        Dakka_VampireTick();
+
         // In dakka_fists.h
         Dakka_FistTap();
 
@@ -84,14 +99,6 @@ script "Dakka_Spawn" (int respawned)
 
         // In dakka_bfg.h
         bfgPtrTID = Dakka_GetNewTarget(bfgPtrTID);
-
-        // In score/score_reward.h
-        lastScore = curScore;
-        curScore  = Score_GetScore(pln);
-        Score_DoRewards(lastScore, curScore);
-
-        // In score/score_update.h
-        Air_UpdateZHeight();
 
         Score_UpdateClient(pln);
 

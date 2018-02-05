@@ -179,37 +179,18 @@ function void Score_ProcessRewards(void)
 {
     int pln = PlayerNumber();
 
-    int regenTime = Score_GetRegenTimer(pln);
-    int inRegen   = Score_GetRegenSpent(pln);
-
-    int looperTID = CheckInventory("RegenSoundTID");
+    int regenTime =  Score_GetRegenTimer(pln);
+    int regenSpent = Score_GetRegenSpent(pln);
     int i;
 
     if (regenTime > 0)
     {
-        if (inRegen == 0)
+        if (regenSpent == 0)
         {
             for (i = 0; i < AMMOREGENCOUNT; i++)
             {
                 AmmoRegen_RegenCounters[pln][i] = 0;
             }
-        }
-
-        if (looperTID == 0)
-        {
-            int myTID_old = ActivatorTID();
-            int myTID     = UniqueTID();
-            Thing_ChangeTID(0, myTID);
-
-            looperTID = UniqueTID();
-            Spawn("RegenSoundLooper", GetActorX(0), GetActorY(0), GetActorZ(0), looperTID);
-            SetInventory("RegenSoundTID", looperTID);
-
-            SetActivator(looperTID);
-            SetPointer(AAPTR_TARGET, myTID);
-            SetActivator(myTID);
-
-            Thing_ChangeTID(myTID, myTID_old);
         }
 
         int  curTic_bySecond = itof( Timer() % 36);
@@ -239,23 +220,18 @@ function void Score_ProcessRewards(void)
 
         Score_ModRegenSpent(pln, 1);
     }
+    else if (regenSpent > 0)
+    {
+        Score_SetRegenSpent(pln, 0);
+    }
 
 
     int newRegenTime = max(0, regenTime - 1);
-
     Score_SetRegenTimer(pln, newRegenTime);
 
-    if (inRegen && newRegenTime == 0)
-    {
-        FadeRange(128, 212, 255, 0.3, 128, 212, 255, 0, 0.5);
-
-        Score_SetRegenSpent(pln, 0);
-        if (looperTID != 0) { SetActorState(looperTID, "RegenDone"); }
-        TakeInventory("RegenSoundTID", 0x7FFFFFFF);
-    }
-
-    SetInventory("HUD_AmmoRegen", newRegenTime > 0);
-
+    SetInventory("DakkaInAmmoRegen",      regenTime >  0);
+    SetInventory("DakkaEnteredAmmoRegen", regenTime >  0 && regenSpent <= 0);
+    SetInventory("DakkaExitedAmmoRegen",  regenTime <= 0 && regenSpent >  0);
 
     int extraLives = Score_GetExtraLives(pln);
     int hasLives   = Score_GetHasLives(pln);

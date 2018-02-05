@@ -58,6 +58,10 @@
 // <insert dead meme here>
 #include "dakka_powerlevel.h"
 
+// Vampirism and ammo regen need sounds that don't take up sound slots. This is
+//  how it's done.
+#include "dakka_soundloopers.h"
+
 // ^^ STUFF FOR DAKKA_SPAWN
 ////////
 

@@ -8,6 +8,7 @@
 #include "decorate/core/puffs.dec"
 
 #include "decorate/core/armor.dec"
+#include "decorate/core/vampiresphere.dec"
 
 #include "decorate/core/scorestuff.dec"
 #include "decorate/core/powerlevel.dec"
