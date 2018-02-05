@@ -2,10 +2,10 @@
 //
 // I'm tempted to add pickup_cl_moremessages to this, but no.
 //
-// You want that, you can add it yourself. 
+// You want that, you can add it yourself.
 // I'll try to make that as easy as possible.
 
-int PKP_Messages[PICKUPCOUNT][CLASSCOUNT] = 
+int PKP_Messages[PICKUPCOUNT][CLASSCOUNT] =
 {
     {
         "You got a pair of hands!",
@@ -51,8 +51,8 @@ int PKP_Messages[PICKUPCOUNT][CLASSCOUNT] =
         "$GOTCHAINGUN",
         "$DAKKA_PK_MINIGUN",
     },
-    
-    
+
+
     {
         "$GOTARMOR",
         "Green armor!",
@@ -143,7 +143,7 @@ int PKP_PickupFlashes[PICKUPCOUNT][CLASSCOUNT][5] =
         {255, 255, 64, 0.15, 0.15},
         {255, 255, 64, 0.15, 0.15},
     },
-    
+
     // Armor
     {
         {255, 255, 64, 0.15, 0.15},
@@ -153,7 +153,7 @@ int PKP_PickupFlashes[PICKUPCOUNT][CLASSCOUNT][5] =
         {255, 255, 64, 0.15, 0.15},
         {255, 255, 64, 0.15, 0.15},
     },
-    
+
 
     // Skulltag pickups
     { // Minigun
@@ -171,7 +171,7 @@ int PKP_PickupFlashes[PICKUPCOUNT][CLASSCOUNT][5] =
     { // BFG10k
         {255, 255, 64, 0.15, 0.15},
         {255, 255, 64, 0.15, 0.15},
-    },  
+    },
 };
 
 
@@ -224,7 +224,7 @@ int PKP_PickupSounds[PICKUPCOUNT][CLASSCOUNT] =
         "misc/w_pkup",
         "misc/w_pkup",
     },
-    
+
 
     // Armor
     {

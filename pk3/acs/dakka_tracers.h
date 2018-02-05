@@ -26,7 +26,7 @@ script "Dakka_Tracer" (int which, int yoff, int zoff)
     }
 
     if (ClassifyActor(0) & ACTOR_WORLD) { terminate; }
-    
+
     int myX = GetActorX(0);
     int myY = GetActorY(0);
     int myZ = GetActorZ(0) + GetActorViewHeight(0);
@@ -54,13 +54,13 @@ script "Dakka_Tracer" (int which, int yoff, int zoff)
     // Negative y should mean left, not right, dammit
     int pointY = -itof(yoff);
     int pointZ =  itof(zoff);
-    
+
     Rotate3D(pointX, pointY, pointZ, myAngle, myPitch);
     int spawnX = myX + Rotate3D_Ret[0];
     int spawnY = myY + Rotate3D_Ret[1];
     int spawnZ = myZ + Rotate3D_Ret[2];
 
-    
+
     int tracerTID1 = UniqueTID();
     int tracerTID2 = UniqueTID();
     SpawnForced("TracerDummy", spawnX, spawnY, spawnZ, tracerTID1);
@@ -136,10 +136,10 @@ script "Dakka_Tracer_Client" (int which, int startTID, int endTID) clientside
       case TRACE_BULLET:
         if (GetUserCVar(pln, "dakka_cl_notracers") > 0) { break; }
         speed = itof(middle(64, GetUserCVar(pln, "dakka_cl_tracerspeed"), 2048));
-        
+
         particleType = "DakkaTracer";
         lerpAlpha = true;
-        
+
         switch (middle(-4, GetUserCVar(pln, "dakka_cl_tracerdensity"), 4))
         {
             case -4: density = 36.0; break;
@@ -152,7 +152,7 @@ script "Dakka_Tracer_Client" (int which, int startTID, int endTID) clientside
             case  3: density = 4.8;  break;
             case  4: density = 4.0;  break;
         }
-        
+
         break;
 
       case TRACE_ARC_FIRER:
@@ -187,7 +187,7 @@ script "Dakka_Tracer_Client" (int which, int startTID, int endTID) clientside
         {
             SpawnForced(particleType, spawnX, spawnY, spawnZ);
         }
-        
+
         ticDistance += density;
 
         if (speed > 0)

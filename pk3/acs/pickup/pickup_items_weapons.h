@@ -96,7 +96,7 @@ int PKP_KnownGuns[WEAPONCOUNT][3] =
 
 int PKP_WeaponPriorities[WEAPONCOUNT] =
 {
-    3700,   // DWep_Fist 
+    3700,   // DWep_Fist
     1100,   // DWep_Scrappers
     1900,   // DWep_Pistol
     1500,   // DWep_Pistols

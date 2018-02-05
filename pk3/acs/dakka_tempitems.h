@@ -233,7 +233,7 @@ function void Dakka_UpdateTemporaryItems(void)
     }
 
     TempChecks[TMP_GOTBACKPACK]  = hasBackpack;
-    
+
     TempChecks[TMP_SSG_ROLLFIRE] = GetUserCVar(pln, "dakka_cl_ssgrollfire");
 
 

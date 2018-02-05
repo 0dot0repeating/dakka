@@ -4,7 +4,7 @@ actor ScoreMonsterFinder
 {
     +NOINTERACTION
     +SERVERSIDEONLY
-    
+
     States
     {
     // (1 << 10) is RGF_NOSIGHT, but we can't just use that since Zandronum doesn't recognize it
@@ -12,7 +12,7 @@ actor ScoreMonsterFinder
       Spawn:
         TNT1 A 1
         stop
-      
+
       Find:
         TNT1 A 1 A_RadiusGive("ScoreCalcItem", 16383, RGF_MONSTERS | RGF_CUBE | (1 << 10))
         stop
@@ -37,7 +37,7 @@ actor RegenSoundLooper
 
     Radius 4
     Height 4
-    
+
     SeeSound    "dakka/ammoregen_start"
     ActiveSound "dakka/ammoregen"
 
@@ -51,7 +51,7 @@ actor RegenSoundLooper
       RegenDone:
         TNT1 A 70 A_PlaySound("dakka/fizzle", CHAN_BODY)
         stop
-      
+
       Abort:
         TNT1 A 1
         stop
@@ -164,7 +164,7 @@ actor RevivalFlame
     Obituary "%k basked in the glory of %o's revival."
 
     var int user_counter;
-    
+
     States
     {
       Spawn:
@@ -210,7 +210,7 @@ actor RevivalFlameGround
     Alpha 0.5
 
     var int user_counter;
-    
+
     States
     {
       Spawn:
@@ -260,7 +260,7 @@ actor RevivalFlameVisual
         DFLM E 0 ThrustThing(random(0, 255), random(0, 16) / 4.0, 1, 0)
         DFLM E 0 ThrustThingZ(0, random(0, 16) / 4.0, random(0, 1), 1)
         goto Spawn2
-      
+
       Spawn2:
         DFLM EILNO 1 bright
         stop

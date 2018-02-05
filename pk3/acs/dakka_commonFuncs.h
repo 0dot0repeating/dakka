@@ -9,22 +9,22 @@
 
 int CommonFuncs_ZeroString = "[commonFuncs.h: string index #0]";
 
-int TeamNames[TEAMCOUNT] = 
+int TeamNames[TEAMCOUNT] =
 {
     "Blue", "Red", "Green", "Gold", "Black", "White", "Orange", "Purple"
 };
 
-int TeamColors[TEAMCOUNT] = 
+int TeamColors[TEAMCOUNT] =
 {
     CR_BLUE, CR_RED, CR_GREEN, CR_GOLD, CR_BLACK, CR_WHITE, CR_ORANGE, CR_PURPLE
 };
 
-int TeamColorCodes[TEAMCOUNT] = 
+int TeamColorCodes[TEAMCOUNT] =
 {
     "\ch", "\cg", "\cd", "\cf", "\cm", "\cj", "\ci", "\ct"
 };
 
-int msgColors[22] = 
+int msgColors[22] =
 {
     "\ca", "\cb", "\cc", "\cd", "\ce", "\cf", "\cg", "\ch", "\ci", "\cj", "\ck",
     "\cl", "\cm", "\cn", "\co", "\cp", "\cq", "\cr", "\cs", "\ct", "\cu", "\cv"
@@ -37,7 +37,7 @@ function int safeAdd(int a, int b)
 {
     if (b > 0 && (a > 0x7FFFFFFF - b)) { return 0x7FFFFFFF; }
     if (b < 0 && (a < 0x80000000 - b)) { return 0x80000000; }
-    
+
     return a + b;
 }
 
@@ -95,7 +95,7 @@ function int gcf(int a, int b)
         a = b;
         b = c;
     }
-    
+
     return -1;
 }
 
@@ -286,7 +286,7 @@ function int adjustShort(int tmin, int tmax, int i)
         tmin += (i - tmax);
         tmax = i;
     }
-    
+
     return packShorts(tmin, tmax);
 }
 
@@ -358,7 +358,7 @@ function int cleanString(int string)
     int inLongColor = false;
     int inColorCode = false;
     int foundChar28 = false;
-    
+
     for (i = 0; i < strSize; i++)
     {
         c = GetChar(string, i);
@@ -406,7 +406,7 @@ function int padStringR(int baseStr, int padChar, int len)
     {
         return baseStr;
     }
-    
+
     padChar = GetChar(padChar, 0);
     padLen = len - baseStrLen;
 
@@ -429,7 +429,7 @@ function int padStringL(int baseStr, int padChar, int len)
     {
         return baseStr;
     }
-    
+
     padChar = GetChar(padChar, 0);
     padLen = len - baseStrLen;
 
@@ -453,7 +453,7 @@ function int changeString(int string, int repl, int where)
     {
         return string;
     }
-    
+
     for (i = 0; i < len; i++)
     {
         if (inRange(where, where+rLen, i))
@@ -488,7 +488,7 @@ function int sliceString(int string, int start, int end)
 
     start = max(0, start);
     end   = min(end, len);
-    
+
     for (i = start; i < end; i++)
     {
         ret = StrParam(s:ret, c:GetChar(string, i));
@@ -535,7 +535,7 @@ function int strstr_o(int string, int substring, int offset)
             charsFound  = 0;
             lastEnd     = i;
         }
-    } 
+    }
 
     return -1;
 }
@@ -594,7 +594,7 @@ function int strsub(int string, int from, int to)
             else { ret = StrParam(s:ret, c:c); }
         }
     }
-        
+
 
     return ret;
 }
@@ -607,7 +607,7 @@ function int unusedTID(int start, int end)
     int tidNum;
 
     if (start > end) { start ^= end; end ^= start; start ^= end; }  // good ol' XOR swap
-    
+
     while (ret++ != end)
     {
         if (ThingCount(0, ret) == 0)
@@ -615,7 +615,7 @@ function int unusedTID(int start, int end)
             return ret;
         }
     }
-    
+
     return -1;
 }
 
@@ -728,7 +728,7 @@ function void SetInventory(int item, int amount)
     int count = CheckInventory(item);
 
     if (count == amount) { return; }
-    
+
     if (count > amount)
     {
         TakeInventory(item, count - amount);
@@ -761,7 +761,7 @@ function void GiveAmmo(int type, int amount)
         TakeInventory(type, CheckInventory(type) - expected);
     }
     else
-    {  
+    {
         GiveInventory(type, amount);
     }
 }
@@ -777,7 +777,7 @@ function void GiveActorAmmo(int tid, int type, int amount)
         TakeActorInventory(tid, type, CheckActorInventory(tid, type) - expected);
     }
     else
-    {  
+    {
         GiveActorInventory(tid, type, amount);
     }
 }
@@ -819,7 +819,7 @@ function int ThingCounts(int start, int end)
 function int PlaceOnFloor(int tid)
 {
     if (ThingCount(0, tid) != 1) { return 1; }
-    
+
     SetActorPosition(tid, GetActorX(tid), GetActorY(tid), GetActorFloorZ(tid), 0);
     return 0;
 }
@@ -842,7 +842,7 @@ function int getDirection(void)
     {
         switch (sideMove)
         {
-          case -1: 
+          case -1:
             switch (forwMove)
             {
                 case -1: return DIR_SW;
@@ -851,7 +851,7 @@ function int getDirection(void)
             }
             break;
 
-          case 0: 
+          case 0:
             switch (forwMove)
             {
                 case -1: return DIR_S;
@@ -859,7 +859,7 @@ function int getDirection(void)
             }
             break;
 
-          case 1: 
+          case 1:
             switch (forwMove)
             {
                 case -1: return DIR_SE;
@@ -1101,7 +1101,7 @@ function int quadSlope(int orgX, int orgY, int pntX, int pntY, int floatY)
         negative = -1;
         height = -height;
     }
-    
+
     int slope = cond(floatY, FixedSqrt(height), FixedSqrt(itof(height)));
 
     slope = (slope / dist);
@@ -1145,7 +1145,7 @@ function int RaiseAmmoCapacity(int ammoname, int newcapacity, int raiseammo)
     {
         GiveAmmo(ammoname, capacity - ammo);
     }
-    
+
     return CheckInventory(ammo);
 }
 
@@ -1156,7 +1156,7 @@ function int angleDifference(int ang1, int ang2)
     ang2 = mod(ang2, 1.0);
 
     int angDiff = ang2 - ang1;
-    
+
     if (angDiff >= 0.5) { return angDiff - 1.0; }
     if (angDiff < -0.5) { return angDiff + 1.0; }
     return angDiff;
@@ -1216,11 +1216,11 @@ function void Rotate3D(int x, int y, int z, int yaw, int pitch)
     // z' =            -sin(pitch)x                +            cos(pitch)z
     //
     // helix.txt shows how (very abbreviated)
-    
+
     Rotate3D_Ret[0] = FixedMul(x, FixedMul(cos(yaw), cos(pitch)))
                     - FixedMul(y,          sin(yaw))
                     + FixedMul(z, FixedMul(cos(yaw), sin(pitch)));
-                
+
     Rotate3D_Ret[1] = FixedMul(x, FixedMul(sin(yaw), cos(pitch)))
                     + FixedMul(y,          cos(yaw))
                     + FixedMul(z, FixedMul(sin(yaw), sin(pitch)));

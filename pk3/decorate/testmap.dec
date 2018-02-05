@@ -3,47 +3,47 @@ actor SSGTargetPractice
     Radius 16
     Height 56
     Speed 10
-    
+
     Monster
     Health 100
     PainChance 256
     +FLOORCLIP
-    
+
     PainSound   "*pain50"
     DeathSound  "*death"
-    
+
     Obituary "%o missed."
-    
+
     States
     {
       Spawn:
         PLAY A 1 A_Look
         loop
-        
+
       See:
         PLAY A 0 A_JumpIfCloser(192, "Run")
         PLAY A 0 A_SetTranslucent(1)
         PLAY AABBCCDDAABBCCDDAABBCCDDAABBCCDD 1 A_Chase("", "")
         loop
-      
+
       Run:
         PLAY A 0 A_SetTranslucent(0.5)
         PLAY AABBCCDDAABBCCDDAABBCCDDAABBCCDDAABBCCDDAABBCCDDAABBCCDDAABBCCDDAABBCCDD 1 A_Wander
         goto See
-        
+
       Missile:
         PLAY E 12
         goto See
-        
+
       Melee:
         PLAY F 6 bright
         goto See
-        
+
       Pain:
         PLAY G 1 A_Pain
         PLAY G 0 HealThing(10000)
         goto See
-        
+
       Death:
         PLAY H 10 A_GiveToTarget("DakkaShells", 3)
         PLAY I 10 A_Scream
@@ -63,22 +63,22 @@ actor MeatShield: Demon
     Speed 0
     Gravity 0
     Mass 0x7FFFFFFF
-    
+
     States
     {
       See:
         SARG AABBCCDD 1 A_Chase("", "")
         Loop
-        
+
       Melee:
         SARG EF 8 A_FaceTarget
         SARG G 8 A_SargAttack
         Goto See
-        
+
       Pain:
         SARG H 0 A_Pain
         Goto See
-        
+
       Death:
         SARG I 8
         SARG J 8 A_Scream
@@ -101,10 +101,10 @@ actor DamageReporter
     Mass 0x7FFFFFFF
     Radius 32
     Height 64
-    
+
     +SHOOTABLE
     +NOBLOOD
-    
+
     States
     {
       Spawn:
@@ -187,39 +187,39 @@ actor DAKKTEST_AssKicker
     Radius 32
     Height 72
     Mass 0x7FFFFFFF
-    
+
     +SOLID
     +SHOOTABLE
     +NODAMAGE
     +QUICKTORETALIATE
     Health 1
     PainChance 255
-    
+
     States
     {
       Spawn:
         BBRN A -1
         stop
-      
+
       Pain:
         BBRN A 0 A_JumpIfInventory("DAKKTEST_GonnaKickYourAss", 1, "KickYourAss")
         BBRN A 0 A_GiveInventory("DAKKTEST_GonnaKickYourAss")
         BBRN A 0 A_ChangeFlag("NOPAIN", 1)
         BBRN A 0 A_PlaySound("brain/pain", CHAN_VOICE, 1, false, 0)
         BBRN A 0 A_Jump(256, 1, 2, 3, 4)
-        
+
         BBRN A 0 A_PrintBold("oi bruv u wanna go ill rek ur shit 1v1 hit me again i fukn dare u dickless shite")
         goto TalkShit
-        
+
         BBRN A 0 A_PrintBold("u fukin wot m8 u wanna go il put u in the ground sware on me mums tits")
         goto TalkShit
-        
+
         BBRN A 0 A_PrintBold("do we have a problem or r u 2 busy gobblin down fat ones 2 look where the fuk u aimin")
         goto TalkShit
-        
+
         BBRN A 0 A_PrintBold("weenie hut jr pickin a fight wow real fuckin rich il give u sum u gormless shite")
         goto TalkShit
-      
+
       TalkShit:
         BBRN BABABAAABAAA 1
         BBRN A 0 A_ChangeFlag("NOPAIN", 0)
@@ -228,7 +228,7 @@ actor DAKKTEST_AssKicker
         BBRN BABABAAABAAABBABBABBABABAABABABBABB 1
         BBRN AABBAAABBBAABBABBBABABABAABBBBABABB 1
         goto Spawn
-      
+
       KickYourAss:
         BBRN A 0 A_ChangeFlag("NOPAIN", 1)
         BBRN A 0 A_PrintBold("right then fukn ave it")
@@ -278,7 +278,7 @@ actor DakkaCustomBridge: CustomBridge 29651
 actor DakkaBridgeBall: BridgeBall
 {
     Scale 0.4
-    
+
     States
     {
       Spawn:

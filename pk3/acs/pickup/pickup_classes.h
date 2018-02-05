@@ -25,7 +25,7 @@
 
 // This is handy.
 
-int ClassNames[CLASSCOUNT] = 
+int ClassNames[CLASSCOUNT] =
 {
     "Unknown",
     "Dakkaguy",
@@ -182,7 +182,7 @@ function int Pickup_ClassNumber(int tid)
             found = Pickup_CheckInv(tid, i);
             break;
 
-          
+
           case CLASS_FINDBYNAME:
             found = Pickup_CheckName(tid, i);
             break;

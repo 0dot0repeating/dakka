@@ -37,9 +37,9 @@ script "DAKKTEST_GetMonster" (int index, int spawnOrShow)
         SetResultValue("");
         terminate;
     }
-    
+
     if (spawnOrShow && !stringBlank(MonSpawnerSlots[index][1]))
-    { 
+    {
         SetResultValue(MonSpawnerSlots[index][1]);
     }
     else

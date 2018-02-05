@@ -32,7 +32,7 @@ function void Dakka_TranslateGuns(void)
             takingSomething = true;
             break;
         }
-        
+
         if (!takingSomething) { continue; }
 
 
@@ -72,7 +72,7 @@ function void Dakka_TranslateGuns(void)
     {
         int checkWep = Dakka_TranslatableGuns_From[slot];
         if (!CheckInventory(checkWep)) { continue; }
-        
+
         // If we're this far, we have checkWep.
         int gaveSomething = false;
 

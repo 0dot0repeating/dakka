@@ -28,11 +28,11 @@ I = (0)(sp)  + (0)(0)   + (1)(cp)
 A = (ca)(cp)
 B = -sa
 C = (ca)(sp)
- 
+
 D = (sa)(cp)
 E = ca
 F = (sa)(sp)
- 
+
 G = -sp
 H = 0
 I = cp

@@ -97,7 +97,7 @@ int Score_Thresholds[3] = {0};
 //  This is used for Switcharoo and One Stone: Switcharoo checks it to see if
 //  it applies at all, and One Stone uses it to see if we can rely on last
 //  weapon fire time to actually be updated
-//  
+//
 int SCORE_UpdatesSwitcharoo[CLASSCOUNT_DEFINED] =
 {
     true,
@@ -110,31 +110,31 @@ int Brawler_KnownMelee[KNOWNMELEE] =
     "Fist",
     "Chainsaw",
     "DWep_Fist",
-    
+
     "PunchDagger",
-    
+
     "FWeapFist",
     "FWeapAxe",
     "FWeapHammer",
     "CWeapMace",
-    
+
     "Staff",
     "Gauntlets",
 };
 
-int Brawler_MeleeMults[KNOWNMELEE] = 
+int Brawler_MeleeMults[KNOWNMELEE] =
 {
     0.5,
     0.5,
     0.25,
-    
+
     0.5,
-    
+
     0.25,
     0.15,
     0.1,
     0.3,
-    
+
     0.5,
     0.25,
 };
@@ -175,7 +175,7 @@ int BonusNames[BONUSCOUNT] =
     "Point-Blank",
 };
 
-int BonusColors[BONUSCOUNT] = 
+int BonusColors[BONUSCOUNT] =
 {
     "DScore_Base",
     "DScore_Efficiency",

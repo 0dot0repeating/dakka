@@ -13,7 +13,7 @@ script "Dakka_ProjDeathUpdate" (int hasPitch)
         int firerAngle, firerPitch;
         int myTID_old, myTID;
         int projSpeed  = GetActorProperty(0, APROP_Speed);
-        
+
         if (hasPitch)
         {
             firerAngle = GetActorAngle(0);
@@ -24,22 +24,22 @@ script "Dakka_ProjDeathUpdate" (int hasPitch)
             myTID_old = ActivatorTID();
             myTID     = UniqueTID();
             Thing_ChangeTID(0, myTID);
-            
+
             SetActivator(0, AAPTR_TARGET);
             if (ClassifyActor(0) & ACTOR_WORLD)
             {
                 Thing_ChangeTID(myTID, myTID_old);
                 terminate;
             }
-            
+
             firerAngle = GetActorAngle(0);
             firerPitch = GetActorPitch(0);
         }
-        
+
         SetUserVariable(myTID, "user_velx",    FixedMul(projSpeed, FixedMul(cos(firerAngle), cos(firerPitch))));
         SetUserVariable(myTID, "user_vely",    FixedMul(projSpeed, FixedMul(sin(firerAngle), cos(firerPitch))));
         SetUserVariable(myTID, "user_velz",    FixedMul(projSpeed, -sin(firerPitch)));
-        
+
         if (!hasPitch)
         {
             SetActorPitch(myTID, firerPitch);
@@ -59,7 +59,7 @@ script "Dakka_ProjDeathUpdate" (int hasPitch)
 script "ProjCheck_IsAllied" (int myPln, int myTeam, int firerPln, int firerTeam)
 {
     int allied = false;
-    
+
     if (myPln >= 0 && firerPln >= 0)
     {
         if (GameType() == GAME_NET_DEATHMATCH)
@@ -76,7 +76,7 @@ script "ProjCheck_IsAllied" (int myPln, int myTeam, int firerPln, int firerTeam)
             allied = (GetCVar("teamdamage") <= 0);
         }
     }
-    
+
     SetResultValue(allied);
 }
 
@@ -92,11 +92,11 @@ script "ProjCheck_ShortestDist" (int projX, int projY, int projZ)
     int myX_closest = middle(projX, safeAdd(myX, myRadius), safeAdd(myX, -myRadius));
     int myY_closest = middle(projY, safeAdd(myY, myRadius), safeAdd(myY, -myRadius));
     int myZ_closest = middle(projZ, safeAdd(myZ, myHeight), myZ);
-    
+
     int dx   = myX_closest - projX;
     int dy   = myY_closest - projY;
     int dz   = myZ_closest - projZ;
-    
+
     SetResultValue(VectorLength(VectorLength(dx, dy), dz));
 }
 

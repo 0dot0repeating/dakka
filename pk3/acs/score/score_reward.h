@@ -3,12 +3,12 @@ script "Score_Award" (int scoreHeals)
     int i;
     int pln = PlayerNumber();
     int newLives = 0;
-    
+
     LocalAmbientSound("dakka/pointreward", 127);
 
     for (i = 0; i < scoreHeals; i++)
     {
-        
+
         int curRewards = Score_GetRewardCount(pln);
 
         if (curRewards % 2)
@@ -72,7 +72,7 @@ function void Score_DoRewards(int lastScore, int curScore)
 script "Score_CheckRevival" (void)
 {
     int pln = PlayerNumber();
-    
+
     int extraLives = Score_GetExtraLives(pln);
     int hasLives   = Score_GetHasLives(pln);
 
@@ -126,10 +126,10 @@ script "Score_CheckRevival" (void)
         SetActivator(revivalTID);
         SetPointer(AAPTR_TARGET, myTID);
         SetActorAngle(0, GetActorAngle(myTID));
-        
+
         SetActivator(myTID);
         Thing_ChangeTID(myTID, myTID_old);
-        
+
         FadeRange(255, 223, 155, 0.75,    255, 79, 0, 0.0, 1.0);
 
         // we took out 1, so now it's actually 0 in the array
@@ -149,16 +149,16 @@ int AmmoRegen_AmmoTypes[AMMOREGENCOUNT] =
     "DakkaBullet_10mm",
     "DakkaShells",
     "DakkaShotGrenades",
-    
+
     "DakkaBullet_5mm",
     "DakkaFlamerFuel",
     "DakkaRockets",
-    
+
     "DakkaCells",
     "DakkaScrap",
 };
 
-int AmmoRegen_PerSecond[AMMOREGENCOUNT] = 
+int AmmoRegen_PerSecond[AMMOREGENCOUNT] =
 {
     15.0,
     3.0,
@@ -200,7 +200,7 @@ function void Score_ProcessRewards(void)
             int myTID_old = ActivatorTID();
             int myTID     = UniqueTID();
             Thing_ChangeTID(0, myTID);
-            
+
             looperTID = UniqueTID();
             Spawn("RegenSoundLooper", GetActorX(0), GetActorY(0), GetActorZ(0), looperTID);
             SetInventory("RegenSoundTID", looperTID);
@@ -208,13 +208,13 @@ function void Score_ProcessRewards(void)
             SetActivator(looperTID);
             SetPointer(AAPTR_TARGET, myTID);
             SetActivator(myTID);
-    
+
             Thing_ChangeTID(myTID, myTID_old);
         }
 
         int  curTic_bySecond = itof( Timer() % 36);
         int lastTic_bySecond = itof((Timer() % 36) - 1);
-        
+
         for (i = 0; i < AMMOREGENCOUNT; i++)
         {
             int ammoName   = AmmoRegen_AmmoTypes[i];
@@ -248,12 +248,12 @@ function void Score_ProcessRewards(void)
     if (inRegen && newRegenTime == 0)
     {
         FadeRange(128, 212, 255, 0.3, 128, 212, 255, 0, 0.5);
-        
+
         Score_SetRegenSpent(pln, 0);
         if (looperTID != 0) { SetActorState(looperTID, "RegenDone"); }
         TakeInventory("RegenSoundTID", 0x7FFFFFFF);
     }
-    
+
     SetInventory("HUD_AmmoRegen", newRegenTime > 0);
 
 

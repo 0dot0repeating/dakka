@@ -63,7 +63,7 @@ function void CSender_SetData(int pln, int index, int value)
 
 
 // Base function to send data from client to server.
-// 
+//
 // Just like Sender_SendData, this doesn't send anything. It relies on CSender_
 // ActuallySend to do that, and for the same reasons as Sender_SendData.
 
@@ -87,7 +87,7 @@ function void CSender_UpdateServer(int pln)
 
         if (data_server == data_client) { continue; }
 
-        int lastSend    = CToS_LastSendTime[pln][j]; 
+        int lastSend    = CToS_LastSendTime[pln][j];
 
         if ((lastSend < 0) || (Timer() - lastSend > C2S_RESENDTIME))
         {
@@ -154,7 +154,7 @@ function void CSender_ActuallySend(int pln)
                 //
                 // Either way, this is covered by the AAPTR_PLAYER# actor pointers.
                 // Really, we only need the PLAYER1 actor pointer!
-                
+
                 SetActivator(0, AAPTR_PLAYER1);
                 ACS_NamedExecuteWithResult("Pickup_SendToServer", i, data);
             }

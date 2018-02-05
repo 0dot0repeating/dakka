@@ -8,7 +8,7 @@ actor Pickup_HealthBonus: CustomInventory replaces HealthBonus
 {
     +ALWAYSPICKUP
     Inventory.PickupMessage "Health bonus"
-    
+
     States
     {
       Spawn:
@@ -20,19 +20,19 @@ actor Pickup_HealthBonus: CustomInventory replaces HealthBonus
         TNT1 A 0 A_JumpIf(health >= 100, "Heal200")
         TNT1 A 0 A_JumpIf(health >= 50,  "Heal100")
         goto Heal50
-      
+
       Heal300:
         TNT1 A 0 A_GiveInventory("Dakka_OneHealth", 1)
         stop
-      
+
       Heal200:
         TNT1 A 0 A_GiveInventory("Dakka_OneHealth", 2)
         stop
-      
+
       Heal100:
         TNT1 A 0 A_GiveInventory("Dakka_OneHealth", 3)
         stop
-      
+
       Heal50:
         TNT1 A 0 A_GiveInventory("Dakka_OneHealth", 4)
         stop
@@ -54,10 +54,10 @@ actor Pickup_Soulsphere: CustomInventory replaces Soulsphere
     +COUNTITEM
     +ALWAYSPICKUP
     +FANCYPICKUPSOUND
-    
+
     Inventory.PickupMessage "Soulsphere!"
     Inventory.PickupSound   "misc/p_pkup"
-    
+
     States
     {
       Spawn:
@@ -73,21 +73,21 @@ actor Pickup_Soulsphere: CustomInventory replaces Soulsphere
 actor Dakka_SoulsphereHealth: CustomInventory
 {
     Inventory.MaxAmount 50
-    
+
     States
     {
       Spawn:
         TNT1 A 0
         stop
-      
+
       Pickup:
         TNT1 A 0 A_JumpIf(health >= 200, "Heal300")
         goto HealNormal
-      
+
       Heal300:
         TNT1 A 0 A_GiveInventory("Dakka_OneHealth", 1)
         stop
-      
+
       HealNormal:
         TNT1 A 0 A_GiveInventory("Dakka_OneHealth", 2)
         stop

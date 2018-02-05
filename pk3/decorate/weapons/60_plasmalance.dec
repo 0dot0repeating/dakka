@@ -14,14 +14,14 @@ actor DWep_PlasmaLance: DoomWeapon
     Weapon.AmmoUse1     1
     Weapon.AmmoUse2     3
     Weapon.AmmoGive1    50
-    
+
     Weapon.BobStyle InverseSmooth
     Weapon.BobSpeed 2.5
     Weapon.BobRangeX 0.3
     Weapon.BobRangeY 0.4
 
     Inventory.PickupMessage "$DAKKA_PK_PLASMALANCE"
-    
+
     +NOALERT
     +ALT_AMMO_OPTIONAL
 
@@ -46,7 +46,7 @@ actor DWep_PlasmaLance: DoomWeapon
       Fire:
         PLNC G 0 A_JumpIfInventory("LastLanceBarrelUsed", 1, "FireRight")
         goto FireLeft
-      
+
       FireLeft:
         PLNC G 0                      A_CheckReload
         PLNC G 0                      A_AlertMonsters
@@ -61,7 +61,7 @@ actor DWep_PlasmaLance: DoomWeapon
         PLNC H 1 bright offset(0, 39) A_WeaponReady(WRF_NOFIRE | WRF_NOBOB)
         PLNC H 0                      A_Refire("HoldRight")
         goto FireLeftDone
-      
+
       FireLeftDone:
         PLNC H 0                      ACS_NamedExecuteWithResult("Dakka_AmmoSync", 7)
         PLNC H 0                      A_WeaponReady(WRF_NOFIRE | WRF_NOBOB)
@@ -81,7 +81,7 @@ actor DWep_PlasmaLance: DoomWeapon
         PLNC F 0                      A_WeaponReady(WRF_NOPRIMARY | WRF_NOBOB)
         PLNC F 1        offset(0, 32) A_Refire("FireRight")
         goto Ready
-      
+
       FireRight:
         PLNC I 0                      A_CheckReload
         PLNC G 0                      A_AlertMonsters
@@ -96,7 +96,7 @@ actor DWep_PlasmaLance: DoomWeapon
         PLNC J 1 bright offset(0, 39) A_WeaponReady(WRF_NOFIRE | WRF_NOBOB)
         PLNC J 0                      A_Refire("HoldLeft")
         goto FireRightDone
-      
+
       FireRightDone:
         PLNC J 0                      ACS_NamedExecuteWithResult("Dakka_AmmoSync", 7)
         PLNC J 0                      A_WeaponReady(WRF_NOFIRE | WRF_NOBOB)
@@ -131,7 +131,7 @@ actor DWep_PlasmaLance: DoomWeapon
         PLNC H 1 bright offset(0, 42) A_WeaponReady(WRF_NOFIRE | WRF_NOBOB)
         PLNC H 0                      A_JumpIfInventory("MainFired", 1, "HoldRight")
         goto HoldLeftDone
-      
+
       HoldLeftDone:
         PLNC H 0                      ACS_NamedExecuteWithResult("Dakka_AmmoSync", 7)
         PLNC H 0                      A_WeaponReady(WRF_NOFIRE | WRF_NOBOB)
@@ -151,7 +151,7 @@ actor DWep_PlasmaLance: DoomWeapon
         PLNC F 0                      A_WeaponReady(WRF_NOPRIMARY | WRF_NOBOB)
         PLNC F 1        offset(0, 32) A_JumpIfInventory("MainFired", 1, "FireRight")
         goto Ready
-      
+
       HoldRight:
         PLNC I 0                      A_CheckReload
         PLNC G 0                      A_AlertMonsters
@@ -166,7 +166,7 @@ actor DWep_PlasmaLance: DoomWeapon
         PLNC J 1 bright offset(0, 42) A_WeaponReady(WRF_NOFIRE | WRF_NOBOB)
         PLNC J 0                      A_JumpIfInventory("MainFired", 1, "HoldLeft")
         goto HoldRightDone
-      
+
       HoldRightDone:
         PLNC J 0                      ACS_NamedExecuteWithResult("Dakka_AmmoSync", 7)
         PLNC J 0                      A_WeaponReady(WRF_NOFIRE | WRF_NOBOB)
@@ -186,28 +186,28 @@ actor DWep_PlasmaLance: DoomWeapon
         PLNC F 0                      A_WeaponReady(WRF_NOPRIMARY | WRF_NOBOB)
         PLNC F 1        offset(0, 32) A_JumpIfInventory("MainFired", 1, "FireLeft")
         goto Ready
-      
+
       Flash:
         TNT1 A 3 bright A_Light(3)
         TNT1 A 1 bright A_Light(2)
         TNT1 A 2 bright A_Light(1)
         goto LightDone
 
-        
+
       AltFire:
         PLNC F 0 offset(0, 32) A_JumpIfNoAmmo("AltNo")
         PLNC F 0 A_PlaySound("arc/altcharge",      CHAN_WEAPON)
         PLNC F 0 A_GunFlash("Charging")
-        
+
         PLNC A 0 A_FireCustomMissile("AmmoWaster")
         PLNC B 0 A_GiveInventory("GiveScrapCounter2", 3)
         PLNC AAAABBBB 1 A_JumpIfInventory("AltReleased", 1, "AltFire_Charge0")
-        
+
         PLNC B 0 A_JumpIfNoAmmo("Altfire_Charge0")
         PLNC B 0 A_FireCustomMissile("AmmoWaster")
         PLNC B 0 A_GiveInventory("GiveScrapCounter2", 3)
         PLNC CCCCDDDD 1 A_JumpIfInventory("AltReleased", 1, "AltFire_Charge1")
-        
+
         PLNC B 0 A_JumpIfNoAmmo("Altfire_Charge1")
         PLNC B 0 A_FireCustomMissile("AmmoWaster")
         PLNC B 0 A_GiveInventory("GiveScrapCounter2", 3)
@@ -219,7 +219,7 @@ actor DWep_PlasmaLance: DoomWeapon
         PLNC B 1 offset( 0, 32) A_JumpIfInventory("AltReleased", 1, "AltFire_Charge2")
         PLNC C 1 offset( 1, 32) A_JumpIfInventory("AltReleased", 1, "AltFire_Charge2")
         PLNC C 1 offset(-1, 32) A_JumpIfInventory("AltReleased", 1, "AltFire_Charge2")
-        
+
         PLNC B 0 A_JumpIfNoAmmo("Altfire_Charge2")
         PLNC B 0 A_FireCustomMissile("AmmoWaster")
         PLNC B 0 A_GiveInventory("GiveScrapCounter2", 3)
@@ -231,7 +231,7 @@ actor DWep_PlasmaLance: DoomWeapon
         PLNC E 1 offset( 1, 32) A_JumpIfInventory("AltReleased", 1, "AltFire_Charge3")
         PLNC E 1 offset( 0, 32) A_JumpIfInventory("AltReleased", 1, "AltFire_Charge3")
         PLNC B 1 offset(-1, 32) A_JumpIfInventory("AltReleased", 1, "AltFire_Charge3")
-        
+
         PLNC B 0 A_JumpIfNoAmmo("Altfire_Charge3")
         PLNC B 0 A_FireCustomMissile("AmmoWaster")
         PLNC B 0 A_GiveInventory("GiveScrapCounter2", 3)
@@ -243,7 +243,7 @@ actor DWep_PlasmaLance: DoomWeapon
         PLNC D 1 offset(-2, 32) A_JumpIfInventory("AltReleased", 1, "AltFire_Charge4")
         PLNC D 1 offset(-2, 33) A_JumpIfInventory("AltReleased", 1, "AltFire_Charge4")
         PLNC D 1 offset( 1, 32) A_JumpIfInventory("AltReleased", 1, "AltFire_Charge4")
-        
+
         PLNC B 0 A_JumpIfNoAmmo("Altfire_Charge4")
         PLNC B 0 A_FireCustomMissile("AmmoWaster")
         PLNC B 0 A_GiveInventory("GiveScrapCounter2", 3)
@@ -275,51 +275,51 @@ actor DWep_PlasmaLance: DoomWeapon
         PLNC C 1 offset( 2, 33) A_JumpIfInventory("AltReleased", 1, "AltFire_Charge6")
         PLNC D 1 offset( 0, 32) A_JumpIfInventory("AltReleased", 1, "AltFire_Charge6")
         PLNC D 1 offset(-1, 33) A_JumpIfInventory("AltReleased", 1, "AltFire_Charge6")
-        
+
         goto AltFire_Charge6
-      
+
       AltFire_Charge0:
         PLNC B 0 ACS_NamedExecuteWithResult("Dakka_Switcharoo", 7, 1)
         PLNC B 0 ACS_NamedExecuteAlways("Dakka_Recoil", 0, 3, 2, 14)
         PLNC B 0 A_FireBullets(12, 2, 2, 0, "LanceArcShot_Power0",  false, 448)
         goto AltFire_End
-        
+
       AltFire_Charge1:
         PLNC B 0 ACS_NamedExecuteWithResult("Dakka_Switcharoo", 7, 1)
         PLNC B 0 ACS_NamedExecuteAlways("Dakka_Recoil", 0, 4, 2, 16)
         PLNC B 0 A_FireBullets(12, 2, 2, 0, "LanceArcShot_Power1",  false, 544)
         goto AltFire_End
-        
+
       AltFire_Charge2:
         PLNC B 0 ACS_NamedExecuteWithResult("Dakka_Switcharoo", 7, 1)
         PLNC B 0 ACS_NamedExecuteAlways("Dakka_Recoil", 0, 6, 2, 18)
         PLNC B 0 A_FireBullets(12, 2, 3, 0, "LanceArcShot_Power2",  false, 640)
         goto AltFire_End
-        
+
       AltFire_Charge3:
         PLNC B 0 ACS_NamedExecuteWithResult("Dakka_Switcharoo", 7, 1)
         PLNC B 0 ACS_NamedExecuteAlways("Dakka_Recoil", 0, 8, 2, 20)
         PLNC B 0 A_FireBullets(12, 2, 3, 0, "LanceArcShot_Power3",  false, 736)
         goto AltFire_End
-        
+
       AltFire_Charge4:
         PLNC B 0 ACS_NamedExecuteWithResult("Dakka_Switcharoo", 7, 1)
         PLNC B 0 ACS_NamedExecuteAlways("Dakka_Recoil", 0, 10, 3, 23)
         PLNC B 0 A_FireBullets(12, 2, 4, 0, "LanceArcShot_Power4",  false, 832)
         goto AltFire_End
-        
+
       AltFire_Charge5:
         PLNC B 0 ACS_NamedExecuteWithResult("Dakka_Switcharoo", 7, 1)
         PLNC B 0 ACS_NamedExecuteAlways("Dakka_Recoil", 0, 13, 3, 26)
         PLNC B 0 A_FireBullets(12, 2, 4, 0, "LanceArcShot_Power5",  false, 928)
         goto AltFire_End
-      
+
       AltFire_Charge6:
         PLNC B 0 ACS_NamedExecuteWithResult("Dakka_Switcharoo", 7, 1)
         PLNC B 0 ACS_NamedExecuteAlways("Dakka_Recoil", 0, 16, 3, 30)
         PLNC B 0 A_FireBullets(12, 2, 4, 0, "LanceArcShot_Power6",  false, 1024)
         goto AltFire_End
-      
+
       AltFire_End:
         PLNC K 0 A_AlertMonsters
         PLNC K 0 ACS_NamedExecuteWithResult("Dakka_AmmoSync", 7)
@@ -337,17 +337,17 @@ actor DWep_PlasmaLance: DoomWeapon
         PLNC F 1        offset(0, 33) A_WeaponReady(WRF_NOFIRE | WRF_NOBOB)
         PLNC F 8        offset(0, 32) A_WeaponReady(WRF_NOSECONDARY | WRF_NOBOB)
         goto Ready
-        
+
       AltNo:
         PLNC F 1 A_WeaponReady(WRF_NOSECONDARY)
         goto Ready
-        
+
       Charging:
         PLNF DEFGHI 8 bright
         PLNF J -1 bright
         stop
-      
-      
+
+
       AltFlash:
         TNT1 A 5 bright A_Light(5)
         TNT1 A 4 bright A_Light(4)
@@ -355,8 +355,8 @@ actor DWep_PlasmaLance: DoomWeapon
         TNT1 A 2 bright A_Light(2)
         TNT1 A 2 bright A_Light(1)
         goto LightDone
-      
-      
+
+
       Spawn:
         PLNC Z -1
         stop
@@ -367,30 +367,30 @@ actor PLPrimaryShot: FastProjectile
 {
     Radius 4
     Height 4
-    
+
     Projectile
     Speed 100
-    
+
     Damage (10)
-    
+
     +FORCERADIUSDMG
     +BLOODLESSIMPACT
     +FORCEXYBILLBOARD
     +NODAMAGETHRUST
     +MTHRUSPECIES
     +HITTRACER
-    
+
     RenderStyle Add
     Decal "PlasmaScorchNorm"
-    
+
     var int user_t;
     var int user_velx;
     var int user_vely;
     var int user_velz;
-    
+
     DeathSound "dakka/plasmaexplode"
     Obituary "$DAKKA_MP_PLASMALANCE"
-    
+
     States
     {
       Spawn:
@@ -398,7 +398,7 @@ actor PLPrimaryShot: FastProjectile
         TNT1 A 0 ACS_NamedExecuteWithResult("Dakka_ProjUpdate")
         TNT1 A 1 A_SpawnItemEx("PLPrimaryTrail", -1.8 * velx, -1.8 * vely, -1.8 * velz, velx,vely,velz, 0, SXF_ABSOLUTEPOSITION | SXF_ABSOLUTEVELOCITY | SXF_TRANSFERPOINTERS)
         loop
-      
+
       Death:
         PLZM A 0 ACS_NamedExecuteWithResult("Dakka_InitLanceHit", 112, 24, 25)
         PLZM A 0 A_RadiusGive("PLPrimaryHitChecker", 384, RGF_MONSTERS | RGF_OBJECTS | RGF_VOODOO | RGF_CUBE)
@@ -423,15 +423,15 @@ actor PLPrimaryHurter
     +FORCERADIUSDMG
     +BLOODLESSIMPACT
     +NODAMAGETHRUST
-    
+
     var int user_damage;
-    
+
     States
     {
       Spawn:
         TNT1 A 0
         goto DoHurt
-        
+
       DoHurt:
         TNT1 A 0 A_Explode(user_damage, 4, false, false, 8)
         stop
@@ -443,7 +443,7 @@ actor PLPrimaryTrail
 {
     +NOINTERACTION
     +CLIENTSIDEONLY
-    
+
     States
     {
       Spawn:
@@ -458,7 +458,7 @@ actor PLPrimaryTrail
         TNT1 A 0 A_SpawnItemEx("PLPrimaryParticle9",  -(velx * 0.35),  -(vely * 0.35),  -(velz * 0.35),  velx, vely, velz, 0, SXF_ABSOLUTEPOSITION | SXF_ABSOLUTEVELOCITY)
         TNT1 A 0 A_SpawnItemEx("PLPrimaryParticle10", -(velx * 0.4),   -(vely * 0.4),   -(velz * 0.4),   velx, vely, velz, 0, SXF_ABSOLUTEPOSITION | SXF_ABSOLUTEVELOCITY)
         TNT1 A 0 A_SpawnItemEx("PLPrimaryParticle11", -(velx * 0.45),  -(vely * 0.45),  -(velz * 0.45),  velx, vely, velz, 0, SXF_ABSOLUTEPOSITION | SXF_ABSOLUTEVELOCITY)
-        
+
         TNT1 A 0 A_SpawnItemEx("PLPrimaryCloud1",     -(velx * 1),     -(vely * 1),     -(velz * 1),     velx, vely, velz, 0, SXF_ABSOLUTEPOSITION | SXF_ABSOLUTEVELOCITY)
         TNT1 A 0 A_SpawnItemEx("PLPrimaryCloud1",     -(velx * 0.875), -(vely * 0.875), -(velz * 0.875), velx, vely, velz, 0, SXF_ABSOLUTEPOSITION | SXF_ABSOLUTEVELOCITY)
         TNT1 A 0 A_SpawnItemEx("PLPrimaryCloud1",     -(velx * 0.75),  -(vely * 0.75),  -(velz * 0.75),  velx, vely, velz, 0, SXF_ABSOLUTEPOSITION | SXF_ABSOLUTEVELOCITY)
@@ -476,9 +476,9 @@ actor PLPrimaryParticle1
     +CLIENTSIDEONLY
     +FORCEXYBILLBOARD
     RenderStyle Add
-    
+
     Scale 0.1
-    
+
     States
     {
       Spawn:
@@ -507,7 +507,7 @@ actor PLPrimaryCloud1
     RenderStyle Add
     Scale 0.25
     Alpha 0.05
-    
+
     States
     {
       Spawn:
@@ -515,42 +515,42 @@ actor PLPrimaryCloud1
         PLZM H 0 bright A_JumpIf(CallACS("Dakka_LessEffects") == true, "Done")
         PLZM H 0 bright A_ChangeVelocity(frandom(-1, 1), frandom(-1, 1), frandom(-1, 1))
         goto FadeA
-      
+
       FadeA:
         PLZM H 1 bright A_FadeOut(frandom(0.001, 0.004))
         PLZM H 0 bright A_ScaleVelocity(frandom(0.4, 0.8))
         PLZM H 0 bright A_SetScale(scalex * frandom(1.05, 1.15))
         PLZM H 0 A_Jump(64, "FadeB")
         loop
-      
+
       FadeB:
         PLZM I 1 bright A_FadeOut(frandom(0.001, 0.004))
         PLZM I 0 bright A_ScaleVelocity(frandom(0.4, 0.8))
         PLZM I 0 bright A_SetScale(scalex * frandom(1.05, 1.15))
         PLZM I 0 A_Jump(64, "FadeC")
         loop
-      
+
       FadeC:
         PLZM J 1 bright A_FadeOut(frandom(0.001, 0.004))
         PLZM J 0 bright A_ScaleVelocity(frandom(0.4, 0.8))
         PLZM J 0 bright A_SetScale(scalex * frandom(1.05, 1.15))
         PLZM J 0 A_Jump(64, "FadeD")
         loop
-      
+
       FadeD:
         PLZM K 1 bright A_FadeOut(frandom(0.001, 0.004))
         PLZM K 0 bright A_ScaleVelocity(frandom(0.4, 0.8))
         PLZM K 0 bright A_SetScale(scalex * frandom(1.05, 1.15))
         PLZM K 0 A_Jump(64, "FadeE")
         loop
-      
+
       FadeE:
         PLZM L 1 bright A_FadeOut(frandom(0.001, 0.004))
         PLZM L 0 bright A_ScaleVelocity(frandom(0.4, 0.8))
         PLZM L 0 bright A_SetScale(scalex * frandom(1.05, 1.15))
         PLZM L 0 A_Jump(64, "Done")
         loop
-      
+
       Done:
         TNT1 A 0
         stop
@@ -568,9 +568,9 @@ actor LanceArcShot: Arc_Base
     +PUFFONACTORS
     +BLOODLESSIMPACT
     +MTHRUSPECIES
-    
+
     Decal "PlasmaScorchBigger"
-    
+
     // in order: arc index, max depth, damage
     Args 0, 3, 40
 
@@ -593,7 +593,7 @@ actor LanceArcShot: Arc_Base
       Arc_Query:
         TNT1 A 0 A_JumpIf(user_depth >= args[1], "StopAndSpark")
         goto Arc_KeepArcing
-      
+
       StopAndSpark:
         TNT1 AAAAA 0 A_SpawnItemEx("LanceArcSpark", 0,0,0, frandom(-7, 7), 0, frandom(2, 14), frandom(0, 360))
         TNT1 A 0 A_SpawnItemEx("LanceArcEndSpark")
@@ -611,7 +611,7 @@ actor LanceArcShot: Arc_Base
         TNT1 AAAAA 0 A_SpawnItemEx("LanceArcSpark", 0,0,0, frandom(-7, 7), 0, frandom(2, 14), frandom(0, 360))
         TNT1 A 0 A_SpawnItemEx("LanceArcEndSpark")
         stop
-      
+
       HitNothing:
         TNT1 A 0 A_Explode(args[2], 32, false, false, 32)
         TNT1 AAAAAA 0 A_SpawnItemEx("LanceArcSpark", 0,0,0, frandom(-7, 7), 0, frandom(2, 14), frandom(0, 360))
@@ -634,7 +634,7 @@ actor LanceArcTrail
     +NOINTERACTION
     +CLIENTSIDEONLY
     +FORCEXYBILLBOARD
-    
+
     Radius 0
     Height 0
     RenderStyle Add
@@ -664,26 +664,26 @@ actor LanceArcSpark
 {
     Radius 2
     Height 2
-    
+
     Projectile
     +THRUACTORS
     +NOTRIGGER
     -NOGRAVITY
-    
+
     Gravity 0.7
-    
+
     RenderStyle Add
     Alpha 1
     Scale 0.15
     +CLIENTSIDEONLY
     +FORCEXYBILLBOARD
-    
+
     States
     {
       Spawn:
         PLZM FG 3 bright A_FadeOut(0.13)
         loop
-      
+
       Death:
         PLZM M 0
         stop
@@ -699,7 +699,7 @@ actor LanceArcEndSpark
     +CLIENTSIDEONLY
     +FORCEXYBILLBOARD
     +NOINTERACTION
-    
+
     States
     {
       Spawn:

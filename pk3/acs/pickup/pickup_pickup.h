@@ -155,7 +155,7 @@ function int Pickup_DoPickup(int index, int classNum, int dropped)
     // So with the addition of pickup scripts being able to return a new index,
     //  we need to loop this until the chain of scripts stops returning new
     //  item numbers.
-    
+
     int keepLooping = true;
 
 
@@ -189,7 +189,7 @@ function int Pickup_DoPickup(int index, int classNum, int dropped)
             int getIndex = PKP_ScriptedPickups[scriptIndex][PK_S_RETURNINDEX];
 
             int newIndex;
-            
+
             if (named)
             {
                 newIndex = ACS_NamedExecuteWithResult(name, arg1, arg2, arg3);
@@ -244,7 +244,7 @@ script "Pickup_Pickup" (int index, int dropped)
     if (PKP_RefusePickups[pln][index] == checkTimer) { SetResultValue(0); terminate; }
 
     // This handles the actual inventory-changing part of the pickup.
-    //  The stuff below this handles showing pickup messages, item flash, 
+    //  The stuff below this handles showing pickup messages, item flash,
     //  removing the pickup from the map, etc.
     //
     // If you want a script to give a class-based item, use Pickup_DoPickup
@@ -274,7 +274,7 @@ script "Pickup_Pickup" (int index, int dropped)
     {
         PKP_RefusePickups[pln][index] = checkTimer;
     }
-    
+
     // So we did the pickup; time to display the pickup message.
     //  Go to pickup_clientmessage.h for details.
     if (didPickup)

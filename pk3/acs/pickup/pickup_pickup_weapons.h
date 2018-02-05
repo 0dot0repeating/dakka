@@ -113,13 +113,13 @@ function void Weapon_PickupWeapon(int wepIndex, int count, int dropped)
         if (dropped)
         {
             ammo1_endcount = CheckInventory(ammo1);
-            
+
             // cut off either half the ammo gained, or cap it at the actual max
             int a1diff;
-            
+
             // Half of the ammo given from the weapon. Rounds up.
             a1diff = ((ammo1_endcount - ammo1_startcount) + 1) / 2;
-            
+
             if (!unlimitedPickup)
             {
                 a1diff = max(a1diff, ammo1_endcount - ammo1_cap);
@@ -145,7 +145,7 @@ function void Weapon_PickupWeapon(int wepIndex, int count, int dropped)
 
             // Half of the ammo given from the weapon. Rounds up.
             a2diff = ((ammo2_endcount - ammo2_startcount) + 1) / 2;
-            
+
             if (!unlimitedPickup)
             {
                 a2diff = max(a2diff, ammo2_endcount - ammo2_cap);
@@ -217,7 +217,7 @@ script "PWeapon_Switch" (int wepIndex) clientside
 
         if (oldPriority >= newPriority) { doswitch = true; }
         break;
-      
+
       case 2:
         // Always switch
         doswitch = true;

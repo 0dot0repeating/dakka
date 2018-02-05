@@ -63,7 +63,7 @@ script "Dakka_Spread" (int x, int y)
 script "Dakka_CalcProjAngle" (int speed, int spread_angle, int spread_pitch, int explicitAngle)
 {
     int randAngle, randPitch;
-    
+
     if (explicitAngle)
     {
         randAngle = itofDiv(spread_angle, 36000);
@@ -74,12 +74,12 @@ script "Dakka_CalcProjAngle" (int speed, int spread_angle, int spread_pitch, int
         randAngle = ACS_NamedExecuteWithResult("Dakka_Spread", -spread_angle, spread_angle) / 360;
         randPitch = ACS_NamedExecuteWithResult("Dakka_Spread", -spread_pitch, spread_pitch) / 360;
     }
-    
+
     // updated by scripts in dakka_projangle.h, more reliable than reading velocity directly
     int vx  = GetUserVariable(0, "user_velx");
     int vy  = GetUserVariable(0, "user_vely");
     int vz  = GetUserVariable(0, "user_velz");
-    
+
     if (speed < 0)
     {
         int mag = VectorLength(VectorLength(vx, vy), vz);
@@ -89,16 +89,16 @@ script "Dakka_CalcProjAngle" (int speed, int spread_angle, int spread_pitch, int
     {
         speed = itof(speed);
     }
-    
+
     int angle =  VectorAngle(vx, vy);
     int pitch = -VectorAngle(VectorLength(vx, vy), vz);
-    
+
     int spawnVY = FixedMul(speed, FixedMul(sin(randAngle), cos(randPitch)));
     int spawnVX = FixedMul(speed, FixedMul(cos(randAngle), cos(randPitch)));
     int spawnVZ = FixedMul(speed, sin(randPitch));
-    
+
     Rotate3D(spawnVX, spawnVY, spawnVZ, angle, pitch);
-    
+
     SetUserVariable(0, "user_spawnvelx", Rotate3D_Ret[0]);
     SetUserVariable(0, "user_spawnvely", Rotate3D_Ret[1]);
     SetUserVariable(0, "user_spawnvelz", Rotate3D_Ret[2]);

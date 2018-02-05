@@ -17,7 +17,7 @@ actor TracerDummy
 actor NoBulletPuff: BulletPuff
 {
     +BLOODLESSIMPACT
-    
+
     States
     {
       Spawn:
@@ -69,7 +69,7 @@ actor DakkaPuff: BulletPuff
         TNT1 A 0 bright ACS_NamedExecuteWithResult("Dakka_Tracer", TRACE_BULLET, 0, -6)
         DPUF AB 4 bright
         goto Melee
-        
+
       Melee:
         DPUF CD 2
         Stop
@@ -102,7 +102,7 @@ actor DakkaPuff_Painless: DakkaPuff
 {
     +PAINLESS
 }
-    
+
 
 actor DakkaBulletSpark
 {
@@ -125,7 +125,7 @@ actor DakkaBulletSpark
 
     RenderStyle Add
     Scale 0.25
-    
+
     States
     {
       Spawn:
@@ -175,7 +175,7 @@ actor DakkaTracer
         DPUF A 1 bright         A_SetTranslucent(0.4 + (alpha * 0.1), 1)
         DPUF A 0 bright         A_Stop
         goto Spawn2
-      
+
       Spawn2:
         DBUF A 0 bright A_SetScale(scalex - 0.1)
         DPUF A 1 bright A_FadeOut(0.1)
@@ -194,7 +194,7 @@ actor DakkaTracerBright: DakkaTracer
         DPUF A 1 bright         A_SetTranslucent(0.8 + (alpha * 0.2), 1)
         DPUF A 0 bright         A_Stop
         goto Spawn2
-      
+
       Spawn2:
         DBUF A 0 bright A_SetScale(scalex - 0.1)
         DPUF A 1 bright A_FadeOut(0.2)

@@ -83,8 +83,8 @@ decal BFGScorchSmall1
 	pic BFGSCRC1
 	shade "00 00 00"
 
-    x-scale 0.6 
-    y-scale 0.6 
+    x-scale 0.6
+    y-scale 0.6
 
 	randomflipx
 	randomflipy
@@ -95,8 +95,8 @@ decal BFGScorchSmall2
 	pic BFGSCRC2
 	shade "00 00 00"
 
-    x-scale 0.6 
-    y-scale 0.6 
+    x-scale 0.6
+    y-scale 0.6
 
 	randomflipx
 	randomflipy
@@ -113,8 +113,8 @@ decal BFGLightningSmall1
 	pic BFGLITE1
 	shade "80 ff 80"
 
-    x-scale 0.6 
-    y-scale 0.6 
+    x-scale 0.6
+    y-scale 0.6
 
 	fullbright
 	randomflipx
@@ -127,8 +127,8 @@ decal BFGLightningSmall2
 	pic BFGLITE2
 	shade "80 ff 80"
 
-    x-scale 0.6 
-    y-scale 0.6 
+    x-scale 0.6
+    y-scale 0.6
 
 	fullbright
 	randomflipy

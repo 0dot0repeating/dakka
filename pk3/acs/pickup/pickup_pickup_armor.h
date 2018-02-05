@@ -101,7 +101,7 @@ function void Armor_PickupArmor(int armorTo_index, int count)
 
     // Right now, we're just determining what the end armor values will be if
     //  we decide to pick this up.
-    int armorEnd_points; 
+    int armorEnd_points;
     int armorEnd_name, armorEnd_max, armorEnd_protect;
 
     switch (armorTo_type)
@@ -182,7 +182,7 @@ function void Armor_PickupArmor(int armorTo_index, int count)
 
     int armorFrom_weight = Armor_WeighArmor(armorFrom_points, armorFrom_protect, armorTo_compare);
     int armorEnd_weight  = Armor_WeighArmor(armorEnd_points,  armorEnd_protect,  armorTo_compare);
-    
+
     // Now pick up if we'd gain armor.
     if (armorEnd_weight > armorFrom_weight)
     {
@@ -205,7 +205,7 @@ function void Armor_PickupArmor(int armorTo_index, int count)
             int armorNeeded = (armorEnd_points + (curArmor - 1)) / curArmor;
 
             GiveInventory(armorEnd_name, armorNeeded);
-            
+
             curArmor = CheckInventory("Armor");
             int armorToTake = curArmor - armorEnd_points;
 

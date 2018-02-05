@@ -92,7 +92,7 @@ int PKP_ReceiveItems[PICKUPCOUNT][CLASSCOUNT][PK_RECEIVECOUNT] =
         {"DWep_Minigun"},
     },
 
-    
+
     {
         {"GreenArmor"},
         {"Dakka_GreenArmor"},
@@ -184,7 +184,7 @@ int PKP_ReceiveCount[PICKUPCOUNT][CLASSCOUNT][PK_RECEIVECOUNT] =
         {1},
     },
 
-    
+
 
     // Skulltag pickups
     { // Minigun

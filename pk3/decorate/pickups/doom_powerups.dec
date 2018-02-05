@@ -4,17 +4,17 @@ actor DakkaVampireSphere: Trigger replaces Berserk
     +FANCYPICKUPSOUND
     +ALWAYSPICKUP
     +COUNTITEM
-    
+
     Inventory.PickupMessage "$DAKKA_PK_VAMPIRE"
     Inventory.PickupSound "misc/p_pkup"
     Inventory.RespawnTics 2100
-    
+
     States
     {
       Spawn:
         DVMP ABCDCB 6 bright
         loop
-      
+
       Pickup:
         TNT1 A 0 ACS_NamedExecuteWithResult("Dakka_Vampire", 35 * 30)
         stop
@@ -37,7 +37,7 @@ actor VampireSoundLooper
 
     Radius 4
     Height 4
-    
+
     SeeSound    "dakka/vampire_pickup"
     ActiveSound "dakka/vampire_loop"
 
@@ -51,7 +51,7 @@ actor VampireSoundLooper
       VampireDone:
         TNT1 A 70 A_PlaySound("dakka/vampire_end", CHAN_BODY)
         stop
-      
+
       Abort:
         TNT1 A 1
         stop

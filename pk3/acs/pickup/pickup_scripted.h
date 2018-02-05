@@ -35,7 +35,7 @@
 
 
 // And the data itself.
-// 
+//
 // If you don't actually want any scripted pickups, just define the scripted
 //  whatever count as 1, and use {-1, -1, -1, -1, -1, -1}. That'll disable it.
 
@@ -180,7 +180,7 @@ int DISP_ScriptedDisplays[DISP_SCRIPTEDCOUNT][7] =
     //{It_Chaingun,    Cl_Dakkaguy, 496, 1, 0, 0, true},
 };
 
-int DISP_DisplayNamed[DISP_SCRIPTEDCOUNT] = 
+int DISP_DisplayNamed[DISP_SCRIPTEDCOUNT] =
 {
     "Dakka_WepDisplay",
     //"Dakka_WepDisplay",

@@ -6,7 +6,7 @@ actor Pickup_Chainsaw: ClassBasedPickup replaces Chainsaw
         SCPR Z 0
         SCPR Z -1 A_JumpIf(CallACS("Pickup_Dropped") != 0, "Dropped")
         stop
-      
+
       Dropped:
         TNT1 A 0 A_SpawnItemEx("Pickup_ChainsawDropped", 0,0,0, velx,vely,velz,angle, SXF_ABSOLUTEANGLE | SXF_ABSOLUTEVELOCITY, 0, tid)
         stop
@@ -41,7 +41,7 @@ actor Pickup_Pistol: ClassBasedPickup replaces Pistol
         DPST Z 0
         DPST Z -1 A_JumpIf(CallACS("Pickup_Dropped") != 0, "Dropped")
         stop
-      
+
       Dropped:
         TNT1 A 0 A_SpawnItemEx("Pickup_PistolDropped", 0,0,0, velx,vely,velz,angle, SXF_ABSOLUTEANGLE | SXF_ABSOLUTEVELOCITY, 0, tid)
         stop
@@ -77,7 +77,7 @@ actor Pickup_Shotgun: ClassBasedPickup replaces Shotgun
         "----" A 0 A_SetUserVar("user_index", It_Shotgun)
         "----" A 0 A_SetUserVar("user_dropped", 0)
         goto DropCheck
-      
+
       Dropped:
         TNT1 A 0 A_SpawnItemEx("Pickup_ShotgunDropped", 0,0,0, velx,vely,velz,angle, SXF_ABSOLUTEANGLE | SXF_ABSOLUTEVELOCITY, 0, tid)
         stop
@@ -121,7 +121,7 @@ actor Pickup_SuperShotgun: ClassBasedPickup replaces SuperShotgun
         DSSG Z 0
         DSSG Z -1 A_JumpIf(CallACS("Pickup_Dropped") != 0, "Dropped")
         stop
-      
+
       Dropped:
         TNT1 A 0 A_SpawnItemEx("Pickup_SuperShotgunDropped", 0,0,0, velx,vely,velz,angle, SXF_ABSOLUTEANGLE | SXF_ABSOLUTEVELOCITY, 0, tid)
         stop
@@ -156,7 +156,7 @@ actor Pickup_Chaingun: ClassBasedPickup replaces Chaingun
         DMNG Z 0
         DMNG Z -1 A_JumpIf(CallACS("Pickup_Dropped") != 0, "Dropped")
         stop
-      
+
       Dropped:
         TNT1 A 0 A_SpawnItemEx("Pickup_ChaingunDropped", 0,0,0, velx,vely,velz,angle, SXF_ABSOLUTEANGLE | SXF_ABSOLUTEVELOCITY, 0, tid)
         stop
@@ -191,7 +191,7 @@ actor Pickup_RocketLauncher: ClassBasedPickup replaces RocketLauncher
         DKIP Z 0
         DKIP Z -1 A_JumpIf(CallACS("Pickup_Dropped") != 0, "Dropped")
         stop
-      
+
       Dropped:
         TNT1 A 0 A_SpawnItemEx("Pickup_RocketLauncherDropped", 0,0,0, velx,vely,velz,angle, SXF_ABSOLUTEANGLE | SXF_ABSOLUTEVELOCITY, 0, tid)
         stop
@@ -226,7 +226,7 @@ actor Pickup_PlasmaRifle: ClassBasedPickup replaces PlasmaRifle
         PLNC Z 0
         PLNC Z -1 A_JumpIf(CallACS("Pickup_Dropped") != 0, "Dropped")
         stop
-      
+
       Dropped:
         TNT1 A 0 A_SpawnItemEx("Pickup_PlasmaRifleDropped", 0,0,0, velx,vely,velz,angle, SXF_ABSOLUTEANGLE | SXF_ABSOLUTEVELOCITY, 0, tid)
         stop
@@ -261,7 +261,7 @@ actor Pickup_BFG9000: ClassBasedPickup replaces BFG9000
         DBFG Z 0
         DBFG Z -1 A_JumpIf(CallACS("Pickup_Dropped") != 0, "Dropped")
         stop
-      
+
       Dropped:
         TNT1 A 0 A_SpawnItemEx("Pickup_BFG9000Dropped", 0,0,0, velx,vely,velz,angle, SXF_ABSOLUTEANGLE | SXF_ABSOLUTEVELOCITY, 0, tid)
         stop

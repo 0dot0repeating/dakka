@@ -15,7 +15,7 @@ int DakkaEnterLocks[PLAYERMAX];
 script "Dakka_Spawn" (int respawned)
 {
     if (GameType() == GAME_TITLE_MAP) { terminate; }
-    
+
     // Apparently ENTER can run before OPEN in plain ol ZDoom too - fuckin fantastic
     if (Score_Thresholds[ST_FULLHEAL] == 0)
     {
@@ -30,7 +30,7 @@ script "Dakka_Spawn" (int respawned)
 
     int myLockVal = DakkaEnterLocks[pln] + 1;
     DakkaEnterLocks[pln] = myLockVal;
-    
+
     int bfgPtrTID = 0;
 
     // DM does its own level start, since it needs to do things every spawn,
@@ -65,13 +65,13 @@ script "Dakka_Spawn" (int respawned)
         // Translate guns meant for other classes
         // - In dakka_translateguns.h
         Dakka_TranslateGuns();
-        
+
         // In dakka_powerlevel.h
         Dakka_PowerLevel();
 
         // In dakka_tempitems.h
         Dakka_UpdateTemporaryItems();
-        
+
         // In dakka_fists.h
         Dakka_FistTap();
 
@@ -81,7 +81,7 @@ script "Dakka_Spawn" (int respawned)
         // In dakka_ssg.h and dakka_bfg.h
         SSG_AutoReload();
         BFG_AutoReload();
-        
+
         // In dakka_bfg.h
         bfgPtrTID = Dakka_GetNewTarget(bfgPtrTID);
 
