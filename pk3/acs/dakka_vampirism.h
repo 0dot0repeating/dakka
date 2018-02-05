@@ -1,40 +1,13 @@
-script "Dakka_Vampire" (int powerupTics)
+function void Dakka_VampireTick(void)
 {
-    int curTics = CheckInventory("DakkaVampireTimer");
-    SetInventory("DakkaVampireTimer", max(curTics, powerupTics));
-    if (curTics) { terminate; }
+    int t = CheckInventory("DakkaVampireTimer");
+    if (t > 0) { TakeInventory("DakkaVampireTimer", 1); }
 
-    int myTID_old = ActivatorTID();
-    int myTID_new = UniqueTID();
-    Thing_ChangeTID(0, myTID_new);
-
-    int looperTID = UniqueTID();
-    SpawnForced("VampireSoundLooper", GetActorX(0),GetActorY(0),GetActorZ(0), looperTID);
-
-    SetActivator(looperTID);
-    SetPointer(AAPTR_TARGET, myTID_new);
-
-    SetActivator(myTID_new);
-    Thing_ChangeTID(0, myTID_old);
-    GiveInventory("DakkaVampireEffect", 1);
-    FadeRange(255, 64, 64, 0.3, 255, 64, 64, 0, 1.0);
-
-    while (CheckInventory("DakkaVampireTimer"))
-    {
-        if (isDead(0))
-        {
-            TakeInventory("DakkaVampireTimer", 0x7FFFFFFF);
-            break;
-        }
-
-        TakeInventory("DakkaVampireTimer", 1);
-        Delay(1);
-    }
-
-    TakeInventory("DakkaVampireEffect", 0x7FFFFFFF);
-    FadeRange(255, 64, 64, 0.2, 255, 64, 64, 0, 1.0);
-    SetActorState(looperTID, "VampireDone");
+    SetInventory("DakkaVampireRenewed", 0);
+    SetInventory("DakkaVampireDone",    t == 1);
+    SetInventory("DakkaVampireEffect",  t > 0);
 }
+
 
 script "Dakka_VampireHeal" (int monHealth)
 {
@@ -93,6 +66,7 @@ script "Dakka_VampireHeal" (int monHealth)
 
     SetActivator(soundTID);
     SetPointer(AAPTR_TARGET, myTID_new);
+    ACS_NamedExecuteWithResult("Dakka_SoundLooper_Follow");
 
     SetActivator(myTID_new);
     Thing_ChangeTID(0, myTID_old);

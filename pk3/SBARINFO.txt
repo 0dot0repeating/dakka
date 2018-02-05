@@ -141,7 +141,7 @@ StatusBar Normal, fullscreenoffsets, 0.85
     }
 
 
-    InInventory HUD_AmmoRegen
+    InInventory DakkaInAmmoRegen
     {
         IsSelected DWep_Fist
         {
@@ -505,7 +505,7 @@ StatusBar Fullscreen, fullscreenoffsets, 0.85
     }
 
 
-    InInventory HUD_AmmoRegen
+    InInventory DakkaInAmmoRegen
     {
         IsSelected DWep_Fist
         {
@@ -845,7 +845,7 @@ StatusBar Automap, fullscreenoffsets, 0.85
     }
 
 
-    InInventory HUD_AmmoRegen
+    InInventory DakkaInAmmoRegen
     {
         IsSelected DWep_Fist
         {

@@ -1,4 +1,7 @@
-actor DakkaScoreItem:    Counter { +INTERHUBSTRIP }
+actor DakkaScoreItem:           Counter { +INTERHUBSTRIP }
+actor DakkaEnteredAmmoRegen:    Boolean {}
+actor DakkaInAmmoRegen:         Boolean {}
+actor DakkaExitedAmmoRegen:     Boolean {}
 
 actor ScoreMonsterFinder
 {
@@ -38,25 +41,44 @@ actor RegenSoundLooper
     Radius 4
     Height 4
 
-    SeeSound    "dakka/ammoregen_start"
-    ActiveSound "dakka/ammoregen"
+    var int user_active;
 
     States
     {
       Spawn:
-        TNT1 A  0
-        TNT1 A -1 ACS_NamedExecuteWithResult("Dakka_SoundLooper")
-        wait
-
-      RegenDone:
-        TNT1 A 70 A_PlaySound("dakka/fizzle", CHAN_BODY)
+        TNT1 A -1
         stop
 
-      Abort:
-        TNT1 A 1
+      Active:
+        TNT1 A -1 A_PlaySound("dakka/ammoregen", CHAN_BODY, 1, true)
+        stop
+
+      Silenced:
+        TNT1 A -1 A_StopSound(CHAN_BODY)
+        stop
+
+      Activate:
+        TNT1 A -1 A_PlaySound("dakka/ammoregen_start", CHAN_ITEM)
+        stop
+
+      Deactivate:
+        TNT1 A  0 A_GiveToTarget("DakkaRegenFlash_Destroy")
+        TNT1 A -1 A_PlaySound("dakka/fizzle", CHAN_ITEM)
         stop
     }
 }
+
+actor DakkaRegenFlash_Destroy: Trigger
+{
+    States
+    {
+      Pickup:
+        TNT1 A 0 A_SetBlend("80 D4 FF", 0.3, 18)
+        stop
+    }
+}
+
+
 
 actor DakkaReviveExplosion
 {
