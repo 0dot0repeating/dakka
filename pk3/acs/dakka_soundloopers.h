@@ -65,7 +65,7 @@ script "Dakka_SoundLooper_Create" (int which)
     int looperTID = UniqueTID();
     int x = GetActorX(0);
     int y = GetActorY(0);
-    int z = GetActorZ(0) + (GetActorProperty(0, APROP_Height)/2);
+    int z = GetActorZ(0);
     SpawnForced(looperType, x,y,z, looperTID);
 
     int myTID_old = ActivatorTID();
@@ -74,6 +74,7 @@ script "Dakka_SoundLooper_Create" (int which)
 
     SetActivator(looperTID);
     SetPointer(AAPTR_TARGET, myTID);
+    Warp(myTID, 0,0,0, 0, WARPF_NOCHECKPOSITION | WARPF_COPYINTERPOLATION | WARPF_COPYVELOCITY);
     ACS_NamedExecuteWithResult("Dakka_SoundLooper_Follow");
 
     Thing_ChangeTID(myTID, myTID_old);
@@ -157,12 +158,9 @@ script "Dakka_SoundLooper_Follow" (int tid)
     int targetPln = ACS_NamedExecuteWithResult("Dakka_PlayerNumber", AAPTR_TARGET);
     int justOnce  = false;
 
-    // even if shunting this to the client, do it here at least once so that
-    //  the pickup and loop sounds don't sound muffled online
     if (IsZandronum && ConsolePlayerNumber() == -1 && targetPln != -1)
     {
         ACS_NamedExecuteAlways("Dakka_SoundLooper_FollowPlayer", 0, targetPln);
-        justOnce = true;
         terminate;
     }
 
@@ -195,8 +193,6 @@ script "Dakka_SoundLooper_Follow" (int tid)
 
         Thing_ChangeTID(0, myTID_old);
         Thing_ChangeTID(firerTID, firerTID_old);
-        if (justOnce) { break; }
-
         Delay(1);
     }
 }
