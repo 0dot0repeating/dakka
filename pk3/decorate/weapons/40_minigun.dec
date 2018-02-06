@@ -46,31 +46,27 @@ actor DWep_Minigun: DoomWeapon
 
       UnwindDeselect:
         DMNG A 0 A_TakeInventory("DakkaMinigun_WoundUp")
-        DMNG A 0 A_PlaySound("dakka/minigunspindown", 6)
+        DMNG A 0 A_PlaySound("dakka/minigunspindown", CHAN_WEAPON)
         goto Deselect2
 
       Deselect2:
         DMNG A 0 A_Light0
-        DMNG A 0 A_StopSound(7)
         DMNG AAA 0 A_Lower
         DMNG A 1 A_Lower
         loop
 
       FlameDeselect:
         DMNG A 0 A_TakeInventory("MinigunFlamethrowing")
-        DMNG K 0 A_PlaySound("dakka/minigun/flamestop", 6)
+        DMNG K 0 A_PlaySound("dakka/minigun/flamestop", 5)
         goto Deselect3
 
       Deselect3:
-        DMNG A 0 A_StopSound(7)
         DMNG A 0 A_Light(4)
         DMNG AAA 0 A_Lower
         DMNG A 1 A_Lower
-        DMNG A 0 A_StopSound(7)
         DMNG A 0 A_Light(2)
         DMNG AAA 0 A_Lower
         DMNG A 1 A_Lower
-        DMNG A 0 A_StopSound(7)
         DMNG A 0 A_Light(0)
         DMNG AAA 0 A_Lower
         DMNG A 1 A_Lower
@@ -88,28 +84,28 @@ actor DWep_Minigun: DoomWeapon
         DMNG A 0 A_PlaySound("dakka/minigunspinup", CHAN_WEAPON)
         DMNG AB 2 A_WeaponReady(WRF_NOFIRE | WRF_NOBOB)
         DMNG B 0 A_Refire("Windup_Stage2")
-        DMNG B 0 A_PlaySound("dakka/minigunspindown", 5)
+        DMNG B 0 A_PlaySound("dakka/minigunspindown", CHAN_WEAPON)
         DMNG B 0 A_TakeInventory("DakkaMinigun_WoundUp")
         goto WindDown_Stage1
 
       Windup_Stage2:
         DMNG CD 1 A_WeaponReady(WRF_NOFIRE | WRF_NOBOB)
         DMNG D 0 A_Refire("Windup_Stage3")
-        DMNG D 0 A_PlaySound("dakka/minigunspindown", 5)
+        DMNG D 0 A_PlaySound("dakka/minigunspindown", CHAN_WEAPON)
         DMNG D 0 A_TakeInventory("DakkaMinigun_WoundUp")
         goto WindDown_Stage2
 
       Windup_Stage3:
         DMNG ABD 1 A_WeaponReady(WRF_NOFIRE | WRF_NOBOB)
         DMNG D 0 A_Refire("Windup_Stage4")
-        DMNG D 0 A_PlaySound("dakka/minigunspindown", 5)
+        DMNG D 0 A_PlaySound("dakka/minigunspindown", CHAN_WEAPON)
         DMNG D 0 A_TakeInventory("DakkaMinigun_WoundUp")
         goto WindDown_Stage3
 
       Windup_Stage4:
         DMNG CB 1 A_WeaponReady(WRF_NOFIRE | WRF_NOBOB)
         DMNG B 0 A_Refire("Fire_Slow")
-        DMNG B 0 A_PlaySound("dakka/minigunspindown", 5)
+        DMNG B 0 A_PlaySound("dakka/minigunspindown", CHAN_WEAPON)
         DMNG B 0 A_TakeInventory("DakkaMinigun_WoundUp")
         goto WindDown_Stage4
 
@@ -167,10 +163,9 @@ actor DWep_Minigun: DoomWeapon
 
 
       Fire_Slow:
-        DMNG A 0 A_StopSound(5)
         DMNG A 0 A_GiveInventory("DakkaMinigun_WoundUp")
         DMNG A 0 A_JumpIfInventory("AltFired", 1, "Fire_Fast")
-        DMNG A 0 A_PlaySound("dakka/minigunfire_slow", 6, 1.0, true)
+        DMNG A 0 A_PlaySound("dakka/minigunfire_slow", CHAN_WEAPON, 1.0, true)
         goto Hold_Slow
 
       Hold_Slow:
@@ -399,7 +394,7 @@ actor DWep_Minigun: DoomWeapon
 
 
       Fire_Fast:
-        DMNG A 0 A_PlaySound("dakka/minigunfire_fast", 6, 1.0, true)
+        DMNG A 0 A_PlaySound("dakka/minigunfire_fast", CHAN_WEAPON, 1.0, true)
         goto Hold_Fast
 
       Hold_Fast:
@@ -645,7 +640,7 @@ actor DWep_Minigun: DoomWeapon
       // welcome to "where the fuck are my anonymous functions"
 
       FireEnd_Recoil5:
-        DMNG A 0 A_PlaySound("dakka/minigunspindown", 6)
+        DMNG A 0 A_PlaySound("dakka/minigunspindown", CHAN_WEAPON)
         DMNG A 0 A_TakeInventory("DakkaMinigun_WoundUp")
         DMNG A 0               A_Refire("Fire_Slow")
         DMNG A 1               A_WeaponReady(WRF_NOFIRE | WRF_NOBOB)
@@ -680,7 +675,7 @@ actor DWep_Minigun: DoomWeapon
 
 
       FireEnd_Recoil4:
-        DMNG A 0 A_PlaySound("dakka/minigunspindown", 6)
+        DMNG A 0 A_PlaySound("dakka/minigunspindown", CHAN_WEAPON)
         DMNG A 0 A_TakeInventory("DakkaMinigun_WoundUp")
         DMNG A 0               A_Refire("Fire_Slow")
         DMNG A 1               A_WeaponReady(WRF_NOFIRE | WRF_NOBOB)
@@ -714,7 +709,7 @@ actor DWep_Minigun: DoomWeapon
 
 
       FireEnd_Recoil3:
-        DMNG A 0 A_PlaySound("dakka/minigunspindown", 6)
+        DMNG A 0 A_PlaySound("dakka/minigunspindown", CHAN_WEAPON)
         DMNG A 0 A_TakeInventory("DakkaMinigun_WoundUp")
         DMNG A 0               A_Refire("Fire_Slow")
         DMNG A 1               A_WeaponReady(WRF_NOFIRE | WRF_NOBOB)
@@ -747,7 +742,7 @@ actor DWep_Minigun: DoomWeapon
 
 
       FireEnd_Recoil2:
-        DMNG A 0 A_PlaySound("dakka/minigunspindown", 6)
+        DMNG A 0 A_PlaySound("dakka/minigunspindown", CHAN_WEAPON)
         DMNG A 0 A_TakeInventory("DakkaMinigun_WoundUp")
         DMNG A 0               A_Refire("Fire_Slow")
         DMNG A 1               A_WeaponReady(WRF_NOFIRE | WRF_NOBOB)
@@ -779,7 +774,7 @@ actor DWep_Minigun: DoomWeapon
 
 
       FireEnd_Recoil1:
-        DMNG A 0 A_PlaySound("dakka/minigunspindown", 6)
+        DMNG A 0 A_PlaySound("dakka/minigunspindown", CHAN_WEAPON)
         DMNG A 0 A_TakeInventory("DakkaMinigun_WoundUp")
         DMNG A 0               A_Refire("Fire_Slow")
         DMNG A 1               A_WeaponReady(WRF_NOFIRE | WRF_NOBOB)
@@ -866,10 +861,8 @@ actor DWep_Minigun: DoomWeapon
 
         DMNG A 0 A_AlertMonsters
         DMNG A 0 A_GiveInventory("MinigunFlamethrowing")
-        DMNG A 0 A_PlaySound("dakka/minigun/flamepuff", CHAN_WEAPON)
-        DMNG A 0 A_PlaySound("dakka/minigun/flamestart", 5)
-        DMNG A 0 A_PlaySound("dakka/minigun/flameloop",  6, 1, true)
-        DMNG A 0 A_PlaySound("dakka/firecrackle",        7, 1, true)
+        DMNG A 0 A_PlaySound("dakka/minigun/flameloop",  5, 1, true)
+        DMNG A 0 A_PlaySound("dakka/minigun/flamestart", 6)
 
         "----" A 0 ACS_NamedExecuteWithResult("Dakka_Switcharoo", 5, 1)
         "----" A 0 A_Light(1)
@@ -953,8 +946,7 @@ actor DWep_Minigun: DoomWeapon
         DMNG K 0 A_Light(3)
         DMNG K 0 A_ClearRefire
         DMNG K 0 A_TakeInventory("MinigunFlamethrowing")
-        DMNG K 0 A_PlaySound("dakka/minigun/flamestop", 6)
-        DMNG K 0 A_StopSound(7)
+        DMNG K 0 A_PlaySound("dakka/minigun/flamestop", 5)
         DMNG K 2 bright offset(0, 36) A_WeaponReady(WRF_NOBOB | WRF_NOSECONDARY)
 
         DMNG L 0 A_Light(2)
@@ -972,8 +964,7 @@ actor DWep_Minigun: DoomWeapon
         DMNG K 0 A_Light(3)
         DMNG K 0 A_ClearRefire
         DMNG K 0 A_TakeInventory("MinigunFlamethrowing")
-        DMNG K 0 A_PlaySound("dakka/minigun/flamestop", 6)
-        DMNG K 0 A_StopSound(7)
+        DMNG K 0 A_PlaySound("dakka/minigun/flamestop", 5)
         DMNG K 2 bright offset(0, 36) A_WeaponReady(WRF_NOBOB | WRF_NOSECONDARY)
 
         DMNG L 0 A_Light(2)
