@@ -62,11 +62,12 @@ script "Dakka_Score" (int pointValue)
 
     if (pln == -1)
     {
-        // zandronum doesn't support APROP_DamageType
-        if (deathtype != 0)
+        // either telefragged or didn't have room to spawn via A_PainAttack
+        if (myhp - deathhp == 1000000)
         {
-            // spawned by A_PainAttack and died instantly
-            if (!stricmp(deathtype, "None") && myhp - deathhp == 1000000)
+            // zandronum doesn't support APROP_DamageType, and since monsters
+            //  usually can't telefrag each other, assume it's A_PainAttack
+            if (deathtype == 0 || !stricmp(deathtype, "None"))
             {
                 Thing_ChangeTID(myTID,    myTID_old);
                 Thing_ChangeTID(firerTID, firerTID_old);
