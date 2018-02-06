@@ -151,7 +151,7 @@ script "Dakka_PlayerNumber" (int ptr)
     SetResultValue(PlayerNumber());
 }
 
-script "Dakka_SoundLooper_Follow" (int tid)
+script "Dakka_SoundLooper_Follow" (int tid, int syncPln)
 {
     if (tid) { SetActivator(tid); }
 
@@ -163,8 +163,6 @@ script "Dakka_SoundLooper_Follow" (int tid)
         ACS_NamedExecuteAlways("Dakka_SoundLooper_FollowPlayer", 0, targetPln);
         terminate;
     }
-
-    int first = true;
 
     while (!(ClassifyActor(0) & ACTOR_WORLD))
     {
@@ -178,7 +176,7 @@ script "Dakka_SoundLooper_Follow" (int tid)
         if ((pln > -1 && !PlayerInGame(pln)) || (ClassifyActor(0) & ACTOR_WORLD))
         {
             StopSound(myTID, CHAN_BODY);
-            SetActorState(myTID, "Abort");
+            SetActorState(myTID, "Silenced");
             Thing_ChangeTID(myTID, myTID_old);
             break;
         }
@@ -188,7 +186,6 @@ script "Dakka_SoundLooper_Follow" (int tid)
         Thing_ChangeTID(0, firerTID);
 
         SetActivator(myTID);
-
         Warp(firerTID, 0,0,0, 0, WARPF_NOCHECKPOSITION | WARPF_COPYINTERPOLATION | WARPF_COPYVELOCITY);
 
         Thing_ChangeTID(0, myTID_old);
@@ -197,11 +194,31 @@ script "Dakka_SoundLooper_Follow" (int tid)
     }
 }
 
-script "Dakka_SoundLooper_FollowPlayer" (int pln) clientside
+
+script "Dakka_SoundLooper_FollowSync" (int targetPln, int syncPln)
+{
+    if (ConsolePlayerNumber() != -1) { terminate; }
+    
+    for (int i = 0; i < SLOOP_COUNT; i++)
+    {
+        int tid = SoundLooperTIDs[targetPln][i];
+        if (tid != 0 && IsTIDUsed(tid))
+        {
+            SetActivator(tid);
+            ACS_NamedExecuteAlways("Dakka_SoundLooper_FollowPlayer", 0, targetPln, syncPln+1);
+        }
+    }
+}
+
+
+script "Dakka_SoundLooper_FollowPlayer" (int pln, int syncPln) clientside
 {
     if (!IsZandronum) { terminate; }
 
-    int first = true;
+    syncPln--;
+    Log(s:"Got sync for player ", d:pln, s:" (target pln: ", d:syncPln, s:") (class: ", s:GetActorClass(0), s:")");
+    if (syncPln > -1 && syncPln != ConsolePlayerNumber()) { terminate; }
+    
 
     while (!(ClassifyActor(0) & ACTOR_WORLD))
     {
@@ -214,7 +231,7 @@ script "Dakka_SoundLooper_FollowPlayer" (int pln) clientside
         if (!PlayerInGame(pln) || (ClassifyActor(0) & ACTOR_WORLD))
         {
             StopSound(myTID, CHAN_BODY);
-            SetActorState(myTID, "Abort");
+            SetActorState(myTID, "Silenced");
             Thing_ChangeTID(myTID, myTID_old);
             break;
         }
@@ -224,7 +241,6 @@ script "Dakka_SoundLooper_FollowPlayer" (int pln) clientside
         Thing_ChangeTID(0, firerTID);
 
         SetActivator(myTID);
-
         Warp(firerTID, 0,0,0, 0, WARPF_NOCHECKPOSITION | WARPF_COPYINTERPOLATION | WARPF_COPYVELOCITY);
 
         Thing_ChangeTID(0, myTID_old);

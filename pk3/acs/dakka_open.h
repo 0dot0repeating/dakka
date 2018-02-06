@@ -1,3 +1,10 @@
+#define PSYNC_INGAME    0
+#define PSYNC_INSERVER  1
+#define PSYNC_SYNCTO    2
+#define PSYNC_NEEDSYNC  3
+
+int PlayerSync[4][PLAYERMAX];
+
 script "Dakka_Open" open
 {
     if (GameType() == GAME_TITLE_MAP) { terminate; }
@@ -12,8 +19,52 @@ script "Dakka_Open" open
         Score_CalcMapPoints();
     }
 
+    int toSyncTo_count;
+    int needSync_count;
+    
+    int i, j;
+    
     while (true)
     {
+        if (ConsolePlayerNumber() == -1)
+        {
+            toSyncTo_count = 0;
+            needSync_count = 0;
+            
+            for (i = 0; i < PLAYERMAX; i++)
+            {
+                int inGame   = PlayerInGame(i);
+                int inServer = inGame || PlayerIsSpectator(i);
+                
+                if (PlayerSync[PSYNC_INGAME][i] && inGame)
+                {
+                    PlayerSync[PSYNC_SYNCTO][toSyncTo_count++] = i;
+                }
+                
+                if (inServer && !PlayerSync[PSYNC_INSERVER][i])
+                {
+                    PlayerSync[PSYNC_NEEDSYNC][needSync_count++] = i;
+                }
+                
+                PlayerSync[PSYNC_INGAME][i]   = inGame;
+                PlayerSync[PSYNC_INSERVER][i] = inServer;
+            }
+            
+            if (toSyncTo_count > 0)
+            {
+                for (i = 0; i < needSync_count; i++)
+                {
+                    int pln_for = PlayerSync[PSYNC_NEEDSYNC][i];
+                    
+                    for (j = 0; j < toSyncTo_count; j++)
+                    {
+                        int pln_to = PlayerSync[PSYNC_SYNCTO][i];
+                        ACS_NamedExecuteWithResult("Dakka_SoundLooper_FollowSync", pln_to, pln_for);
+                    }
+                }
+            }
+        }
+        
         // Absorbed from PICKUP_OPEN
         Sender_UpdateClients();
         Sender_ActuallySend();
