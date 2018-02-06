@@ -92,6 +92,7 @@ script "Dakka_Tracer" (int which, int yoff, int zoff)
       case TRACE_ARC_FIRER:
       case TRACE_ARC_MASTER:
         SetActorPitch(tracerTID, tracerPitch);
+        if (which == TRACE_ARC_MASTER) { SetActivator(0, AAPTR_TARGET); }
         
         if (ConsolePlayerNumber() == -1)
         {
@@ -108,18 +109,7 @@ script "Dakka_Tracer" (int which, int yoff, int zoff)
 
 script "Dakka_Tracer_Client" (int startTID, int dist, int startPitch) clientside
 {
-    int pln;
-    
-    if (IsZandronum)
-    {
-        pln = ConsolePlayerNumber();
-    }
-    else
-    {
-        SetActivator(0, AAPTR_TRACER);
-        pln = PlayerNumber();
-    }
-    
+    int pln = cond(IsZandronum, ConsolePlayerNumber(), PlayerNumber());
     if (GetUserCVar(pln, "dakka_cl_notracers") > 0) { terminate; }
     
     int waitTimer = 0;
@@ -144,7 +134,7 @@ script "Dakka_Tracer_Client" (int startTID, int dist, int startPitch) clientside
     int nY = FixedDiv(dY, dist);
     int nZ = FixedDiv(dZ, dist);
 
-    int lesseffects = GetCVar("dakka_cl_lesseffects");
+    int lesseffects = GetUserCVar(pln, "dakka_cl_lesseffects");
 
     int particleType = "DakkaTracer";
     int speed = itof(middle(64, GetUserCVar(pln, "dakka_cl_tracerspeed"), 2048));
