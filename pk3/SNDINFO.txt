@@ -231,7 +231,6 @@ $volume dakka/minigunspindown  0.7
 $volume dakka/minigunfire_slow 1
 $volume dakka/minigunfire_fast 1
 
-dakka/minigun/flamepuff     sounds/minigun/minigun_firepuff.ogg
 dakka/minigun/flamestart    sounds/minigun/minigun_flamestart.ogg
 dakka/minigun/flamestop     sounds/minigun/minigun_flamestop.ogg
 dakka/minigun/flameloop     sounds/minigun/minigun_flameloop.ogg
@@ -245,7 +244,6 @@ $random dakka/firecrackle   { dakka/firecrackle1 dakka/firecrackle2 dakka/firecr
 
 $volume dakka/minigun/flamestart    0.6
 $volume dakka/minigun/flamestop     0.6
-$volume dakka/minigun/flameloop     0.75
 
 $limit dakka/firecrackle 0
 
