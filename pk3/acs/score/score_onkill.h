@@ -34,7 +34,10 @@ int TmpBonuses[BONUSCOUNT];
 
 script "Dakka_Score" (int pointValue)
 {
-    int myhp = GetActorProperty(0, APROP_SpawnHealth);
+    int myhp      = GetActorProperty(0, APROP_SpawnHealth);
+    int deathhp   = GetActorProperty(0, APROP_Health);
+    int deathtype = GetActorProperty(0, APROP_DamageType);
+    
     int i;
     if (pointValue <= 0) { pointValue = SMult_Base(); }
 
@@ -59,6 +62,18 @@ script "Dakka_Score" (int pointValue)
 
     if (pln == -1)
     {
+        // zandronum doesn't support APROP_DamageType
+        if (deathtype != 0)
+        {
+            // spawned by A_PainAttack and died instantly
+            if (!stricmp(deathtype, "None") && myhp - deathhp == 1000000)
+            {
+                Thing_ChangeTID(myTID,    myTID_old);
+                Thing_ChangeTID(firerTID, firerTID_old);
+                terminate;
+            }
+        }
+        
         if ((ClassifyActor(0) & ACTOR_MONSTER) && (GetActorProperty(0, APROP_Friendly) == 0))
         {
             ACS_NamedExecuteWithResult("Dakka_Infighter", pointValue);
