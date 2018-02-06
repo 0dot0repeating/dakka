@@ -12,6 +12,8 @@ int Lightning_InUse[LIGHTNINGSLOTS];
 
 script "Dakka_Lightning" (int which, int startTID, int dist) clientside
 {
+    int pln = cond(IsZandronum, ConsolePlayerNumber(), PlayerNumber());
+    
     int waitTimer = 0;
 
     while (!IsTIDUsed(startTID))
@@ -39,7 +41,7 @@ script "Dakka_Lightning" (int which, int startTID, int dist) clientside
     int nY = FixedDiv(dY, dist);
     int nZ = FixedDiv(dZ, dist);
 
-    int lesseffects = GetCVar("dakka_cl_lesseffects");
+    int lesseffects = GetUserCVar(pln, "dakka_cl_lesseffects");
 
     int particleType = "LanceArcTrail";
     int density = cond(lesseffects, 18.0, 6.0);
