@@ -1,12 +1,30 @@
 function void Dakka_VampireTick(void)
 {
     int t = CheckInventory("DakkaVampireTimer");
+    
+    if (isDead(0))
+    {
+        SetInventory("DakkaVampireTimer",   0);
+        SetInventory("DakkaVampireRenewed", 0);
+        SetInventory("DakkaVampireDone",    t > 0);
+        SetInventory("DakkaVampireEffect",  0);
+        return;
+    }
+        
     if (t > 0) { TakeInventory("DakkaVampireTimer", 1); }
 
     SetInventory("DakkaVampireRenewed", 0);
     SetInventory("DakkaVampireDone",    t == 1);
     SetInventory("DakkaVampireEffect",  t > 0);
 }
+
+function void Dakka_VampireReset(void)
+{
+    SetInventory("DakkaVampireTimer",   0);
+    SetInventory("DakkaVampireRenewed", 0);
+    SetInventory("DakkaVampireDone",    0);
+    SetInventory("DakkaVampireEffect",  0);
+}    
 
 
 script "Dakka_VampireHeal" (int monHealth)

@@ -115,6 +115,7 @@ function void Score_Reset(int pln)
     }
 
     Score_ResetMask(pln, resetMask);
+    Score_SetLastReset(pln, Timer());
 }
 
 

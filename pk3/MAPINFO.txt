@@ -18,6 +18,7 @@ map dakktest "DAKKATEST"
 
     next = "dakktest"
     nointermission
+    allowrespawn
 
     specialaction = "BaronOfHell",      "Generic_Door", 667, 16, 1, 0, 0
     specialaction = "Cyberdemon",       "Generic_Door", 668, 16, 1, 0, 0

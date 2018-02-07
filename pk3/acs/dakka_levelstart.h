@@ -235,13 +235,9 @@ function void Dakka_StartMode_Ammo(int classNum, int entered, int lostAmmo)
 // Health start modes (includes armor):
 //
 //  - 0: Do nothing.
-//
-//  - 1 (default): Enter the map with full health and no armor.
-//
+//  - 1: Enter the map with full health and no armor. Default.
 //  - 2: Enter the map with full health, and a set of green armor.
-//
 //  - 3: Enter the map with a soulsphere and a set of blue armor.
-//
 //  - 4: Enter the map with a megasphere.
 
 function void Dakka_StartMode_Health(int classNum, int entered)
@@ -280,8 +276,10 @@ function void Dakka_StartMode_Health(int classNum, int entered)
 
 
 // Corresponds to dakka_scrapperstart. Should only be called for Dakkaguy.
-function void Dakka_ScrapperStart(int extraScrap)
+function void Dakka_ScrapperStart(int extraScrap, int entered, int lostWeapons)
 {
+    if (!(entered || lostWeapons)) { return; }
+    
     if (CheckInventory("DWep_Scrappers") || GetCVar("dakka_scrapperstart") <= 0)
     {
         return;
@@ -310,8 +308,10 @@ function void Dakka_ScrapperStart(int extraScrap)
 // Dakka_Backpacks is in dakka_const.h.
 int Backpack_AmmoBefore[AMMOCOUNT];
 
-function void Dakka_BackpackStart(void)
+function void Dakka_BackpackStart(int entered, int lostEverything)
 {
+    if (!(entered || lostEverything)) { return; }
+    
     int backpackStart = GetCVar("dakka_backpackstart");
     if (backpackStart == 0) { return; }
 
@@ -373,35 +373,44 @@ function void Dakka_DoLevelSpawn(int entered, int returning)
     // Handle respawns normally
     int newHub     =  entered && !hasHubTracker;
     int intraHub   = (entered &&  hasHubTracker) || returning;
-    int freshStart = newHub || ignoreHubs;
+    int respawning = !(entered || returning);
+    int freshStart = newHub || (ignoreHubs && !respawning);
 
     GiveInventory("HubTracker", 1);
 
-    int lostEverything  = !entered &&                    GetCVar("sv_coop_loseinventory");
-    int lostAmmo        = !entered && (lostEverything || GetCVar("sv_coop_loseammo"));
-    int lostWeapons     = !entered && (lostEverything || GetCVar("sv_coop_loseweapons"));
+    int lostEverything, lostAmmo, lostWeapons;
+    
+    if (IsZandronum)
+    {
+        lostEverything  = respawning &&                    GetCVar("sv_coop_loseinventory");
+        lostAmmo        = respawning && (lostEverything || GetCVar("sv_coop_loseammo"));
+        lostWeapons     = respawning && (lostEverything || GetCVar("sv_coop_loseweapons"));
+    }
+    else
+    {
+        lostEverything  = respawning &&                    GetCVar("sv_cooploseinventory");
+        lostAmmo        = respawning && (lostEverything || GetCVar("sv_cooploseammo"));
+        lostWeapons     = respawning && (lostEverything || GetCVar("sv_cooploseweapons"));
+    }
 
     int pln       = PlayerNumber();
     int classNum  = Pickup_ClassNumber(0);
 
+    Dakka_BackpackStart(freshStart, lostEverything);
+    Dakka_StartMode_Weapons(classNum, freshStart, lostWeapons);
+    Dakka_StartMode_Ammo(   classNum, freshStart, lostAmmo);
+    Dakka_StartMode_Health( classNum, freshStart);
+
     if (freshStart)
     {
-        Dakka_BackpackStart();
-
-        Dakka_StartMode_Weapons(classNum, entered, lostWeapons);
-        Dakka_StartMode_Ammo(   classNum, entered, lostAmmo);
-        Dakka_StartMode_Health( classNum, entered);
-
         // in acs/score_levelstart.h
         Score_Reset(pln);
+        Dakka_VampireReset();
     }
 
     if (classNum == Cl_Dakkaguy)
     {
-        if (freshStart)
-        {
-            Dakka_ScrapperStart(0);
-        }
+        Dakka_ScrapperStart(0, freshStart, lostWeapons);
 
         if (newHub)
         {
@@ -428,11 +437,12 @@ function void Dakka_DoDMSpawn(int entered)
     int classNum = Pickup_ClassNumber(0);
 
     Score_Reset(pln);
+    Dakka_VampireReset();
 
-    Dakka_BackpackStart();
+    Dakka_BackpackStart(entered, true);
 
     if (classNum == Cl_Dakkaguy)
     {
-        Dakka_ScrapperStart(60);
+        Dakka_ScrapperStart(60, entered, true);
     }
 }
