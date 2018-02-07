@@ -177,6 +177,12 @@ int AmmoRegen_RegenCounters[PLAYERMAX][AMMOREGENCOUNT];
 
 function void Score_ProcessRewards(void)
 {
+    if (isDead(0))
+    {
+        Score_ProcessRewards_Dead();
+        return;
+    }
+    
     int pln = PlayerNumber();
 
     int regenTime =  Score_GetRegenTimer(pln);
@@ -228,10 +234,14 @@ function void Score_ProcessRewards(void)
 
     int newRegenTime = max(0, regenTime - 1);
     Score_SetRegenTimer(pln, newRegenTime);
+    
+    int wasInRegen = CheckInventory("DakkaInAmmoRegen");
+    int isInRegen  = regenTime > 0;
+    int justReset  = Score_GetLastReset(pln) == Timer();
 
-    SetInventory("DakkaInAmmoRegen",      regenTime >  0);
-    SetInventory("DakkaEnteredAmmoRegen", regenTime >  0 && regenSpent <= 0);
-    SetInventory("DakkaExitedAmmoRegen",  regenTime <= 0 && regenSpent >  0);
+    SetInventory("DakkaInAmmoRegen",       isInRegen);
+    SetInventory("DakkaEnteredAmmoRegen",  isInRegen && !wasInRegen);
+    SetInventory("DakkaExitedAmmoRegen",  !isInRegen &&  wasInRegen && !justReset);
 
     int extraLives = Score_GetExtraLives(pln);
     int hasLives   = Score_GetHasLives(pln);
@@ -249,4 +259,12 @@ function void Score_ProcessRewards(void)
         Score_SetHasLives(pln, false);
         SetPlayerProperty(false, false, PROP_BUDDHA);
     }
+}
+
+function void Score_ProcessRewards_Dead(void)
+{
+    int wasInRegen = CheckInventory("DakkaInAmmoRegen");
+    SetInventory("DakkaInAmmoRegen", 0);
+    SetInventory("DakkaEnteredAmmoRegen", 0);
+    SetInventory("DakkaExitedAmmoRegen", wasInRegen);
 }

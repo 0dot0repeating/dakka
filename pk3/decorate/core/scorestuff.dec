@@ -1,7 +1,7 @@
 actor DakkaScoreItem:           Counter { +INTERHUBSTRIP }
-actor DakkaEnteredAmmoRegen:    Boolean {}
-actor DakkaInAmmoRegen:         Boolean {}
-actor DakkaExitedAmmoRegen:     Boolean {}
+actor DakkaEnteredAmmoRegen:    Boolean { +INTERHUBSTRIP }
+actor DakkaInAmmoRegen:         Boolean { +INTERHUBSTRIP }
+actor DakkaExitedAmmoRegen:     Boolean { +INTERHUBSTRIP }
 
 actor ScoreMonsterFinder
 {

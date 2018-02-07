@@ -216,7 +216,6 @@ script "Dakka_SoundLooper_FollowPlayer" (int pln, int syncPln) clientside
     if (!IsZandronum) { terminate; }
 
     syncPln--;
-    Log(s:"Got sync for player ", d:pln, s:" (target pln: ", d:syncPln, s:") (class: ", s:GetActorClass(0), s:")");
     if (syncPln > -1 && syncPln != ConsolePlayerNumber()) { terminate; }
     
 

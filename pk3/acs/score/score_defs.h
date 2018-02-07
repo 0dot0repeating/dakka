@@ -214,6 +214,7 @@ global int 22:MapScoreData[];
 #define REWARDDATA_REGENSPENT   (5 * PLAYERMAX)
 #define REWARDDATA_EXTRALIVES   (6 * PLAYERMAX)
 #define REWARDDATA_HASLIVES     (7 * PLAYERMAX)
+#define REWARDDATA_LASTRESET    (8 * PLAYERMAX)
 
 
 #define REWARDMASK_SCORE         (1 << 0)
@@ -224,6 +225,7 @@ global int 22:MapScoreData[];
 #define REWARDMASK_REGENSPENT    (1 << 5)
 #define REWARDMASK_EXTRALIVES    (1 << 6)
 #define REWARDMASK_HASLIVES      (1 << 7)
+#define REWARDMASK_LASTRESET     (1 << 8)
 
 #define REWARDMASK_ONLYDISPLAY      (REWARDMASK_DISPLAYSCORE)
 #define REWARDMASK_NOTDISPLAY       (~REWARDMASK_ONLYDISPLAY)
@@ -375,3 +377,21 @@ function void Score_ModHasLives(int pln, int val)
 {
     MapScoreData[REWARDDATA_HASLIVES + pln] += val;
 }
+
+
+
+function int Score_GetLastReset(int pln)
+{
+    return MapScoreData[REWARDDATA_LASTRESET + pln];
+}
+
+function void Score_SetLastReset(int pln, int val)
+{
+    MapScoreData[REWARDDATA_LASTRESET + pln] = val;
+}
+
+function void Score_ModLastReset(int pln, int val)
+{
+    MapScoreData[REWARDDATA_LASTRESET + pln] += val;
+}
+
