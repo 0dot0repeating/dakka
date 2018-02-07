@@ -165,9 +165,6 @@ script "Dakka_MinigunBurn" (int ptr)
 
 script "Dakka_MinigunAfterburn" (int firerTID)
 {
-    int myTID_old = ActivatorTID();
-    int myTID     = UniqueTID();
-    Thing_ChangeTID(0, myTID);
 
     int initialBurn = CheckInventory("MinigunNewBurn");
     int burnTimer   = CheckInventory("MinigunBurnTimer");
@@ -176,6 +173,10 @@ script "Dakka_MinigunAfterburn" (int firerTID)
     SetInventory("MinigunBurnTimer", max(burnTimer,     MinigunBurnInfo[MB_BURNTIME]));
 
     if (burnTimer > 0) { terminate; }
+    
+    int myTID_old = ActivatorTID();
+    int myTID     = UniqueTID();
+    Thing_ChangeTID(0, myTID);
 
     int alreadyBright = CheckFlag(myTID, "BRIGHT");
     if (!alreadyBright) { GiveActorInventory(myTID, "DakkaMinigun_Bright", 1); }
