@@ -74,6 +74,9 @@ SMALLER WEAPON CHANGES:
 
 - All the weapons now bob in a bouncier manner.
 
+- The scrappers now respect pitch better with their spread, and no longer rip
+    infinitely. So these no longer annihilate spider masterminds either.
+
 - The pistol alt-fire has been heavily nerfed, both in bullet count (4 to 3) and
     fire rate (15 tics to 18 tics).
 
