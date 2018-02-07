@@ -1134,7 +1134,6 @@ actor MinigunBurner
 
 actor MinigunPointerDummy
 {
-    +SERVERSIDEONLY
     +NOINTERACTION
     RenderStyle None
 
