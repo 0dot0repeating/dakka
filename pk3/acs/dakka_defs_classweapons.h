@@ -76,21 +76,21 @@ int Dakka_ClassWeaponPowers[CLASSWEAPONS][CLASSCOUNT] =
     {-1,  2}, // none            / pistols
     { 3,  3}, // shotgun
     { 5,  5}, // SSG
-    {-1,  6}, // chaingun        / minigun
+    { 4,  4}, // chaingun        / minigun
     { 5,  5}, // rocket launcher / impaler
     { 6,  6}, // plasma rifle    / plasma lance
     { 7,  7}, // BFG
 
-    { 1,  1}, // staff          (fist)
-    { 3,  5}, // gauntlets      (scrappers)
-    { 2,  2}, // wand 1         (pistol)
-    { 2,  2}, // wand 2         (pistols)
-    { 3,  3}, // crossbow 1     (shotgun)
-    { 3,  5}, // crossbow 2     (ssg)
-    { 4,  6}, // blaster 2      (minigun)
-    { 6,  5}, // phoenix rod    (impaler)
-    { 5,  6}, // hellstaff 1    (plasma)
-    { 7,  7}, // mace 1         (bfg)
+    { 1, -1}, // staff          (fist)
+    { 3, -1}, // gauntlets      (scrappers)
+    { 2, -1}, // wand 1         (pistol)
+    { 2, -1}, // wand 2         (pistols)
+    { 3, -1}, // crossbow 1     (shotgun)
+    { 3, -1}, // crossbow 2     (ssg)
+    { 4, -1}, // blaster 2      (minigun)
+    { 6, -1}, // phoenix rod    (impaler)
+    { 5, -1}, // hellstaff 1    (plasma)
+    { 7, -1}, // mace 1         (bfg)
 };
 
 
@@ -110,15 +110,15 @@ int Dakka_ClassWep_StartModeIgnore[CLASSWEAPONS][CLASSCOUNT] =
     {false, false},
 
     {true,  true},
-    {false, false},
+    {false, true},
     {true,  true},
     {true,  true},
-    {false, false},
-    {false, false},
-    {false, false},
-    {false, false},
-    {false, false},
-    {false, false},
+    {false, true},
+    {false, true},
+    {false, true},
+    {false, true},
+    {false, true},
+    {false, true},
 };
 
 
