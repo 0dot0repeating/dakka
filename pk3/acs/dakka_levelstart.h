@@ -51,7 +51,6 @@ function void Dakka_StartMode_Weapons(int classNum, int entered, int lostWeapons
         int wepPower = Dakka_ClassWeaponPowers[i][classNum+1];
         int wepIndex = Weapon_WeaponIndex(wepName);
 
-
         // We use this to ignore fist/pistol weapons, as well as the Scrappers.
         //
         // But we don't want to take away ammo for them either, that's bad
