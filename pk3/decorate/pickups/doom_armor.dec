@@ -41,7 +41,7 @@ actor Pickup_Megasphere: CustomInventory replaces Megasphere
     +ALWAYSPICKUP
     +FANCYPICKUPSOUND
 
-    Inventory.PickupMessage "Megasphere!"
+    Inventory.PickupMessage "$DAKKA_PK_MEGASPHERE"
     Inventory.PickupSound   "misc/p_pkup"
 
     States

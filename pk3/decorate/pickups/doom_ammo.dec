@@ -1,6 +1,6 @@
 actor Pickup_Clip: CustomInventory replaces Clip
 {
-    Inventory.PickupMessage "Bullets"
+    Inventory.PickupMessage "$DAKKA_PK_CLIP"
 
     States
     {
@@ -17,7 +17,7 @@ actor Pickup_Clip: CustomInventory replaces Clip
 
 actor Pickup_ClipDropped: CustomInventory
 {
-    Inventory.PickupMessage "Bullets"
+    Inventory.PickupMessage "$DAKKA_PK_CLIP"
 
     States
     {
@@ -34,7 +34,7 @@ actor Pickup_ClipDropped: CustomInventory
 
 actor Pickup_Shell: CustomInventory replaces Shell
 {
-    Inventory.PickupMessage "Shells"
+    Inventory.PickupMessage "$DAKKA_PK_SHELL"
 
     States
     {
@@ -50,7 +50,7 @@ actor Pickup_Shell: CustomInventory replaces Shell
 
 actor Pickup_RocketAmmo: CustomInventory replaces RocketAmmo
 {
-    Inventory.PickupMessage "Rockets"
+    Inventory.PickupMessage "$DAKKA_PK_ROCKET"
 
     States
     {
@@ -66,7 +66,7 @@ actor Pickup_RocketAmmo: CustomInventory replaces RocketAmmo
 
 actor Pickup_Cell: CustomInventory replaces Cell
 {
-    Inventory.PickupMessage "Cells"
+    Inventory.PickupMessage "$DAKKA_PK_CELL"
 
     States
     {
@@ -82,7 +82,7 @@ actor Pickup_Cell: CustomInventory replaces Cell
 
 actor Pickup_ClipBox: CustomInventory replaces ClipBox
 {
-    Inventory.PickupMessage "Big bullets"
+    Inventory.PickupMessage "$DAKKA_PK_CLIPBOX"
 
     States
     {
@@ -100,7 +100,7 @@ actor Pickup_ClipBox: CustomInventory replaces ClipBox
 
 actor Pickup_ShellBox: CustomInventory replaces ShellBox
 {
-    Inventory.PickupMessage "Big shells"
+    Inventory.PickupMessage "$DAKKA_PK_SHELLBOX"
 
     States
     {
@@ -117,7 +117,7 @@ actor Pickup_ShellBox: CustomInventory replaces ShellBox
 
 actor Pickup_RocketBox: CustomInventory replaces RocketBox
 {
-    Inventory.PickupMessage "Big rockets"
+    Inventory.PickupMessage "$DAKKA_PK_ROCKETBOX"
 
     States
     {
@@ -134,7 +134,7 @@ actor Pickup_RocketBox: CustomInventory replaces RocketBox
 
 actor Pickup_CellPack: CustomInventory replaces CellPack
 {
-    Inventory.PickupMessage "Big cells"
+    Inventory.PickupMessage "$DAKKA_PK_CELLPACK"
 
     States
     {
@@ -153,7 +153,7 @@ actor Pickup_CellPack: CustomInventory replaces CellPack
 actor Pickup_Backpack: CustomInventory replaces Backpack
 {
     +ALWAYSPICKUP
-    Inventory.PickupMessage "Backpack!"
+    Inventory.PickupMessage "$DAKKA_PK_BACKPACK"
 
     States
     {

@@ -22,7 +22,16 @@ script "Dakka_MoreMessages" (int index)
 
     for (i = 0; i < MMSG_COUNT; i++)
     {
-        int msg = MMSG_ExtraMessages[index][i];
+        str msg = StrParam(s:MMSG_ExtraMessages[index][i]);
+        
+        if (strstr(msg, "\\$") == 0)
+        {
+            msg = sliceString(msg, 1, StrLen(msg));
+        }
+        else if (GetChar(msg, 0) == '$')
+        {
+            msg = StrParam(l:sliceString(msg, 1, StrLen(msg)));
+        }
 
         if (!stringBlank(msg))
         {

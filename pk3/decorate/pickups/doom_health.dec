@@ -7,7 +7,7 @@ actor Dakka_OneHealth: Health
 actor Pickup_HealthBonus: CustomInventory replaces HealthBonus
 {
     +ALWAYSPICKUP
-    Inventory.PickupMessage "Health bonus"
+    Inventory.PickupMessage "$DAKKA_PK_HEALTHBONUS"
 
     States
     {
@@ -41,12 +41,14 @@ actor Pickup_HealthBonus: CustomInventory replaces HealthBonus
 
 actor Pickup_Stimpack: Stimpack replaces Stimpack
 {
-    Inventory.PickupMessage "Stimpack"
+    Inventory.PickupMessage "$DAKKA_PK_STIMPACK"
+    Health.LowMessage 25, "$DAKKA_PK_STIMPACKLOW" 
 }
 
 actor Pickup_Medikit: Medikit replaces Medikit
 {
-    Inventory.PickupMessage "Medikit"
+    Inventory.PickupMessage "$DAKKA_PK_MEDIKIT"
+    Health.LowMessage 25, "$DAKKA_PK_MEDIKITLOW" 
 }
 
 actor Pickup_Soulsphere: CustomInventory replaces Soulsphere
@@ -55,7 +57,7 @@ actor Pickup_Soulsphere: CustomInventory replaces Soulsphere
     +ALWAYSPICKUP
     +FANCYPICKUPSOUND
 
-    Inventory.PickupMessage "Soulsphere!"
+    Inventory.PickupMessage "$DAKKA_PK_SOULSPHERE"
     Inventory.PickupSound   "misc/p_pkup"
 
     States
