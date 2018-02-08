@@ -177,6 +177,7 @@ actor DWep_Minigun: DoomWeapon
 
         DMNG A 0 A_GunFlash
         DMNG A 0 A_AlertMonsters
+        DMNG A 0 A_GiveInventory("GiveScrapCounter", 5)
         DMNG A 0 ACS_NamedExecuteWithResult("Dakka_Switcharoo", 5, 0)
         DMNG A 0 ACS_NamedExecuteAlways("Dakka_Recoil", 0, random(-150, -60), 1, random(11, 15))
         DMNG A 0 ACS_NamedExecuteWithResult("Dakka_UseAmmo", 4, 1)
@@ -407,6 +408,7 @@ actor DWep_Minigun: DoomWeapon
 
         DMNG A 0 A_AlertMonsters
         DMNG A 0 A_GunFlash("FlashFastA")
+        DMNG A 0 A_GiveInventory("GiveScrapCounter", 5)
         DMNG A 0 ACS_NamedExecuteWithResult("Dakka_Switcharoo", 5, 0)
         DMNG A 0 ACS_NamedExecuteWithResult("Dakka_UseAmmo", 4, 1)
         DMNG A 0 A_Jump(128, "Fast_Painless")
