@@ -2,12 +2,12 @@ actor Pickup_Berserk: DakkaVampireSphere replaces Berserk {}
 
 actor Pickup_Blursphere: Blursphere replaces Blursphere
 {
-    Inventory.PickupMessage "Blursphere!"
+    Inventory.PickupMessage "$DAKKA_PK_BLURSPHERE"
 }
 
 actor Pickup_InvulnSphere: InvulnerabilitySphere replaces InvulnerabilitySphere
 {
-    Inventory.PickupMessage "Invulnerability!"
+    Inventory.PickupMessage "$DAKKA_PK_INVULN"
     Powerup.Colormap 0.1,0.05,0, 1,0.67,0.25
     Inventory.RespawnTics 2100
 }

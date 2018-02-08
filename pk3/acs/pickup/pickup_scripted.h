@@ -26,11 +26,9 @@
 
 // Do we just want the script to determine which pickup index we're going to
 //  use? If so, this is true.
-
 #define PK_S_RETURNINDEX    6
 
 // Is this a named script? If so, read the script name from PKP_PickupNamed.
-
 #define PK_S_NAMEDSCRIPT    7
 
 
@@ -42,13 +40,11 @@
 int PKP_ScriptedPickups[PK_SCRIPTEDCOUNT][8] =
 {
     {It_Shotgun,     Cl_Dakkaguy, 494, 0, 0, 0, true, true}, // pickup/dakka_wepdisplay.h
-    //{It_Chaingun,    Cl_Dakkaguy, 494, 1, 0, 0, true, true},
 };
 
 int PKP_PickupNamed[PK_SCRIPTEDCOUNT] =
 {
     "Dakka_WepPickup",
-    //"Dakka_WepPickup",
 };
 
 
@@ -94,7 +90,6 @@ int PKP_PickupNamed[PK_SCRIPTEDCOUNT] =
 #define MSG_S_ONLYSTRING    6
 
 // Is this a named script? If so, read the script name from PKP_MessageNamed.
-
 #define MSG_S_NAMEDSCRIPT    7
 
 
@@ -106,14 +101,14 @@ int CMSG_ScriptedMessages[MSG_SCRIPTEDCOUNT][8] =
     {It_Pistol,             Cl_Dakkaguy,  -1, 2,  0,0, true, true},
     {It_Shotgun,            Cl_Dakkaguy,  -1, 3,  0,0, true, true},
     {It_SuperShotgun,       Cl_Dakkaguy,  -1, 4,  0,0, true, true},
-    {It_Chaingun,           Cl_Dakkaguy,  -1, 6,  0,0, true, true},
-    {It_ST_Minigun,         Cl_Dakkaguy,  -1, 6,  0,0, true, true},
-    {It_RocketLauncher,     Cl_Dakkaguy,  -1, 7,  0,0, true, true},
-    {It_ST_GrenadeLauncher, Cl_Dakkaguy,  -1, 7,  0,0, true, true},
-    {It_PlasmaRifle,        Cl_Dakkaguy,  -1, 8,  0,0, true, true},
-    {It_ST_Railgun,         Cl_Dakkaguy,  -1, 8,  0,0, true, true},
-    {It_BFG9000,            Cl_Dakkaguy,  -1, 9,  0,0, true, true},
-    {It_ST_BFG10k,          Cl_Dakkaguy,  -1, 9,  0,0, true, true},
+    {It_Chaingun,           Cl_Dakkaguy,  -1, 5,  0,0, true, true},
+    {It_ST_Minigun,         Cl_Dakkaguy,  -1, 5,  0,0, true, true},
+    {It_RocketLauncher,     Cl_Dakkaguy,  -1, 6,  0,0, true, true},
+    {It_ST_GrenadeLauncher, Cl_Dakkaguy,  -1, 6,  0,0, true, true},
+    {It_PlasmaRifle,        Cl_Dakkaguy,  -1, 7,  0,0, true, true},
+    {It_ST_Railgun,         Cl_Dakkaguy,  -1, 7,  0,0, true, true},
+    {It_BFG9000,            Cl_Dakkaguy,  -1, 8,  0,0, true, true},
+    {It_ST_BFG10k,          Cl_Dakkaguy,  -1, 8,  0,0, true, true},
 };
 
 int CMSG_MessageNamed[MSG_SCRIPTEDCOUNT] =
@@ -171,17 +166,14 @@ int CMSG_MessageNamed[MSG_SCRIPTEDCOUNT] =
 #define DISP_S_ARG3         5
 
 // Named script? Yaddayadda.
-
 #define DISP_S_NAMEDSCRIPT  6
 
 int DISP_ScriptedDisplays[DISP_SCRIPTEDCOUNT][7] =
 {
     {It_Shotgun,     Cl_Dakkaguy, 495, 0, 0, 0, true}, // pickup/dakka_wepdisplay.h
-    //{It_Chaingun,    Cl_Dakkaguy, 496, 1, 0, 0, true},
 };
 
 int DISP_DisplayNamed[DISP_SCRIPTEDCOUNT] =
 {
     "Dakka_WepDisplay",
-    //"Dakka_WepDisplay",
 };

@@ -8,7 +8,7 @@
 int PKP_Messages[PICKUPCOUNT][CLASSCOUNT] =
 {
     {
-        "You got a pair of hands!",
+        "$GOTFIST",
         "$DAKKA_PK_FISTS",
     },
     {
@@ -16,7 +16,7 @@ int PKP_Messages[PICKUPCOUNT][CLASSCOUNT] =
         "$DAKKA_PK_SCRAPPER",
     },
     {
-        "Picked up a pistol.",
+        "$PICKUP_PISTOL_DROPPED",
         "$DAKKA_PK_PISTOLS",
     },
     {
@@ -55,11 +55,11 @@ int PKP_Messages[PICKUPCOUNT][CLASSCOUNT] =
 
     {
         "$GOTARMOR",
-        "Green armor!",
+        "$DAKKA_PK_GREENARMOR",
     },
     {
         "$GOTMEGA",
-        "Blue armor!",
+        "$DAKKA_PK_BLUEARMOR",
     },
 
 

@@ -1,6 +1,6 @@
 actor Dakka_GreenArmor: BasicArmorPickup
 {
-    Inventory.PickupMessage "Green armor!"
+    Inventory.PickupMessage "$DAKKA_PK_GREENARMOR"
     Inventory.Icon "ARM1A0"
 
     Armor.SavePercent 33.335
@@ -17,7 +17,7 @@ actor Dakka_GreenArmor: BasicArmorPickup
 
 actor Dakka_BlueArmor: BasicArmorPickup
 {
-    Inventory.PickupMessage "Blue armor!"
+    Inventory.PickupMessage "$DAKKA_PK_BLUEARMOR"
     Inventory.Icon "ARM2A0"
 
     Armor.SavePercent 50
@@ -34,7 +34,7 @@ actor Dakka_BlueArmor: BasicArmorPickup
 
 actor Dakka_ArmorBonus: BasicArmorBonus replaces ArmorBonus
 {
-    Inventory.PickupMessage "Armor bonus"
+    Inventory.PickupMessage "$DAKKA_PK_ARMORBONUS"
     Inventory.Icon "BON2A0"
 
     Armor.SavePercent 33.335
