@@ -87,6 +87,15 @@ DAKKA_MMSG_FISTS_08     = "You are already dead.";
 DAKKA_MMSG_FISTS_09     = "Guns are for wusses.";
 DAKKA_MMSG_FISTS_10     = "";
 DAKKA_MMSG_FISTS_11     = "";
+DAKKA_MMSG_FISTS_12     = "";
+DAKKA_MMSG_FISTS_13     = "";
+DAKKA_MMSG_FISTS_14     = "";
+DAKKA_MMSG_FISTS_15     = "";
+DAKKA_MMSG_FISTS_16     = "";
+DAKKA_MMSG_FISTS_17     = "";
+DAKKA_MMSG_FISTS_18     = "";
+DAKKA_MMSG_FISTS_19     = "";
+DAKKA_MMSG_FISTS_20     = "";
 
 
 DAKKA_MMSG_SCRAPPERS_01 = "This thing would normally require two hands to hold. You dual wield them.";
@@ -100,6 +109,15 @@ DAKKA_MMSG_SCRAPPERS_08 = "Where'd the second one come from?";
 DAKKA_MMSG_SCRAPPERS_09 = "It turns ammo into more ammo!";
 DAKKA_MMSG_SCRAPPERS_10 = "It's eco-friendly! Kinda.";
 DAKKA_MMSG_SCRAPPERS_11 = "";
+DAKKA_MMSG_SCRAPPERS_12 = "";
+DAKKA_MMSG_SCRAPPERS_13 = "";
+DAKKA_MMSG_SCRAPPERS_14 = "";
+DAKKA_MMSG_SCRAPPERS_15 = "";
+DAKKA_MMSG_SCRAPPERS_16 = "";
+DAKKA_MMSG_SCRAPPERS_17 = "";
+DAKKA_MMSG_SCRAPPERS_18 = "";
+DAKKA_MMSG_SCRAPPERS_19 = "";
+DAKKA_MMSG_SCRAPPERS_20 = "";
 
 
 DAKKA_MMSG_PISTOLS_01   = "I still can't tell where the back and top of the slide actually meets on these things.";
@@ -113,6 +131,15 @@ DAKKA_MMSG_PISTOLS_08   = "";
 DAKKA_MMSG_PISTOLS_09   = "";
 DAKKA_MMSG_PISTOLS_10   = "";
 DAKKA_MMSG_PISTOLS_11   = "";
+DAKKA_MMSG_PISTOLS_12   = "";
+DAKKA_MMSG_PISTOLS_13   = "";
+DAKKA_MMSG_PISTOLS_14   = "";
+DAKKA_MMSG_PISTOLS_15   = "";
+DAKKA_MMSG_PISTOLS_16   = "";
+DAKKA_MMSG_PISTOLS_17   = "";
+DAKKA_MMSG_PISTOLS_18   = "";
+DAKKA_MMSG_PISTOLS_19   = "";
+DAKKA_MMSG_PISTOLS_20   = "";
 
 
 DAKKA_MMSG_SHOTGUN_01   = "If you don't have any clay pigeons lying around, lost souls work too.";
@@ -126,6 +153,15 @@ DAKKA_MMSG_SHOTGUN_08   = "You got a club that can hold shells!";
 DAKKA_MMSG_SHOTGUN_09   = "You can probably find it at S-Mart.";
 DAKKA_MMSG_SHOTGUN_10   = "Don't blow your load too quickly.";
 DAKKA_MMSG_SHOTGUN_11   = "As opposed to what, a punchgun?";
+DAKKA_MMSG_SHOTGUN_12   = "";
+DAKKA_MMSG_SHOTGUN_13   = "";
+DAKKA_MMSG_SHOTGUN_14   = "";
+DAKKA_MMSG_SHOTGUN_15   = "";
+DAKKA_MMSG_SHOTGUN_16   = "";
+DAKKA_MMSG_SHOTGUN_17   = "";
+DAKKA_MMSG_SHOTGUN_18   = "";
+DAKKA_MMSG_SHOTGUN_19   = "";
+DAKKA_MMSG_SHOTGUN_20   = "";
 
 
 DAKKA_MMSG_SSG_01       = "Because nothing says 'fuck you' like four shells from a double-barreled shotgun.";
@@ -139,6 +175,15 @@ DAKKA_MMSG_SSG_08       = "Hello, cacodemon! Goodbye, cacodemon!";
 DAKKA_MMSG_SSG_09       = "Wouldn't be a Doom mod without one.";
 DAKKA_MMSG_SSG_10       = "Proof that demons skeet shoot.";
 DAKKA_MMSG_SSG_11       = "Bang bang. You're dead.";
+DAKKA_MMSG_SSG_12       = "";
+DAKKA_MMSG_SSG_13       = "";
+DAKKA_MMSG_SSG_14       = "";
+DAKKA_MMSG_SSG_15       = "";
+DAKKA_MMSG_SSG_16       = "";
+DAKKA_MMSG_SSG_17       = "";
+DAKKA_MMSG_SSG_18       = "";
+DAKKA_MMSG_SSG_19       = "";
+DAKKA_MMSG_SSG_20       = "";
 
 
 DAKKA_MMSG_MINIGUN_01   = "It's like a fire hose! Except it shoots fire. And there's six of them. And they're made of metal.";
@@ -152,6 +197,15 @@ DAKKA_MMSG_MINIGUN_08   = "It's probably \castill\c- not fast enough!";
 DAKKA_MMSG_MINIGUN_09   = "It's legal! Probably. Who's asking?";
 DAKKA_MMSG_MINIGUN_10   = "How serious? Very serious.";
 DAKKA_MMSG_MINIGUN_11   = "Now go, and terminate.";
+DAKKA_MMSG_MINIGUN_12   = "";
+DAKKA_MMSG_MINIGUN_13   = "";
+DAKKA_MMSG_MINIGUN_14   = "";
+DAKKA_MMSG_MINIGUN_15   = "";
+DAKKA_MMSG_MINIGUN_16   = "";
+DAKKA_MMSG_MINIGUN_17   = "";
+DAKKA_MMSG_MINIGUN_18   = "";
+DAKKA_MMSG_MINIGUN_19   = "";
+DAKKA_MMSG_MINIGUN_20   = "";
 
 
 DAKKA_MMSG_IMPALER_01   = "If you ignore fire rate, this is totally weaker than the vanilla rocket launcher.";
@@ -165,6 +219,15 @@ DAKKA_MMSG_IMPALER_08   = "It's certainly one way to loosen a rusty bolt.";
 DAKKA_MMSG_IMPALER_09   = "The magazine for it is bigger than your head.";
 DAKKA_MMSG_IMPALER_10   = "Jesus christ this dumb thing is so heavy.";
 DAKKA_MMSG_IMPALER_11   = "You picked up a cartoony church organ!";
+DAKKA_MMSG_IMPALER_12   = "";
+DAKKA_MMSG_IMPALER_13   = "";
+DAKKA_MMSG_IMPALER_14   = "";
+DAKKA_MMSG_IMPALER_15   = "";
+DAKKA_MMSG_IMPALER_16   = "";
+DAKKA_MMSG_IMPALER_17   = "";
+DAKKA_MMSG_IMPALER_18   = "";
+DAKKA_MMSG_IMPALER_19   = "";
+DAKKA_MMSG_IMPALER_20   = "";
 
 
 DAKKA_MMSG_LANCER_01    = "You see, when a marine and a ranger love each other very much...";
@@ -178,6 +241,15 @@ DAKKA_MMSG_LANCER_08    = "Zip, zap, zop! I'm gonna make you pop!";
 DAKKA_MMSG_LANCER_09    = "What? Your nailgun is evolving!";
 DAKKA_MMSG_LANCER_10    = "It's positively electrifying!";
 DAKKA_MMSG_LANCER_11    = "Way to get a point across.";
+DAKKA_MMSG_LANCER_12    = "";
+DAKKA_MMSG_LANCER_13    = "";
+DAKKA_MMSG_LANCER_14    = "";
+DAKKA_MMSG_LANCER_15    = "";
+DAKKA_MMSG_LANCER_16    = "";
+DAKKA_MMSG_LANCER_17    = "";
+DAKKA_MMSG_LANCER_18    = "";
+DAKKA_MMSG_LANCER_19    = "";
+DAKKA_MMSG_LANCER_20    = "";
 
 
 DAKKA_MMSG_BFG9000_01   = "Guaranteed to solve all your problems, except the \"out of ammo\" one.";
@@ -191,21 +263,30 @@ DAKKA_MMSG_BFG9000_08   = "Is this what they meant by going green?";
 DAKKA_MMSG_BFG9000_09   = "Behold! The world's angriest brick!";
 DAKKA_MMSG_BFG9000_10   = "Aiming is overrated anyway.";
 DAKKA_MMSG_BFG9000_11   = "Close range weapon? Eh.";
+DAKKA_MMSG_BFG9000_12   = "";
+DAKKA_MMSG_BFG9000_13   = "";
+DAKKA_MMSG_BFG9000_14   = "";
+DAKKA_MMSG_BFG9000_15   = "";
+DAKKA_MMSG_BFG9000_16   = "";
+DAKKA_MMSG_BFG9000_17   = "";
+DAKKA_MMSG_BFG9000_18   = "";
+DAKKA_MMSG_BFG9000_19   = "";
+DAKKA_MMSG_BFG9000_20   = "";
 
 
 
 QUITMSG     = "But... why?";
 QUITMSG1    = "Play this with more levels?\nYeah, that's a great idea!";
-QUITMSG2    = "I sure hope you're leaving\nbecause everything else died.";
-QUITMSG3    = "Violence is always the answer.\nYour leaving is a question.";
+QUITMSG2    = "I sure hope you're leaving\nbecause everything else is dead.";
+QUITMSG3    = "Press \"Y\" if you're a weenie.";
 QUITMSG4    = "This button does not kill demons.";
-QUITMSG5    = "There's two ways to do this.\nBoth involve rocket launchers.";
+QUITMSG5    = "You'll be back. Probably. Maybe.";
 QUITMSG6    = "Hey, where are you going?\nYou've still got ammo left!";
 QUITMSG7    = "You are the \cf1 millionth viewer\c-\n\cf<\cg!\cf>\c- of this quit message! \cg<\cf!\cg>\n\cdLog in now\c- and claim your prize!";
 QUITMSG8    = "Bring back a pizza!";
-QUITMSG9    = "Hey\nI\nwonder\nhow\nlong\nthis\ncan\nget\nbefore\nit\nbugs\nout\nthe\ndisplay\nand\nruins\neverything\nthis\nis\na\nvery\ngood\nway\nto\nfind\nout\ndon't\nyou\nthink";
+QUITMSG9    = "Hey\nI\nwonder\nhow\nlong\nthis\ncan\nget\nbefore\nit\nbugs\nout\nthe\ndisplay\nand\nruins\neverything\nthis\nis\na\nvery\ngood\nway\nto\nfind\nout\ndon't\nyou\nthink\nluckily\nno\none\nwill\never\nbe\nable\nto\nread\nthat\nI\nactually\nwas\nthe\ndemons\nall\nalong";
 QUITMSG10   = "Your \"n\" key has been rebound to \"y\".";
-QUITMSG11   = "What, not enough fortune cookies for you?";
+QUITMSG11   = "The dakka is intensifying to the point\nwhere we may not be able to contain it.";
 QUITMSG12   = "Think there's a way to work\nexplosions into the pistols?";
-QUITMSG13   = "And yet Chillax still isn't any fun.";
+QUITMSG13   = "But if you leave, who will\nkill the demons instead?";
 QUITMSG14   = "Oh come on, you're not even\ntrying at this point.";
