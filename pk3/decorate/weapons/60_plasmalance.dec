@@ -384,7 +384,7 @@ actor PLPrimaryShot: FastProjectile
     Projectile
     Speed 100
 
-    Damage (10)
+    Damage (15)
 
     +FORCERADIUSDMG
     +BLOODLESSIMPACT
@@ -621,13 +621,13 @@ actor LanceArcShot: Arc_Base
       Arc_NoTarget:
         TNT1 A 0 A_PlaySound("arc/fry")
         TNT1 A 0 A_JumpIf(user_depth == 0, "HitNothing")
-        TNT1 AAAAA 0 A_SpawnItemEx("LanceArcSpark", 0,0,0, frandom(-7, 7), 0, frandom(2, 14), frandom(0, 360))
+        TNT1 AAAAA 0 A_SpawnItemEx("LanceArcSpark", 0,0,0, frandom(-6, 6), 0, frandom(2, 10), frandom(0, 360))
         TNT1 A 0 A_SpawnItemEx("LanceArcEndSpark")
         stop
 
       HitNothing:
         TNT1 A 0 A_Explode(args[2], 32, false, false, 32)
-        TNT1 AAAAAA 0 A_SpawnItemEx("LanceArcSpark", 0,0,0, frandom(-7, 7), 0, frandom(2, 14), frandom(0, 360))
+        TNT1 AAAAAA 0 A_SpawnItemEx("LanceArcSpark", 0,0,0, frandom(-6, 6), 0, frandom(2, 10), frandom(0, 360))
         TNT1 A 0 A_SpawnItemEx("LanceArcEndSpark")
         stop
     }
@@ -690,11 +690,21 @@ actor LanceArcSpark
     Scale 0.15
     +CLIENTSIDEONLY
     +FORCEXYBILLBOARD
+    
+    var int user_decayrate;
+    var int user_t;
 
     States
     {
       Spawn:
-        PLZM FG 3 bright A_FadeOut(0.13)
+        PLZM F 0 bright
+        PLZM F 0 bright A_SetScale(frandom(0.15, 0.19))
+        PLZM F 0 bright A_SetUserVar("user_decayrate", 25 / scalex)
+        PLZM F 3
+        goto SpawnLoop
+        
+      SpawnLoop:
+        PLZM GF 3 bright A_FadeOut(user_decayrate / 1000.0)
         loop
 
       Death:
