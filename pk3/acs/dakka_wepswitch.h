@@ -2,7 +2,7 @@
 
 script "Dakka_SwitchWeps" (int wep1, int wep2) net clientside
 {
-    int wepname;
+    str wepname;
 
     if (wep1 >= 0 && wep1 < WEAPONCOUNT)
     {
@@ -12,7 +12,7 @@ script "Dakka_SwitchWeps" (int wep1, int wep2) net clientside
         {
             if (SetWeapon(wepname))
             {
-                NamedRequestScriptPuke("Dakka_SwitchingTo", wep1, 0,0,0);
+                NamedRequestScriptPuke("Dakka_SwitchingTo", wep1);
                 terminate;
             }
         }
@@ -26,17 +26,21 @@ script "Dakka_SwitchWeps" (int wep1, int wep2) net clientside
         {
             if (SetWeapon(wepname))
             {
-                NamedRequestScriptPuke("Dakka_SwitchingTo", wep2, 0,0,0);
+                NamedRequestScriptPuke("Dakka_SwitchingTo", wep2);
                 terminate;
             }
         }
     }
 }
 
-script "Dakka_SwitchingTo" (int wep) net
+script "Dakka_SwitchingTo" (int wep, int t) net
 {
+    Delay(t);
+    
     if (wep >= 0 && wep < WEAPONCOUNT)
     {
-        SetWeapon(PKP_KnownGuns[wep][0]);
+        str curwep     = GetWeapon();
+        str newwep     = PKP_KnownGuns[wep][0];
+        if (stricmp(curwep, newwep)) { SetWeapon(newwep); }
     }
 }
