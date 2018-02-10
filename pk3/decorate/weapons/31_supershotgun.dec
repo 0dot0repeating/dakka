@@ -478,45 +478,37 @@ actor DakkaSSG_Grenade
 
 
       NormalBlast:
-        TNT1 A 0 ACS_NamedExecuteWithResult("Dakka_CalcProjAngle", 10, random(12500, 14500), random(-2000, 2000), true)
+        TNT1 A 0 ACS_NamedExecuteWithResult("Dakka_CalcProjAngle", 10, random(13500, 16500), random(-2000, 2000), true)
         TNT1 A 0 A_SpawnItemEx("DakkaSSG_MiniGrenade", 0,0,0, user_spawnvelx/65536.0, user_spawnvely/65536.0, -user_spawnvelz/65536.0, angle+180, SXF_ABSOLUTEANGLE | SXF_ABSOLUTEVELOCITY | SXF_TRANSFERPOINTERS)
 
-        TNT1 A 0 ACS_NamedExecuteWithResult("Dakka_CalcProjAngle", 10, random(15500, 17500), random(-2000, 2000), true)
+        TNT1 A 0 ACS_NamedExecuteWithResult("Dakka_CalcProjAngle", 10, random(16500, 19500), random(-2000, 2000), true)
         TNT1 A 0 A_SpawnItemEx("DakkaSSG_MiniGrenade", 0,0,0, user_spawnvelx/65536.0, user_spawnvely/65536.0, -user_spawnvelz/65536.0, angle+180, SXF_ABSOLUTEANGLE | SXF_ABSOLUTEVELOCITY | SXF_TRANSFERPOINTERS)
 
-        TNT1 A 0 ACS_NamedExecuteWithResult("Dakka_CalcProjAngle", 10, random(18500, 20500), random(-2000, 2000), true)
-        TNT1 A 0 A_SpawnItemEx("DakkaSSG_MiniGrenade", 0,0,0, user_spawnvelx/65536.0, user_spawnvely/65536.0, -user_spawnvelz/65536.0, angle+180, SXF_ABSOLUTEANGLE | SXF_ABSOLUTEVELOCITY | SXF_TRANSFERPOINTERS)
-
-        TNT1 A 0 ACS_NamedExecuteWithResult("Dakka_CalcProjAngle", 10, random(21500, 23500), random(-2000, 2000), true)
+        TNT1 A 0 ACS_NamedExecuteWithResult("Dakka_CalcProjAngle", 10, random(19500, 22500), random(-2000, 2000), true)
         TNT1 A 4 A_SpawnItemEx("DakkaSSG_MiniGrenade", 0,0,0, user_spawnvelx/65536.0, user_spawnvely/65536.0, -user_spawnvelz/65536.0, angle+180, SXF_ABSOLUTEANGLE | SXF_ABSOLUTEVELOCITY | SXF_TRANSFERPOINTERS)
         stop
 
       EnemyBlast:
-        TNT1 A 0 ACS_NamedExecuteWithResult("Dakka_CalcProjAngle", 10, random(-5500, -3500), random(-1000, 1000), true)
+        TNT1 A 0 ACS_NamedExecuteWithResult("Dakka_CalcProjAngle", 10, random(-4500, -1500), random(0, 1500), true)
         TNT1 A 0 A_SpawnItemEx("DakkaSSG_MiniGrenade", 0,0,0, user_spawnvelx/65536.0, user_spawnvely/65536.0, user_spawnvelz/65536.0, angle, SXF_ABSOLUTEANGLE | SXF_ABSOLUTEVELOCITY | SXF_TRANSFERPOINTERS)
 
-        TNT1 A 0 ACS_NamedExecuteWithResult("Dakka_CalcProjAngle", 10, random(-2500,  -500), random(-1000, 1000), true)
+        TNT1 A 0 ACS_NamedExecuteWithResult("Dakka_CalcProjAngle", 10, random(-1500,  1500), random(0, 1500), true)
         TNT1 A 0 A_SpawnItemEx("DakkaSSG_MiniGrenade", 0,0,0, user_spawnvelx/65536.0, user_spawnvely/65536.0, user_spawnvelz/65536.0, angle, SXF_ABSOLUTEANGLE | SXF_ABSOLUTEVELOCITY | SXF_TRANSFERPOINTERS)
 
-        TNT1 A 0 ACS_NamedExecuteWithResult("Dakka_CalcProjAngle", 10, random(  500,  2500), random(-1000, 1000), true)
-        TNT1 A 0 A_SpawnItemEx("DakkaSSG_MiniGrenade", 0,0,0, user_spawnvelx/65536.0, user_spawnvely/65536.0, user_spawnvelz/65536.0, angle, SXF_ABSOLUTEANGLE | SXF_ABSOLUTEVELOCITY | SXF_TRANSFERPOINTERS)
-
-        TNT1 A 0 ACS_NamedExecuteWithResult("Dakka_CalcProjAngle", 10, random( 3500,  5500), random(-1000, 1000), true)
+        TNT1 A 0 ACS_NamedExecuteWithResult("Dakka_CalcProjAngle", 10, random( 1500,  4500), random(0, 1500), true)
         TNT1 A 4 A_SpawnItemEx("DakkaSSG_MiniGrenade", 0,0,0, user_spawnvelx/65536.0, user_spawnvely/65536.0, user_spawnvelz/65536.0, angle, SXF_ABSOLUTEANGLE | SXF_ABSOLUTEVELOCITY | SXF_TRANSFERPOINTERS)
         stop
 
       FloorBlast:
-        TNT1 A 0 A_SpawnItemEx("DakkaSSG_MiniGrenade", 0,0,0, frandom(24,36), 0, frandom(2,5), frandom(-25,- 1), SXF_TRANSFERPOINTERS)
-        TNT1 A 0 A_SpawnItemEx("DakkaSSG_MiniGrenade", 0,0,0, frandom(24,36), 0, frandom(2,5), frandom(-25,- 1), SXF_TRANSFERPOINTERS)
-        TNT1 A 0 A_SpawnItemEx("DakkaSSG_MiniGrenade", 0,0,0, frandom(24,36), 0, frandom(2,5), frandom(  1, 25), SXF_TRANSFERPOINTERS)
-        TNT1 A 4 A_SpawnItemEx("DakkaSSG_MiniGrenade", 0,0,0, frandom(24,36), 0, frandom(2,5), frandom(  1, 25), SXF_TRANSFERPOINTERS)
+        TNT1 A 0 A_SpawnItemEx("DakkaSSG_MiniGrenade", 0,0,0, frandom(24,36), 0, frandom(3,6), frandom(-25,-10), SXF_TRANSFERPOINTERS)
+        TNT1 A 0 A_SpawnItemEx("DakkaSSG_MiniGrenade", 0,0,0, frandom(24,36), 0, frandom(3,6), frandom(-10, 10), SXF_TRANSFERPOINTERS)
+        TNT1 A 4 A_SpawnItemEx("DakkaSSG_MiniGrenade", 0,0,0, frandom(24,36), 0, frandom(3,6), frandom( 10, 25), SXF_TRANSFERPOINTERS)
         stop
 
       CeilingBlast:
         TNT1 A 0 A_SpawnItemEx("DakkaSSG_MiniGrenade", 0,0,0, frandom(24,36), 0, frandom(-12,-8), frandom(-25, -1), SXF_TRANSFERPOINTERS)
-        TNT1 A 0 A_SpawnItemEx("DakkaSSG_MiniGrenade", 0,0,0, frandom(24,36), 0, frandom(-12,-8), frandom(-25, -1), SXF_TRANSFERPOINTERS)
-        TNT1 A 0 A_SpawnItemEx("DakkaSSG_MiniGrenade", 0,0,0, frandom(24,36), 0, frandom(-12,-8), frandom(  1, 25), SXF_TRANSFERPOINTERS)
-        TNT1 A 4 A_SpawnItemEx("DakkaSSG_MiniGrenade", 0,0,0, frandom(24,36), 0, frandom(-12,-8), frandom(  1, 25), SXF_TRANSFERPOINTERS)
+        TNT1 A 0 A_SpawnItemEx("DakkaSSG_MiniGrenade", 0,0,0, frandom(24,36), 0, frandom(-12,-8), frandom(-10, 10), SXF_TRANSFERPOINTERS)
+        TNT1 A 4 A_SpawnItemEx("DakkaSSG_MiniGrenade", 0,0,0, frandom(24,36), 0, frandom(-12,-8), frandom( 10, 25), SXF_TRANSFERPOINTERS)
         stop
     }
 }
@@ -571,7 +563,7 @@ actor DakkaSSG_MiniGrenade
       Detonate:
         TNT1 A 0 A_Stop
         TNT1 A 0 A_NoGravity
-        TNT1 A 0 A_Explode(16, 96, true, false, 40)
+        TNT1 A 0 A_Explode(22, 96, true, false, 40)
         TNT1 A 4 A_SpawnItemEx("MiniGrenadeExplosion_Client")
         stop
     }
