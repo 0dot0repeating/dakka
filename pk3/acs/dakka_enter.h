@@ -17,11 +17,8 @@ script "Dakka_Spawn" (int respawned)
     if (GameType() == GAME_TITLE_MAP) { terminate; }
 
     // Apparently ENTER can run before OPEN in plain ol ZDoom too - fuckin fantastic
-    if (Score_Thresholds[ST_FULLHEAL] == 0)
-    {
-        // In score/score_levelstart.h
-        Score_CalcMapPoints();
-    }
+    // In score/score_levelstart.h
+    Score_CalcMapPoints();
 
     int pln      = PlayerNumber();
     int classNum = Pickup_ClassNumber(0);
@@ -110,6 +107,9 @@ script "Dakka_Spawn" (int respawned)
 
 script "Dakka_Return" return
 {
+    // Gotta do this so that dakka_ignorehubs works as expected
+    Score_CalcMapPoints();
+    
     // I don't think return scripts will ever run in DM but just in case
     if (GameType() == GAME_NET_DEATHMATCH)
     {
