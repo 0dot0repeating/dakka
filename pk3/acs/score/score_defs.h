@@ -86,11 +86,12 @@ int Air_FloorHeight[PLAYERMAX];
 #define P_UTHP_MIN          2000
 #define P_UTHP_MAX          10000
 
-#define ST_FULLHEAL     0
-#define ST_UT_KILLS     1
-#define ST_UT_HP        2
+#define ST_SET          0
+#define ST_FULLHEAL     1
+#define ST_UT_KILLS     2
+#define ST_UT_HP        3
 
-int Score_Thresholds[3] = {0};
+world int 22:Score_Thresholds[];
 
 
 // CLASSCOUNT_DEFINED is defined in pickup/pickup_classes.h
@@ -200,7 +201,6 @@ int LastBonus[PLAYERMAX][BONUSCOUNT];
 // Clientside. Stores the last value a bonus was seen with.
 // (also make sure to add score definitions in pickup_client_defs.h
 int Bonus_LastSeen[PLAYERMAX][BONUSCOUNT];
-
 
 
 

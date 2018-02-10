@@ -2,7 +2,8 @@ int Score_TotalNums[2];
 
 function void Score_CalcMapPoints(void)
 {
-    if (Score_Thresholds[ST_FULLHEAL] > 0) { return; }
+    if (Score_Thresholds[ST_SET] == (Timer() + 1)) { return; }
+    if (Score_Thresholds[ST_SET] && !GetCVar("dakka_ignorehubs")) { return; }
 
     int i;
     int totalMons   = 0;
@@ -45,7 +46,6 @@ function void Score_CalcMapPoints(void)
             }
 
             int count = ThingCountName(name, 0);
-            //Log(s:"\cd[", s:name, s:"] \cf(", d:value, s:")\c- Count: ", d:count);
 
             totalMons   += count;
             totalPoints += count * value;
@@ -60,9 +60,12 @@ function void Score_CalcMapPoints(void)
     int fullHealMult = middle(P_FULLHEAL_MIN, FixedMul(totalMons, P_FULLHEAL_PERCENT), P_FULLHEAL_MAX);
     int fullHealPoints = averagePoints * fullHealMult;
 
+    Score_Thresholds[ST_SET]      = Timer() + 1;
     Score_Thresholds[ST_FULLHEAL] = max(5000, ((fullHealPoints + 2500) / 5000) * 5000);
     Score_Thresholds[ST_UT_KILLS] = middle(P_UTKILLS_MIN, totalMons   / 10, P_UTKILLS_MAX);
     Score_Thresholds[ST_UT_HP]    = middle(P_UTHP_MIN,    totalPoints / 10, P_UTHP_MAX);
+    
+    Log(s:"\cd\"", d:Score_Thresholds[ST_FULLHEAL], s:"\"");
 
     // Adjust everyone's base score to match the percentage from the last map if it's non-zero
     for (i = 0; i < PLAYERMAX; i++)
@@ -84,7 +87,6 @@ script "Score_Count" (void)
 
     Score_TotalNums[0] += 1;
     Score_TotalNums[1] += points;
-    //Log(s:"\cd[", s:name, s:"] \cf(", d:points, s:")");
 }
 
 

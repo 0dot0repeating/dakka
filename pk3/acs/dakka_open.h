@@ -13,11 +13,8 @@ script "Dakka_Open" open
     Pickup_IsZandronum(); // side effect sets IsZandronum
     IsServer = true;
 
-    if (Score_Thresholds[ST_FULLHEAL] == 0)
-    {
-        // In score/score_levelstart.h
-        Score_CalcMapPoints();
-    }
+    // In score/score_levelstart.h
+    Score_CalcMapPoints();
 
     int toSyncTo_count;
     int needSync_count;
