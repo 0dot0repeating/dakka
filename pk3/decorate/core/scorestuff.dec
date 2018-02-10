@@ -1,4 +1,4 @@
-actor DakkaScoreItem:           Counter { +INTERHUBSTRIP }
+actor DakkaScoreItem:           Counter { +INTERHUBSTRIP } // Only used to track previous/current score in the Dakka_Spawn script
 actor DakkaEnteredAmmoRegen:    Boolean { +INTERHUBSTRIP }
 actor DakkaInAmmoRegen:         Boolean { +INTERHUBSTRIP }
 actor DakkaExitedAmmoRegen:     Boolean { +INTERHUBSTRIP }
