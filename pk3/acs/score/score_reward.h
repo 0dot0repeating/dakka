@@ -40,8 +40,9 @@ script "Score_Award" (int scoreHeals)
 
 function void Score_DoRewards(int lastScore, int curScore)
 {
-    int pln = PlayerNumber();
-    if (CToS_ServerData[pln][C2S_D_NOSCOREREWARDS]) { return; }
+    int pln      = PlayerNumber();
+    int noReward = GetCVar("dakka_noscorerewards") || GetUserCVar(pln, "dakka_cl_noscorerewards");
+    if (noReward) { return; }
 
     // Update this because yeah
     Score_CalcScorePercent(pln);
