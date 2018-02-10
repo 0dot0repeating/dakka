@@ -533,6 +533,7 @@ actor BFGCrosshairTarget: FastProjectile
     +SKYEXPLODE
     +NOTIMEFREEZE
     +NOTRIGGER
+    +DONTSPLASH
     +THRUACTORS
     +BLOODLESSIMPACT
     +PAINLESS
@@ -561,6 +562,7 @@ actor BFGCrosshairTarget_Puff
     +NOTIMEFREEZE
     +ALWAYSPUFF
     +NOTRIGGER
+    +DONTSPLASH
     +PUFFONACTORS
     +SKYEXPLODE
     +PAINLESS
