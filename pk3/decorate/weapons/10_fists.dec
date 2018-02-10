@@ -584,6 +584,7 @@ actor FistPunchPuff: BulletPuff
     +PUFFONACTORS
     +NOEXTREMEDEATH
     +NODAMAGETHRUST
+    +NOINTERACTION
 
     SeeSound    "dakka/silent"
     AttackSound "dakka/silent"
@@ -632,6 +633,9 @@ actor FistTrackingPuff: BulletPuff
     +NOEXTREMEDEATH
     +NODAMAGETHRUST
     +BLOODLESSIMPACT
+    +NOTRIGGER
+    +DONTSPLASH
+    +NOINTERACTION
 
     SeeSound    "dakka/silent"
     AttackSound "dakka/silent"
