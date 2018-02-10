@@ -78,7 +78,7 @@ script "Dakka_Open_Client" open clientside
     int oldPickupState;
     int pickupState = -1;
 
-    CSender_ForceSendAll(cpln);
+    //CSender_ForceSendAll(cpln);
 
     while (true)
     {
@@ -106,13 +106,13 @@ script "Dakka_Open_Client" open clientside
                     HUDMSG_PLAIN,   12002 + (i * 4), CR_DARKGRAY, 550.2, 60.0 + (12.0 * i), 1.0);
             }
         }
-        */
 
         CSender_SetData(cpln, C2S_D_NOSCOREREWARDS, GetUserCVar(cpln, "dakka_cl_noscorerewards"));
         CSender_SetData(cpln, C2S_D_NOSCORE,        GetUserCVar(cpln, "dakka_cl_noscore"));
 
         CSender_UpdateServer(cpln);
         CSender_ActuallySend(cpln);
+        */
 
         Delay(1);
     }

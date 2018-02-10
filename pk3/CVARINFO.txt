@@ -2,6 +2,7 @@ server int  dakka_scrapfactor         = 100;
 
 server int  dakka_keepscore           = 0;
 server bool dakka_ignorehubs          = false;
+server bool dakka_noscorerewards      = false;
 
 server int  dakka_startmode_weapons   = 0;
 server int  dakka_startmode_ammo      = 1;

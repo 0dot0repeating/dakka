@@ -85,7 +85,7 @@ script "Dakka_Score" (int pointValue)
         terminate;
     }
 
-    if (CToS_ServerData[pln][C2S_D_NOSCORE])
+    if (GetUserCVar(pln, "dakka_cl_noscore"))
     {
         Thing_ChangeTID(myTID,    myTID_old);
         Thing_ChangeTID(firerTID, firerTID_old);
@@ -179,7 +179,7 @@ script "Dakka_Infighter" (int pointValue)
 
     for (i = 0; i < PLAYERMAX; i++)
     {
-        if (!PlayerInGame(i) || CToS_ServerData[i][C2S_D_NOSCORE]) { continue; }
+        if (!PlayerInGame(i) || GetUserCVar(i, "dakka_cl_noscore")) { continue; }
 
         Score_ModBothScores(i, points_base);
         Score_ModBothScores(i, points_infighter);

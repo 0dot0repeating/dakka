@@ -161,6 +161,7 @@ OptionMenu Dakka_GameOptions
     Slider "Scrap factor",          "dakka_scrapfactor",    0, 1000, 10, 0
     Option "Damage multiplier",     "dakka_powerlevel",     "Dakka_PowerLevel"
     Option "Defense multiplier",    "dakka_defenselevel",   "Dakka_DefenseLevel"
+    Option "Score rewards",         "dakka_noscorerewards", "OffOn"
 
     StaticText ""
     StaticText "Level start options"
@@ -201,8 +202,8 @@ OptionMenu "Dakka_UserOptions"
 
     StaticText ""
 
-    Option "No score rewards",      "dakka_cl_noscorerewards",     "OnOff"
-    Option "No score at all",       "dakka_cl_noscore",            "OnOff"
+    Option "Use score rewards",     "dakka_cl_noscorerewards",     "OffOn"
+    Option "Show score",            "dakka_cl_noscore",            "OffOn"
 
     StaticText ""
 
