@@ -55,9 +55,10 @@ script "Dakka_Spawn" (int respawned)
         if (classNum == Cl_Dakkaguy) { SetInventory("DWep_Fist", 1); }
 
         // In score/score_reward.h
-        lastScore = curScore;
+        lastScore = CheckInventory("DakkaScoreItem");
         curScore  = Score_GetScore(pln);
         Score_DoRewards(lastScore, curScore);
+        SetInventory("DakkaScoreItem", curScore);
 
         // In score/score_update.h
         Air_UpdateZHeight();
