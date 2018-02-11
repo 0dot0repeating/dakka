@@ -202,8 +202,8 @@ OptionMenu "Dakka_UserOptions"
 
     StaticText ""
 
-    Option "Use score rewards",     "dakka_cl_noscorerewards",     "OffOn"
-    Option "Show score",            "dakka_cl_noscore",            "OffOn"
+    Option "No score rewards",      "dakka_cl_noscorerewards",     "OnOff"
+    Option "Hide score",            "dakka_cl_hidescore",          "OnOff"
 
     StaticText ""
 

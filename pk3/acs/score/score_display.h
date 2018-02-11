@@ -2,7 +2,7 @@
 #define OSCORE_GOALPOINTS   1
 #define OSCORE_FIRSTDRAW    2
 #define OSCORE_NOREWARD     3
-#define OSCORE_NOSCORE      4
+#define OSCORE_HIDESCORE    4
 
 int Score_OldVals[5][PLAYERMAX];
 
@@ -11,36 +11,38 @@ function void Score_Update(int pln)
     int oldPoints       = Score_OldVals[OSCORE_POINTS][pln];
     int oldGoalPoints   = Score_OldVals[OSCORE_GOALPOINTS][pln];
     int oldNoReward     = Score_OldVals[OSCORE_NOREWARD][pln];
-    int oldNoScore      = Score_OldVals[OSCORE_NOSCORE][pln];
+    int oldHideScore    = Score_OldVals[OSCORE_HIDESCORE][pln];
     int first           = Score_OldVals[OSCORE_FIRSTDRAW][pln];
 
     int points          = SToC_ClientData[pln][S2C_D_SCORE];
     int goalpoints      = SToC_ClientData[pln][S2C_D_GOALSCORE];
     int displayPoints   = SToC_ClientData[pln][S2C_D_DISPLAYSCORE];
     int noReward        = GetCVar("dakka_noscorerewards") || GetUserCVar(pln, "dakka_cl_noscorerewards");
-    int noScore         = GetUserCVar(pln, "dakka_cl_noscore");
+    int hideScore       = GetUserCVar(pln, "dakka_cl_hidescore");
 
-    if (!first || (points != oldPoints) || (goalPoints != oldGoalPoints) || (noReward != oldNoReward) || (oldNoScore != noScore))
+    if (!first || (points != oldPoints) || (goalPoints != oldGoalPoints) || (noReward != oldNoReward) || (oldHideScore != hideScore))
     {
-        Score_Draw(points, goalpoints, displayPoints, noScore, noReward);
+        Score_Draw(points, goalpoints, displayPoints, hideScore, noReward);
         Score_OldVals[OSCORE_FIRSTDRAW][pln] = true;
     }
-
-    Score_DrawBonuses(pln, noScore);
+    
+    int lives = SToC_ClientData[pln][S2C_D_LIVESLEFT];
+    Score_DrawBonuses(pln, hideScore);
+    Score_DrawLives(lives, hideScore);
 
     Score_OldVals[OSCORE_POINTS][pln]     = points;
     Score_OldVals[OSCORE_GOALPOINTS][pln] = goalpoints;
     Score_OldVals[OSCORE_NOREWARD][pln]   = noReward;
-    Score_OldVals[OSCORE_NOSCORE][pln]    = noScore;
+    Score_OldVals[OSCORE_HIDESCORE][pln]  = hideScore;
 }
 
-function void Score_Draw(int curPoints, int goalPoints, int displayPoints, int noScore, int noScoreRewards)
+function void Score_Draw(int curPoints, int goalPoints, int displayPoints, int hideScore, int noScoreRewards)
 {
 
     int i;
     int cpln = cond(IsZandronum, ConsolePlayerNumber(), PlayerNumber());
 
-    if (noScore)
+    if (hideScore)
     {
         HudMessage(s:""; HUDMSG_PLAIN, 24200, 0,0,0,0);
     }
@@ -52,7 +54,7 @@ function void Score_Draw(int curPoints, int goalPoints, int displayPoints, int n
                     HUDMSG_PLAIN | HUDMSG_COLORSTRING, 24200, "DScore_White", 455.4, 55.2, 0);
     }
 
-    if (noScoreRewards || noScore)
+    if (noScoreRewards || hideScore)
     {
         HudMessage(s:""; HUDMSG_PLAIN, 24401, 0,0,0,0);
 
@@ -129,19 +131,22 @@ function void Score_Draw(int curPoints, int goalPoints, int displayPoints, int n
 }
 
 
-
-function void Score_UpdateLives(int pln)
-{
-    int lives = SToC_ClientData[pln][S2C_D_LIVESLEFT];
-    Score_DrawLives(lives);
-}
-
-
 #define LIVES_MAXDRAW   10
 
-
-function void Score_DrawLives(int lives)
+function void Score_DrawLives(int lives, int hideScore)
 {
+    int i;
+    
+    if (hideScore)
+    {
+        for (i = 0; i < LIVES_MAXDRAW; i++)
+        {
+            HudMessage(s:""; HUDMSG_PLAIN, 25501 + i, 0,0,0,0);
+        }
+        
+        return;
+    }
+    
     SetHudSize(560, 420, 1);
 
     int lifeFont;
@@ -156,7 +161,6 @@ function void Score_DrawLives(int lives)
 
     SetFont(lifeFont);
 
-    int i;
 
     int drawLives = min(LIVES_MAXDRAW, lives);
 
@@ -179,7 +183,7 @@ function void Score_DrawLives(int lives)
 
 int Tmp_BonusDisplay[BONUSCOUNT];
 
-function void Score_DrawBonuses(int pln, int noscore)
+function void Score_DrawBonuses(int pln, int hideScore)
 {
     if (pln < 0 || pln >= PLAYERMAX) { return; }
     SetHudSize(640, 480, 1);
@@ -199,10 +203,9 @@ function void Score_DrawBonuses(int pln, int noscore)
         Bonus_LastSeen[pln][i] = bonus;
     }
 
-    // Check noscore here so that turning the cvar on mid-game doesn't display
-    // any score changes that happened while it was off. There shouldn't be any,
-    // but just in case.
-    if (noscore || !redisplay) { return; }
+    // Check hidescore here so that turning the cvar on mid-game doesn't display
+    // any score changes that happened while it was off.
+    if (hideScore || !redisplay) { return; }
 
     for (i = 0; i < BONUSCOUNT; i++)
     {
