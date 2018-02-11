@@ -85,13 +85,6 @@ script "Dakka_Score" (int pointValue)
         terminate;
     }
 
-    if (GetUserCVar(pln, "dakka_cl_noscore"))
-    {
-        Thing_ChangeTID(myTID,    myTID_old);
-        Thing_ChangeTID(firerTID, firerTID_old);
-        terminate;
-    }
-
     int plX      = GetActorX(0);
     int plY      = GetActorY(0);
     int plZ      = GetActorZ(0);
@@ -179,7 +172,7 @@ script "Dakka_Infighter" (int pointValue)
 
     for (i = 0; i < PLAYERMAX; i++)
     {
-        if (!PlayerInGame(i) || GetUserCVar(i, "dakka_cl_noscore")) { continue; }
+        if (!PlayerInGame(i)) { continue; }
 
         Score_ModBothScores(i, points_base);
         Score_ModBothScores(i, points_infighter);
