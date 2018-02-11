@@ -23,7 +23,12 @@ script "Dakka_UseAmmo" (int ammoindex, int count)
 
 script "Dakka_SyncHeldWeapon" enter clientside
 {
-    if (IsServer) { terminate; }
+    if (IsServer || !IsZandronum) { terminate; }
+    
+    int  pln = PlayerNumber();
+    int cpln = ConsolePlayerNumber();
+    if (pln != cpln) { terminate; }
+    
     SetHudSize(640, 480, true);
     
     int lastWepIndex;
