@@ -43,7 +43,7 @@ script "Dakka_PistolFull" (void)
     SetResultValue(bullets >= maxBullets);
 }
 
-script "Dakka_CanRevolverReload" (int noflag)
+script "Dakka_CanPistolReload" (int noflag)
 {
     int shotsCurrent = CheckInventory("DakkaPistol_ShotsLeft");
     int shotsAfter   = min(GetAmmoCapacity("DakkaPistol_ShotsLeft"), CheckInventory("DakkaBullet_50AE"));
