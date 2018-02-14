@@ -4,7 +4,7 @@ GRAPHICS
 - Fist punching graphics: Based on the Hexen fighter fist, Doom-ified by Bloax, extended by ijon
 - Scrapper sprites: Base sprite by Mor'ladim, animated by ijon
 - Scrapper projectiles: ijon
-- Pistol sprites: id Software, interpolated by Per Kristian
+- Pistol sprites: DoomNukem for base sprite, animated by ijon
 - Shotgun sprites: id Software, interpolated by Per Kristian
 - Grenade sprites: from Skulltag
 - Super shotgun sprites: id Software, interpolated by Per Kristian
@@ -31,7 +31,7 @@ SOUNDS
 =======
 
 - Fist sounds: stock sounds
-- Pistol: Obsidian Software, in Fallout: New Vegas
+- Pistol: Epic Games, from Unreal Tournament 3 and Unreal Gold
 - Shotgun primary fire: unknown
 - Shotgun secondary fire: stock sound (I think?)
 - Super shotgun primary fire: Obsidian Software, in Fallout: New Vegas
