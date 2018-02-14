@@ -197,6 +197,7 @@ OptionMenu "Dakka_UserOptions"
 
     Option "Fewer effects",         "dakka_cl_lesseffects",        "OnOff"
     Option "Bullet tracers",        "dakka_cl_notracers",          "OffOn"
+    Option "Only your tracers",     "dakka_cl_onlymytracers",      "OnOff"
     Option "Tracer speed",          "dakka_cl_tracerspeed",        "Dakka_TracerSpeed"
     Option "Tracer density",        "dakka_cl_tracerdensity",      "Dakka_TracerDensity"
 
