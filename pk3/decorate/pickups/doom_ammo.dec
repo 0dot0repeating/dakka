@@ -9,7 +9,7 @@ actor Pickup_Clip: CustomInventory replaces Clip
         stop
 
       Pickup:
-        TNT1 A 0 A_GiveInventory("DakkaBullet_50AE",  9)
+        TNT1 A 0 A_GiveInventory("DakkaBullet_50AE",  7)
         TNT1 A 0 A_GiveInventory("DakkaBullet_5mm",  8)
         stop
     }
@@ -74,7 +74,7 @@ actor Pickup_ClipBox: CustomInventory replaces ClipBox
         stop
 
       Pickup:
-        TNT1 A 0 A_GiveInventory("DakkaBullet_50AE",  54)
+        TNT1 A 0 A_GiveInventory("DakkaBullet_50AE",  42)
         TNT1 A 0 A_GiveInventory("DakkaBullet_5mm",  100)
         TNT1 A 0 A_GiveInventory("DakkaFlamerFuel",  8)
         stop
