@@ -242,7 +242,7 @@ actor DWep_Pistols: DoomWeapon
       
       
       Hold4Anim:
-        "####" A 0 A_GiveInventory("DakkaPistolSpread", 9)
+        "####" A 0 A_GiveInventory("DakkaPistolSpread", 7)
         "####" IJH 1 bright A_WeaponReady(WRF_NOFIRE | WRF_NOBOB)
         "####" H   0 bright A_JumpIfInventory("MainClicked", 1, "Hold4")
         "####" H   0 bright A_JumpIfInventory("AltClicked",  1, "AltFire")
@@ -268,7 +268,7 @@ actor DWep_Pistols: DoomWeapon
       
       
       Hold5Anim:
-        "####" A 0 A_GiveInventory("DakkaPistolSpread", 8)
+        "####" A 0 A_GiveInventory("DakkaPistolSpread", 7)
         "####" IGH 1 bright A_WeaponReady(WRF_NOFIRE | WRF_NOBOB)
         "####" H   0 bright A_JumpIfInventory("MainClicked", 1, "Hold4")
         "####" H   0 bright A_JumpIfInventory("AltClicked",  1, "AltFire")
