@@ -15,8 +15,7 @@ int PKP_KnownGuns[WEAPONCOUNT][3] =
     // DAKKA (11 weapons)
     {"DWep_Fist",               "",                         ""},
     {"DWep_Scrappers",          "DakkaScrap",               ""},
-    {"DWep_Pistol",             "DakkaBullet_10mm",         ""},
-    {"DWep_Pistols",            "DakkaBullet_10mm",         ""},
+    {"DWep_Pistols",            "DakkaBullet_50AE",         "DakkaPistol_ShotsLeft"},
     {"DWep_Shotgun",            "DakkaShells",              "DakkaShotGrenades"},
     {"DWep_SuperShotgun",       "DakkaShells",              "DakkaShotGrenades"},
     {"DWep_Minigun",            "DakkaBullet_5mm",          "DakkaFlamerFuel"},

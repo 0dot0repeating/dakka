@@ -410,6 +410,7 @@ function void Dakka_DoLevelSpawn(int entered, int returning)
     if (classNum == Cl_Dakkaguy)
     {
         Dakka_ScrapperStart(0, freshStart, lostWeapons);
+        ACS_NamedExecuteWithResult("Dakka_PistolReload");
 
         if (newHub)
         {

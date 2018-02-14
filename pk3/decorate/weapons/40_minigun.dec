@@ -1009,6 +1009,7 @@ actor MinigunFlame
     Projectile
     Speed 25
     Damage (0)
+    DamageType "Fire"
 
     +RIPPER
     +PAINLESS
@@ -1117,7 +1118,7 @@ actor MinigunBurner
     +BLOODLESSIMPACT
     +FOILINVUL
 
-    DamageType MinigunFire
+    DamageType "Fire"
     var int user_damage;
     var int user_painfactor; // 3 if directly burning, 15 otherwise
 

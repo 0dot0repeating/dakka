@@ -1,203 +1,272 @@
+// NPISTOL1: 67 x 66
+// NPISTOL2: 97 x 87
+// NPISTOL3: 97 x 87
+// NPISTOL4: 87 x 82
+// NPISTOL5: 67 x 61
+// NPISTOL6: 67 x 63
+
+// FRAMESIZES  = ((67, 66), (97, 87), (97, 87), (87, 82), (67, 61), (67, 63))
+// RIGHTANCHOR = (215+FRAMESIZES[0][0], 102+FRAMESIZES[0][1])
+//
+// def pos(x,y, anchor=None):
+//     anchor = anchor or RIGHTANCHOR
+//     rightOrigin = (anchor[0] - x, anchor[1] - y)
+//     leftOrigin  = (320 - rightOrigin[0] - x, rightOrigin[1])
+//     return {"right": rightOrigin, "left": leftOrigin}
+//
+// for i in FRAMESIZES: print(pos(*i))
+
+
 Sprite "DPSTA0", 320, 200
 {
-	Patch "PISTOL1", 137, 106
+	Patch "NPISTOL1", 215, 102
+	Patch "NPISTOL1", 38, 102
+	{
+		FlipX
+	}
 }
 
 Sprite "DPSTB0", 320, 200
 {
-	Patch "PISTOL2", 137, 100
+	Patch "NPISTOL2", 190, 84
+	Patch "NPISTOL2", 33, 84
+	{
+		FlipX
+	}
 }
 
 Sprite "DPSTC0", 320, 200
 {
-	Patch "PISTOL3", 135, 98
+	Patch "NPISTOL3", 190, 84
+	Patch "NPISTOL3", 33, 84
+	{
+		FlipX
+	}
 }
 
 Sprite "DPSTD0", 320, 200
 {
-	Patch "PISTOL4", 133, 92
+	Patch "NPISTOL4", 203, 91
+	Patch "NPISTOL4", 30, 91
+	{
+		FlipX
+	}
 }
 
 Sprite "DPSTE0", 320, 200
 {
-	Patch "PISTOL5", 133, 87
+	Patch "NPISTOL5", 221, 111
+	Patch "NPISTOL5", 32, 111
+	{
+		FlipX
+	}
 }
 
 Sprite "DPSTF0", 320, 200
 {
-	Patch "PISTOL2", 137, 100
-	Patch "PISTOLF", 139, 79
-}
-
-Sprite "DPSFA0", 320, 200
-{
-	Patch "PISTOLF", 139, 79
-}
-
-
-
-Sprite "DPS2A0", 320, 200
-{
-	Patch "PISTOL1", 96, 106 { FlipX }
-	Patch "PISTOL1", 167, 106
-}
-
-Sprite "DPS2B0", 320, 200
-{
-	Patch "PISTOL2", 74, 100 { FlipX }
-	Patch "PISTOL2", 167, 100
-}
-
-Sprite "DPS2C0", 320, 200
-{
-	Patch "PISTOL3", 89, 98 { FlipX }
-	Patch "PISTOL3", 165, 98
-}
-
-Sprite "DPS2D0", 320, 200
-{
-	Patch "PISTOL4", 96, 92 { FlipX }
-	Patch "PISTOL4", 163, 92
-}
-
-Sprite "DPS2E0", 320, 200
-{
-	Patch "PISTOL5", 79, 87 { FlipX }
-	Patch "PISTOL5", 163, 87
-}
-
-Sprite "DPS2F0", 320, 200
-{
-	Patch "PISTOL2", 74, 100 { FlipX }
-	Patch "PISTOL2", 167, 100
-	Patch "PISTOLF", 110, 79 { FlipX }
-	Patch "PISTOLF", 169, 79
+	Patch "NPISTOL6", 218, 107
+	Patch "NPISTOL6", 35, 107
+	{
+		FlipX
+	}
 }
 
 
 
-Sprite "DPS2G0", 320, 200
+
+Sprite "RRVLA0", 320, 200
 {
-	Patch "PISTOL2", 74, 100 { FlipX }
-	Patch "PISTOL1", 167, 106
+	Patch "NPISTOL2", 190, 84
+	Patch "NPISTOL1", 38, 102
+	{
+		FlipX
+	}
 }
 
-Sprite "DPS2H0", 320, 200
+Sprite "RRVLB0", 320, 200
 {
-	Patch "PISTOL3", 89, 98 { FlipX }
-	Patch "PISTOL1", 167, 106
+	Patch "NPISTOL3", 190, 84
+	Patch "NPISTOL1", 38, 102
+	{
+		FlipX
+	}
 }
 
-Sprite "DPS2I0", 320, 200
+Sprite "RRVLC0", 320, 200
 {
-	Patch "PISTOL4", 96, 92 { FlipX }
-	Patch "PISTOL1", 167, 106
+	Patch "NPISTOL4", 203, 91
+	Patch "NPISTOL1", 38, 102
+	{
+		FlipX
+	}
 }
 
-Sprite "DPS2J0", 320, 200
+Sprite "RRVLD0", 320, 200
 {
-	Patch "PISTOL5", 79, 87 { FlipX }
-	Patch "PISTOL1", 167, 106
+	Patch "NPISTOL5", 221, 111
+	Patch "NPISTOL1", 38, 102
+	{
+		FlipX
+	}
 }
 
-
-
-Sprite "DPS2K0", 320, 200
+Sprite "RRVLE0", 320, 200
 {
-	Patch "PISTOL1", 96, 106 { FlipX }
-	Patch "PISTOL2", 167, 100
-}
-
-Sprite "DPS2L0", 320, 200
-{
-	Patch "PISTOL1", 96, 106 { FlipX }
-	Patch "PISTOL3", 165, 98
-}
-
-Sprite "DPS2M0", 320, 200
-{
-	Patch "PISTOL1", 96, 106 { FlipX }
-	Patch "PISTOL4", 163, 92
-}
-
-Sprite "DPS2N0", 320, 200
-{
-	Patch "PISTOL1", 96, 106 { FlipX }
-	Patch "PISTOL5", 163, 87
+	Patch "NPISTOL6", 218, 107
+	Patch "NPISTOL1", 38, 102
+	{
+		FlipX
+	}
 }
 
 
+// Overlaps of left revolver, frame E (needed: ABC)
 
-Sprite "DPS2O0", 320, 200
+Sprite "RRVLF0", 320, 200
 {
-	Patch "PISTOL5", 79, 87 { FlipX }
-	Patch "PISTOL2", 167, 100
+	Patch "NPISTOL2", 190, 84
+	Patch "NPISTOL6", 35, 107
+	{
+		FlipX
+	}
 }
 
-Sprite "DPS2P0", 320, 200
+Sprite "RRVLG0", 320, 200
 {
-	Patch "PISTOL4", 96, 92 { FlipX }
-	Patch "PISTOL3", 165, 98
+	Patch "NPISTOL4", 203, 91
+	Patch "NPISTOL6", 35, 107
+	{
+		FlipX
+	}
 }
 
-Sprite "DPS2Q0", 320, 200
+Sprite "RRVLH0", 320, 200
 {
-	Patch "PISTOL2", 74, 100 { FlipX }
-	Patch "PISTOL5", 163, 87
-}
-
-Sprite "DPS2R0", 320, 200
-{
-	Patch "PISTOL3", 89, 98 { FlipX }
-	Patch "PISTOL4", 163, 92
-}
-
-Sprite "DPS2S0", 320, 200
-{
-	Patch "PISTOL5", 79, 87 { FlipX }
-	Patch "PISTOL2", 167, 100
-}
-
-
-Sprite "DPS2T0", 320, 200
-{
-	Patch "PISTOL4", 96, 92 { FlipX }
-	Patch "PISTOL2", 167, 100
-}
-
-Sprite "DPS2U0", 320, 200
-{
-	Patch "PISTOL2", 74, 100 { FlipX }
-	Patch "PISTOL3", 165, 98
+	Patch "NPISTOL5", 221, 111
+	Patch "NPISTOL6", 35, 107
+	{
+		FlipX
+	}
 }
 
 
-Sprite "DPS2V0", 320, 200
+
+// Overlaps of left revolver, frame D (needed: AB)
+
+Sprite "RRVLI0", 320, 200
 {
-	Patch "PISTOL2", 74, 100 { FlipX }
-	Patch "PISTOL4", 163, 92
+	Patch "NPISTOL2", 190, 84
+	Patch "NPISTOL5", 32, 111
+	{
+		FlipX
+	}
 }
 
-Sprite "DPS2W0", 320, 200
+Sprite "RRVLJ0", 320, 200
 {
-	Patch "PISTOL3", 89, 98 { FlipX }
-	Patch "PISTOL2", 167, 100
+	Patch "NPISTOL4", 203, 91
+	Patch "NPISTOL5", 32, 111
+	{
+		FlipX
+	}
 }
 
 
-// same as DPS2B0
-Sprite "DPS2X0", 320, 200
+
+
+Sprite "LRVLA0", 320, 200
 {
-	Patch "PISTOL2", 74, 100 { FlipX }
-	Patch "PISTOL2", 167, 100
+	Patch "NPISTOL1", 215, 102
+	Patch "NPISTOL2", 33, 84
+	{
+		FlipX
+	}
 }
 
-Sprite "DPS2Y0", 320, 200
+Sprite "LRVLB0", 320, 200
 {
-	Patch "PISTOLF", 110, 79 { FlipX }
+	Patch "NPISTOL1", 215, 102
+	Patch "NPISTOL3", 33, 84
+	{
+		FlipX
+	}
 }
 
-Sprite "DPS2Z0", 320, 200
+Sprite "LRVLC0", 320, 200
 {
-	Patch "PISTOLF", 169, 79
+	Patch "NPISTOL1", 215, 102
+	Patch "NPISTOL4", 30, 91
+	{
+		FlipX
+	}
+}
+
+Sprite "LRVLD0", 320, 200
+{
+	Patch "NPISTOL1", 215, 102
+	Patch "NPISTOL5", 32, 111
+	{
+		FlipX
+	}
+}
+
+Sprite "LRVLE0", 320, 200
+{
+	Patch "NPISTOL1", 215, 102
+	Patch "NPISTOL6", 35, 107
+	{
+		FlipX
+	}
+}
+
+
+// Overlaps of right revolver, frame E (needed: ABD)
+
+Sprite "LRVLF0", 320, 200
+{
+	Patch "NPISTOL6", 218, 107
+	Patch "NPISTOL2", 33, 84
+	{
+		FlipX
+	}
+}
+
+Sprite "LRVLG0", 320, 200
+{
+	Patch "NPISTOL6", 218, 107
+	Patch "NPISTOL4", 30, 91
+	{
+		FlipX
+	}
+}
+
+Sprite "LRVLH0", 320, 200
+{
+	Patch "NPISTOL6", 218, 107
+	Patch "NPISTOL5", 32, 111
+	{
+		FlipX
+	}
+}
+
+
+
+// Overlaps of right revolver, frame D (needed: AB)
+
+Sprite "LRVLI0", 320, 200
+{
+	Patch "NPISTOL5", 221, 111
+	Patch "NPISTOL2", 33, 84
+	{
+		FlipX
+	}
+}
+
+Sprite "LRVLJ0", 320, 200
+{
+	Patch "NPISTOL5", 221, 111
+	Patch "NPISTOL4", 30, 91
+	{
+		FlipX
+	}
 }

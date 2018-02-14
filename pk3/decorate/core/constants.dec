@@ -1,6 +1,5 @@
 // One easy to change place!
 const int TRACE_BULLET      = 0;
-const int TRACE_PLASMA      = 1;
+const int TRACE_BULLET_BIG  = 1;
 const int TRACE_ARC_FIRER   = 2;
 const int TRACE_ARC_MASTER  = 3;
-const int TRACE_BFG         = 4;

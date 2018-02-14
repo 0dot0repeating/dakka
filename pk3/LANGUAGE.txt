@@ -36,10 +36,8 @@ DAKKA_MP_FISTS_SLAM         = "%k smashed %o.";
 DAKKA_PK_SCRAPPER           = "Scrappers! Wait, what?";
 DAKKA_MP_SCRAPPER           = "%k scrapped %o.";
 
-DAKKA_PK_PISTOL             = "Pistol?";
 DAKKA_PK_PISTOLS            = "Pistols!";
-DAKKA_MP_PISTOL             = "%k picked off %o.";
-DAKKA_MP_PISTOLS            = "%k ventilated %o.";
+DAKKA_MP_PISTOLS            = "%k put some holes into %o.";
 
 DAKKA_PK_SHOTGUN            = "Shotgun!";
 DAKKA_MP_SHOTGUN            = "%k hunted down %o.";
@@ -48,10 +46,6 @@ DAKKA_MP_SHOTGUN_GRENADE    = "%k neutralized %o.";
 DAKKA_PK_SUPERSHOTGUN       = "Super shotgun!";
 DAKKA_MP_SUPERSHOTGUN       = "%k snapped %o in half.";
 DAKKA_MP_SUPERSHOTGUN_GYRO  = "%k liquefied %o.";
-
-DAKKA_PK_CHAINGUN           = "Chaingun!";
-DAKKA_MP_CHAINGUN           = "%k cut down %o.";
-DAKKA_MP_CHAINGUN_RAINNADE  = "%k rained on %o's parade.";
 
 DAKKA_PK_MINIGUN            = "Minigun!";
 DAKKA_MP_MINIGUN            = "%k minced %o.";
@@ -120,17 +114,17 @@ DAKKA_MMSG_SCRAPPERS_19 = "";
 DAKKA_MMSG_SCRAPPERS_20 = "";
 
 
-DAKKA_MMSG_PISTOLS_01   = "I still can't tell where the back and top of the slide actually meet on these things.";
-DAKKA_MMSG_PISTOLS_02   = "You could probably beat the map with only these... but do you really want to?";
-DAKKA_MMSG_PISTOLS_03   = "The pistol actually has three barrels. No, don't look down them!";
+DAKKA_MMSG_PISTOLS_01   = "Is it really pretending to be an action movie hero if you succeed?";
+DAKKA_MMSG_PISTOLS_02   = "You might actually run out of ammo for your pistol now. And not because it's weaker.";
+DAKKA_MMSG_PISTOLS_03   = "Why even have the sights if you never look down them?";
 DAKKA_MMSG_PISTOLS_04   = "People actually put pistol pickups in their maps?";
-DAKKA_MMSG_PISTOLS_05   = "Oh yeah. These things. The pistols. Right. Yeah.";
-DAKKA_MMSG_PISTOLS_06   = "Just be glad it's not an assault rifle.";
-DAKKA_MMSG_PISTOLS_07   = "Well, you gotta have them... I guess.";
+DAKKA_MMSG_PISTOLS_05   = "How nice of those zombiemen to use rifles chambered in .50 AE!";
+DAKKA_MMSG_PISTOLS_06   = "Be glad it's not an assault rifle.";
+DAKKA_MMSG_PISTOLS_07   = "You could use finger guns instead. Just saying.";
 DAKKA_MMSG_PISTOLS_08   = "You picked up a gun-shaped clip!";   // >clip
-DAKKA_MMSG_PISTOLS_09   = "Hey, why can't I tri-wield these?";
-DAKKA_MMSG_PISTOLS_10   = "I wanted a revolver! This mod sucks!";
-DAKKA_MMSG_PISTOLS_11   = "These put out more damage than vanilla chaingun. Is that a bad thing?";
+DAKKA_MMSG_PISTOLS_09   = "I wanted a revolver! This mod sucks!";
+DAKKA_MMSG_PISTOLS_10   = "These put out more damage than vanilla chaingun. Is that a bad thing?";
+DAKKA_MMSG_PISTOLS_11   = "Perfect for spreading some \caBUDDA BUDDA BUDDA!";
 DAKKA_MMSG_PISTOLS_12   = "";
 DAKKA_MMSG_PISTOLS_13   = "";
 DAKKA_MMSG_PISTOLS_14   = "";

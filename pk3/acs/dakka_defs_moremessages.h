@@ -2,7 +2,7 @@
 // Message slots:
 //  0  - Fists (yes)
 //  1  - Scrappers
-//  2  - Pistols
+//  2  - REVOLVERS
 //  3  - Shotgun
 //  4  - SSG
 //  5  - Minigun
@@ -60,7 +60,7 @@ int MMSG_ExtraMessages[MMSG_SLOTS][MMSG_COUNT] =
         "$DAKKA_MMSG_SCRAPPERS_19",
         "$DAKKA_MMSG_SCRAPPERS_20",
     },
-    { // Pistols
+    { // Revolvers
         "$DAKKA_MMSG_PISTOLS_01",
         "$DAKKA_MMSG_PISTOLS_02",
         "$DAKKA_MMSG_PISTOLS_03",

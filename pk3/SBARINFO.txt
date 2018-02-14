@@ -187,9 +187,7 @@ StatusBar Normal, fullscreenoffsets, 0.85
             DrawImage "HUD_WBR2", -223+center, -32;
 
             InInventory DWep_Scrappers { DrawImage "RWP_111A", -202+center, -28; }
-
-            InInventory DWep_Pistol || DWep_Pistols { DrawImage "RWP_211A", -144+center, -26; }
-            InInventory DWep_Pistols                { DrawImage "RWP_221A", -128+center, -26; }
+            InInventory DWep_Pistols   { DrawImage "RWP_211A", -144+center, -26; DrawImage "RWP_221A", -128+center, -26; }
 
             InInventory DWep_Shotgun      { DrawImage "RWP_311A", -88+center, -26; }
             InInventory DWep_SuperShotgun { DrawImage "RWP_321A", -78+center, -24; }
@@ -201,9 +199,7 @@ StatusBar Normal, fullscreenoffsets, 0.85
 
 
             IsSelected DWep_Scrappers { DrawImage "RWP_112A", -202+center, -28; }
-
-            IsSelected DWep_Pistol, DWep_Pistols { DrawImage "RWP_212A", -144+center, -26; }
-            IsSelected DWep_Pistols              { DrawImage "RWP_222A", -128+center, -26; }
+            IsSelected DWep_Pistols   { DrawImage "RWP_212A", -144+center, -26; DrawImage "RWP_222A", -128+center, -26; }
 
             IsSelected DWep_Shotgun      { DrawImage "RWP_312A", -88+center, -26; }
             IsSelected DWep_SuperShotgun { DrawImage "RWP_322A", -78+center, -24; }
@@ -215,7 +211,7 @@ StatusBar Normal, fullscreenoffsets, 0.85
         }
 
         DrawBar "AMBAR_1A", "AMBAK_1", DakkaScrap,        horizontal, -212+center, -7;
-        DrawBar "AMBAR_1A", "AMBAK_1", DakkaBullet_10mm,  horizontal, -149+center, -7;
+        DrawBar "AMBAR_1A", "AMBAK_1", DakkaBullet_50AE,  horizontal, -149+center, -7;
         DrawBar "AMBAR_5A", "AMBAK_3", DakkaShells,       horizontal, -88+center,  -7;
         DrawBar "AMBAR_6A", "AMBAK_4", DakkaShotGrenades, horizontal, -59+center,  -7;
         DrawBar "AMBAR_5A", "AMBAK_3", DakkaBullet_5mm,   horizontal, -27+center,  -7;
@@ -290,9 +286,7 @@ StatusBar Normal, fullscreenoffsets, 0.85
             DrawImage "HUD_WBAR", -223+center, -32;
 
             InInventory DWep_Scrappers { DrawImage "HWEP1_1", -202+center, -28; }
-
-            InInventory DWep_Pistol || DWep_Pistols { DrawImage "HWEP21_1", -144+center, -26; }
-            InInventory DWep_Pistols                { DrawImage "HWEP22_1", -128+center, -26; }
+            InInventory DWep_Pistols   { DrawImage "HWEP21_1", -144+center, -26; DrawImage "HWEP22_1", -128+center, -26; }
 
             InInventory DWep_Shotgun      { DrawImage "HWEP31_1", -88+center, -26; }
             InInventory DWep_SuperShotgun { DrawImage "HWEP32_1", -78+center, -24; }
@@ -304,9 +298,7 @@ StatusBar Normal, fullscreenoffsets, 0.85
 
 
             IsSelected DWep_Scrappers { DrawImage "HWEP1_2", -202+center, -28; }
-
-            IsSelected DWep_Pistol, DWep_Pistols { DrawImage "HWEP21_2", -144+center, -26; }
-            IsSelected DWep_Pistols              { DrawImage "HWEP22_2", -128+center, -26; }
+            IsSelected DWep_Pistols   { DrawImage "HWEP21_2", -144+center, -26; DrawImage "HWEP22_2", -128+center, -26; }
 
             IsSelected DWep_Shotgun      { DrawImage "HWEP31_2", -88+center, -26; }
             IsSelected DWep_SuperShotgun { DrawImage "HWEP32_2", -78+center, -24; }
@@ -318,7 +310,7 @@ StatusBar Normal, fullscreenoffsets, 0.85
         }
 
         DrawBar "AMBAR_1", "AMBAK_1", DakkaScrap,        horizontal, -212+center, -7;
-        DrawBar "AMBAR_1", "AMBAK_1", DakkaBullet_10mm,  horizontal, -149+center, -7;
+        DrawBar "AMBAR_1", "AMBAK_1", DakkaBullet_50AE,  horizontal, -149+center, -7;
         DrawBar "AMBAR_5", "AMBAK_3", DakkaShells,       horizontal, -88+center,  -7;
         DrawBar "AMBAR_6", "AMBAK_4", DakkaShotGrenades, horizontal, -59+center,  -7;
         DrawBar "AMBAR_5", "AMBAK_3", DakkaBullet_5mm,   horizontal, -27+center,  -7;
@@ -549,7 +541,7 @@ StatusBar Fullscreen, fullscreenoffsets, 0.85
         DrawImage "FS_WPAMA", -168, -42;
 
         WeaponAmmo DakkaScrap           { DrawImage "FS_AMO1A", -168, -31; }
-        WeaponAmmo DakkaBullet_10mm     { DrawImage "FS_AMO6A", -161, -31; }
+        WeaponAmmo DakkaBullet_50AE      { DrawImage "FS_AMO6A", -161, -31; }
         WeaponAmmo DakkaShells          { DrawImage "FS_AMO3A", -154, -31; }
         WeaponAmmo DakkaShotGrenades    { DrawImage "FS_AMO5A", -147, -31; }
         WeaponAmmo DakkaBullet_5mm      { DrawImage "FS_AMO4A", -140, -31; }
@@ -558,7 +550,7 @@ StatusBar Fullscreen, fullscreenoffsets, 0.85
         WeaponAmmo DakkaCells           { DrawImage "FS_AMO0A", -119, -31; }
 
         DrawBar "FS_AMB1A", "FSH_AMBK", DakkaScrap,        vertical, -166, -29;
-        DrawBar "FS_AMB6A", "FSH_AMBK", DakkaBullet_10mm,  vertical, -159, -29;
+        DrawBar "FS_AMB6A", "FSH_AMBK", DakkaBullet_50AE,  vertical, -159, -29;
         DrawBar "FS_AMB3A", "FSH_AMBK", DakkaShells,       vertical, -152, -29;
         DrawBar "FS_AMB5A", "FSH_AMBK", DakkaShotGrenades, vertical, -145, -29;
         DrawBar "FS_AMB4A", "FSH_AMBK", DakkaBullet_5mm,   vertical, -138, -29;
@@ -630,7 +622,7 @@ StatusBar Fullscreen, fullscreenoffsets, 0.85
         DrawImage "FSH_WPAM", -168, -42;
 
         WeaponAmmo DakkaScrap           { DrawImage "FSH_AMO1", -168, -31; }
-        WeaponAmmo DakkaBullet_10mm     { DrawImage "FSH_AMO6", -161, -31; }
+        WeaponAmmo DakkaBullet_50AE      { DrawImage "FSH_AMO6", -161, -31; }
         WeaponAmmo DakkaShells          { DrawImage "FSH_AMO3", -154, -31; }
         WeaponAmmo DakkaShotGrenades    { DrawImage "FSH_AMO5", -147, -31; }
         WeaponAmmo DakkaBullet_5mm      { DrawImage "FSH_AMO4", -140, -31; }
@@ -639,7 +631,7 @@ StatusBar Fullscreen, fullscreenoffsets, 0.85
         WeaponAmmo DakkaCells           { DrawImage "FSH_AMO0", -119, -31; }
 
         DrawBar "FSH_AMB1", "FSH_AMBK", DakkaScrap,        vertical, -166, -29;
-        DrawBar "FSH_AMB6", "FSH_AMBK", DakkaBullet_10mm,  vertical, -159, -29;
+        DrawBar "FSH_AMB6", "FSH_AMBK", DakkaBullet_50AE,   vertical, -159, -29;
         DrawBar "FSH_AMB3", "FSH_AMBK", DakkaShells,       vertical, -152, -29;
         DrawBar "FSH_AMB5", "FSH_AMBK", DakkaShotGrenades, vertical, -145, -29;
         DrawBar "FSH_AMB4", "FSH_AMBK", DakkaBullet_5mm,   vertical, -138, -29;
@@ -649,8 +641,7 @@ StatusBar Fullscreen, fullscreenoffsets, 0.85
     }
 
     InInventory DWep_Scrappers      { DrawImage "FSH_WP11", -168, -42; }
-    InInventory DWep_Pistol         { DrawImage "FSH_WP21", -160, -38; }
-    InInventory DWep_Pistols        { DrawImage "FSH_WP22", -160, -42; }
+    InInventory DWep_Pistols        { DrawImage "FSH_WP21", -160, -42; }
     InInventory DWep_Shotgun        { DrawImage "FSH_WP31", -152, -38; }
     InInventory DWep_SuperShotgun   { DrawImage "FSH_WP32", -152, -42; }
     InInventory DWep_Minigun        { DrawImage "FSH_WP41", -144, -42; }
@@ -659,8 +650,7 @@ StatusBar Fullscreen, fullscreenoffsets, 0.85
     InInventory DWep_BFG9000        { DrawImage "FSH_WP71", -120, -42; }
 
     IsSelected DWep_Scrappers      { DrawImage "FSH_WP13", -168, -42; }
-    IsSelected DWep_Pistol         { DrawImage "FSH_WP23", -160, -38; }
-    IsSelected DWep_Pistols        { DrawImage "FSH_WP24", -160, -42; }
+    IsSelected DWep_Pistols        { DrawImage "FSH_WP23", -160, -42; }
     IsSelected DWep_Shotgun        { DrawImage "FSH_WP33", -152, -38; }
     IsSelected DWep_SuperShotgun   { DrawImage "FSH_WP34", -152, -42; }
     IsSelected DWep_Minigun        { DrawImage "FSH_WP43", -144, -42; }
@@ -889,7 +879,7 @@ StatusBar Automap, fullscreenoffsets, 0.85
         DrawImage "FS_WPAMA", -168, -42;
 
         WeaponAmmo DakkaScrap           { DrawImage "FS_AMO1A", -168, -31; }
-        WeaponAmmo DakkaBullet_10mm     { DrawImage "FS_AMO6A", -161, -31; }
+        WeaponAmmo DakkaBullet_50AE      { DrawImage "FS_AMO6A", -161, -31; }
         WeaponAmmo DakkaShells          { DrawImage "FS_AMO3A", -154, -31; }
         WeaponAmmo DakkaShotGrenades    { DrawImage "FS_AMO5A", -147, -31; }
         WeaponAmmo DakkaBullet_5mm      { DrawImage "FS_AMO4A", -140, -31; }
@@ -898,7 +888,7 @@ StatusBar Automap, fullscreenoffsets, 0.85
         WeaponAmmo DakkaCells           { DrawImage "FS_AMO0A", -119, -31; }
 
         DrawBar "FS_AMB1A", "FSH_AMBK", DakkaScrap,        vertical, -166, -29;
-        DrawBar "FS_AMB6A", "FSH_AMBK", DakkaBullet_10mm,  vertical, -159, -29;
+        DrawBar "FS_AMB6A", "FSH_AMBK", DakkaBullet_50AE,  vertical, -159, -29;
         DrawBar "FS_AMB3A", "FSH_AMBK", DakkaShells,       vertical, -152, -29;
         DrawBar "FS_AMB5A", "FSH_AMBK", DakkaShotGrenades, vertical, -145, -29;
         DrawBar "FS_AMB4A", "FSH_AMBK", DakkaBullet_5mm,   vertical, -138, -29;
@@ -970,7 +960,7 @@ StatusBar Automap, fullscreenoffsets, 0.85
         DrawImage "FSH_WPAM", -168, -42;
 
         WeaponAmmo DakkaScrap           { DrawImage "FSH_AMO1", -168, -31; }
-        WeaponAmmo DakkaBullet_10mm     { DrawImage "FSH_AMO6", -161, -31; }
+        WeaponAmmo DakkaBullet_50AE      { DrawImage "FSH_AMO6", -161, -31; }
         WeaponAmmo DakkaShells          { DrawImage "FSH_AMO3", -154, -31; }
         WeaponAmmo DakkaShotGrenades    { DrawImage "FSH_AMO5", -147, -31; }
         WeaponAmmo DakkaBullet_5mm      { DrawImage "FSH_AMO4", -140, -31; }
@@ -979,7 +969,7 @@ StatusBar Automap, fullscreenoffsets, 0.85
         WeaponAmmo DakkaCells           { DrawImage "FSH_AMO0", -119, -31; }
 
         DrawBar "FSH_AMB1", "FSH_AMBK", DakkaScrap,        vertical, -166, -29;
-        DrawBar "FSH_AMB6", "FSH_AMBK", DakkaBullet_10mm,  vertical, -159, -29;
+        DrawBar "FSH_AMB6", "FSH_AMBK", DakkaBullet_50AE,   vertical, -159, -29;
         DrawBar "FSH_AMB3", "FSH_AMBK", DakkaShells,       vertical, -152, -29;
         DrawBar "FSH_AMB5", "FSH_AMBK", DakkaShotGrenades, vertical, -145, -29;
         DrawBar "FSH_AMB4", "FSH_AMBK", DakkaBullet_5mm,   vertical, -138, -29;
@@ -989,8 +979,7 @@ StatusBar Automap, fullscreenoffsets, 0.85
     }
 
     InInventory DWep_Scrappers      { DrawImage "FSH_WP11", -168, -42; }
-    InInventory DWep_Pistol         { DrawImage "FSH_WP21", -160, -38; }
-    InInventory DWep_Pistols        { DrawImage "FSH_WP22", -160, -42; }
+    InInventory DWep_Pistols        { DrawImage "FSH_WP21", -160, -42; }
     InInventory DWep_Shotgun        { DrawImage "FSH_WP31", -152, -38; }
     InInventory DWep_SuperShotgun   { DrawImage "FSH_WP32", -152, -42; }
     InInventory DWep_Minigun        { DrawImage "FSH_WP41", -144, -42; }
@@ -999,8 +988,7 @@ StatusBar Automap, fullscreenoffsets, 0.85
     InInventory DWep_BFG9000        { DrawImage "FSH_WP71", -120, -42; }
 
     IsSelected DWep_Scrappers      { DrawImage "FSH_WP13", -168, -42; }
-    IsSelected DWep_Pistol         { DrawImage "FSH_WP23", -160, -38; }
-    IsSelected DWep_Pistols        { DrawImage "FSH_WP24", -160, -42; }
+    IsSelected DWep_Pistols        { DrawImage "FSH_WP23", -160, -42; }
     IsSelected DWep_Shotgun        { DrawImage "FSH_WP33", -152, -38; }
     IsSelected DWep_SuperShotgun   { DrawImage "FSH_WP34", -152, -42; }
     IsSelected DWep_Minigun        { DrawImage "FSH_WP43", -144, -42; }

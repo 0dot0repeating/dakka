@@ -50,19 +50,19 @@ actor DakkaPuff: BulletPuff
       FloorHit:
         TNT1 A 0 A_SpawnItemEx("DakkaBulletSpark", 0,0,0, random(100, 160)/10.0, random(-50, 50)/10.0, random(25, 100)/10.0, 180+random(-30, 30))
         TNT1 AAA 0 A_SpawnItemEx("DakkaBulletSpark2", 0,0,0, random(40, 140)/10.0, random(-30, 30)/10.0, random(5, 40)/10.0, 180+random(-15, 15))
-        TNT1 A 0 A_Jump(255, "Trace")
+        TNT1 A 0 A_Jump(256, "Trace")
         goto Trace
 
       CeilingHit:
         TNT1 A 0 A_SpawnItemEx("DakkaBulletSpark", 0,0,-4, random(100, 320)/10.0, random(-50, 50)/10.0, -random(15, 120)/10.0, 180+random(-30, 30))
         TNT1 AAA 0 A_SpawnItemEx("DakkaBulletSpark2", 0,0,-4, random(40, 240)/10.0, random(-30, 30)/10.0, -random(5, 80)/10.0, 180+random(-15, 15))
-        TNT1 A 0 A_Jump(255, "Trace")
+        TNT1 A 0 A_Jump(256, "Trace")
         goto Trace
 
       WallHit:
         TNT1 A 0 A_SpawnItemEx("DakkaBulletSpark", 0,0,-4, random(30, 80)/10.0, random(-30, 30)/10.0, -random(-60, 60)/10.0, random(-30, 30))
         TNT1 AAA 0 A_SpawnItemEx("DakkaBulletSpark2", 0,0,-4, random(20, 60)/10.0, random(-20, 20)/10.0, -random(-40, 40)/10.0, random(-15, 15))
-        TNT1 A 0 A_Jump(255, "Trace")
+        TNT1 A 0 A_Jump(256, "Trace")
         goto Trace
 
       Trace:
@@ -93,6 +93,28 @@ actor DakkaPuff_Right: DakkaPuff
     {
       Trace:
         TNT1 A 0 bright ACS_NamedExecuteWithResult("Dakka_Tracer", TRACE_BULLET,  2, -4)
+        DPUF AB 4 bright
+        goto Melee
+    }
+}
+
+actor DakkaPuff_BigLeft: DakkaPuff
+{
+    States
+    {
+      Trace:
+        TNT1 A 0 bright ACS_NamedExecuteWithResult("Dakka_Tracer", TRACE_BULLET_BIG, -500, -450, true)
+        DPUF AB 4 bright
+        goto Melee
+    }
+}
+
+actor DakkaPuff_BigRight: DakkaPuff
+{
+    States
+    {
+      Trace:
+        TNT1 A 0 bright ACS_NamedExecuteWithResult("Dakka_Tracer", TRACE_BULLET_BIG,  500, -450, true)
         DPUF AB 4 bright
         goto Melee
     }
@@ -183,21 +205,21 @@ actor DakkaTracer
     }
 }
 
-actor DakkaTracerBright: DakkaTracer
+actor DakkaBigTracer: DakkaTracer
 {
-    Alpha 1
-
+    Scale 1.0
+    
     States
     {
       Spawn:
-        DPUF A 0 bright nodelay A_SetScale(0.4 + (alpha * 0.1))
-        DPUF A 1 bright         A_SetTranslucent(0.8 + (alpha * 0.2), 1)
-        DPUF A 0 bright         A_Stop
+        DPUF E 0 bright nodelay A_SetScale(0.8 + (alpha * 0.2))
+        DPUF E 1 bright         A_SetTranslucent(0.4 + (alpha * 0.1), 1)
+        DPUF E 0 bright         A_Stop
         goto Spawn2
 
       Spawn2:
-        DBUF A 0 bright A_SetScale(scalex - 0.1)
-        DPUF A 1 bright A_FadeOut(0.2)
+        DBUF E 0 bright A_SetScale(scalex - 0.2)
+        DPUF E 1 bright A_FadeOut(0.1)
         loop
     }
 }

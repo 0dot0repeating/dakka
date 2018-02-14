@@ -142,7 +142,7 @@ script "Score_CheckRevival" (void)
 
 int AmmoRegen_AmmoTypes[AMMOREGENCOUNT] =
 {
-    "DakkaBullet_10mm",
+    "DakkaBullet_50AE",
     "DakkaShells",
     "DakkaShotGrenades",
 
@@ -156,8 +156,8 @@ int AmmoRegen_AmmoTypes[AMMOREGENCOUNT] =
 
 int AmmoRegen_PerSecond[AMMOREGENCOUNT] =
 {
-    15.0,
-    3.0,
+    4.0,
+    2.0,
     0.8,
 
     20.0,
