@@ -61,6 +61,14 @@ most important things:
     to the face that'd leave anyone reeling in pain, if not splattered all over the
     walls. Or give them a one-two-**THREE** to bust the skulls of both the poor sap
     in front of your fist, and all his buddies next to him.
+    
+- The pistols have gotten a complete overhaul! No longer the weird, odd looking
+    Berettas you've been looking at since 1994, but instead sleek, sexy chrome-
+    black hand cannons that do a far better job convincing you to use them! You
+    gotta reload them every now and then now, but the shots hit harder, the guns
+    sound cooler, you can mash the trigger to fire faster, and overall it's just
+    much more fun to use. Who knows, you might actually run out of pistol rounds
+    for a change!
 
 - The minigun's flamethrower now properly sets things on fire! Focus it on a
     demon to cleanse his sinful presence, or sweep a crowd and wipe out all those

@@ -17,6 +17,14 @@ BIG CHANGES:
     charged up to three times to loose a bone-splintering one-two-three salvo
     that also hurts everyone near the poor sap you just broke in half.
 
+- The pistols have gotten a complete overhaul! No longer the weird, odd looking
+    Berettas you've been looking at since 1994, but instead sleek, sexy chrome-
+    black hand cannons that do a far better job convincing you to use them!
+    Pistol shots have been buffed to 19 damage from 12, you can mash the fire
+    buttons to shoot faster, and now you do a quick reload every 18 shots, or
+    whenever there's a break in the shooting. Also, the pistols don't magically
+    fire three shots at once with the alt-fire anymore. That was weird.
+
 - The shotgun's alt-fire has evolved from a grenade to a cluster grenade! Not
     only that, but if you go into the options, you can turn these into remote-
     control cluster grenades, detonated with the reload key!
@@ -77,18 +85,6 @@ SMALLER WEAPON CHANGES:
 - The scrappers now respect pitch better with their spread, and no longer rip
     infinitely. So these no longer annihilate spider masterminds either.
 
-- The pistol alt-fire has been heavily nerfed, both in bullet count (4 to 3) and
-    fire rate (15 tics to 18 tics).
-
-- The pistols now properly alternate when tapping primary fire. In the process
-    of doing this, a small animation glitch was also fixed.
-
-- The pistols no longer have the slide bounce back when lowering. Guns do not
-    work that way, and it looks stupid regardless.
-
-- The dual pistol primary fire has had its spread significantly reduced, making
-    it a much more capable medium range weapon.
-
 - The shotgun's primary fire has been buffed to 125 damage, making it capable of
     killing hell knights, arachnotrons, and barons of hell in one less shot.
 
@@ -116,6 +112,9 @@ AMMO CHANGES:
 - The scrappers now get ammo from all the other guns. While things like grenades
     and rockets realistically shouldn't leave behind any scrap metal, this isn't
     exactly a realistic mod to begin with, and this change encourages variety.
+
+- Pistol ammo now maxes out at 270 (540 with backpack), and you now get 9 pistol
+    rounds from clips, and 54 from bullet boxes.
 
 - Shotgun grenades have had their capacity buffed to 30 (60 with a backpack),
     and have had their pickup and regeneration rates buffed. This is because...
