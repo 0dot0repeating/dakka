@@ -96,35 +96,41 @@ actor DWep_Pistols: DoomWeapon
         goto Ready
       
       Fire:
+        DPST A 0 A_GunFlash
         DPST A 0 offset(0, 32) A_GiveInventory("DakkaPistolFired")
         DPST A 0 A_JumpIfInventory("DakkaPistolSide", 1, "Fire_Left")
         goto Fire_Right
       
       Hold4:
+        DPST A 0 A_GunFlash
         RPST A 0 offset(0, 32) A_GiveInventory("DakkaPistolFired")
         DPST A 0 A_WeaponReady(WRF_NOFIRE | WRF_NOBOB)
         DPST A 0 A_JumpIfInventory("DakkaPistolSide", 1, "Hold4_Left")
         goto Hold4_Right
       
       Hold5:
+        DPST A 0 A_GunFlash
         RPST A 0 offset(0, 32) A_GiveInventory("DakkaPistolFired")
         DPST A 0 A_WeaponReady(WRF_NOFIRE | WRF_NOBOB)
         DPST A 0 A_JumpIfInventory("DakkaPistolSide", 1, "Hold5_Left")
         goto Hold5_Right
       
       Hold6:
+        DPST A 0 A_GunFlash
         RPST A 0 offset(0, 32) A_GiveInventory("DakkaPistolFired")
         DPST A 0 A_WeaponReady(WRF_NOFIRE | WRF_NOBOB)
         DPST A 0 A_JumpIfInventory("DakkaPistolSide", 1, "Hold6_Left")
         goto Hold6_Right
       
       Hold7:
+        DPST A 0 A_GunFlash
         RPST A 0 offset(0, 32) A_GiveInventory("DakkaPistolFired")
         DPST A 0 A_WeaponReady(WRF_NOFIRE | WRF_NOBOB)
         DPST A 0 A_JumpIfInventory("DakkaPistolSide", 1, "Hold7_Left")
         goto Hold7_Right
       
       Hold8:
+        DPST A 0 A_GunFlash
         RPST A 0 offset(0, 32) A_GiveInventory("DakkaPistolFired")
         DPST A 0 A_WeaponReady(WRF_NOFIRE | WRF_NOBOB)
         DPST A 0 A_JumpIfInventory("DakkaPistolSide", 1, "Hold8_Left")
@@ -400,13 +406,19 @@ actor DWep_Pistols: DoomWeapon
         "####" D 0 A_JumpIf(CallACS("Dakka_CanPistolReload", true) == true, "Reload_Empty")
         "####" DEEEE 1 A_WeaponReady(WRF_NOFIRE | WRF_NOBOB)
         goto Ready
-        
+      
+      
+      Flash:
+        TNT1 A 2 A_Light(2)
+        TNT1 A 2 A_Light(1)
+        goto LightDone
       
       
       AltFire:
         DPST A 0 offset(0, 32) A_JumpIfInventory("DakkaPistol_ShotsLeft", 2, 1)
         goto ReloadCheck
         
+        DPST A 0 A_GunFlash
         DPST A 0 A_GiveInventory("DakkaPistolInAnim")
         DPST A 0 A_GiveInventory("GiveScrapCounter", 20)
         DPST A 0 A_PlaySound("dakka/revolveraltfire", CHAN_WEAPON)
@@ -453,6 +465,13 @@ actor DWep_Pistols: DoomWeapon
         DPST E 0 A_JumpIf(CallACS("Dakka_CanPistolReload", true) == true, "Reload_Empty")
         DPST EFFFF 1 A_WeaponReady(WRF_NOFIRE | WRF_NOBOB)
         goto Ready
+      
+      
+      AltFlash:
+        TNT1 A 3 A_Light(4)
+        TNT1 A 1 A_Light(2)
+        TNT1 A 1 A_Light(1)
+        goto LightDone
       
       
       ReloadCheck:
