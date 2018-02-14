@@ -11,25 +11,23 @@
 #define CWEP_FIST               0
 #define CWEP_CHAINSAW           1
 #define CWEP_PISTOL             2
-#define CWEP_PISTOLS            3
-#define CWEP_SHOTGUN            4
-#define CWEP_SUPERSHOTGUN       5
-#define CWEP_MINIGUN            6
-#define CWEP_ROCKETLAUNCHER     7
-#define CWEP_PLASMALANCE        8
-#define CWEP_BFG9000            9
+#define CWEP_SHOTGUN            3
+#define CWEP_SUPERSHOTGUN       4
+#define CWEP_MINIGUN            5
+#define CWEP_ROCKETLAUNCHER     6
+#define CWEP_PLASMALANCE        7
+#define CWEP_BFG9000            8
 
 
 #define CWEP_HERETIC_STAFF      10
 #define CWEP_HERETIC_GAUNTLETS  11
 #define CWEP_HERETIC_GOLDWAND   12
-#define CWEP_HERETIC_GOLDWAND2  13
-#define CWEP_HERETIC_CROSSBOW   14
-#define CWEP_HERETIC_CROSSBOW2  15
-#define CWEP_HERETIC_BLASTER    16
-#define CWEP_HERETIC_SKULLROD   17
-#define CWEP_HERETIC_PHOENIXROD 18
-#define CWEP_HERETIC_MACE       19
+#define CWEP_HERETIC_CROSSBOW   13
+#define CWEP_HERETIC_CROSSBOW2  14
+#define CWEP_HERETIC_BLASTER    15
+#define CWEP_HERETIC_SKULLROD   16
+#define CWEP_HERETIC_PHOENIXROD 17
+#define CWEP_HERETIC_MACE       18
 
 // First col is Doomguy
 // Second col is Dakkaguy
@@ -44,7 +42,6 @@ str Dakka_ClassWeapons[CLASSWEAPONS][CLASSCOUNT] =
 {
     {"Fist",            "DWep_Fist"},
     {"Chainsaw",        "DWep_Scrappers"},
-    {"Pistol",          "DWep_Pistol"},
     {"Pistol",          "DWep_Pistols"},
     {"Shotgun",         "DWep_Shotgun"},
     {"SuperShotgun",    "DWep_SuperShotgun"},
@@ -55,7 +52,6 @@ str Dakka_ClassWeapons[CLASSWEAPONS][CLASSCOUNT] =
 
     {"Staff",           "DWep_Fist"},
     {"Gauntlets",       "DWep_Scrappers"},
-    {"GoldWand",        "DWep_Pistol"},
     {"GoldWand",        "DWep_Pistols"},
     {"Crossbow",        "DWep_Shotgun"},
     {"Crossbow",        "DWep_SuperShotgun"},
@@ -72,8 +68,7 @@ int Dakka_ClassWeaponPowers[CLASSWEAPONS][CLASSCOUNT] =
 {
     { 1,  1}, // fist            / fists
     { 3,  5}, // chainsaw        / scrappers
-    { 2,  2}, // pistol
-    {-1,  2}, // none            / pistols
+    { 2,  2}, // pistol          / revolvers
     { 3,  3}, // shotgun
     { 5,  5}, // SSG
     { 4,  4}, // chaingun        / minigun
@@ -83,14 +78,13 @@ int Dakka_ClassWeaponPowers[CLASSWEAPONS][CLASSCOUNT] =
 
     { 1, -1}, // staff          (fist)
     { 3, -1}, // gauntlets      (scrappers)
-    { 2, -1}, // wand 1         (pistol)
-    { 2, -1}, // wand 2         (pistols)
+    { 2, -1}, // wand           (revolvers)
     { 3, -1}, // crossbow 1     (shotgun)
     { 3, -1}, // crossbow 2     (ssg)
-    { 4, -1}, // blaster 2      (minigun)
+    { 4, -1}, // blaster        (minigun)
     { 6, -1}, // phoenix rod    (impaler)
-    { 5, -1}, // hellstaff 1    (plasma)
-    { 7, -1}, // mace 1         (bfg)
+    { 5, -1}, // hellstaff      (plasma)
+    { 7, -1}, // mace           (bfg)
 };
 
 
@@ -101,7 +95,6 @@ int Dakka_ClassWep_StartModeIgnore[CLASSWEAPONS][CLASSCOUNT] =
     {true,  true},
     {false, false},
     {true,  true},
-    {true,  true},
     {false, false},
     {false, false},
     {false, false},
@@ -111,7 +104,6 @@ int Dakka_ClassWep_StartModeIgnore[CLASSWEAPONS][CLASSCOUNT] =
 
     {true,  true},
     {false, true},
-    {true,  true},
     {true,  true},
     {false, true},
     {false, true},
@@ -126,7 +118,7 @@ int Dakka_ClassWep_StartModeIgnore[CLASSWEAPONS][CLASSCOUNT] =
 #define TRANSLATE_GUNS  11
 
 // How many different guns can a non-class gun become?
-#define TRANSLATE_MAXTO 2
+#define TRANSLATE_MAXTO 1
 
 // Items that aren't class weapons go in here. This simply stores the item to
 //  be taken away.
@@ -160,7 +152,7 @@ str Dakka_TranslatableGuns_To[TRANSLATE_GUNS][CLASSCOUNT][TRANSLATE_MAXTO] =
 
     { // Pistol2
         {""},
-        {"DWep_Pistol", "DWep_Pistols"},
+        {"DWep_Pistols"},
     },
 
     { // Shotgun2

@@ -1,11 +1,11 @@
-actor DakkaBullet_10mm: Ammo
+actor DakkaBullet_50AE: Ammo
 {
     Inventory.Icon "CLIPA0"
 
-    Inventory.Amount    16
-    Inventory.MaxAmount 250
-    Ammo.BackpackAmount     32
-    Ammo.BackpackMaxAmount 500
+    Inventory.Amount    9
+    Inventory.MaxAmount 270
+    Ammo.BackpackAmount    36
+    Ammo.BackpackMaxAmount 540
 }
 
 actor DakkaBullet_5mm: Ammo

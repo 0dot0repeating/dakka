@@ -1,12 +1,10 @@
 #define TRACE_BULLET        0
+#define TRACE_BULLET_BIG    1
 #define TRACE_ARC_FIRER     2
 #define TRACE_ARC_MASTER    3
 
 
-// DakkaTracer is the tracer actor
-// DakkaTracerBright for lesseffects version
-
-script "Dakka_Tracer" (int which, int yoff, int zoff)
+script "Dakka_Tracer" (int which, int yoff, int zoff, int fractional)
 {
     if (!IsServer) { terminate; }
 
@@ -50,10 +48,20 @@ script "Dakka_Tracer" (int which, int yoff, int zoff)
         pointX = 0;
         break;
     }
-
-    // Negative y should mean left, not right, dammit
-    int pointY = -itof(yoff);
-    int pointZ =  itof(zoff);
+    
+    // Flip the Y coordinate; negative y should mean left, not right, dammit
+    int pointY, pointZ;
+    
+    if (fractional)
+    {
+        pointY = -percFloat(0, yoff);
+        pointZ =  percFloat(0, zoff);
+    }
+    else
+    {
+        pointY = -itof(yoff);
+        pointZ =  itof(zoff);
+    }
 
     Rotate3D(pointX, pointY, pointZ, myAngle, myPitch);
     int rotX = Rotate3D_Ret[0];
@@ -88,6 +96,17 @@ script "Dakka_Tracer" (int which, int yoff, int zoff)
             ACS_NamedExecuteWithResult("Dakka_Tracer_Client", tracerTID, tracerDist, tracerPitch);
         }
         break;
+        
+      case TRACE_BULLET_BIG:
+        if (ConsolePlayerNumber() == -1)
+        {
+            ACS_NamedExecuteAlways("Dakka_TracerBig_Client", 0, tracerTID, tracerDist, tracerPitch);
+        }
+        else
+        {
+            ACS_NamedExecuteWithResult("Dakka_Tracer_Client", tracerTID, tracerDist, tracerPitch, TRACE_BULLET_BIG);
+        }
+        break;
 
       case TRACE_ARC_FIRER:
       case TRACE_ARC_MASTER:
@@ -107,7 +126,12 @@ script "Dakka_Tracer" (int which, int yoff, int zoff)
 }
 
 
-script "Dakka_Tracer_Client" (int startTID, int dist, int startPitch) clientside
+script "Dakka_TracerBig_Client" (int startTID, int dist, int startPitch) clientside
+{
+    ACS_NamedExecuteWithResult("Dakka_Tracer_Client", startTID, dist, startPitch, TRACE_BULLET_BIG);
+}
+
+script "Dakka_Tracer_Client" (int startTID, int dist, int startPitch, int type) clientside
 {
     int pln = cond(IsZandronum, ConsolePlayerNumber(), PlayerNumber());
     if (GetUserCVar(pln, "dakka_cl_notracers") > 0) { terminate; }
@@ -133,12 +157,10 @@ script "Dakka_Tracer_Client" (int startTID, int dist, int startPitch) clientside
     int nX = FixedDiv(dX, dist);
     int nY = FixedDiv(dY, dist);
     int nZ = FixedDiv(dZ, dist);
-
-    int lesseffects = GetUserCVar(pln, "dakka_cl_lesseffects");
-
-    int particleType = "DakkaTracer";
+    
+    
+    int step, density;
     int speed = itof(middle(64, GetUserCVar(pln, "dakka_cl_tracerspeed"), 2048));
-    int density;
 
     switch (middle(-4, GetUserCVar(pln, "dakka_cl_tracerdensity"), 4))
     {
@@ -154,21 +176,40 @@ script "Dakka_Tracer_Client" (int startTID, int dist, int startPitch) clientside
     }
 
     // miraculously, this works on both ints and fixed
-    int startPoint = mod(dist, density) / 2;
-
-    int step;
+    int startPoint  = mod(dist, density) / 2;
     int ticDistance = startPoint;
-    int particleTID = UniqueTID();
+    
+    int actualParticles = GetUserCVar(pln, "dakka_cl_particletracers");
+    
+    if (actualParticles)
+    {
+        int particleSize = cond(type == TRACE_BULLET_BIG, 6,4);
+    }
+    else
+    {
+        str particleType = cond(type == TRACE_BULLET_BIG, "DakkaBigTracer", "DakkaTracer");
+        int particleTID = UniqueTID();
+    }
 
     for (step = startPoint; step < dist; step += density)
     {
         int spawnX = startX + FixedMul(step, nX);
         int spawnY = startY + FixedMul(step, nY);
         int spawnZ = startZ + FixedMul(step, nZ);
-
-        SpawnForced(particleType, spawnX, spawnY, spawnZ, particleTID);
-        SetActorProperty(particleTID, APROP_Alpha, FixedDiv(ticDistance, speed));
-        Thing_ChangeTID(particleTID, 0);
+        
+        int alphaScalar = FixedDiv(ticDistance, speed);
+        
+        if (actualParticles)
+        {
+            int startAlpha = 128 + FixedMul(128, alphaScalar);
+            SpawnParticle(0xfff68c, true, 2, particleSize, spawnX, spawnY, spawnZ, 0,0,0, 0,0,0, startAlpha, 128);
+        }
+        else
+        {
+            SpawnForced(particleType, spawnX, spawnY, spawnZ, particleTID);
+            SetActorProperty(particleTID, APROP_Alpha, alphaScalar);
+            Thing_ChangeTID(particleTID, 0);
+        }
 
         ticDistance += density;
 

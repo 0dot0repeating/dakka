@@ -1,7 +1,6 @@
 #include "decorate/weapons/10_fists.dec"
 #include "decorate/weapons/11_scrapper.dec"
-#include "decorate/weapons/20_pistol.dec"
-#include "decorate/weapons/21_pistols.dec"
+#include "decorate/weapons/20_pistols.dec"
 #include "decorate/weapons/30_shotgun.dec"
 #include "decorate/weapons/31_supershotgun.dec"
 #include "decorate/weapons/40_minigun.dec"

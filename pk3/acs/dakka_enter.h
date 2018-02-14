@@ -91,6 +91,10 @@ script "Dakka_Spawn" (int respawned)
         // In dakka_scrap.h
         Dakka_ProcessScrap();
 
+        // In dakka_pistols.h
+        Pistols_SpreadRecovery();
+        Pistols_CapBulletsLeft();
+        
         // In dakka_ssg.h and dakka_bfg.h
         SSG_AutoReload();
         BFG_AutoReload();

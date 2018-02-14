@@ -142,6 +142,12 @@ $volume dakka/pistolfire    0.55
 $volume dakka/pistolaltfire 0.65
 
 
+dakka/revolverfire          sounds/revolvers/revolver_fire.ogg
+dakka/revolveraltfire       sounds/revolvers/revolver_altfire.ogg
+$volume dakka/revolverfire      0.8
+$volume dakka/revolveraltfire   0.9
+
+
 
 ////////
 // SHOTGUN

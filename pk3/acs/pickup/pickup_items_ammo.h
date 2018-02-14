@@ -1,10 +1,10 @@
-#define AMMOCOUNT   27
+#define AMMOCOUNT   28
 
 int PKP_KnownAmmo[AMMOCOUNT] =
 {
     // DAKKA (10)
     "DakkaScrap",
-    "DakkaBullet_10mm",
+    "DakkaBullet_50AE",
     "DakkaShells",
     "DakkaShotGrenades",
     "DakkaBullet_5mm",
@@ -50,7 +50,7 @@ int PKP_DefaultAmmoCount[AMMOCOUNT] =
 {
     // DAKKA (10)
     60,             // scrap
-    100,            // 10mm
+    72,             // .50AE
     16,             // shells
     6,              // grenades
     160,            // 5mm

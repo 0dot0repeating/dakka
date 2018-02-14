@@ -403,6 +403,7 @@ actor ScrapperShot
     Gravity 0.8
     BounceFactor 0.65
     WallBounceFactor 0.75
+    BounceCount 2
 
     Scale 0.3
 
@@ -555,6 +556,7 @@ actor SplitScrap
 
     BounceFactor 0.35
     WallBounceFactor 0.5
+    BounceCount 2
 
     Scale 0.2
 
@@ -586,11 +588,13 @@ actor SplitScrap
         goto SpawnCommon
 
       SpawnCommon:
+        SCRS "#" 0 A_SetUserVar("user_t", user_t + 1)
         SCRS "#" 0 bright A_ChangeFlag("PAINLESS", random(1,24) != 1)
+        
+        SCRS "#" 0 A_JumpIf(user_t >= 70,           3)
         SCRS "#" 0 A_SpawnItemEx("ScrapperTrail2", -(1*momx)/2.0, (1*momy)/2.0, -(1*momz)/2.0, 0,0,0, 0, SXF_ABSOLUTEANGLE)
         SCRS "#" 0 A_SpawnItemEx("ScrapperTrail2", 0,              0,           0)
 
-        SCRS "#" 0 A_SetUserVar("user_t", user_t + 1)
         SCRS "#" 0 A_JumpIf((user_harmlesst >= user_t) || ((user_t - user_harmlesst) % 2 == 0), 2)
         SCRS "#" 0 bright A_Explode(2, 32, false, false, 32)
         

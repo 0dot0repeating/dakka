@@ -1,0 +1,566 @@
+actor DakkaPistolSide:   Boolean {}
+actor DakkaPistolInAnim: Boolean {}
+actor DakkaPistolSpread: Counter { Inventory.MaxAmount 60 }
+
+actor DakkaPistolFired: Trigger
+{
+    States
+    {
+      Pickup:
+        TNT1 A 0 A_PlaySound("dakka/revolverfire", CallACS("Dakka_RotateSound", 5, 6))
+        TNT1 A 0 ACS_NamedExecuteWithResult("Dakka_Switcharoo", 2, 0)
+        TNT1 A 0 ACS_NamedExecuteAlways("Dakka_Recoil", 0, -140, 1, 10)
+        TNT1 A 0 A_GiveInventory("GiveScrapCounter", 10)
+        TNT1 A 0 A_GiveInventory("DakkaPistolInAnim")
+        TNT1 A 0 ACS_NamedExecuteWithResult("Dakka_UseAmmo", 1, 1)
+        TNT1 A 0 A_TakeInventory("DakkaPistol_ShotsLeft", 1)
+        stop
+    }
+}
+
+actor DakkaPistol_ShotsLeft: Ammo
+{
+    Inventory.Icon "CLIPA0"
+
+    Inventory.Amount    1
+    Inventory.MaxAmount 18
+    Ammo.BackpackAmount    0
+    Ammo.BackpackMaxAmount 18
+}
+
+
+actor DWep_Pistols: DoomWeapon
+{
+    Tag "Pistols"
+
+    Weapon.SlotNumber 2
+    Weapon.SelectionOrder 1500
+
+    Weapon.AmmoType1    "DakkaBullet_50AE"
+    Weapon.AmmoType2    "DakkaPistol_ShotsLeft"
+    Weapon.AmmoUse1     1
+    Weapon.AmmoUse2     0
+    Weapon.AmmoGive     18
+
+    Weapon.BobStyle InverseSmooth
+    Weapon.BobSpeed 2.5
+    Weapon.BobRangeX 0.3
+    Weapon.BobRangeY 0.4
+
+    +UNDROPPABLE
+    +ALT_AMMO_OPTIONAL
+
+    Decal BulletChip
+
+    Inventory.PickupMessage "$DAKKA_PK_PISTOLS"
+    Obituary "$DAKKA_MP_PISTOLS"
+
+    States
+    {
+      Select:
+        DPST A 0 ACS_NamedExecuteWithResult("Dakka_PistolReload")
+        goto Select2
+      
+      Select2:
+        DPST AA 0 A_Raise
+        DPST A 1 A_Raise
+        loop
+
+      Deselect:
+        DPST A 0 A_Light0
+        DPST AAA 0 A_Lower
+        DPST A 1 A_Lower
+        loop
+
+      Ready:
+        DPST A 0  A_TakeInventory("DakkaPistolSpread")
+        DPST A 0  A_TakeInventory("DakkaPistolInAnim")
+        DPST A 35 A_WeaponReady(CallACS("Dakka_CanRevolverReload"))
+        goto Ready_AutoReload
+      
+      Ready_AutoReload:
+        DPST A 0 A_JumpIf(CallACS("Dakka_CanRevolverReload", true) == true, "Reload")
+        DPST A 1 A_WeaponReady
+        loop
+
+      Ready_NoReload:
+        DPST A 0 A_TakeInventory("DakkaPistolSpread")
+        DPST A 0 A_TakeInventory("DakkaPistolInAnim")
+        DPST A 1 A_WeaponReady
+        goto Ready
+      
+      Ready_NoFire:
+        DPST A 0 A_TakeInventory("DakkaPistolSpread")
+        DPST A 0 A_TakeInventory("DakkaPistolInAnim")
+        DPST A 1 A_WeaponReady(WRF_NOFIRE)
+        goto Ready
+      
+      Fire:
+        DPST A 0 offset(0, 32) A_GiveInventory("DakkaPistolFired")
+        DPST A 0 A_JumpIfInventory("DakkaPistolSide", 1, "Fire_Left")
+        goto Fire_Right
+      
+      Hold4:
+        RRVL A 0 offset(0, 32) A_GiveInventory("DakkaPistolFired")
+        DPST A 0 A_WeaponReady(WRF_NOFIRE | WRF_NOBOB)
+        DPST A 0 A_JumpIfInventory("DakkaPistolSide", 1, "Hold4_Left")
+        goto Hold4_Right
+      
+      Hold5:
+        RRVL A 0 offset(0, 32) A_GiveInventory("DakkaPistolFired")
+        DPST A 0 A_WeaponReady(WRF_NOFIRE | WRF_NOBOB)
+        DPST A 0 A_JumpIfInventory("DakkaPistolSide", 1, "Hold5_Left")
+        goto Hold5_Right
+      
+      Hold6:
+        RRVL A 0 offset(0, 32) A_GiveInventory("DakkaPistolFired")
+        DPST A 0 A_WeaponReady(WRF_NOFIRE | WRF_NOBOB)
+        DPST A 0 A_JumpIfInventory("DakkaPistolSide", 1, "Hold6_Left")
+        goto Hold6_Right
+      
+      Hold7:
+        RRVL A 0 offset(0, 32) A_GiveInventory("DakkaPistolFired")
+        DPST A 0 A_WeaponReady(WRF_NOFIRE | WRF_NOBOB)
+        DPST A 0 A_JumpIfInventory("DakkaPistolSide", 1, "Hold7_Left")
+        goto Hold7_Right
+      
+      Hold8:
+        RRVL A 0 offset(0, 32) A_GiveInventory("DakkaPistolFired")
+        DPST A 0 A_WeaponReady(WRF_NOFIRE | WRF_NOBOB)
+        DPST A 0 A_JumpIfInventory("DakkaPistolSide", 1, "Hold8_Left")
+        goto Hold8_Right
+      
+        
+      Fire_Right:
+        RRVL A 0 A_GiveInventory("DakkaPistolSide")
+        RRVL A 0 A_FireBullets(CallACS("Dakka_PistolSpread", 0) / 65536.0, CallACS("Dakka_PistolSpread", 1) / 65536.0, -1, 19, "DakkaPuff_BigRight", FBF_NORANDOM)
+        RRVL A 0 A_JumpIfInventory("DakkaPistol_ShotsLeft", 1, "FireAnim")
+        goto FireAnim_Empty
+      
+      Fire_Left:
+        LRVL A 0 A_TakeInventory("DakkaPistolSide")
+        LRVL A 0 A_FireBullets(CallACS("Dakka_PistolSpread", 0) / 65536.0, CallACS("Dakka_PistolSpread", 1) / 65536.0, -1, 19, "DakkaPuff_BigLeft", FBF_NORANDOM)
+        LRVL A 0 A_JumpIfInventory("DakkaPistol_ShotsLeft", 1, "FireAnim")
+        goto FireAnim_Empty
+      
+        
+      Hold4_Right:
+        RRVL A 0 A_GiveInventory("DakkaPistolSide")
+        RRVL A 0 A_FireBullets(CallACS("Dakka_PistolSpread", 0) / 65536.0, CallACS("Dakka_PistolSpread", 1) / 65536.0, -1, 19, "DakkaPuff_BigRight", FBF_NORANDOM)
+        RRVL A 0 A_JumpIfInventory("DakkaPistol_ShotsLeft", 1, "Hold4Anim")
+        goto Hold4Anim_Empty
+      
+      Hold4_Left:
+        LRVL A 0 A_TakeInventory("DakkaPistolSide")
+        LRVL A 0 A_FireBullets(CallACS("Dakka_PistolSpread", 0) / 65536.0, CallACS("Dakka_PistolSpread", 1) / 65536.0, -1, 19, "DakkaPuff_BigLeft", FBF_NORANDOM)
+        LRVL A 0 A_JumpIfInventory("DakkaPistol_ShotsLeft", 1, "Hold4Anim")
+        goto Hold4Anim_Empty
+      
+        
+      Hold5_Right:
+        RRVL A 0 A_GiveInventory("DakkaPistolSide")
+        RRVL A 0 A_FireBullets(CallACS("Dakka_PistolSpread", 0) / 65536.0, CallACS("Dakka_PistolSpread", 1) / 65536.0, -1, 19, "DakkaPuff_BigRight", FBF_NORANDOM)
+        RRVL A 0 A_JumpIfInventory("DakkaPistol_ShotsLeft", 1, "Hold5Anim")
+        goto Hold5Anim_Empty
+      
+      Hold5_Left:
+        LRVL A 0 A_TakeInventory("DakkaPistolSide")
+        LRVL A 0 A_FireBullets(CallACS("Dakka_PistolSpread", 0) / 65536.0, CallACS("Dakka_PistolSpread", 1) / 65536.0, -1, 19, "DakkaPuff_BigLeft", FBF_NORANDOM)
+        LRVL A 0 A_JumpIfInventory("DakkaPistol_ShotsLeft", 1, "Hold5Anim")
+        goto Hold5Anim_Empty
+      
+        
+      Hold6_Right:
+        RRVL A 0 A_GiveInventory("DakkaPistolSide")
+        RRVL A 0 A_FireBullets(CallACS("Dakka_PistolSpread", 0) / 65536.0, CallACS("Dakka_PistolSpread", 1) / 65536.0, -1, 19, "DakkaPuff_BigRight", FBF_NORANDOM)
+        RRVL A 0 A_JumpIfInventory("DakkaPistol_ShotsLeft", 1, "Hold6Anim")
+        goto Hold6Anim_Empty
+      
+      Hold6_Left:
+        LRVL A 0 A_TakeInventory("DakkaPistolSide")
+        LRVL A 0 A_FireBullets(CallACS("Dakka_PistolSpread", 0) / 65536.0, CallACS("Dakka_PistolSpread", 1) / 65536.0, -1, 19, "DakkaPuff_BigLeft", FBF_NORANDOM)
+        LRVL A 0 A_JumpIfInventory("DakkaPistol_ShotsLeft", 1, "Hold6Anim")
+        goto Hold6Anim_Empty
+      
+        
+      Hold7_Right:
+        RRVL A 0 A_GiveInventory("DakkaPistolSide")
+        RRVL A 0 A_FireBullets(CallACS("Dakka_PistolSpread", 0) / 65536.0, CallACS("Dakka_PistolSpread", 1) / 65536.0, -1, 19, "DakkaPuff_BigRight", FBF_NORANDOM)
+        RRVL A 0 A_JumpIfInventory("DakkaPistol_ShotsLeft", 1, "Hold7Anim")
+        goto Hold7Anim_Empty
+      
+      Hold7_Left:
+        LRVL A 0 A_TakeInventory("DakkaPistolSide")
+        LRVL A 0 A_FireBullets(CallACS("Dakka_PistolSpread", 0) / 65536.0, CallACS("Dakka_PistolSpread", 1) / 65536.0, -1, 19, "DakkaPuff_BigLeft", FBF_NORANDOM)
+        LRVL A 0 A_JumpIfInventory("DakkaPistol_ShotsLeft", 1, "Hold7Anim")
+        goto Hold7Anim_Empty
+      
+        
+      Hold8_Right:
+        RRVL A 0 A_GiveInventory("DakkaPistolSide")
+        RRVL A 0 A_FireBullets(CallACS("Dakka_PistolSpread", 0) / 65536.0, CallACS("Dakka_PistolSpread", 1) / 65536.0, -1, 19, "DakkaPuff_BigRight", FBF_NORANDOM)
+        RRVL A 0 A_JumpIfInventory("DakkaPistol_ShotsLeft", 1, "Hold8Anim")
+        goto Hold8Anim_Empty
+      
+      Hold8_Left:
+        LRVL A 0 A_TakeInventory("DakkaPistolSide")
+        LRVL A 0 A_FireBullets(CallACS("Dakka_PistolSpread", 0) / 65536.0, CallACS("Dakka_PistolSpread", 1) / 65536.0, -1, 19, "DakkaPuff_BigLeft", FBF_NORANDOM)
+        LRVL A 0 A_JumpIfInventory("DakkaPistol_ShotsLeft", 1, "Hold8Anim")
+        goto Hold8Anim_Empty
+      
+      
+      FireAnim:
+        "####" A 0 A_GiveInventory("DakkaPistolSpread", 7)
+        "####" ABC 1 bright A_WeaponReady(WRF_NOFIRE | WRF_NOBOB)
+        "####" D   0 bright A_JumpIfInventory("MainClicked", 1, "Hold4")
+        "####" D   0 bright A_JumpIfInventory("AltClicked",  1, "AltFire")
+        "####" D   1 bright A_WeaponReady(WRF_NOFIRE | WRF_NOBOB | CallACS("Dakka_CanRevolverReload"))
+        
+        "####" D  0 A_JumpIfInventory("MainClicked", 1, "Hold4")
+        "####" D  0 A_JumpIfInventory("AltClicked",  1, "AltFire")
+        "####" D  1 A_WeaponReady(WRF_NOFIRE | WRF_NOBOB | CallACS("Dakka_CanRevolverReload"))
+        "####" E  0 A_JumpIfInventory("MainClicked", 1, "Hold5")
+        "####" E  0 A_JumpIfInventory("AltClicked",  1, "AltFire")
+        "####" E  1 A_WeaponReady(WRF_NOFIRE | WRF_NOBOB | CallACS("Dakka_CanRevolverReload"))
+        "####" E  0 A_Refire("Hold6")
+        "####" E  1 A_WeaponReady(WRF_NOPRIMARY | WRF_NOBOB | CallACS("Dakka_CanRevolverReload"))
+        "####" E  0 A_Refire("Hold7")
+        "####" E  1 A_WeaponReady(WRF_NOPRIMARY | WRF_NOBOB | CallACS("Dakka_CanRevolverReload"))
+        "####" E  0 A_Refire("Hold8")
+        "####" E  1 A_WeaponReady(WRF_NOPRIMARY | WRF_NOBOB | CallACS("Dakka_CanRevolverReload"))
+        
+        DPST A 0 A_TakeInventory("DakkaPistolInAnim")
+        DPST A 0 A_TakeInventory("DakkaPistolSpread")
+        DPST A 4 A_WeaponReady(WRF_NOBOB | CallACS("Dakka_CanRevolverReload"))
+        goto Ready
+      
+      
+      Hold4Anim:
+        "####" A 0 A_GiveInventory("DakkaPistolSpread", 9)
+        "####" IJH 1 bright A_WeaponReady(WRF_NOFIRE | WRF_NOBOB)
+        "####" H   0 bright A_JumpIfInventory("MainClicked", 1, "Hold4")
+        "####" H   0 bright A_JumpIfInventory("AltClicked",  1, "AltFire")
+        "####" H   1 bright A_WeaponReady(WRF_NOFIRE | WRF_NOBOB | CallACS("Dakka_CanRevolverReload"))
+        
+        "####" H  0 A_JumpIfInventory("MainClicked", 1, "Hold4")
+        "####" H  0 A_JumpIfInventory("AltClicked",  1, "AltFire")
+        "####" H  1 A_WeaponReady(WRF_NOFIRE | WRF_NOBOB | CallACS("Dakka_CanRevolverReload"))
+        "####" E  0 A_JumpIfInventory("MainClicked", 1, "Hold5")
+        "####" E  0 A_JumpIfInventory("AltClicked",  1, "AltFire")
+        "####" E  1 A_WeaponReady(WRF_NOFIRE | WRF_NOBOB | CallACS("Dakka_CanRevolverReload"))
+        "####" E  0 A_Refire("Hold6")
+        "####" E  1 A_WeaponReady(WRF_NOPRIMARY | WRF_NOBOB | CallACS("Dakka_CanRevolverReload"))
+        "####" E  0 A_Refire("Hold7")
+        "####" E  1 A_WeaponReady(WRF_NOPRIMARY | WRF_NOBOB | CallACS("Dakka_CanRevolverReload"))
+        "####" E  0 A_Refire("Hold8")
+        "####" E  1 A_WeaponReady(WRF_NOPRIMARY | WRF_NOBOB | CallACS("Dakka_CanRevolverReload"))
+        
+        DPST A 0 A_TakeInventory("DakkaPistolInAnim")
+        DPST A 0 A_TakeInventory("DakkaPistolSpread")
+        DPST A 4 A_WeaponReady(WRF_NOBOB | CallACS("Dakka_CanRevolverReload"))
+        goto Ready
+      
+      
+      Hold5Anim:
+        "####" A 0 A_GiveInventory("DakkaPistolSpread", 8)
+        "####" IGH 1 bright A_WeaponReady(WRF_NOFIRE | WRF_NOBOB)
+        "####" H   0 bright A_JumpIfInventory("MainClicked", 1, "Hold4")
+        "####" H   0 bright A_JumpIfInventory("AltClicked",  1, "AltFire")
+        "####" H   1 bright A_WeaponReady(WRF_NOFIRE | WRF_NOBOB | CallACS("Dakka_CanRevolverReload"))
+        
+        "####" D  0 A_JumpIfInventory("MainClicked", 1, "Hold4")
+        "####" D  0 A_JumpIfInventory("AltClicked",  1, "AltFire")
+        "####" D  1 A_WeaponReady(WRF_NOFIRE | WRF_NOBOB | CallACS("Dakka_CanRevolverReload"))
+        "####" E  0 A_JumpIfInventory("MainClicked", 1, "Hold5")
+        "####" E  0 A_JumpIfInventory("AltClicked",  1, "AltFire")
+        "####" E  1 A_WeaponReady(WRF_NOFIRE | WRF_NOBOB | CallACS("Dakka_CanRevolverReload"))
+        "####" E  0 A_Refire("Hold6")
+        "####" E  1 A_WeaponReady(WRF_NOPRIMARY | WRF_NOBOB | CallACS("Dakka_CanRevolverReload"))
+        "####" E  0 A_Refire("Hold7")
+        "####" E  1 A_WeaponReady(WRF_NOPRIMARY | WRF_NOBOB | CallACS("Dakka_CanRevolverReload"))
+        "####" E  0 A_Refire("Hold8")
+        "####" E  1 A_WeaponReady(WRF_NOPRIMARY | WRF_NOBOB | CallACS("Dakka_CanRevolverReload"))
+        
+        DPST A 0 A_TakeInventory("DakkaPistolInAnim")
+        DPST A 0 A_TakeInventory("DakkaPistolSpread")
+        DPST A 4 A_WeaponReady(WRF_NOBOB | CallACS("Dakka_CanRevolverReload"))
+        goto Ready
+      
+      
+      Hold6Anim:
+        "####" A 0 A_GiveInventory("DakkaPistolSpread", 7)
+        "####" FGH 1 bright A_WeaponReady(WRF_NOFIRE | WRF_NOBOB)
+        "####" D   0 bright A_JumpIfInventory("MainClicked", 1, "Hold4")
+        "####" D   0 bright A_JumpIfInventory("AltClicked",  1, "AltFire")
+        "####" D   1 bright A_WeaponReady(WRF_NOFIRE | WRF_NOBOB | CallACS("Dakka_CanRevolverReload"))
+        
+        "####" D  0 A_JumpIfInventory("MainClicked", 1, "Hold4")
+        "####" D  0 A_JumpIfInventory("AltClicked",  1, "AltFire")
+        "####" D  1 A_WeaponReady(WRF_NOFIRE | WRF_NOBOB | CallACS("Dakka_CanRevolverReload"))
+        "####" E  0 A_JumpIfInventory("MainClicked", 1, "Hold5")
+        "####" E  0 A_JumpIfInventory("AltClicked",  1, "AltFire")
+        "####" E  1 A_WeaponReady(WRF_NOFIRE | WRF_NOBOB | CallACS("Dakka_CanRevolverReload"))
+        "####" E  0 A_Refire("Hold6")
+        "####" E  1 A_WeaponReady(WRF_NOPRIMARY | WRF_NOBOB | CallACS("Dakka_CanRevolverReload"))
+        "####" E  0 A_Refire("Hold7")
+        "####" E  1 A_WeaponReady(WRF_NOPRIMARY | WRF_NOBOB | CallACS("Dakka_CanRevolverReload"))
+        "####" E  0 A_Refire("Hold8")
+        "####" E  1 A_WeaponReady(WRF_NOPRIMARY | WRF_NOBOB | CallACS("Dakka_CanRevolverReload"))
+        
+        DPST A 0 A_TakeInventory("DakkaPistolInAnim")
+        DPST A 0 A_TakeInventory("DakkaPistolSpread")
+        DPST A 4 A_WeaponReady(WRF_NOBOB | CallACS("Dakka_CanRevolverReload"))
+        goto Ready
+      
+      
+      Hold7Anim:
+        "####" A 0 A_GiveInventory("DakkaPistolSpread", 7)
+        "####" FGD 1 bright A_WeaponReady(WRF_NOFIRE | WRF_NOBOB)
+        "####" D   0 bright A_JumpIfInventory("MainClicked", 1, "Hold4")
+        "####" D   0 bright A_JumpIfInventory("AltClicked",  1, "AltFire")
+        "####" D   1 bright A_WeaponReady(WRF_NOFIRE | WRF_NOBOB | CallACS("Dakka_CanRevolverReload"))
+        
+        "####" D  0 A_JumpIfInventory("MainClicked", 1, "Hold4")
+        "####" D  0 A_JumpIfInventory("AltClicked",  1, "AltFire")
+        "####" D  1 A_WeaponReady(WRF_NOFIRE | WRF_NOBOB | CallACS("Dakka_CanRevolverReload"))
+        "####" E  0 A_JumpIfInventory("MainClicked", 1, "Hold5")
+        "####" E  0 A_JumpIfInventory("AltClicked",  1, "AltFire")
+        "####" E  1 A_WeaponReady(WRF_NOFIRE | WRF_NOBOB | CallACS("Dakka_CanRevolverReload"))
+        "####" E  0 A_Refire("Hold6")
+        "####" E  1 A_WeaponReady(WRF_NOPRIMARY | WRF_NOBOB | CallACS("Dakka_CanRevolverReload"))
+        "####" E  0 A_Refire("Hold7")
+        "####" E  1 A_WeaponReady(WRF_NOPRIMARY | WRF_NOBOB | CallACS("Dakka_CanRevolverReload"))
+        "####" E  0 A_Refire("Hold8")
+        "####" E  1 A_WeaponReady(WRF_NOPRIMARY | WRF_NOBOB | CallACS("Dakka_CanRevolverReload"))
+        
+        DPST A 0 A_TakeInventory("DakkaPistolInAnim")
+        DPST A 0 A_TakeInventory("DakkaPistolSpread")
+        DPST A 4 A_WeaponReady(WRF_NOBOB | CallACS("Dakka_CanRevolverReload"))
+        goto Ready
+      
+      
+      Hold8Anim:
+        "####" A 0 A_GiveInventory("DakkaPistolSpread", 7)
+        "####" FCD 1 bright A_WeaponReady(WRF_NOFIRE | WRF_NOBOB)
+        "####" D   0 bright A_JumpIfInventory("MainClicked", 1, "Hold4")
+        "####" D   0 bright A_JumpIfInventory("AltClicked",  1, "AltFire")
+        "####" D   1 bright A_WeaponReady(WRF_NOFIRE | WRF_NOBOB | CallACS("Dakka_CanRevolverReload"))
+        
+        "####" D  0 A_JumpIfInventory("MainClicked", 1, "Hold4")
+        "####" D  0 A_JumpIfInventory("AltClicked",  1, "AltFire")
+        "####" D  1 A_WeaponReady(WRF_NOFIRE | WRF_NOBOB | CallACS("Dakka_CanRevolverReload"))
+        "####" E  0 A_JumpIfInventory("MainClicked", 1, "Hold5")
+        "####" E  0 A_JumpIfInventory("AltClicked",  1, "AltFire")
+        "####" E  1 A_WeaponReady(WRF_NOFIRE | WRF_NOBOB | CallACS("Dakka_CanRevolverReload"))
+        "####" E  0 A_Refire("Hold6")
+        "####" E  1 A_WeaponReady(WRF_NOPRIMARY | WRF_NOBOB | CallACS("Dakka_CanRevolverReload"))
+        "####" E  0 A_Refire("Hold7")
+        "####" E  1 A_WeaponReady(WRF_NOPRIMARY | WRF_NOBOB | CallACS("Dakka_CanRevolverReload"))
+        "####" E  0 A_Refire("Hold8")
+        "####" E  1 A_WeaponReady(WRF_NOPRIMARY | WRF_NOBOB | CallACS("Dakka_CanRevolverReload"))
+        
+        DPST A 0 A_TakeInventory("DakkaPistolInAnim")
+        DPST A 0 A_TakeInventory("DakkaPistolSpread")
+        DPST A 4 A_WeaponReady(WRF_NOBOB | CallACS("Dakka_CanRevolverReload"))
+        goto Ready
+      
+      
+      FireAnim_Empty:
+        "####" ABCD 1 bright A_WeaponReady(WRF_NOFIRE | WRF_NOBOB)
+        "####" D 0 A_JumpIf(CallACS("Dakka_CanRevolverReload", true) == true, "Reload_Empty")
+        "####" DEEEE 1 A_WeaponReady(WRF_NOFIRE | WRF_NOBOB)
+        goto Ready
+      
+      Hold4Anim_Empty:
+        "####" IJHH 1 bright A_WeaponReady(WRF_NOFIRE | WRF_NOBOB)
+        "####" H 0 A_JumpIf(CallACS("Dakka_CanRevolverReload", true) == true, "Reload_Empty")
+        "####" HEEEE 1 A_WeaponReady(WRF_NOFIRE | WRF_NOBOB)
+        goto Ready
+      
+      Hold5Anim_Empty:
+        "####" IGHH 1 bright A_WeaponReady(WRF_NOFIRE | WRF_NOBOB)
+        "####" D 0 A_JumpIf(CallACS("Dakka_CanRevolverReload", true) == true, "Reload_Empty")
+        "####" DEEEE 1 A_WeaponReady(WRF_NOFIRE | WRF_NOBOB)
+        goto Ready
+      
+      Hold6Anim_Empty:
+        "####" FGHD 1 bright A_WeaponReady(WRF_NOFIRE | WRF_NOBOB)
+        "####" D 0 A_JumpIf(CallACS("Dakka_CanRevolverReload", true) == true, "Reload_Empty")
+        "####" DEEEE 1 A_WeaponReady(WRF_NOFIRE | WRF_NOBOB)
+        goto Ready
+      
+      Hold7Anim_Empty:
+        "####" FGCD 1 bright A_WeaponReady(WRF_NOFIRE | WRF_NOBOB)
+        "####" D 0 A_JumpIf(CallACS("Dakka_CanRevolverReload", true) == true, "Reload_Empty")
+        "####" DEEEE 1 A_WeaponReady(WRF_NOFIRE | WRF_NOBOB)
+        goto Ready
+      
+      Hold8Anim_Empty:
+        "####" FBCD 1 bright A_WeaponReady(WRF_NOFIRE | WRF_NOBOB)
+        "####" D 0 A_JumpIf(CallACS("Dakka_CanRevolverReload", true) == true, "Reload_Empty")
+        "####" DEEEE 1 A_WeaponReady(WRF_NOFIRE | WRF_NOBOB)
+        goto Ready
+        
+      
+      
+      AltFire:
+        DPST A 0 offset(0, 32) A_JumpIfInventory("DakkaPistol_ShotsLeft", 2, 1)
+        goto ReloadCheck
+        
+        DPST A 0 A_GiveInventory("DakkaPistolInAnim")
+        DPST A 0 A_GiveInventory("GiveScrapCounter", 20)
+        DPST A 0 A_PlaySound("dakka/revolveraltfire", CHAN_WEAPON)
+        DPST A 0 ACS_NamedExecuteWithResult("Dakka_Switcharoo", 2, 1)
+        DPST A 0 ACS_NamedExecuteAlways("Dakka_Recoil", 0, -300, 1, 10)
+        DPST A 0 ACS_NamedExecuteWithResult("Dakka_UseAmmo", 1, 2)
+        
+        DPST A 0 A_GiveInventory("DakkaPistolSpread", 18)
+        DPST A 0 A_TakeInventory("DakkaPistol_ShotsLeft", 2)
+        DPST A 0 A_FireBullets(CallACS("Dakka_PistolSpread", 0) / 65536.0, CallACS("Dakka_PistolSpread", 1) / 65536.0, -1, 19, "DakkaPuff_BigLeft", FBF_NORANDOM)
+        DPST A 0 A_FireBullets(CallACS("Dakka_PistolSpread", 0) / 65536.0, CallACS("Dakka_PistolSpread", 1) / 65536.0, -1, 19, "DakkaPuff_BigRight", FBF_NORANDOM)
+        DPST A 0 A_JumpIfInventory("DakkaPistol_ShotsLeft", 1, "AltFire_NotEmpty")
+        goto AltFire_Empty
+      
+      AltFire_NotEmpty:
+        DPST BCD  1 bright A_WeaponReady(WRF_NOFIRE | WRF_NOBOB)
+        DPST EE   1 bright A_WeaponReady(WRF_NOFIRE | WRF_NOBOB | CallACS("Dakka_CanRevolverReload"))
+        
+        DPST F  0 A_JumpIfInventory("AltClicked", 1, "AltFire")
+        DPST F  0 A_JumpIfInventory("MainClicked", 1, "Hold5")
+        DPST F  1 A_WeaponReady(WRF_NOSECONDARY | WRF_NOBOB | CallACS("Dakka_CanRevolverReload"))
+        DPST F  0 A_JumpIfInventory("AltClicked", 1, "AltFire")
+        DPST F  0 A_JumpIfInventory("MainClicked", 1, "Hold6")
+        DPST F  1 A_WeaponReady(WRF_NOSECONDARY | WRF_NOBOB | CallACS("Dakka_CanRevolverReload"))
+        DPST F  0 A_JumpIfInventory("AltClicked", 1, "AltFire")
+        DPST F  0 A_JumpIfInventory("MainClicked", 1, "Hold7")
+        DPST F  1 A_WeaponReady(WRF_NOSECONDARY | WRF_NOBOB | CallACS("Dakka_CanRevolverReload"))
+        DPST F  0 A_JumpIfInventory("AltClicked", 1, "AltFire")
+        DPST F  0 A_JumpIfInventory("MainClicked", 1, "Hold8")
+        DPST F  1 A_WeaponReady(WRF_NOSECONDARY | WRF_NOBOB | CallACS("Dakka_CanRevolverReload"))
+        
+        DPST A 0 A_TakeInventory("DakkaPistolInAnim")
+        DPST A 0 A_JumpIfInventory("AltClicked", 1, "AltFire")
+        DPST A 1 A_WeaponReady(WRF_NOSECONDARY | CallACS("Dakka_CanRevolverReload"))
+        DPST A 0 A_JumpIfInventory("AltClicked", 1, "AltFire")
+        DPST A 1 A_WeaponReady(WRF_NOSECONDARY | CallACS("Dakka_CanRevolverReload"))
+        DPST A 0 A_Refire("AltFire")
+        DPST A 0 A_TakeInventory("DakkaPistolSpread")
+        DPST A 2 A_WeaponReady(WRF_NOBOB | CallACS("Dakka_CanRevolverReload"))
+        goto Ready
+        
+      AltFire_Empty:
+        DPST BCDE 1 bright A_WeaponReady(WRF_NOFIRE | WRF_NOBOB)
+        DPST E 0 A_JumpIf(CallACS("Dakka_CanRevolverReload", true) == true, "Reload_Empty")
+        DPST EFFFF 1 A_WeaponReady(WRF_NOFIRE | WRF_NOBOB)
+        goto Ready
+      
+      
+      ReloadCheck:
+        DPST A 0 A_JumpIf(CallACS("Dakka_CanRevolverReload", true) == false, "Ready_NoFire")
+        DPST A 0 A_JumpIfInventory("DakkaPistol_ShotsLeft", 1, "Reload_OneLeft")
+        goto Reload_Empty
+        
+      
+      
+      Reload:
+        // if in fire anim, go to the one with WRF_NOFIRE
+        DPST A 0 A_JumpIfInventory("DakkaPistolInAnim",     1, "Reload_MidFire")
+        DPST A 0 A_JumpIf(CallACS("Dakka_CanRevolverReload", true) == false, "Ready_NoReload")
+        DPST A 0 A_JumpIfInventory("DakkaPistol_ShotsLeft", 2, "Reload_NotEmpty")
+        DPST A 0 A_JumpIfInventory("DakkaPistol_ShotsLeft", 1, "Reload_OneLeft")
+        goto Reload_Empty
+      
+      
+      Reload_MidFire:
+        DPST F 0                A_TakeInventory("DakkaPistolSpread")
+        DPST F 0                A_TakeInventory("DakkaPistolInAnim")
+        DPST F 0                A_PlaySound("dakka/ssgload", 7)
+        DPST F 1  offset(0, 42) A_WeaponReady(WRF_NOFIRE | WRF_NOBOB)
+        DPST F 1  offset(0, 52) A_WeaponReady(WRF_NOFIRE | WRF_NOBOB)
+        DPST E 1  offset(0, 62) A_WeaponReady(WRF_NOFIRE | WRF_NOBOB)
+        DPST E 1  offset(0, 72) A_WeaponReady(WRF_NOFIRE | WRF_NOBOB)
+        DPST E 1  offset(0, 82) A_WeaponReady(WRF_NOFIRE | WRF_NOBOB)
+        
+        DPST E 10  offset(0, 92) A_WeaponReady(WRF_NOFIRE | WRF_NOBOB)
+        DPST E 0                 ACS_NamedExecuteWithResult("Dakka_PistolReload")
+        DPST E 0                 A_PlaySound("dakka/ssgclose", 7)
+        
+        DPST F 1  offset(0, 82) A_WeaponReady(WRF_NOFIRE | WRF_NOBOB)
+        DPST E 1  offset(0, 72) A_WeaponReady(WRF_NOFIRE | WRF_NOBOB)
+        DPST E 1  offset(0, 62) A_WeaponReady(WRF_NOFIRE | WRF_NOBOB)
+        DPST E 1  offset(0, 52) A_WeaponReady(WRF_NOFIRE | WRF_NOBOB)
+        DPST F 1  offset(0, 42) A_WeaponReady(WRF_NOFIRE | WRF_NOBOB)
+        DPST A 4  offset(0, 32) A_WeaponReady(WRF_NOBOB)
+        goto Ready_AutoReload
+      
+      
+      Reload_Empty:
+        DPST F 0                A_TakeInventory("DakkaPistolSpread")
+        DPST F 0                A_TakeInventory("DakkaPistolInAnim")
+        DPST F 0                A_PlaySound("dakka/ssgload", 7)
+        DPST F 1  offset(0, 42) A_WeaponReady(WRF_NOFIRE | WRF_NOBOB)
+        DPST F 1  offset(0, 52) A_WeaponReady(WRF_NOFIRE | WRF_NOBOB)
+        DPST E 1  offset(0, 62) A_WeaponReady(WRF_NOFIRE | WRF_NOBOB)
+        DPST E 1  offset(0, 72) A_WeaponReady(WRF_NOFIRE | WRF_NOBOB)
+        DPST E 1  offset(0, 82) A_WeaponReady(WRF_NOFIRE | WRF_NOBOB)
+        
+        DPST E 10  offset(0, 92) A_WeaponReady(WRF_NOFIRE | WRF_NOBOB)
+        DPST E 0                 ACS_NamedExecuteWithResult("Dakka_PistolReload")
+        DPST E 0                 A_PlaySound("dakka/ssgclose", 7)
+        
+        DPST F 1  offset(0, 82) A_WeaponReady(WRF_NOFIRE | WRF_NOBOB)
+        DPST E 1  offset(0, 72) A_WeaponReady(WRF_NOFIRE | WRF_NOBOB)
+        DPST E 1  offset(0, 62) A_WeaponReady(WRF_NOFIRE | WRF_NOBOB)
+        DPST E 1  offset(0, 52) A_WeaponReady(WRF_NOFIRE | WRF_NOBOB)
+        DPST F 1  offset(0, 42) A_WeaponReady(WRF_NOFIRE | WRF_NOBOB)
+        DPST A 2  offset(0, 32) A_WeaponReady(WRF_NOFIRE | WRF_NOBOB)
+        DPST A 4  offset(0, 32) A_WeaponReady(WRF_NOBOB)
+        goto Ready_AutoReload
+      
+      
+      Reload_OneLeft:
+        DPST F 0                A_TakeInventory("DakkaPistolSpread")
+        DPST F 0                A_TakeInventory("DakkaPistolInAnim")
+        DPST F 0                A_PlaySound("dakka/ssgload", 7)
+        DPST F 1  offset(0, 42) A_WeaponReady(WRF_NOSECONDARY | WRF_NOBOB)
+        DPST F 1  offset(0, 52) A_WeaponReady(WRF_NOSECONDARY | WRF_NOBOB)
+        DPST E 1  offset(0, 62) A_WeaponReady(WRF_NOSECONDARY | WRF_NOBOB)
+        DPST E 1  offset(0, 72) A_WeaponReady(WRF_NOSECONDARY | WRF_NOBOB)
+        DPST E 1  offset(0, 82) A_WeaponReady(WRF_NOSECONDARY | WRF_NOBOB)
+        
+        DPST E 10  offset(0, 92) A_WeaponReady(WRF_NOSECONDARY | WRF_NOBOB)
+        DPST E 0                 ACS_NamedExecuteWithResult("Dakka_PistolReload")
+        DPST E 0                 A_PlaySound("dakka/ssgclose", 7)
+        
+        DPST F 1  offset(0, 82) A_WeaponReady(WRF_NOSECONDARY | WRF_NOBOB)
+        DPST E 1  offset(0, 72) A_WeaponReady(WRF_NOSECONDARY | WRF_NOBOB)
+        DPST E 1  offset(0, 62) A_WeaponReady(WRF_NOSECONDARY | WRF_NOBOB)
+        DPST E 1  offset(0, 52) A_WeaponReady(WRF_NOSECONDARY | WRF_NOBOB)
+        DPST F 1  offset(0, 42) A_WeaponReady(WRF_NOSECONDARY | WRF_NOBOB)
+        DPST A 4  offset(0, 32) A_WeaponReady(WRF_NOBOB)
+        goto Ready_AutoReload
+      
+      
+      Reload_NotEmpty:
+        DPST F 0                A_TakeInventory("DakkaPistolSpread")
+        DPST F 0                A_TakeInventory("DakkaPistolInAnim")
+        DPST F 0                A_PlaySound("dakka/ssgload", 7)
+        DPST F 1  offset(0, 42) A_WeaponReady(WRF_NOBOB)
+        DPST F 1  offset(0, 52) A_WeaponReady(WRF_NOBOB)
+        DPST E 1  offset(0, 62) A_WeaponReady(WRF_NOBOB)
+        DPST E 1  offset(0, 72) A_WeaponReady(WRF_NOBOB)
+        DPST E 1  offset(0, 82) A_WeaponReady(WRF_NOBOB)
+        
+        DPST E 10  offset(0, 92) A_WeaponReady(WRF_NOBOB)
+        DPST E 0                 ACS_NamedExecuteWithResult("Dakka_PistolReload")
+        DPST E 0                 A_PlaySound("dakka/ssgclose", 7)
+        
+        DPST F 1  offset(0, 82) A_WeaponReady(WRF_NOBOB)
+        DPST E 1  offset(0, 72) A_WeaponReady(WRF_NOBOB)
+        DPST E 1  offset(0, 62) A_WeaponReady(WRF_NOBOB)
+        DPST E 1  offset(0, 52) A_WeaponReady(WRF_NOBOB)
+        DPST F 1  offset(0, 42) A_WeaponReady(WRF_NOBOB)
+        DPST A 4  offset(0, 32) A_WeaponReady(WRF_NOBOB)
+        goto Ready_AutoReload
+    }
+}
