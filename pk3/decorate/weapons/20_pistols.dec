@@ -40,7 +40,7 @@ actor DWep_Pistols: DoomWeapon
     Weapon.AmmoType2    "DakkaPistol_ShotsLeft"
     Weapon.AmmoUse1     1
     Weapon.AmmoUse2     0
-    Weapon.AmmoGive     14
+    Weapon.AmmoGive     28
 
     Weapon.BobStyle InverseSmooth
     Weapon.BobSpeed 2.5
