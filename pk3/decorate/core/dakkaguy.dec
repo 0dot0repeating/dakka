@@ -20,7 +20,7 @@ actor Dakkaguy: PlayerPawn
 
     Player.StartItem "DWep_Pistols"
     Player.StartItem "DWep_Fist"
-    Player.StartItem "DakkaBullet_50AE", 56
+    Player.StartItem "DakkaBullet_50AE", 70
 
     Player.CrouchSprite "DPLC"
 

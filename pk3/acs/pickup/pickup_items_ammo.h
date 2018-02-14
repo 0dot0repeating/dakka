@@ -50,7 +50,7 @@ int PKP_DefaultAmmoCount[AMMOCOUNT] =
 {
     // DAKKA (10)
     60,             // scrap
-    72,             // .50AE
+    70,             // .50AE
     16,             // shells
     6,              // grenades
     160,            // 5mm
