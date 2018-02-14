@@ -156,7 +156,7 @@ int AmmoRegen_AmmoTypes[AMMOREGENCOUNT] =
 
 int AmmoRegen_PerSecond[AMMOREGENCOUNT] =
 {
-    4.0,
+    12.0,
     2.0,
     0.8,
 
