@@ -87,6 +87,13 @@ most important things:
     enemies with plasma nails, or do you want to charge up a lightning storm to
     roast everyone in front of you? Either way, the lancer has you covered.
 
+- Why did the BFG of a mod called *DAKKA* not exemplify the idea of dakka? To be
+    honest, I couldn't tell you, so I fixed that. The primary fire of the BFG is
+    now an endless deluge of green plasma death, while the alt fire spits out an
+    entire wall of plasma orbs, which then seek and destroy your current target.
+    Either way, your enemies will die in a maelstrom of plasma, and that's the
+    way it should've been from the start.
+
 - The berserk pickup, now vacant due to the minigun changing spots, is now occupied
     by the **VAMPIRE SPHERE.** Every kill you make grants you health, with more
     health being granted for tougher enemies and being low on health yourself.
