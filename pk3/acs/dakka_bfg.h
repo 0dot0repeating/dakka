@@ -5,9 +5,6 @@ function void BFG_AutoReload(void)
 {
     int pln = PlayerNumber();
 
-    // Don't tick down auto reload timer if it's in our hands
-    if (CheckWeapon("DWep_BFG9000")) { return; }
-
     int time = max(0, AutoReloadCooldowns[pln][1] - 1);
     if (time == 0) { SetInventory("BFGNeedsReload", 0); }
 
