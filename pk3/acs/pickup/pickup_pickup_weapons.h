@@ -224,5 +224,15 @@ script "PWeapon_Switch" (int wepIndex) clientside
         break;
     }
 
-    if (doswitch) { SetWeapon(weapon); }
+    if (doswitch)
+    { 
+        if (Pickup_IsZandronum() && (PlayerNumber() == ConsolePlayerNumber()))
+        {
+            RequestScriptPuke("Dakka_SwitchingTo", wepIndex);
+        }
+        else
+        {
+            SetWeapon(weapon);
+        }
+    }
 }
