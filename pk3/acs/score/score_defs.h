@@ -86,10 +86,11 @@ int Air_FloorHeight[PLAYERMAX];
 #define P_UTHP_MIN          2000
 #define P_UTHP_MAX          10000
 
-#define ST_SET          0
-#define ST_FULLHEAL     1
-#define ST_UT_KILLS     2
-#define ST_UT_HP        3
+#define ST_LASTSET      0
+#define ST_WORLDTIMER   1
+#define ST_FULLHEAL     2
+#define ST_UT_KILLS     3
+#define ST_UT_HP        4
 
 world int 22:Score_Thresholds[];
 
