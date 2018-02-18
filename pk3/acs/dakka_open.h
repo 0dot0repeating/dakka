@@ -66,6 +66,8 @@ script "Dakka_Open" open
         Sender_UpdateClients();
         Sender_ActuallySend();
         Delay(1);
+        
+        Score_Thresholds[ST_WORLDTIMER]++;
     }
 }
 
