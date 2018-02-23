@@ -10,8 +10,6 @@ script "Dakka_Respawn" respawn
 }
 
 
-int DakkaEnterLocks[PLAYERMAX];
-
 script "Dakka_Spawn" (int respawned)
 {
     if (GameType() == GAME_TITLE_MAP) { terminate; }
@@ -24,9 +22,6 @@ script "Dakka_Spawn" (int respawned)
     int classNum = Pickup_ClassNumber(0);
 
     int curScore, lastScore;
-
-    int myLockVal = DakkaEnterLocks[pln] + 1;
-    DakkaEnterLocks[pln] = myLockVal;
 
     int bfgPtrTID = 0;
 
@@ -45,8 +40,11 @@ script "Dakka_Spawn" (int respawned)
     }
 
     curScore = Score_GetScore(pln);
-
-    while (DakkaEnterLocks[pln] == myLockVal)
+    
+    if (CheckInventory("DakkaEnterLock")) { terminate; }
+    GiveInventory("DakkaEnterLock", 1);
+    
+    while (true)
     {
         // Doesn't need its own script
         if (classNum == Cl_Dakkaguy) { SetInventory("DWep_Fist", 1); }
@@ -128,7 +126,6 @@ script "Dakka_Return" return
 
 script "Dakka_Disconnect" (int pln) disconnect
 {
-    DakkaEnterLocks[pln] = false;
     Score_ResetMask(pln, REWARDMASK_ALL);
     
     for (int i = 0; i < SLOOP_COUNT; i++)

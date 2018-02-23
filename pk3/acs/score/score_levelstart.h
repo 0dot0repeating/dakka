@@ -1,24 +1,33 @@
 int Score_TotalNums[2];
 
-function void Score_CalcMapPoints(void)
+script "Score_InHub" (void)
 {
-    if (Score_Thresholds[ST_LASTSET] == Score_Thresholds[ST_WORLDTIMER] + 1) { return; }
-    
-    int inhub = false;
     int i;
     
-    for (i = 0; i < 64; i++)
+    for (i = 0; i < PLAYERMAX; i++)
     {
         SetActivator(0);
         if (i < 8) { SetActivator(0, AAPTR_PLAYER1 << i); }
         else       { SetActivatorToPlayer(i); }
         
         if (ClassifyActor(0) & ACTOR_WORLD) { continue; }
-        inhub = inhub || CheckInventory("HubTracker");
-    }
         
-    if (inhub && !GetCVar("dakka_ignorehubs")) { return; }
+        if (CheckInventory("HubTracker"))
+        {
+            SetResultValue(true);
+            terminate;
+        }
+    }
+    
+    SetResultValue(false);
+}
 
+function void Score_CalcMapPoints(void)
+{
+    if (Score_Thresholds[ST_LASTSET] == Score_Thresholds[ST_WORLDTIMER] + 1) { return; }
+    if (ACS_NamedExecuteWithResult("Score_InHub") && !GetCVar("dakka_ignorehubs")) { return; }
+
+    int i;
     int totalMons   = 0;
     int totalPoints = 0;
 

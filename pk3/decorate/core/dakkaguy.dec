@@ -16,8 +16,6 @@ actor Dakkaguy: PlayerPawn
     Player.HexenArmor 0, 20, 5, 15, 10
     Player.HealRadiusType "Health"
 
-    Player.StartItem "DakkaClassItem"
-
     Player.StartItem "DWep_Pistols"
     Player.StartItem "DWep_Fist"
     Player.StartItem "DakkaBullet_50AE", 70
