@@ -55,6 +55,7 @@ actor Toggle: CustomInventory
     }
 }
 
+actor DakkaEnterLock:    Counter {}
 actor DakkaInfiniteAmmo: Boolean {}
 actor DakkaDoneAMap:     Boolean {}
 
