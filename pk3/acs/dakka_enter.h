@@ -9,6 +9,7 @@ script "Dakka_Respawn" respawn
     ACS_NamedExecuteWithResult("Dakka_Spawn", true);
 }
 
+int DakkaEnterLocks[PLAYERMAX];
 
 script "Dakka_Spawn" (int respawned)
 {
@@ -41,10 +42,10 @@ script "Dakka_Spawn" (int respawned)
 
     curScore = Score_GetScore(pln);
     
-    if (CheckInventory("DakkaEnterLock")) { terminate; }
-    GiveInventory("DakkaEnterLock", 1);
+    int locknum = DakkaEnterLocks[pln]++;
+    DakkaEnterLocks[pln] = locknum;
     
-    while (true)
+    while (DakkaEnterLocks[pln] == locknum)
     {
         // Doesn't need its own script
         if (classNum == Cl_Dakkaguy) { SetInventory("DWep_Fist", 1); }
