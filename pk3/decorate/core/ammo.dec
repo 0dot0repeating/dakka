@@ -1,79 +1,157 @@
 actor DakkaBullet_50AE: Ammo
 {
-    Inventory.Icon "CLIPA0"
+    Inventory.PickupMessage "$DAKKA_PK_50AE"
+    Inventory.Icon "DCLPA0"
 
     Inventory.Amount    7
     Inventory.MaxAmount 210
     Ammo.BackpackAmount    42
     Ammo.BackpackMaxAmount 420
+    
+    States
+    {
+      Spawn:
+        DCLP A -1
+        stop
+    }
 }
 
 actor DakkaBullet_5mm: Ammo
 {
+    Inventory.PickupMessage "$DAKKA_PK_5MM"
     Inventory.Icon "AMMOA0"
 
-    Inventory.Amount 25
+    Inventory.Amount 50
     Inventory.MaxAmount 500
     Ammo.BackpackAmount     50
     Ammo.BackpackMaxAmount  1000
+    
+    States
+    {
+      Spawn:
+        AMMO A -1
+        stop
+    }
 }
 
 actor DakkaShells: Ammo
 {
+    Inventory.PickupMessage "$DAKKA_PK_SHELL"
     Inventory.Icon "SHELA0"
 
     Inventory.Amount 4
     Inventory.MaxAmount 100
     Ammo.BackpackAmount 8
     Ammo.BackpackMaxAmount 200
+    
+    States
+    {
+      Spawn:
+        SHEL A -1
+        stop
+    }
 }
 
 actor DakkaShotGrenades: Ammo
 {
+    Inventory.PickupMessage "$DAKKA_PK_GRENADE"
     Inventory.Icon "DGRNZ0"
 
     Inventory.Amount    2
     Inventory.MaxAmount 30
     Ammo.BackpackAmount 4
     Ammo.BackpackMaxAmount 60
+    
+    States
+    {
+      Spawn:
+        DGRN Z -1
+        stop
+    }
 }
 
 actor DakkaFlamerFuel: Ammo
 {
+    Inventory.PickupMessage "$DAKKA_PK_FLAMERFUEL"
     Inventory.Icon "AGASA0"
 
     Inventory.Amount 4
     Inventory.MaxAmount 40
     Ammo.BackpackAmount 8
     Ammo.BackpackMaxAmount 80
+    
+    States
+    {
+      Spawn:
+        AGAS A -1
+        stop
+    }
 }
 
 actor DakkaRockets: Ammo
 {
+    Inventory.PickupMessage "$DAKKA_PK_ROCKET"
     Inventory.Icon "BROKA0"
 
     Inventory.Amount 4
     Inventory.MaxAmount 120
     Ammo.BackpackAmount 12
     Ammo.BackpackMaxAmount 240
+    
+    States
+    {
+      Spawn:
+        BROK A -1
+        stop
+    }
 }
 
 actor DakkaCells: Ammo
 {
+    Inventory.PickupMessage "$DAKKA_PK_CELL"
     Inventory.Icon "CELLA0"
 
     Inventory.Amount 20
     Inventory.MaxAmount 400
     Ammo.BackpackAmount 40
     Ammo.BackpackMaxAmount 800
+    
+    States
+    {
+      Spawn:
+        CELL A -1
+        stop
+    }
 }
 
 actor DakkaScrap: Ammo
 {
+    Inventory.PickupMessage "$DAKKA_PK_SCRAP"
     Inventory.Icon "SPAKA0"   // is dum
 
     Inventory.Amount 16
     Inventory.MaxAmount 240
     Ammo.BackpackAmount 0
     Ammo.BackpackMaxAmount 480
+    
+    States
+    {
+      Spawn:
+        SPAK A -1
+        stop
+    }
+}
+
+actor Dakka_TinyClip: DakkaBullet_50AE
+{
+    Radius 8
+    Scale 0.75
+    Inventory.Amount 3
+}
+
+
+actor Dakka_BigClip: DakkaBullet_50AE
+{
+    Radius 8
+    Inventory.Amount 7
 }

@@ -3,3 +3,10 @@ const int TRACE_BULLET      = 0;
 const int TRACE_BULLET_BIG  = 1;
 const int TRACE_ARC_FIRER   = 2;
 const int TRACE_ARC_MASTER  = 3;
+
+const int PUAC_SHELL        = 0x01;
+const int PUAC_GRENADE      = 0x02;
+const int PUAC_5MM          = 0x04;
+const int PUAC_FLAMER       = 0x08;
+const int PUAC_ROCKET       = 0x10;
+const int PUAC_CELL         = 0x20;
