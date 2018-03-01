@@ -1228,3 +1228,11 @@ function void Rotate3D(int x, int y, int z, int yaw, int pitch)
     Rotate3D_Ret[2] = FixedMul(x,                   -sin(pitch))
                     + FixedMul(z,                    cos(pitch));
 }
+
+
+function int ActivatorToPlayer(int i)
+{
+    if (i < 0 || i >= PLAYERMAX) { return false; }
+    if (i < 8) { SetActivator(0, AAPTR_PLAYER1 << i); }
+    return SetActivatorToPlayer(i);
+}

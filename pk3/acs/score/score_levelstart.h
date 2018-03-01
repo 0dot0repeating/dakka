@@ -7,8 +7,7 @@ script "Score_InHub" (void)
     for (i = 0; i < PLAYERMAX; i++)
     {
         SetActivator(0);
-        if (i < 8) { SetActivator(0, AAPTR_PLAYER1 << i); }
-        else       { SetActivatorToPlayer(i); }
+        ActivatorToPlayer(i);
         
         if (ClassifyActor(0) & ACTOR_WORLD) { continue; }
         
