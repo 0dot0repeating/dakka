@@ -660,7 +660,7 @@ actor ScrapperGrenade
     -NOGRAVITY
     Gravity 0.65  // I sure do love this gravity value.
 
-    Scale 0.35
+    Scale 0.3
 
     var int user_spawnvelx;
     var int user_spawnvely;
@@ -676,7 +676,11 @@ actor ScrapperGrenade
       Spawn:
         SCRN A 0 bright
         SCRN A 0 A_PlaySound("dakka/scrapfly", 7)
-        SCRN A 0 A_Jump(255, "Spawn1", "Spawn2", "Spawn3")
+      
+      SpawnChoose:
+        SCRN A 0 A_JumpIf((user_t / 4) % 3 == 0, "Spawn1")
+        SCRN A 0 A_JumpIf((user_t / 4) % 3 == 1, "Spawn2")
+        SCRN A 0 A_JumpIf((user_t / 4) % 3 == 2, "Spawn3")
         goto Spawn1
 
       Spawn1:
@@ -692,15 +696,15 @@ actor ScrapperGrenade
         goto SpawnCommon
 
       SpawnCommon:
-        SCRN A 1 bright ACS_NamedExecuteWithResult("Dakka_ProjUpdate")
-        SCRN A 0 A_SpawnItemEx("ScrapperTrail3", -(1*momx)/2.0, (1*momy)/2.0, -(1*momz)/2.0, 0,0,0, 0, SXF_ABSOLUTEANGLE)
-        SCRN A 0 A_SpawnItemEx("ScrapperTrail3", 0,              0,           0)
-        SCRN A 0 A_JumpIf(user_t % 2 == 0, "SpawnScrap")
-        loop
+        SCRN "#" 1 bright ACS_NamedExecuteWithResult("Dakka_ProjUpdate")
+        SCRN "#" 0 A_SpawnItemEx("ScrapperTrail3", -(1*momx)/2.0, (1*momy)/2.0, -(1*momz)/2.0, 0,0,0, 0, SXF_ABSOLUTEANGLE)
+        SCRN "#" 0 A_SpawnItemEx("ScrapperTrail3", 0,              0,           0)
+        SCRN "#" 0 A_JumpIf(user_t % 2 == 0, "SpawnScrap")
+        goto SpawnChoose
 
       SpawnScrap:
-        SCRN A 0 A_SpawnItemEx("SplitScrap", 0,0,0, random(0,90)/10.0, 0, random(-30,60)/10.0, random(0, 360), SXF_TRANSFERPOINTERS)
-        goto SpawnCommon
+        SCRN "#" 0 A_SpawnItemEx("SplitScrap", 0,0,0, random(0,90)/10.0, 0, random(-30,60)/10.0, random(0, 360), SXF_TRANSFERPOINTERS)
+        goto SpawnChoose
 
       Death:
         TNT1 A 0 ACS_NamedExecuteWithResult("Dakka_ProjDeathUpdate")
