@@ -225,7 +225,7 @@ script "Dakka_SoundLooper_FollowPlayer" (int pln, int syncPln) clientside
         int myTID     = UniqueTID();
         Thing_ChangeTID(0, myTID);
 
-        SetActivatorToPlayer(pln);
+        ActivatorToPlayer(pln);
 
         if (!PlayerInGame(pln) || (ClassifyActor(0) & ACTOR_WORLD))
         {
