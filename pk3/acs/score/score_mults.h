@@ -15,7 +15,7 @@ function int SMult_WeaponSwitch(int pln, int myhp)
     // Can't use Switcharoo if we don't update Switcharoo
     if (classNum == -1 || !SCORE_UpdatesSwitcharoo[classNum]) { return 0.0; }
 
-    int maxtics = round(SWITCHAROO_TICSPER100HP * myhp * 0.01);
+    int maxtics = oldRound(SWITCHAROO_TICSPER100HP * myhp * 0.01);
     maxtics = middle(SWITCHAROO_MINTICS, maxtics, SWITCHAROO_MAXTICS);
     int cutoff = Timer() - maxtics;
 
@@ -80,7 +80,7 @@ function int AddKillstreak(int pln, int myhp)
 {
     if (pln < 0 || pln >= PLAYERMAX) { return 0; }
 
-    int timeAdd = round(KILLSTREAK_TICSPER100HP * myhp * 0.01);
+    int timeAdd = oldROund(KILLSTREAK_TICSPER100HP * myhp * 0.01);
     timeAdd = middle(KILLSTREAK_MINTICS, timeAdd, KILLSTREAK_MAXTICS);
 
     PlayerKillStreaks[pln][KS_COUNT]        += 1;

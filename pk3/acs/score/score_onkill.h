@@ -107,16 +107,16 @@ script "Dakka_Score" (int pointValue)
     Thing_ChangeTID(myTID,    myTID_old);
     Thing_ChangeTID(firerTID, firerTID_old);
 
-    int points_switcharoo   = round(pointValue * SMult_WeaponSwitch(pln, myhp));
-    int points_killstreak   = round(pointValue * SMult_Killstreak(pln));
-    int points_untouchable  = round(pointValue * SMult_Untouchable(pln, myhp));
-    int points_bonedry      = round(pointValue * SMult_BoneDry());
-    int points_soreloser    = round(pointValue * SMult_SoreLoser());
-    int points_brawler      = round(pointValue * SMult_Brawler());
-    int points_air          = round(pointValue * SMult_Air(pln));
-    int points_curveball    = round(pointValue * SMult_Curveball(curveCheck));
-    int points_scrapping    = round(pointValue * SMult_Scrapping(pln));
-    int points_pointblank   = round(pointValue * SMult_PointBlank(myX, myY, myZ, myRadius, myHeight, plX, plY, plZ, plRadius, plHeight));
+    int points_switcharoo   = oldRound(pointValue * SMult_WeaponSwitch(pln, myhp));
+    int points_killstreak   = oldRound(pointValue * SMult_Killstreak(pln));
+    int points_untouchable  = oldRound(pointValue * SMult_Untouchable(pln, myhp));
+    int points_bonedry      = oldRound(pointValue * SMult_BoneDry());
+    int points_soreloser    = oldRound(pointValue * SMult_SoreLoser());
+    int points_brawler      = oldRound(pointValue * SMult_Brawler());
+    int points_air          = oldRound(pointValue * SMult_Air(pln));
+    int points_curveball    = oldRound(pointValue * SMult_Curveball(curveCheck));
+    int points_scrapping    = oldRound(pointValue * SMult_Scrapping(pln));
+    int points_pointblank   = oldRound(pointValue * SMult_PointBlank(myX, myY, myZ, myRadius, myHeight, plX, plY, plZ, plRadius, plHeight));
 
     Score_ModBothScores(pln, pointValue);
     Score_ModBothScores(pln, points_switcharoo);
@@ -165,7 +165,7 @@ script "Dakka_Score" (int pointValue)
 script "Dakka_Infighter" (int pointValue)
 {
     int points_base      = pointValue;
-    int points_infighter = round(pointValue * SMult_Infighter());
+    int points_infighter = oldRound(pointValue * SMult_Infighter());
     int bonustime = Timer();
 
     int i;

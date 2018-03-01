@@ -935,12 +935,12 @@ function int roundAway(int toround)
     return ftoi(toround + (1.0 - i));
 }
 
-function int round(int toround)
+function int oldRound(int toround)
 {
     return ftoi(toround + 0.5);
 }
 
-function int ceil(int toround)
+function int oldCeil(int toround)
 {
     return ftoi(toround + (1.0-1));
 }
