@@ -52,7 +52,7 @@ script "Dakka_Spread" (int x, int y)
     int center = lo + centerDist;
 
     int rand = random(0, 1.0);
-    int randIndex = round(rand * DAKKASPREAD_ENTRIES);
+    int randIndex = oldRound(rand * DAKKASPREAD_ENTRIES);
 
     int ret = FixedMul(centerDist, Dakka_SpreadTable[randIndex]) + center;
 
@@ -98,9 +98,16 @@ script "Dakka_CalcProjAngle" (int speed, int spread_angle, int spread_pitch, int
     int spawnVZ = FixedMul(speed, sin(randPitch));
 
     Rotate3D(spawnVX, spawnVY, spawnVZ, angle, pitch);
+    
+    int endVX = Rotate3D_Ret[0];
+    int endVY = Rotate3D_Ret[1];
+    int endVZ = Rotate3D_Ret[2];
 
-    SetUserVariable(0, "user_spawnvelx", Rotate3D_Ret[0]);
-    SetUserVariable(0, "user_spawnvely", Rotate3D_Ret[1]);
-    SetUserVariable(0, "user_spawnvelz", Rotate3D_Ret[2]);
+    SetUserVariable(0, "user_spawnvelx", endVX);
+    SetUserVariable(0, "user_spawnvely", endVY);
+    SetUserVariable(0, "user_spawnvelz", endVZ);
+    
+    SetActorAngle(0, VectorAngle(endVX, endVY));
+    SetActorPitch(0, -VectorAngle(VectorLength(endVX, endVY), endVZ));
 }
 
