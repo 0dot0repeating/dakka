@@ -55,7 +55,6 @@ actor Toggle: CustomInventory
     }
 }
 
-actor DakkaEnterLock:    Counter {}
 actor DakkaInfiniteAmmo: Boolean {}
 actor DakkaDoneAMap:     Boolean {}
 
@@ -84,6 +83,9 @@ actor DakkaChaingunTracker: Counter {}
 // Used in script 494 (pickup/dakka_wepdisplay.h).
 actor DPickup_SecondWepState:   Boolean {}
 actor DPickup_BundleState:      Boolean {}
+
+// Used for dakka_pickedupaclip.
+actor SpawnedClipAlready:    Boolean {}
 
 
 // HUD shit
@@ -144,6 +146,16 @@ actor DakkaShootable: Trigger
     {
       Use:
         TNT1 A 0 A_ChangeFlag("SHOOTABLE", 1)
+        stop
+    }
+}
+
+actor DakkaNotDropped: Trigger
+{
+    States
+    {
+      Use:
+        TNT1 A 0 A_ChangeFlag("DROPPED", 0)
         stop
     }
 }

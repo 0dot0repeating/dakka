@@ -28,6 +28,12 @@ DAKKA_PK_CELL               = "Cells";
 DAKKA_PK_CELLPACK           = "Big cells";
 DAKKA_PK_BACKPACK           = "Backpack!";
 
+DAKKA_PK_50AE               = "Pistol bullets";
+DAKKA_PK_SCRAP              = "Scrap?";
+DAKKA_PK_GRENADE            = "Grenades";
+DAKKA_PK_5MM                = "Minigun bullets";
+DAKKA_PK_FLAMERFUEL         = "Flamer fuel";
+
 
 DAKKA_PK_FISTS              = "Two hands!";
 DAKKA_MP_FISTS              = "%k smacked down %o.";

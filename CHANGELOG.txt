@@ -141,10 +141,10 @@ GENERAL CHANGES:
     The functionality is the same, but it's much sleeker and sharper, and comes
     with better inventory support to boot.
 
-- The dakka_bundleplasma and dakka_bundlebfg CVars are gone, as they no longer
-    serve any purpose.
-
 - Sound levels have been looked over and normalized, for the most part.
+
+- There is now an options menu, since there is now a staggering amount of CVars
+    and I don't feel like documenting them all in this changelog.
 
 - DAKKA now has help pages, detailing what all the weapons do, as well as the
     vampire sphere and changes made to armor and health. There's also an awful
