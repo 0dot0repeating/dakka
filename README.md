@@ -62,7 +62,7 @@ most important things:
     walls. Or give them a one-two-**THREE** to bust the skulls of both the poor sap
     in front of your fist, and all his buddies next to him.
     
-- The pistols have gotten a complete overhaul! No longer the weird, odd looking
+- The pistols have gotten a complete overhaul! No longer the boring, odd looking
     Berettas you've been looking at since 1994, but instead sleek, sexy chrome-
     black hand cannons that do a far better job convincing you to use them! You
     gotta reload them every now and then now, but the shots hit harder, the guns
@@ -105,7 +105,7 @@ most important things:
     `RGF_NOSIGHT` parameter for `A_RadiusGive`. But monsters will always give you
     points when they die, in either port!
 
-- [The HUD isn't ugly anymore!](https://imgur.com/a/VLIrg) Seriously, what was I
+- [The HUD isn't ugly anymore!](https://imgur.com/a/LaoAI) Seriously, what was I
     *thinking* with those rounded corners and that awful alignment?
 
 
