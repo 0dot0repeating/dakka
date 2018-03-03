@@ -230,7 +230,6 @@ OptionMenu "Dakka_UserOptions"
     StaticText ""
 
     Control "Slot 1, fist first",     "fistswitch"
-    Control "Slot 2, pistol first",   "pistswitch"
     Control "Slot 3, shotgun first",  "shotswitch"
 
     StaticText ""
