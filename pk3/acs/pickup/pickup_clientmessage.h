@@ -213,17 +213,7 @@ script "Pickup_ShowMessage" (int mdata_index, int data1, int data2) clientside
     // If silent pickup's on, can't let other people hear it.
 
     int pickupSound = PKP_PickupSounds[itemNum][classNum + 1];
-    int silent      = GetCvar("compat_silentpickup");
-
-    if (silent)
-    {
-        // Only for the right player.
-        if (pln == cpln) { LocalAmbientSound(pickupSound, 127); }
-    }
-    else
-    {
-        ActivatorSound(pickupSound, 127);
-    }
+    PlaySound(0, pickupSound, CHAN_ITEM, 1.0, false, ATTN_NORM, GetCvar("compat_silentpickup"));
 
     // And pickup flash.
 
