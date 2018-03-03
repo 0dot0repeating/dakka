@@ -3,8 +3,5 @@ addkeysection "Dakka" Dakka
 alias fistswitch "pukename Dakka_SwitchWeps 0 1"
 addmenukey "Slot 1, fist first" fistswitch
 
-alias pistswitch "pukename Dakka_SwitchWeps 2 3"
-addmenukey "Slot 2, pistol first" pistswitch
-
-alias shotswitch "pukename Dakka_SwitchWeps 4 5"
+alias shotswitch "pukename Dakka_SwitchWeps 3 4"
 addmenukey "Slot 3, shotgun first" shotswitch
