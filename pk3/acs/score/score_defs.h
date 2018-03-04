@@ -56,6 +56,7 @@
 #define POINTBLANK_MULT         0.1
 
 #define INFIGHTER_MULT          0.2
+#define DARWIN_MULT             2.0
 
 // Allowing three fire modes.
 //  0 - primary   (+attack)
@@ -142,7 +143,7 @@ int Brawler_MeleeMults[KNOWNMELEE] =
 };
 
 
-#define BONUSCOUNT  12
+#define BONUSCOUNT  13
 
 #define BS_BASE         0
 #define BS_SPREE        1
@@ -151,11 +152,12 @@ int Brawler_MeleeMults[KNOWNMELEE] =
 #define BS_SWITCHAROO   4
 #define BS_SCRAPPING    5
 #define BS_CURVEBALL    6
-#define BS_AIR          7
-#define BS_BONEDRY      8
-#define BS_SORELOSER    9
-#define BS_BRAWLER      10
+#define BS_DARWIN       7
+#define BS_AIR          8
+#define BS_BONEDRY      9
+#define BS_SORELOSER    10
 #define BS_POINTBLANK   11
+#define BS_BRAWLER      12
 
 // CR_BRICK  is efficiency
 // CR_GREEN  is style
@@ -170,11 +172,12 @@ int BonusNames[BONUSCOUNT] =
     "Switcharoo",
     "Scrapping",
     "Curveball",
+    "Darwin",
     "Air",
     "Redline",
     "Swan Song",
-    "Brawler",
     "Point-Blank",
+    "Brawler",
 };
 
 int BonusColors[BONUSCOUNT] =
@@ -183,6 +186,7 @@ int BonusColors[BONUSCOUNT] =
     "DScore_Efficiency",
     "DScore_Efficiency",
     "DScore_Efficiency",
+    "DScore_Style",
     "DScore_Style",
     "DScore_Style",
     "DScore_Style",

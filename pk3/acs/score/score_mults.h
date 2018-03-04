@@ -227,3 +227,9 @@ function int SMult_Infighter(void)
 {
     return INFIGHTER_MULT;
 }
+
+
+function int SMult_Darwin(void)
+{
+    return DARWIN_MULT;
+}

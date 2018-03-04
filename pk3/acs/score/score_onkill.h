@@ -57,6 +57,14 @@ script "Dakka_Score" (int pointValue)
     }
 
     int firerTID_old = ActivatorTID();
+    
+    if (firerTID_old == myTID)
+    {
+        ACS_NamedExecuteWithResult("Dakka_InfighterSelf", pointValue);
+        Thing_ChangeTID(myTID, myTID_old);
+        terminate;
+    }
+    
     int firerTID     = defaultTID(-1);
     int pln          = PlayerNumber();
 
@@ -140,6 +148,7 @@ script "Dakka_Score" (int pointValue)
     TmpBonuses[BS_BONEDRY]      = points_bonedry;
     TmpBonuses[BS_SORELOSER]    = points_soreloser;
     TmpBonuses[BS_BRAWLER]      = points_brawler;
+    TmpBonuses[BS_DARWIN]       = 0;
     TmpBonuses[BS_AIR]          = points_air;
     TmpBonuses[BS_CURVEBALL]    = points_curveball;
     TmpBonuses[BS_SCRAPPING]    = points_scrapping;
@@ -182,6 +191,37 @@ script "Dakka_Infighter" (int pointValue)
 
         LastBonus[i][BS_BASE]       = bonustime;
         LastBonus[i][BS_INFIGHTER]  = bonustime;
+    }
+
+    Delay(35);
+
+    for (i = 0; i < PLAYERMAX; i++)
+    {
+        ClearPoints(i, bonustime);
+    }
+}
+
+// monster nuked himself like an idiot
+script "Dakka_InfighterSelf" (int pointValue)
+{
+    int points_base      = pointValue;
+    int points_infighter = oldRound(pointValue * SMult_Darwin());
+    int bonustime = Timer();
+
+    int i;
+
+    for (i = 0; i < PLAYERMAX; i++)
+    {
+        if (!PlayerInGame(i)) { continue; }
+
+        Score_ModBothScores(i, points_base);
+        Score_ModBothScores(i, points_infighter);
+
+        BonusValues[i][BS_BASE]     += points_base;
+        BonusValues[i][BS_DARWIN]   += points_infighter;
+
+        LastBonus[i][BS_BASE]        = bonustime;
+        LastBonus[i][BS_DARWIN]      = bonustime;
     }
 
     Delay(35);
