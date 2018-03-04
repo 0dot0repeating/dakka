@@ -5,7 +5,7 @@
 
 // This defines how many different data points we should sync between the server
 //  and the clients.
-#define S2C_DATACOUNT   19
+#define S2C_DATACOUNT   20
 
 
 // Constants for identifying which data point we want to modify.
@@ -42,8 +42,9 @@
 #define S2C_D_BS_SWITCHAROO   11
 #define S2C_D_BS_SCRAPPING    12
 #define S2C_D_BS_CURVEBALL    13
-#define S2C_D_BS_AIR          14
-#define S2C_D_BS_BONEDRY      15
-#define S2C_D_BS_SORELOSER    16
-#define S2C_D_BS_BRAWLER      17
-#define S2C_D_BS_POINTBLANK   18
+#define S2C_D_BS_DARWIN       14
+#define S2C_D_BS_AIR          15
+#define S2C_D_BS_REDLINE      16
+#define S2C_D_BS_SWANSONG     17
+#define S2C_D_BS_BRAWLER      18
+#define S2C_D_BS_POINTBLANK   19
