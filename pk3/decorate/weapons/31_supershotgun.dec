@@ -566,7 +566,7 @@ actor DakkaSSG_MiniGrenade
       Detonate:
         TNT1 A 0 A_Stop
         TNT1 A 0 A_NoGravity
-        TNT1 A 0 A_Explode(22, 96, true, false, 40)
+        TNT1 A 0 A_Explode(22, 96, false, false, 40)
         TNT1 A 4 A_SpawnItemEx("MiniGrenadeExplosion_Client")
         stop
     }
