@@ -318,7 +318,7 @@ actor ShotgunMiniGrenade
       Death:
         DGRN A 0 bright A_Stop
         DGRN A 0 bright A_NoGravity
-        TNT1 A 0 A_Explode(30, 96, 1, false, 40)
+        TNT1 A 0 A_Explode(30, 96, false, false, 40)
         TNT1 A 4 A_SpawnItemEx("MiniGrenadeExplosion_Client")
         stop
     }
