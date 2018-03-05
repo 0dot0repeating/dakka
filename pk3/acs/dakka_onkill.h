@@ -1,4 +1,4 @@
-script "Dakka_OnKill" KILL
+script "Dakka_OnKill" kill
 {
 	if(!CheckFlag(0, "ISMONSTER"))
 	{

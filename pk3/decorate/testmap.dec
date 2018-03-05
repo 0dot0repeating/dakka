@@ -207,6 +207,7 @@ actor DAKKTEST_AssKicker
         BBRN A 0 A_ChangeFlag("NOPAIN", 1)
         BBRN A 0 A_PlaySound("brain/pain", CHAN_VOICE, 1, false, 0)
         BBRN A 0 A_Jump(256, 1, 2, 3, 4)
+        goto TalkShit
 
         BBRN A 0 A_PrintBold("oi bruv u wanna go ill rek ur shit 1v1 hit me again i fukn dare u dickless shite")
         goto TalkShit
