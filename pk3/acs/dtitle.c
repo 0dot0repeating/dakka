@@ -300,22 +300,21 @@ function void ShowWeaponTips(int doFade, int forceColor, int overrideColor, int 
     SetHudSize(320, 200, 0);
     SetFont("ARCFONT");
 
-    HudMessage(s:"Fists";         msgMode | HUDMSG_COLORSTRING, 21, fistColor,       70.4,  85.0, duration, 1.0, 1.0);
-    HudMessage(s:"Scrappers";     msgMode | HUDMSG_COLORSTRING, 22, scrapperColor,   70.4,  93.0, duration, 1.0, 1.0);
+    HudMessage(s:"Fists";         msgMode | HUDMSG_COLORSTRING, 21, fistColor,        85.4, 85.0, duration, 1.0, 1.0);
+    HudMessage(s:"Scrappers";     msgMode | HUDMSG_COLORSTRING, 22, scrapperColor,    85.4, 93.0, duration, 1.0, 1.0);
 
-    HudMessage(s:"Pistol";        msgMode | HUDMSG_COLORSTRING, 23, pistolColor,     160.4,  85.0, duration, 1.0, 1.0);
-    HudMessage(s:"Two pistols";   msgMode | HUDMSG_COLORSTRING, 24, pistolsColor,    160.4,  93.0, duration, 1.0, 1.0);
+    HudMessage(s:"Pistols";       msgMode | HUDMSG_COLORSTRING, 23, pistolsColor,    160.4,  89.0, duration, 1.0, 1.0);
 
-    HudMessage(s:"Shotgun";       msgMode | HUDMSG_COLORSTRING, 25, shotgunColor,    250.4,  85.0, duration, 1.0, 1.0);
-    HudMessage(s:"S. Shotgun";    msgMode | HUDMSG_COLORSTRING, 26, ssgColor,        250.4,  93.0, duration, 1.0, 1.0);
+    HudMessage(s:"Shotgun";       msgMode | HUDMSG_COLORSTRING, 24, shotgunColor,    235.4,  85.0, duration, 1.0, 1.0);
+    HudMessage(s:"S. Shotgun";    msgMode | HUDMSG_COLORSTRING, 25, ssgColor,        235.4,  93.0, duration, 1.0, 1.0);
 
-    HudMessage(s:"Minigun";       msgMode | HUDMSG_COLORSTRING, 28, minigunColor,    70.4,  109.0, duration, 1.0, 1.0);
+    HudMessage(s:"Minigun";       msgMode | HUDMSG_COLORSTRING, 26, minigunColor,    70.4,  109.0, duration, 1.0, 1.0);
 
-    HudMessage(s:"Impaler";       msgMode | HUDMSG_COLORSTRING, 29, impalerColor,    130.4, 109.0, duration, 1.0, 1.0);
+    HudMessage(s:"Impaler";       msgMode | HUDMSG_COLORSTRING, 27, impalerColor,    130.4, 109.0, duration, 1.0, 1.0);
 
-    HudMessage(s:"Lancer";        msgMode | HUDMSG_COLORSTRING, 30, plasmaColor,     190.4, 109.0, duration, 1.0, 1.0);
+    HudMessage(s:"Lancer";        msgMode | HUDMSG_COLORSTRING, 28, plasmaColor,     190.4, 109.0, duration, 1.0, 1.0);
 
-    HudMessage(s:"BFG9000";       msgMode | HUDMSG_COLORSTRING, 31, bfgColor,        250.4, 109.0, duration, 1.0, 1.0);
+    HudMessage(s:"BFG9000";       msgMode | HUDMSG_COLORSTRING, 29, bfgColor,        250.4, 109.0, duration, 1.0, 1.0);
 }
 
 script "titlemap_weptips" (int flash, int duration)
@@ -373,7 +372,7 @@ script "titlemap_scoretips" (int flash, int duration)
 }
 
 
-#define GAMETIPCOUNT    21
+#define GAMETIPCOUNT    23
 
 int GameTips[GAMETIPCOUNT] =
 {
@@ -392,7 +391,8 @@ int GameTips[GAMETIPCOUNT] =
     "Scrappers + small places = very dead demons.",
 
     // Pistols
-    "The minigun tends to be overkill on weaker enemies, so why not use that pistol ammo? You weren't using it anyway.",
+    "Your pistols are always fully loaded when you pull them out, making them great for saving ammo for your other guns!",
+    "The faster you fire your pistols, the less accurate they get. Space your shots out a bit if you're trying to snipe.",
 
     // Shotgun
     "If you disable the \cdGrenades auto-detonate\c- setting, shotgun grenades will stick to whatever they hit. Detonate them with the \cfreload\c- key!",
@@ -415,6 +415,9 @@ int GameTips[GAMETIPCOUNT] =
     // Lancer
     "Plasma nails pierce through enemies, so line them up and get a two-for-one deal on your cells!",
     "The lancer's arcs like to travel forward as much as possible. Line up your enemies when using it; it's more effective that way.",
+    
+    // BFG9000
+    "If you aim at something shootable, the BFG targets that enemy for a second instead of your crosshair. So don't worry so much about keeping your aim steady.",
 };
 
 
@@ -506,7 +509,7 @@ int DumbTips[DUMBTIPCOUNT] =
     "Why aren't you lifting \cgRIGHT NOW?\c-",
     "Mom, get off the phone! I'm downloading something!",
     "\cgSWORN TO AVENGE\n\cgCONDEMN TO HELL\n\cgTEMPT NOT THE BLADE\n\crALL FEAR THE SENTINEL",
-    "Strange I was chosen, the fool divine\nTo challenge the master of riddle and rhyme\nAnother mountain for me to climb\nI must find the answer\nBefore I run out of time",
+    "Strange I was chosen, the fool divine\nTo challenge the master of riddle and rhyme\nAnother mountain for me to climb\nI must find the answer, before I run out of time",
     "The stairway to heaven is currently out of order. Please use the ladder instead.",
     "Where is the brouzouf? I was told there'd be brouzouf!",
     "Are you lost? Or have you already been lost since the very beginning?",
