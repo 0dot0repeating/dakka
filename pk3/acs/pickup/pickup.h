@@ -3,11 +3,6 @@
 //  but why the fuck would you?
 
 
-// This is a library dedicated to making pickups give different items to
-//  different classes. Theoretically, you could use it for just one class,
-//  but why the fuck would you?
-
-
 // What each file corresponds to:
 //
 //

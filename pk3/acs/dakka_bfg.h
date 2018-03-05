@@ -1,20 +1,13 @@
-// Yes I just copypasted DAKKA_TRACER_CLIENT. Fuckin' sue me, I'm not cramming
-//  all of the BFG's stuff into that function.
-
 function void BFG_AutoReload(void)
 {
-    int pln = PlayerNumber();
-
-    int time = max(0, AutoReloadCooldowns[pln][1] - 1);
-    if (time == 0) { SetInventory("BFGNeedsReload", 0); }
-
-    AutoReloadCooldowns[pln][1] = time;
+    int t = AutoReloadCooldowns[PlayerNumber()][1];
+    if (Timer() >= t) { SetInventory("BFGNeedsReload", 0); }
 }
 
 script "Dakka_BFGAltfired" (int t)
 {
     int pln = PlayerNumber();
-    AutoReloadCooldowns[pln][1] = t;
+    AutoReloadCooldowns[pln][1] = Timer() + t;
     GiveInventory("BFGNeedsReload", 1);
 }
 

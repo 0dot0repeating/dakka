@@ -142,7 +142,6 @@ function void Dakka_StartMode_Ammo(int classNum, int entered, int lostAmmo)
     int startMode = GetCVar("dakka_startmode_ammo");
     int i;
 
-    // Exit early because fuck it
     if (startMode <= 0 || startMode > 4) { return; }
 
     // These all basically use the same logic except for how much ammo you get,
