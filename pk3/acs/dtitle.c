@@ -238,6 +238,8 @@ script "titlemap_showtips" (void)
     ACS_NamedExecuteWithResult("titlemap_scoretips", true, 10.0);
 
     Delay(385);
+    
+    int lastGameTip = 0x7FFFFFFF;
 
     while (true)
     {
@@ -247,13 +249,15 @@ script "titlemap_showtips" (void)
         {
             int msgDelay;
 
-            if (random(0, 4) == 0)
+            if (lastGameTip >= 8 || random(0, 4) == 0)
             {
                 msgDelay = ACS_NamedExecuteWithResult("titlemap_gametips");
+                lastGameTip = 0;
             }
             else
             {
                 msgDelay = ACS_NamedExecuteWithResult("titlemap_dumbtips");
+                lastGameTip++;
             }
 
             Delay(70 + msgDelay);
