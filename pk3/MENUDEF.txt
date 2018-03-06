@@ -57,8 +57,8 @@ OptionValue Dakka_IgnoreHubs
 OptionValue Dakka_PickedUpAClip
 {
     0, "off"
-    1, "give with ammo"
-    2, "spawn near ammo"
+    1, "give with other ammo"
+    2, "spawn near other ammo"
     3, "infinite ammo"
 }
 
