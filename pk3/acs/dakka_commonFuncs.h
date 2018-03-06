@@ -119,12 +119,12 @@ function int middle(int x, int y, int z)
 
 function int percFloat(int intg, int frac)
 {
-    return itof(intg) + (itof(frac) / 100);
+    return itof(intg) + itofDiv(frac, 100);
 }
 
 function int percFloat2(int intg, int frac1, int frac2)
 {
-    return itof(intg) + (itof(frac1) / 100) + (itof(frac2) / 10000);
+    return itof(intg) + itofDiv(frac1, 100) + itofDiv(frac2, 10000);
 }
 
 function int keyUp(int key)

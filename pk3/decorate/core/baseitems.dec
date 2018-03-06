@@ -73,17 +73,12 @@ actor ScrapCounter_Cells:   Counter {}
 
 actor HubTracker:        Boolean { +INTERHUBSTRIP }
 
-// Used in the Blursphere's scripted pickup
-actor DakkaVisPulse:     Counter {}
-
-// Used to track how many maps you've had a shotgun/chaingun
+// Used to track how many maps you've had a shotgun
 actor DakkaShotgunTracker:  Counter {}
-actor DakkaChaingunTracker: Counter {}
 
 
 // Used in script 494 (pickup/dakka_wepdisplay.h).
 actor DPickup_SecondWepState:   Boolean {}
-actor DPickup_BundleState:      Boolean {}
 
 // Used for dakka_pickedupaclip.
 actor SpawnedClipAlready:    Boolean {}
