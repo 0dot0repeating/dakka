@@ -9,7 +9,9 @@ script "Dakka_UseAmmo" (int ammoindex, int count)
 {
     if (!IsServer) { terminate; }
     if (ammoindex < 0 || ammoindex >= AMMOCOUNT) { terminate; }
-    if (GetCVar("sv_infiniteammo") || CheckInventory("PowerInfiniteAmmo")) { terminate; }
+    if (HasInfiniteAmmo()) { terminate; }
+    
+    if (ammoindex == AMMO_PISTOL && GetCVar("dakka_pickedupaclip") == 3) { terminate; }
 
     str ammotype = PKP_KnownAmmo[ammoindex];
     TakeInventory(ammotype, count);
