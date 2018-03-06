@@ -164,7 +164,7 @@ OptionMenu Dakka_GameOptions
 {
     Title "DAKKA (Game options)"
 
-    StaticText "General options"
+    StaticText "General options", 1
 
     Slider "Scrap factor",          "dakka_scrapfactor",    0, 1000, 10, 0
     Option "More pistol ammo",      "dakka_pickedupaclip",  "Dakka_PickedUpAClip"
@@ -173,7 +173,7 @@ OptionMenu Dakka_GameOptions
     Option "Score rewards",         "dakka_noscorerewards", "OffOn"
 
     StaticText ""
-    StaticText "Level start options"
+    StaticText "Level start options", 1
 
     Option "Health+armor mode", "dakka_startmode_health",    "Dakka_StartMode_Health"
     Option "Ammo mode",         "dakka_startmode_ammo",      "Dakka_StartMode_Ammo"
@@ -185,7 +185,7 @@ OptionMenu Dakka_GameOptions
 
     StaticText ""
     StaticText ""
-    StaticText "Pickup upgrade options"
+    StaticText "Pickup upgrade options", 1
     StaticText "After X maps with the first weapon,"
     StaticText "its pickups will become the second weapon."
     StaticText ""
@@ -206,6 +206,7 @@ OptionMenu "Dakka_UserOptions"
 
     Option "Fewer effects",         "dakka_cl_lesseffects",        "OnOff"
     Option "Bullet tracers",        "dakka_cl_notracers",          "OffOn"
+    Option "Particle tracers",      "dakka_cl_particletracers",    "OnOff"
     Option "Only your tracers",     "dakka_cl_onlymytracers",      "OnOff"
     Option "Tracer speed",          "dakka_cl_tracerspeed",        "Dakka_TracerSpeed"
     Option "Tracer density",        "dakka_cl_tracerdensity",      "Dakka_TracerDensity"
@@ -227,16 +228,16 @@ OptionMenu "Dakka_UserOptions"
 
 
     StaticText ""
-    StaticText "Keybinds"
-    StaticText ""
+    StaticText "Keybinds", 1
 
     Control "Slot 1, fist first",     "fistswitch"
     Control "Slot 3, shotgun first",  "shotswitch"
 
     StaticText ""
+    StaticText "SSG trigger rolling: By pulling both triggers"
+    StaticText "quickly, you instead use one fire mode twice"
     StaticText ""
-    StaticText "SSG trigger rolling: Pull both triggers in"
-    StaticText "rapid succession to use one fire mode twice"
+    StaticText "Particle tracers do not work in Zandronum!", 1
 }
 
 
