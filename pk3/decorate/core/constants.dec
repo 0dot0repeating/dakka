@@ -4,6 +4,15 @@ const int TRACE_BULLET_BIG  = 1;
 const int TRACE_ARC_FIRER   = 2;
 const int TRACE_ARC_MASTER  = 3;
 
+const int AMMO_SCRAP        = 0;
+const int AMMO_PISTOL       = 1;
+const int AMMO_SHELL        = 2;
+const int AMMO_GRENADE      = 3;
+const int AMMO_MINIGUN      = 4;
+const int AMMO_FLAMER       = 5;
+const int AMMO_ROCKET       = 6;
+const int AMMO_CELL         = 7;
+
 const int PUAC_SHELL        = 0x01;
 const int PUAC_GRENADE      = 0x02;
 const int PUAC_5MM          = 0x04;

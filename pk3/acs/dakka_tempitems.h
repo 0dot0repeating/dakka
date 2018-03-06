@@ -103,7 +103,7 @@ function void Dakka_UpdateTemporaryItems(void)
 
     int classNum = Pickup_ClassNumber(0);
 
-    TempChecks[TMP_INFINITEAMMO]    = GetCVar("sv_infiniteammo") || CheckInventory("PowerInfiniteAmmo");
+    TempChecks[TMP_INFINITEAMMO]    = HasInfiniteAmmo();
     TempChecks[TMP_DAKKACLASS]      = classNum == Cl_Dakkaguy;
 
 

@@ -1,10 +1,19 @@
 #define AMMOCOUNT   28
 
+#define AMMO_SCRAP      0
+#define AMMO_PISTOL     1
+#define AMMO_SHELL      2
+#define AMMO_GRENADE    3
+#define AMMO_MINIGUN    4
+#define AMMO_FLAMER     5
+#define AMMO_ROCKET     6
+#define AMMO_CELL       7
+
 int PKP_KnownAmmo[AMMOCOUNT] =
 {
     // DAKKA (10)
     "DakkaScrap",
-    "DakkaBullet_50AE",
+    "DakkaBullet_50AE",     // if this moves, update Dakka_UseAmmo script
     "DakkaShells",
     "DakkaShotGrenades",
     "DakkaBullet_5mm",

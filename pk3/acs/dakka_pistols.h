@@ -6,11 +6,28 @@ function void Pistols_SpreadRecovery(void)
     }
 }
 
+function int Pistols_BulletsLeft(void)
+{
+    if (GetCVar("dakka_pickedupaclip") == 3 || HasInfiniteAmmo())
+    {
+        return GetAmmoCapacity("DakkaBullet_50AE");
+    }
+    
+    return CheckInventory("DakkaBullet_50AE");
+}
+
 
 function void Pistols_CapBulletsLeft(void)
 {
-    int capped = min(CheckInventory("DakkaPistol_ShotsLeft"), CheckInventory("DakkaBullet_50AE"));
+    int bullets_raw = CheckInventory("DakkaBullet_50AE");
+    int bullets     = Pistols_BulletsLeft();
+    
+    int capped = min(CheckInventory("DakkaPistol_ShotsLeft"), bullets);
     SetInventory("DakkaPistol_ShotsLeft", capped);
+    
+    // This is so that if dakka_pickedupaclip is 3, you won't ever have 0 ammo
+    //  (and therefore trigger the empty switch when you try to fire)
+    SetInventory("DakkaBullet_50AE", max(bullets_raw, capped));
 }
 
 
@@ -35,7 +52,7 @@ script "Dakka_PistolSpread" (int axis)
 
 script "Dakka_PistolReload" (void)
 {
-    int maxBullets = min(GetAmmoCapacity("DakkaPistol_ShotsLeft"), CheckInventory("DakkaBullet_50AE"));
+    int maxBullets = min(GetAmmoCapacity("DakkaPistol_ShotsLeft"), Pistols_BulletsLeft());
     SetInventory("DakkaPistol_ShotsLeft", maxBullets);
 }
 
@@ -43,7 +60,7 @@ script "Dakka_PistolReload" (void)
 script "Dakka_PistolFull" (void)
 {
     int bullets    = CheckInventory("DakkaPistol_ShotsLeft");
-    int maxBullets = min(GetAmmoCapacity("DakkaPistol_ShotsLeft"), CheckInventory("DakkaBullet_50AE"));
+    int maxBullets = min(GetAmmoCapacity("DakkaPistol_ShotsLeft"), Pistols_BulletsLeft());
     SetResultValue(bullets >= maxBullets);
 }
 
@@ -51,7 +68,7 @@ script "Dakka_PistolFull" (void)
 script "Dakka_CanPistolReload" (int noflag)
 {
     int shotsCurrent = CheckInventory("DakkaPistol_ShotsLeft");
-    int shotsAfter   = min(GetAmmoCapacity("DakkaPistol_ShotsLeft"), CheckInventory("DakkaBullet_50AE"));
+    int shotsAfter   = min(GetAmmoCapacity("DakkaPistol_ShotsLeft"), Pistols_BulletsLeft());
     
     if (noflag)
     {

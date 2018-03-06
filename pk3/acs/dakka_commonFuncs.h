@@ -1236,3 +1236,8 @@ function int ActivatorToPlayer(int i)
     if (i < 8) { SetActivator(0, AAPTR_PLAYER1 << i); }
     return SetActivatorToPlayer(i);
 }
+
+function int HasInfiniteAmmo(void)
+{
+    return GetCVar("sv_infiniteammo") || CheckInventory("PowerInfiniteAmmo");
+}

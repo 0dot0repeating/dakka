@@ -12,7 +12,7 @@ actor DakkaPistolFired: Trigger
         TNT1 A 0 ACS_NamedExecuteAlways("Dakka_Recoil", 0, -140, 1, 10)
         TNT1 A 0 A_GiveInventory("GiveScrapCounter", 10)
         TNT1 A 0 A_GiveInventory("DakkaPistolInAnim")
-        TNT1 A 0 ACS_NamedExecuteWithResult("Dakka_UseAmmo", 1, 1)
+        TNT1 A 0 ACS_NamedExecuteWithResult("Dakka_UseAmmo", AMMO_PISTOL, 1)
         TNT1 A 0 A_TakeInventory("DakkaPistol_ShotsLeft", 1)
         stop
     }
@@ -427,7 +427,7 @@ actor DWep_Pistols: DoomWeapon
         DPST A 0 A_PlaySound("dakka/revolveraltfire", CHAN_WEAPON)
         DPST A 0 ACS_NamedExecuteWithResult("Dakka_Switcharoo", 2, 1)
         DPST A 0 ACS_NamedExecuteAlways("Dakka_Recoil", 0, -300, 1, 10)
-        DPST A 0 ACS_NamedExecuteWithResult("Dakka_UseAmmo", 1, 2)
+        DPST A 0 ACS_NamedExecuteWithResult("Dakka_UseAmmo", AMMO_PISTOL, 2)
         
         DPST A 0 A_GiveInventory("DakkaPistolSpread", 18)
         DPST A 0 A_TakeInventory("DakkaPistol_ShotsLeft", 2)
