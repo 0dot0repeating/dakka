@@ -10,9 +10,8 @@ actor DakkaPistolFired: Trigger
         TNT1 A 0 A_PlaySound("dakka/revolverfire", CallACS("Dakka_RotateSound", 5, 6))
         TNT1 A 0 ACS_NamedExecuteWithResult("Dakka_Switcharoo", 2, 0)
         TNT1 A 0 ACS_NamedExecuteAlways("Dakka_Recoil", 0, -140, 1, 10)
-        TNT1 A 0 A_GiveInventory("GiveScrapCounter", 10)
         TNT1 A 0 A_GiveInventory("DakkaPistolInAnim")
-        TNT1 A 0 ACS_NamedExecuteWithResult("Dakka_UseAmmo", AMMO_PISTOL, 1)
+        TNT1 A 0 ACS_NamedExecuteWithResult("Dakka_UseAmmo", AMMO_PISTOL, 1, 1)
         TNT1 A 0 A_TakeInventory("DakkaPistol_ShotsLeft", 1)
         stop
     }
@@ -21,6 +20,8 @@ actor DakkaPistolFired: Trigger
 actor DakkaPistol_ShotsLeft: Ammo
 {
     Inventory.Icon "CLIPA0"
+    +UNDROPPABLE
+    +IGNORESKILL
 
     Inventory.Amount    1
     Inventory.MaxAmount 14
@@ -423,11 +424,10 @@ actor DWep_Pistols: DoomWeapon
         
         DPST A 0 A_GunFlash
         DPST A 0 A_GiveInventory("DakkaPistolInAnim")
-        DPST A 0 A_GiveInventory("GiveScrapCounter", 20)
         DPST A 0 A_PlaySound("dakka/revolveraltfire", CHAN_WEAPON)
         DPST A 0 ACS_NamedExecuteWithResult("Dakka_Switcharoo", 2, 1)
         DPST A 0 ACS_NamedExecuteAlways("Dakka_Recoil", 0, -300, 1, 10)
-        DPST A 0 ACS_NamedExecuteWithResult("Dakka_UseAmmo", AMMO_PISTOL, 2)
+        DPST A 0 ACS_NamedExecuteWithResult("Dakka_UseAmmo", AMMO_PISTOL, 2, 2)
         
         DPST A 0 A_GiveInventory("DakkaPistolSpread", 18)
         DPST A 0 A_TakeInventory("DakkaPistol_ShotsLeft", 2)

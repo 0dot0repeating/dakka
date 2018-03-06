@@ -177,10 +177,9 @@ actor DWep_Minigun: DoomWeapon
 
         DMNG A 0 A_GunFlash
         DMNG A 0 A_AlertMonsters
-        DMNG A 0 A_GiveInventory("GiveScrapCounter", 5)
         DMNG A 0 ACS_NamedExecuteWithResult("Dakka_Switcharoo", 5, 0)
         DMNG A 0 ACS_NamedExecuteAlways("Dakka_Recoil", 0, random(-150, -60), 1, random(11, 15))
-        DMNG A 0 ACS_NamedExecuteWithResult("Dakka_UseAmmo", AMMO_MINIGUN, 1)
+        DMNG A 0 ACS_NamedExecuteWithResult("Dakka_UseAmmo", AMMO_MINIGUN, 1, 1, SCRAP_MINIGUN)
         DMNG A 0 A_Jump(128, "Slow_Painless")
         DMNG A 0 bright A_FireBullets(4.5, 2, -1, 12, "DakkaPuff", FBF_NORANDOM)
         goto Slow_Recoil
@@ -408,9 +407,8 @@ actor DWep_Minigun: DoomWeapon
 
         DMNG A 0 A_AlertMonsters
         DMNG A 0 A_GunFlash("FlashFastA")
-        DMNG A 0 A_GiveInventory("GiveScrapCounter", 5)
         DMNG A 0 ACS_NamedExecuteWithResult("Dakka_Switcharoo", 5, 0)
-        DMNG A 0 ACS_NamedExecuteWithResult("Dakka_UseAmmo", AMMO_MINIGUN, 1)
+        DMNG A 0 ACS_NamedExecuteWithResult("Dakka_UseAmmo", AMMO_MINIGUN, 1, 1, SCRAP_MINIGUN)
         DMNG A 0 A_Jump(128, "Fast_Painless")
         DMNG A 0 A_FireBullets(14, 6, -1, 6, "DakkaPuff",          FBF_NORANDOM)
         DMNG A 0 A_FireBullets(14, 6, -1, 6, "DakkaPuff_Painless", FBF_NORANDOM)
@@ -874,8 +872,7 @@ actor DWep_Minigun: DoomWeapon
 
         "----" A 0 ACS_NamedExecuteWithResult("Dakka_Switcharoo", 5, 1)
         "----" A 0 A_Light(1)
-        DMNG E 0 A_GiveInventory("GiveScrapCounter3", 1)
-        DMNG E 0 ACS_NamedExecuteWithResult("Dakka_UseAmmo", AMMO_FLAMER, 1)
+        DMNG E 0 ACS_NamedExecuteWithResult("Dakka_UseAmmo", AMMO_FLAMER, 1, 1, SCRAP_FLAMER)
         DMNG E 0 A_FireCustomMissile("MinigunFlame",  random(-20,20)/5.0, 0, 0, -4)
         DMNG E 1 bright offset(0, 33) A_WeaponReady(WRF_NOBOB | WRF_NOFIRE)
         DMNG E 0 A_FireCustomMissile("MinigunFlame", random(-20,20)/5.0, 0, 0, -4)
@@ -883,7 +880,6 @@ actor DWep_Minigun: DoomWeapon
 
         "----" A 0 ACS_NamedExecuteWithResult("Dakka_Switcharoo", 5, 1)
         "----" A 0 A_Light(2)
-        DMNG F 0 A_GiveInventory("GiveScrapCounter3", 1)
         DMNG F 0 A_FireCustomMissile("MinigunFlame", random(-20,20)/5.0, 0, 0, -4)
         DMNG F 1 bright offset(0, 34) A_WeaponReady(WRF_NOBOB | WRF_NOFIRE)
         DMNG F 0 A_FireCustomMissile("MinigunFlame", random(-20,20)/5.0, 0, 0, -4)
@@ -891,7 +887,6 @@ actor DWep_Minigun: DoomWeapon
 
         "----" A 0 ACS_NamedExecuteWithResult("Dakka_Switcharoo", 5, 1)
         "----" A 0 A_Light(3)
-        DMNG I 0 A_GiveInventory("GiveScrapCounter3", 1)
         DMNG I 0 A_FireCustomMissile("MinigunFlame", random(-20,20)/5.0, 0, 0, -4)
         DMNG I 1 bright offset(0, 35) A_WeaponReady(WRF_NOBOB | WRF_NOFIRE)
         DMNG I 0 A_FireCustomMissile("MinigunFlame", random(-20,20)/5.0, 0, 0, -4)
@@ -899,7 +894,6 @@ actor DWep_Minigun: DoomWeapon
 
         "----" A 0 ACS_NamedExecuteWithResult("Dakka_Switcharoo", 5, 1)
         "----" A 0 A_Light(4)
-        DMNG J 0 A_GiveInventory("GiveScrapCounter3", 1)
         DMNG J 0 A_FireCustomMissile("MinigunFlame", random(-20,20)/5.0, 0, 0, -4)
         DMNG J 1 bright offset(0, 36) A_WeaponReady(WRF_NOBOB | WRF_NOFIRE)
         DMNG J 0 A_FireCustomMissile("MinigunFlame", random(-20,20)/5.0, 0, 0, -4)
@@ -916,8 +910,7 @@ actor DWep_Minigun: DoomWeapon
 
         "----" A 0 ACS_NamedExecuteWithResult("Dakka_Switcharoo", 5, 1)
         "----" A 0 A_Light(5)
-        DMNG G 0 A_GiveInventory("GiveScrapCounter3", 1)
-        DMNG E 0 ACS_NamedExecuteWithResult("Dakka_UseAmmo", AMMO_FLAMER, 1)
+        DMNG E 0 ACS_NamedExecuteWithResult("Dakka_UseAmmo", AMMO_FLAMER, 1, 1, SCRAP_FLAMER)
         DMNG G 0 A_FireCustomMissile("MinigunFlame", random(-20,20)/5.0, 0, 0, -4)
         DMNG G 1 bright offset(0, 37) A_WeaponReady(WRF_NOBOB | WRF_NOFIRE)
         DMNG G 0 A_FireCustomMissile("MinigunFlame", random(-20,20)/5.0, 0, 0, -4)
@@ -925,7 +918,6 @@ actor DWep_Minigun: DoomWeapon
 
         "----" A 0 ACS_NamedExecuteWithResult("Dakka_Switcharoo", 5, 1)
         "----" A 0 A_Light(6)
-        DMNG H 0 A_GiveInventory("GiveScrapCounter3", 1)
         DMNG H 0 A_FireCustomMissile("MinigunFlame", random(-20,20)/5.0, 0, 0, -4)
         DMNG H 1 bright               A_WeaponReady(WRF_NOBOB | WRF_NOFIRE)
         DMNG H 0 A_FireCustomMissile("MinigunFlame", random(-20,20)/5.0, 0, 0, -4)
@@ -933,7 +925,6 @@ actor DWep_Minigun: DoomWeapon
 
         "----" A 0 ACS_NamedExecuteWithResult("Dakka_Switcharoo", 5, 1)
         "----" A 0 A_Light(5)
-        DMNG I 0 A_GiveInventory("GiveScrapCounter3", 1)
         DMNG I 0 A_FireCustomMissile("MinigunFlame", random(-20,20)/5.0, 0, 0, -4)
         DMNG I 1 bright               A_WeaponReady(WRF_NOBOB | WRF_NOFIRE)
         DMNG I 0 A_FireCustomMissile("MinigunFlame", random(-20,20)/5.0, 0, 0, -4)
@@ -941,7 +932,6 @@ actor DWep_Minigun: DoomWeapon
 
         "----" A 0 ACS_NamedExecuteWithResult("Dakka_Switcharoo", 5, 1)
         "----" A 0 A_Light(4)
-        DMNG J 0 A_GiveInventory("GiveScrapCounter3", 1)
         DMNG J 0 A_FireCustomMissile("MinigunFlame", random(-20,20)/5.0, 0, 0, -4)
         DMNG J 1 bright               A_WeaponReady(WRF_NOBOB | WRF_NOFIRE)
         DMNG J 0 A_FireCustomMissile("MinigunFlame", random(-20,20)/5.0, 0, 0, -4)

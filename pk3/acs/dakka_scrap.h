@@ -1,53 +1,36 @@
-// Defines how much of a GiveScrapCounter item is needed to give 1 scrap.
-#define SCRAPTYPES 3
+#define SCRAPTYPES 4
 
 int Scrap_Items[SCRAPTYPES] =
 {
-    "GiveScrapCounter",
-    "GiveScrapCounter2",    // For cells
-    "GiveScrapCounter3",    // For flamer fuel
+    "ScrapCounter",
+    "ScrapCounter_Minigun",
+    "ScrapCounter_Flamer",
+    "ScrapCounter_Cells",
 };
 
 #define SCRAP_NEEDED    0
 #define SCRAP_GIVE      1
+
 int Scrap_Batches[SCRAPTYPES][2] =
 {
-    {10, 1},
-    {20, 20}, // Cells
-    {24, 16}, // Flamer
+    { 100,  1}, // regular
+    { 200,  1}, // minigun
+    { 400, 16}, // flamer
+    {2000, 20}, // cells
 };
 
-function void Dakka_ProcessScrap(void)
+script "Dakka_GiveScrap" (int amount, int type)
 {
-    int i, item;
-    int scrapFactor = middle(0, GetCVar("dakka_scrapfactor"), 1000);
-
-    if (scrapFactor == 0)
-    {
-        for (i = 0; i < SCRAPTYPES; i++)
-        {
-            item = Scrap_Items[i];
-            if (CheckInventory(item)) { TakeInventory(item, 0x7FFFFFFF); }
-        }
-
-        return;
-    }
-
-    // You'd think FixedDiv(100.0, scrapFactor) would be equivalent.
-    //  It ain't.
-    int neededMult = FixedDiv(1.0, scrapFactor * 0.01);
-    int needed, toGive, itemCount, fullBatches;
-
-    for (i = 0; i < SCRAPTYPES; i++)
-    {
-        item   = Scrap_Items[i];
-        needed = FixedMul(Scrap_Batches[i][SCRAP_NEEDED], neededMult);
-        toGive = Scrap_Batches[i][SCRAP_GIVE];
-
-        itemCount   = CheckInventory(item);
-        fullBatches = itemCount / needed;
-
-        GiveAmmo("DakkaScrap", toGive * fullBatches);
-        TakeInventory(item,    needed * fullBatches);
-    }
+    if (amount <= 0) { terminate; }
+    if (type < 0 || type >= SCRAPTYPES) { terminate; }
+    
+    str scrapType  = Scrap_Items[type];
+    int batchSize  = Scrap_Batches[type][SCRAP_NEEDED];
+    
+    int giveAmount = amount * middle(0, GetCVar("dakka_scrapfactor"), 1000);
+    int newAmount  = CheckInventory(scrapType) + giveAmount;
+    int batches    = newAmount / batchSize;
+    
+    GiveAmmo("DakkaScrap", batches * Scrap_Batches[type][SCRAP_GIVE]);
+    SetInventory(scrapType, newAmount - (batches * batchSize));
 }

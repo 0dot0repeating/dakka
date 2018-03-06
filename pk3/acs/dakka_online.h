@@ -5,7 +5,7 @@
 // which usually works out... but with Dakka, it doesn't. At all. So we gotta
 // handle this manually.
 
-script "Dakka_UseAmmo" (int ammoindex, int count)
+script "Dakka_UseAmmo" (int ammoindex, int count, int scrapgive, int scraptype)
 {
     if (!IsServer) { terminate; }
     if (ammoindex < 0 || ammoindex >= AMMOCOUNT) { terminate; }
@@ -13,8 +13,8 @@ script "Dakka_UseAmmo" (int ammoindex, int count)
     
     if (ammoindex == AMMO_PISTOL && GetCVar("dakka_pickedupaclip") == 3) { terminate; }
 
-    str ammotype = PKP_KnownAmmo[ammoindex];
-    TakeInventory(ammotype, count);
+    ACS_NamedExecuteWithResult("Dakka_GiveScrap", scrapgive, scraptype);
+    TakeInventory(PKP_KnownAmmo[ammoindex], count);
 }
 
 

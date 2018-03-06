@@ -87,9 +87,6 @@ script "Dakka_Spawn" (int respawned)
         // In dakka_fists.h
         Dakka_FistTap();
 
-        // In dakka_scrap.h
-        Dakka_ProcessScrap();
-
         // In dakka_pistols.h
         Pistols_SpreadRecovery();
         Pistols_CapBulletsLeft();

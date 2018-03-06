@@ -19,3 +19,8 @@ const int PUAC_5MM          = 0x04;
 const int PUAC_FLAMER       = 0x08;
 const int PUAC_ROCKET       = 0x10;
 const int PUAC_CELL         = 0x20;
+
+const int SCRAP_NORMAL      = 0;
+const int SCRAP_MINIGUN     = 1;
+const int SCRAP_FLAMER      = 2;
+const int SCRAP_CELL        = 3;
