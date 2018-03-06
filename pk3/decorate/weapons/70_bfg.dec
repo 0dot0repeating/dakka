@@ -221,10 +221,9 @@ actor DWep_BFG9000: DoomWeapon
       Hold:
         DBFG B 0 A_GunFlash
         DBFG B 0 A_AlertMonsters
-        DBFG B 0 A_GiveInventory("GiveScrapCounter2", 1)
         DBFG B 0 ACS_NamedExecuteAlways("Dakka_Recoil", 0, random(-250, -100), 2, random(16, 24))
         DBFG B 0 ACS_NamedExecuteWithResult("Dakka_Switcharoo", 8, 0)
-        DBFG B 0 ACS_NamedExecuteWithResult("Dakka_UseAmmo", AMMO_CELL, 1)
+        DBFG B 0 ACS_NamedExecuteWithResult("Dakka_UseAmmo", AMMO_CELL, 1, 1, SCRAP_CELL)
         DBFG B 0 A_FireCustomMissile("BFGMaelstromShotSpawner", 0, false)
 
         DBFG C 0 A_JumpIfInventory("BFGRecoil", 2, "Recoil3")
@@ -403,10 +402,9 @@ actor DWep_BFG9000: DoomWeapon
         DBFG A 0 A_ClearRefire
         DBFG B 0 A_AlertMonsters
         DBFG A 0 A_PlaySound("dakka/bfgaltfire", CHAN_WEAPON)
-        DBFG A 0 A_GiveInventory("GiveScrapCounter2", 20)
         DBFG A 0 ACS_NamedExecuteAlways("Dakka_Recoil", 0, 14, 4, 24)
         DBFG A 0 ACS_NamedExecuteWithResult("Dakka_Switcharoo", 8, 1)
-        DBFG A 0 ACS_NamedExecuteWithResult("Dakka_UseAmmo", AMMO_CELL, 40)
+        DBFG A 0 ACS_NamedExecuteWithResult("Dakka_UseAmmo", AMMO_CELL, 40, 40, SCRAP_CELL)
         DBFG A 0 ACS_NamedExecuteWithResult("Dakka_BFGAltfired", 43)
         DBFG A 0 A_FireCustomMissile("BFGHomingShotSpawner", 0, false, 0, 0, 0, 5)
 

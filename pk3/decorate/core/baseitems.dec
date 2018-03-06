@@ -66,9 +66,10 @@ actor AltClicked:        Boolean {}
 actor MainReleased:      Boolean {}
 actor AltReleased:       Boolean {}
 
-actor GiveScrapCounter:  Counter {}
-actor GiveScrapCounter2: Counter {}
-actor GiveScrapCounter3: Counter {}
+actor ScrapCounter:         Counter {}
+actor ScrapCounter_Minigun: Counter {}
+actor ScrapCounter_Flamer:  Counter {}
+actor ScrapCounter_Cells:   Counter {}
 
 actor HubTracker:        Boolean { +INTERHUBSTRIP }
 

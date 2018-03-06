@@ -52,8 +52,7 @@ actor DWep_PlasmaLance: DoomWeapon
         PLNC G 0                      ACS_NamedExecuteWithResult("Dakka_Switcharoo", 7, 0)
         PLNC G 0                      ACS_NamedExecuteAlways("Dakka_Recoil", 0, -115, 1, 8)
         PLNC G 0                      A_GiveInventory("LastLanceBarrelUsed")
-        PLNC G 0                      A_GiveInventory("GiveScrapCounter2", 1)
-        PLNC G 0                      ACS_NamedExecuteWithResult("Dakka_UseAmmo", AMMO_CELL, 1)
+        PLNC G 0                      ACS_NamedExecuteWithResult("Dakka_UseAmmo", AMMO_CELL, 1, 1, SCRAP_CELL)
         PLNC G 0                      A_FireCustomMissile("PLPrimaryShot", 0, false, -1.5)
         PLNC G 0                      A_GunFlash
         PLNC G 1 bright offset(0, 37) A_PlaySound("arc/fire", 5, 0.75)
@@ -87,8 +86,7 @@ actor DWep_PlasmaLance: DoomWeapon
         PLNC I 0                      ACS_NamedExecuteWithResult("Dakka_Switcharoo", 7, 0)
         PLNC I 0                      ACS_NamedExecuteAlways("Dakka_Recoil", 0, -130, 1, 8)
         PLNC I 0                      A_TakeInventory("LastLanceBarrelUsed")
-        PLNC I 0                      A_GiveInventory("GiveScrapCounter2", 1)
-        PLNC I 0                      ACS_NamedExecuteWithResult("Dakka_UseAmmo", AMMO_CELL, 1)
+        PLNC I 0                      ACS_NamedExecuteWithResult("Dakka_UseAmmo", AMMO_CELL, 1, 1, SCRAP_CELL)
         PLNC I 0                      A_FireCustomMissile("PLPrimaryShot", 0, false, 1.5)
         PLNC I 0                      A_GunFlash
         PLNC I 1 bright offset(0, 37) A_PlaySound("arc/fire", 6, 0.75)
@@ -122,8 +120,7 @@ actor DWep_PlasmaLance: DoomWeapon
         PLNC G 0                      ACS_NamedExecuteWithResult("Dakka_Switcharoo", 7, 0)
         PLNC G 0                      ACS_NamedExecuteAlways("Dakka_Recoil", 0, -115, 1, 8)
         PLNC G 0                      A_GiveInventory("LastLanceBarrelUsed")
-        PLNC G 0                      A_GiveInventory("GiveScrapCounter2", 1)
-        PLNC G 0                      ACS_NamedExecuteWithResult("Dakka_UseAmmo", AMMO_CELL, 1)
+        PLNC G 0                      ACS_NamedExecuteWithResult("Dakka_UseAmmo", AMMO_CELL, 1, 1, SCRAP_CELL)
         PLNC G 0                      A_FireCustomMissile("PLPrimaryShot", 0, false, -1.5)
         PLNC G 0                      A_GunFlash
         PLNC G 1 bright offset(0, 40) A_PlaySound("arc/fire", 5, 0.75)
@@ -157,8 +154,7 @@ actor DWep_PlasmaLance: DoomWeapon
         PLNC I 0                      ACS_NamedExecuteWithResult("Dakka_Switcharoo", 7, 0)
         PLNC I 0                      ACS_NamedExecuteAlways("Dakka_Recoil", 0, -130, 1, 8)
         PLNC I 0                      A_TakeInventory("LastLanceBarrelUsed")
-        PLNC I 0                      A_GiveInventory("GiveScrapCounter2", 1)
-        PLNC I 0                      ACS_NamedExecuteWithResult("Dakka_UseAmmo", AMMO_CELL, 1)
+        PLNC I 0                      ACS_NamedExecuteWithResult("Dakka_UseAmmo", AMMO_CELL, 1, 1, SCRAP_CELL)
         PLNC I 0                      A_FireCustomMissile("PLPrimaryShot", 0, false, 1.5)
         PLNC I 0                      A_GunFlash
         PLNC I 1 bright offset(0, 40) A_PlaySound("arc/fire", 6, 0.75)
@@ -198,18 +194,15 @@ actor DWep_PlasmaLance: DoomWeapon
         PLNC F 0 A_PlaySound("arc/altcharge",      CHAN_WEAPON)
         PLNC F 0 A_GunFlash("Charging")
 
-        PLNC B 0 ACS_NamedExecuteWithResult("Dakka_UseAmmo", AMMO_CELL, 3)
-        PLNC B 0 A_GiveInventory("GiveScrapCounter2", 3)
+        PLNC B 0 ACS_NamedExecuteWithResult("Dakka_UseAmmo", AMMO_CELL, 3, 3, SCRAP_CELL)
         PLNC AAAABBBB 1 A_JumpIfInventory("AltReleased", 1, "AltFire_Charge0")
 
         PLNC B 0 A_JumpIfNoAmmo("Altfire_Charge0")
-        PLNC B 0 ACS_NamedExecuteWithResult("Dakka_UseAmmo", AMMO_CELL, 3)
-        PLNC B 0 A_GiveInventory("GiveScrapCounter2", 3)
+        PLNC B 0 ACS_NamedExecuteWithResult("Dakka_UseAmmo", AMMO_CELL, 3, 3, SCRAP_CELL)
         PLNC CCCCDDDD 1 A_JumpIfInventory("AltReleased", 1, "AltFire_Charge1")
 
         PLNC B 0 A_JumpIfNoAmmo("Altfire_Charge1")
-        PLNC B 0 ACS_NamedExecuteWithResult("Dakka_UseAmmo", AMMO_CELL, 3)
-        PLNC B 0 A_GiveInventory("GiveScrapCounter2", 3)
+        PLNC B 0 ACS_NamedExecuteWithResult("Dakka_UseAmmo", AMMO_CELL, 3, 3, SCRAP_CELL)
         PLNC E 1 offset(-1, 32) A_JumpIfInventory("AltReleased", 1, "AltFire_Charge2")
         PLNC E 1 offset( 0, 32) A_JumpIfInventory("AltReleased", 1, "AltFire_Charge2")
         PLNC E 1 offset( 0, 32) A_JumpIfInventory("AltReleased", 1, "AltFire_Charge2")
@@ -220,8 +213,7 @@ actor DWep_PlasmaLance: DoomWeapon
         PLNC C 1 offset(-1, 32) A_JumpIfInventory("AltReleased", 1, "AltFire_Charge2")
 
         PLNC B 0 A_JumpIfNoAmmo("Altfire_Charge2")
-        PLNC B 0 ACS_NamedExecuteWithResult("Dakka_UseAmmo", AMMO_CELL, 3)
-        PLNC B 0 A_GiveInventory("GiveScrapCounter2", 3)
+        PLNC B 0 ACS_NamedExecuteWithResult("Dakka_UseAmmo", AMMO_CELL, 3, 3, SCRAP_CELL)
         PLNC C 1 offset( 1, 32) A_JumpIfInventory("AltReleased", 1, "AltFire_Charge3")
         PLNC D 1 offset( 0, 32) A_JumpIfInventory("AltReleased", 1, "AltFire_Charge3")
         PLNC D 1 offset( 1, 32) A_JumpIfInventory("AltReleased", 1, "AltFire_Charge3")
@@ -232,8 +224,7 @@ actor DWep_PlasmaLance: DoomWeapon
         PLNC B 1 offset(-1, 32) A_JumpIfInventory("AltReleased", 1, "AltFire_Charge3")
 
         PLNC B 0 A_JumpIfNoAmmo("Altfire_Charge3")
-        PLNC B 0 ACS_NamedExecuteWithResult("Dakka_UseAmmo", AMMO_CELL, 3)
-        PLNC B 0 A_GiveInventory("GiveScrapCounter2", 3)
+        PLNC B 0 ACS_NamedExecuteWithResult("Dakka_UseAmmo", AMMO_CELL, 3, 3, SCRAP_CELL)
         PLNC B 1 offset( 0, 32) A_JumpIfInventory("AltReleased", 1, "AltFire_Charge4")
         PLNC B 1 offset( 2, 32) A_JumpIfInventory("AltReleased", 1, "AltFire_Charge4")
         PLNC C 1 offset( 1, 32) A_JumpIfInventory("AltReleased", 1, "AltFire_Charge4")
@@ -244,8 +235,7 @@ actor DWep_PlasmaLance: DoomWeapon
         PLNC D 1 offset( 1, 32) A_JumpIfInventory("AltReleased", 1, "AltFire_Charge4")
 
         PLNC B 0 A_JumpIfNoAmmo("Altfire_Charge4")
-        PLNC B 0 ACS_NamedExecuteWithResult("Dakka_UseAmmo", AMMO_CELL, 3)
-        PLNC B 0 A_GiveInventory("GiveScrapCounter2", 3)
+        PLNC B 0 ACS_NamedExecuteWithResult("Dakka_UseAmmo", AMMO_CELL, 3, 3, SCRAP_CELL)
         PLNC E 1 offset( 0, 33) A_JumpIfInventory("AltReleased", 1, "AltFire_Charge5")
         PLNC E 1 offset(-2, 33) A_JumpIfInventory("AltReleased", 1, "AltFire_Charge5")
         PLNC B 1 offset(-1, 32) A_JumpIfInventory("AltReleased", 1, "AltFire_Charge5")
@@ -256,8 +246,7 @@ actor DWep_PlasmaLance: DoomWeapon
         PLNC D 1 offset(-2, 32) A_JumpIfInventory("AltReleased", 1, "AltFire_Charge5")
 
         PLNC B 0 A_JumpIfNoAmmo("Altfire_Charge5")
-        PLNC B 0 ACS_NamedExecuteWithResult("Dakka_UseAmmo", AMMO_CELL, 3)
-        PLNC B 0 A_GiveInventory("GiveScrapCounter2", 3)
+        PLNC B 0 ACS_NamedExecuteWithResult("Dakka_UseAmmo", AMMO_CELL, 3, 3, SCRAP_CELL)
         PLNC E 1 offset(-2, 33) A_JumpIfInventory("AltReleased", 1, "AltFire_Charge6")
         PLNC E 1 offset( 3, 32) A_JumpIfInventory("AltReleased", 1, "AltFire_Charge6")
         PLNC B 1 offset(-1, 33) A_JumpIfInventory("AltReleased", 1, "AltFire_Charge6")
