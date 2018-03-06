@@ -860,6 +860,7 @@ actor DWep_Minigun: DoomWeapon
 
 
       AltFire:
+        DMNG A 0 A_JumpIfInventory("DakkaInfiniteAmmo", 1, 2)
         DMNG A 0 A_JumpIfInventory("DakkaFlamerFuel", 1, 1)
         goto AltNo
 
@@ -903,6 +904,7 @@ actor DWep_Minigun: DoomWeapon
         goto AltEnd
 
       AltHold:
+        DMNG A 0 A_JumpIfInventory("DakkaInfiniteAmmo", 1, 2)
         DMNG A 0 A_JumpIfInventory("DakkaFlamerFuel", 1, 1)
         goto AltEnd_NoAmmo
 
@@ -950,7 +952,7 @@ actor DWep_Minigun: DoomWeapon
 
         DMNG L 0 A_Light(2)
         DMNG L 0 A_StopSound(7)
-        DMNG L 2 bright offset(0, 34) A_WeaponReady(WRF_NOBOB | WRF_NOSECONDARY)
+        DMNG L 2 bright offset(0, 34) A_WeaponReady(WRF_NOBOB)
 
         DMNG C 0 A_Light(1)
         DMNG C 3 bright offset(0, 32) A_WeaponReady(WRF_NOBOB)
