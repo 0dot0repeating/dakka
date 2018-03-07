@@ -135,7 +135,7 @@ script "Dakka_ImpalerAltPush" (int normX, int normY, int normZ, int power)
 
     SetActorVelocity(0, FixedMul(normX, thrustMult * 3), FixedMul(normY, thrustMult * 3), FixedMul(normZ, thrustMult * 3), false, false);
 
-    int timelimit = 36;
+    int timelimit = 35;
 
     while (timelimit > 0 && IsTIDUsed(projTID) && GetUserVariable(projTID, "user_detonated") == false)
     {

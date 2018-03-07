@@ -44,7 +44,7 @@ function int Dakka_GetNewTarget(int ptrTID)
     {
         SetActivator(ptrTID);
         SetPointer(AAPTR_TRACER, targetTID_new);
-        SetUserVariable(0, "user_timeout", t + 36);
+        SetUserVariable(0, "user_timeout", t + 35);
 
         SetActivator(myTID_new);
         Thing_ChangeTID(targetTID_new, targetTID_old);

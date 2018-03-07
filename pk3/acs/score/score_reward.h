@@ -17,7 +17,7 @@ script "Score_Award" (int scoreHeals)
         }
         else
         {
-            Score_ModRegenTimer(pln, (36 * 20) + 1);
+            Score_ModRegenTimer(pln, (35 * 20) + 1);
         }
 
         Score_ModRewardCount(pln, 1);
@@ -194,20 +194,17 @@ function void Score_ProcessRewards(void)
             }
         }
 
-        int  curTic_bySecond = itof( Timer() % 36);
-        int lastTic_bySecond = itof((Timer() % 36) - 1);
+        int  curTic_bySecond = itof( Timer() % 35);
+        int lastTic_bySecond = itof((Timer() % 35) - 1);
 
         for (i = 0; i < AMMOREGENCOUNT; i++)
         {
             int ammoName   = AmmoRegen_AmmoTypes[i];
             int ammoPerSec = AmmoRegen_PerSecond[i];
 
-            int  curTic_ammostep = FixedMul(ammoPerSec,  curTic_bySecond / 36);
-            int lastTic_ammostep = FixedMul(ammoPerSec, lastTic_bySecond / 36);
-
-            // We get the ammo step in a convoluted way so as to minimize error
-            //  over time due to fixed-point imprecision.
-            int ammoStep = curTic_ammostep - lastTic_ammostep;
+            // minimize error over time from fixed-point imprecision
+            int ammoStep = FixedMul(ammoPerSec,  curTic_bySecond / 35) 
+                         - FixedMul(ammoPerSec, lastTic_bySecond / 35);
 
             int curRegen = AmmoRegen_RegenCounters[pln][i];
 
