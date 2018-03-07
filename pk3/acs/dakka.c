@@ -46,8 +46,8 @@
 // Handle IDFA and IDKFA here.
 #include "dakka_idfa.h"
 
-// Scrap processing. For the scrapper.
-#include "dakka_scrap.h"
+// Handles both weapons using ammo and giving scrap.
+#include "dakka_ammo.h"
 
 // Handle the CVars dakka_shotgun2ssg and dakka_chaingun2minigun.
 #include "dakka_gunstoguns.h"
