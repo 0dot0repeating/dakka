@@ -73,7 +73,7 @@ script "Dakka_Spawn" (int respawned)
         Dakka_TranslateGuns();
 
         // In dakka_powerlevel.h
-        Dakka_PowerLevel();
+        Dakka_UpdatePowerLevels();
 
         // In dakka_tempitems.h
         Dakka_UpdateTemporaryItems();

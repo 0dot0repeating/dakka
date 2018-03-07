@@ -44,7 +44,14 @@ function int safeAdd(int a, int b)
     return a + b;
 }
 
+// multiply integer by fraction, and avoid overflows
+function int fractionMult(int num, int mult, int div)
+{
+    return ((num / div) * mult) + (((num % div) * mult) / div);
+}
+
 // convert to fixed point and divide, while avoiding overflows
+//  - specialized version of fractionMult above
 function int itofDiv(int x, int div)
 {
     return ((x / div) << 16) + ((x % div) << 16) / div;
