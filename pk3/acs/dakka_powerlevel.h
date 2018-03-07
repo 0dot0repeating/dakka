@@ -85,10 +85,14 @@ int DakkaDefenseLevels[POWERLEVEL_COUNT] =
     "DakkaDefenseLevel_10",
 };
 
-function void Dakka_PowerLevel(void)
+
+function int Dakka_PowerLevel(void)   { return middle(0, GetCVar("dakka_powerlevel")   + POWERLEVEL_CENTER,   POWERLEVEL_COUNT   - 1); }
+function int Dakka_DefenseLevel(void) { return middle(0, GetCVar("dakka_defenselevel") + DEFENSELEVEL_CENTER, DEFENSELEVEL_COUNT - 1); }
+
+function void Dakka_UpdatePowerLevels(void)
 {
-    int powerLevel   = middle(0, GetCVar("dakka_powerlevel")   + POWERLEVEL_CENTER,   POWERLEVEL_COUNT  -1);
-    int defenseLevel = middle(0, GetCVar("dakka_defenselevel") + DEFENSELEVEL_CENTER, DEFENSELEVEL_COUNT-1);
+    int powerLevel   = Dakka_PowerLevel();
+    int defenseLevel = Dakka_DefenseLevel();
 
     int i;
 
