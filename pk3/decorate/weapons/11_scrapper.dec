@@ -388,6 +388,7 @@ actor ScrapperShot
     Height 6
 
     Projectile
+    DamageType "Scrap"
     Speed 55
 
     -NOGRAVITY
@@ -541,6 +542,7 @@ actor SplitScrap
     Height 8
 
     Projectile
+    DamageType "Scrap"
     Speed 15
 
     -NOGRAVITY
@@ -652,6 +654,7 @@ actor ScrapperGrenade
     Height 4
 
     Projectile
+    DamageType "Scrap"
     Speed 50
 
     +MTHRUSPECIES
