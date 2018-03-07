@@ -8,7 +8,6 @@ script "Score_Award" (int scoreHeals)
 
     for (i = 0; i < scoreHeals; i++)
     {
-
         int curRewards = Score_GetRewardCount(pln);
 
         if (curRewards % 2)

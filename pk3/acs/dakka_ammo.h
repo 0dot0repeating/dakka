@@ -34,3 +34,25 @@ script "Dakka_GiveScrap" (int amount, int type)
     GiveAmmo("DakkaScrap", batches * Scrap_Batches[type][SCRAP_GIVE]);
     SetInventory(scrapType, newAmount - (batches * batchSize));
 }
+
+
+
+// This is mainly to avoid ammo desyncs online, but also to make sure no scrap is
+// given when you have infinite ammo.
+//
+// Zandronum clients predict when they're going to use ammo, and take it away
+// themselves. The server therefore never bothers to tell them they used ammo,
+// which usually works out... but with Dakka, it doesn't. At all. So we gotta
+// handle this manually.
+
+script "Dakka_UseAmmo" (int ammoindex, int count, int scrapgive, int scraptype)
+{
+    if (!IsServer) { terminate; }
+    if (ammoindex < 0 || ammoindex >= AMMOCOUNT) { terminate; }
+    if (HasInfiniteAmmo()) { terminate; }
+    
+    if (ammoindex == AMMO_PISTOL && GetCVar("dakka_pickedupaclip") == 3) { terminate; }
+
+    ACS_NamedExecuteWithResult("Dakka_GiveScrap", scrapgive, scraptype);
+    TakeInventory(PKP_KnownAmmo[ammoindex], count);
+}
