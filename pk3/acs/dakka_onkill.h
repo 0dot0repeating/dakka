@@ -1,9 +1,9 @@
 script "Dakka_OnKill" kill
 {
-	if(!CheckFlag(0, "ISMONSTER"))
-	{
-		terminate;
-	}
+    if(!CheckFlag(0, "ISMONSTER"))
+    {
+        terminate;
+    }
 
     str monName   = GetActorClass(0);
     str deathType = GetActorProperty(0, APROP_DamageType);

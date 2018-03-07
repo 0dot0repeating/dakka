@@ -828,27 +828,27 @@ actor FistPowerPunch3_2: FistPowerPunch1
 
 actor FistShockwave_Client
 {
-	+NOINTERACTION
-	+CLIENTSIDEONLY
+    +NOINTERACTION
+    +CLIENTSIDEONLY
 
-	RenderStyle Add
+    RenderStyle Add
 
-	var int user_ringangle;
+    var int user_ringangle;
 
-	States
-	{
-	  Spawn:
-	    MISL B 0 bright
-		goto RingSpawn
+    States
+    {
+      Spawn:
+        MISL B 0 bright
+        goto RingSpawn
 
-	  RingSpawn:
-	    MISL B 0 A_SpawnItemEx("ImpalerRingParticle", 0,0,0, 32, 0, 0, user_ringangle)
-		MISL B 0 A_SetUserVar("user_ringangle", user_ringangle + 10)
-		MISL B 0 A_JumpIf(user_ringangle >= 360, "ParticleSpawn")
-		loop
+      RingSpawn:
+        MISL B 0 A_SpawnItemEx("ImpalerRingParticle", 0,0,0, 32, 0, 0, user_ringangle)
+        MISL B 0 A_SetUserVar("user_ringangle", user_ringangle + 10)
+        MISL B 0 A_JumpIf(user_ringangle >= 360, "ParticleSpawn")
+        loop
 
-	  ParticleSpawn:
-	    MISL BBBBBBBBBBBBBBBB 0 A_SpawnItemEx("ImpalerExplosionSpark", frandom(-6, 6), frandom(-1, 1), frandom(-3, 3), frandom(4, 12), frandom(-3, 3), frandom(-4, 8), frandom(0, 360))
-		stop
-	}
+      ParticleSpawn:
+        MISL BBBBBBBBBBBBBBBB 0 A_SpawnItemEx("ImpalerExplosionSpark", frandom(-6, 6), frandom(-1, 1), frandom(-3, 3), frandom(4, 12), frandom(-3, 3), frandom(-4, 8), frandom(0, 360))
+        stop
+    }
 }

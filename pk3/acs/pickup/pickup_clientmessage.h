@@ -95,7 +95,7 @@ script "Pickup_ShowMessage" (int mdata_index, int data1, int data2) clientside
     //  Log messages.
     int cpln = ConsolePlayerNumber();
 
-	int gotAllData = CMSG_AddPickupData(pln, mdata_index, data1, data2);
+    int gotAllData = CMSG_AddPickupData(pln, mdata_index, data1, data2);
 
     // We're still receiving data, don't do anything yet
     if (!gotAllData) { terminate; }
