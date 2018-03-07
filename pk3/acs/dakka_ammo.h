@@ -19,10 +19,14 @@ int Scrap_Batches[SCRAPTYPES][2] =
     {2000, 20}, // cells
 };
 
-script "Dakka_GiveScrap" (int amount, int type)
+function void Dakka_GiveScrap(int amount, int type)
 {
-    if (amount <= 0) { terminate; }
-    if (type < 0 || type >= SCRAPTYPES) { terminate; }
+    if (amount <= 0) { return; }
+    if (type < 0 || type >= SCRAPTYPES)
+    {
+        Log(s:"\caDakka_GiveScrap\cg was called with out-of-bounds type index ", d:type);
+        return;
+    }
     
     str scrapType  = Scrap_Items[type];
     int batchSize  = Scrap_Batches[type][SCRAP_NEEDED];
@@ -48,11 +52,15 @@ script "Dakka_GiveScrap" (int amount, int type)
 script "Dakka_UseAmmo" (int ammoindex, int count, int scrapgive, int scraptype)
 {
     if (!IsServer) { terminate; }
-    if (ammoindex < 0 || ammoindex >= AMMOCOUNT) { terminate; }
+    if (ammoindex < 0 || ammoindex >= AMMOCOUNT)
+    { 
+        Log(s:"\caDDakka_UseAmmo\cg was called with out-of-bounds ammo index ", d:ammoindex);
+        terminate;
+    }
     if (HasInfiniteAmmo()) { terminate; }
     
     if (ammoindex == AMMO_PISTOL && GetCVar("dakka_pickedupaclip") == 3) { terminate; }
 
-    ACS_NamedExecuteWithResult("Dakka_GiveScrap", scrapgive, scraptype);
+    Dakka_GiveScrap(scrapgive, scraptype);
     TakeInventory(PKP_KnownAmmo[ammoindex], count);
 }
