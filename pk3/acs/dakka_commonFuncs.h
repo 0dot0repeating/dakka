@@ -4,7 +4,10 @@
 #define PLAYERMAX 64
 #define TEAMCOUNT 8
 
-#define SECOND_TICS 35.714285714285715
+// GZDoom uses a more accurate timer, so now we can just assume 1 second = 35 tics again
+#define SECOND_TICS         35.0
+#define SECOND_SHORTTICS    35.714285714285715
+
 #define UNIT_CM     2.73921568627451
 
 int CommonFuncs_ZeroString = "[commonFuncs.h: string index #0]";
