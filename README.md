@@ -110,9 +110,17 @@ most important things:
 
 
 
-## ADD-ONS
+## COMPATIBILITY PATCHES
 
-Right now, there's three compatibility patches, and they all get used the same way.
+Right now, there's five compatibility patches, and they all get used the same way.
+
+- **`dakka_keyconfclass.wad`:** If you load DAKKA and don't have the fists and pistols
+    when you start a game, that usually means the maps you're playing have their own
+    player classes, and are overwriting DAKKA. This gets around that.
+
+- **`dakka_keyconfslots.wad`:** Similarly, if you load DAKKA and can't switch weapons,
+    the maps you're using are almost definitely using an old, broken method of changing
+    weapon slots. This gets around that.
 
 - **Ancient Aliens (`dakka_aaliens.wad`):** This adds the gibbed marine and dead
     lost soul to the score system since Ancient Aliens replaces them with custom
@@ -128,12 +136,13 @@ Right now, there's three compatibility patches, and they all get used the same w
 
     This compatibility patch is completely unnecessary in GZDoom.
 
+
 To use any of these addons, download them from the `addons/` directory (use the
 "Raw" button), and load the mods in this order:
 
 - The other maps/monsters in question
 - **DAKKA**
-- The compatibility patch
+- The compatibility patch(es)
 
 
 
