@@ -17,7 +17,7 @@ BIG CHANGES:
     charged up to three times to loose a bone-splintering one-two-three salvo
     that also hurts everyone near the poor sap you just broke in half.
 
-- The pistols have gotten a complete overhaul! No longer the weird, odd looking
+- The pistols have gotten a complete overhaul! No longer the boring, odd looking
     Berettas you've been looking at since 1994, but instead sleek, sexy chrome-
     black hand cannons that do a far better job convincing you to use them!
     Pistol shots have been buffed to 24 damage from 12, you can mash the fire
@@ -103,8 +103,9 @@ SMALLER WEAPON CHANGES:
 - The minigun's flamethrower has undergone a graphical revamp - if you prefer
     the older look, you can switch back to it in the user settings.
 
-- The BFG beam's damage radius has been shrunk, and it now uses 80 cells
-    per shot (up from 50).
+- All weapons now work properly when you have infinite ammo (CVar or powerup),
+    but no actual ammo in your inventory. They also no longer give scrap, since
+    you aren't actually consuming any ammo.
 
 
 AMMO CHANGES:
