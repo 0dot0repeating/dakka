@@ -32,7 +32,7 @@ function void ClearPoints(int pln, int bonustime)
 
 int TmpBonuses[BONUSCOUNT];
 
-script "Dakka_Score" (int pointValue)
+script "Dakka_Score" (int pointValue, int damagetype)
 {
     int myhp      = GetActorProperty(0, APROP_SpawnHealth);
     int deathhp   = GetActorProperty(0, APROP_Health);
@@ -120,10 +120,10 @@ script "Dakka_Score" (int pointValue)
     int points_untouchable  = oldRound(pointValue * SMult_Untouchable(pln, myhp));
     int points_bonedry      = oldRound(pointValue * SMult_BoneDry());
     int points_soreloser    = oldRound(pointValue * SMult_SoreLoser());
-    int points_brawler      = oldRound(pointValue * SMult_Brawler());
+    int points_brawler      = oldRound(pointValue * SMult_Brawler(damagetype));
     int points_air          = oldRound(pointValue * SMult_Air(pln));
     int points_curveball    = oldRound(pointValue * SMult_Curveball(curveCheck));
-    int points_scrapping    = oldRound(pointValue * SMult_Scrapping(pln));
+    int points_scrapping    = oldRound(pointValue * SMult_Scrapping(pln, damagetype));
     int points_pointblank   = oldRound(pointValue * SMult_PointBlank(myX, myY, myZ, myRadius, myHeight, plX, plY, plZ, plRadius, plHeight));
 
     Score_ModBothScores(pln, pointValue);

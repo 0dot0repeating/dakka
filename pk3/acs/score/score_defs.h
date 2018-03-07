@@ -106,40 +106,50 @@ int SCORE_UpdatesSwitcharoo[CLASSCOUNT_DEFINED] =
     true,
 };
 
-#define KNOWNMELEE 10
+#define KNOWNMELEE 13
 
-int Brawler_KnownMelee[KNOWNMELEE] =
+// first value is weapon name, second is damage type
+
+int Brawler_KnownMelee[KNOWNMELEE][2] =
 {
-    "Fist",
-    "Chainsaw",
-    "DWep_Fist",
+    {"Fist",        ""},    
+    {"Chainsaw",    ""},
+    {"DWep_Fist",   "FistRapid"},
+    {"",            "FistLightStun"},
+    {"",            "FistMediumStun"},
+    {"",            "FistHeavyStun"},
 
-    "PunchDagger",
+    {"PunchDagger", ""},
 
-    "FWeapFist",
-    "FWeapAxe",
-    "FWeapHammer",
-    "CWeapMace",
+    {"FWeapFist",   ""},
+    {"FWeapAxe",    ""},
+    {"FWeapHammer", ""},
+    {"CWeapMace",   ""},
 
-    "Staff",
-    "Gauntlets",
+    {"Staff",       ""},
+    {"Gauntlets",   ""},
 };
 
-int Brawler_MeleeMults[KNOWNMELEE] =
+// first value is mult, second is "only check weapon if damagetype is unknown"
+
+int Brawler_MeleeValues[KNOWNMELEE][2] =
 {
-    0.5,
-    0.5,
-    0.25,
-
-    0.5,
-
-    0.25,
-    0.15,
-    0.1,
-    0.3,
-
-    0.5,
-    0.25,
+    {0.5,   false},
+    {0.5,   false},
+    {0.25,  true},
+    {0.25,  false},
+    {0.25,  false},
+    {0.25,  false},
+    
+    {0.5,   false},
+    
+    {0.25,  false},
+    {0.15,  false},
+    {0.1,   false},
+    {0.3,   false},
+    
+    {0.5,   false},
+    {0.25,  false},
 };
 
 

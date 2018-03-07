@@ -588,6 +588,8 @@ actor FistPunchPuff: BulletPuff
 
     SeeSound    "dakka/silent"
     AttackSound "dakka/silent"
+    
+    DamageType "FistRapid"
 
     States
     {

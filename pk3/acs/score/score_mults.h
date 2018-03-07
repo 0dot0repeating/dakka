@@ -111,15 +111,26 @@ function int SMult_SoreLoser(void)
 }
 
 
-function int SMult_Brawler(void)
+function int SMult_Brawler(int damagetype)
 {
     int i, wep, mult;
+    str type;
 
     for (i = 0; i < KNOWNMELEE; i++)
     {
-        wep  = Brawler_KnownMelee[i];
-        mult = Brawler_MeleeMults[i];
-        if (CheckWeapon(wep)) { return mult; }
+        mult = Brawler_MeleeValues[i][0];
+        
+        if (damagetype != 0)
+        {
+            type = Brawler_KnownMelee[i][1];
+            if (!stricmp(type, damagetype)) { return mult; }
+        }
+        
+        if (damagetype == 0 || Brawler_MeleeValues[i][1] == false)
+        {
+            wep  = Brawler_KnownMelee[i][0];
+            if (CheckWeapon(wep)) { return mult; }
+        }
     }
 
     return 0;
@@ -148,8 +159,13 @@ function int SMult_Curveball(int couldsee)
 }
 
 
-function int SMult_Scrapping(int pln)
+function int SMult_Scrapping(int pln, int damagetype)
 {
+    if (damagetype != 0)
+    {
+        return cond(!stricmp(damagetype, "Scrap"), SCRAPPING_MULT, 0);
+    }
+    
     if (pln < 0 || pln >= PLAYERMAX) { return 0.0; }
 
     int s, f, i;

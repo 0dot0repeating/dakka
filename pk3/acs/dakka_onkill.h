@@ -5,9 +5,11 @@ script "Dakka_OnKill" kill
 		terminate;
 	}
 
-    str monName = GetActorClass(0);
+    str monName   = GetActorClass(0);
+    str deathType = GetActorProperty(0, APROP_DamageType);
+    
     int points  = ACS_NamedExecuteWithResult("Score_Lookup", monName);
-    ACS_NamedExecuteWithResult("Dakka_Score", points);
+    ACS_NamedExecuteWithResult("Dakka_Score", points, deathType);
 
     int spawnHP = GetActorProperty(0, APROP_SpawnHealth);
     SetActivator(0, AAPTR_TARGET);
