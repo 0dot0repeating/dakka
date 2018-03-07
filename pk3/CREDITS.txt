@@ -10,7 +10,7 @@ GRAPHICS
 - Super shotgun sprites: id Software, interpolated by Per Kristian
 - Super shotgun mini-rocket sprites: by Minigunner
 - Minigun sprites: from Skulltag, interpolated by Minigunner (how appropriate)
-- Minigun flame sprites: Duke Nukem 3D (projectiles) / Hexen (on enemies)
+- Minigun flame sprites: Duke Nukem 3D (old projectiles) / Hexen (new projectiles, and on enemies)
 - Flamer fuel sprite: Eriance
 - Impaler: by zrrion the insect, animated by ijon
 - Lancer: Insomniac Games, in Disruptor
@@ -36,7 +36,7 @@ SOUNDS
 - Shotgun secondary fire: stock sound (I think?)
 - Super shotgun primary fire: Obsidian Software, in Fallout: New Vegas
 - Super shotgun alt-fire: Gearbox Software, in Borderlands 2
-- Minigun motor sounds: from Serious Sam 3
+- Minigun motor sounds: Croteam, in Serious Sam 3
 - Minigun primary fire - slow: Croteam, in Serious Sam 3 (sped up)
 - Minigun primary fire - fast: Bungie, in Halo 4 (massively sped up)
 - Minigun flamethrower (all sounds): People Can Fly, in Painkiller
