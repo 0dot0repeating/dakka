@@ -361,214 +361,214 @@ actor ShotNadeTrail
 
 actor GrenadeExplosion_Client
 {
-	+NOINTERACTION
-	+CLIENTSIDEONLY
+    +NOINTERACTION
+    +CLIENTSIDEONLY
     +FORCEXYBILLBOARD
 
-	RenderStyle Add
+    RenderStyle Add
 
-	var int user_ringangle;
+    var int user_ringangle;
 
-	States
-	{
-	  Spawn:
-	    MISL B 0 bright
-		MISL B 0 A_PlaySound("dakka/grenadeexplode")
-		goto RingSpawn
+    States
+    {
+      Spawn:
+        MISL B 0 bright
+        MISL B 0 A_PlaySound("dakka/grenadeexplode")
+        goto RingSpawn
 
-	  RingSpawn:
-	    MISL B 0 A_SpawnItemEx("ImpalerRingParticle", 0,0,0, 32, 0, 0, user_ringangle)
-		MISL B 0 A_SetUserVar("user_ringangle", user_ringangle + 10)
-		MISL B 0 A_JumpIf(user_ringangle >= 360, "ParticleSpawn")
-		loop
+      RingSpawn:
+        MISL B 0 A_SpawnItemEx("ImpalerRingParticle", 0,0,0, 32, 0, 0, user_ringangle)
+        MISL B 0 A_SetUserVar("user_ringangle", user_ringangle + 10)
+        MISL B 0 A_JumpIf(user_ringangle >= 360, "ParticleSpawn")
+        loop
 
-	  ParticleSpawn:
-	    MISL B 0 A_JumpIf(z - floorz   < 1, "ParticleFloor")
-	    MISL B 0 A_JumpIf(ceilingz - z < 1, "ParticleCeiling")
-		goto ParticleOther
+      ParticleSpawn:
+        MISL B 0 A_JumpIf(z - floorz   < 1, "ParticleFloor")
+        MISL B 0 A_JumpIf(ceilingz - z < 1, "ParticleCeiling")
+        goto ParticleOther
 
-	  ParticleFloor:
-	    MISL BBBBBBBBBBB 0 A_SpawnItemEx("GrenadeExplosionSpark", frandom(-6, 6), frandom(-1, 1), frandom( 2,  6), frandom(4, 12), frandom(-3, 3), frandom(0, 10), frandom(0, 360))
-		goto SmokeSpawn
+      ParticleFloor:
+        MISL BBBBBBBBBBB 0 A_SpawnItemEx("GrenadeExplosionSpark", frandom(-6, 6), frandom(-1, 1), frandom( 2,  6), frandom(4, 12), frandom(-3, 3), frandom(0, 10), frandom(0, 360))
+        goto SmokeSpawn
 
-	  ParticleCeiling:
-	    MISL BBBBBBBBBBB 0 A_SpawnItemEx("GrenadeExplosionSpark", frandom(-6, 6), frandom(-1, 1), frandom(-6, -2), frandom(4, 12), frandom(-3, 3), frandom(-10, 0), frandom(0, 360))
-		goto SmokeSpawn
+      ParticleCeiling:
+        MISL BBBBBBBBBBB 0 A_SpawnItemEx("GrenadeExplosionSpark", frandom(-6, 6), frandom(-1, 1), frandom(-6, -2), frandom(4, 12), frandom(-3, 3), frandom(-10, 0), frandom(0, 360))
+        goto SmokeSpawn
 
-	  ParticleOther:
-	    MISL BBBBBBBBBBB 0 A_SpawnItemEx("GrenadeExplosionSpark", frandom(-6, 6), frandom(-1, 1), frandom(-3, 3), frandom(4, 12), frandom(-3, 3), frandom(-4, 8), frandom(0, 360))
-		goto SmokeSpawn
+      ParticleOther:
+        MISL BBBBBBBBBBB 0 A_SpawnItemEx("GrenadeExplosionSpark", frandom(-6, 6), frandom(-1, 1), frandom(-3, 3), frandom(4, 12), frandom(-3, 3), frandom(-4, 8), frandom(0, 360))
+        goto SmokeSpawn
 
 
-	  SmokeSpawn:
+      SmokeSpawn:
         MISL B 0 bright A_JumpIf(CallACS("Dakka_LessEffects") == true, "NoSmoke")
-		MISL BBBBBBBBBBBB 0 A_SpawnItemEx("ImpalerBigTrailParticle",   frandom(-6, 6), frandom(-1, 1), frandom(-4, 4), frandom(-3, 3), 0,              frandom(-3, 3), frandom(0, 360))
+        MISL BBBBBBBBBBBB 0 A_SpawnItemEx("ImpalerBigTrailParticle",   frandom(-6, 6), frandom(-1, 1), frandom(-4, 4), frandom(-3, 3), 0,              frandom(-3, 3), frandom(0, 360))
 
       NoSmoke:
-		DMIS GHIJ 2 bright
-		stop
-	}
+        DMIS GHIJ 2 bright
+        stop
+    }
 }
 
 
 actor MiniGrenadeExplosion_Client
 {
-	+NOINTERACTION
-	+CLIENTSIDEONLY
+    +NOINTERACTION
+    +CLIENTSIDEONLY
     +FORCEXYBILLBOARD
 
-	RenderStyle Add
+    RenderStyle Add
     Scale 0.5
 
-	var int user_ringangle;
+    var int user_ringangle;
 
-	States
-	{
-	  Spawn:
-	    MISL B 0 bright
-		MISL B 0 A_PlaySound("dakka/minigrenadeexplode")
-		goto RingSpawn
+    States
+    {
+      Spawn:
+        MISL B 0 bright
+        MISL B 0 A_PlaySound("dakka/minigrenadeexplode")
+        goto RingSpawn
 
-	  RingSpawn:
-	    MISL B 0 A_SpawnItemEx("MiniGrenadeRingParticle", 0,0,0, 16, 0, 0, user_ringangle)
-		MISL B 0 A_SetUserVar("user_ringangle", user_ringangle + 20)
-		MISL B 0 A_JumpIf(user_ringangle >= 360, "ParticleSpawn")
-		loop
+      RingSpawn:
+        MISL B 0 A_SpawnItemEx("MiniGrenadeRingParticle", 0,0,0, 16, 0, 0, user_ringangle)
+        MISL B 0 A_SetUserVar("user_ringangle", user_ringangle + 20)
+        MISL B 0 A_JumpIf(user_ringangle >= 360, "ParticleSpawn")
+        loop
 
-	  ParticleSpawn:
-	    MISL B 0 A_JumpIf(z - floorz   < 1, "ParticleFloor")
-	    MISL B 0 A_JumpIf(ceilingz - z < 1, "ParticleCeiling")
-		goto ParticleOther
+      ParticleSpawn:
+        MISL B 0 A_JumpIf(z - floorz   < 1, "ParticleFloor")
+        MISL B 0 A_JumpIf(ceilingz - z < 1, "ParticleCeiling")
+        goto ParticleOther
 
-	  ParticleFloor:
-	    MISL BBBB 0 A_SpawnItemEx("GrenadeExplosionSpark", frandom(-6, 6), frandom(-1, 1), frandom( 2,  6), frandom(4, 12), frandom(-3, 3), frandom(0, 10), frandom(0, 360))
-		goto SmokeSpawn
+      ParticleFloor:
+        MISL BBBB 0 A_SpawnItemEx("GrenadeExplosionSpark", frandom(-6, 6), frandom(-1, 1), frandom( 2,  6), frandom(4, 12), frandom(-3, 3), frandom(0, 10), frandom(0, 360))
+        goto SmokeSpawn
 
-	  ParticleCeiling:
-	    MISL BBBB 0 A_SpawnItemEx("GrenadeExplosionSpark", frandom(-6, 6), frandom(-1, 1), frandom(-6, -2), frandom(4, 12), frandom(-3, 3), frandom(-10, 0), frandom(0, 360))
-		goto SmokeSpawn
+      ParticleCeiling:
+        MISL BBBB 0 A_SpawnItemEx("GrenadeExplosionSpark", frandom(-6, 6), frandom(-1, 1), frandom(-6, -2), frandom(4, 12), frandom(-3, 3), frandom(-10, 0), frandom(0, 360))
+        goto SmokeSpawn
 
-	  ParticleOther:
-	    MISL BBBB 0 A_SpawnItemEx("GrenadeExplosionSpark", frandom(-6, 6), frandom(-1, 1), frandom(-3, 3), frandom(4, 12), frandom(-3, 3), frandom(-4, 8), frandom(0, 360))
-		goto SmokeSpawn
+      ParticleOther:
+        MISL BBBB 0 A_SpawnItemEx("GrenadeExplosionSpark", frandom(-6, 6), frandom(-1, 1), frandom(-3, 3), frandom(4, 12), frandom(-3, 3), frandom(-4, 8), frandom(0, 360))
+        goto SmokeSpawn
 
 
-	  SmokeSpawn:
+      SmokeSpawn:
         MISL B 0 bright A_JumpIf(CallACS("Dakka_LessEffects") == true, "NoSmoke")
-		MISL BBBB 0 A_SpawnItemEx("ImpalerBigTrailParticle",   frandom(-6, 6), frandom(-1, 1), frandom(-4, 4), frandom(-3, 3), 0,              frandom(-3, 3), frandom(0, 360))
+        MISL BBBB 0 A_SpawnItemEx("ImpalerBigTrailParticle",   frandom(-6, 6), frandom(-1, 1), frandom(-4, 4), frandom(-3, 3), 0,              frandom(-3, 3), frandom(0, 360))
 
       NoSmoke:
-		DMIS GHIJ 2 bright
-		stop
-	}
+        DMIS GHIJ 2 bright
+        stop
+    }
 }
 
 actor MiniGrenadeRingParticle
 {
-	+NOINTERACTION
-	+CLIENTSIDEONLY
+    +NOINTERACTION
+    +CLIENTSIDEONLY
     +FORCEXYBILLBOARD
 
-	RenderStyle Add
+    RenderStyle Add
     Scale 0.5
-	Alpha 0.1
+    Alpha 0.1
 
-	States
-	{
-	  Spawn:
-	    OPRT A 1 bright A_FadeOut(0.01)
-		loop
-	}
+    States
+    {
+      Spawn:
+        OPRT A 1 bright A_FadeOut(0.01)
+        loop
+    }
 }
 
 actor GrenadeExplosionSpark
 {
-	+CLIENTSIDEONLY
+    +CLIENTSIDEONLY
 
-	Projectile
-	-NOGRAVITY
-	+THRUACTORS
+    Projectile
+    -NOGRAVITY
+    +THRUACTORS
     +FORCEXYBILLBOARD
-	+PAINLESS
+    +PAINLESS
     +NOTRIGGER
-	Gravity 0.67
-	Damage 0
+    Gravity 0.67
+    Damage 0
 
-	Radius 3
-	Height 3
+    Radius 3
+    Height 3
 
-	BounceType Doom
-	BounceFactor 0.25
-	WallBounceFactor 1
+    BounceType Doom
+    BounceFactor 0.25
+    WallBounceFactor 1
 
-	Scale 0.075
-	RenderStyle Add
+    Scale 0.075
+    RenderStyle Add
 
     ReactionTime 70
 
-	States
-	{
-	  Spawn:
+    States
+    {
+      Spawn:
         OPRT B 0 bright
         OPRT B 0 bright A_JumpIf(CallACS("Dakka_LessEffects") == true, "LessEffects")
         goto Normal
 
       Normal:
-		OPRT B 0 A_SpawnItemEx("MiniGrenadeTrailParticle", 0,0,0, frandom(-1, 1), 0, frandom(-1, 1), random(0, 360), 0)
-	    OPRT B 1 bright A_Countdown
-		loop
+        OPRT B 0 A_SpawnItemEx("MiniGrenadeTrailParticle", 0,0,0, frandom(-1, 1), 0, frandom(-1, 1), random(0, 360), 0)
+        OPRT B 1 bright A_Countdown
+        loop
 
       LessEffects:
-	    OPRT B 1 bright A_Countdown
-		loop
+        OPRT B 1 bright A_Countdown
+        loop
 
       Death:
         TNT1 A 0
         stop
-	}
+    }
 }
 
 actor MiniGrenadeTrailParticle
 {
-	+NOINTERACTION
-	+CLIENTSIDEONLY
+    +NOINTERACTION
+    +CLIENTSIDEONLY
     +FORCEXYBILLBOARD
 
-	RenderStyle Add
-	Scale 0.2
+    RenderStyle Add
+    Scale 0.2
 
-	States
-	{
-	  Spawn:
-		TNT1 A 0
-		TNT1 A 0 A_Jump(256, "A", "B", "C", "D", "E", "F")
-		goto A
+    States
+    {
+      Spawn:
+        TNT1 A 0
+        TNT1 A 0 A_Jump(256, "A", "B", "C", "D", "E", "F")
+        goto A
 
-	  A:
-	    RSMK A 1 bright
-		goto B
+      A:
+        RSMK A 1 bright
+        goto B
 
-	  B:
-	    RSMK A 1 bright
-		goto C
+      B:
+        RSMK A 1 bright
+        goto C
 
-	  C:
-	    RSMK B 1 bright
-		goto D
+      C:
+        RSMK B 1 bright
+        goto D
 
-	  D:
-	    RSMK B 1 bright
-		goto E
+      D:
+        RSMK B 1 bright
+        goto E
 
-	  E:
-	    RSMK C 1 bright
-		goto F
+      E:
+        RSMK C 1 bright
+        goto F
 
-	  F:
-	    RSMK C  1 bright
-		RSMK DE 2 bright
-		stop
-	}
+      F:
+        RSMK C  1 bright
+        RSMK DE 2 bright
+        stop
+    }
 }
 
 

@@ -19,56 +19,56 @@
 
 Sprite "DPSTA0", 320, 200
 {
-	Patch "NPISTOL1", 215, 102
-	Patch "NPISTOL1", 38, 102
-	{
-		FlipX
-	}
+    Patch "NPISTOL1", 215, 102
+    Patch "NPISTOL1", 38, 102
+    {
+        FlipX
+    }
 }
 
 Sprite "DPSTB0", 320, 200
 {
-	Patch "NPISTOL2", 190, 84
-	Patch "NPISTOL2", 33, 84
-	{
-		FlipX
-	}
+    Patch "NPISTOL2", 190, 84
+    Patch "NPISTOL2", 33, 84
+    {
+        FlipX
+    }
 }
 
 Sprite "DPSTC0", 320, 200
 {
-	Patch "NPISTOL3", 190, 84
-	Patch "NPISTOL3", 33, 84
-	{
-		FlipX
-	}
+    Patch "NPISTOL3", 190, 84
+    Patch "NPISTOL3", 33, 84
+    {
+        FlipX
+    }
 }
 
 Sprite "DPSTD0", 320, 200
 {
-	Patch "NPISTOL4", 203, 91
-	Patch "NPISTOL4", 30, 91
-	{
-		FlipX
-	}
+    Patch "NPISTOL4", 203, 91
+    Patch "NPISTOL4", 30, 91
+    {
+        FlipX
+    }
 }
 
 Sprite "DPSTE0", 320, 200
 {
-	Patch "NPISTOL5", 221, 111
-	Patch "NPISTOL5", 32, 111
-	{
-		FlipX
-	}
+    Patch "NPISTOL5", 221, 111
+    Patch "NPISTOL5", 32, 111
+    {
+        FlipX
+    }
 }
 
 Sprite "DPSTF0", 320, 200
 {
-	Patch "NPISTOL6", 218, 107
-	Patch "NPISTOL6", 35, 107
-	{
-		FlipX
-	}
+    Patch "NPISTOL6", 218, 107
+    Patch "NPISTOL6", 35, 107
+    {
+        FlipX
+    }
 }
 
 
@@ -76,47 +76,47 @@ Sprite "DPSTF0", 320, 200
 
 Sprite "RPSTA0", 320, 200
 {
-	Patch "NPISTOL2", 190, 84
-	Patch "NPISTOL1", 38, 102
-	{
-		FlipX
-	}
+    Patch "NPISTOL2", 190, 84
+    Patch "NPISTOL1", 38, 102
+    {
+        FlipX
+    }
 }
 
 Sprite "RPSTB0", 320, 200
 {
-	Patch "NPISTOL3", 190, 84
-	Patch "NPISTOL1", 38, 102
-	{
-		FlipX
-	}
+    Patch "NPISTOL3", 190, 84
+    Patch "NPISTOL1", 38, 102
+    {
+        FlipX
+    }
 }
 
 Sprite "RPSTC0", 320, 200
 {
-	Patch "NPISTOL4", 203, 91
-	Patch "NPISTOL1", 38, 102
-	{
-		FlipX
-	}
+    Patch "NPISTOL4", 203, 91
+    Patch "NPISTOL1", 38, 102
+    {
+        FlipX
+    }
 }
 
 Sprite "RPSTD0", 320, 200
 {
-	Patch "NPISTOL5", 221, 111
-	Patch "NPISTOL1", 38, 102
-	{
-		FlipX
-	}
+    Patch "NPISTOL5", 221, 111
+    Patch "NPISTOL1", 38, 102
+    {
+        FlipX
+    }
 }
 
 Sprite "RPSTE0", 320, 200
 {
-	Patch "NPISTOL6", 218, 107
-	Patch "NPISTOL1", 38, 102
-	{
-		FlipX
-	}
+    Patch "NPISTOL6", 218, 107
+    Patch "NPISTOL1", 38, 102
+    {
+        FlipX
+    }
 }
 
 
@@ -124,29 +124,29 @@ Sprite "RPSTE0", 320, 200
 
 Sprite "RPSTF0", 320, 200
 {
-	Patch "NPISTOL2", 190, 84
-	Patch "NPISTOL6", 35, 107
-	{
-		FlipX
-	}
+    Patch "NPISTOL2", 190, 84
+    Patch "NPISTOL6", 35, 107
+    {
+        FlipX
+    }
 }
 
 Sprite "RPSTG0", 320, 200
 {
-	Patch "NPISTOL4", 203, 91
-	Patch "NPISTOL6", 35, 107
-	{
-		FlipX
-	}
+    Patch "NPISTOL4", 203, 91
+    Patch "NPISTOL6", 35, 107
+    {
+        FlipX
+    }
 }
 
 Sprite "RPSTH0", 320, 200
 {
-	Patch "NPISTOL5", 221, 111
-	Patch "NPISTOL6", 35, 107
-	{
-		FlipX
-	}
+    Patch "NPISTOL5", 221, 111
+    Patch "NPISTOL6", 35, 107
+    {
+        FlipX
+    }
 }
 
 
@@ -155,20 +155,20 @@ Sprite "RPSTH0", 320, 200
 
 Sprite "RPSTI0", 320, 200
 {
-	Patch "NPISTOL2", 190, 84
-	Patch "NPISTOL5", 32, 111
-	{
-		FlipX
-	}
+    Patch "NPISTOL2", 190, 84
+    Patch "NPISTOL5", 32, 111
+    {
+        FlipX
+    }
 }
 
 Sprite "RPSTJ0", 320, 200
 {
-	Patch "NPISTOL4", 203, 91
-	Patch "NPISTOL5", 32, 111
-	{
-		FlipX
-	}
+    Patch "NPISTOL4", 203, 91
+    Patch "NPISTOL5", 32, 111
+    {
+        FlipX
+    }
 }
 
 
@@ -176,47 +176,47 @@ Sprite "RPSTJ0", 320, 200
 
 Sprite "LPSTA0", 320, 200
 {
-	Patch "NPISTOL1", 215, 102
-	Patch "NPISTOL2", 33, 84
-	{
-		FlipX
-	}
+    Patch "NPISTOL1", 215, 102
+    Patch "NPISTOL2", 33, 84
+    {
+        FlipX
+    }
 }
 
 Sprite "LPSTB0", 320, 200
 {
-	Patch "NPISTOL1", 215, 102
-	Patch "NPISTOL3", 33, 84
-	{
-		FlipX
-	}
+    Patch "NPISTOL1", 215, 102
+    Patch "NPISTOL3", 33, 84
+    {
+        FlipX
+    }
 }
 
 Sprite "LPSTC0", 320, 200
 {
-	Patch "NPISTOL1", 215, 102
-	Patch "NPISTOL4", 30, 91
-	{
-		FlipX
-	}
+    Patch "NPISTOL1", 215, 102
+    Patch "NPISTOL4", 30, 91
+    {
+        FlipX
+    }
 }
 
 Sprite "LPSTD0", 320, 200
 {
-	Patch "NPISTOL1", 215, 102
-	Patch "NPISTOL5", 32, 111
-	{
-		FlipX
-	}
+    Patch "NPISTOL1", 215, 102
+    Patch "NPISTOL5", 32, 111
+    {
+        FlipX
+    }
 }
 
 Sprite "LPSTE0", 320, 200
 {
-	Patch "NPISTOL1", 215, 102
-	Patch "NPISTOL6", 35, 107
-	{
-		FlipX
-	}
+    Patch "NPISTOL1", 215, 102
+    Patch "NPISTOL6", 35, 107
+    {
+        FlipX
+    }
 }
 
 
@@ -224,29 +224,29 @@ Sprite "LPSTE0", 320, 200
 
 Sprite "LPSTF0", 320, 200
 {
-	Patch "NPISTOL6", 218, 107
-	Patch "NPISTOL2", 33, 84
-	{
-		FlipX
-	}
+    Patch "NPISTOL6", 218, 107
+    Patch "NPISTOL2", 33, 84
+    {
+        FlipX
+    }
 }
 
 Sprite "LPSTG0", 320, 200
 {
-	Patch "NPISTOL6", 218, 107
-	Patch "NPISTOL4", 30, 91
-	{
-		FlipX
-	}
+    Patch "NPISTOL6", 218, 107
+    Patch "NPISTOL4", 30, 91
+    {
+        FlipX
+    }
 }
 
 Sprite "LPSTH0", 320, 200
 {
-	Patch "NPISTOL6", 218, 107
-	Patch "NPISTOL5", 32, 111
-	{
-		FlipX
-	}
+    Patch "NPISTOL6", 218, 107
+    Patch "NPISTOL5", 32, 111
+    {
+        FlipX
+    }
 }
 
 
@@ -255,18 +255,18 @@ Sprite "LPSTH0", 320, 200
 
 Sprite "LPSTI0", 320, 200
 {
-	Patch "NPISTOL5", 221, 111
-	Patch "NPISTOL2", 33, 84
-	{
-		FlipX
-	}
+    Patch "NPISTOL5", 221, 111
+    Patch "NPISTOL2", 33, 84
+    {
+        FlipX
+    }
 }
 
 Sprite "LPSTJ0", 320, 200
 {
-	Patch "NPISTOL5", 221, 111
-	Patch "NPISTOL4", 30, 91
-	{
-		FlipX
-	}
+    Patch "NPISTOL5", 221, 111
+    Patch "NPISTOL4", 30, 91
+    {
+        FlipX
+    }
 }

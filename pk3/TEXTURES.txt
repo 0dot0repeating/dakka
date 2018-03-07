@@ -3,241 +3,241 @@
 
 Sprite "DFITA0", 320, 200
 {
-	Patch "NEWFIST1", 48, 144
-	Patch "NEWFIST1", 193, 148
-	{
-		FlipX
-	}
+    Patch "NEWFIST1", 48, 144
+    Patch "NEWFIST1", 193, 148
+    {
+        FlipX
+    }
 }
 
 Sprite "RFITA0", 320, 200
 {
-	Patch "NEWFIST3", 214, 140
+    Patch "NEWFIST3", 214, 140
 }
 
 Sprite "RFITB0", 320, 200
 {
-	Patch "NEWFIST3", 184, 120
+    Patch "NEWFIST3", 184, 120
 }
 
 Sprite "RFITC0", 320, 200
 {
-	Patch "NEWFIST3", 154, 100
+    Patch "NEWFIST3", 154, 100
 }
 
 Sprite "LFITD0", 320, 200
 {
-	Patch "NEWFIST3", 124, 85
+    Patch "NEWFIST3", 124, 85
 }
 
 Sprite "RFITE0", 320, 200
 {
-	Patch "NEWFIST3", 104, 75
+    Patch "NEWFIST3", 104, 75
 }
 
 Sprite "LFITA0", 320, 200
 {
-	Patch "NEWFIST3", -171, 140
-	{
-		FlipX
-	}
+    Patch "NEWFIST3", -171, 140
+    {
+        FlipX
+    }
 }
 
 Sprite "LFITB0", 320, 200
 {
-	Patch "NEWFIST3", -141, 120
-	{
-		FlipX
-	}
+    Patch "NEWFIST3", -141, 120
+    {
+        FlipX
+    }
 }
 
 Sprite "LFITC0", 320, 200
 {
-	Patch "NEWFIST3", -101, 100
-	{
-		FlipX
-	}
+    Patch "NEWFIST3", -101, 100
+    {
+        FlipX
+    }
 }
 
 Sprite "LFITD0", 320, 200
 {
-	Patch "NEWFIST3", -71, 85
-	{
-		FlipX
-	}
+    Patch "NEWFIST3", -71, 85
+    {
+        FlipX
+    }
 }
 
 Sprite "LFITE0", 320, 200
 {
-	Patch "NEWFIST3", -50, 75
-	{
-		FlipX
-	}
+    Patch "NEWFIST3", -50, 75
+    {
+        FlipX
+    }
 }
 
 Sprite "LFITF0", 534, 200
 {
-	Offset 107, 0
-	Patch "NEWFIST2", -168, 65
-	{
-		FlipX
-	}
+    Offset 107, 0
+    Patch "NEWFIST2", -168, 65
+    {
+        FlipX
+    }
 }
 
 Sprite "LFITG0", 534, 200
 {
-	Offset 107, 0
-	Patch "NEWFIST2", -118, 65
-	{
-		FlipX
-	}
+    Offset 107, 0
+    Patch "NEWFIST2", -118, 65
+    {
+        FlipX
+    }
 }
 
 Sprite "LFITH0", 534, 200
 {
-	Offset 107, 0
-	Patch "NEWFIST2", -68, 65
-	{
-		FlipX
-	}
+    Offset 107, 0
+    Patch "NEWFIST2", -68, 65
+    {
+        FlipX
+    }
 }
 
 Sprite "LFITI0", 534, 200
 {
-	Offset 107, 0
-	Patch "NEWFIST2", -28, 65
-	{
-		FlipX
-	}
+    Offset 107, 0
+    Patch "NEWFIST2", -28, 65
+    {
+        FlipX
+    }
 }
 
 Sprite "LFITJ0", 534, 200
 {
-	Offset 107, 0
-	Patch "NEWFIST2", 8, 65
-	{
-		FlipX
-	}
+    Offset 107, 0
+    Patch "NEWFIST2", 8, 65
+    {
+        FlipX
+    }
 }
 
 Sprite "LFITK0", 534, 200
 {
-	Offset 107, 0
-	Patch "NEWFIST2", 32, 65
-	{
-		FlipX
-	}
+    Offset 107, 0
+    Patch "NEWFIST2", 32, 65
+    {
+        FlipX
+    }
 }
 
 Sprite "LFITL0", 534, 200
 {
-	Offset 107, 0
-	Patch "NEWFIST2", 47, 65
-	{
-		FlipX
-	}
+    Offset 107, 0
+    Patch "NEWFIST2", 47, 65
+    {
+        FlipX
+    }
 }
 
 Sprite "LFITM0", 534, 200
 {
-	Offset 107, 0
-	Patch "NEWFIST2", 411, 65
+    Offset 107, 0
+    Patch "NEWFIST2", 411, 65
 }
 
 Sprite "LFITN0", 534, 200
 {
-	Offset 107, 0
-	Patch "NEWFIST2", 321, 65
+    Offset 107, 0
+    Patch "NEWFIST2", 321, 65
 }
 
 Sprite "LFITO0", 534, 200
 {
-	Offset 107, 0
-	Patch "NEWFIST2", 285, 65
+    Offset 107, 0
+    Patch "NEWFIST2", 285, 65
 }
 
 Sprite "LFITP0", 534, 200
 {
-	Offset 107, 0
-	Patch "NEWFIST2", 246, 65
+    Offset 107, 0
+    Patch "NEWFIST2", 246, 65
 }
 
 Sprite "RFITF0", 534, 200
 {
-	Offset 107, 0
-	Patch "NEWFIST2", 461, 65
+    Offset 107, 0
+    Patch "NEWFIST2", 461, 65
 }
 
 Sprite "RFITG0", 534, 200
 {
-	Offset 107, 0
-	Patch "NEWFIST2", 411, 65
+    Offset 107, 0
+    Patch "NEWFIST2", 411, 65
 }
 
 Sprite "RFITH0", 534, 200
 {
-	Offset 107, 0
-	Patch "NEWFIST2", 361, 65
+    Offset 107, 0
+    Patch "NEWFIST2", 361, 65
 }
 
 Sprite "RFITI0", 534, 200
 {
-	Offset 107, 0
-	Patch "NEWFIST2", 321, 65
+    Offset 107, 0
+    Patch "NEWFIST2", 321, 65
 }
 
 Sprite "RFITJ0", 534, 200
 {
-	Offset 107, 0
-	Patch "NEWFIST2", 285, 65
+    Offset 107, 0
+    Patch "NEWFIST2", 285, 65
 }
 
 Sprite "RFITK0", 534, 200
 {
-	Offset 107, 0
-	Patch "NEWFIST2", 261, 65
+    Offset 107, 0
+    Patch "NEWFIST2", 261, 65
 }
 
 Sprite "RFITL0", 534, 200
 {
-	Offset 107, 0
-	Patch "NEWFIST2", 246, 65
+    Offset 107, 0
+    Patch "NEWFIST2", 246, 65
 }
 
 Sprite "RFITM0", 534, 200
 {
-	Offset 107, 0
-	Patch "NEWFIST2", -118, 65
-	{
-		FlipX
-	}
+    Offset 107, 0
+    Patch "NEWFIST2", -118, 65
+    {
+        FlipX
+    }
 }
 
 Sprite "RFITN0", 534, 200
 {
-	Offset 107, 0
-	Patch "NEWFIST2", -28, 65
-	{
-		FlipX
-	}
+    Offset 107, 0
+    Patch "NEWFIST2", -28, 65
+    {
+        FlipX
+    }
 }
 
 Sprite "RFITO0", 534, 200
 {
-	Offset 107, 0
-	Patch "NEWFIST2", 8, 65
-	{
-		FlipX
-	}
+    Offset 107, 0
+    Patch "NEWFIST2", 8, 65
+    {
+        FlipX
+    }
 }
 
 Sprite "RFITP0", 534, 200
 {
-	Offset 107, 0
-	Patch "NEWFIST2", 47, 65
-	{
-		FlipX
-	}
+    Offset 107, 0
+    Patch "NEWFIST2", 47, 65
+    {
+        FlipX
+    }
 }
 
 Sprite "LFITZ0", 427, 200

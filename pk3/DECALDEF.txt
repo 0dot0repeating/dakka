@@ -27,32 +27,32 @@ colorchanger FadeToBlack
 
 decal PlasmaScorchBigger_1
 {
-	pic BFGLITE1
-	shade "80 EA FF"
+    pic BFGLITE1
+    shade "80 EA FF"
 
     x-scale 0.6
     y-scale 0.6
 
-	fullbright
-	randomflipx
+    fullbright
+    randomflipx
     randomflipy
-	animator FadeToBlack
-	lowerdecal PlasmaScorchBigger_Impact
+    animator FadeToBlack
+    lowerdecal PlasmaScorchBigger_Impact
 }
 
 decal PlasmaScorchBigger
 {
-	pic BFGLITE1
-	shade "80 EA FF"
+    pic BFGLITE1
+    shade "80 EA FF"
 
     x-scale 0.55
     y-scale 0.55
 
-	fullbright
-	randomflipx
+    fullbright
+    randomflipx
     randomflipy
-	animator FadeToBlack
-	lowerdecal PlasmaScorchBigger_1
+    animator FadeToBlack
+    lowerdecal PlasmaScorchBigger_1
 }
 
 decal BulletScorch
@@ -80,65 +80,65 @@ decal FireScorch
 
 decal BFGScorchSmall1
 {
-	pic BFGSCRC1
-	shade "00 00 00"
+    pic BFGSCRC1
+    shade "00 00 00"
 
     x-scale 0.6
     y-scale 0.6
 
-	randomflipx
-	randomflipy
+    randomflipx
+    randomflipy
 }
 
 decal BFGScorchSmall2
 {
-	pic BFGSCRC2
-	shade "00 00 00"
+    pic BFGSCRC2
+    shade "00 00 00"
 
     x-scale 0.6
     y-scale 0.6
 
-	randomflipx
-	randomflipy
+    randomflipx
+    randomflipy
 }
 
 decalgroup BFGScorchSmall
 {
-	BFGScorchSmall1     1
-	BFGScorchSmall2     1
+    BFGScorchSmall1     1
+    BFGScorchSmall2     1
 }
 
 decal BFGLightningSmall1
 {
-	pic BFGLITE1
-	shade "80 ff 80"
+    pic BFGLITE1
+    shade "80 ff 80"
 
     x-scale 0.6
     y-scale 0.6
 
-	fullbright
-	randomflipx
-	animator FadeToBlack
-	lowerdecal BFGScorchSmall
+    fullbright
+    randomflipx
+    animator FadeToBlack
+    lowerdecal BFGScorchSmall
 }
 
 decal BFGLightningSmall2
 {
-	pic BFGLITE2
-	shade "80 ff 80"
+    pic BFGLITE2
+    shade "80 ff 80"
 
     x-scale 0.6
     y-scale 0.6
 
-	fullbright
-	randomflipy
-	animator FadeToBlack
-	lowerdecal BFGScorchSmall
+    fullbright
+    randomflipy
+    animator FadeToBlack
+    lowerdecal BFGScorchSmall
 }
 
 decalgroup BFGLightningSmall
 {
-	BFGLightningSmall1  1
-	BFGLightningSmall2  1
+    BFGLightningSmall1  1
+    BFGLightningSmall2  1
 }
 
