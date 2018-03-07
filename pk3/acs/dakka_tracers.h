@@ -151,6 +151,14 @@ script "Dakka_Tracer_Client" (int startTID, int dist, int startPitch, int type) 
     int startY     = GetActorY(startTID);
     int startZ     = GetActorZ(startTID);
     int startAngle = GetActorAngle(startTID);
+    
+    if (!GetCVar("cl_capfps"))
+    {
+        // Interpolation makes tracers appear ahead of you, so push it back
+        startX -= GetActorVelX(0);
+        startY -= GetActorVelY(0);
+        startZ -= GetActorVelZ(0);
+    }
 
     int dX = FixedMul(dist, FixedMul(cos(startAngle), cos(startPitch)));
     int dY = FixedMul(dist, FixedMul(sin(startAngle), cos(startPitch)));
