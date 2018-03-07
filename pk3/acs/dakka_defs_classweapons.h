@@ -6,7 +6,7 @@
 //
 // Dakka_ClassWeapons is also used by Dakka_TranslateGuns. (dakka_translateguns.h)
 
-#define CLASSWEAPONS    20
+#define CLASSWEAPONS    18
 
 #define CWEP_FIST               0
 #define CWEP_CHAINSAW           1
@@ -19,15 +19,15 @@
 #define CWEP_BFG9000            8
 
 
-#define CWEP_HERETIC_STAFF      10
-#define CWEP_HERETIC_GAUNTLETS  11
-#define CWEP_HERETIC_GOLDWAND   12
-#define CWEP_HERETIC_CROSSBOW   13
-#define CWEP_HERETIC_CROSSBOW2  14
-#define CWEP_HERETIC_BLASTER    15
-#define CWEP_HERETIC_SKULLROD   16
-#define CWEP_HERETIC_PHOENIXROD 17
-#define CWEP_HERETIC_MACE       18
+#define CWEP_HERETIC_STAFF      9
+#define CWEP_HERETIC_GAUNTLETS  10
+#define CWEP_HERETIC_GOLDWAND   11
+#define CWEP_HERETIC_CROSSBOW   12
+#define CWEP_HERETIC_CROSSBOW2  13
+#define CWEP_HERETIC_BLASTER    14
+#define CWEP_HERETIC_SKULLROD   15
+#define CWEP_HERETIC_PHOENIXROD 16
+#define CWEP_HERETIC_MACE       17
 
 // First col is Doomguy
 // Second col is Dakkaguy
