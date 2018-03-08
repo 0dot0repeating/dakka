@@ -19,15 +19,15 @@
 #define CWEP_BFG9000            8
 
 
-#define CWEP_HERETIC_STAFF      9
-#define CWEP_HERETIC_GAUNTLETS  10
-#define CWEP_HERETIC_GOLDWAND   11
-#define CWEP_HERETIC_CROSSBOW   12
-#define CWEP_HERETIC_CROSSBOW2  13
-#define CWEP_HERETIC_BLASTER    14
-#define CWEP_HERETIC_SKULLROD   15
-#define CWEP_HERETIC_PHOENIXROD 16
-#define CWEP_HERETIC_MACE       17
+#define CWEP_HERETIC_STAFF          9
+#define CWEP_HERETIC_GAUNTLETS      10
+#define CWEP_HERETIC_GOLDWAND       11
+#define CWEP_HERETIC_CROSSBOW       12
+#define CWEP_HERETIC_BLASTER        13
+#define CWEP_HERETIC_SKULLROD       14
+#define CWEP_HERETIC_PHOENIXROD     15
+#define CWEP_HERETIC_PHOENIXROD2    16
+#define CWEP_HERETIC_MACE           17
 
 // First col is Doomguy
 // Second col is Dakkaguy
@@ -54,9 +54,9 @@ str Dakka_ClassWeapons[CLASSWEAPONS][CLASSCOUNT] =
     {"Gauntlets",       "DWep_Scrappers"},
     {"GoldWand",        "DWep_Pistols"},
     {"Crossbow",        "DWep_Shotgun"},
-    {"Crossbow",        "DWep_SuperShotgun"},
     {"Blaster",         "DWep_Minigun"},
     {"PhoenixRod",      "DWep_Impaler"},
+    {"PhoenisRod",      "DWep_SuperShotgun"},
     {"SkullRod",        "DWep_PlasmaLance"},
     {"Mace",            "DWep_BFG9000"},
 };
@@ -76,15 +76,15 @@ int Dakka_ClassWeaponPowers[CLASSWEAPONS][CLASSCOUNT] =
     { 6,  6}, // plasma rifle    / plasma lance
     { 7,  7}, // BFG
 
-    { 1, -1}, // staff          (fist)
-    { 3, -1}, // gauntlets      (scrappers)
-    { 2, -1}, // wand           (revolvers)
-    { 3, -1}, // crossbow 1     (shotgun)
-    { 3, -1}, // crossbow 2     (ssg)
-    { 4, -1}, // blaster        (minigun)
-    { 6, -1}, // phoenix rod    (impaler)
-    { 5, -1}, // hellstaff      (plasma)
-    { 7, -1}, // mace           (bfg)
+    { 1,  1}, // staff          (fist)
+    { 3,  1}, // gauntlets      (scrappers)
+    { 2,  2}, // wand           (revolvers)
+    { 3,  3}, // crossbow       (shotgun)
+    { 4,  4}, // blaster        (minigun)
+    { 5,  5}, // phoenix rod    (impaler)
+    { 5,  5}, // phoenix rod    (ssg)
+    { 6,  6}, // hellstaff      (plasma)
+    { 7,  7}, // mace           (bfg)
 };
 
 
@@ -108,7 +108,7 @@ int Dakka_ClassWep_StartModeIgnore[CLASSWEAPONS][CLASSCOUNT] =
     {false, true},
     {false, true},
     {false, true},
-    {false, true},
+    {true,  true},
     {false, true},
     {false, true},
 };
