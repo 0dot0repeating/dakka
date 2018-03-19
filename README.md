@@ -1,6 +1,6 @@
 ![DAKKA](/README_logo.png "necessary")
 
-**For Zandronum 3.0+ and GZDoom 2.2.0+**
+**For Zandronum 3.0+, GZDoom 2.2.0+, and ZDoom 2.8.1 (with an addon)**
 
 ```text
 IT IS 2162. THE LAST HUMAN OUTPOST HAS FALLEN TO THE MINIONS OF HELL. EVERYTHING
@@ -112,7 +112,12 @@ most important things:
 
 ## COMPATIBILITY PATCHES
 
-Right now, there's five compatibility patches, and they all get used the same way.
+Right now, there's six compatibility patches, and they all get used the same way.
+
+- **ZDoom 2.8.1 support (`dakka_zdoom2.8.1.wad`):** ZDoom lacks an event handler
+    for monsters dying, so you need this patch to hook the Doom monster roster
+    into the score system. This probably won't play well with DEHACKED monsters
+    either. But it works.
 
 - **`dakka_keyconfclass.wad`:** If you load DAKKA and don't have the fists and pistols
     when you start a game, that usually means the maps you're playing have their own
