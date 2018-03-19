@@ -1,6 +1,6 @@
 ![DAKKA](/README_logo.png "necessary")
 
-**For Zandronum and GZDoom**
+**For Zandronum 3.0+ and GZDoom 2.2.0+**
 
 ```text
 IT IS 2162. THE LAST HUMAN OUTPOST HAS FALLEN TO THE MINIONS OF HELL. EVERYTHING
