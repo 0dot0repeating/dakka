@@ -112,12 +112,9 @@ most important things:
 
 ## COMPATIBILITY PATCHES
 
-Right now, there's six compatibility patches, and they all get used the same way.
-
-- **ZDoom 2.8.1 support (`dakka_zdoom2.8.1.wad`):** ZDoom lacks an event handler
-    for monsters dying, so you need this patch to hook the Doom monster roster
-    into the score system. This probably won't play well with DEHACKED monsters
-    either. But it works.
+- **ZDoom support (`dakka_zdoom.wad`):** ZDoom lacks an event handler for monsters
+    dying, so you need this patch to hook the Doom monster roster into the score
+    system. This probably won't play well with DEHACKED monsters either. But it works.
 
 - **`dakka_keyconfclass.wad`:** If you load DAKKA and don't have the fists and pistols
     when you start a game, that usually means the maps you're playing have their own
@@ -130,16 +127,25 @@ Right now, there's six compatibility patches, and they all get used the same way
 - **Ancient Aliens (`dakka_aaliens.wad`):** This adds the gibbed marine and dead
     lost soul to the score system since Ancient Aliens replaces them with custom
     enemies, and adjusts their score values upwards to match their increased danger.
+    
+    - **ZDoom support (`dakka_aaliens_zdoom.wad`):** If you're using ZDoom, you
+        need this so that the custom aliens give you points when they die. Load
+        this instead of `dakka_aaliens.wad`. You still need `dakka_zdoom.wad`.
 
 - **Scythe 2 (`dakka_scythe2.wad`):** This boosts the score values of the Nazi
     and Commander Keen actors dramatically, as they're replaced with evil marines
     and afrits respectively, and are much more dangerous than their replacements.
+    
+    - **ZDoom support (`dakka_scythe2_zdoom.wad`):** If you're using ZDoom, you
+        need this for the custom monsters to work properly. Load this instead of
+        `dakka_scythe2.wad`. You still need `dakka_zdoom.wad`.
 
 - **Colourful Hell (`dakka_colorfulhell.wad`):** This adds the Colourful Hell
     enemies to the score system, so that loading Dakka and Colourful Hell together
     doesn't result in every map giving you score rewards every 5000 points.
 
-    This compatibility patch is completely unnecessary in GZDoom.
+    This compatibility patch is completely unnecessary in GZDoom. It has no ZDoom
+    equivalent, because Colourful Hell doesn't work in ZDoom.
 
 
 To use any of these addons, download them from the `addons/` directory (use the
