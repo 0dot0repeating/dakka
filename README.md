@@ -140,13 +140,6 @@ most important things:
         need this for the custom monsters to work properly. Load this instead of
         `dakka_scythe2.wad`. You still need `dakka_zdoom.wad`.
 
-- **Colourful Hell (`dakka_colorfulhell.wad`):** This adds the Colourful Hell
-    enemies to the score system, so that loading Dakka and Colourful Hell together
-    doesn't result in every map giving you score rewards every 5000 points.
-
-    This compatibility patch is completely unnecessary in GZDoom. It has no ZDoom
-    equivalent, because Colourful Hell doesn't work in ZDoom.
-
 
 To use any of these addons, download them from the `addons/` directory (use the
 "Raw" button), and load the mods in this order:
