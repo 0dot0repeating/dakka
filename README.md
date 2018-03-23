@@ -130,15 +130,15 @@ most important things:
     
     - **ZDoom support (`dakka_aaliens_zdoom.wad`):** If you're using ZDoom, you
         need this so that the custom aliens give you points when they die. Load
-        this instead of `dakka_aaliens.wad`. You still need `dakka_zdoom.wad`.
+        this after `dakka_zdoom.wad` instead of `dakka_aaliens.wad`.
 
 - **Scythe 2 (`dakka_scythe2.wad`):** This boosts the score values of the Nazi
     and Commander Keen actors dramatically, as they're replaced with evil marines
     and afrits respectively, and are much more dangerous than their replacements.
     
     - **ZDoom support (`dakka_scythe2_zdoom.wad`):** If you're using ZDoom, you
-        need this for the custom monsters to work properly. Load this instead of
-        `dakka_scythe2.wad`. You still need `dakka_zdoom.wad`.
+        need this for the custom monsters to work properly. Load this after
+        `dakka_zdoom.wad` instead of `dakka_scythe2.wad`.
 
 
 To use any of these addons, download them from the `addons/` directory (use the
