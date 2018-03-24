@@ -74,11 +74,9 @@ script "Dakka_Open" open
 
 script "Dakka_Open_Client" open clientside
 {
-    if (GameType() == GAME_TITLE_MAP) { terminate; }
+    if (IsServer || GameType() == GAME_TITLE_MAP) { terminate; }
 
     int cpln = ConsolePlayerNumber();
-    int oldPickupState;
-    int pickupState = -1;
 
     //CSender_ForceSendAll(cpln);
 

@@ -99,6 +99,7 @@ script "Dakka_Spawn" (int respawned)
         bfgPtrTID = Dakka_GetNewTarget(bfgPtrTID);
 
         Score_UpdateClient(pln);
+        if (IsServer) { Score_Update(pln); }
 
         Delay(1);
     }
