@@ -36,6 +36,11 @@ function void Score_Update(int pln)
     Score_OldVals[OSCORE_HIDESCORE][pln]  = hideScore;
 }
 
+
+#define BARSTEPS        120
+#define BAROFFSET       ((BARSTEPS / 2) << 16)
+#define BARINCREMENT    12
+
 function void Score_Draw(int curPoints, int goalPoints, int displayPoints, int hideScore, int noScoreRewards)
 {
 
@@ -49,61 +54,67 @@ function void Score_Draw(int curPoints, int goalPoints, int displayPoints, int h
     else
     {
         SetFont("DAKKAFON");
-        SetHudSize(560, 420, 1);
+        SetHudSize(640, 480, 1);
         HudMessage(s:"Score: \c[DScore_Gold]", d:displayPoints;
-                    HUDMSG_PLAIN | HUDMSG_COLORSTRING, 24200, "DScore_White", 455.4, 55.2, 0);
+                    HUDMSG_PLAIN | HUDMSG_COLORSTRING, 24200, "DScore_White", 520.4, 64.2, 0);
     }
 
     if (noScoreRewards || hideScore)
     {
         HudMessage(s:""; HUDMSG_PLAIN, 24401, 0,0,0,0);
+        HudMessage(s:""; HUDMSG_PLAIN, 24201, 0,0,0,0);
 
         for (i = 0; i < 100; i++)
         {
-            HudMessage(s:""; HUDMSG_PLAIN, 24201 + i, 0,0,0,0);
+            HudMessage(s:""; HUDMSG_PLAIN, 24202 + i, 0,0,0,0);
         }
     }
     else
     {
-        int scoreBar, pointBar1, pointBar2, pointBar3;
+        str scoreBar, scoreBrackets, pointBar1, pointBar2, pointBar3;
 
         if (SToC_ClientData[cpln][S2C_D_REWARDCOUNT] % 2)
         {
-            pointBar1 = "POINTBR4";
-            pointBar2 = "POINTBR5";
-            pointBar3 = "POINTBR6";
-            scoreBar  = "SCOREBR2";
+            pointBar1      = "POINTBR4";
+            pointBar2      = "POINTBR5";
+            pointBar3      = "POINTBR6";
+            scoreBar       = "SCOREBR2";
+            scoreBrackets  = "SCOREBKT";
         }
         else
         {
-            pointBar1 = "POINTBR1";
-            pointBar2 = "POINTBR2";
-            pointBar3 = "POINTBR3";
-            scoreBar  = "SCOREBAR";
+            pointBar1      = "POINTBR1";
+            pointBar2      = "POINTBR2";
+            pointBar3      = "POINTBR3";
+            scoreBar       = "SCOREBAR";
+            scoreBrackets  = "SCOREBKT";
         }
 
-        SetHudSize(480, 360, 1);
+        SetHudSize(640, 480, 1);
 
         SetFont(scoreBar);
-        HudMessage(s:"A"; HUDMSG_PLAIN, 24401, CR_UNTRANSLATED, 390.4, 52.0, 0);
+        HudMessage(s:"A"; HUDMSG_PLAIN, 24401, CR_UNTRANSLATED, 520.4, 70.0, 0);
+        
+        SetFont(scoreBrackets);
+        HudMessage(s:"A"; HUDMSG_PLAIN, 24201, CR_UNTRANSLATED, 520.4, 70.0, 0);
 
         if (goalPoints > 0)
         {
-            int pointstep   = goalPoints / 100;
+            int pointstep   = goalPoints / BARSTEPS;
             int barpoints   = curPoints % goalPoints;
             int lastGraphic = "";
 
-            for (i = 0; i < 100; i++)
+            for (i = 0; i < BARSTEPS; i++)
             {
                 int barGraphic = pointBar1;
-                int i10        = i % 10;
+                int increment  = i % BARINCREMENT;
 
-                if (i10 == 0 && i != 0)
+                if (increment == 0 && i > 0)
                 {
                     barGraphic = pointBar3;
                 }
 
-                if (i10 == 9 && i != 99)
+                if (increment == (BARINCREMENT - 1) && i < (BARSTEPS - 1))
                 {
                     barGraphic = pointBar2;
                 }
@@ -118,12 +129,12 @@ function void Score_Draw(int curPoints, int goalPoints, int displayPoints, int h
                         lastGraphic = barGraphic;
                     }
 
-                    HudMessage(s:"A"; HUDMSG_PLAIN, 24201 + i, CR_UNTRANSLATED, 340.1 + (1.0 * i), 52.0, 0);
+                    HudMessage(s:"A"; HUDMSG_PLAIN, 24202 + i, CR_UNTRANSLATED, 520.1 - BAROFFSET + (1.0 * i), 70.0, 0);
                     // 1873 = (1.0 / 35)+1 = 1 tic
                 }
                 else
                 {
-                    HudMessage(s:""; HUDMSG_PLAIN, 24201 + i, CR_UNTRANSLATED, 340.1 + (1.0 * i), 52.0, 0);
+                    HudMessage(s:""; HUDMSG_PLAIN, 24202 + i, CR_UNTRANSLATED, 0,0,0);
                 }
             }
         }
@@ -147,7 +158,7 @@ function void Score_DrawLives(int lives, int hideScore)
         return;
     }
     
-    SetHudSize(560, 420, 1);
+    SetHudSize(640, 480, 1);
 
     int lifeFont;
 
@@ -164,7 +175,7 @@ function void Score_DrawLives(int lives, int hideScore)
 
     int drawLives = min(LIVES_MAXDRAW, lives);
 
-    int borderLeft = itof(455 - (6 * (drawLives - 1)));
+    int borderLeft = itof(520 - (6 * (drawLives - 1)));
 
     for (i = 0; i < LIVES_MAXDRAW; i++)
     {
@@ -174,7 +185,7 @@ function void Score_DrawLives(int lives, int hideScore)
         }
         else
         {
-            HudMessage(s:"A"; HUDMSG_PLAIN, 25501 + i, CR_UNTRANSLATED, 0.4 + borderLeft + (12.0 * i), 40.2, 0);
+            HudMessage(s:"A"; HUDMSG_PLAIN, 25501 + i, CR_UNTRANSLATED, 0.4 + borderLeft + (12.0 * i), 50.2, 0);
         }
     }
 }
