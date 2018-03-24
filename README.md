@@ -20,8 +20,7 @@ TIME FOR SOME DAKKA.
 ```
 
 It's a mod with guns. The guns make everything easy - not Russian Overkill levels
-of easy, but still pretty damn easy. Eventually, I'll change up the monsters to
-fix this. Today's not that day.
+of easy, but still pretty damn easy. Great for slaughtermaps!
 
 Any version at and before 0.06-alpha6-2 were made in the days of Zandronum 1.3.
 They might use an old, deprecated method to set console variables, so be wary.
