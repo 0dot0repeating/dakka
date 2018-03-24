@@ -22,15 +22,15 @@ TIME FOR SOME DAKKA.
 It's a mod with guns. The guns make everything easy - not Russian Overkill levels
 of easy, but still pretty damn easy. Great for slaughtermaps!
 
-Any version at and before 0.06-alpha6-2 were made in the days of Zandronum 1.3.
+Any version at and before 0.06-alpha6-2 was made in the days of Zandronum 1.3.
 They might use an old, deprecated method to set console variables, so be wary.
 Zandronum 3 should run them perfectly well.
 
 Early OpenAL implementations in GZDoom will play stereo sounds incorrectly - if
-the pistols and super shotgun sound quiet and muffled compared to the impaler,
-that's the bug. Update to the latest GZDoom if this is happening.
+the super shotgun and minigun sound quiet and muffled compared to the pistols and
+impaler, that's the bug. GZDoom 3.2.5 doesn't exhibit this bug - use that one.
 
-**DOWNLOAD:** http://jinotra.in/downloads/mods/doom/dakka/
+**DOWNLOAD:** http://jinotra.in/downloads/mods/doom/dakka?sort=m
 
 
 
