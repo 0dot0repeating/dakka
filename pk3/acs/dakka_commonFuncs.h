@@ -898,7 +898,7 @@ function int defaultTID(int def)
 
 function int _defaulttid(int def, int alwaysPropagate)
 {
-    if (ClassifyActor(0) & ACTOR_WORLD) { return 0; }
+    if (IsWorld()) { return 0; }
 
     int tid = ActivatorTID();
 
@@ -1250,4 +1250,9 @@ function int ActivatorToPlayer(int i)
 function int HasInfiniteAmmo(void)
 {
     return GetCVar("sv_infiniteammo") || CheckInventory("PowerInfiniteAmmo");
+}
+
+function int IsWorld(void)
+{
+    return ClassifyActor(0) & ACTOR_WORLD;
 }

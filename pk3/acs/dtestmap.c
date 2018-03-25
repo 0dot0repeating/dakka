@@ -1,6 +1,11 @@
 #library "dtestmap"
 #include "zcommon.acs"
 
+function int IsWorld(void)
+{
+    return ClassifyActor(0) & ACTOR_WORLD;
+}
+
 // superceded in DAKKTEST itself, but here to avoid unknown script errors
 script "DAKKTEST_ReportDamage" (void)
 {
@@ -28,7 +33,7 @@ script "DAKKTEST_KickAsses" (void)
         if (i < 8) { SetActivator(0, AAPTR_PLAYER1 << i); }
         else       { SetActivatorToPlayer(i); } // zandronum only
 
-        if (!(ClassifyActor(0) & ACTOR_WORLD))
+        if (!IsWorld())
         {
             Thing_Damage(0, 0x7FFFFFFF, "Exit");
         }

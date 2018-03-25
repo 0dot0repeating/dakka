@@ -9,7 +9,7 @@ script "Score_InHub" (void)
         SetActivator(0);
         ActivatorToPlayer(i);
         
-        if (ClassifyActor(0) & ACTOR_WORLD) { continue; }
+        if (IsWorld()) { continue; }
         
         if (CheckInventory("HubTracker"))
         {

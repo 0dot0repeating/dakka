@@ -23,7 +23,7 @@ script "Dakka_Tracer" (int which, int yoff, int zoff, int fractional)
         break;
     }
 
-    if (ClassifyActor(0) & ACTOR_WORLD) { terminate; }
+    if (IsWorld()) { terminate; }
 
     int myX = GetActorX(0);
     int myY = GetActorY(0);

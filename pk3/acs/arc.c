@@ -76,7 +76,7 @@ script "Arc_Damage" (int damage)
     Thing_ChangeTID(0, myTID_new);
 
     SetActivator(0, AAPTR_TRACER);
-    if (ClassifyActor(0) & ACTOR_WORLD)
+    if (IsWorld())
     {
         Thing_ChangeTID(myTID_new, myTID_old);
         terminate;

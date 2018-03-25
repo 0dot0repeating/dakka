@@ -92,13 +92,13 @@ script "Arc_CheckTarget" (void)
     while (!hitAlready)
     {
         SetActivator(0, AAPTR_MASTER);
-        if (ClassifyActor(0) & ACTOR_WORLD) { break; }
+        if (IsWorld()) { break; }
 
         int masterTID_old = ActivatorTID();
         Thing_ChangeTID(0, masterTID_new);
         SetActivator(0, AAPTR_TRACER);
 
-        if (!(ClassifyActor(0) & ACTOR_WORLD))
+        if (!IsWorld())
         {
             hitAlready = (testnum == CheckInventory("SameThingChecker"));
         }
@@ -151,7 +151,7 @@ script "Arc_CheckTarget" (void)
     int maxDist = itof(INT_ArcData[arcType][ARC_I_RANGE]);
 
     SetActivator(arcerTID, AAPTR_TRACER);
-    if (ClassifyActor(0) & ACTOR_WORLD)
+    if (IsWorld())
     {
         bestScore = 0x7FFFFFFF;
     }
