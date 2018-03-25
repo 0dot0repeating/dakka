@@ -38,7 +38,7 @@ script "Dakka_ImpalerAltHit" (int power)
 
     SetActivator(0, AAPTR_TRACER);
 
-    if (ClassifyActor(0) & ACTOR_WORLD)
+    if (IsWorld())
     {
         SetActorState(projTID, "Detonate");
         terminate;
@@ -101,7 +101,7 @@ script "Dakka_ImpalerAltPush" (int normX, int normY, int normZ, int power)
     int projZ   = GetActorZ(0);
 
     SetActivator(0, AAPTR_TRACER);
-    if (ClassifyActor(0) & ACTOR_WORLD) { terminate; } // this should never happen
+    if (IsWorld()) { terminate; } // this should never happen
 
     int monX = GetActorX(0);
     int monY = GetActorY(0);

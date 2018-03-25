@@ -542,6 +542,8 @@ actor DakkaSSG_MiniGrenade
     var int user_vely;
     var int user_velz;
     var int user_t;
+    
+    var int user_countdown;
 
     States
     {
@@ -556,11 +558,13 @@ actor DakkaSSG_MiniGrenade
       Death:
         DGRN A 0 bright A_Stop
         DGRN A 0 bright A_NoGravity
-        DGRN A 0 bright ACS_NamedExecuteWithResult("Dakka_StickyGrenade", false, 12)
+        DGRN A 0 bright ACS_NamedExecuteWithResult("Dakka_StickyGrenade")
         goto DeathWait
 
       DeathWait:
-        DGRN A 1 bright A_SpawnItemEx("ShotNadeTrail", -8,0,0, 0,frandom(-0.2, 0.2),frandom(1, 1.25))
+        DGRN A 0 bright A_SpawnItemEx("ShotNadeTrail", -8,0,0, 0,frandom(-0.2, 0.2),frandom(1, 1.25))
+        DGRN A 0 bright A_SetUserVar("user_countdown", user_countdown+1)
+        DGRN A 1 bright A_JumpIf(user_countdown >= 12, "Detonate")
         loop
 
       Detonate:

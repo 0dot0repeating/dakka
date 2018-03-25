@@ -44,7 +44,7 @@ script "Dakka_FistHit" (int thrustpower, int lockpower, int locktics)
     locktics  = cond(locktics < 1, 3, locktics);
 
     SetActivator(0, AAPTR_TARGET);
-    if (ClassifyActor(0) & ACTOR_WORLD)
+    if (IsWorld())
     {
         SetResultValue(false);
         terminate;
@@ -56,7 +56,7 @@ script "Dakka_FistHit" (int thrustpower, int lockpower, int locktics)
     Thing_ChangeTID(0, firerTID);
 
     SetActivator(myTID, AAPTR_TRACER);
-    if (ClassifyActor(0) & ACTOR_WORLD)
+    if (IsWorld())
     {
         Thing_ChangeTID(firerTID, firerTID_old);
         SetResultValue(false);

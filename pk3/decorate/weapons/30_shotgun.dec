@@ -205,7 +205,7 @@ actor ShotgunGrenade
         DGRN A 0
         DGRN A 0 ACS_NamedExecuteWithResult("Dakka_ProjUpdate")
         DGRN A 0 A_JumpIf(user_t < 4, 2)
-        DGRN A 0 A_JumpIf(CallACS("Dakka_CheckDetonate"), "EarlyDetonate")
+        DGRN A 0 A_JumpIf(CallACS("DShotgun_CheckEarlyDetonate"), "EarlyDetonate")
 
         DGRN A 0 bright A_SpawnItemEx("ShotNadeTrail", -momx,   -momy,   -momz,   0,0,0, 0, SXF_ABSOLUTEPOSITION)
         DGRN A 0 bright A_SpawnItemEx("ShotNadeTrail", -momx/3, -momy/3, -momz/3, 0,0,0, 0, SXF_ABSOLUTEPOSITION)
@@ -216,11 +216,13 @@ actor ShotgunGrenade
         DGRN A 0 bright A_Stop
         DGRN A 0 bright A_NoGravity
         DGRN A 0 bright A_ChangeFlag("FORCEXYBILLBOARD", false)
-        DGRN A 0 bright ACS_NamedExecuteWithResult("Dakka_StickyGrenade", true, -1)
+        DGRN A 0 bright ACS_NamedExecuteWithResult("Dakka_StickyGrenade")
+        DGRN A 0 bright A_JumpIf(CallACS("DShotgun_CheckDetonate") == true, "QuietDetonate")
         goto DeathWait
 
       DeathWait:
-        DGRN A 1 bright A_SpawnItemEx("ShotNadeTrail", -8,0,0, 0,frandom(-0.2, 0.2),frandom(1, 1.25))
+        DGRN A 0 bright A_SpawnItemEx("ShotNadeTrail", -8,0,0, 0,frandom(-0.2, 0.2),frandom(1, 1.25))
+        DGRN A 1 bright A_JumpIf(CallACS("DShotgun_CheckDetonate") == true, "Detonate")
         loop
 
       EarlyDetonate:
@@ -247,7 +249,12 @@ actor ShotgunGrenade
         TNT1 A 0 A_SpawnItemEx("ShotgunMiniGrenade", 0,0,0, user_spawnvelx/65536.0, user_spawnvely/65536.0, user_spawnvelz/65536.0, angle, SXF_ABSOLUTEANGLE | SXF_ABSOLUTEVELOCITY | SXF_TRANSFERPOINTERS)
         stop
 
+        
       Detonate:
+        TNT1 A 0 A_GiveToTarget("DakkaGrenadeClick")
+        goto QuietDetonate
+        
+      QuietDetonate:
         TNT1 A 0 A_Explode(18, 112, 0)
         TNT1 A 0 A_Explode(12, 112)
         TNT1 A 0 A_SpawnItemEx("ImpalerExplosion_Client")
@@ -583,6 +590,8 @@ actor ShotgunStickyPoint
     +MOVEWITHSECTOR
     RenderStyle None
     Scale 0.2
+    
+    var int user_onmonster;
 
     States
     {

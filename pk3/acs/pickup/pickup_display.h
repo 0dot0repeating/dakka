@@ -114,7 +114,7 @@ script "Pickup_Display_Main" (int index, int dropped, int firstDisplay) clientsi
     {
         // The script doesn't auto-terminate on pickup, so we need to handle
         //  that ourselves.
-        if (ClassifyActor(0) & ACTOR_WORLD) { terminate; }
+        if (IsWorld()) { terminate; }
 
         oldClassNum = classNum;
         // Subtract 1 so that the default value - 0 - means "unknown".

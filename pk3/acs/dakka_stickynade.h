@@ -37,37 +37,11 @@ function int DShotgun_TestWallStick(int projX, int projY, int projZ, int projAng
 }
 
 
-script "Dakka_StickyGrenade" (int manual, int autoTimer)
+script "Dakka_StickyGrenade" (void)
 {
     int projTID_old = ActivatorTID();
     int projTID     = UniqueTID();
     Thing_ChangeTID(0, projTID);
-
-    SetActivator(0, AAPTR_TARGET);
-
-    if (ClassifyActor(0) & ACTOR_WORLD)
-    {
-        SetActorState(projTID, "Detonate");
-        Thing_ChangeTID(projTID, projTID_old);
-        terminate;
-    }
-
-    if (manual && PlayerNumber())
-    {
-        if (GetUserCVar(PlayerNumber(), "dakka_cl_autodetonate"))
-        {
-            SetActorState(projTID, "Detonate");
-            Thing_ChangeTID(projTID, projTID_old);
-            terminate;
-        }
-    }
-
-    str firerStartWeapon = GetWeapon();
-    int firerTID_old = ActivatorTID();
-    int firerTID     = UniqueTID();
-    Thing_ChangeTID(0, firerTID);
-
-    SetActivator(projTID);
 
     int projX      = GetActorX(0);
     int projY      = GetActorY(0);
@@ -96,7 +70,7 @@ script "Dakka_StickyGrenade" (int manual, int autoTimer)
     int stickyTID = UniqueTID();
     SetActivator(projTID, AAPTR_TRACER);
 
-    if (ClassifyActor(0) & ACTOR_WORLD)
+    if (IsWorld())
     {
         int projFloorZ = GetActorFloorZ(projTID);
         int projCeilZ  = GetActorCeilingZ(projTID);
@@ -176,12 +150,28 @@ script "Dakka_StickyGrenade" (int manual, int autoTimer)
 
     int ptrTID = UniqueTID();
     SpawnForced("ShotgunStickyPoint", projX,projY,projZ, ptrTID);
+    
     SetActivator(ptrTID);
-    SetPointer(AAPTR_TARGET, firerTID);
     SetPointer(AAPTR_MASTER, projTID);
     SetPointer(AAPTR_TRACER, stickyTID);
+    SetUserVariable(0, "user_onmonster", ClassifyActor(stickyTID) & ACTOR_MONSTER);
+        
+    SetActivator(projTID);
+    SetPointer(AAPTR_TRACER, ptrTID);
+    
+    SetActivator(projTID, AAPTR_TARGET);
+    
+    if (!IsWorld())
+    {
+        int firerTID_old = ActivatorTID();
+        int firerTID     = UniqueTID();
+        Thing_ChangeTID(0, firerTID);
+        
+        SetActivator(ptrTID);
+        SetPointer(AAPTR_TARGET, firerTID);
+        Thing_ChangeTID(firerTID, firerTID_old);
+    }
 
-    Thing_ChangeTID(firerTID,  firerTID_old);
     Thing_ChangeTID(projTID,   projTID_old);
     Thing_ChangeTID(stickyTID, stickyTID_old);
 
@@ -191,37 +181,10 @@ script "Dakka_StickyGrenade" (int manual, int autoTimer)
     {
         // check if things are alive
         SetActivator(ptrTID, AAPTR_MASTER);
-        if (ClassifyActor(0) & ACTOR_WORLD) { break; }
-
-        SetActivator(ptrTID, AAPTR_TARGET);
-        if (ClassifyActor(0) & ACTOR_WORLD) { break; }
-        if (isDead(0) && manual) { break; }
+        if (IsWorld()) { break; }
 
         SetActivator(ptrTID, AAPTR_TRACER);
-        if (ClassifyActor(0) & ACTOR_WORLD) { break; }
-
-
-        // check if should go kaboom anyway
-        SetActivator(ptrTID, AAPTR_TARGET);
-
-        if (manual)
-        {
-            int noManualDet  = false;
-            if (PlayerNumber() > -1)
-            {
-                noManualDet = GetUserCVar(PlayerNumber(), "dakka_cl_autodetonate");
-            }
-
-            if (noManualDet) { break; }
-            if (inputDown(BT_RELOAD) || strcmp(GetWeapon(), firerStartWeapon))
-            {
-                GiveInventory("DakkaGrenadeClick", 1);
-                break;
-            }
-        }
-
-        if (autoTimer > 0 && t >= autoTimer) { break; }
-
+        if (IsWorld()) { break; }
 
         // onward to sticky shit
         SetActivator(ptrTID, AAPTR_TRACER);
@@ -272,12 +235,6 @@ script "Dakka_StickyGrenade" (int manual, int autoTimer)
         Delay(1);
     }
 
-    SetActivator(ptrTID, AAPTR_MASTER);
-    if (~ClassifyActor(0) & ACTOR_WORLD)
-    {
-        SetActorState(0, "Detonate");
-    }
-
     if (!stuckToObject)
     {
         SetActivator(ptrTID, AAPTR_TRACER);
@@ -286,6 +243,52 @@ script "Dakka_StickyGrenade" (int manual, int autoTimer)
 
     Thing_Remove(ptrTID);
 }
+
+
+script "DShotgun_CheckEarlyDetonate" (void)
+{
+    SetActivator(0, AAPTR_TARGET);
+    if (PlayerNumber() == -1) { terminate; }
+    SetResultValue(inputDown(BT_RELOAD));
+}
+
+
+script "DShotgun_CheckDetonate" (void)
+{
+    // doing it this way because hey let's have scripts use SetResultValue() and terminate
+    //  instead of the perfectly good return keyword that makes total fucking sense doesn't it
+    SetResultValue(DShotgun_CheckDetonate());
+}
+
+// if not doing sticky stuff: boom
+// if firer is not player, or is dead: boom
+// if firer has not-a-shotgun out: boom
+// if firer has reload button down: boom
+// if firer has auto-detonate always on: boom
+// if firer has auto-detonate on for monsters, and stuck to monster: boom
+
+function int DShotgun_CheckDetonate(void)
+{
+    SetActivator(0, AAPTR_TRACER);
+    if (strcmp(GetActorClass(0), "ShotgunStickyPoint")) { return true; }
+    
+    int ptrTID = ActivatorTID();
+    SetActivator(0, AAPTR_TARGET);
+    int pln    = PlayerNumber();
+    if ((pln == -1) || isDead(0)) { return true; }
+    
+    if (strcmp(GetWeapon(), "DWep_Shotgun")) { return true; }
+    if (inputDown(BT_RELOAD)) { return true; }
+    
+    int manual    = GetUserCVar(pln, "dakka_cl_autodetonate");
+    int onMonster = GetUserVariable(ptrTID, "user_onmonster");
+    
+    if (manual >= 2) { return true; }
+    if (onMonster && manual == 1) { return true; }
+    
+    return false;
+}
+
 
 
 script "Dakka_AlignToSurface" (int which)
@@ -304,10 +307,4 @@ script "Dakka_AlignToSurface" (int which)
     }
 
     SetActorAngle(0, ang);
-}
-
-script "Dakka_CheckDetonate" (void)
-{
-    SetActivator(0, AAPTR_TARGET);
-    SetResultValue(inputDown(BT_RELOAD));
 }

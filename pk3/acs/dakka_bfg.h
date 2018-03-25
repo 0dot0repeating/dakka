@@ -52,7 +52,7 @@ function int Dakka_GetNewTarget(int ptrTID)
     else
     {
         SetActivator(ptrTID, AAPTR_TRACER);
-        int targetDead = (ClassifyActor(0) & ACTOR_WORLD) || isDead(0);
+        int targetDead = IsWorld() || isDead(0);
         int timedOut   = GetUserVariable(ptrTID, "user_timeout") <= t;
         SetActivator(myTID_new);
 
@@ -95,7 +95,7 @@ script "Dakka_SetupBFGStage2" (int facetracer, int changestate)
     Thing_ChangeTID(0, myTID_new);
 
     SetActivator(0, AAPTR_TARGET);
-    if (ClassifyActor(0) & ACTOR_WORLD)
+    if (IsWorld())
     {
         if (changestate) { SetActorState(0, "Stage2_Fail"); }
         Thing_ChangeTID(myTID_new, myTID_old);
@@ -104,7 +104,7 @@ script "Dakka_SetupBFGStage2" (int facetracer, int changestate)
     }
 
     SetActivator(CheckInventory("BFGPointerTID"), AAPTR_TRACER);
-    if (ClassifyActor(0) & ACTOR_WORLD)
+    if (IsWorld())
     {
         if (changestate) { SetActorState(0, "Stage2_Fail"); }
         Thing_ChangeTID(myTID_new, myTID_old);
@@ -151,7 +151,7 @@ script "Dakka_BFGHomeIn_TargetPos" (void)
 {
     SetActivator(0, AAPTR_TRACER);
     
-    if ((ClassifyActor(0) & ACTOR_WORLD) || isDead(0))
+    if (IsWorld() || isDead(0))
     {
         SetResultValue(false);
     }

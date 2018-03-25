@@ -26,7 +26,7 @@ script "Arc_Main" (int arcType)
 
     // step 10
     SetActivator(0, AAPTR_TRACER);
-    if (ClassifyActor(0) & ACTOR_WORLD)
+    if (IsWorld())
     {
         SetActivator(arcerTID);
         Thing_ChangeTID(0, arcerTID_old);
@@ -130,7 +130,7 @@ script "Arc_InheritTracer" (void)
 
     // step to previous arcer
     SetActivator(0, AAPTR_MASTER);
-    if (ClassifyActor(0) & ACTOR_WORLD)
+    if (IsWorld())
     {
         Thing_ChangeTID(arcerTID_new,  arcerTID_old);
         terminate;
@@ -138,7 +138,7 @@ script "Arc_InheritTracer" (void)
 
     // step to its tracer
     SetActivator(0, AAPTR_TRACER);
-    if (ClassifyActor(0) & ACTOR_WORLD)
+    if (IsWorld())
     {
         Thing_ChangeTID(arcerTID_new,  arcerTID_old);
         terminate;

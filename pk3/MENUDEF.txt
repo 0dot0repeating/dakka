@@ -117,6 +117,13 @@ OptionValue Dakka_DefenseLevel
      10, "10x tougher"
 }
 
+OptionValue Dakka_AutoDetonate
+{
+    0, "off"
+    1, "on enemies"
+    2, "on"
+}
+
 OptionValue Dakka_FlamethrowerStyle
 {
     0, "new"
@@ -218,7 +225,7 @@ OptionMenu "Dakka_UserOptions"
 
     StaticText ""
 
-    Option "Grenades auto-explode", "dakka_cl_autodetonate",       "OnOff"
+    Option "Grenades auto-explode", "dakka_cl_autodetonate",       "Dakka_AutoDetonate"
     Option "SSG trigger rolling",   "dakka_cl_ssgrollfire",        "OnOff"
     Option "Flamethrower style",    "dakka_cl_flamethrowerstyle",  "Dakka_FlamethrowerStyle"
 

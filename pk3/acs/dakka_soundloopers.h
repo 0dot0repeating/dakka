@@ -164,7 +164,7 @@ script "Dakka_SoundLooper_Follow" (int tid, int syncPln)
         terminate;
     }
 
-    while (!(ClassifyActor(0) & ACTOR_WORLD))
+    while (!IsWorld())
     {
         int myTID_old = ActivatorTID();
         int myTID     = UniqueTID();
@@ -173,7 +173,7 @@ script "Dakka_SoundLooper_Follow" (int tid, int syncPln)
         SetActivator(0, AAPTR_TARGET);
 
         int pln = PlayerNumber();
-        if ((pln > -1 && !PlayerInGame(pln)) || (ClassifyActor(0) & ACTOR_WORLD))
+        if ((pln > -1 && !PlayerInGame(pln)) || IsWorld())
         {
             StopSound(myTID, CHAN_BODY);
             SetActorState(myTID, "Silenced");
@@ -219,7 +219,7 @@ script "Dakka_SoundLooper_FollowPlayer" (int pln, int syncPln) clientside
     if (syncPln > -1 && syncPln != ConsolePlayerNumber()) { terminate; }
     
 
-    while (!(ClassifyActor(0) & ACTOR_WORLD))
+    while (!IsWorld())
     {
         int myTID_old = ActivatorTID();
         int myTID     = UniqueTID();
@@ -227,7 +227,7 @@ script "Dakka_SoundLooper_FollowPlayer" (int pln, int syncPln) clientside
 
         ActivatorToPlayer(pln);
 
-        if (!PlayerInGame(pln) || (ClassifyActor(0) & ACTOR_WORLD))
+        if (!PlayerInGame(pln) || IsWorld())
         {
             StopSound(myTID, CHAN_BODY);
             SetActorState(myTID, "Silenced");

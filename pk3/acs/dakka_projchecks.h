@@ -26,7 +26,7 @@ script "Dakka_ProjDeathUpdate" (int hasPitch)
             Thing_ChangeTID(0, myTID);
 
             SetActivator(0, AAPTR_TARGET);
-            if (ClassifyActor(0) & ACTOR_WORLD)
+            if (IsWorld())
             {
                 Thing_ChangeTID(myTID, myTID_old);
                 terminate;
@@ -108,5 +108,5 @@ script "Dakka_IsClient" (void)
 script "Dakka_HitEnemy" (void)
 {
     SetActivator(0, AAPTR_TRACER);
-    SetResultValue(!(ClassifyActor(0) & ACTOR_WORLD));
+    SetResultValue(!IsWorld());
 }

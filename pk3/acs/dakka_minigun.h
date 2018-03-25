@@ -42,7 +42,7 @@ script "Dakka_InheritVelocity" (int ptr, int percentForward, int percentSide, in
     Thing_ChangeTID(0, myTID_new);
 
     SetActivator(0, ptr);
-    if (ClassifyActor(0) & ACTOR_WORLD)
+    if (IsWorld())
     {
         Thing_ChangeTID(myTID_new, myTID_old);
         terminate;
@@ -124,7 +124,7 @@ script "Dakka_MinigunBurn" (int ptr)
     if (ptr)
     {
         SetActivator(0, ptr);
-        if (ClassifyActor(0) & ACTOR_WORLD) { terminate; }
+        if (IsWorld()) { terminate; }
     }
 
     if (!CheckFlag(0, "SHOOTABLE"))
@@ -205,7 +205,7 @@ script "Dakka_MinigunAfterburn" (int firerTID)
     while (true)
     {
         SetActivator(pointerTID, AAPTR_TRACER);
-        if (ClassifyActor(0) & ACTOR_WORLD) { break; }
+        if (IsWorld()) { break; }
 
         if (GetActorProperty(0, APROP_WaterLevel) > 1)
         {
@@ -289,7 +289,7 @@ script "Dakka_MinigunAfterburn" (int firerTID)
             SetUserVariable(fireTID, "user_damage",     burnDamage);
             SetUserVariable(fireTID, "user_painfactor", cond(initialBurn, 3, 15));
 
-            if (!(ClassifyActor(0) & ACTOR_WORLD))
+            if (!IsWorld())
             {
                 int firerTID_old = ActivatorTID();
                 int firerTID_new = UniqueTID();
