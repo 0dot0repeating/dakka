@@ -135,8 +135,10 @@ script "Dakka_Tracer_Client" (int startTID, int dist, int startPitch, int type) 
 {
     int firerPln = PlayerNumber();
     int pln = cond(IsZandronum, ConsolePlayerNumber(), firerPln);
-    if (GetUserCVar(pln, "dakka_cl_notracers") > 0) { terminate; }
-    if (GetUserCVar(pln, "dakka_cl_onlymytracers") && (pln != firerPln)) { terminate; }
+    int tracermode = GetUserCVar(pln, "dakka_cl_tracermode");
+    
+    if (tracermode <= 0) { terminate; }
+    if (tracermode == 1 && pln != firerPln) { terminate; }
     
     int waitTimer = 0;
 
