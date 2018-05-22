@@ -59,7 +59,7 @@ script "Dakka_UseAmmo" (int ammoindex, int count, int scrapgive, int scraptype)
     }
     if (HasInfiniteAmmo()) { terminate; }
     
-    if (ammoindex == AMMO_PISTOL && GetCVar("dakka_pickedupaclip") == 3) { terminate; }
+    if (ammoindex == AMMO_PISTOL && GetCVar("dakka_infinitepistol")) { terminate; }
 
     Dakka_GiveScrap(scrapgive, scraptype);
     TakeInventory(PKP_KnownAmmo[ammoindex], count);

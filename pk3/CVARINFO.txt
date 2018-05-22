@@ -1,5 +1,5 @@
 server int  dakka_scrapfactor         = 100;
-server int  dakka_pickedupaclip       = 0;
+server bool dakka_infinitepistol      = false;
 server int  dakka_shotgun2ssg         = 0;
 server int  dakka_powerlevel          = 0;
 server int  dakka_defenselevel        = 0;

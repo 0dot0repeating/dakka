@@ -54,14 +54,6 @@ OptionValue Dakka_IgnoreHubs
     1, "do resets"
 }
 
-OptionValue Dakka_PickedUpAClip
-{
-    0, "off"
-    1, "give with other ammo"
-    2, "spawn near other ammo"
-    3, "infinite ammo"
-}
-
 
 OptionValue Dakka_PowerLevel
 {
@@ -181,7 +173,7 @@ OptionMenu Dakka_GameOptions
     StaticText "General options", 1
 
     Slider "Scrap factor",          "dakka_scrapfactor",    0, 1000, 10, 0
-    Option "More pistol ammo",      "dakka_pickedupaclip",  "Dakka_PickedUpAClip"
+    Option "Infinite pistol ammo",  "dakka_infinitepistol", "OnOff"
     Option "Damage multiplier",     "dakka_powerlevel",     "Dakka_PowerLevel"
     Option "Defense multiplier",    "dakka_defenselevel",   "Dakka_DefenseLevel"
     Option "Score rewards",         "dakka_noscorerewards", "OffOn"

@@ -22,7 +22,7 @@ actor Pickup_Shell: CustomInventory replaces Shell
     States
     {
       Spawn:
-        SHEL A 105 nodelay ACS_NamedExecuteWithResult("Dakka_ClipSpawn", 1)
+        SHEL A -1
         loop
 
       Pickup:
@@ -39,7 +39,7 @@ actor Pickup_RocketAmmo: CustomInventory replaces RocketAmmo
     States
     {
       Spawn:
-        ROCK A 105 nodelay ACS_NamedExecuteWithResult("Dakka_ClipSpawn", 1)
+        ROCK A -1
         loop
       
       Pickup:
@@ -56,7 +56,7 @@ actor Pickup_Cell: CustomInventory replaces Cell
     States
     {
       Spawn:
-        CELL A 105 nodelay ACS_NamedExecuteWithResult("Dakka_ClipSpawn", 1)
+        CELL A -1
         loop
 
       Pickup:
@@ -91,7 +91,7 @@ actor Pickup_ShellBox: CustomInventory replaces ShellBox
     States
     {
       Spawn:
-        SBOX A 105 nodelay ACS_NamedExecuteWithResult("Dakka_ClipSpawn", 1, true)
+        SBOX A -1
         loop
 
       Pickup:
@@ -109,7 +109,7 @@ actor Pickup_RocketBox: CustomInventory replaces RocketBox
     States
     {
       Spawn:
-        BROK A 105 nodelay ACS_NamedExecuteWithResult("Dakka_ClipSpawn", 1, true)
+        BROK A -1
         loop
 
       Pickup:
@@ -127,7 +127,7 @@ actor Pickup_CellPack: CustomInventory replaces CellPack
     States
     {
       Spawn:
-        CELP A 105 nodelay ACS_NamedExecuteWithResult("Dakka_ClipSpawn", 1, true)
+        CELP A -1
         loop
 
       Pickup:

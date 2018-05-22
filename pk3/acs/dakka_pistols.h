@@ -8,7 +8,7 @@ function void Pistols_SpreadRecovery(void)
 
 function int Pistols_BulletsLeft(void)
 {
-    if (GetCVar("dakka_pickedupaclip") == 3 || HasInfiniteAmmo())
+    if (GetCVar("dakka_infinitepistol") || HasInfiniteAmmo())
     {
         return GetAmmoCapacity("DakkaBullet_50AE");
     }
@@ -25,7 +25,7 @@ function void Pistols_CapBulletsLeft(void)
     int capped = min(CheckInventory("DakkaPistol_ShotsLeft"), bullets);
     SetInventory("DakkaPistol_ShotsLeft", capped);
     
-    // This is so that if dakka_pickedupaclip is 3, you won't ever have 0 ammo
+    // This is so that if dakka_infinitepistol is true, you won't ever have 0 ammo
     //  (and therefore trigger the empty switch when you try to fire)
     SetInventory("DakkaBullet_50AE", max(bullets_raw, capped));
 }
@@ -91,12 +91,6 @@ script "Dakka_CanPistolReload" (int noflag)
 
 script "Dakka_PickedUpAClip" (int count, int check)
 {
-    if (GetCVar("dakka_pickedupaclip") != 1)
-    {
-        SetResultValue(false);
-        terminate;
-    }
-    
     if (CheckInventory("DakkaBullet_50AE") >= GetAmmoCapacity("DakkaBullet_50AE"))
     {
         SetResultValue(false);
@@ -124,33 +118,4 @@ script "Dakka_PickedUpAClip" (int count, int check)
     
     GiveInventory("DakkaBullet_50AE", count);
     SetResultValue(true);
-}
-
-
-script "Dakka_ClipSpawn" (int count, int big)
-{
-    if (GetCVar("dakka_pickedupaclip") != 2) { terminate; }
-    if (CheckInventory("SpawnedClipAlready")) { terminate; }
-    
-    int clipTID = UniqueTID();
-    int dropped = CheckFlag(0, "DROPPED");
-    int x = GetActorX(0);
-    int y = GetActorY(0);
-    int z = GetActorZ(0);
-    
-    int actor = cond(big, "Dakka_BigClip", "Dakka_TinyClip");
-    
-    for (int i = 0; i < count; i++)
-    {
-        int randAngle = random(0, 1.0);
-        int randDist  = random(1.0, 3.0);
-        
-        SpawnForced(actor, x,y,z, clipTID);
-        SetActorVelocity(clipTID, FixedMul(randDist, cos(randAngle)), FixedMul(randDist, sin(randAngle)), 0, false,false);
-        
-        if (!dropped) { GiveActorInventory(clipTID, "DakkaNotDropped", 1); }
-        Thing_ChangeTID(clipTID, 0);
-    }
-    
-    GiveInventory("SpawnedClipAlready", 1);
 }
