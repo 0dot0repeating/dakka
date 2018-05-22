@@ -138,9 +138,16 @@ OptionValue OffOn
 
 OptionValue Dakka_RecoilMode
 {
-    0, "linear"
-    1, "quadratic"
-    2, "sinusoidal"
+    0, "flat"
+    1, "curved"
+    2, "smooth"
+}
+
+OptionValue Dakka_TracerMode
+{
+    0, "off"
+    1, "on for only me"
+    2, "on for everyone"
 }
 
 OptionValue Dakka_TracerSpeed
@@ -197,7 +204,7 @@ OptionMenu Dakka_GameOptions
     StaticText "its pickups will become the second weapon."
     StaticText ""
 
-    Slider "Shotgun to SSG",      "dakka_shotgun2ssg",      0, 100, 1, 0
+    Slider "Shotgun to SSG",      "dakka_shotgun2ssg",      0, 32, 1, 0
 }
 
 OptionMenu "Dakka_UserOptions"
@@ -211,10 +218,8 @@ OptionMenu "Dakka_UserOptions"
 
     StaticText ""
 
-    Option "Fewer effects",         "dakka_cl_lesseffects",        "OnOff"
-    Option "Bullet tracers",        "dakka_cl_notracers",          "OffOn"
+    Option "Bullet tracers",        "dakka_cl_tracermode",         "Dakka_TracerMode"
     Option "Particle tracers",      "dakka_cl_particletracers",    "OnOff"
-    Option "Only your tracers",     "dakka_cl_onlymytracers",      "OnOff"
     Option "Tracer speed",          "dakka_cl_tracerspeed",        "Dakka_TracerSpeed"
     Option "Tracer density",        "dakka_cl_tracerdensity",      "Dakka_TracerDensity"
 
@@ -231,6 +236,7 @@ OptionMenu "Dakka_UserOptions"
 
     StaticText ""
 
+    Option "Fewer effects",         "dakka_cl_lesseffects",        "OnOff"
     Option "Dumb pickup messages",  "dakka_cl_moremessages",       "OnOff"
 
 

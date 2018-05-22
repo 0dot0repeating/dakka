@@ -31,8 +31,7 @@ user bool dakka_cl_ssgrollfire          = false;
 user int  dakka_cl_flamethrowerstyle    = 0;
 
 user bool dakka_cl_lesseffects          = false;
-user bool dakka_cl_notracers            = false;
-user bool dakka_cl_onlymytracers        = true;
+user int  dakka_cl_tracermode           = 1;
 user bool dakka_cl_particletracers      = false;
 user int  dakka_cl_tracerspeed          = 256;
 user int  dakka_cl_tracerdensity        = 0;
