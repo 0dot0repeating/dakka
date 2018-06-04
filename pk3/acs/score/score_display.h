@@ -22,7 +22,8 @@ function void Score_Update(int pln)
 
     if (!first || (points != oldPoints) || (goalPoints != oldGoalPoints) || (noReward != oldNoReward) || (oldHideScore != hideScore))
     {
-        Score_Draw(points, goalpoints, displayPoints, hideScore, noReward);
+        int rewardCount = SToC_ClientData[pln][S2C_D_REWARDCOUNT];
+        Score_Draw(points, goalpoints, displayPoints, hideScore, noReward, rewardCount);
         Score_OldVals[OSCORE_FIRSTDRAW][pln] = true;
     }
     
@@ -41,11 +42,10 @@ function void Score_Update(int pln)
 #define BAROFFSET       ((BARSTEPS / 2) << 16)
 #define BARINCREMENT    12
 
-function void Score_Draw(int curPoints, int goalPoints, int displayPoints, int hideScore, int noScoreRewards)
+function void Score_Draw(int curPoints, int goalPoints, int displayPoints, int hideScore, int noScoreRewards, int rewardCount)
 {
 
     int i;
-    int cpln = cond(IsZandronum, ConsolePlayerNumber(), PlayerNumber());
 
     if (hideScore)
     {
@@ -73,7 +73,7 @@ function void Score_Draw(int curPoints, int goalPoints, int displayPoints, int h
     {
         str scoreBar, scoreBrackets, pointBar1, pointBar2, pointBar3;
 
-        if (SToC_ClientData[cpln][S2C_D_REWARDCOUNT] % 2)
+        if (rewardCount % 2)
         {
             pointBar1      = "POINTBR4";
             pointBar2      = "POINTBR5";
