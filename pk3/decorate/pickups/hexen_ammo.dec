@@ -1,0 +1,102 @@
+actor Pickup_BlueMana: CustomInventory replaces Mana1
+{
+    Radius 8
+    Height 8
+    +FLOATBOB
+    
+    Inventory.PickupMessage "$TXT_MANA_1" // "BLUE MANA"
+    
+    States
+    {
+      Spawn:
+        MAN1 ABCDEFGHI 4 Bright
+        loop
+      
+
+      Pickup:
+        TNT1 A 0 A_GiveInventory("DakkaBullet_50AE", 7)
+        TNT1 A 0 A_GiveInventory("DakkaShells", 2)
+        TNT1 A 0 A_GiveInventory("DakkaBullet_5mm", 20)
+        stop
+    }
+}
+
+actor Pickup_GreenMana: CustomInventory replaces Mana2
+{
+    Radius 8
+    Height 8
+    +FLOATBOB
+    
+    Inventory.PickupMessage "$TXT_MANA_2" // "GREEN MANA"
+    
+    States
+    {
+      Spawn:
+        MAN2 ABCDEFGHIJKLMNOP 4 Bright
+        loop
+      
+
+      Pickup:
+        TNT1 A 0 ACS_NamedExecuteWithResult("Dakka_PickedUpAClip", 7, PUAC_GRENADE | PUAC_FLAMER | PUAC_ROCKET | PUAC_CELL)
+        TNT1 A 0 A_GiveInventory("DakkaCells",        8)
+        TNT1 A 0 A_GiveInventory("DakkaRockets",      2)
+        TNT1 A 0 A_GiveInventory("DakkaShotGrenades", 1)
+        TNT1 A 0 A_GiveInventory("DakkaFlamerFuel",   2)
+        stop
+    }
+}
+
+actor Pickup_CombinedMana: CustomInventory replaces Mana3
+{
+    Radius 8
+    Height 8
+    +FLOATBOB
+    
+    Inventory.PickupMessage "$TXT_MANA_BOTH" // "COMBINED MANA"
+    
+    States
+    {
+      Spawn:
+        MAN3 ABCDEFGHIJKLMNOP 4 Bright
+        loop
+      
+
+      Pickup:
+        TNT1 A 0 ACS_NamedExecuteWithResult("Dakka_PickedUpAClip", 14, PUAC_SHELL | PUAC_GRENADE | PUAC_5MM | PUAC_FLAMER | PUAC_ROCKET | PUAC_CELL)
+        TNT1 A 0 A_GiveInventory("DakkaShells",       2)
+        TNT1 A 0 A_GiveInventory("DakkaShotGrenades", 2)
+        TNT1 A 0 A_GiveInventory("DakkaBullet_5mm",   30)
+        TNT1 A 0 A_GiveInventory("DakkaFlamerFuel",   3)
+        TNT1 A 0 A_GiveInventory("DakkaRockets",      4)
+        TNT1 A 0 A_GiveInventory("DakkaCells",        12)
+        stop
+    }
+}
+
+actor Pickup_Krater: CustomInventory replaces ArtiBoostMana
+{
+    +FLOATBOB
+    +NOGRAVITY
+    +COUNTITEM
+    +INVENTORY.INVBAR
+    +INVENTORY.PICKUPFLASH
+    +INVENTORY.FANCYPICKUPSOUND
+    
+    Inventory.DefMaxAmount
+    Inventory.Icon "ARTIBMAN"
+    Inventory.PickupSound "misc/p_pkup"
+    Inventory.PickupMessage "$TXT_ARTIBOOSTMANA" // "KRATER OF MIGHT"
+    
+    Tag "$TAG_ARTIBOOSTMANA"
+    
+    States
+    {
+      Spawn:
+        BMAN A -1
+        Stop
+        
+      Use:
+        TNT1 AA 0 A_GiveInventory("DakkaBackpackItem")
+        stop
+    }
+}

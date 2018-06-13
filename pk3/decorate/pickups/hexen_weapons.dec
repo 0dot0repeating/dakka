@@ -1,0 +1,31 @@
+actor Pickup_Scrappers_Hexen:      Pickup_Chainsaw       replaces FWeapAxe       {}
+actor Pickup_Shotgun_Hexen:        Pickup_Shotgun        replaces MWeapFrost     {}
+actor Pickup_Minigun_Hexen:        Pickup_Chaingun       replaces MWeaponPiece3  {}
+actor Pickup_SuperShotgun_Hexen:   Pickup_SuperShotgun   replaces FWeapHammer    {}
+actor Pickup_Impaler_Hexen:        Pickup_RocketLauncher replaces CWeapFlame     {}
+actor Pickup_Lancer_Hexen:         Pickup_PlasmaRifle    replaces MWeaponPiece2  {}
+actor Pickup_BFG9000_Hexen:        Pickup_BFG9000        replaces MWeaponPiece1  {}
+
+actor LiterallyNothing
+{
+    +NOINTERACTION
+    RenderStyle None
+    Radius 0
+    Height 0
+    
+    States
+    {
+      Spawn:
+        TNT1 A 0
+        stop
+    }
+}
+
+actor Gone_FWeaponPiece1:  LiterallyNothing replaces FWeaponPiece1  {}
+actor Gone_FWeaponPiece2:  LiterallyNothing replaces FWeaponPiece2  {}
+actor Gone_FWeaponPiece3:  LiterallyNothing replaces FWeaponPiece3  {}
+actor Gone_MWeapLightning: LiterallyNothing replaces MWeapLightning {}
+actor Gone_CWeapStaff:     LiterallyNothing replaces CWeapStaff     {}
+actor Gone_CWeaponPiece1:  LiterallyNothing replaces CWeaponPiece1  {}
+actor Gone_CWeaponPiece2:  LiterallyNothing replaces CWeaponPiece2  {}
+actor Gone_CWeaponPiece3:  LiterallyNothing replaces CWeaponPiece3  {}
