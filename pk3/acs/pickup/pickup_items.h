@@ -3,7 +3,7 @@
 
 // This is, quite simply, the amount of pickup types that this ACS is equipped
 //  to handle.
-#define PICKUPCOUNT     17
+#define PICKUPCOUNT     22
 
 
 // How many items can you get from each pickup?
@@ -31,6 +31,12 @@
 #define It_ST_GrenadeLauncher   14
 #define It_ST_Railgun           15
 #define It_ST_BFG10k            16
+
+#define It_Hexen_Helm           17
+#define It_Hexen_Amulet         18
+#define It_Hexen_MeshArmor      19
+#define It_Hexen_Shield         20
+#define It_Hexen_Bracers        21
 
 // Here, you have the items that each pickup will give you. Each pickup can give
 //  as many as PK_RECEIVECOUNT items.
@@ -120,6 +126,27 @@ int PKP_ReceiveItems[PICKUPCOUNT][CLASSCOUNT][PK_RECEIVECOUNT] =
         {"BFG10k"},
         {"DWep_BFG9000"},
     },
+    
+    {
+        {"PlatinumHelm"},
+        {"Dakka_GreenArmor"},
+    },
+    {
+        {"AmuletOfWarding"},
+        {"Dakka_GreenArmor"},
+    },
+    {
+        {"MeshArmor"},
+        {"Dakka_BlueArmor"},
+    },
+    {
+        {"FalconShield"},
+        {"Dakka_BlueArmor"},
+    },
+    { // Bracers
+        {"Dakka_ArmorBonus"},
+        {"Dakka_ArmorBonus"},
+    },
 };
 
 
@@ -177,11 +204,11 @@ int PKP_ReceiveCount[PICKUPCOUNT][CLASSCOUNT][PK_RECEIVECOUNT] =
     // Armor
     {
         {1},
-        {1},
+        {75},
     },
     {
         {1},
-        {1},
+        {150},
     },
 
 
@@ -202,6 +229,29 @@ int PKP_ReceiveCount[PICKUPCOUNT][CLASSCOUNT][PK_RECEIVECOUNT] =
     { // BFG10k
         {1},
         {1},
+    },
+    
+    
+    // Hexen armor
+    { // Helm
+        {1},
+        {75},
+    },
+    { // Amulet
+        {1},
+        {75},
+    },
+    { // Mesh armor
+        {1},
+        {150},
+    },
+    { // Shield
+        {1},
+        {150},
+    },
+    { // Bracers
+        {50},
+        {50},
     },
 };
 

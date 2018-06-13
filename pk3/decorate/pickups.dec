@@ -19,6 +19,12 @@ const int It_ST_GrenadeLauncher   = 14;
 const int It_ST_Railgun           = 15;
 const int It_ST_BFG10k            = 16;
 
+const int It_Hexen_Helm           = 17;
+const int It_Hexen_Amulet         = 18;
+const int It_Hexen_MeshArmor      = 19;
+const int It_Hexen_Shield         = 20;
+const int It_Hexen_Bracers        = 21;
+
 
 #include "decorate/pickups/doom_weapons.dec"
 #include "decorate/pickups/doom_ammo.dec"
@@ -28,5 +34,6 @@ const int It_ST_BFG10k            = 16;
 
 #include "decorate/pickups/hexen_weapons.dec"
 #include "decorate/pickups/hexen_ammo.dec"
+#include "decorate/pickups/hexen_armor.dec"
 
 #include "decorate/pickups/skulltag_weapons.dec"
