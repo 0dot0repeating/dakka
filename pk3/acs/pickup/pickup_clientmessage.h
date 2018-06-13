@@ -205,7 +205,7 @@ script "Pickup_ShowMessage" (int mdata_index, int data1, int data2) clientside
     // Can't have \c- breaking shit.
     message = strsub(message, "\c-", messageColor);
 
-    if (pln == cpln)
+    if (!stringBlank(message) && (pln == cpln))
     {
         Log(s:messageColor, s:message);
     }
@@ -213,8 +213,12 @@ script "Pickup_ShowMessage" (int mdata_index, int data1, int data2) clientside
     // If silent pickup's on, can't let other people hear it.
 
     int pickupSound = PKP_PickupSounds[itemNum][classNum + 1];
-    PlaySound(0, pickupSound, CHAN_ITEM, 1.0, false, ATTN_NORM, GetCvar("compat_silentpickup"));
-
+    
+    if (!stringBlank(pickupSound))
+    {
+        PlaySound(0, pickupSound, CHAN_ITEM, 1.0, false, ATTN_NORM, GetCvar("compat_silentpickup"));
+    }
+    
     // And pickup flash.
 
     int r = PKP_PickupFlashes[itemNum][classNum+1][PFLASH_RED];

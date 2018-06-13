@@ -169,8 +169,8 @@ function void Armor_PickupArmor(int armorTo_index, int count)
             armorEnd_max     = armorTo_max;
         }
 
-        armorFrom_adjusted = armorFrom_points * FixedDiv(armorFrom_protect, betterRatio);
-        armorTo_adjusted   = (armorTo_points * count) * FixedDiv(armorTo_protect,   betterRatio);
+        armorFrom_adjusted =  armorFrom_points          * FixedDiv(armorFrom_protect, betterRatio);
+        armorTo_adjusted   = (armorTo_points   * count) * FixedDiv(armorTo_protect,   betterRatio);
 
         armorEnd_points = oldRound(armorFrom_adjusted + armorTo_adjusted);
         break;

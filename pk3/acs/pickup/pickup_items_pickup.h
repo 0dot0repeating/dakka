@@ -79,6 +79,27 @@ int PKP_Messages[PICKUPCOUNT][CLASSCOUNT] =
         "$PICKUP_BFG10k",
         "$DAKKA_PK_BFG9000",
     },
+    
+    {
+        "$TXT_ARMOR3",
+        "$TXT_ARMOR3",
+    },
+    {
+        "$TXT_ARMOR4",
+        "$TXT_ARMOR4",
+    },
+    {
+        "$TXT_ARMOR1",
+        "$TXT_ARMOR1",
+    },
+    {
+        "$TXT_ARMOR2",
+        "$TXT_ARMOR2",
+    },
+    { // Bracers
+        "",
+        "",
+    },
 };
 
 
@@ -172,6 +193,29 @@ int PKP_PickupFlashes[PICKUPCOUNT][CLASSCOUNT][5] =
         {255, 255, 64, 0.15, 0.15},
         {255, 255, 64, 0.15, 0.15},
     },
+    
+    
+    // Hexen armor
+    { // Helm
+        {255, 255, 64, 0.15, 0.15},
+        {255, 255, 64, 0.15, 0.15},
+    },
+    { // Amulet
+        {255, 255, 64, 0.15, 0.15},
+        {255, 255, 64, 0.15, 0.15},
+    },
+    { // Mesh armor
+        {255, 255, 64, 0.15, 0.15},
+        {255, 255, 64, 0.15, 0.15},
+    },
+    { // Shield
+        {255, 255, 64, 0.15, 0.15},
+        {255, 255, 64, 0.15, 0.15},
+    },
+    { // Bracers
+        {0,0,0,0,0},
+        {0,0,0,0,0},
+    },
 };
 
 
@@ -253,5 +297,28 @@ int PKP_PickupSounds[PICKUPCOUNT][CLASSCOUNT] =
     { // BFG10k
         "misc/w_pkup",
         "misc/w_pkup",
+    },
+
+
+    // Hexen armor
+    {
+        "misc/i_pkup",
+        "misc/i_pkup",
+    },
+    {
+        "misc/i_pkup",
+        "misc/i_pkup",
+    },
+    {
+        "misc/i_pkup",
+        "misc/i_pkup",
+    },
+    {
+        "misc/i_pkup",
+        "misc/i_pkup",
+    },
+    {
+        "",
+        "",
     },
 };

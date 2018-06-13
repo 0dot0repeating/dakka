@@ -1,0 +1,89 @@
+actor Pickup_PlatinumHelm: ClassBasedPickup replaces PlatinumHelm
+{
+    +NOGRAVITY
+    
+    States
+    {
+      Spawn:
+        AR_3 A -1
+        stop
+      
+      Pickup:
+        TNT1 A 0 A_JumpIf(CallACS("Pickup_Pickup", It_Hexen_Helm, false) == 1, "PickedUp")
+        stop
+    }
+}
+
+actor Pickup_AmuletOfWarding: ClassBasedPickup replaces AmuletOfWarding
+{
+    +NOGRAVITY
+    
+    States
+    {
+      Spawn:
+        AR_4 A -1
+        stop
+      
+      Pickup:
+        TNT1 A 0 A_JumpIf(CallACS("Pickup_Pickup", It_Hexen_Amulet, false) == 1, "PickedUp")
+        stop
+    }
+}
+
+actor Pickup_MeshArmor: ClassBasedPickup replaces MeshArmor
+{
+    +NOGRAVITY
+    
+    States
+    {
+      Spawn:
+        AR_1 A -1
+        stop
+      
+      Pickup:
+        TNT1 A 0 A_JumpIf(CallACS("Pickup_Pickup", It_Hexen_MeshArmor, false) == 1, "PickedUp")
+        stop
+    }
+}
+
+actor Pickup_FalconShield: ClassBasedPickup replaces FalconShield
+{
+    +NOGRAVITY
+    
+    States
+    {
+      Spawn:
+        AR_2 A -1
+        stop
+      
+      Pickup:
+        TNT1 A 0 A_JumpIf(CallACS("Pickup_Pickup", It_Hexen_Shield, false) == 1, "PickedUp")
+        stop
+    }
+}
+
+actor Pickup_DragonskinBracers: CustomInventory replaces ArtiBoostArmor
+{
+    Inventory.Icon "ARTIBRAC"
+    Inventory.MaxAmount 25
+    Inventory.PickupSound "misc/p_pkup"
+    Inventory.PickupFlash "PickupFlash"
+    Inventory.PickupMessage "$TXT_ARTIBOOSTARMOR"
+    +FANCYPICKUPSOUND
+    +COUNTITEM
+    +FLOATBOB
+    +INVBAR
+    
+    Tag "$TAG_ARTIBOOSTARMOR"
+    
+    States
+    {
+      Spawn:
+        BRAC ABCDEFGH 4 Bright
+        loop
+      
+      Use:
+        TNT1 A 0 ACS_NamedExecuteWithResult("Pickup_Pickup", It_Hexen_Bracers, false)
+        stop
+    }
+}
