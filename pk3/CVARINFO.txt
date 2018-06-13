@@ -14,6 +14,8 @@ server int  dakka_startmode_health    = 1;
 server bool dakka_scrapperstart       = false;
 server int  dakka_backpackstart       = 0;
 
+server int  dakka_jumpmod             = 0;
+
 
 server noarchive bool dakka_bug_nossginvcheck   = false;
 

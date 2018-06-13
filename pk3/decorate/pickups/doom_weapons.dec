@@ -73,7 +73,7 @@ actor Pickup_Shotgun: ClassBasedPickup replaces Shotgun
     States
     {
       Spawn:
-        SHOT A 0
+        DKSG Z 0
         "----" A 0 A_SetUserVar("user_index", It_Shotgun)
         "----" A 0 A_SetUserVar("user_dropped", 0)
         goto DropCheck

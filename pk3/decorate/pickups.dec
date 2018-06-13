@@ -26,4 +26,7 @@ const int It_ST_BFG10k            = 16;
 #include "decorate/pickups/doom_armor.dec"
 #include "decorate/pickups/doom_powerups.dec"
 
+#include "decorate/pickups/hexen_weapons.dec"
+#include "decorate/pickups/hexen_ammo.dec"
+
 #include "decorate/pickups/skulltag_weapons.dec"
