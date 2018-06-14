@@ -178,7 +178,8 @@ actor RevivalFlame
     +FOILINVUL
     +PIERCEARMOR
     +SERVERSIDEONLY
-
+    +DONTSPLASH
+    
     RenderStyle Add
     Scale 0.2
     Alpha 0.5
@@ -226,6 +227,7 @@ actor RevivalFlameGround
 
     +NOINTERACTION
     +SERVERSIDEONLY
+    +DONTSPLASH
 
     RenderStyle Add
     Scale 0.2
