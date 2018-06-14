@@ -48,7 +48,8 @@ script "Dakka_Score" (int pointValue, int damagetype)
     int myRadius  = GetActorProperty(0, APROP_Radius);
     int myHeight  = GetActorProperty(0, APROP_Height);
     int myTID_old = ActivatorTID();
-    int myTID     = defaultTID(-1);
+    int myTID     = UniqueTID();
+    Thing_ChangeTID(0, myTID);
 
     if (!SetActivatorToTarget(0))
     {
@@ -65,8 +66,9 @@ script "Dakka_Score" (int pointValue, int damagetype)
         terminate;
     }
     
-    int firerTID     = defaultTID(-1);
+    int firerTID     = UniqueTID();
     int pln          = PlayerNumber();
+    Thing_ChangeTID(0, firerTID);
 
     if (pln == -1)
     {
