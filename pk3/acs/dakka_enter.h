@@ -114,6 +114,13 @@ script "Dakka_Spawn" (int respawned)
 
 script "Dakka_Return" return
 {
+    // This block only exists because you can 'telefrag' monsters upon returning
+    //  to a map, but not actually telefrag them
+    int pln = PlayerNumber();
+    Score_SetScore(pln,        Score_GetScore_Unloading(pln));
+    Score_SetDisplayScore(pln, Score_GetDisplayScore_Unloading(pln));
+    ClearPoints(pln, -1);
+    
     // Gotta do this so that dakka_ignorehubs works as expected
     Score_CalcMapPoints();
     
@@ -131,7 +138,7 @@ script "Dakka_Return" return
 
 script "Dakka_Disconnect" (int pln) disconnect
 {
-    Score_ResetMask(pln, REWARDMASK_ALL);
+    Score_ResetMask(pln, SMASK_ALL);
     
     for (int i = 0; i < SLOOP_COUNT; i++)
     {

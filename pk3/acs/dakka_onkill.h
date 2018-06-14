@@ -4,7 +4,7 @@ script "Dakka_OnKill" kill
     {
         terminate;
     }
-
+    
     str monName   = GetActorClass(0);
     str deathType = GetActorProperty(0, APROP_DamageType);
     

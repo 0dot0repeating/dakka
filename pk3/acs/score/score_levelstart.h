@@ -119,15 +119,15 @@ function void Score_Reset(int pln)
     {
       case 0:
       default:
-        resetMask = REWARDMASK_ALL;
+        resetMask = SMASK_ALL;
         break;
 
       case 1:
-        resetMask = REWARDMASK_NOTDISPLAY;
+        resetMask = SMASK_NOTDISPLAY;
         break;
 
       case 2:
-        resetMask = REWARDMASK_NOTDISPLAY & REWARDMASK_NOTREWARDS;
+        resetMask = SMASK_NOTDISPLAY & SMASK_NOTREWARDS;
         break;
 
       case 3:
@@ -142,12 +142,12 @@ function void Score_Reset(int pln)
 
 function void Score_ResetMask(int pln, int mask)
 {
-    if (mask & REWARDMASK_SCORE)        { Score_SetScore(pln, 0); }
-    if (mask & REWARDMASK_DISPLAYSCORE) { Score_SetDisplayScore(pln, 0); }
-    if (mask & REWARDMASK_REWARDCOUNT)  { Score_SetRewardCount(pln, 0); }
-    if (mask & REWARDMASK_REGENTIMER)   { Score_SetRegenTimer(pln, 0); }
-    if (mask & REWARDMASK_REGENSPENT)   { Score_SetRegenSpent(pln, 0); }
-    if (mask & REWARDMASK_EXTRALIVES)   { Score_SetExtraLives(pln, 0); }
+    if (mask & SMASK_SCORE)        { Score_SetScore(pln, 0); }
+    if (mask & SMASK_DISPLAYSCORE) { Score_SetDisplayScore(pln, 0); }
+    if (mask & SMASK_REWARDCOUNT)  { Score_SetRewardCount(pln, 0); }
+    if (mask & SMASK_REGENTIMER)   { Score_SetRegenTimer(pln, 0); }
+    if (mask & SMASK_REGENSPENT)   { Score_SetRegenSpent(pln, 0); }
+    if (mask & SMASK_EXTRALIVES)   { Score_SetExtraLives(pln, 0); }
 
     // Never clear HASLIVES because that's kinda important for making
     //  Dakkaguy not BUDDHA at the start of the map.

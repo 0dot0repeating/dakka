@@ -3,13 +3,12 @@ function void ClearPoints(int pln, int bonustime)
     int i;
     for (i = 0; i < BONUSCOUNT; i++)
     {
-        if (LastBonus[pln][i] == bonustime)
+        if (LastBonus[pln][i] == bonustime || bonustime == -1)
         {
             BonusValues[pln][i] = 0;
         }
     }
 }
-
 
 // Point multipliers:
 //
@@ -66,14 +65,22 @@ script "Dakka_Score" (int pointValue, int damagetype)
         terminate;
     }
     
+    int curveCheck, telefragged;
     int firerTID     = UniqueTID();
     int pln          = PlayerNumber();
     Thing_ChangeTID(0, firerTID);
-
-    if (pln == -1)
+    
+    // telefrag or A_PainAttack
+    if (myhp - deathhp == 1000000)
     {
-        // either telefragged or didn't have room to spawn via A_PainAttack
-        if (myhp - deathhp == 1000000)
+        // telefrag, and if this was done on map load, CheckSight *will* crash,
+        //  so don't do curveball checks
+        if (pln > -1)
+        {
+            curveCheck  = true;
+            telefragged = true;
+        }
+        else // still could be either
         {
             // zandronum doesn't support APROP_DamageType, and since monsters
             //  usually can't telefrag each other, assume it's A_PainAttack
@@ -83,36 +90,39 @@ script "Dakka_Score" (int pointValue, int damagetype)
                 Thing_ChangeTID(firerTID, firerTID_old);
                 terminate;
             }
-        }
-        
-        if ((ClassifyActor(0) & ACTOR_MONSTER) && (GetActorProperty(0, APROP_Friendly) == 0))
-        {
-            ACS_NamedExecuteWithResult("Dakka_Infighter", pointValue);
-        }
+            
+            // monster telefrag
+            if ((ClassifyActor(0) & ACTOR_MONSTER) && (GetActorProperty(0, APROP_Friendly) == 0))
+            {
+                ACS_NamedExecuteWithResult("Dakka_Infighter", pointValue);
+            }
 
-        Thing_ChangeTID(myTID,    myTID_old);
-        Thing_ChangeTID(firerTID, firerTID_old);
-        terminate;
+            Thing_ChangeTID(myTID,    myTID_old);
+            Thing_ChangeTID(firerTID, firerTID_old);
+            terminate;
+        }
     }
+    else // normal kill
+    {
+        int plX      = GetActorX(0);
+        int plY      = GetActorY(0);
+        int plZ      = GetActorZ(0);
+        int plRadius = GetActorProperty(0, APROP_Radius);
+        int plHeight = GetActorProperty(0, APROP_Height);
 
-    int plX      = GetActorX(0);
-    int plY      = GetActorY(0);
-    int plZ      = GetActorZ(0);
-    int plRadius = GetActorProperty(0, APROP_Radius);
-    int plHeight = GetActorProperty(0, APROP_Height);
+        curveCheck = CheckSight(myTID, firerTID, 0);
 
-    int curveCheck = CheckSight(myTID, firerTID, 0);
+        SetActivator(myTID);
 
-    SetActivator(myTID);
+        Warp(0, myX, myY, myZ + GetActorProperty(0, APROP_Height) / 2, 0, WARPF_NOCHECKPOSITION | WARPF_ABSOLUTEPOSITION);
+        curveCheck = curveCheck || CheckSight(myTID, firerTID, 0);
 
-    Warp(0, myX, myY, myZ + GetActorProperty(0, APROP_Height) / 2, 0, WARPF_NOCHECKPOSITION | WARPF_ABSOLUTEPOSITION);
-    curveCheck = curveCheck || CheckSight(myTID, firerTID, 0);
+        Warp(0, myX, myY, myZ + GetActorProperty(0, APROP_Height), 0, WARPF_NOCHECKPOSITION | WARPF_ABSOLUTEPOSITION);
+        curveCheck = curveCheck || CheckSight(myTID, firerTID, 0);
 
-    Warp(0, myX, myY, myZ + GetActorProperty(0, APROP_Height), 0, WARPF_NOCHECKPOSITION | WARPF_ABSOLUTEPOSITION);
-    curveCheck = curveCheck || CheckSight(myTID, firerTID, 0);
-
-    Warp(0, myX, myY, myZ, 0, WARPF_NOCHECKPOSITION | WARPF_ABSOLUTEPOSITION);
-    SetActivator(firerTID);
+        Warp(0, myX, myY, myZ, 0, WARPF_NOCHECKPOSITION | WARPF_ABSOLUTEPOSITION);
+        SetActivator(firerTID);
+    }
 
     Thing_ChangeTID(myTID,    myTID_old);
     Thing_ChangeTID(firerTID, firerTID_old);
@@ -127,6 +137,7 @@ script "Dakka_Score" (int pointValue, int damagetype)
     int points_curveball    = oldRound(pointValue * SMult_Curveball(curveCheck));
     int points_scrapping    = oldRound(pointValue * SMult_Scrapping(pln, damagetype));
     int points_pointblank   = oldRound(pointValue * SMult_PointBlank(myX, myY, myZ, myRadius, myHeight, plX, plY, plZ, plRadius, plHeight));
+    int points_telefrag     = oldRound(pointValue * SMult_Telefrag(telefragged));
 
     Score_ModBothScores(pln, pointValue);
     Score_ModBothScores(pln, points_switcharoo);
@@ -139,6 +150,7 @@ script "Dakka_Score" (int pointValue, int damagetype)
     Score_ModBothScores(pln, points_curveball);
     Score_ModBothScores(pln, points_scrapping);
     Score_ModBothScores(pln, points_pointblank);
+    Score_ModBothScores(pln, points_telefrag);
 
     int bonustime = Timer();
 
@@ -155,6 +167,7 @@ script "Dakka_Score" (int pointValue, int damagetype)
     TmpBonuses[BS_CURVEBALL]    = points_curveball;
     TmpBonuses[BS_SCRAPPING]    = points_scrapping;
     TmpBonuses[BS_POINTBLANK]   = points_pointblank;
+    TmpBonuses[BS_TELEFRAG]     = points_telefrag;
 
     for (i = 0; i < BONUSCOUNT; i++)
     {
