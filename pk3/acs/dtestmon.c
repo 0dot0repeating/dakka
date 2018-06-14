@@ -1,8 +1,17 @@
 #library "dtestmon"
 #include "zcommon.acs"
-#include "dakka_commonFuncs.h"
 
 #define MONSPAWN_COUNT 19
+
+int CommonFuncs_ZeroString = "[commonFuncs.h: string index #0]";
+
+function int stringBlank(int string)
+{
+    if (string == CommonFuncs_ZeroString) { return true; }
+
+    int safeString = StrParam(s:string);
+    return StrLen(safeString) == 0;
+}
 
 str MonSpawnerSlots[MONSPAWN_COUNT][2] =
 {

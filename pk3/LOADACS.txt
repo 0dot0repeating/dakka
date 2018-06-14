@@ -1,6 +1,5 @@
 arc
 dakka
-dtitle
 dtestmap
 dtestmon
 scoremon
