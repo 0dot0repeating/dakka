@@ -403,6 +403,7 @@ function void Dakka_DoLevelSpawn(int entered, int returning)
     {
         // in acs/score_levelstart.h
         Score_Reset(pln);
+        ClearPoints(pln, -1);
         Dakka_VampireReset();
     }
 

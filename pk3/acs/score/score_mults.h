@@ -249,3 +249,8 @@ function int SMult_Darwin(void)
 {
     return DARWIN_MULT;
 }
+
+function int SMult_Telefrag(int telefragged)
+{
+    return cond(telefragged, TELEFRAG_MULT, 0);
+}

@@ -128,8 +128,11 @@
 // Each of these is for their respecting ACS script type.
 #include "dakka_open.h"
 
-// This also has the RESPAWN script.
+// This also has the RESPAWN and RETURN script.
 #include "dakka_enter.h"
+
+// Hubs were really fucking badly implemented.
+#include "dakka_unloading.h"
 
 // Monsters call this script when they die.
 #include "dakka_onkill.h"

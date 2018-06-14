@@ -54,6 +54,7 @@
 
 #define POINTBLANK_DIST         64.0
 #define POINTBLANK_MULT         0.1
+#define TELEFRAG_MULT           1.0
 
 #define INFIGHTER_MULT          0.2
 #define DARWIN_MULT             2.0
@@ -153,7 +154,7 @@ int Brawler_MeleeValues[KNOWNMELEE][2] =
 };
 
 
-#define BONUSCOUNT  13
+#define BONUSCOUNT  14
 
 #define BS_BASE         0
 #define BS_SPREE        1
@@ -161,13 +162,14 @@ int Brawler_MeleeValues[KNOWNMELEE][2] =
 #define BS_INFIGHTER    3
 #define BS_SWITCHAROO   4
 #define BS_SCRAPPING    5
-#define BS_CURVEBALL    6
-#define BS_DARWIN       7
-#define BS_AIR          8
-#define BS_BONEDRY      9
-#define BS_SORELOSER    10
-#define BS_POINTBLANK   11
-#define BS_BRAWLER      12
+#define BS_TELEFRAG     6
+#define BS_CURVEBALL    7
+#define BS_DARWIN       8
+#define BS_AIR          9
+#define BS_BONEDRY      10
+#define BS_SORELOSER    11
+#define BS_POINTBLANK   12
+#define BS_BRAWLER      13
 
 // CR_BRICK  is efficiency
 // CR_GREEN  is style
@@ -181,6 +183,7 @@ int BonusNames[BONUSCOUNT] =
     "Infighter",
     "Switcharoo",
     "Scrapping",
+    "Telefragged",
     "Curveball",
     "Darwin",
     "Air",
@@ -196,6 +199,7 @@ int BonusColors[BONUSCOUNT] =
     "DScore_Efficiency",
     "DScore_Efficiency",
     "DScore_Efficiency",
+    "DScore_Style",
     "DScore_Style",
     "DScore_Style",
     "DScore_Style",
@@ -221,70 +225,74 @@ int Bonus_LastSeen[PLAYERMAX][BONUSCOUNT];
 
 global int 22:MapScoreData[];
 
-#define REWARDDATA_SCORE         0
-#define REWARDDATA_DISPLAYSCORE (1 * PLAYERMAX)
-#define REWARDDATA_REWARDCOUNT  (2 * PLAYERMAX)
-#define REWARDDATA_SCOREPERCENT (3 * PLAYERMAX)
-#define REWARDDATA_REGENTIMER   (4 * PLAYERMAX)
-#define REWARDDATA_REGENSPENT   (5 * PLAYERMAX)
-#define REWARDDATA_EXTRALIVES   (6 * PLAYERMAX)
-#define REWARDDATA_HASLIVES     (7 * PLAYERMAX)
-#define REWARDDATA_LASTRESET    (8 * PLAYERMAX)
+#define SDATA_SCORE                      0
+#define SDATA_DISPLAYSCORE             ( 1 * PLAYERMAX)
+#define SDATA_REWARDCOUNT              ( 2 * PLAYERMAX)
+#define SDATA_SCOREPERCENT             ( 3 * PLAYERMAX)
+#define SDATA_REGENTIMER               ( 4 * PLAYERMAX)
+#define SDATA_REGENSPENT               ( 5 * PLAYERMAX)
+#define SDATA_EXTRALIVES               ( 6 * PLAYERMAX)
+#define SDATA_HASLIVES                 ( 7 * PLAYERMAX)
+#define SDATA_LASTRESET                ( 8 * PLAYERMAX)
+#define SDATA_SCORE_UNLOADING          ( 9 * PLAYERMAX)
+#define SDATA_DISPLAYSCORE_UNLOADING   (10 * PLAYERMAX)
 
 
-#define REWARDMASK_SCORE         (1 << 0)
-#define REWARDMASK_DISPLAYSCORE  (1 << 1)
-#define REWARDMASK_REWARDCOUNT   (1 << 2)
-#define REWARDMASK_SCOREPERCENT  (1 << 3)
-#define REWARDMASK_REGENTIMER    (1 << 4)
-#define REWARDMASK_REGENSPENT    (1 << 5)
-#define REWARDMASK_EXTRALIVES    (1 << 6)
-#define REWARDMASK_HASLIVES      (1 << 7)
-#define REWARDMASK_LASTRESET     (1 << 8)
+#define SMASK_SCORE                    (1 <<  0)
+#define SMASK_DISPLAYSCORE             (1 <<  1)
+#define SMASK_REWARDCOUNT              (1 <<  2)
+#define SMASK_SCOREPERCENT             (1 <<  3)
+#define SMASK_REGENTIMER               (1 <<  4)
+#define SMASK_REGENSPENT               (1 <<  5)
+#define SMASK_EXTRALIVES               (1 <<  6)
+#define SMASK_HASLIVES                 (1 <<  7)
+#define SMASK_LASTRESET                (1 <<  8)
+#define SMASK_SCORE_UNLOADING          (1 <<  9)
+#define SMASK_DISPLAYSCORE_UNLOADING   (1 << 10)
 
-#define REWARDMASK_ONLYDISPLAY      (REWARDMASK_DISPLAYSCORE)
-#define REWARDMASK_NOTDISPLAY       (~REWARDMASK_ONLYDISPLAY)
-#define REWARDMASK_ONLYREWARDS      (REWARDMASK_REGENTIMER | REWARDMASK_REGENSPENT | REWARDMASK_EXTRALIVES | REWARDMASK_HASLIVES)
-#define REWARDMASK_NOTREWARDS       (~REWARDMASK_ONLYREWARDS)
-#define REWARDMASK_ALL              0xFFFFFFFF
+#define SMASK_ONLYDISPLAY      (SMASK_DISPLAYSCORE)
+#define SMASK_NOTDISPLAY       (~SMASK_ONLYDISPLAY)
+#define SMASK_ONLYREWARDS      (SMASK_REGENTIMER | SMASK_REGENSPENT | SMASK_EXTRALIVES | SMASK_HASLIVES)
+#define SMASK_NOTREWARDS       (~SMASK_ONLYREWARDS)
+#define SMASK_ALL              0xFFFFFFFF
 
 function int Score_GetScore(int pln)
 {
-    return MapScoreData[REWARDDATA_SCORE + pln];
+    return MapScoreData[SDATA_SCORE + pln];
 }
 
 function void Score_SetScore(int pln, int val)
 {
-    MapScoreData[REWARDDATA_SCORE + pln] = val;
+    MapScoreData[SDATA_SCORE + pln] = val;
 }
 
 function void Score_ModScore(int pln, int val)
 {
-    MapScoreData[REWARDDATA_SCORE + pln] += val;
+    MapScoreData[SDATA_SCORE + pln] += val;
 }
 
 
 
 function int Score_GetDisplayScore(int pln)
 {
-    return MapScoreData[REWARDDATA_DISPLAYSCORE + pln];
+    return MapScoreData[SDATA_DISPLAYSCORE + pln];
 }
 
 function void Score_SetDisplayScore(int pln, int val)
 {
-    MapScoreData[REWARDDATA_DISPLAYSCORE + pln] = val;
+    MapScoreData[SDATA_DISPLAYSCORE + pln] = val;
 }
 
 function void Score_ModDisplayScore(int pln, int val)
 {
-    MapScoreData[REWARDDATA_DISPLAYSCORE + pln] += val;
+    MapScoreData[SDATA_DISPLAYSCORE + pln] += val;
 }
 
 
 function void Score_ModBothScores(int pln, int val)
 {
-    MapScoreData[REWARDDATA_SCORE        + pln] += val;
-    MapScoreData[REWARDDATA_DISPLAYSCORE + pln] += val;
+    MapScoreData[SDATA_SCORE        + pln] += val;
+    MapScoreData[SDATA_DISPLAYSCORE + pln] += val;
 }
 
 
@@ -292,35 +300,35 @@ function void Score_ModBothScores(int pln, int val)
 
 function int Score_GetRewardCount(int pln)
 {
-    return MapScoreData[REWARDDATA_REWARDCOUNT + pln];
+    return MapScoreData[SDATA_REWARDCOUNT + pln];
 }
 
 function void Score_SetRewardCount(int pln, int val)
 {
-    MapScoreData[REWARDDATA_REWARDCOUNT + pln] = val;
+    MapScoreData[SDATA_REWARDCOUNT + pln] = val;
 }
 
 function void Score_ModRewardCount(int pln, int val)
 {
-    MapScoreData[REWARDDATA_REWARDCOUNT + pln] += val;
+    MapScoreData[SDATA_REWARDCOUNT + pln] += val;
 }
 
 
 
 function int Score_GetScorePercent(int pln)
 {
-    return MapScoreData[REWARDDATA_SCOREPERCENT + pln];
+    return MapScoreData[SDATA_SCOREPERCENT + pln];
 }
 
 function void Score_CalcScorePercent(int pln)
 {
     if (Score_Thresholds[ST_FULLHEAL] <= 0)
     {
-        MapScoreData[REWARDDATA_SCOREPERCENT + pln] = 0;
+        MapScoreData[SDATA_SCOREPERCENT + pln] = 0;
     }
     else
     {
-        MapScoreData[REWARDDATA_SCOREPERCENT + pln] = FixedDiv(Score_GetScore(pln), Score_Thresholds[ST_FULLHEAL]) % 1.0;
+        MapScoreData[SDATA_SCOREPERCENT + pln] = FixedDiv(Score_GetScore(pln), Score_Thresholds[ST_FULLHEAL]) % 1.0;
     }
 }
 
@@ -329,84 +337,117 @@ function void Score_CalcScorePercent(int pln)
 
 function int Score_GetRegenTimer(int pln)
 {
-    return MapScoreData[REWARDDATA_REGENTIMER + pln];
+    return MapScoreData[SDATA_REGENTIMER + pln];
 }
 
 function void Score_SetRegenTimer(int pln, int val)
 {
-    MapScoreData[REWARDDATA_REGENTIMER + pln] = val;
+    MapScoreData[SDATA_REGENTIMER + pln] = val;
 }
 
 function void Score_ModRegenTimer(int pln, int val)
 {
-    MapScoreData[REWARDDATA_REGENTIMER + pln] += val;
+    MapScoreData[SDATA_REGENTIMER + pln] += val;
 }
 
 
 
 function int Score_GetRegenSpent(int pln)
 {
-    return MapScoreData[REWARDDATA_REGENSPENT + pln];
+    return MapScoreData[SDATA_REGENSPENT + pln];
 }
 
 function void Score_SetRegenSpent(int pln, int val)
 {
-    MapScoreData[REWARDDATA_REGENSPENT + pln] = val;
+    MapScoreData[SDATA_REGENSPENT + pln] = val;
 }
 
 function void Score_ModRegenSpent(int pln, int val)
 {
-    MapScoreData[REWARDDATA_REGENSPENT + pln] += val;
+    MapScoreData[SDATA_REGENSPENT + pln] += val;
 }
 
 
 
 function int Score_GetExtraLives(int pln)
 {
-    return MapScoreData[REWARDDATA_EXTRALIVES + pln];
+    return MapScoreData[SDATA_EXTRALIVES + pln];
 }
 
 function void Score_SetExtraLives(int pln, int val)
 {
-    MapScoreData[REWARDDATA_EXTRALIVES + pln] = val;
+    MapScoreData[SDATA_EXTRALIVES + pln] = val;
 }
 
 function void Score_ModExtraLives(int pln, int val)
 {
-    MapScoreData[REWARDDATA_EXTRALIVES + pln] += val;
+    MapScoreData[SDATA_EXTRALIVES + pln] += val;
 }
 
 
 
 function int Score_GetHasLives(int pln)
 {
-    return MapScoreData[REWARDDATA_HASLIVES + pln];
+    return MapScoreData[SDATA_HASLIVES + pln];
 }
 
 function void Score_SetHasLives(int pln, int val)
 {
-    MapScoreData[REWARDDATA_HASLIVES + pln] = val;
+    MapScoreData[SDATA_HASLIVES + pln] = val;
 }
 
 function void Score_ModHasLives(int pln, int val)
 {
-    MapScoreData[REWARDDATA_HASLIVES + pln] += val;
+    MapScoreData[SDATA_HASLIVES + pln] += val;
 }
 
 
 
 function int Score_GetLastReset(int pln)
 {
-    return MapScoreData[REWARDDATA_LASTRESET + pln];
+    return MapScoreData[SDATA_LASTRESET + pln];
 }
 
 function void Score_SetLastReset(int pln, int val)
 {
-    MapScoreData[REWARDDATA_LASTRESET + pln] = val;
+    MapScoreData[SDATA_LASTRESET + pln] = val;
 }
 
 function void Score_ModLastReset(int pln, int val)
 {
-    MapScoreData[REWARDDATA_LASTRESET + pln] += val;
+    MapScoreData[SDATA_LASTRESET + pln] += val;
 }
 
+
+
+function int Score_GetScore_Unloading(int pln)
+{
+    return MapScoreData[SDATA_SCORE_UNLOADING + pln];
+}
+
+function void Score_SetScore_Unloading(int pln, int val)
+{
+    MapScoreData[SDATA_SCORE_UNLOADING + pln] = val;
+}
+
+function void Score_ModScore_Unloading(int pln, int val)
+{
+    MapScoreData[SDATA_SCORE_UNLOADING + pln] += val;
+}
+
+
+
+function int Score_GetDisplayScore_Unloading(int pln)
+{
+    return MapScoreData[SDATA_DISPLAYSCORE_UNLOADING + pln];
+}
+
+function void Score_SetDisplayScore_Unloading(int pln, int val)
+{
+    MapScoreData[SDATA_DISPLAYSCORE_UNLOADING + pln] = val;
+}
+
+function void Score_ModDisplayScore_Unloading(int pln, int val)
+{
+    MapScoreData[SDATA_DISPLAYSCORE_UNLOADING + pln] += val;
+}
