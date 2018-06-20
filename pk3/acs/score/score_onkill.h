@@ -57,68 +57,75 @@ script "Dakka_Score" (int pointValue, int damagetype)
     }
 
     int firerTID_old = ActivatorTID();
+    int firerTID     = UniqueTID();
+    Thing_ChangeTID(0, firerTID);
     
     if (firerTID_old == myTID)
     {
         ACS_NamedExecuteWithResult("Dakka_InfighterSelf", pointValue);
-        Thing_ChangeTID(myTID, myTID_old);
+        Thing_ChangeTID(myTID,    myTID_old);
+        Thing_ChangeTID(firerTID, firerTID_old);
         terminate;
     }
     
-    int curveCheck, telefragged;
-    int firerTID     = UniqueTID();
-    int pln          = PlayerNumber();
-    Thing_ChangeTID(0, firerTID);
+    int pln = PlayerNumber();
     
-    // telefrag or A_PainAttack
-    if (myhp - deathhp == 1000000)
+    // m-m-m-m-monster kill
+    if (pln == -1)
     {
-        // telefrag, and if this was done on map load, CheckSight *will* crash,
-        //  so don't do curveball checks
-        if (pln > -1)
+        // zandronum doesn't support APROP_DamageType, and since monsters
+        //  usually can't telefrag each other, assume it's A_PainAttack
+        if ((myhp - deathhp == 1000000) && (deathtype == 0 || !stricmp(deathtype, "None")))
         {
-            curveCheck  = true;
-            telefragged = true;
-        }
-        else // still could be either
-        {
-            // zandronum doesn't support APROP_DamageType, and since monsters
-            //  usually can't telefrag each other, assume it's A_PainAttack
-            if (deathtype == 0 || !stricmp(deathtype, "None"))
-            {
-                Thing_ChangeTID(myTID,    myTID_old);
-                Thing_ChangeTID(firerTID, firerTID_old);
-                terminate;
-            }
-            
-            // monster telefrag
-            if ((ClassifyActor(0) & ACTOR_MONSTER) && (GetActorProperty(0, APROP_Friendly) == 0))
-            {
-                ACS_NamedExecuteWithResult("Dakka_Infighter", pointValue);
-            }
-
             Thing_ChangeTID(myTID,    myTID_old);
             Thing_ChangeTID(firerTID, firerTID_old);
             terminate;
         }
-    }
-    else // normal kill
-    {
-        int plX      = GetActorX(0);
-        int plY      = GetActorY(0);
-        int plZ      = GetActorZ(0);
-        int plRadius = GetActorProperty(0, APROP_Radius);
-        int plHeight = GetActorProperty(0, APROP_Height);
+        
+        // infighting
+        if ((ClassifyActor(0) & ACTOR_MONSTER) && (GetActorProperty(0, APROP_Friendly) == 0))
+        {
+            ACS_NamedExecuteWithResult("Dakka_Infighter", pointValue);
+        }
 
+        Thing_ChangeTID(myTID,    myTID_old);
+        Thing_ChangeTID(firerTID, firerTID_old);
+        terminate;
+    }
+    
+    int plX      = GetActorX(0);
+    int plY      = GetActorY(0);
+    int plZ      = GetActorZ(0);
+    int plRadius = GetActorProperty(0, APROP_Radius);
+    int plHeight = GetActorProperty(0, APROP_Height);
+    
+    int curveCheck = true, telefragged = false;
+    
+    // check location in zandronum - it only really works on map load, but that's good enough
+    // check damage type in gzdoom - this actually works, wow
+    if (deathtype == 0)
+    {
+        telefragged = (myhp - deathhp >= 1000000)
+                   && (plX - plRadius < myX + myRadius) && (plX + plRadius > myX - myRadius)
+                   && (plY - plRadius < myY + myRadius) && (plY + plRadius > myY - myRadius)
+                   && (plZ            < myZ + myHeight) && (plZ + plHeight > myZ);
+    }
+    else 
+    {
+        telefragged = !stricmp(deathtype, "Telefrag");
+    }
+    
+    if (!telefragged)
+    {
         curveCheck = CheckSight(myTID, firerTID, 0);
 
         SetActivator(myTID);
 
         Warp(0, myX, myY, myZ + GetActorProperty(0, APROP_Height) / 2, 0, WARPF_NOCHECKPOSITION | WARPF_ABSOLUTEPOSITION);
-        curveCheck = curveCheck || CheckSight(myTID, firerTID, 0);
+        curveCheck |= CheckSight(myTID, firerTID, 0);
 
         Warp(0, myX, myY, myZ + GetActorProperty(0, APROP_Height), 0, WARPF_NOCHECKPOSITION | WARPF_ABSOLUTEPOSITION);
-        curveCheck = curveCheck || CheckSight(myTID, firerTID, 0);
+        curveCheck |= CheckSight(myTID, firerTID, 0);
 
         Warp(0, myX, myY, myZ, 0, WARPF_NOCHECKPOSITION | WARPF_ABSOLUTEPOSITION);
         SetActivator(firerTID);
