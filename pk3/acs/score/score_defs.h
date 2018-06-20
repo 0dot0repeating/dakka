@@ -20,13 +20,6 @@
 #define KILLSTREAK_MAXTICS      360
 #define KILLSTREAK_MULTMAX      0.25
 #define KILLSTREAK_MULTINC      0.025
-#define KS_COUNT        0
-#define KS_TIME         1
-#define KS_TIMEADD      2
-
-#define KS_KILLS_SINCELASTHIT 3
-#define KS_HP_SINCELASTHIT    4
-#define KS_KILLS_UNTOUCHABLE  5
 
 #define UNTOUCHABLE_MINKILLS    24    // so it triggers on the 25th kill
 #define UNTOUCHABLE_MINHEALTH   2000
@@ -64,7 +57,6 @@
 //  1 - secondary (+altattack)
 //  2 - tertiary  (some combo of the two, probably won't be used)
 int PlayerWeapons_LastFired[PLAYERMAX][SCOREWEPS][SCOREFIREMODES];
-int PlayerKillStreaks[PLAYERMAX][6];
 
 
 // Air_JumpHeight stores the max height the player's current jump either has
