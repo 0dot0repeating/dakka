@@ -73,15 +73,21 @@ actor ScrapCounter_Cells:   Counter {}
 
 actor HubTracker:        Boolean { +INTERHUBSTRIP }
 
+// Used to track the Spree bonus
+actor DakkaKillstreak:          Counter {}
+actor DakkaKillstreakTimer:     Counter {}
+
+// Used to track the Untouchable bonus
+actor DakkaUntouchableKills:   Counter {}
+actor DakkaUntouchableHealth:  Counter {}
+actor DakkaUntouchableStacks:  Counter {}
+
 // Used to track how many maps you've had a shotgun
 actor DakkaShotgunTracker:  Counter {}
 
 
 // Used in script 494 (pickup/dakka_wepdisplay.h).
 actor DPickup_SecondWepState:   Boolean {}
-
-// Used for dakka_pickedupaclip.
-actor SpawnedClipAlready:    Boolean {}
 
 
 // HUD shit

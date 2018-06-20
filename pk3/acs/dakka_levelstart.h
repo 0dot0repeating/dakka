@@ -405,6 +405,13 @@ function void Dakka_DoLevelSpawn(int entered, int returning)
         Score_Reset(pln);
         ClearPoints(pln, -1);
         Dakka_VampireReset();
+        
+        TakeInventory("DakkaKillstreak",      0x7FFFFFFF);
+        TakeInventory("DakkaKillstreakTimer", 0x7FFFFFFF);
+        
+        TakeInventory("DakkaUntouchableKills",  0x7FFFFFFF);
+        TakeInventory("DakkaUntouchableHealth", 0x7FFFFFFF);
+        TakeInventory("DakkaUntouchableStacks", 0x7FFFFFFF);
     }
 
     if (classNum == Cl_Dakkaguy)

@@ -60,32 +60,27 @@ function int SMult_WeaponSwitch(int pln, int myhp)
 
 
 
-function int SMult_Killstreak(int pln)
+function int SMult_Killstreak(void)
 {
-    if (pln < 0 || pln >= PLAYERMAX) { return 0.0; }
-
     int curtime = Timer();
-    int neededTime = PlayerKillStreaks[pln][KS_TIME] + PlayerKillStreaks[pln][KS_TIMEADD];
+    int neededTime = CheckInventory("DakkaKillstreakTimer");
 
     if (curtime > neededTime)
     {
-        PlayerKillStreaks[pln][KS_COUNT] = 0;
-        return 0.0;
+        TakeInventory("DakkaKillstreak", 0x7FFFFFFF);
+        return 0;
     }
 
-    return min(KILLSTREAK_MULTMAX, KILLSTREAK_MULTINC * PlayerKillStreaks[pln][KS_COUNT]);
+    return min(KILLSTREAK_MULTMAX, KILLSTREAK_MULTINC * CheckInventory("DakkaKillstreak"));
 }
 
-function int AddKillstreak(int pln, int myhp)
+function int AddKillstreak(int myhp)
 {
-    if (pln < 0 || pln >= PLAYERMAX) { return 0; }
-
-    int timeAdd = oldROund(KILLSTREAK_TICSPER100HP * myhp * 0.01);
+    int timeAdd = oldRound(KILLSTREAK_TICSPER100HP * myhp * 0.01);
     timeAdd = middle(KILLSTREAK_MINTICS, timeAdd, KILLSTREAK_MAXTICS);
 
-    PlayerKillStreaks[pln][KS_COUNT]        += 1;
-    PlayerKillStreaks[pln][KS_TIME]          = Timer();
-    PlayerKillStreaks[pln][KS_TIMEADD]       = timeAdd;
+    GiveInventory("DakkaKillstreak",     1);
+    SetInventory("DakkaKillstreakTimer", Timer() + timeAdd);
     return 0;
 }
 
@@ -216,15 +211,15 @@ function int SMult_PointBlank(int mx, int my, int mz, int mradius, int mheight, 
 }
 
 
-function int SMult_Untouchable(int pln, int myhp)
+function int SMult_Untouchable(int myhp)
 {
-    int kills = PlayerKillStreaks[pln][KS_KILLS_SINCELASTHIT];
-    int hp    = PlayerKillStreaks[pln][KS_HP_SINCELASTHIT];
+    int kills = CheckInventory("DakkaUntouchableKills"); 
+    int hp    = CheckInventory("DakkaUntouchableHealth");
 
     if (kills >= Score_Thresholds[ST_UT_KILLS] || hp >= Score_Thresholds[ST_UT_HP])
     {
-        PlayerKillStreaks[pln][KS_KILLS_UNTOUCHABLE] += 1 + (myhp / UNTOUCHABLE_KILLBOOST_HPDIVISOR);
-        int multKills = min(PlayerKillStreaks[pln][KS_KILLS_UNTOUCHABLE], UNTOUCHABLE_MAXKILLS);
+        GiveInventory("DakkaUntouchableStacks", 1 + (myhp / UNTOUCHABLE_KILLBOOST_HPDIVISOR));
+        int multKills = min(CheckInventory("DakkaUntouchableStacks"), UNTOUCHABLE_MAXKILLS);
 
         return multKills * UNTOUCHABLE_MULT;
     }
@@ -232,10 +227,10 @@ function int SMult_Untouchable(int pln, int myhp)
     return 0;
 }
 
-function void AddUntouchable(int pln, int myhp)
+function void AddUntouchable(int myhp)
 {
-    PlayerKillStreaks[pln][KS_KILLS_SINCELASTHIT] += 1;
-    PlayerKillStreaks[pln][KS_HP_SINCELASTHIT]    += myhp;
+    GiveInventory("DakkaUntouchableKills",  1);
+    GiveInventory("DakkaUntouchableHealth", myhp);
 }
 
 
