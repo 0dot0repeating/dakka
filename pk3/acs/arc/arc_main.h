@@ -35,9 +35,12 @@ script "Arc_Main" (int arcType)
         terminate;
     }
 
-    // get this stuff now, because they might die and their height might change
+    // get this stuff now, because they might die and instantly disappear
     int tracerHeight = GetActorProperty(0, APROP_Height);
     int tracerRadius = GetActorProperty(0, APROP_Radius);
+    int tracerX      = GetActorX(0);
+    int tracerY      = GetActorY(0);
+    int tracerZ      = GetActorZ(0);
 
 
     // step 11
@@ -61,10 +64,13 @@ script "Arc_Main" (int arcType)
 
     // step 13
     SetActivator(0, AAPTR_TRACER);
-
-    int tracerX  = GetActorX(0);
-    int tracerY  = GetActorY(0);
-    int tracerZ  = GetActorZ(0);
+    
+    if (!IsWorld())
+    {
+        tracerX      = GetActorX(0);
+        tracerY      = GetActorY(0);
+        tracerZ      = GetActorZ(0);
+    }   
 
     int arcX     = tracerX;
     int arcY     = tracerY;
