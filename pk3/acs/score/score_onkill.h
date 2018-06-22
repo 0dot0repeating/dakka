@@ -22,6 +22,8 @@ function void ClearPoints(int pln, int bonustime)
 // - Air: kill enemies mid-flight, get more points
 // - Curveball: kill an enemy without them being able to see you? get points.
 // - Scrapping: scrapper kill
+// - Darwin: get an enemy to kill itself
+// - Telefragged: doesn't really work on zandronum
 //
 // DARING:
 // - Brawler: use your fists to get kills
