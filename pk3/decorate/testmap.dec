@@ -241,6 +241,64 @@ actor DAKKTEST_AssKicker
     }
 }
 
+actor DAKKTEST_InstantDeathTester
+{
+    Radius 10
+    Height 28
+    
+    Health 1
+    Scale 0.33
+    
+    +SOLID
+    +SHOOTABLE
+    
+    States
+    {
+      Spawn:
+        SKEL A 1 A_SetAngle(angle + 45)
+        loop
+      
+      Death:
+        SKEL A 0 A_SpawnItemEx("DAKKTEST_InstantDeathFX")
+        SKEL A 0 A_SpawnItemEx("DAKKTEST_InstantDeathRude", 0,0,24, 0,0,1)
+        stop
+    }
+}
+
+actor DAKKTEST_InstantDeathFX
+{
+    +NOINTERACTION
+    +CLIENTSIDEONLY
+    
+    RenderStyle Add
+    Scale 0.5
+    
+    States
+    {
+      Spawn:
+        FIRE A 0 nodelay A_PlaySound("vile/firestrt")
+        FIRE ABCDEFGH 2 bright
+        stop
+    }
+}
+
+actor DAKKTEST_InstantDeathRude
+{
+    +NOINTERACTION
+    +CLIENTSIDEONLY
+    +FORCEXYBILLBOARD
+    
+    Scale 0.5
+    
+    States
+    {
+      Spawn:
+        RUDE A 12
+        RUDE A 1 A_FadeOut(0.1)
+        wait
+    }
+}
+
 
 
 actor NotAZombieman:      Zombieman           {}
