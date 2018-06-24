@@ -599,7 +599,7 @@ actor FistPunchPuff: BulletPuff
         TNT1 A 0
         TNT1 A 0 A_GiveToTarget("DakkaFistConnected")
         TNT1 A 0 A_PlaySound("dakka/punch", CHAN_WEAPON)
-        TNT1 A 0 A_Quake(1, 3, 0, 96, "")
+        TNT1 A 0 ACS_NamedExecuteWithResult("Dakka_FistQuake")
         TNT1 A 0 A_JumpIf(CallACS("Dakka_FistHit"), "MeatHit")
         TNT1 A 8 ACS_NamedExecuteWithResult("Dakka_ModFistSpeed", AAPTR_TARGET, -1)
         stop
@@ -619,7 +619,7 @@ actor FistPunchPuff: BulletPuff
 
       SparkHit:
         TNT1 A 0 ACS_NamedExecuteWithResult("Dakka_ModFistSpeed", AAPTR_TARGET, 1)
-        TNT1 A 0 A_Quake(1, 3, 0, 96, "")
+        TNT1 A 0 ACS_NamedExecuteWithResult("Dakka_FistQuake")
         BPUF CD 4
         stop
     }
@@ -712,10 +712,7 @@ actor FistPowerPunch1: BulletPuff
 
       MeatEnd:
         TNT1 A 0 A_PlaySound("dakka/punch", CHAN_WEAPON)
-        TNT1 A 0 A_Quake(4, 4, 0, 96, "")
-        TNT1 A 0 A_Quake(2, 8, 0, 128, "")
-        TNT1 A 0 A_Quake(1, 12, 0, 160, "")
-        TNT1 A 8
+        TNT1 A 8 ACS_NamedExecuteWithResult("Dakka_FistQuake", 1)
         stop
 
 
@@ -735,9 +732,7 @@ actor FistPowerPunch1: BulletPuff
 
       SparkEnd:
         TNT1 A 0 A_PlaySound("dakka/punchwall", CHAN_WEAPON)
-        TNT1 A 0 A_Quake(4, 4, 0, 96, "")
-        TNT1 A 0 A_Quake(2, 8, 0, 128, "")
-        TNT1 A 0 A_Quake(1, 12, 0, 160, "")
+        TNT1 A 0 ACS_NamedExecuteWithResult("Dakka_FistQuake", 0)
         BPUF CD 4
         stop
     }
@@ -755,17 +750,12 @@ actor FistPowerPunch2: FistPowerPunch1
 
       MeatEnd:
         TNT1 A 0 A_PlaySound("dakka/punch", CHAN_WEAPON)
-        TNT1 A 0 A_Quake(5, 6,  0, 96, "")
-        TNT1 A 0 A_Quake(3, 10, 0, 128, "")
-        TNT1 A 0 A_Quake(1, 15, 0, 160, "")
-        TNT1 A 8
+        TNT1 A 8 ACS_NamedExecuteWithResult("Dakka_FistQuake", 2)
         stop
 
       SparkEnd:
         TNT1 A 0 A_PlaySound("dakka/punchwall", CHAN_WEAPON)
-        TNT1 A 0 A_Quake(5, 6,  0, 96, "")
-        TNT1 A 0 A_Quake(3, 10, 0, 128, "")
-        TNT1 A 0 A_Quake(1, 15, 0, 160, "")
+        TNT1 A 0 ACS_NamedExecuteWithResult("Dakka_FistQuake", 2)
         BPUF CD 4
         stop
     }
@@ -785,15 +775,12 @@ actor FistPowerPunch3_1: FistPowerPunch1
 
       MeatEnd:
         TNT1 A 0 A_PlaySound("dakka/punch", CHAN_WEAPON)
-        TNT1 A 0 A_Quake(3, 3,  0, 64, "")
-        TNT1 A 0 A_Quake(1, 8,  0, 96, "")
-        TNT1 A 8
+        TNT1 A 8 ACS_NamedExecuteWithResult("Dakka_FistQuake", 3)
         stop
 
       SparkEnd:
         TNT1 A 0 A_PlaySound("dakka/punchwall", CHAN_WEAPON)
-        TNT1 A 0 A_Quake(3, 3,  0, 64, "")
-        TNT1 A 0 A_Quake(1, 8,  0, 96, "")
+        TNT1 A 0 ACS_NamedExecuteWithResult("Dakka_FistQuake", 3)
         BPUF CD 4
         stop
     }
@@ -817,10 +804,8 @@ actor FistPowerPunch3_2: FistPowerPunch1
 
       SparkEnd:
         TNT1 A 0 A_Explode(100, 128, false, false, 64)
-        TNT1 A 8 A_SpawnItemEx("FistShockwave_Client")
-        TNT1 A 0 A_Quake(6, 6,  0, 96, "")
-        TNT1 A 0 A_Quake(4, 12, 0, 128, "")
-        TNT1 A 0 A_Quake(2, 19, 0, 160, "")
+        TNT1 A 0 A_SpawnItemEx("FistShockwave_Client")
+        TNT1 A 8 ACS_NamedExecuteWithResult("Dakka_FistQuake", 4)
         stop
     }
 }
