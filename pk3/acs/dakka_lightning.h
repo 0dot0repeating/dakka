@@ -7,41 +7,83 @@
 #define LIGHTNINGSLOTS  256
 #define MAXPOINTS       256
 
+
+script "Dakka_LightningStart" (int x, int y, int z, int type) clientside
+{
+    // TracerData is in dakka_tracers.h
+    TracerData[0][0] = true;
+    TracerData[0][1] = x;
+    TracerData[0][2] = y;
+    TracerData[0][3] = z;
+    TracerData[0][4] = type;
+    
+    if (TracerData[0][0] && TracerData[1][0])
+    {
+        ACS_NamedExecuteWithResult("Dakka_Lightning");
+        TracerData[0][0] = false;
+        TracerData[1][0] = false;
+    }
+}
+
+
+script "Dakka_LightningEnd" (int x, int y, int z) clientside
+{
+    TracerData[1][0] = true;
+    TracerData[1][1] = x;
+    TracerData[1][2] = y;
+    TracerData[1][3] = z;
+    
+    if (TracerData[0][0] && TracerData[1][0])
+    {
+        ACS_NamedExecuteWithResult("Dakka_Lightning");
+        TracerData[0][0] = false;
+        TracerData[1][0] = false;
+    }
+}
+
+
+script "Dakka_LightningStart_Firer" (int x, int y, int z) clientside
+{
+    ACS_NamedExecuteWithResult("Dakka_LightningStart", x,y,z, TRACE_ARC_FIRER);
+}
+
+
+script "Dakka_LightningStart_Master" (int x, int y, int z) clientside
+{
+    ACS_NamedExecuteWithResult("Dakka_LightningStart", x,y,z, TRACE_ARC_MASTER);
+}
+
+
+
 int Lightning_Points[LIGHTNINGSLOTS][MAXPOINTS][5];
 int Lightning_InUse[LIGHTNINGSLOTS];
 
-script "Dakka_Lightning" (int which, int startTID, int dist) clientside
+script "Dakka_Lightning" (void) clientside
 {
-    int pln = cond(IsZandronum, ConsolePlayerNumber(), PlayerNumber());
+    int pln         = cond(IsZandronum, ConsolePlayerNumber(), PlayerNumber());
+    int lesseffects = GetUserCVar(pln, "dakka_cl_lesseffects");
+
+    int startX = TracerData[0][1];
+    int startY = TracerData[0][2];
+    int startZ = TracerData[0][3];
     
-    int waitTimer = 0;
+    int endX   = TracerData[1][1];
+    int endY   = TracerData[1][2];
+    int endZ   = TracerData[1][3];
+    
+    int which  = TracerData[0][4];
 
-    while (!IsTIDUsed(startTID))
-    {
-        waitTimer++;
-        Delay(1);
-        if (waitTimer > 36) { terminate; }
-    }
-
-    int startX     = GetActorX(startTID);
-    int startY     = GetActorY(startTID);
-    int startZ     = GetActorZ(startTID);
-    int startAngle = GetActorAngle(startTID);
-    int startPitch = GetActorPitch(startTID);
-
-    int dX = FixedMul(dist, FixedMul(cos(startAngle), cos(startPitch)));
-    int dY = FixedMul(dist, FixedMul(sin(startAngle), cos(startPitch)));
-    int dZ = FixedMul(dist, -sin(startPitch));
-
-    int endX = startX + dX;
-    int endY = startY + dY;
-    int endZ = startZ + dZ;
+    int dX   = endX - startX;
+    int dY   = endY - startY;
+    int dZ   = endZ - startZ;
+    int dist = VectorLength(VectorLength(dX, dY), dZ);
 
     int nX = FixedDiv(dX, dist);
     int nY = FixedDiv(dY, dist);
     int nZ = FixedDiv(dZ, dist);
-
-    int lesseffects = GetUserCVar(pln, "dakka_cl_lesseffects");
+    
+    int startAngle =  VectorAngle(dX, dY);
+    int startPitch = -VectorAngle(VectorLength(dX, dY), dZ);
 
     int particleType = "LanceArcTrail";
     int density = cond(lesseffects, 18.0, 6.0);
