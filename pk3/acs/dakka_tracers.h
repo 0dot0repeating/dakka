@@ -71,67 +71,110 @@ script "Dakka_Tracer" (int which, int yoff, int zoff, int fractional)
     int spawnX = myX + rotX;
     int spawnY = myY + rotY;
     int spawnZ = myZ + rotZ;
-    
-    int dx = shotX - spawnX;
-    int dy = shotY - spawnY;
-    int dz = shotZ - spawnZ;
-    
-    int tracerAngle =  VectorAngle(dx, dy);
-    int tracerPitch = -VectorAngle(VectorLength(dx, dy), dz);
-    int tracerDist  =  VectorLength(VectorLength(dx, dy), dz);
-
-    int tracerTID = UniqueTID();
-    SpawnForced("TracerDummy", spawnX, spawnY, spawnZ, tracerTID);
-    SetActorAngle(tracerTID, tracerAngle);
 
     switch (which)
     {
       default:
         if (ConsolePlayerNumber() == -1)
         {
-            ACS_NamedExecuteAlways("Dakka_Tracer_Client", 0, tracerTID, tracerDist, tracerPitch);
+            ACS_NamedExecuteAlways("Dakka_TracerStart_Client", 0, spawnX, spawnY, spawnZ);
+            ACS_NamedExecuteAlways("Dakka_TracerEnd_Client",   0, shotX,  shotY,  shotZ);
         }
         else
         {
-            ACS_NamedExecuteWithResult("Dakka_Tracer_Client", tracerTID, tracerDist, tracerPitch);
+            ACS_NamedExecuteWithResult("Dakka_TracerStart_Client", spawnX, spawnY, spawnZ);
+            ACS_NamedExecuteWithResult("Dakka_TracerEnd_Client",   shotX,  shotY,  shotZ);
         }
         break;
         
       case TRACE_BULLET_BIG:
         if (ConsolePlayerNumber() == -1)
         {
-            ACS_NamedExecuteAlways("Dakka_TracerBig_Client", 0, tracerTID, tracerDist, tracerPitch);
+            ACS_NamedExecuteAlways("Dakka_TracerBigStart_Client", 0, spawnX, spawnY, spawnZ);
+            ACS_NamedExecuteAlways("Dakka_TracerEnd_Client",      0, shotX,  shotY,  shotZ);
         }
         else
         {
-            ACS_NamedExecuteWithResult("Dakka_Tracer_Client", tracerTID, tracerDist, tracerPitch, TRACE_BULLET_BIG);
+            ACS_NamedExecuteWithResult("Dakka_TracerStart_Client", spawnX, spawnY, spawnZ, TRACE_BULLET_BIG);
+            ACS_NamedExecuteWithResult("Dakka_TracerEnd_Client",   shotX,  shotY,  shotZ);
         }
         break;
 
       case TRACE_ARC_FIRER:
-      case TRACE_ARC_MASTER:
-        SetActorPitch(tracerTID, tracerPitch);
-        if (which == TRACE_ARC_MASTER) { SetActivator(0, AAPTR_TARGET); }
-        
         if (ConsolePlayerNumber() == -1)
         {
-            ACS_NamedExecuteAlways("Dakka_Lightning", 0, which, tracerTID, tracerDist);
+            ACS_NamedExecuteAlways("Dakka_LightningStart_Firer", 0, spawnX, spawnY, spawnZ);
+            ACS_NamedExecuteAlways("Dakka_LightningEnd",         0, shotX,  shotY,  shotZ);
         }
         else
         {
-            ACS_NamedExecuteWithResult("Dakka_Lightning", which, tracerTID, tracerDist);
+            ACS_NamedExecuteWithResult("Dakka_LightningStart", spawnX, spawnY, spawnZ, TRACE_ARC_FIRER);
+            ACS_NamedExecuteWithResult("Dakka_LightningEnd",   shotX,  shotY,  shotZ);
+        }
+        break;
+        
+      case TRACE_ARC_MASTER:
+        if (ConsolePlayerNumber() == -1)
+        {
+            ACS_NamedExecuteAlways("Dakka_LightningStart_Master", 0, spawnX, spawnY, spawnZ);
+            ACS_NamedExecuteAlways("Dakka_LightningEnd",          0, shotX,  shotY,  shotZ);
+        }
+        else
+        {
+            ACS_NamedExecuteWithResult("Dakka_LightningStart", spawnX, spawnY, spawnZ, TRACE_ARC_MASTER);
+            ACS_NamedExecuteWithResult("Dakka_LightningEnd",   shotX,  shotY,  shotZ);
         }
         break;
     }
 }
 
 
-script "Dakka_TracerBig_Client" (int startTID, int dist, int startPitch) clientside
+// Indexes are in order: set, x, y, z, type
+// TracerData[1][4] is unused
+int TracerData[2][5];
+
+
+script "Dakka_TracerStart_Client" (int x, int y, int z, int type) clientside
 {
-    ACS_NamedExecuteWithResult("Dakka_Tracer_Client", startTID, dist, startPitch, TRACE_BULLET_BIG);
+    TracerData[0][0] = true;
+    TracerData[0][1] = x;
+    TracerData[0][2] = y;
+    TracerData[0][3] = z;
+    TracerData[0][4] = cond(type == 0, TRACE_BULLET, type);
+    
+    if (TracerData[0][0] && TracerData[1][0])
+    {
+        ACS_NamedExecuteWithResult("Dakka_Tracer_Client");
+        TracerData[0][0] = false;
+        TracerData[1][0] = false;
+    }
 }
 
-script "Dakka_Tracer_Client" (int startTID, int dist, int startPitch, int type) clientside
+
+script "Dakka_TracerEnd_Client" (int x, int y, int z) clientside
+{
+    TracerData[1][0] = true;
+    TracerData[1][1] = x;
+    TracerData[1][2] = y;
+    TracerData[1][3] = z;
+    
+    if (TracerData[0][0] && TracerData[1][0])
+    {
+        ACS_NamedExecuteWithResult("Dakka_Tracer_Client");
+        TracerData[0][0] = false;
+        TracerData[1][0] = false;
+    }
+}
+
+
+script "Dakka_TracerBigStart_Client" (int x, int y, int z) clientside
+{
+    ACS_NamedExecuteWithResult("Dakka_TracerStart_Client", x,y,z, TRACE_BULLET_BIG);
+}
+
+
+
+script "Dakka_Tracer_Client" (void) clientside
 {
     int firerPln = PlayerNumber();
     int pln = cond(IsZandronum, ConsolePlayerNumber(), firerPln);
@@ -139,20 +182,16 @@ script "Dakka_Tracer_Client" (int startTID, int dist, int startPitch, int type) 
     
     if (tracermode <= 0) { terminate; }
     if (tracermode == 1 && pln != firerPln) { terminate; }
+
+    int startX = TracerData[0][1];
+    int startY = TracerData[0][2];
+    int startZ = TracerData[0][3];
     
-    int waitTimer = 0;
-
-    while (!IsTIDUsed(startTID))
-    {
-        waitTimer++;
-        Delay(1);
-        if (waitTimer > 36) { terminate; }
-    }
-
-    int startX     = GetActorX(startTID);
-    int startY     = GetActorY(startTID);
-    int startZ     = GetActorZ(startTID);
-    int startAngle = GetActorAngle(startTID);
+    int endX   = TracerData[1][1];
+    int endY   = TracerData[1][2];
+    int endZ   = TracerData[1][3];
+    
+    int type   = TracerData[0][4];
     
     if (!GetCVar("cl_capfps"))
     {
@@ -161,10 +200,11 @@ script "Dakka_Tracer_Client" (int startTID, int dist, int startPitch, int type) 
         startY -= GetActorVelY(0);
         startZ -= GetActorVelZ(0);
     }
-
-    int dX = FixedMul(dist, FixedMul(cos(startAngle), cos(startPitch)));
-    int dY = FixedMul(dist, FixedMul(sin(startAngle), cos(startPitch)));
-    int dZ = FixedMul(dist, -sin(startPitch));
+    
+    int dX = endX - startX;
+    int dY = endY - startY;
+    int dZ = endZ - startZ;
+    int dist = VectorLength(VectorLength(dX, dY), dZ);
 
     int nX = FixedDiv(dX, dist);
     int nY = FixedDiv(dY, dist);
