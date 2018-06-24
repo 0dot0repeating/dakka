@@ -114,3 +114,42 @@ script "Dakka_FistThrust" (int angle, int power)
 
     SetActorVelocity(0, thrustX, thrustY, GetActorVelZ(0), false, false);
 }
+
+
+// this shouldn't need to exist but >zandronum netcode
+
+script "Dakka_FistQuake" (int which)
+{
+    int tid = UniqueTID();
+    SpawnForced("TracerDummy", GetActorX(0), GetActorY(0), GetActorZ(0), tid);
+    
+    switch (which)
+    {
+      default:
+        Radius_Quake2(tid, 1, 3,  0, 96,  "dakka/silent");
+        break;
+        
+      case 1:
+        Radius_Quake2(tid, 4, 4,  0, 96,  "dakka/silent");
+        Radius_Quake2(tid, 2, 8,  0, 128, "dakka/silent");
+        Radius_Quake2(tid, 1, 12, 0, 160, "dakka/silent");
+        break;
+      
+      case 2:
+        Radius_Quake2(tid, 5, 6,  0, 96,  "dakka/silent");
+        Radius_Quake2(tid, 3, 10, 0, 128, "dakka/silent");
+        Radius_Quake2(tid, 1, 15, 0, 160, "dakka/silent");
+        break;
+        
+      case 3:
+        Radius_Quake2(tid, 3, 3,  0, 64,  "dakka/silent");
+        Radius_Quake2(tid, 1, 8,  0, 96,  "dakka/silent");
+        break;
+        
+      case 4:
+        Radius_Quake2(tid, 6, 6,  0, 96,  "dakka/silent");
+        Radius_Quake2(tid, 4, 12, 0, 128, "dakka/silent");
+        Radius_Quake2(tid, 2, 19, 0, 160, "dakka/silent");
+        break;
+    }
+}
