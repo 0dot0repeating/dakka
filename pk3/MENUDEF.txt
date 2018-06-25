@@ -54,6 +54,15 @@ OptionValue Dakka_IgnoreHubs
     1, "do resets"
 }
 
+OptionValue Dakka_RewardTypes
+{
+    0, "ammo regen, then life"
+    1, "life, then ammo regen"
+    2, "just ammo regen"
+    3, "just lives"
+    4, "none"
+}
+
 
 OptionValue Dakka_PowerLevel
 {
@@ -176,7 +185,7 @@ OptionMenu Dakka_GameOptions
     Option "Infinite pistol ammo",  "dakka_infinitepistol", "OnOff"
     Option "Damage multiplier",     "dakka_powerlevel",     "Dakka_PowerLevel"
     Option "Defense multiplier",    "dakka_defenselevel",   "Dakka_DefenseLevel"
-    Option "Score rewards",         "dakka_noscorerewards", "OffOn"
+    Option "Score rewards",         "dakka_rewardtypes",    "Dakka_RewardTypes"
 
     StaticText ""
     StaticText "Level start options", 1
