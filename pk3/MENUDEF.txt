@@ -30,6 +30,7 @@ OptionValue Dakka_StartMode_Ammo
 
 OptionValue Dakka_ScrapperStart
 {
+     -1, "take on new map"
       0, "keep them"
       1, "give on new map"
 }

@@ -11,7 +11,7 @@ server int  dakka_rewardtypes         = 0;
 server int  dakka_startmode_weapons   = 0;
 server int  dakka_startmode_ammo      = 1;
 server int  dakka_startmode_health    = 1;
-server bool dakka_scrapperstart       = false;
+server int  dakka_scrapperstart       = 0;
 server int  dakka_backpackstart       = 0;
 
 server int  dakka_jumpmod             = 0;
