@@ -514,7 +514,7 @@ actor PLPrimaryCloud1
     {
       Spawn:
         PLZM H 0 bright
-        PLZM H 0 bright A_JumpIf(CallACS("Dakka_LessEffects") == true, "Done")
+        PLZM H 0 bright ACS_NamedExecuteWithResult("Dakka_LessEffects", true)
         PLZM H 0 bright A_ChangeVelocity(frandom(-1, 1), frandom(-1, 1), frandom(-1, 1))
         goto FadeA
 
