@@ -245,9 +245,9 @@ function void Dakka_StartMode_Ammo(int classNum, int entered, int lostAmmo)
 //  - 3: Enter the map with a soulsphere and a set of blue armor.
 //  - 4: Enter the map with a megasphere.
 
-function void Dakka_StartMode_Health(int classNum, int entered)
+function void Dakka_StartMode_Health(int classNum, int freshStart, int respawning)
 {
-    if (!entered) { return; }
+    if (!(freshStart || respawning)) { return; }
 
     int startmode = GetCVar("dakka_startmode_health");
 
@@ -404,7 +404,7 @@ function void Dakka_DoLevelSpawn(int entered, int returning)
     Dakka_BackpackStart(freshStart, lostEverything);
     Dakka_StartMode_Weapons(classNum, freshStart, lostWeapons);
     Dakka_StartMode_Ammo(   classNum, freshStart, lostAmmo);
-    Dakka_StartMode_Health( classNum, freshStart);
+    Dakka_StartMode_Health( classNum, freshStart, respawning);
 
     if (freshStart)
     {
