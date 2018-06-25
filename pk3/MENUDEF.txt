@@ -21,10 +21,11 @@ OptionValue Dakka_StartMode_Weapons
 OptionValue Dakka_StartMode_Ammo
 {
     0, "keep it"
-    1, "reset ammo"
-    2, "max out ammo"
-    3, "keep only pistol ammo"
-    4, "pistol full, rest empty"
+    1, "reset ammo (low)"
+    2, "reset ammo (high)"
+    3, "max out ammo"
+    4, "keep only pistol ammo"
+    5, "pistol full, rest empty"
 }
 
 OptionValue Dakka_ScrapperStart
