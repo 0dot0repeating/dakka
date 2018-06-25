@@ -11,11 +11,11 @@ OptionValue Dakka_StartMode_Weapons
 {
     0, "keep them"
     2, "pistol start"
-    3, "up to shotgun tier"
-    4, "up to chaingun tier"
-    5, "up to RL tier"
-    6, "up to plasma tier"
-    7, "up to BFG tier"
+    3, "up to shotgun"
+    4, "up to minigun"
+    5, "up to impaler + SSG"
+    6, "up to lancer"
+    7, "up to BFG"
 }
 
 OptionValue Dakka_StartMode_Ammo
@@ -30,8 +30,8 @@ OptionValue Dakka_StartMode_Ammo
 
 OptionValue Dakka_ScrapperStart
 {
-     0, "keep them"
-     1, "give on new map"
+      0, "keep them"
+      1, "give on new map"
 }
 
 OptionValue Dakka_BackpackStart
