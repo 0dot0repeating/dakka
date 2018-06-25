@@ -285,24 +285,28 @@ function void Dakka_ScrapperStart(int extraScrap, int entered, int lostWeapons)
 {
     if (!(entered || lostWeapons)) { return; }
     
-    if (CheckInventory("DWep_Scrappers") || GetCVar("dakka_scrapperstart") <= 0)
+    switch (sign(GetCVar("dakka_scrapperstart")))
     {
-        return;
-    }
+      case -1:
+        TakeInventory("DWep_Scrappers", 0x7FFFFFFF);
+        break;
+      
+      case 1:
+        int scrapBefore = CheckInventory("DakkaScrap");
+        GiveInventory("DWep_Scrappers", 1);
+        int scrapAfter = CheckInventory("DakkaScrap");
 
-    int scrapBefore = CheckInventory("DakkaScrap");
-    GiveInventory("DWep_Scrappers", 1);
-    int scrapAfter = CheckInventory("DakkaScrap");
+        int targetScrap = (scrapBefore + extraScrap) - scrapAfter;
 
-    int targetScrap = (scrapBefore + extraScrap) - scrapAfter;
-
-    if (targetScrap < 0)
-    {
-        TakeInventory("DakkaScrap", -targetScrap);
-    }
-    else
-    {
-        GiveAmmo("DakkaScrap", targetScrap);
+        if (targetScrap < 0)
+        {
+            TakeInventory("DakkaScrap", -targetScrap);
+        }
+        else
+        {
+            GiveAmmo("DakkaScrap", targetScrap);
+        }
+        break;
     }
 }
 
@@ -400,6 +404,8 @@ function void Dakka_DoLevelSpawn(int entered, int returning)
 
     int pln       = PlayerNumber();
     int classNum  = Pickup_ClassNumber(0);
+    
+    if (classNum == Cl_Dakkaguy) { Dakka_ScrapperStart(0, freshStart, lostWeapons); }
 
     Dakka_BackpackStart(freshStart, lostEverything);
     Dakka_StartMode_Weapons(classNum, freshStart, lostWeapons);
@@ -423,7 +429,6 @@ function void Dakka_DoLevelSpawn(int entered, int returning)
 
     if (classNum == Cl_Dakkaguy)
     {
-        Dakka_ScrapperStart(0, freshStart, lostWeapons);
         ACS_NamedExecuteWithResult("Dakka_PistolReload");
 
         if (newHub)
@@ -454,6 +459,9 @@ function void Dakka_DoDMSpawn(int entered)
     Dakka_VampireReset();
 
     Dakka_BackpackStart(entered, true);
+    Dakka_StartMode_Weapons(classNum, true, true);
+    Dakka_StartMode_Ammo(   classNum, true, true);
+    Dakka_StartMode_Health( classNum, true, !entered);
 
     if (classNum == Cl_Dakkaguy)
     {
