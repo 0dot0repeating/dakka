@@ -151,13 +151,9 @@ actor DakkaBulletSpark
     States
     {
       Spawn:
-        TNT1 A 0
-        DPUF A 0 A_JumpIf(CallACS("Dakka_LessEffects") == 1, "Nah")
+        DPUF A 0
+        DPUF A 0 ACS_NamedExecuteWithResult("Dakka_LessEffects", true)
         goto Spawn2
-
-      Nah:
-        TNT1 A 0
-        stop
 
       Spawn2:
         DPUF A 105 bright
