@@ -525,14 +525,14 @@ actor ScrapperTrail
     States
     {
       Spawn:
-        SCRT A 0 bright
-        SCRT A 4 bright A_JumpIf(CallACS("Dakka_LessEffects"), "Disappear")
+        SCRT A 2 bright
+        SCRT A 2 bright A_JumpIf(CallACS("Dakka_LessEffects") == true, "FastFade")
         SCRT A 1 bright A_FadeOut(0.08)
         wait
-
-      Disappear:
-        TNT1 A 0
-        stop
+      
+      FastFade:
+        SCRT A 1 bright A_FadeOut(0.08)
+        wait
     }
 }
 
@@ -625,9 +625,13 @@ actor ScrapperTrail2: ScrapperTrail
     States
     {
       Spawn:
-        SCRT A 0 bright
-        SCRT A 4 bright A_JumpIf(CallACS("Dakka_LessEffects"), "Disappear")
+        SCRT A 2 bright
+        SCRT A 2 bright A_JumpIf(CallACS("Dakka_LessEffects") == true, "FastFade")
         SCRT A 1 bright A_FadeOut(0.04)
+        wait
+      
+      FastFade:
+        SCRT A 1 bright A_FadeOut(0.06)
         wait
     }
 }
@@ -640,9 +644,13 @@ actor ScrapperTrail3: ScrapperTrail
     States
     {
       Spawn:
-        SCRT A 0 bright
-        SCRT A 4 bright A_JumpIf(CallACS("Dakka_LessEffects"), "Disappear")
+        SCRT A 2 bright
+        SCRT A 2 bright A_JumpIf(CallACS("Dakka_LessEffects") == true, "FastFade")
         SCRT A 1 bright A_FadeOut(0.04)
+        wait
+      
+      FastFade:
+        SCRT A 1 bright A_FadeOut(0.06)
         wait
     }
 }
