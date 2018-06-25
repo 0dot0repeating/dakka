@@ -3,8 +3,9 @@
 #define OSCORE_FIRSTDRAW    2
 #define OSCORE_NOREWARD     3
 #define OSCORE_HIDESCORE    4
+#define OSCORE_NEXTISLIFE   5
 
-int Score_OldVals[5][PLAYERMAX];
+int Score_OldVals[6][PLAYERMAX];
 
 function void Score_Update(int pln)
 {
@@ -12,18 +13,44 @@ function void Score_Update(int pln)
     int oldGoalPoints   = Score_OldVals[OSCORE_GOALPOINTS][pln];
     int oldNoReward     = Score_OldVals[OSCORE_NOREWARD][pln];
     int oldHideScore    = Score_OldVals[OSCORE_HIDESCORE][pln];
+    int oldNextIsLife   = Score_OldVals[OSCORE_NEXTISLIFE][pln];
     int first           = Score_OldVals[OSCORE_FIRSTDRAW][pln];
 
     int points          = SToC_ClientData[pln][S2C_D_SCORE];
     int goalpoints      = SToC_ClientData[pln][S2C_D_GOALSCORE];
     int displayPoints   = SToC_ClientData[pln][S2C_D_DISPLAYSCORE];
-    int noReward        = GetCVar("dakka_noscorerewards") || GetUserCVar(pln, "dakka_cl_noscorerewards");
     int hideScore       = GetUserCVar(pln, "dakka_cl_hidescore");
-
-    if (!first || (points != oldPoints) || (goalPoints != oldGoalPoints) || (noReward != oldNoReward) || (oldHideScore != hideScore))
+    
+    int rewardTypes = GetCVar("dakka_rewardtypes");
+    int rewardCount = SToC_ClientData[pln][S2C_D_REWARDCOUNT];
+    int nextIsLife  = false;
+    int noReward    = GetUserCVar(pln, "dakka_cl_noscorerewards");
+    
+    switch (rewardtypes)
     {
-        int rewardCount = SToC_ClientData[pln][S2C_D_REWARDCOUNT];
-        Score_Draw(points, goalpoints, displayPoints, hideScore, noReward, rewardCount);
+      case 0:
+        nextIsLife = rewardCount % 2 == 1;
+        break;
+      
+      case 1:
+        nextIsLife = rewardCount % 2 == 0;
+        break;
+      
+      // don't need to do anything on case 2
+      
+      case 3:
+        nextIsLife = true;
+        break;
+      
+      case 4:
+        noReward = true;
+        break;
+    }
+
+    if (!first || (points != oldPoints) || (goalPoints != oldGoalPoints)
+     || (noReward != oldNoReward) || (oldHideScore != hideScore) || (oldNextIsLife != nextIsLife))
+    {
+        Score_Draw(points, goalpoints, displayPoints, hideScore, noReward, nextIsLife);
         Score_OldVals[OSCORE_FIRSTDRAW][pln] = true;
     }
     
@@ -35,6 +62,7 @@ function void Score_Update(int pln)
     Score_OldVals[OSCORE_GOALPOINTS][pln] = goalpoints;
     Score_OldVals[OSCORE_NOREWARD][pln]   = noReward;
     Score_OldVals[OSCORE_HIDESCORE][pln]  = hideScore;
+    Score_OldVals[OSCORE_NEXTISLIFE][pln] = nextIsLife;
 }
 
 
@@ -42,9 +70,8 @@ function void Score_Update(int pln)
 #define BAROFFSET       ((BARSTEPS / 2) << 16)
 #define BARINCREMENT    12
 
-function void Score_Draw(int curPoints, int goalPoints, int displayPoints, int hideScore, int noScoreRewards, int rewardCount)
+function void Score_Draw(int curPoints, int goalPoints, int displayPoints, int hideScore, int noScoreRewards, int nextIsLife)
 {
-
     int i;
 
     if (hideScore)
@@ -73,7 +100,7 @@ function void Score_Draw(int curPoints, int goalPoints, int displayPoints, int h
     {
         str scoreBar, scoreBrackets, pointBar1, pointBar2, pointBar3;
 
-        if (rewardCount % 2)
+        if (nextIsLife)
         {
             pointBar1      = "POINTBR4";
             pointBar2      = "POINTBR5";

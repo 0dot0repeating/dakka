@@ -3,14 +3,33 @@ script "Score_Award" (int scoreHeals)
     int i;
     int pln = PlayerNumber();
     int newLives = 0;
-
+    int rewardtypes = GetCVar("dakka_rewardtypes");
+    
     LocalAmbientSound("dakka/pointreward", 127);
 
     for (i = 0; i < scoreHeals; i++)
     {
         int curRewards = Score_GetRewardCount(pln);
+        int giveLife   = false;
+        
+        switch (rewardtypes)
+        {
+          case 0:
+            giveLife = curRewards % 2 == 1;
+            break;
+          
+          case 1:
+            giveLife = curRewards % 2 == 0;
+            break;
+          
+          // don't need to do anything on case 2
+          
+          case 3:
+            giveLife = true;
+            break;
+        }
 
-        if (curRewards % 2)
+        if (giveLife)
         {
             Score_ModExtraLives(pln, 1);
             newLives += 1;
@@ -40,7 +59,7 @@ script "Score_Award" (int scoreHeals)
 function void Score_DoRewards(int lastScore, int curScore)
 {
     int pln      = PlayerNumber();
-    int noReward = GetCVar("dakka_noscorerewards") || GetUserCVar(pln, "dakka_cl_noscorerewards");
+    int noReward = (GetCVar("dakka_rewardtypes") == 4) || GetUserCVar(pln, "dakka_cl_noscorerewards");
     if (noReward) { return; }
 
     // Update this because yeah
