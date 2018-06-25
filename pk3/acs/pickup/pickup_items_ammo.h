@@ -55,45 +55,45 @@ int PKP_KnownAmmo[AMMOCOUNT] =
 //  for weapons you have, it reads the values from here to determine that
 //  default ammo count.
 
-int PKP_DefaultAmmoCount[AMMOCOUNT] =
+int PKP_DefaultAmmoCount[AMMOCOUNT][2] =
 {
     // DAKKA (10)
-    60,             // scrap
-    70,             // .50AE
-    16,             // shells
-    6,              // grenades
-    160,            // 5mm
-    15,             // flamer
-    20,             // rockets
-    50,             // cells
+    {60,  120},            // scrap
+    {70,  210},            // .50AE
+    {16,   60},            // shells
+    {8,    18},            // grenades
+    {160, 400},            // 5mm
+    {15,   24},            // flamer
+    {20,   80},            // rockets
+    {50,  200},            // cells
 
     // DOOM (4)
-    100,            // bullets
-    20,             // shells
-    10,             // rockets
-    80,             // cells
+    {100, 300},            // bullets
+    {20,  60},             // shells
+    {10,  30},             // rockets
+    {80,  240},            // cells
 
     // HERETIC (6)
-    100,            // wand
-    100,            // blaster
-    20,             // crossbow
-    10,             // phoenix
-    100,            // hellstaff
-    50,             // firemace
+    {100, 300},            // wand
+    {100, 300},            // blaster
+    {20,  60},             // crossbow
+    {10,  30},             // phoenix
+    {100, 250},            // hellstaff
+    {50,  100},            // firemace
 
     // HEXEN (2)
-    100,            // mana 1
-    50,             // mana 2
+    {100, 200},            // mana 1
+    {50,  100},            // mana 2
 
     // STRIFE (7)
     //  (this will probably *never* come into play, since strife's one big hub)
-    100,            // bullets
-    20,             // electric
-    0,              // poison
-    20,             // missiles
-    6,              // HE
-    2,              // phosphorus
-    80,             // energy
+    {100, 300},            // bullets
+    {30,  60},             // electric
+    {5,   15},             // poison
+    {20,  75},             // missiles
+    {6,   24},             // HE
+    {2,   8},              // phosphorus
+    {120, 320},            // energy
 };
 
 

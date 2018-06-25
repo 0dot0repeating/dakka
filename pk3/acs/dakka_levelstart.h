@@ -126,7 +126,9 @@ function void Dakka_StartMode_Weapons(int classNum, int entered, int lostWeapons
 //  - 1: Start every weapon you have with a small amount of default ammo,
 //          defined in 'pickup/pickup_items_ammo.h'.
 //
-//  - 2: Start every weapon you have with max ammo.
+//  - 2: Start every weapon you have with a large amount of default ammo.
+//
+//  - 3: Start every weapon you have with max ammo.
 //
 //  - 3: Start every weapon you have with a power rating below 3 with default
 //          ammo, and take away ammo for every other weapon.
@@ -142,7 +144,7 @@ function void Dakka_StartMode_Ammo(int classNum, int entered, int lostAmmo)
     int startMode = GetCVar("dakka_startmode_ammo");
     int i;
 
-    if (startMode <= 0 || startMode > 4) { return; }
+    if (startMode <= 0 || startMode > 5) { return; }
 
     // These all basically use the same logic except for how much ammo you get,
     //  and whether only pistol-class or lower weapons should get ammo.
@@ -151,8 +153,9 @@ function void Dakka_StartMode_Ammo(int classNum, int entered, int lostAmmo)
         Start_AmmoToKeep[i] = false;
     }
 
-    int giveMaxAmmo = (startMode == 2) || (startMode == 4);
-    int onlyPistols = (startMode == 3) || (startMode == 4);
+    int giveLargeAmmo = (startMode == 2);
+    int giveMaxAmmo   = (startMode == 3) || (startMode == 5);
+    int onlyPistols   = (startMode == 4) || (startMode == 5);
 
     // Determine which ammo should be given
     for (i = 0; i < WEAPONCOUNT; i++)
@@ -220,9 +223,13 @@ function void Dakka_StartMode_Ammo(int classNum, int entered, int lostAmmo)
             {
                 GiveInventory(ammoName, GetAmmoCapacity(ammoName));
             }
+            else if (giveLargeAmmo)
+            {
+                GiveInventory(ammoName, PKP_DefaultAmmoCount[i][1]);
+            }
             else
             {
-                GiveInventory(ammoName, PKP_DefaultAmmoCount[i]);
+                GiveInventory(ammoName, PKP_DefaultAmmoCount[i][0]);
             }
         }
     }
