@@ -1,4 +1,7 @@
-int Score_TotalNums[2];
+// 0 is monsters
+// 1 is points
+// 2 is "debug mode on"
+int Score_TotalNums[3];
 
 script "Score_InHub" (void)
 {
@@ -27,6 +30,7 @@ function void Score_CalcMapPoints(void)
     if (ACS_NamedExecuteWithResult("Score_InHub") && !GetCVar("dakka_ignorehubs")) { return; }
 
     int i;
+    int debug       = GetCVar("dakka_debug_score");
     int totalMons   = 0;
     int totalPoints = 0;
 
@@ -40,6 +44,7 @@ function void Score_CalcMapPoints(void)
     {
         Score_TotalNums[0] = 0;
         Score_TotalNums[1] = 0;
+        Score_TotalNums[2] = debug;
 
         // This will have a lot of Score_Report scripts run
         SpawnForced("ScoreMonsterFinder", 0,0,0, testTID);
@@ -53,7 +58,6 @@ function void Score_CalcMapPoints(void)
     {
         int monTypes    = ACS_NamedExecuteWithResult("Score_MonsterTypeCount");
         int testmonTID  = UniqueTID();
-        int debug       = GetCVar("dakka_debug_zanscore");
 
         for (i = 0; i < monTypes; i++)
         {
@@ -71,26 +75,11 @@ function void Score_CalcMapPoints(void)
             
             if (debug)
             {
-                Log(s:cond(count == 0, "\cu", ""), s:name, s:": ", d:count);
+                Log(s:cond(count == 0, "\cu", ""), s:name, s:": ", d:count, s:cond(count == 0, "", "\cq"), s:" (", d:count * value, s:")");
             }
             
             totalMons   += count;
             totalPoints += count * value;
-        }
-        
-        if (debug)
-        {
-            int mapMons = GetLevelInfo(LEVELINFO_TOTAL_MONSTERS);
-            str monColor;
-            
-            switch (sign(totalMons - mapMons))
-            {
-                case -1: monColor = "\ca"; break;
-                case  0: monColor = "\cd"; break;
-                case  1: monColor = "\ct"; break;
-            }
-            
-            Log(s:"\nTotals: ", d:totalPoints, s:" points, ", s:monColor, d:totalMons, s:"/", d:mapMons, s:"\c- monsters");
         }
     }
 
@@ -106,6 +95,24 @@ function void Score_CalcMapPoints(void)
     Score_Thresholds[ST_FULLHEAL] = max(5000, ((fullHealPoints + 2500) / 5000) * 5000);
     Score_Thresholds[ST_UT_KILLS] = middle(P_UTKILLS_MIN, totalMons   / 10, P_UTKILLS_MAX);
     Score_Thresholds[ST_UT_HP]    = middle(P_UTHP_MIN,    totalPoints / 10, P_UTHP_MAX);
+        
+    if (debug)
+    {
+        int mapMons = GetLevelInfo(LEVELINFO_TOTAL_MONSTERS);
+        str monColor;
+        
+        switch (sign(totalMons - mapMons))
+        {
+            case -1: monColor = "\ca"; break;
+            case  0: monColor = "\cd"; break;
+            case  1: monColor = "\ct"; break;
+        }
+        
+        Log(s:"\nScore totals: ", d:totalPoints, s:" points, ", s:monColor, d:totalMons, s:"/", d:mapMons, s:"\c- monsters");
+        Log(s:" Average points/monster: ", d:averagePoints);
+        Log(s:" Point multiplier: ", d:fullHealMult);
+        Log(s:" Target score: ", d:fullHealPoints, s:" (rounded to ", d:Score_Thresholds[ST_FULLHEAL], s:")");
+    }
     
     // Adjust everyone's base score to match the percentage from the last map if it's non-zero
     for (i = 0; i < PLAYERMAX; i++)
