@@ -119,21 +119,3 @@ script "Dakka_PickedUpAClip" (int count, int check)
     GiveInventory("DakkaBullet_50AE", count);
     SetResultValue(true);
 }
-
-script "DPistol_Refire" (int trigger, int checkTap)
-{
-    int ret;
-    
-    if (trigger)
-    {
-        if (checkTap) { ret = inputPressed(BT_ALTATTACK); }
-        else          { ret = inputDown(BT_ALTATTACK); }
-    }
-    else
-    {
-        if (checkTap) { ret = inputPressed(BT_ATTACK); }
-        else          { ret = inputDown(BT_ATTACK); }
-    }
-    
-    SetResultValue(ret);
-}
