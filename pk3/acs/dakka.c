@@ -79,8 +79,8 @@
 #include "dakka_vampirism.h"
 
 
-// Functions used in multiple projectiles.
-#include "dakka_projchecks.h"
+// Functions used by multiple weapons.
+#include "dakka_wepfuncs.h"
 
 // Punch the things.
 #include "dakka_fists.h"
