@@ -70,9 +70,9 @@ int Air_FloorHeight[PLAYERMAX];
 
 // This shit's used in score_levelstart.h, to calculate the points needed for
 //  a full heal.
-#define P_FULLHEAL_MIN      50
+#define P_FULLHEAL_MIN      70
 #define P_FULLHEAL_MAX      400
-#define P_FULLHEAL_PERCENT  0.7
+#define P_FULLHEAL_PERCENT  0.5
 
 // This is used to cap how much you need to be considered untouchable.
 #define P_UTKILLS_MIN       20
