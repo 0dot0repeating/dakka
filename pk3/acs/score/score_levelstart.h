@@ -53,6 +53,7 @@ function void Score_CalcMapPoints(void)
     {
         int monTypes    = ACS_NamedExecuteWithResult("Score_MonsterTypeCount");
         int testmonTID  = UniqueTID();
+        int debug       = GetCVar("dakka_debug_zanscore");
 
         for (i = 0; i < monTypes; i++)
         {
@@ -67,9 +68,21 @@ function void Score_CalcMapPoints(void)
             }
 
             int count = ThingCountName(name, 0);
-
+            
+            if (debug)
+            {
+                Log(s:cond(count == 0, "\cu", ""), s:name, s:": ", d:count);
+            }
+            
             totalMons   += count;
             totalPoints += count * value;
+        }
+        
+        if (debug)
+        {
+            int mapMons = GetLevelInfo(LEVELINFO_TOTAL_MONSTERS);
+            
+            Log(s:"\nTotals: ", d:totalPoints, s:" points, ", s:cond(totalMons == mapMons, "\cd", "\ca"), d:totalMons, s:"/", d:mapMons, s:"\c- monsters");
         }
     }
 
