@@ -81,8 +81,16 @@ function void Score_CalcMapPoints(void)
         if (debug)
         {
             int mapMons = GetLevelInfo(LEVELINFO_TOTAL_MONSTERS);
+            str monColor;
             
-            Log(s:"\nTotals: ", d:totalPoints, s:" points, ", s:cond(totalMons == mapMons, "\cd", "\ca"), d:totalMons, s:"/", d:mapMons, s:"\c- monsters");
+            switch (sign(totalMons - mapMons))
+            {
+                case -1: monColor = "\ca"; break;
+                case  0: monColor = "\cd"; break;
+                case  1: monColor = "\ct"; break;
+            }
+            
+            Log(s:"\nTotals: ", d:totalPoints, s:" points, ", s:monColor, d:totalMons, s:"/", d:mapMons, s:"\c- monsters");
         }
     }
 
