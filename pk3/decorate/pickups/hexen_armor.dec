@@ -64,7 +64,7 @@ actor Pickup_FalconShield: ClassBasedPickup replaces FalconShield
 
 actor Pickup_DragonskinBracers: CustomInventory replaces ArtiBoostArmor
 {
-    Inventory.Icon "ARTIBRAC"
+    Inventory.Icon "DAKKBRAC"
     Inventory.MaxAmount 25
     Inventory.PickupSound "misc/p_pkup"
     Inventory.PickupFlash "PickupFlash"
