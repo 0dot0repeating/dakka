@@ -17,8 +17,8 @@ server int  dakka_backpackstart       = 0;
 server int  dakka_jumpmod             = 0;
 
 
-server noarchive bool dakka_bug_nossginvcheck   = false;
-server noarchive bool dakka_debug_zanscore      = false;
+server noarchive bool dakka_bug_nossginvcheck = false;
+server noarchive bool dakka_debug_score       = false;
 
 
 user int  dakka_cl_recoil               = 0;
