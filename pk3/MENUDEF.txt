@@ -201,13 +201,13 @@ OptionMenu Dakka_GameOptions
     Option "When in a hub",     "dakka_ignorehubs",          "Dakka_IgnoreHubs"
 
     StaticText ""
-    StaticText ""
-    StaticText "Pickup upgrade options", 1
-    StaticText "After X maps with the first weapon,"
-    StaticText "its pickups will become the second weapon."
+    StaticText "Shotgun to SSG", 1
+    StaticText "Carry a shotgun around for X maps,"
+    StaticText "and you find super shotguns instead."
+    StaticText "(This is mainly for Doom 1 maps)"
     StaticText ""
 
-    Slider "Shotgun to SSG",      "dakka_shotgun2ssg",      0, 32, 1, 0
+    Slider "Maps needed",       "dakka_shotgun2ssg",      0, 8, 1, 0
 }
 
 OptionMenu "Dakka_UserOptions"
