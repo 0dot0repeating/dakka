@@ -83,7 +83,7 @@ actor Pickup_Krater: CustomInventory replaces ArtiBoostMana
     +INVENTORY.FANCYPICKUPSOUND
     
     Inventory.DefMaxAmount
-    Inventory.Icon "ARTIBMAN"
+    Inventory.Icon "DAKKMANA"
     Inventory.PickupSound "misc/p_pkup"
     Inventory.PickupMessage "$TXT_ARTIBOOSTMANA" // "KRATER OF MIGHT"
     
