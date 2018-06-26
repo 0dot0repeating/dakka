@@ -719,8 +719,8 @@ actor BFGHomingShot_ToStage2
 
       Stage2_Fail:
         TNT1 A 0 A_SpawnItemEx("BFGMaelstromExplosion")
-        TNT1 A 0 bright A_Explode(30, 96,  true, false, 48)
-        TNT1 A 4 bright A_Explode(50, 128, true, false, 48)
+        TNT1 A 0 bright A_Explode(30, 96,  true,  false, 48)
+        TNT1 A 4 bright A_Explode(50, 128, false, false, 48)
         stop
 
       Stage2_Success:
@@ -790,8 +790,8 @@ actor BFGHomingShot_Stage2
 
       Death:
         TNT1 A 0 A_SpawnItemEx("BFGStage2Explosion")
-        TNT1 A 0 A_Explode(30, 96,  true, false, 48)
-        TNT1 A 4 A_Explode(50, 128, true, false, 48)
+        TNT1 A 0 A_Explode(30, 96,  true,  false, 48)
+        TNT1 A 4 A_Explode(50, 128, false, false, 48)
         stop
     }
 }
@@ -1053,8 +1053,8 @@ actor BFGMaelstromShot
       Death:
         TNT1 A 0 bright A_Stop
         TNT1 A 0 bright A_SpawnItemEx("BFGMaelstromExplosion")
-        TNT1 A 0 bright A_Explode(5,  96,  true, false, 48)
-        TNT1 A 4 bright A_Explode(10, 128, true, false, 48)
+        TNT1 A 0 bright A_Explode(5,  96,  true,  false, 48)
+        TNT1 A 4 bright A_Explode(10, 128, false, false, 48)
         stop
     }
 }
