@@ -138,6 +138,9 @@ most important things:
     - **ZDoom support (`dakka_scythe2_zdoom.wad`):** If you're using ZDoom, you
         need this for the custom monsters to work properly. Load this after
         `dakka_zdoom.wad` instead of `dakka_scythe2.wad`.
+    
+- **Dark Doom Creatures (`dakka_dmgmod.wad`):** This adds the Dark Doom Creatures
+    monsters into the score system. This patch is completely unnecessary in GZDoom.
 
 
 To use any of these addons, download them from the `addons/` directory (use the
