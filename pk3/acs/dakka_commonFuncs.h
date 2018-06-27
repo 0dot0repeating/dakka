@@ -961,6 +961,11 @@ function int intFloat(int toround)
     return itof(ftoi(toround));
 }
 
+function int roundTo(int num, int interval)
+{
+    return ((num + (interval >> 1)) / interval) * interval;
+}
+
 function int distance(int x1, int y1, int z1, int x2, int y2, int z2)
 {
     return VectorLength(VectorLength(x2-x1, y2-y1), z2-z1);

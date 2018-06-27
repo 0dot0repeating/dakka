@@ -5,6 +5,145 @@
 
 int PlayerSync[4][PLAYERMAX];
 
+// open scripts run in the opposite order they were defined.
+// that's fucking dumb.
+
+script "Dakka_Open_Client" open clientside
+{
+    if (IsServer || GameType() == GAME_TITLE_MAP) { terminate; }
+
+    int cpln = ConsolePlayerNumber();
+
+    //CSender_ForceSendAll(cpln);
+    
+    if (!IsServer)
+    {
+        int monmin   = GetCVar("dakka_score_monstermin");
+        int monmax   = GetCVar("dakka_score_monstermax");
+        int monscale = GetCVar("dakka_score_monsterscalar");
+        int interval = GetCVar("dakka_score_interval");
+        int rewards  = GetCVar("dakka_score_rewardtypes");
+        
+        str message = "";
+        int harderOrEasier = 0;
+        
+        if (monmin != 140 || monmax != 800 || monscale != 50)
+        {
+            int moncount    = GetLevelInfo(LEVELINFO_TOTAL_MONSTERS);
+            
+            int serverCount  = middle(monmin, moncount, monmax);
+            int defaultCount = middle(140,    moncount, 800);
+            
+            int serverScalar  = FixedMul(serverCount, itofDiv(monscale, 100));
+            int defaultScalar = FixedMul(defaultCount, 0.5);
+            
+            harderOrEasier = sign(serverScalar - defaultScalar);
+            
+            if (monmin != 140)
+            {
+                message = StrParam(s:"- The minimum monster count has been ", s:cond(monmin > 140, "\caraised\c-", "\cdlowered\c-"), s:" to ", d:monmin, s:" for scoring purposes.\n");
+            }
+            
+            if (monmax != 800)
+            {
+                message = StrParam(s:message, s:"- The maximum monster count has been ", s:cond(monmax > 800, "\caraised\c-", "\cdlowered\c-"), s:" to ", d:monmax, s:" for scoring purposes.\n");
+            }
+            
+            if (monscale != 50)
+            {
+                message = StrParam(s:message, s:"- The monster count scalar has been ", s:cond(monscale > 50, "\caraised\c-", "\cdlowered\c-"), s:" to ", d:monscale, s:"%.\n");
+            }
+        }
+        
+        if (interval != 5000)
+        {
+            message = StrParam(s:message, s:"- Rewards fall on multiples of ", d:interval, s:".\n");
+        }
+        
+        switch (rewards)
+        {
+          default:
+            break;
+          
+          case 1:
+            message = StrParam(s:message, s:"- Your first reward is an extra life, rather than ammo regen.\n");
+            break;
+          
+          case 2:
+            message = StrParam(s:message, s:"- Extra lives are disabled.\n");
+            break;
+          
+          case 3:
+            message = StrParam(s:message, s:"- Ammo regen is disabled.\n");
+            break;
+          
+          case 4:
+            message = StrParam(s:message, s:"- Score rewards are disabled.\n");
+            break;
+        }
+        
+        if (!stringBlank(message))
+        {
+            SetHudSize(480, 360, true);
+            HudMessage(s:"\nChanges to scoring:\n\n", s:message;
+                HUDMSG_FADEOUT | HUDMSG_LOG, -19293, CR_WHITE, 240.4, 80.0, 4.0, 0.5);
+            
+            HudMessage(s:"This server changes how scores work (details in console).";
+                HUDMSG_FADEOUT, -19293, CR_WHITE, 240.4, 80.0, 3.0, 0.5);
+                
+            switch (harderOrEasier)
+            {
+              case -1:
+                HudMessage(s:"(You'll need \cdfewer\c- points than normal)";
+                    HUDMSG_FADEOUT, -19294, CR_WHITE, 240.4, 94.0, 3.0, 0.5);
+                break;
+                
+              case 1:
+                HudMessage(s:"(You'll need \camore\c- points than normal)";
+                    HUDMSG_FADEOUT, -19294, CR_WHITE, 240.4, 94.0, 3.0, 0.5);
+                break;
+            }
+        }
+    }
+
+    while (true)
+    {
+        // In score/score_display.h
+        Score_Update(cpln);
+
+        // Debug shit
+        /*
+        int time = Timer();
+        int i;
+
+        SetHudSize(640, 480, 1);
+        SetFont("CONFONT");
+        for (i = 0; i < S2C_DATACOUNT; i++)
+        {
+            HudMessage(d:i, s:": ", d:SToC_ClientData[cpln][i];
+                HUDMSG_PLAIN, 12000 + (i * 4), CR_WHITE, 560.1, 60.0 + (12.0 * i), 0.25);
+
+            if (SToC_LastReceiveTime[cpln][i] - 1 == time)
+            {
+                HudMessage(s:"Ping!";
+                    HUDMSG_FADEOUT, 12001 + (i * 4), CR_GREEN,     550.2, 60.0 + (12.0 * i), 0.0, 1.0);
+                HudMessage(s:"Ping!";
+                    HUDMSG_PLAIN,   12002 + (i * 4), CR_DARKGRAY, 550.2, 60.0 + (12.0 * i), 1.0);
+            }
+        }
+
+        CSender_SetData(cpln, C2S_D_NOSCOREREWARDS, GetUserCVar(cpln, "dakka_cl_noscorerewards"));
+        CSender_SetData(cpln, C2S_D_NOSCORE,        GetUserCVar(cpln, "dakka_cl_noscore"));
+
+        CSender_UpdateServer(cpln);
+        CSender_ActuallySend(cpln);
+        */
+
+        Delay(1);
+    }
+}
+
+
 script "Dakka_Open" open
 {
     if (GameType() == GAME_TITLE_MAP) { terminate; }
@@ -68,51 +207,5 @@ script "Dakka_Open" open
         Delay(1);
         
         Score_Thresholds[ST_WORLDTIMER]++;
-    }
-}
-
-
-script "Dakka_Open_Client" open clientside
-{
-    if (IsServer || GameType() == GAME_TITLE_MAP) { terminate; }
-
-    int cpln = ConsolePlayerNumber();
-
-    //CSender_ForceSendAll(cpln);
-
-    while (true)
-    {
-        // In score/score_display.h
-        Score_Update(cpln);
-
-        // Debug shit
-        /*
-        int time = Timer();
-        int i;
-
-        SetHudSize(640, 480, 1);
-        SetFont("CONFONT");
-        for (i = 0; i < S2C_DATACOUNT; i++)
-        {
-            HudMessage(d:i, s:": ", d:SToC_ClientData[cpln][i];
-                HUDMSG_PLAIN, 12000 + (i * 4), CR_WHITE, 560.1, 60.0 + (12.0 * i), 0.25);
-
-            if (SToC_LastReceiveTime[cpln][i] - 1 == time)
-            {
-                HudMessage(s:"Ping!";
-                    HUDMSG_FADEOUT, 12001 + (i * 4), CR_GREEN,     550.2, 60.0 + (12.0 * i), 0.0, 1.0);
-                HudMessage(s:"Ping!";
-                    HUDMSG_PLAIN,   12002 + (i * 4), CR_DARKGRAY, 550.2, 60.0 + (12.0 * i), 1.0);
-            }
-        }
-
-        CSender_SetData(cpln, C2S_D_NOSCOREREWARDS, GetUserCVar(cpln, "dakka_cl_noscorerewards"));
-        CSender_SetData(cpln, C2S_D_NOSCORE,        GetUserCVar(cpln, "dakka_cl_noscore"));
-
-        CSender_UpdateServer(cpln);
-        CSender_ActuallySend(cpln);
-        */
-
-        Delay(1);
     }
 }
