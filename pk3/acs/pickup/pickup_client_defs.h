@@ -5,7 +5,7 @@
 
 // This defines how many different data points we should sync between the server
 //  and the clients.
-#define S2C_DATACOUNT   20
+#define S2C_DATACOUNT   21
 
 
 // Constants for identifying which data point we want to modify.
@@ -34,18 +34,3 @@
 // All of these are bonus values. See acs/score/score_defs.h for what they
 //  correspond to.
 #define S2C_D_BONUSSTART    7
-
-#define S2C_D_BS_BASE         7
-#define S2C_D_BS_SPREE        8
-#define S2C_D_BS_UNTOUCHABLE  9
-#define S2C_D_BS_INFIGHTER    10
-#define S2C_D_BS_SWITCHAROO   11
-#define S2C_D_BS_SCRAPPING    12
-#define S2C_D_BS_TELEFRAG     13
-#define S2C_D_BS_CURVEBALL    14
-#define S2C_D_BS_DARWIN       15
-#define S2C_D_BS_AIR          16
-#define S2C_D_BS_REDLINE      17
-#define S2C_D_BS_SWANSONG     18
-#define S2C_D_BS_BRAWLER      19
-#define S2C_D_BS_POINTBLANK   20
