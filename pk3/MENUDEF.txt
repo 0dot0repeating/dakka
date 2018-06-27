@@ -195,9 +195,9 @@ OptionMenu Dakka_GameOptions
     Option "Health+armor mode", "dakka_startmode_health",    "Dakka_StartMode_Health"
     Option "Ammo mode",         "dakka_startmode_ammo",      "Dakka_StartMode_Ammo"
     Option "Weapon mode",       "dakka_startmode_weapons",   "Dakka_StartMode_Weapons"
-    Option "Scrapper mode",     "dakka_scrapperstart",       "Dakka_ScrapperStart"
-    Option "Backpack mode",     "dakka_backpackstart",       "Dakka_BackpackStart"
-    Option "Score mode",        "dakka_keepscore",           "Dakka_KeepScore"
+    Option "Scrapper mode",     "dakka_startmode_scrappers", "Dakka_ScrapperStart"
+    Option "Backpack mode",     "dakka_startmode_backpack",  "Dakka_BackpackStart"
+    Option "Score mode",        "dakka_startmode_score",     "Dakka_KeepScore"
     Option "When in a hub",     "dakka_ignorehubs",          "Dakka_IgnoreHubs"
 
     StaticText ""

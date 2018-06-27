@@ -285,7 +285,7 @@ function void Dakka_ScrapperStart(int extraScrap, int entered, int lostWeapons)
 {
     if (!(entered || lostWeapons)) { return; }
     
-    switch (sign(GetCVar("dakka_scrapperstart")))
+    switch (sign(GetCVar("dakka_startmode_scrappers")))
     {
       case -1:
         TakeInventory("DWep_Scrappers", 0x7FFFFFFF);
@@ -311,8 +311,8 @@ function void Dakka_ScrapperStart(int extraScrap, int entered, int lostWeapons)
 }
 
 
-// Corresponds to dakka_backpackstart. 0 means "do nothing", 1 means "give backpack",
-//  -1 means "take all backpacks".
+// Corresponds to dakka_startmode_backpack. 0 means "do nothing",
+//  1 means "give backpack", -1 means "take all backpacks".
 //
 // Dakka_Backpacks is in dakka_const.h.
 int Backpack_AmmoBefore[AMMOCOUNT];
@@ -321,7 +321,7 @@ function void Dakka_BackpackStart(int entered, int lostEverything)
 {
     if (!(entered || lostEverything)) { return; }
     
-    int backpackStart = GetCVar("dakka_backpackstart");
+    int backpackStart = GetCVar("dakka_startmode_backpack");
     if (backpackStart == 0) { return; }
 
     int i, ammoName, ammoInv;

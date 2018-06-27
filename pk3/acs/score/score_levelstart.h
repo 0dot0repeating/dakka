@@ -150,7 +150,7 @@ function void Score_Reset(int pln)
 {
     int resetMask;
 
-    switch (GetCVar("dakka_keepscore"))
+    switch (GetCVar("dakka_startmode_score"))
     {
       case 0:
       default:
