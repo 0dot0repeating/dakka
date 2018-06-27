@@ -148,18 +148,18 @@ script "Dakka_Score" (int pointValue, int damagetype)
     int points_pointblank   = oldRound(pointValue * SMult_PointBlank(myX, myY, myZ, myRadius, myHeight, plX, plY, plZ, plRadius, plHeight));
     int points_telefrag     = oldRound(pointValue * SMult_Telefrag(telefragged));
 
-    Score_ModBothScores(pln, pointValue);
-    Score_ModBothScores(pln, points_switcharoo);
-    Score_ModBothScores(pln, points_killstreak);
-    Score_ModBothScores(pln, points_untouchable);
-    Score_ModBothScores(pln, points_bonedry);
-    Score_ModBothScores(pln, points_soreloser);
-    Score_ModBothScores(pln, points_brawler);
-    Score_ModBothScores(pln, points_air);
-    Score_ModBothScores(pln, points_curveball);
-    Score_ModBothScores(pln, points_scrapping);
-    Score_ModBothScores(pln, points_pointblank);
-    Score_ModBothScores(pln, points_telefrag);
+    Score_ModBothScores(pln, pointValue
+                           + points_switcharoo
+                           + points_killstreak
+                           + points_untouchable
+                           + points_bonedry
+                           + points_soreloser
+                           + points_brawler
+                           + points_air
+                           + points_curveball
+                           + points_scrapping
+                           + points_pointblank
+                           + points_telefrag);
 
     int bonustime = Timer();
 
