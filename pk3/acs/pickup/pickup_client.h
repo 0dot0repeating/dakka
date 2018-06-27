@@ -57,16 +57,16 @@ int SToC_ToSend[PLAYERMAX][S2C_DATACOUNT];
 
 
 // Are we in Zandronum?
-// Has the side effect of setting IsZandronum if it's -1 (ie. uninitialized).
+// Has the side effect of setting IsZandronum if it's 0 (ie. uninitialized).
 function int Pickup_IsZandronum(void)
 {
-    if (IsZandronum == -1)
+    if (IsZandronum == 0)
     {
         SetDBEntry("pickup", "client_iszand", true);
-        IsZandronum = GetDBEntry("pickup", "client_iszand") == 1;
+        IsZandronum = (GetDBEntry("pickup", "client_iszand") == 1) + 1;
     }
 
-    return IsZandronum;
+    return IsZandronum - 1;
 }
 
 
