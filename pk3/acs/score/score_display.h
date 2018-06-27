@@ -21,14 +21,14 @@ function void Score_Update(int pln)
     int displayPoints   = SToC_ClientData[pln][S2C_D_DISPLAYSCORE];
     int hideScore       = GetUserCVar(pln, "dakka_cl_hidescore");
     
-    int rewardTypes = GetCVar("dakka_rewardtypes");
+    int rewardTypes = GetCVar("dakka_score_rewardtypes");
     int rewardCount = SToC_ClientData[pln][S2C_D_REWARDCOUNT];
     int nextIsLife  = false;
     int noReward    = GetUserCVar(pln, "dakka_cl_noscorerewards");
     
     switch (rewardtypes)
     {
-      case 0:
+      default:
         nextIsLife = rewardCount % 2 == 1;
         break;
       
@@ -36,7 +36,8 @@ function void Score_Update(int pln)
         nextIsLife = rewardCount % 2 == 0;
         break;
       
-      // don't need to do anything on case 2
+      case 2:
+        break;
       
       case 3:
         nextIsLife = true;

@@ -86,16 +86,22 @@ function void Score_CalcMapPoints(void)
 
     int averagePoints = 0;
     if (totalMons > 0) { averagePoints  = totalPoints / totalMons; }
+    
+    int monsterMin    = GetCVar("dakka_score_monstermin");
+    int monsterMax    = GetCVar("dakka_score_monstermax");
+    int monsterScalar = itofDiv(GetCVar("dakka_score_monsterscalar"), 100);
+    int scoreInterval = GetCVar("dakka_score_interval");
 
     // Controls for low and high monster counts
-    int fullHealMult = middle(P_FULLHEAL_MIN, FixedMul(totalMons, P_FULLHEAL_PERCENT), P_FULLHEAL_MAX);
-    int fullHealPoints = averagePoints * fullHealMult;
+    int fullHealMult   = monsterScalar * middle(monsterMin, totalMons, monsterMax);
+    int fullHealPoints = FixedMul(averagePoints, fullHealMult);
 
     Score_Thresholds[ST_LASTSET]  = Score_Thresholds[ST_WORLDTIMER] + 1;
-    Score_Thresholds[ST_FULLHEAL] = max(5000, ((fullHealPoints + 2500) / 5000) * 5000);
+    Score_Thresholds[ST_FULLHEAL] = max(scoreInterval, roundTo(fullHealPoints, scoreInterval));
+    
     Score_Thresholds[ST_UT_KILLS] = middle(P_UTKILLS_MIN, totalMons   / 10, P_UTKILLS_MAX);
     Score_Thresholds[ST_UT_HP]    = middle(P_UTHP_MIN,    totalPoints / 10, P_UTHP_MAX);
-        
+    
     if (debug)
     {
         int mapMons = GetLevelInfo(LEVELINFO_TOTAL_MONSTERS);
@@ -110,9 +116,10 @@ function void Score_CalcMapPoints(void)
         
         Log(s:"\nScore totals: ", d:totalPoints, s:" points, ", s:monColor, d:totalMons, s:"/", d:mapMons, s:"\c- monsters");
         Log(s:" Average points/monster: ", d:averagePoints);
-        Log(s:" Point multiplier: ", d:fullHealMult);
+        Log(s:" Point multiplier: ", f:fullHealMult);
         Log(s:" Target score: ", d:fullHealPoints, s:" (rounded to ", d:Score_Thresholds[ST_FULLHEAL], s:")");
     }
+    
     
     // Adjust everyone's base score to match the percentage from the last map if it's non-zero
     for (i = 0; i < PLAYERMAX; i++)

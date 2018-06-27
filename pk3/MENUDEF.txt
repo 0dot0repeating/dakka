@@ -183,11 +183,11 @@ OptionMenu Dakka_GameOptions
 
     StaticText "General options", 1
 
-    Slider "Scrap factor",          "dakka_scrapfactor",    0, 1000, 10, 0
-    Option "Infinite pistol ammo",  "dakka_infinitepistol", "OnOff"
-    Option "Damage multiplier",     "dakka_powerlevel",     "Dakka_PowerLevel"
-    Option "Defense multiplier",    "dakka_defenselevel",   "Dakka_DefenseLevel"
-    Option "Score rewards",         "dakka_rewardtypes",    "Dakka_RewardTypes"
+    Slider "Scrap factor",          "dakka_scrapfactor",          0, 1000, 10, 0
+    Option "Infinite pistol ammo",  "dakka_infinitepistol",       "OnOff"
+    Option "Damage multiplier",     "dakka_powerlevel",           "Dakka_PowerLevel"
+    Option "Defense multiplier",    "dakka_defenselevel",         "Dakka_DefenseLevel"
+    Option "Score rewards",         "dakka_score_rewardtypes",    "Dakka_RewardTypes"
 
     StaticText ""
     StaticText "Level start options", 1
@@ -208,7 +208,34 @@ OptionMenu Dakka_GameOptions
     StaticText ""
 
     Slider "Maps needed",       "dakka_shotgun2ssg",      0, 8, 1, 0
+    
+    StaticText ""
+    
+    Submenu "Score fine-tuning", "Dakka_ScoreOptions"
 }
+
+
+OptionMenu Dakka_ScoreOptions
+{
+    Title "DAKKA (Score fine-tuning)"
+    
+    StaticText "These options tweak how DAKKA calculates", 1
+    StaticText "reward thresholds. The defaults are given", 1
+    StaticText "just in case.", 1
+    StaticText ""
+    StaticText "You probably don't need to touch this.", 1
+    StaticText ""
+    
+    Slider "Lower enemy bound (140)",   "dakka_score_monstermin",         0,  2000,   10, 0
+    Slider "Upper enemy bound (800)",   "dakka_score_monstermax",         0,  2000,   10, 0
+    Slider "Enemy count scalar (50%)",  "dakka_score_monsterscalar",      5,   400,    5, 0
+    Slider "Rounding interval (5000)",  "dakka_score_interval",        1000, 20000, 1000, 0
+    
+    StaticText ""
+    
+    Option "Debug info",                "dakka_debug_score",    "OnOff"
+}
+
 
 OptionMenu "Dakka_UserOptions"
 {

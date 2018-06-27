@@ -4,17 +4,22 @@ server int  dakka_shotgun2ssg         = 0;
 server int  dakka_powerlevel          = 0;
 server int  dakka_defenselevel        = 0;
 
-server int  dakka_keepscore           = 0;
-server bool dakka_ignorehubs          = false;
-server int  dakka_rewardtypes         = 0;
 
 server int  dakka_startmode_weapons   = 0;
 server int  dakka_startmode_ammo      = 1;
 server int  dakka_startmode_health    = 1;
 server int  dakka_scrapperstart       = 0;
 server int  dakka_backpackstart       = 0;
+server int  dakka_keepscore           = 0;
+server bool dakka_ignorehubs          = false;
 
 server int  dakka_jumpmod             = 0;
+
+server int  dakka_score_monstermin    = 140;
+server int  dakka_score_monstermax    = 800;
+server int  dakka_score_monsterscalar = 50;
+server int  dakka_score_interval      = 5000;
+server int  dakka_score_rewardtypes   = 0;
 
 
 server noarchive bool dakka_bug_nossginvcheck = false;
