@@ -1,11 +1,4 @@
-#define PSYNC_INGAME    0
-#define PSYNC_INSERVER  1
-#define PSYNC_SYNCTO    2
-#define PSYNC_NEEDSYNC  3
-
-int PlayerSync[4][PLAYERMAX];
-
-// open scripts run in the opposite order they were defined.
+// OPEN scripts run in the opposite order they were defined.
 // that's fucking dumb.
 
 script "Dakka_Open_Client" open clientside
@@ -144,6 +137,14 @@ script "Dakka_Open_Client" open clientside
 }
 
 
+
+#define PSYNC_INGAME    0
+#define PSYNC_INSERVER  1
+#define PSYNC_SYNCTO    2
+#define PSYNC_NEEDSYNC  3
+
+int PlayerSync[4][PLAYERMAX];
+
 script "Dakka_Open" open
 {
     if (GameType() == GAME_TITLE_MAP) { terminate; }
@@ -172,11 +173,15 @@ script "Dakka_Open" open
                 int inGame   = PlayerInGame(i);
                 int inServer = inGame || PlayerIsSpectator(i);
                 
+                // Looking at this after the fact, I think it's done this way so
+                //  that when everyone joins as a map starts, they don't all sync
+                //  to each other unnecessarily.
                 if (PlayerSync[PSYNC_INGAME][i] && inGame)
                 {
                     PlayerSync[PSYNC_SYNCTO][toSyncTo_count++] = i;
                 }
                 
+                // And this is a straightforward "did they just join the server" check.
                 if (inServer && !PlayerSync[PSYNC_INSERVER][i])
                 {
                     PlayerSync[PSYNC_NEEDSYNC][needSync_count++] = i;
