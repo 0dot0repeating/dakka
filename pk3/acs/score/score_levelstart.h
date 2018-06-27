@@ -114,7 +114,7 @@ function void Score_CalcMapPoints(void)
             case  1: monColor = "\ct"; break;
         }
         
-        Log(s:"\nScore totals: ", d:totalPoints, s:" points, ", s:monColor, d:totalMons, s:"/", d:mapMons, s:"\c- monsters");
+        Log(s:"\nScore totals: ", d:totalPoints, s:" points, ", s:monColor, d:totalMons, s:"/", d:mapMons, s:"\c- monsters accounted for");
         Log(s:" Average points/monster: ", d:averagePoints);
         Log(s:" Point multiplier: ", f:fullHealMult);
         Log(s:" Target score: ", d:fullHealPoints, s:" (rounded to ", d:Score_Thresholds[ST_FULLHEAL], s:")");
