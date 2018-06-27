@@ -266,7 +266,7 @@ OptionMenu "Dakka_UserOptions"
 
     StaticText ""
 
-    Option "Fewer effects",         "dakka_cl_lesseffects",        "OnOff"
+    Option "Less intensive effects","dakka_cl_lesseffects",        "OnOff"
     Option "Dumb pickup messages",  "dakka_cl_moremessages",       "OnOff"
 
 
