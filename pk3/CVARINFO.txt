@@ -8,9 +8,9 @@ server int  dakka_defenselevel        = 0;
 server int  dakka_startmode_weapons   = 0;
 server int  dakka_startmode_ammo      = 1;
 server int  dakka_startmode_health    = 1;
-server int  dakka_scrapperstart       = 0;
-server int  dakka_backpackstart       = 0;
-server int  dakka_keepscore           = 0;
+server int  dakka_startmode_scrappers = 0;
+server int  dakka_startmode_backpack  = 0;
+server int  dakka_startmode_score     = 0;
 server bool dakka_ignorehubs          = false;
 
 server int  dakka_jumpmod             = 0;
