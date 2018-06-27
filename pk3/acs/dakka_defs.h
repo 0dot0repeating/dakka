@@ -5,7 +5,7 @@
 // There's not much we can do to make client-specific display work in ZDoom
 //  multiplayer. But at least we can *try* to not have things break horribly,
 //  at least in single player.
-int IsZandronum = -1;
+int IsZandronum;
 
 // Also for Zandronum.
 int IsServer;
