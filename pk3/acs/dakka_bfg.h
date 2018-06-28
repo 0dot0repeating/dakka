@@ -34,6 +34,9 @@ function int Dakka_GetNewTarget(int ptrTID)
 
     int myAngle = GetActorAngle(0);
     int myPitch = GetActorPitch(0);
+    int myX     = GetActorX(0);
+    int myY     = GetActorY(0);
+    int myZ     = GetActorZ(0);
 
     int targetTID_old = PickActor(0, myAngle, myPitch, 0x7FFFFFFF, 0, BFGPICKFLAGS_THINGS, BFGPICKFLAGS_LINES, PICKAF_RETURNTID);
     int targetTID_new = UniqueTID();
@@ -44,7 +47,7 @@ function int Dakka_GetNewTarget(int ptrTID)
     {
         SetActivator(ptrTID);
         SetPointer(AAPTR_TRACER, targetTID_new);
-        SetUserVariable(0, "user_timeout", t + 35);
+        SetUserVariable(0, "user_timeout", t + cond(GetCVar("dakka_debug_bfgaim") > 0, 35000, 35));
 
         SetActivator(myTID_new);
         Thing_ChangeTID(targetTID_new, targetTID_old);
@@ -52,11 +55,36 @@ function int Dakka_GetNewTarget(int ptrTID)
     else
     {
         SetActivator(ptrTID, AAPTR_TRACER);
-        int targetDead = IsWorld() || isDead(0);
-        int timedOut   = GetUserVariable(ptrTID, "user_timeout") <= t;
+        int targetDead   = IsWorld() || isDead(0);
+        int targetBehind = false;
+        int timedOut     = GetUserVariable(ptrTID, "user_timeout") <= t;
+        
+        if (!targetDead)
+        {
+            int targetX = GetActorX(0);
+            int targetY = GetActorY(0);
+            int targetZ = GetActorZ(0);
+            
+            int dx = targetX - myX;
+            int dy = targetY - myY;
+            int dz = targetZ - myZ;
+            
+            int aimX = FixedMul(cos(myAngle), cos(myPitch));
+            int aimY = FixedMul(sin(myAngle), cos(myPitch));
+            int aimZ = -sin(myPitch);
+            
+            int distInFront = dot3(dx,dy,dz, aimX,aimY,aimZ);
+            int targetAngle = acos(FixedDiv(distInFront, VectorLength(VectorLength(dx, dy), dz)));
+            
+            if (targetAngle > 0.125)
+            {
+                targetBehind = true;
+            }
+        }
+        
         SetActivator(myTID_new);
 
-        if (targetDead || timedOut)
+        if (targetDead || timedOut || targetBehind)
         {
             LineAttack(0, myAngle, myPitch, 0, "BFGCrosshairTarget_Puff", "None", 0x7FFFFFFF, FHF_NOIMPACTDECAL | FHF_NORANDOMPUFFZ, targetTID_new);
 
@@ -73,6 +101,7 @@ function int Dakka_GetNewTarget(int ptrTID)
             SetActivator(ptrTID);
             SetPointer(AAPTR_TRACER, targetTID_new);
             Thing_ChangeTID(targetTID_new, 0);
+            SetUserVariable(0, "user_timeout", t);
 
             SetActivator(myTID_new);
         }
