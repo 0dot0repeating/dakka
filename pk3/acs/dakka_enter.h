@@ -42,8 +42,7 @@ script "Dakka_Spawn" (int respawned)
 
     curScore = Score_GetScore(pln);
     
-    int locknum = DakkaEnterLocks[pln]++;
-    DakkaEnterLocks[pln] = locknum;
+    int locknum = ++DakkaEnterLocks[pln];
     
     while (DakkaEnterLocks[pln] == locknum)
     {
