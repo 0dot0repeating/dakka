@@ -104,7 +104,7 @@ most important things:
     `RGF_NOSIGHT` parameter for `A_RadiusGive`. But monsters will always give you
     points when they die, in either port!
 
-- [The HUD isn't ugly anymore!](https://imgur.com/a/LaoAI) Seriously, what was I
+- [The HUD isn't ugly anymore!](https://imgur.com/a/syV6qKg) Seriously, what was I
     *thinking* with those rounded corners and that awful alignment?
 
 
