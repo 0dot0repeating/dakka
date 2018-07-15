@@ -240,6 +240,10 @@ OptionMenu Dakka_ScoreOptions
 OptionMenu "Dakka_UserOptions"
 {
     Title "DAKKA (User options)"
+    
+    Submenu "Keybinds", "Dakka_Keybinds"
+    
+    StaticText ""
 
     Slider "Recoil factor",         "dakka_cl_recoil",     0, 200, 10, 0
     Slider "Recoil reset factor",   "dakka_cl_recoildown", 0, 100,  5, 0
@@ -269,13 +273,6 @@ OptionMenu "Dakka_UserOptions"
     Option "Less intensive effects","dakka_cl_lesseffects",        "OnOff"
     Option "Dumb pickup messages",  "dakka_cl_moremessages",       "OnOff"
 
-
-    StaticText ""
-    StaticText "Keybinds", 1
-
-    Control "Slot 1, fist first",     "fistswitch"
-    Control "Slot 3, shotgun first",  "shotswitch"
-
     StaticText ""
     StaticText "SSG trigger rolling: By pulling both triggers"
     StaticText "quickly, you instead use one fire mode twice"
@@ -283,6 +280,23 @@ OptionMenu "Dakka_UserOptions"
     StaticText "Particle tracers do not work in Zandronum!", 1
 }
 
+OptionMenu "Dakka_Keybinds"
+{
+    Title "DAKKA (Keybinds)"
+
+    Control "Select fists",         "use DWep_Fist"
+    Control "Select scrappers",     "use DWep_Scrappers"
+    Control "Select pistols",       "use DWep_Pistols"
+    Control "Select shotgun",       "use DWep_Shotgun"
+    Control "Select super shotgun", "use DWep_SuperShotgun"
+    Control "Select minigun",       "use DWep_Minigun"
+    Control "Select impaler",       "use DWep_Impaler"
+    Control "Select lancer",        "use DWep_PlasmaLance"
+    Control "Select BFG9000",       "use DWep_BFG9000"
+    
+    Control "Select fist, then scrappers",      "fistswitch"
+    Control "Select shotgun, then SSG",         "shotswitch"
+}
 
 
 ListMenu Dakka_Options
