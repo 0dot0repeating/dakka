@@ -56,6 +56,34 @@ script "Dakka_ProjDeathUpdate" (int hasPitch)
 }
 
 
+script "Dakka_TransferPointers" (int fromTID, int toTID)
+{
+    SetActivator(fromTID, AAPTR_TARGET);
+    int targetTID_old = ActivatorTID();
+    int targetTID_new = UniqueTID();
+    Thing_ChangeTID(0, targetTID_new);
+    
+    SetActivator(fromTID, AAPTR_MASTER);
+    int masterTID_old = ActivatorTID();
+    int masterTID_new = UniqueTID();
+    Thing_ChangeTID(0, masterTID_new);
+    
+    SetActivator(fromTID, AAPTR_TRACER);
+    int tracerTID_old = ActivatorTID();
+    int tracerTID_new = UniqueTID();
+    Thing_ChangeTID(0, tracerTID_new);
+    
+    SetActivator(toTID);
+    SetPointer(AAPTR_TARGET, targetTID_new);
+    SetPointer(AAPTR_MASTER, masterTID_new);
+    SetPointer(AAPTR_TRACER, tracerTID_new);
+    
+    Thing_ChangeTID(targetTID_new, targetTID_old);
+    Thing_ChangeTID(masterTID_new, masterTID_old);
+    Thing_ChangeTID(tracerTID_new, tracerTID_old);
+}
+
+
 script "ProjCheck_IsAllied" (int myPln, int myTeam, int firerPln, int firerTeam)
 {
     int allied = false;
