@@ -1,7 +1,15 @@
-addkeysection "Dakka" Dakka
+addkeysection "Dakka weapon binds (optional)" Dakka
 
-alias fistswitch "pukename Dakka_SwitchWeps 0 1"
-addmenukey "Slot 1, fist first" fistswitch
-
-alias shotswitch "pukename Dakka_SwitchWeps 3 4"
-addmenukey "Slot 3, shotgun first" shotswitch
+addmenukey "Fists"               "use DWep_Fist"
+addmenukey "Scrappers"           "use DWep_Scrappers"
+addmenukey "Fists or scrappers"  "pukename Dakka_SwitchWeps 0 1"
+addmenukey "Scrappers or fists"  "pukename Dakka_SwitchWeps 1 0"
+addmenukey "Pistols"             "use DWep_Pistols"
+addmenukey "Shotgun"             "use DWep_Shotgun"
+addmenukey "SSG"                 "use DWep_SuperShotgun"
+addmenukey "Shotgun or SSG"      "pukename Dakka_SwitchWeps 3 4"
+addmenukey "SSG or shotgun"      "pukename Dakka_SwitchWeps 4 3"
+addmenukey "Minigun"             "use DWep_Minigun"
+addmenukey "Impaler"             "use DWep_Impaler"
+addmenukey "Lancer"              "use DWep_PlasmaLance"
+addmenukey "BFG9000"             "use DWep_BFG9000"

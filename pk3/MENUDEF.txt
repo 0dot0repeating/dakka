@@ -268,14 +268,9 @@ OptionMenu "Dakka_UserOptions"
 
     Option "Less intensive effects","dakka_cl_lesseffects",        "OnOff"
     Option "Dumb pickup messages",  "dakka_cl_moremessages",       "OnOff"
-
+    
 
     StaticText ""
-    StaticText "Keybinds", 1
-
-    Control "Slot 1, fist first",     "fistswitch"
-    Control "Slot 3, shotgun first",  "shotswitch"
-
     StaticText ""
     StaticText "SSG trigger rolling: By pulling both triggers"
     StaticText "quickly, you instead use one fire mode twice"
