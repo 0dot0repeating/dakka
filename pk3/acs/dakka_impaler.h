@@ -77,7 +77,11 @@ script "Dakka_ImpalerAltHit" (int power)
          && projNewY > monY1 && projNewY < monY2
          && projNewZ > monZ1 && projNewZ < monZ2)
         {
-            Warp(0, projNewX, projNewY, projNewZ, 0, WARPF_ABSOLUTEPOSITION | WARPF_NOCHECKPOSITION | WARPF_INTERPOLATE);
+            projX = projNewX;
+            projY = projNewY;
+            projZ = projNewZ;
+            
+            Warp(0, projX, projY, projZ, 0, WARPF_ABSOLUTEPOSITION | WARPF_NOCHECKPOSITION | WARPF_INTERPOLATE);
             break;
         }
         else
@@ -86,8 +90,14 @@ script "Dakka_ImpalerAltHit" (int power)
             stepsBack++;
         }
     }
+    
+    int stage2TID = UniqueTID();
+    SpawnForced("ImpalerAltMissile_Stage2", projX, projY, projZ, stage2TID);
+    SetActorAngle(stage2TID, GetActorAngle(0));
+    SetActorPitch(stage2TID, GetActorPitch(0));
+    ACS_NamedExecuteWithResult("Dakka_TransferPointers", projTID, stage2TID);
 
-    SetActorVelocity(0, 0,0,0, false, false);
+    SetActivator(stage2TID);
     ACS_NamedExecuteWithResult("Dakka_ImpalerAltPush", projNVX, projNVY, projNVZ, power);
 }
 
@@ -101,7 +111,11 @@ script "Dakka_ImpalerAltPush" (int normX, int normY, int normZ, int power)
     int projZ   = GetActorZ(0);
 
     SetActivator(0, AAPTR_TRACER);
-    if (IsWorld()) { terminate; } // this should never happen
+    if (IsWorld()) // this should never happen
+    {
+        SetActorState(projTID, "Detonate");
+        terminate;
+    }
 
     int monX = GetActorX(0);
     int monY = GetActorY(0);
@@ -135,7 +149,7 @@ script "Dakka_ImpalerAltPush" (int normX, int normY, int normZ, int power)
 
     SetActorVelocity(0, FixedMul(normX, thrustMult * 3), FixedMul(normY, thrustMult * 3), FixedMul(normZ, thrustMult * 3), false, false);
 
-    int timelimit = 35;
+    int timelimit = 12;
     
     int timecheck = -1; // test for time frreze
     int oldtimecheck;
@@ -160,12 +174,12 @@ script "Dakka_ImpalerAltPush" (int normX, int normY, int normZ, int power)
 
         SetActivator(projTID);
         Warp(0, offsetX + monX, offsetY + monY, offsetZ + monZ, 0, WARPF_ABSOLUTEPOSITION | WARPF_NOCHECKPOSITION | WARPF_INTERPOLATE);
-        
-        Log(s:"missile to <", f:offsetX + monX, s:", ", f:offsetY + monY, s:", ", f:offsetZ + monZ, s:">");
 
         timelimit--;
         Delay(1);
     }
+    
+    SetActorState(0, "Detonate");
 }
 
 

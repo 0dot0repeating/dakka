@@ -278,10 +278,7 @@ actor ImpalerSmoke
     States
     {
       Spawn:
-        TNT1 A 0
-        stop
-        
-        TNT1 A 0 A_SetScale(frandom(0.15, 0.2))
+        TNT1 A 0 nodelay A_SetScale(frandom(0.15, 0.2))
         TNT1 A 0 A_Jump(256, "Smoke1", "Smoke2", "Smoke3", "Smoke4")
         goto Smoke1
 
@@ -331,13 +328,6 @@ actor ImpalerAltMissile: FastProjectile
     var int user_vely;
     var int user_velz;
 
-    var int user_offsetx;
-    var int user_offsety;
-    var int user_offsetz;
-    var int user_timecheck;
-
-    var int user_detonated;
-
     States
     {
       Spawn:
@@ -346,60 +336,15 @@ actor ImpalerAltMissile: FastProjectile
         MIS3 A 1 bright ACS_NamedExecuteWithResult("Dakka_ProjUpdate")
         wait
 
-      // this is running twice sometimes, but only in zandronum, and I have no clue why
       Death:
-        MIS3 A 0 A_JumpIf(user_detonated, "AlreadyDied")
         MIS3 A 0 A_StopSound(CHAN_BODY)
-        MIS3 A 0 A_ChangeFlag("NOINTERACTION", 1)  // I think this prevents infinite-death loops
-        MIS3 A 0 ACS_NamedExecuteWithResult("Dakka_ImpalerAltHit", 350)
-        
-        MIS3 A  0 bright A_SetUserVar("user_timecheck", user_timecheck+1)
-        MIS3 AA 0 bright A_SpawnItemEx("ImpalerSmoke", frandom(-2, 2), 0, frandom(-2, 2), 0,0,0, frandom(0, 360))
-        MIS3 A  1 bright A_SpawnItemEx("ImpalerSmoke", frandom(-2, 2), 0, frandom(-2, 2), 0,0,0, frandom(0, 360))
-
+        MIS3 A 0 A_ChangeFlag("NOINTERACTION", 1)
         MIS3 A 0 A_ChangeFlag("NODAMAGETHRUST", 1)
         MIS3 A 0 A_Explode(20, 16, false, false, 16)
-        MIS3 A 0 A_ChangeFlag("NODAMAGETHRUST", 0)
-
-        MIS3 A  0 bright A_SetUserVar("user_timecheck", user_timecheck+1)
-        MIS3 AA 0 bright A_SpawnItemEx("ImpalerSmoke", frandom(-2, 2), 0, frandom(-2, 2), 0,0,0, frandom(0, 360))
-        MIS3 A  1 bright A_SpawnItemEx("ImpalerSmoke", frandom(-2, 2), 0, frandom(-2, 2), 0,0,0, frandom(0, 360))
-        MIS3 A  0 bright A_SetUserVar("user_timecheck", user_timecheck+1)
-        MIS3 AA 0 bright A_SpawnItemEx("ImpalerSmoke", frandom(-2, 2), 0, frandom(-2, 2), 0,0,0, frandom(0, 360))
-        MIS3 A  1 bright A_SpawnItemEx("ImpalerSmoke", frandom(-2, 2), 0, frandom(-2, 2), 0,0,0, frandom(0, 360))
-        MIS3 A  0 bright A_SetUserVar("user_timecheck", user_timecheck+1)
-        MIS3 AA 0 bright A_SpawnItemEx("ImpalerSmoke", frandom(-2, 2), 0, frandom(-2, 2), 0,0,0, frandom(0, 360))
-        MIS3 A  1 bright A_SpawnItemEx("ImpalerSmoke", frandom(-2, 2), 0, frandom(-2, 2), 0,0,0, frandom(0, 360))
-
-        MIS3 A  0 bright A_SetUserVar("user_timecheck", user_timecheck+1)
-        MIS3 AA 0 bright A_SpawnItemEx("ImpalerSmoke", frandom(-2, 2), 0, frandom(-2, 2), 0,0,0, frandom(0, 360))
-        MIS3 A  1 bright A_SpawnItemEx("ImpalerSmoke", frandom(-2, 2), 0, frandom(-2, 2), 0,0,0, frandom(0, 360))
-        MIS3 A  0 bright A_SetUserVar("user_timecheck", user_timecheck+1)
-        MIS3 AA 0 bright A_SpawnItemEx("ImpalerSmoke", frandom(-2, 2), 0, frandom(-2, 2), 0,0,0, frandom(0, 360))
-        MIS3 A  1 bright A_SpawnItemEx("ImpalerSmoke", frandom(-2, 2), 0, frandom(-2, 2), 0,0,0, frandom(0, 360))
-        MIS3 A  0 bright A_SetUserVar("user_timecheck", user_timecheck+1)
-        MIS3 AA 0 bright A_SpawnItemEx("ImpalerSmoke", frandom(-2, 2), 0, frandom(-2, 2), 0,0,0, frandom(0, 360))
-        MIS3 A  1 bright A_SpawnItemEx("ImpalerSmoke", frandom(-2, 2), 0, frandom(-2, 2), 0,0,0, frandom(0, 360))
-        MIS3 A  0 bright A_SetUserVar("user_timecheck", user_timecheck+1)
-        MIS3 AA 0 bright A_SpawnItemEx("ImpalerSmoke", frandom(-2, 2), 0, frandom(-2, 2), 0,0,0, frandom(0, 360))
-        MIS3 A  1 bright A_SpawnItemEx("ImpalerSmoke", frandom(-2, 2), 0, frandom(-2, 2), 0,0,0, frandom(0, 360))
-
-        MIS3 A  0 bright A_SetUserVar("user_timecheck", user_timecheck+1)
-        MIS3 AA 0 bright A_SpawnItemEx("ImpalerSmoke", frandom(-2, 2), 0, frandom(-2, 2), 0,0,0, frandom(0, 360))
-        MIS3 A  1 bright A_SpawnItemEx("ImpalerSmoke", frandom(-2, 2), 0, frandom(-2, 2), 0,0,0, frandom(0, 360))
-        MIS3 A  0 bright A_SetUserVar("user_timecheck", user_timecheck+1)
-        MIS3 AA 0 bright A_SpawnItemEx("ImpalerSmoke", frandom(-2, 2), 0, frandom(-2, 2), 0,0,0, frandom(0, 360))
-        MIS3 A  1 bright A_SpawnItemEx("ImpalerSmoke", frandom(-2, 2), 0, frandom(-2, 2), 0,0,0, frandom(0, 360))
-        MIS3 A  0 bright A_SetUserVar("user_timecheck", user_timecheck+1)
-        MIS3 AA 0 bright A_SpawnItemEx("ImpalerSmoke", frandom(-2, 2), 0, frandom(-2, 2), 0,0,0, frandom(0, 360))
-        MIS3 A  1 bright A_SpawnItemEx("ImpalerSmoke", frandom(-2, 2), 0, frandom(-2, 2), 0,0,0, frandom(0, 360))
-        MIS3 A  0 bright A_SetUserVar("user_timecheck", user_timecheck+1)
-        MIS3 AA 0 bright A_SpawnItemEx("ImpalerSmoke", frandom(-2, 2), 0, frandom(-2, 2), 0,0,0, frandom(0, 360))
-        MIS3 A  1 bright A_SpawnItemEx("ImpalerSmoke", frandom(-2, 2), 0, frandom(-2, 2), 0,0,0, frandom(0, 360))
-        goto Detonate
+        MIS3 A 8 ACS_NamedExecuteWithResult("Dakka_ImpalerAltHit", 350)
+        stop
 
       Detonate:
-        TNT1 A 0 A_SetUserVar("user_detonated", true)
         TNT1 A 0 A_GiveToTarget("DakkaImpalerResistance")
         TNT1 A 0 A_Explode(40, 160, true, false, 32)
         TNT1 A 0 A_ChangeFlag("FORCERADIUSDMG", 0)
@@ -408,9 +353,35 @@ actor ImpalerAltMissile: FastProjectile
         TNT1 A 0 A_ChangeFlag("NOTIMEFREEZE", 0)
         TNT1 A 35 A_SpawnItemEx("ImpalerExplosion_Client")
         stop
+    }
+}
 
-      AlreadyDied:
-        TNT1 A 35
+actor ImpalerAltMissile_Stage2
+{
+    +NOINTERACTION
+    +EXTREMEDEATH
+    +FORCEXYBILLBOARD
+    +MTHRUSPECIES
+
+    var int user_timecheck;
+    
+    States
+    {
+      Spawn:
+        MIS3 A  0
+        MIS3 A  0 bright A_SetUserVar("user_timecheck", user_timecheck+1)
+        MIS3 AA 0 bright A_SpawnItemEx("ImpalerSmoke", frandom(-2, 2), 0, frandom(-2, 2), 0,0,0, frandom(0, 360))
+        MIS3 A  1 bright A_SpawnItemEx("ImpalerSmoke", frandom(-2, 2), 0, frandom(-2, 2), 0,0,0, frandom(0, 360))
+        loop
+
+      Detonate:
+        TNT1 A 0 A_GiveToTarget("DakkaImpalerResistance")
+        TNT1 A 0 A_Explode(40, 160, true, false, 32)
+        TNT1 A 0 A_ChangeFlag("FORCERADIUSDMG", 0)
+        TNT1 A 0 A_Explode(28, 160, false, false, 32)
+        TNT1 A 0 A_TakeFromTarget("DakkaImpalerResistance")
+        TNT1 A 0 A_ChangeFlag("NOTIMEFREEZE", 0)
+        TNT1 A 35 A_SpawnItemEx("ImpalerExplosion_Client")
         stop
     }
 }
