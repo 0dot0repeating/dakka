@@ -49,7 +49,7 @@ script "Dakka_ImpalerAltHit" (int power)
         SetActorState(projTID, "Detonate");
         terminate;
     }
-
+    
     int monX      = GetActorX(0);
     int monY      = GetActorY(0);
     int monZ      = GetActorZ(0);
@@ -128,7 +128,7 @@ script "Dakka_ImpalerAltPush" (int normX, int normY, int normZ, int power)
     // Normalization, so zombies don't fly so much further away than everyone else
     thrustMult = FixedSqrt(thrustMult);
 
-    if (!(isDead(0) || CheckFlag(0, "NOPAIN") || CheckFlag(0, "INVULNERABLE")))
+    if (!(isDead(0) || CheckFlag(0, "NOPAIN") || CheckFlag(0, "INVULNERABLE") || CheckFlag(0, "DORMANT")))
     {
         SetActorState(0, "Pain");
     }
@@ -136,9 +136,21 @@ script "Dakka_ImpalerAltPush" (int normX, int normY, int normZ, int power)
     SetActorVelocity(0, FixedMul(normX, thrustMult * 3), FixedMul(normY, thrustMult * 3), FixedMul(normZ, thrustMult * 3), false, false);
 
     int timelimit = 35;
+    
+    int timecheck = -1; // test for time frreze
+    int oldtimecheck;
 
     while (timelimit > 0 && IsTIDUsed(projTID) && GetUserVariable(projTID, "user_detonated") == false)
     {
+        oldtimecheck = timecheck;
+        timecheck    = GetUserVariable(0, "user_timecheck");
+        
+        if (oldtimecheck == timecheck)
+        {
+            Delay(1);
+            continue;
+        }
+        
         SetActivator(projTID, AAPTR_TRACER);
         SetActorVelocity(0, FixedMul(normX, thrustMult), FixedMul(normY, thrustMult), FixedMul(normZ, thrustMult), true, false);
 
@@ -148,6 +160,8 @@ script "Dakka_ImpalerAltPush" (int normX, int normY, int normZ, int power)
 
         SetActivator(projTID);
         Warp(0, offsetX + monX, offsetY + monY, offsetZ + monZ, 0, WARPF_ABSOLUTEPOSITION | WARPF_NOCHECKPOSITION | WARPF_INTERPOLATE);
+        
+        Log(s:"missile to <", f:offsetX + monX, s:", ", f:offsetY + monY, s:", ", f:offsetZ + monZ, s:">");
 
         timelimit--;
         Delay(1);
