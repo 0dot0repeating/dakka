@@ -93,11 +93,13 @@ script "Dakka_ImpalerAltHit" (int power)
     
     int stage2TID = UniqueTID();
     SpawnForced("ImpalerAltMissile_Stage2", projX, projY, projZ, stage2TID);
-    SetActorAngle(stage2TID, GetActorAngle(0));
-    SetActorPitch(stage2TID, GetActorPitch(0));
     ACS_NamedExecuteWithResult("Dakka_TransferPointers", projTID, stage2TID);
-
+    
     SetActivator(stage2TID);
+    SetActorAngle(0, GetActorAngle(projTID));   // Zandronum just-in-case thing
+    SetActorPitch(0, GetActorPitch(projTID));   // also just in case
+    Warp(projTID, 0,0,0, 0, WARPF_NOCHECKPOSITION | WARPF_COPYPITCH);
+
     ACS_NamedExecuteWithResult("Dakka_ImpalerAltPush", projNVX, projNVY, projNVZ, power);
 }
 
