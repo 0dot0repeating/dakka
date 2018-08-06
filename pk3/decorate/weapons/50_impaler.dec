@@ -338,9 +338,9 @@ actor ImpalerAltMissile: FastProjectile
 
       Death:
         MIS3 A 0 A_StopSound(CHAN_BODY)
+        MIS3 A 0 ACS_NamedExecuteWithResult("Dakka_ImpalerAltHit", 350)
         MIS3 A 0 A_ChangeFlag("NOINTERACTION", 1)
         MIS3 A 0 A_ChangeFlag("NODAMAGETHRUST", 1)
-        MIS3 A 0 ACS_NamedExecuteWithResult("Dakka_ImpalerAltHit", 350)
         MIS3 A 8 A_Explode(20, 16, false, false, 16)
         stop
 
@@ -350,7 +350,6 @@ actor ImpalerAltMissile: FastProjectile
         TNT1 A 0 A_ChangeFlag("FORCERADIUSDMG", 0)
         TNT1 A 0 A_Explode(48, 160, false, false, 32)
         TNT1 A 0 A_TakeFromTarget("DakkaImpalerResistance")
-        TNT1 A 0 A_ChangeFlag("NOTIMEFREEZE", 0)
         TNT1 A 35 A_SpawnItemEx("ImpalerExplosion_Client")
         stop
     }
@@ -361,6 +360,7 @@ actor ImpalerAltMissile_Stage2
     +NOINTERACTION
     +EXTREMEDEATH
     +FORCEXYBILLBOARD
+    +FORCERADIUSDMG
     +MTHRUSPECIES
 
     var int user_timecheck;
@@ -380,7 +380,6 @@ actor ImpalerAltMissile_Stage2
         TNT1 A 0 A_ChangeFlag("FORCERADIUSDMG", 0)
         TNT1 A 0 A_Explode(28, 160, false, false, 32)
         TNT1 A 0 A_TakeFromTarget("DakkaImpalerResistance")
-        TNT1 A 0 A_ChangeFlag("NOTIMEFREEZE", 0)
         TNT1 A 35 A_SpawnItemEx("ImpalerExplosion_Client")
         stop
     }
