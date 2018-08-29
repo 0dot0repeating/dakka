@@ -104,8 +104,8 @@ most important things:
     `RGF_NOSIGHT` parameter for `A_RadiusGive`. But monsters will always give you
     points when they die, in either port!
 
-- [The HUD isn't ugly anymore!](https://imgur.com/a/syV6qKg) Seriously, what was I
-    *thinking* with those rounded corners and that awful alignment?
+- [The HUD isn't ugly anymore!](http://jinotra.in/static/dakkastuff/hudcomparison.png)
+    Seriously, what was I *thinking* with those rounded corners and that awful alignment?
 
 
 
@@ -115,13 +115,11 @@ most important things:
     dying, so you need this patch to hook the Doom monster roster into the score
     system. This probably won't play well with DEHACKED monsters either. But it works.
 
-- **`dakka_keyconfclass.wad`:** If you load DAKKA and don't have the fists and pistols
-    when you start a game, that usually means the maps you're playing have their own
-    player classes, and are overwriting DAKKA. This gets around that.
-
-- **`dakka_keyconfslots.wad`:** Similarly, if you load DAKKA and can't switch weapons,
-    the maps you're using are almost definitely using an old, broken method of changing
-    weapon slots. This gets around that.
+- **`dakka_keyconf.wad`:** Some mods use an outdated method of changing who you
+    play as or what weapons you can switch to, and loading those mods with DAKKA
+    can result in you starting with non-DAKKA weapons or being unable to switch
+    off of your pistols (or back to them). If either of those happen, load this
+    and the issue should clear up.
 
 - **Ancient Aliens (`dakka_aaliens.wad`):** This adds the gibbed marine and dead
     lost soul to the score system since Ancient Aliens replaces them with custom
