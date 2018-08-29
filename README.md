@@ -1,6 +1,6 @@
 ![DAKKA](/README_logo.png "necessary")
 
-**For Zandronum 3.0+, GZDoom 2.2.0+, and ZDoom 2.8.1 (with an addon)**
+**For Zandronum 3.0+, GZDoom 2.2.0+, and ZDoom 2.8.1 (with a compat patch)**
 
 ```text
 IT IS 2162. THE LAST HUMAN OUTPOST HAS FALLEN TO THE MINIONS OF HELL. EVERYTHING
@@ -115,11 +115,11 @@ most important things:
     dying, so you need this patch to hook the Doom monster roster into the score
     system. This probably won't play well with DEHACKED monsters either. But it works.
 
-- **`dakka_keyconf.wad`:** Some mods use an outdated method of changing who you
-    play as or what weapons you can switch to, and loading those mods with DAKKA
-    can result in you starting with non-DAKKA weapons or being unable to switch
-    off of your pistols (or back to them). If either of those happen, load this
-    and the issue should clear up.
+- **KEYCONF override (`dakka_keyconf.wad`):** Some mods use an outdated method
+    of changing who you play as or what weapons you can switch to, and loading
+    those mods with DAKKA can result in you starting with non-DAKKA weapons or
+    being unable to switch off of your pistols (or back to them). If either of
+    those happen, load this and the issue should clear up.
 
 - **Ancient Aliens (`dakka_aaliens.wad`):** This adds the gibbed marine and dead
     lost soul to the score system since Ancient Aliens replaces them with custom
