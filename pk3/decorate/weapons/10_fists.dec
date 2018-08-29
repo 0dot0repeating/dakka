@@ -803,6 +803,7 @@ actor FistPowerPunch3_2: FistPowerPunch1
         goto SparkEnd
 
       SparkEnd:
+        TNT1 A 0 A_ChangeFlag("FORCEPAIN", false)
         TNT1 A 0 A_Explode(100, 128, false, false, 64)
         TNT1 A 0 A_SpawnItemEx("FistShockwave_Client")
         TNT1 A 8 ACS_NamedExecuteWithResult("Dakka_FistQuake", 4)
