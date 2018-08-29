@@ -69,6 +69,12 @@ most important things:
     much more fun to use. Who knows, you might actually run out of pistol rounds
     for a change!
 
+- The chaingun has been completely replaced by the minigun, which now has two
+    different fire speeds! By default, the minigun fires at a decent, but not
+    terribly impressive 1050 RPM, but it speeds up to a blistering 2100 RPM when
+    holding down both triggers! This comes at the loss of accuracy, but accuracy
+    never mattered much when the gun's in someone's face.
+
 - The minigun's flamethrower now properly sets things on fire! Focus it on a
     demon to cleanse his sinful presence, or sweep a crowd and wipe out all those
     pesky hitscanners within it!
@@ -152,4 +158,4 @@ To use any of these addons, download them from the `addons/` directory (use the
 
 ## Are you *ever* going to release this?
 
-I'm trying man :(
+¯\\\_(ツ)\_/¯
