@@ -99,72 +99,38 @@ function void Score_Draw(int curPoints, int goalPoints, int displayPoints, int h
     }
     else
     {
-        str scoreBar, scoreBrackets, pointBar1, pointBar2, pointBar3;
+        str barBackground, barForeground;
 
         if (nextIsLife)
         {
-            pointBar1      = "POINTBR4";
-            pointBar2      = "POINTBR5";
-            pointBar3      = "POINTBR6";
-            scoreBar       = "SCOREBR2";
-            scoreBrackets  = "SCOREBKT";
+            barBackground  = "SCOREBG2";
+            barForeground  = "SCOREBR2";
         }
         else
         {
-            pointBar1      = "POINTBR1";
-            pointBar2      = "POINTBR2";
-            pointBar3      = "POINTBR3";
-            scoreBar       = "SCOREBAR";
-            scoreBrackets  = "SCOREBKT";
+            barBackground  = "SCOREBG1";
+            barForeground  = "SCOREBR1";
         }
 
         SetHudSize(640, 480, 1);
 
-        SetFont(scoreBar);
+        SetFont(barBackground);
+        HudMessage(s:"A"; HUDMSG_PLAIN, 24403, CR_UNTRANSLATED, 520.4, 70.0, 0);
+
+        SetFont("SCOREBKT");
         HudMessage(s:"A"; HUDMSG_PLAIN, 24401, CR_UNTRANSLATED, 520.4, 70.0, 0);
         
-        SetFont(scoreBrackets);
-        HudMessage(s:"A"; HUDMSG_PLAIN, 24201, CR_UNTRANSLATED, 520.4, 70.0, 0);
-
         if (goalPoints > 0)
         {
-            int pointstep   = goalPoints / BARSTEPS;
-            int barpoints   = curPoints % goalPoints;
-            int lastGraphic = "";
-
-            for (i = 0; i < BARSTEPS; i++)
-            {
-                int barGraphic = pointBar1;
-                int increment  = i % BARINCREMENT;
-
-                if (increment == 0 && i > 0)
-                {
-                    barGraphic = pointBar3;
-                }
-
-                if (increment == (BARINCREMENT - 1) && i < (BARSTEPS - 1))
-                {
-                    barGraphic = pointBar2;
-                }
-
-                if (barpoints > pointstep * (i + 1))
-                {
-                    // I think something with SetFont is causing random crashes
-                    // - limiting its calls should help
-                    if (strcmp(lastGraphic, barGraphic))
-                    {
-                        SetFont(barGraphic);
-                        lastGraphic = barGraphic;
-                    }
-
-                    HudMessage(s:"A"; HUDMSG_PLAIN, 24202 + i, CR_UNTRANSLATED, 520.1 - BAROFFSET + (1.0 * i), 70.0, 0);
-                    // 1873 = (1.0 / 35)+1 = 1 tic
-                }
-                else
-                {
-                    HudMessage(s:""; HUDMSG_PLAIN, 24202 + i, CR_UNTRANSLATED, 0,0,0);
-                }
-            }
+            int pointstep = goalPoints / BARSTEPS;
+            int barpoints = curPoints % goalPoints;
+            
+            int barLeft = 520 - (BARSTEPS / 2);
+            SetHudClipRect(barLeft, 0, barpoints / pointstep, 480);
+            
+            SetFont(barForeground);
+            HudMessage(s:"A"; HUDMSG_PLAIN, 24402, CR_UNTRANSLATED, 520.4, 70.0, 0);
+            SetHudClipRect(0,0,0,0,0);
         }
     }
 }
