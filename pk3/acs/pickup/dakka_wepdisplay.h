@@ -45,11 +45,10 @@ script "Dakka_WepDisplay" (int weptype)
     int secondWepCheck = WepDisplay_S2CCheck[weptype];
 
     int useSecond_client = false;
-    int bundle_client    = false;
 
     if (secondWepCheck > -1)
     {
-        useSecond_client    = SToC_ClientData[cpln][secondWepCheck];
+        useSecond_client = SToC_ClientData[cpln][secondWepCheck];
     }
 
     // Gotta track this shit by inventory item so that every pickup changes
@@ -58,7 +57,7 @@ script "Dakka_WepDisplay" (int weptype)
     int oldSecond = CheckInventory("DPickup_SecondWepState");
     if (oldSecond == useSecond_client) { terminate; }
 
-    SetInventory("DPickup_SecondWepState",  useSecond_client);
+    SetInventory("DPickup_SecondWepState", useSecond_client);
 
     if (useSecond_client)
     {
