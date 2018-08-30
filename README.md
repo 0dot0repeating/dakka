@@ -117,38 +117,41 @@ most important things:
 
 ## COMPATIBILITY PATCHES
 
-- **ZDoom support (`dakka_zdoom.wad`):** ZDoom lacks an event handler for monsters
-    dying, so you need this patch to hook the Doom monster roster into the score
-    system. This probably won't play well with DEHACKED monsters either. But it works.
+- **[ZDoom support](http://git.jinotra.in/ijon/dakka/raw/master/addons/dakka_zdoom.wad) (`dakka_zdoom.wad`):**
+    ZDoom lacks an event handler for monsters dying, so you need this patch to hook
+    the Doom monster roster into the score system. This probably won't play well
+    with DEHACKED monsters either. But it works.
 
-- **KEYCONF override (`dakka_keyconf.wad`):** Some mods use an outdated method
-    of changing who you play as or what weapons you can switch to, and loading
-    those mods with DAKKA can result in you starting with non-DAKKA weapons or
-    being unable to switch off of your pistols (or back to them). If either of
-    those happen, load this and the issue should clear up.
+- **[KEYCONF override](http://git.jinotra.in/ijon/dakka/raw/master/addons/dakka_keyconf.wad) (`dakka_keyconf.wad`):**
+    Some mods use an outdated method of changing who you play as or what weapons
+    you can switch to, and loading those mods with DAKKA can result in you starting
+    with non-DAKKA weapons or being unable to switch off of your pistols (or back
+    to them). If either of those happen, load this and the issue should clear up.
 
-- **Ancient Aliens (`dakka_aaliens.wad`):** This adds the gibbed marine and dead
-    lost soul to the score system since Ancient Aliens replaces them with custom
-    enemies, and adjusts their score values upwards to match their increased danger.
+- **[Ancient Aliens](http://git.jinotra.in/ijon/dakka/raw/master/addons/dakka_aaliens.wad) (`dakka_aaliens.wad`):**
+    This adds the gibbed marine and dead lost soul to the score system since
+    Ancient Aliens replaces them with custom enemies, and adjusts their score\
+    values upwards to match their increased danger.
     
-    - **ZDoom support (`dakka_aaliens_zdoom.wad`):** If you're using ZDoom, you
-        need this so that the custom aliens give you points when they die. Load
-        this after `dakka_zdoom.wad` instead of `dakka_aaliens.wad`.
+    - **[ZDoom support](http://git.jinotra.in/ijon/dakka/raw/master/addons/dakka_aaliens_zdoom.wad) (`dakka_aaliens_zdoom.wad`):**
+        If you're using ZDoom, you need this so that the custom aliens give you
+        points when they die. Load this after `dakka_zdoom.wad` instead of `dakka_aaliens.wad`.
 
-- **Scythe 2 (`dakka_scythe2.wad`):** This boosts the score values of the Nazi
-    and Commander Keen actors dramatically, as they're replaced with evil marines
-    and afrits respectively, and are much more dangerous than their replacements.
+- **[Scythe 2](http://git.jinotra.in/ijon/dakka/raw/master/addons/dakka_scythe2.wad) (`dakka_scythe2.wad`):**
+    This boosts the score values of the Nazi and Commander Keen actors dramatically,
+    as they're replaced with evil marines and afrits respectively, and are much more
+    dangerous than their replacements.
     
-    - **ZDoom support (`dakka_scythe2_zdoom.wad`):** If you're using ZDoom, you
-        need this for the custom monsters to work properly. Load this after
-        `dakka_zdoom.wad` instead of `dakka_scythe2.wad`.
+    - **[ZDoom support](http://git.jinotra.in/ijon/dakka/raw/master/addons/dakka_scythe2_zdoom.wad) (`dakka_scythe2_zdoom.wad`):**
+        If you're using ZDoom, you need this for the custom monsters to work properly.
+        Load this after `dakka_zdoom.wad` instead of `dakka_scythe2.wad`.
     
-- **Dark Doom Creatures (`dakka_dmgmod.wad`):** This adds the Dark Doom Creatures
-    monsters into the score system. This patch is completely unnecessary in GZDoom.
+- **[Dark Doom Creatures](http://git.jinotra.in/ijon/dakka/raw/master/addons/dakka_dmgmod.wad) (`dakka_dmgmod.wad`):**
+    This adds the Dark Doom Creatures monsters into the score system.
+    This patch is completely unnecessary in GZDoom.
 
 
-To use any of these addons, download them from the `addons/` directory (use the
-"Raw" button), and load the mods in this order:
+To use any of these patches, load your mods in this order:
 
 - The other maps/monsters in question
 - **DAKKA**
