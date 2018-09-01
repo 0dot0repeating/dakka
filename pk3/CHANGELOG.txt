@@ -29,9 +29,10 @@ BIG CHANGES:
     only that, but if you go into the options, you can turn these into remote-
     control cluster grenades, detonated with the reload key!
 
-- The super shotgun's alt-fire has gotten a similar revamp. Instead of a spread
-    of 20 gyrojets, it is instead 2 cluster grenades that detonate on impact,
-    and whose clusters stick to anything before detonating soon after.
+- The super shotgun's alt-fire has gotten a revamp as well. Instead of a spread
+    of 20 mini-rockets, it's instead a cloud of explosions that make short work
+    of anything within its blast radius! Its reach is less than stellar though,
+    so get in close if you want to make the most of it!
 
 - The chaingun's gone. The minigun took its place, which is part of why the dual
     pistols have better accuracy, and why the minigun has two fire rates.
@@ -284,12 +285,12 @@ MISC:
 - Fixed SSG fire rolling - now you can let off two shots almost instantaneously,
     and rolling on alt-fire actually works.
 
-- SSG now takes time to reload when it's in your pockets, so you can't just shove
-    it up your butt every two shots to skip the reload. Use a different gun for
-    a couple seconds. Like a rocket launcher.
+- SSG now takes time to reload when it's in your pockets, so you can't just
+    shove it up your butt every two shots to skip the reload. Use a different
+    gun for a couple seconds. Like a rocket launcher.
 
-- BFG beam's damage radius narrowed massively. Now it no longer wrecks everything
-    forever.
+- BFG beam's damage radius narrowed massively. Now it no longer wrecks
+    everything forever.
 
 - BFG alt-fire now uses 8 cells.
 
