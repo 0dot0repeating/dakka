@@ -85,6 +85,10 @@ SMALLER WEAPON CHANGES:
 - The scrappers now respect pitch better with their spread, and no longer rip
     infinitely. So these no longer annihilate spider masterminds either.
 
+- Scrapper grenades can now bounce once for a short period of time (21 tics).
+
+- Scrapper grenades now automatically detonate after 52 tics.
+
 - The shotgun's primary fire has been buffed to 125 damage, making it capable of
     killing hell knights, arachnotrons, and barons of hell in one less shot.
 
@@ -152,6 +156,8 @@ GENERAL CHANGES:
     story in there. But it's the good kind of awful.
 
 - Bullet tracers no longer inexplicably get dragged down when hitting sky walls.
+
+- Bullet tracers now taper off, although it is fairly hard to notice.
 
 
 
