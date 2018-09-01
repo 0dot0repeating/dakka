@@ -207,6 +207,16 @@ $limit dakka/gyrojetexplode 0
 $volume dakka/gyrojetexplode 0.125
 $rolloff dakka/gyrojetexplode 32 1024
 
+dakka/ssgaltexplode1        sounds/ssg/gyrojet_explode.ogg
+dakka/ssgaltexplode2        sounds/scrapper/scrapperdie.ogg
+dakka/ssgaltexplode3        sounds/scrapper/scrappersplit.ogg
+
+$random dakka/ssgaltexplode { dakka/ssgaltexplode1 dakka/ssgaltexplode2 dakka/ssgaltexplode3 }
+
+$limit   dakka/ssgaltexplode 30
+$volume  dakka/ssgaltexplode 0.2
+$rolloff dakka/ssgaltexplode 512 2048
+
 
 
 ////////
