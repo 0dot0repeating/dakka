@@ -189,7 +189,7 @@ script "Dakka_Score" (int pointValue, int damagetype)
 
     AddUntouchable(myhp);
     AddKillstreak(myhp);
-    Delay(35);
+    Delay(middle(18, GetUserCVar(pln, "dakka_cl_bonustime"), 175));
 
     ClearPoints(pln, bonustime);
 }
@@ -216,12 +216,23 @@ script "Dakka_Infighter" (int pointValue)
         LastBonus[i][BS_BASE]       = bonustime;
         LastBonus[i][BS_INFIGHTER]  = bonustime;
     }
-
-    Delay(35);
-
-    for (i = 0; i < PLAYERMAX; i++)
+    
+    int playersleft = PlayerCount();
+    
+    for (i = 0; i < 176; i++)
     {
-        ClearPoints(i, bonustime);
+        if (playersleft <= 0) { break; }
+        
+        for (int j = 0; j < PLAYERMAX; j++)
+        {
+            if (i == 175 || i == GetUserCVar(j, "dakka_cl_bonustime"))
+            {
+                ClearPoints(j, bonustime);
+                playersleft--;
+            }
+        }
+        
+        Delay(1);
     }
 }
 
@@ -247,11 +258,22 @@ script "Dakka_InfighterSelf" (int pointValue)
         LastBonus[i][BS_BASE]        = bonustime;
         LastBonus[i][BS_DARWIN]      = bonustime;
     }
-
-    Delay(35);
-
-    for (i = 0; i < PLAYERMAX; i++)
+    
+    int playersleft = PlayerCount();
+    
+    for (i = 0; i < 176; i++)
     {
-        ClearPoints(i, bonustime);
+        if (playersleft <= 0) { break; }
+        
+        for (int j = 0; j < PLAYERMAX; j++)
+        {
+            if (i == 175 || i == GetUserCVar(j, "dakka_cl_bonustime"))
+            {
+                ClearPoints(j, bonustime);
+                playersleft--;
+            }
+        }
+        
+        Delay(1);
     }
 }

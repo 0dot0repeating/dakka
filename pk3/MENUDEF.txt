@@ -162,6 +162,16 @@ OptionValue Dakka_TracerSpeed
     2048, "lightning"
 }
 
+OptionValue Dakka_BonusTime
+{
+    18,  "0.5 seconds"
+    35,  "1 second"
+    53,  "1.5 seconds"
+    70,  "2 seconds"
+    88,  "2.5 seconds"
+    105, "3 seconds"
+}
+
 OptionValue Dakka_TracerDensity
 {
     -4, "200% sparser"
@@ -257,6 +267,7 @@ OptionMenu "Dakka_UserOptions"
 
     Option "No score rewards",      "dakka_cl_noscorerewards",     "OnOff"
     Option "Hide score",            "dakka_cl_hidescore",          "OnOff"
+    Option "Bonus display time",    "dakka_cl_bonustime",          "Dakka_BonusTime"
 
     StaticText ""
 
