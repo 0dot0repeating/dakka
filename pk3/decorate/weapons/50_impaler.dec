@@ -304,7 +304,7 @@ actor ImpalerSmoke
 actor ImpalerAltMissile: FastProjectile
 {
     Speed 75
-    Damage (6)
+    Damage (0)
 
     Radius 6
     Height 4
@@ -339,9 +339,7 @@ actor ImpalerAltMissile: FastProjectile
       Death:
         MIS3 A 0 A_StopSound(CHAN_BODY)
         MIS3 A 0 ACS_NamedExecuteWithResult("Dakka_ImpalerAltHit", 350)
-        MIS3 A 0 A_ChangeFlag("NOINTERACTION", 1)
-        MIS3 A 0 A_ChangeFlag("NODAMAGETHRUST", 1)
-        MIS3 A 8 A_Explode(20, 16, false, false, 16)
+        MIS3 A 8 A_ChangeFlag("NOINTERACTION", 1)
         stop
 
       Detonate:
@@ -368,7 +366,11 @@ actor ImpalerAltMissile_Stage2
     States
     {
       Spawn:
-        MIS3 A  0
+        MIS3 A 0
+        MIS3 A 0 A_Explode(26, 16, false, false, 16)
+        goto Spawn2
+      
+      Spawn2:
         MIS3 A  0 bright A_SetUserVar("user_timecheck", user_timecheck+1)
         MIS3 AA 0 bright A_SpawnItemEx("ImpalerSmoke", frandom(-2, 2), 0, frandom(-2, 2), 0,0,0, frandom(0, 360))
         MIS3 A  1 bright A_SpawnItemEx("ImpalerSmoke", frandom(-2, 2), 0, frandom(-2, 2), 0,0,0, frandom(0, 360))
@@ -379,6 +381,15 @@ actor ImpalerAltMissile_Stage2
         TNT1 A 0 A_Explode(40, 160, true, false, 32)
         TNT1 A 0 A_ChangeFlag("FORCERADIUSDMG", 0)
         TNT1 A 0 A_Explode(28, 160, false, false, 32)
+        TNT1 A 0 A_TakeFromTarget("DakkaImpalerResistance")
+        TNT1 A 35 A_SpawnItemEx("ImpalerExplosion_Client")
+        stop
+
+      EarlyDetonate:
+        TNT1 A 0 A_GiveToTarget("DakkaImpalerResistance")
+        TNT1 A 0 A_Explode(40, 160, true, false, 32)
+        TNT1 A 0 A_ChangeFlag("FORCERADIUSDMG", 0)
+        TNT1 A 0 A_Explode(48, 160, false, false, 32)
         TNT1 A 0 A_TakeFromTarget("DakkaImpalerResistance")
         TNT1 A 35 A_SpawnItemEx("ImpalerExplosion_Client")
         stop

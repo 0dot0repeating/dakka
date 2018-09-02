@@ -115,7 +115,7 @@ script "Dakka_ImpalerAltPush" (int normX, int normY, int normZ, int power)
     SetActivator(0, AAPTR_TRACER);
     if (IsWorld()) // this should never happen
     {
-        SetActorState(projTID, "Detonate");
+        SetActorState(projTID, "EarlyDetonate");
         terminate;
     }
 
