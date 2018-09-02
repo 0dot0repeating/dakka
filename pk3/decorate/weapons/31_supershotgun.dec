@@ -187,7 +187,7 @@ actor DWep_SuperShotgun: DoomWeapon
         DSSG A 0 A_FireBullets(14.6, 9.4, 5, 12, "NoBulletPuff", FBF_NORANDOM, 96)
         DSSG A 0 ACS_NamedExecuteWithResult("Dakka_UseAmmo", AMMO_GRENADE, 2, 8)
         DSSG A 0 A_FireCustomMissile("DakkaSSGGrenadeSpawner", 0, false, -2)
-        DSSG A 0 A_FireCustomMissile("DakkaSSGGrenadeSpawner", 0, false,   2)
+        DSSG A 0 A_FireCustomMissile("DakkaSSGGrenadeSpawner", 0, false,  2)
 
 
         DSSG A 1 bright offset(0, 42)
@@ -413,40 +413,38 @@ actor DakkaSSGGrenadeSpawner
 
 
       SpawnCommon:
-        TNT1 A 0 ACS_NamedExecuteWithResult("Dakka_CalcProjAngle", 13 + random(0, 5), 1860, 740)
+        TNT1 A 0 ACS_NamedExecuteWithResult("Dakka_CalcProjAngle", 20, 1860, 740)
         TNT1 A 0 A_SpawnItemEx("DakkaSSG_Grenade1", 0,0,0, user_spawnvelx/65536.0, user_spawnvely/65536.0, user_spawnvelz/65536.0, angle, SXF_ABSOLUTEANGLE | SXF_ABSOLUTEVELOCITY | SXF_TRANSFERPOINTERS)
-        TNT1 A 0 ACS_NamedExecuteWithResult("Dakka_CalcProjAngle", 23 + random(0, 6), 1860, 740)
+        TNT1 A 0 ACS_NamedExecuteWithResult("Dakka_CalcProjAngle", 30, 1860, 740)
         TNT1 A 0 A_SpawnItemEx("DakkaSSG_Grenade1", 0,0,0, user_spawnvelx/65536.0, user_spawnvely/65536.0, user_spawnvelz/65536.0, angle, SXF_ABSOLUTEANGLE | SXF_ABSOLUTEVELOCITY | SXF_TRANSFERPOINTERS)
-        TNT1 A 0 ACS_NamedExecuteWithResult("Dakka_CalcProjAngle", 33 + random(0, 7), 1860, 740)
+        TNT1 A 0 ACS_NamedExecuteWithResult("Dakka_CalcProjAngle", 40, 1860, 740)
         TNT1 A 0 A_SpawnItemEx("DakkaSSG_Grenade1", 0,0,0, user_spawnvelx/65536.0, user_spawnvely/65536.0, user_spawnvelz/65536.0, angle, SXF_ABSOLUTEANGLE | SXF_ABSOLUTEVELOCITY | SXF_TRANSFERPOINTERS)
         
-        TNT1 A 0 ACS_NamedExecuteWithResult("Dakka_CalcProjAngle", 44 + random(0, 8), 1860, 740)
+        TNT1 A 0 ACS_NamedExecuteWithResult("Dakka_CalcProjAngle", 51, 1860, 740)
         TNT1 A 0 A_SpawnItemEx("DakkaSSG_Grenade2", 0,0,0, user_spawnvelx/65536.0, user_spawnvely/65536.0, user_spawnvelz/65536.0, angle, SXF_ABSOLUTEANGLE | SXF_ABSOLUTEVELOCITY | SXF_TRANSFERPOINTERS)
-        TNT1 A 0 ACS_NamedExecuteWithResult("Dakka_CalcProjAngle", 55 + random(0, 9), 1860, 740)
+        TNT1 A 0 ACS_NamedExecuteWithResult("Dakka_CalcProjAngle", 62, 1860, 740)
         TNT1 A 0 A_SpawnItemEx("DakkaSSG_Grenade2", 0,0,0, user_spawnvelx/65536.0, user_spawnvely/65536.0, user_spawnvelz/65536.0, angle, SXF_ABSOLUTEANGLE | SXF_ABSOLUTEVELOCITY | SXF_TRANSFERPOINTERS)
-        TNT1 A 0 ACS_NamedExecuteWithResult("Dakka_CalcProjAngle", 66 + random(0, 10), 1860, 740)
+        TNT1 A 0 ACS_NamedExecuteWithResult("Dakka_CalcProjAngle", 73, 1860, 740)
         TNT1 A 0 A_SpawnItemEx("DakkaSSG_Grenade2", 0,0,0, user_spawnvelx/65536.0, user_spawnvely/65536.0, user_spawnvelz/65536.0, angle, SXF_ABSOLUTEANGLE | SXF_ABSOLUTEVELOCITY | SXF_TRANSFERPOINTERS)
         
-        TNT1 A 0 ACS_NamedExecuteWithResult("Dakka_CalcProjAngle", 77 + random(0, 11), 1860, 740)
+        TNT1 A 0 ACS_NamedExecuteWithResult("Dakka_CalcProjAngle", 84, 1860, 740)
         TNT1 A 0 A_SpawnItemEx("DakkaSSG_Grenade3", 0,0,0, user_spawnvelx/65536.0, user_spawnvely/65536.0, user_spawnvelz/65536.0, angle, SXF_ABSOLUTEANGLE | SXF_ABSOLUTEVELOCITY | SXF_TRANSFERPOINTERS)
-        TNT1 A 0 ACS_NamedExecuteWithResult("Dakka_CalcProjAngle", 88 + random(0, 12), 1860, 740)
+        TNT1 A 0 ACS_NamedExecuteWithResult("Dakka_CalcProjAngle", 95, 1860, 740)
         TNT1 A 0 A_SpawnItemEx("DakkaSSG_Grenade3", 0,0,0, user_spawnvelx/65536.0, user_spawnvely/65536.0, user_spawnvelz/65536.0, angle, SXF_ABSOLUTEANGLE | SXF_ABSOLUTEVELOCITY | SXF_TRANSFERPOINTERS)
-        TNT1 A 0 ACS_NamedExecuteWithResult("Dakka_CalcProjAngle", 99 + random(0, 13), 1860, 740)
+        TNT1 A 0 ACS_NamedExecuteWithResult("Dakka_CalcProjAngle", 106, 1860, 740)
         TNT1 A 0 A_SpawnItemEx("DakkaSSG_Grenade3", 0,0,0, user_spawnvelx/65536.0, user_spawnvely/65536.0, user_spawnvelz/65536.0, angle, SXF_ABSOLUTEANGLE | SXF_ABSOLUTEVELOCITY | SXF_TRANSFERPOINTERS)
         
-        TNT1 A 0 ACS_NamedExecuteWithResult("Dakka_CalcProjAngle", 109 + random(0, 14), 1860, 740)
+        TNT1 A 0 ACS_NamedExecuteWithResult("Dakka_CalcProjAngle", 117, 1860, 740)
         TNT1 A 0 A_SpawnItemEx("DakkaSSG_Grenade4", 0,0,0, user_spawnvelx/65536.0, user_spawnvely/65536.0, user_spawnvelz/65536.0, angle, SXF_ABSOLUTEANGLE | SXF_ABSOLUTEVELOCITY | SXF_TRANSFERPOINTERS)
-        TNT1 A 0 ACS_NamedExecuteWithResult("Dakka_CalcProjAngle", 118 + random(0, 15), 1860, 740)
+        TNT1 A 0 ACS_NamedExecuteWithResult("Dakka_CalcProjAngle", 128, 1860, 740)
         TNT1 A 0 A_SpawnItemEx("DakkaSSG_Grenade4", 0,0,0, user_spawnvelx/65536.0, user_spawnvely/65536.0, user_spawnvelz/65536.0, angle, SXF_ABSOLUTEANGLE | SXF_ABSOLUTEVELOCITY | SXF_TRANSFERPOINTERS)
-        TNT1 A 0 ACS_NamedExecuteWithResult("Dakka_CalcProjAngle", 127 + random(0, 16), 1860, 740)
+        TNT1 A 0 ACS_NamedExecuteWithResult("Dakka_CalcProjAngle", 139, 1860, 740)
         TNT1 A 0 A_SpawnItemEx("DakkaSSG_Grenade4", 0,0,0, user_spawnvelx/65536.0, user_spawnvely/65536.0, user_spawnvelz/65536.0, angle, SXF_ABSOLUTEANGLE | SXF_ABSOLUTEVELOCITY | SXF_TRANSFERPOINTERS)
-        TNT1 A 0 ACS_NamedExecuteWithResult("Dakka_CalcProjAngle", 136 + random(0, 17), 1860, 740)
+        TNT1 A 0 ACS_NamedExecuteWithResult("Dakka_CalcProjAngle", 150, 1860, 740)
         TNT1 A 0 A_SpawnItemEx("DakkaSSG_Grenade4", 0,0,0, user_spawnvelx/65536.0, user_spawnvely/65536.0, user_spawnvelz/65536.0, angle, SXF_ABSOLUTEANGLE | SXF_ABSOLUTEVELOCITY | SXF_TRANSFERPOINTERS)
-        TNT1 A 0 ACS_NamedExecuteWithResult("Dakka_CalcProjAngle", 145 + random(0, 18), 1860, 740)
+        TNT1 A 0 ACS_NamedExecuteWithResult("Dakka_CalcProjAngle", 161, 1860, 740)
         TNT1 A 0 A_SpawnItemEx("DakkaSSG_Grenade4", 0,0,0, user_spawnvelx/65536.0, user_spawnvely/65536.0, user_spawnvelz/65536.0, angle, SXF_ABSOLUTEANGLE | SXF_ABSOLUTEVELOCITY | SXF_TRANSFERPOINTERS)
         
-
-      SpawnEnd:
         TNT1 A 4
         stop
     }
@@ -484,22 +482,15 @@ actor DakkaSSG_Grenade
     var int user_vely;
     var int user_velz;
     var int user_t;
-    var int user_detonatet;
 
     States
     {
       Spawn:
         DGRN A 0
-        DGRN A 0 bright ACS_NamedExecuteWithResult("Dakka_InheritVelocity", AAPTR_TARGET, 80, 0, 0)
-        DGRN A 0 A_SetUserVar("user_detonatet", 2)
-        goto SpawnLoop
-      
-      SpawnLoop:
         DGRN A 0 ACS_NamedExecuteWithResult("Dakka_ProjUpdate")
-        DGRN A 1 bright A_SpawnItemEx("ShotNadeTrail",  0,         0,         0,        0,0,0, 0, SXF_ABSOLUTEPOSITION)
+        DGRN A 0 bright A_SpawnItemEx("ShotNadeTrail",  0,         0,         0,        0,0,0, 0, SXF_ABSOLUTEPOSITION)
         DGRN A 0 bright A_SpawnItemEx("ShotNadeTrail", -1*momx/2, -1*momy/2, -1*momz/2, 0,0,0, 0, SXF_ABSOLUTEPOSITION)
-        DGRN A 0 A_ScaleVelocity(0.85)
-        DGRN A 0 A_JumpIf(user_t > user_detonatet, "Detonate")
+        DGRN A 1 A_JumpIf(user_t > 2, "Detonate")
         loop
       
       Detonate:
