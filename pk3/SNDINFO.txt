@@ -214,7 +214,7 @@ dakka/ssgaltexplode3        sounds/scrapper/scrappersplit.ogg
 $random dakka/ssgaltexplode { dakka/ssgaltexplode1 dakka/ssgaltexplode2 dakka/ssgaltexplode3 }
 
 $limit   dakka/ssgaltexplode 30
-$volume  dakka/ssgaltexplode 0.25
+$volume  dakka/ssgaltexplode 0.2
 $rolloff dakka/ssgaltexplode 512 2048
 
 
