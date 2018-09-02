@@ -65,11 +65,11 @@ BIG CHANGES:
     hit what's behind them, while the alt-fire charges up the weapon to release
     a torrent of lightning that arcs through everything in front of you.
 
-- The BFG's alt-fire has been reworked! Instead of the boring automatic green
-    rocket launcher it was before, it instead now shoots out a storm of plasma
-    bolts, which hover in the air for a bit before rocketing over to destroy
-    whoever your target is at that moment. Perfect for obliterating hordes from
-    a distance!
+- The BFG has been completely reworked! The primary fire now releases an utterly
+    ridiculous torrent of homing plasma bolts that effortlessly carve a path
+    through any horde, while the alt-fire releases an entire wall of them, which
+    hover in the air for a bit before annihilating your target with unerring
+    precision. Truth be told, once you get this thing, the map's as good as won.
 
 - Since the minigun's taken over the chaingun slot, something new needs to
     replace the berserk pickups. And that something is... the vampire sphere!
