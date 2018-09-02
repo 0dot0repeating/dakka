@@ -520,10 +520,10 @@ actor DakkaSSG_Grenade
 
 
 // args are in order: explosive damage, explosion radius, explosion full damage radius
-actor DakkaSSG_Grenade1: DakkaSSG_Grenade { Args 20, 80,  32 }
-actor DakkaSSG_Grenade2: DakkaSSG_Grenade { Args 16, 96,  40 }
-actor DakkaSSG_Grenade3: DakkaSSG_Grenade { Args 12, 112, 48 }
-actor DakkaSSG_Grenade4: DakkaSSG_Grenade { Args 8,  128, 56 }
+actor DakkaSSG_Grenade1: DakkaSSG_Grenade { Args 20, 80,  48 }
+actor DakkaSSG_Grenade2: DakkaSSG_Grenade { Args 16, 96,  56 }
+actor DakkaSSG_Grenade3: DakkaSSG_Grenade { Args 12, 112, 64 }
+actor DakkaSSG_Grenade4: DakkaSSG_Grenade { Args 8,  128, 72 }
 
 
 
