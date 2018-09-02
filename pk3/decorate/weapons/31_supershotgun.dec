@@ -21,8 +21,6 @@ actor DWep_SuperShotgun: DoomWeapon
     Weapon.BobRangeX 0.3
     Weapon.BobRangeY 0.4
 
-    Decal BulletChip
-
     Weapon.Kickback 350
 
     Inventory.PickupMessage "$DAKKA_PK_SUPERSHOTGUN"
