@@ -19,7 +19,7 @@ actor NoBulletPuff
     +NOINTERACTION
     +BLOODLESSIMPACT
     RenderStyle None
-    Decal ""
+    Decal "None"
 
     States
     {
@@ -41,6 +41,8 @@ actor DakkaPuff: BulletPuff
 
     Radius 0
     Height 0
+
+    Decal BulletChip
 
     States
     {
