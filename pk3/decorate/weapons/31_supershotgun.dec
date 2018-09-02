@@ -530,7 +530,7 @@ actor SSGAltExplosion_Client
     {
       Spawn:
         MISL B 0 bright
-        MISL B 0 A_Jump(80, 2)
+        MISL B 0 A_Jump(96, 2)
         MISL B 0 A_PlaySound("dakka/ssgaltexplode")
         goto ParticleSpawn
 
