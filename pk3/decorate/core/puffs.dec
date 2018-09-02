@@ -14,9 +14,12 @@ actor TracerDummy
     }
 }
 
-actor NoBulletPuff: BulletPuff
+actor NoBulletPuff
 {
+    +NOINTERACTION
     +BLOODLESSIMPACT
+    RenderStyle None
+    Decal ""
 
     States
     {
