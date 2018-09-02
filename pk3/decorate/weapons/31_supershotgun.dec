@@ -513,7 +513,7 @@ actor DakkaSSG_Grenade
         DGRN A 0 bright A_ChangeFlag("PAINLESS",       random(0, 2) != 0)
         DGRN A 0 bright A_ChangeFlag("FORCERADIUSDMG", random(0, 1) == 0)
         DGRN A 0 bright A_Explode(args[0], args[1], false, false, args[2])
-        DGRN A 2 A_SpawnItemEx("SSGAltExplosion_Client")
+        TNT1 A 2 A_SpawnItemEx("SSGAltExplosion_Client")
         stop
     }
 }

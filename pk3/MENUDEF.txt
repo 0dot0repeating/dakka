@@ -1,68 +1,68 @@
 OptionValue Dakka_StartMode_Health
 {
-    0, "no change"
+    0, "No change"
     1, "100 health"
     2, "100 health + green armor"
     3, "200 health + blue armor"
-    4, "megasphere"
+    4, "Megasphere"
 }
 
 OptionValue Dakka_StartMode_Weapons
 {
-    0, "keep them"
-    2, "pistol start"
-    3, "up to shotgun"
-    4, "up to minigun"
-    5, "up to impaler + SSG"
-    6, "up to lancer"
-    7, "up to BFG"
+    0, "Keep them"
+    2, "Pistol start"
+    3, "Up to shotgun"
+    4, "Up to minigun"
+    5, "Up to impaler + SSG"
+    6, "Up to lancer"
+    7, "Up to BFG"
 }
 
 OptionValue Dakka_StartMode_Ammo
 {
-    0, "keep it"
-    1, "reset ammo (low)"
-    2, "reset ammo (high)"
-    3, "max out ammo"
-    4, "keep only pistol ammo"
-    5, "pistol full, rest empty"
+    0, "Keep it"
+    1, "Reset ammo (low)"
+    2, "Reset ammo (high)"
+    3, "Max out ammo"
+    4, "Keep only pistol ammo"
+    5, "Pistol full, rest empty"
 }
 
 OptionValue Dakka_ScrapperStart
 {
-     -1, "take on new map"
-      0, "keep them"
-      1, "give on new map"
+     -1, "Take on new map"
+      0, "Keep them"
+      1, "Give on new map"
 }
 
 OptionValue Dakka_BackpackStart
 {
-    -1, "take on new map"
-     0, "keep it"
-     1, "give on new map"
+    -1, "Take on new map"
+     0, "Keep it"
+     1, "Give on new map"
 }
 
 OptionValue Dakka_KeepScore
 {
-    0, "reset all"
-    1, "reset rewards"
-    2, "reset bar progress"
-    3, "keep all"
+    0, "Reset all"
+    1, "Reset rewards"
+    2, "Reset bar progress"
+    3, "Keep all"
 }
 
 OptionValue Dakka_IgnoreHubs
 {
-    0, "don't reset"
-    1, "do resets"
+    0, "Don't reset"
+    1, "Do resets"
 }
 
 OptionValue Dakka_RewardTypes
 {
-    0, "ammo regen, then life"
-    1, "life, then ammo regen"
-    2, "just ammo regen"
-    3, "just lives"
-    4, "none"
+    0, "Ammo regen, then life"
+    1, "Life, then ammo regen"
+    2, "Just ammo regen"
+    3, "Just lives"
+    4, "None"
 }
 
 
@@ -122,44 +122,44 @@ OptionValue Dakka_DefenseLevel
 
 OptionValue Dakka_AutoDetonate
 {
-    0, "off"
-    1, "on enemies"
-    2, "on"
+    0, "Off"
+    1, "On enemies"
+    2, "On"
 }
 
 OptionValue Dakka_FlamethrowerStyle
 {
-    0, "new"
-    1, "old"
+    0, "New"
+    1, "Old"
 }
 
 OptionValue OffOn
 {
-    0, "on"
-    1, "off"
+    0, "On"
+    1, "Off"
 }
 
 OptionValue Dakka_RecoilMode
 {
-    0, "flat"
-    1, "curved"
-    2, "smooth"
+    0, "Flat"
+    1, "Curved"
+    2, "Smooth"
 }
 
 OptionValue Dakka_TracerMode
 {
-    0, "off"
-    1, "on for only me"
-    2, "on for everyone"
+    0, "Off"
+    1, "On for only me"
+    2, "On for everyone"
 }
 
 OptionValue Dakka_TracerSpeed
 {
-    64,   "snail"
-    128,  "slow"
-    256,  "medium"
-    512,  "fast"
-    2048, "lightning"
+    64,   "Snail"
+    128,  "Slow"
+    256,  "Medium"
+    512,  "Fast"
+    2048, "Lightning"
 }
 
 OptionValue Dakka_BonusTime
@@ -178,7 +178,7 @@ OptionValue Dakka_TracerDensity
     -3, "150% sparser"
     -2, "100% sparser"
     -1, "50% sparser"
-     0, "default"
+     0, "Default"
      1, "50% denser"
      2, "100% denser"
      3, "150% denser"
