@@ -537,15 +537,12 @@ actor SSGAltExplosion_Client
     RenderStyle Add
     Scale 0.5
 
-    var int user_ringangle;
-
     States
     {
       Spawn:
         MISL B 0 bright
         MISL B 0 A_Jump(80, 2)
         MISL B 0 A_PlaySound("dakka/ssgaltexplode")
-        MISL B 0 A_SetUserVar("user_ringangle", random(0, 44))
         goto ParticleSpawn
 
       ParticleSpawn:
