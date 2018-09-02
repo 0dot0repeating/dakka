@@ -255,8 +255,8 @@ actor ShotgunGrenade
         goto QuietDetonate
         
       QuietDetonate:
-        TNT1 A 0 A_Explode(24, 112, 0)
-        TNT1 A 0 A_Explode(16, 112)
+        TNT1 A 0 A_Explode(32, 112, 0)
+        TNT1 A 0 A_Explode(18, 112)
         TNT1 A 0 A_SpawnItemEx("ImpalerExplosion_Client")
         TNT1 A 0 A_JumpIf(z - floorz   < 2, "FloorBlast")
         TNT1 A 0 A_JumpIf(ceilingz - z < 8, "CeilingBlast")
