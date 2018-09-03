@@ -173,18 +173,20 @@ int AmmoRegen_AmmoTypes[AMMOREGENCOUNT] =
     "DakkaScrap",
 };
 
-int AmmoRegen_PerSecond[AMMOREGENCOUNT] =
+// This is per 20 seconds because ammo regen lasts 20 seconds
+
+int AmmoRegen_Per20Seconds[AMMOREGENCOUNT] =
 {
-    12.0,
-    2.0,
-    0.8,
+    210.0,
+    40.0,
+    16.0,
 
-    20.0,
-    1.0,
-    3.0,
+    500.0,
+    32.0,
+    60.0,
 
-    8.0,
-    4.0,
+    160.0,
+    90.0,
 };
 
 int AmmoRegen_RegenCounters[PLAYERMAX][AMMOREGENCOUNT];
@@ -220,7 +222,7 @@ function void Score_ProcessRewards(void)
         for (i = 0; i < AMMOREGENCOUNT; i++)
         {
             int ammoName   = AmmoRegen_AmmoTypes[i];
-            int ammoPerSec = AmmoRegen_PerSecond[i];
+            int ammoPerSec = AmmoRegen_Per20Seconds[i] / 20;
 
             // minimize error over time from fixed-point imprecision
             int ammoStep = FixedMul(ammoPerSec,  curTic_bySecond / 35) 
