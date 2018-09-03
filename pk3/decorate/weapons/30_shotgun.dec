@@ -24,7 +24,6 @@ actor DWep_Shotgun: DoomWeapon
     Obituary "$DAKKA_MP_SHOTGUN"
 
     +NOALERT
-    +AMMO_OPTIONAL
     +ALT_AMMO_OPTIONAL
 
     States
@@ -45,10 +44,6 @@ actor DWep_Shotgun: DoomWeapon
         loop
 
       Fire:
-        DKSG A 0 A_JumpIfInventory("DakkaInfiniteAmmo", 1, 2)
-        DKSG A 0 A_JumpIfInventory("DakkaShells", 1, 1)
-        goto PriFail
-        
         DKSG A 0 A_GunFlash
         DKSG A 0 A_AlertMonsters
         DKSG A 0 A_PlaySound("dakka/shotfire", CHAN_WEAPON)
@@ -63,7 +58,6 @@ actor DWep_Shotgun: DoomWeapon
 
         DKSG A 0 A_JumpIfInventory("DakkaInfiniteAmmo", 1, "Pump")
         DKSG A 0 A_JumpIfInventory("DakkaShells",       1, "Pump")
-        DKSG A 0 A_JumpIfInventory("DakkaShotGrenades", 1, "Pump")
         goto NoPump
       
       Pump:
@@ -78,8 +72,8 @@ actor DWep_Shotgun: DoomWeapon
         DKSG A 1 offset(0, 33) A_WeaponReady(WRF_NOBOB | WRF_NOFIRE)
         DKSG A 1 offset(0, 32) A_WeaponReady(WRF_NOBOB | WRF_NOFIRE)
         DKSG A 0 A_JumpIfInventory("DakkaInfiniteAmmo", 1, "WaitNoDoPump")
-        DKSG A 0 A_JumpIfInventory("DakkaShotGrenades", 1, "WaitNoDoPump")
         DKSG A 0 A_JumpIfInventory("DakkaShells",       1, "WaitNoDoPump")
+        DKSG A 0 A_CheckReload
         goto Ready
         
       
