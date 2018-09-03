@@ -79,7 +79,7 @@ actor Pickup_ClipBox: CustomInventory replaces ClipBox
       Pickup:
         TNT1 A 0 A_GiveInventory("DakkaBullet_50AE",  42)
         TNT1 A 0 A_GiveInventory("DakkaBullet_5mm",   100)
-        TNT1 A 0 A_GiveInventory("DakkaFlamerFuel",   8)
+        TNT1 A 0 A_GiveInventory("DakkaFlamerFuel",   6)
         stop
     }
 }
@@ -97,7 +97,7 @@ actor Pickup_ShellBox: CustomInventory replaces ShellBox
       Pickup:
         TNT1 A 0 ACS_NamedExecuteWithResult("Dakka_PickedUpAClip", 7, PUAC_SHELL | PUAC_GRENADE)
         TNT1 A 0 A_GiveInventory("DakkaShells",       20)
-        TNT1 A 0 A_GiveInventory("DakkaShotGrenades", 6)
+        TNT1 A 0 A_GiveInventory("DakkaShotGrenades", 4)
         stop
     }
 }
@@ -133,7 +133,7 @@ actor Pickup_CellPack: CustomInventory replaces CellPack
       Pickup:
         TNT1 A 0 ACS_NamedExecuteWithResult("Dakka_PickedUpAClip", 7, PUAC_CELL | PUAC_FLAMER)
         TNT1 A 0 A_GiveInventory("DakkaCells",      100)
-        TNT1 A 0 A_GiveInventory("DakkaFlamerFuel", 12)
+        TNT1 A 0 A_GiveInventory("DakkaFlamerFuel", 16)
         stop
     }
 }
