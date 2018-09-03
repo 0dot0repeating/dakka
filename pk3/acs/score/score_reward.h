@@ -242,6 +242,15 @@ function void Score_ProcessRewards(void)
     }
     else if (regenSpent > 0)
     {
+        // hack to get around fixed-point imprecision
+        for (i = 0; i < AMMOREGENCOUNT; i++)
+        {
+            if (AmmoRegen_RegenCounters[pln][i] > 0.5)
+            {
+                GiveAmmo(AmmoRegen_AmmoTypes[i], 1);
+            }
+        }
+            
         Score_SetRegenSpent(pln, 0);
     }
 
