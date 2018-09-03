@@ -199,8 +199,8 @@ int BonusColors[BONUSCOUNT] =
 // Stores actual bonus value.
 int BonusValues[PLAYERMAX][BONUSCOUNT];
 
-// Stores time bonus was last set.
-int LastBonus[PLAYERMAX][BONUSCOUNT];
+// Stores the tic the bonus value should be cleared on.
+int ClearBonusTime[PLAYERMAX][BONUSCOUNT];
 
 // Clientside. Stores the last value a bonus was seen with.
 // (also make sure to add score definitions in pickup_client_defs.h

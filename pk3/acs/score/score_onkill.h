@@ -1,15 +1,3 @@
-function void ClearPoints(int pln, int bonustime)
-{
-    int i;
-    for (i = 0; i < BONUSCOUNT; i++)
-    {
-        if (LastBonus[pln][i] == bonustime || bonustime == -1)
-        {
-            BonusValues[pln][i] = 0;
-        }
-    }
-}
-
 // Point multipliers:
 //
 // EFFICIENCY:
@@ -161,8 +149,6 @@ script "Dakka_Score" (int pointValue, int damagetype)
                            + points_pointblank
                            + points_telefrag);
 
-    int bonustime = Timer();
-
     TmpBonuses[BS_BASE]         = pointValue;
     TmpBonuses[BS_SPREE]        = points_killstreak;
     TmpBonuses[BS_UNTOUCHABLE]  = points_untouchable;
@@ -177,21 +163,20 @@ script "Dakka_Score" (int pointValue, int damagetype)
     TmpBonuses[BS_SCRAPPING]    = points_scrapping;
     TmpBonuses[BS_POINTBLANK]   = points_pointblank;
     TmpBonuses[BS_TELEFRAG]     = points_telefrag;
+    
+    int cleartime = Timer() + middle(18, GetUserCVar(pln, "dakka_cl_bonustime"), 175);
 
     for (i = 0; i < BONUSCOUNT; i++)
     {
         if (TmpBonuses[i] > 0)
         {
-            BonusValues[pln][i] += TmpBonuses[i];
-            LastBonus[pln][i]    = bonustime;
+            BonusValues[pln][i]    += TmpBonuses[i];
+            ClearBonusTime[pln][i]  = cleartime;
         }
     }
 
     AddUntouchable(myhp);
     AddKillstreak(myhp);
-    Delay(middle(18, GetUserCVar(pln, "dakka_cl_bonustime"), 175));
-
-    ClearPoints(pln, bonustime);
 }
 
 // monster got the kill
@@ -206,74 +191,38 @@ script "Dakka_Infighter" (int pointValue)
     for (i = 0; i < PLAYERMAX; i++)
     {
         if (!PlayerInGame(i)) { continue; }
-
-        Score_ModBothScores(i, points_base);
-        Score_ModBothScores(i, points_infighter);
-
-        BonusValues[i][BS_BASE]       += points_base;
-        BonusValues[i][BS_INFIGHTER]  += points_infighter;
-
-        LastBonus[i][BS_BASE]       = bonustime;
-        LastBonus[i][BS_INFIGHTER]  = bonustime;
-    }
-    
-    int playersleft = PlayerCount();
-    
-    for (i = 0; i < 176; i++)
-    {
-        if (playersleft <= 0) { break; }
         
-        for (int j = 0; j < PLAYERMAX; j++)
-        {
-            if (i == 175 || i == GetUserCVar(j, "dakka_cl_bonustime"))
-            {
-                ClearPoints(j, bonustime);
-                playersleft--;
-            }
-        }
-        
-        Delay(1);
+        int cleartime = bonustime + middle(18, GetUserCVar(i, "dakka_cl_bonustime"), 175);
+        Score_ModBothScores(i, points_base + points_infighter);
+
+        BonusValues[i][BS_BASE]        += points_base;
+        BonusValues[i][BS_INFIGHTER]   += points_infighter;
+
+        ClearBonusTime[i][BS_BASE]      = cleartime;
+        ClearBonusTime[i][BS_INFIGHTER] = cleartime;
     }
 }
 
 // monster nuked himself like an idiot
 script "Dakka_InfighterSelf" (int pointValue)
 {
-    int points_base      = pointValue;
-    int points_infighter = oldRound(pointValue * SMult_Darwin());
+    int points_base   = pointValue;
+    int points_darwin = oldRound(pointValue * SMult_Darwin());
     int bonustime = Timer();
 
     int i;
 
     for (i = 0; i < PLAYERMAX; i++)
     {
-        if (!PlayerInGame(i)) { continue; }
-
-        Score_ModBothScores(i, points_base);
-        Score_ModBothScores(i, points_infighter);
+        if (!PlayerInGame(i)) { continue; } 
+        
+        int cleartime = bonustime + middle(18, GetUserCVar(i, "dakka_cl_bonustime"), 175);
+        Score_ModBothScores(i, points_base + points_darwin);
 
         BonusValues[i][BS_BASE]     += points_base;
-        BonusValues[i][BS_DARWIN]   += points_infighter;
+        BonusValues[i][BS_DARWIN]   += points_darwin;
 
-        LastBonus[i][BS_BASE]        = bonustime;
-        LastBonus[i][BS_DARWIN]      = bonustime;
-    }
-    
-    int playersleft = PlayerCount();
-    
-    for (i = 0; i < 176; i++)
-    {
-        if (playersleft <= 0) { break; }
-        
-        for (int j = 0; j < PLAYERMAX; j++)
-        {
-            if (i == 175 || i == GetUserCVar(j, "dakka_cl_bonustime"))
-            {
-                ClearPoints(j, bonustime);
-                playersleft--;
-            }
-        }
-        
-        Delay(1);
+        ClearBonusTime[i][BS_BASE]   = cleartime;
+        ClearBonusTime[i][BS_DARWIN] = cleartime;
     }
 }
