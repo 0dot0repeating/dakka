@@ -14,7 +14,7 @@ actor DWep_SuperShotgun: DoomWeapon
     Weapon.AmmoUse1     2
     Weapon.AmmoUse2     2
     Weapon.AmmoGive1    16
-    Weapon.AmmoGive2    4
+    Weapon.AmmoGive2    2
 
     Weapon.BobStyle InverseSmooth
     Weapon.BobSpeed 2.5
