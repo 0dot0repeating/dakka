@@ -177,16 +177,16 @@ int AmmoRegen_AmmoTypes[AMMOREGENCOUNT] =
 
 int AmmoRegen_Per20Seconds[AMMOREGENCOUNT] =
 {
-    210.0,
-    40.0,
-    16.0,
+    210,
+    40,
+    16,
 
-    500.0,
-    32.0,
-    60.0,
+    500,
+    32,
+    60,
 
-    160.0,
-    90.0,
+    160,
+    90,
 };
 
 int AmmoRegen_RegenCounters[PLAYERMAX][AMMOREGENCOUNT];
@@ -216,41 +216,23 @@ function void Score_ProcessRewards(void)
             }
         }
 
-        int  curTic_bySecond = itof( Timer() % 35);
-        int lastTic_bySecond = itof((Timer() % 35) - 1);
-
         for (i = 0; i < AMMOREGENCOUNT; i++)
         {
-            int ammoName   = AmmoRegen_AmmoTypes[i];
-            int ammoPerSec = AmmoRegen_Per20Seconds[i] / 20;
-
-            // minimize error over time from fixed-point imprecision
-            int ammoStep = FixedMul(ammoPerSec,  curTic_bySecond / 35) 
-                         - FixedMul(ammoPerSec, lastTic_bySecond / 35);
-
-            int curRegen = AmmoRegen_RegenCounters[pln][i];
-
-            curRegen += ammoStep;
-
-            int ammoToGive = ftoi(curRegen);
-            if (ammoToGive > 0) { GiveAmmo(ammoName, ammoToGive); }
-
-            AmmoRegen_RegenCounters[pln][i] = curRegen % 1.0;
+            int ammoName     = AmmoRegen_AmmoTypes[i];
+            int ammoPerCycle = AmmoRegen_Per20Seconds[i];
+            int regenStep    = AmmoRegen_RegenCounters[pln][i]++ % 700;
+            
+            int curRegen = ( regenStep      * ammoPerCycle) / 700; // 700 tics = 20 seconds
+            int newRegen = ((regenStep + 1) * ammoPerCycle) / 700;
+            int ammoStep = newRegen - curRegen;
+             
+            if (ammoStep > 0) { GiveAmmo(ammoName, ammoStep); }
         }
 
         Score_ModRegenSpent(pln, 1);
     }
     else if (regenSpent > 0)
     {
-        // hack to get around fixed-point imprecision
-        for (i = 0; i < AMMOREGENCOUNT; i++)
-        {
-            if (AmmoRegen_RegenCounters[pln][i] > 0.5)
-            {
-                GiveAmmo(AmmoRegen_AmmoTypes[i], 1);
-            }
-        }
-            
         Score_SetRegenSpent(pln, 0);
     }
 
