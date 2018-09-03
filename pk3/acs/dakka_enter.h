@@ -63,7 +63,7 @@ script "Dakka_Spawn" (int respawned)
 
         // In score/score_update.h
         Air_UpdateZHeight();
-
+        ClearExpiredRewards(pln, Timer());
 
         // Handle the dakka_shotgun2ssg and dakka_chaingun2minigun CVars.
         // - In dakka_gunstoguns.h
@@ -118,7 +118,7 @@ script "Dakka_Return" return
     int pln = PlayerNumber();
     Score_SetScore(pln,        Score_GetScore_Unloading(pln));
     Score_SetDisplayScore(pln, Score_GetDisplayScore_Unloading(pln));
-    ClearPoints(pln, -1);
+    ClearAllRewards(pln);
     
     // Gotta do this so that dakka_ignorehubs works as expected
     Score_CalcMapPoints();

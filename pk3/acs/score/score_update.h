@@ -39,6 +39,32 @@ function void Score_UpdateClient(int pln)
 }
 
 
+function void ClearExpiredRewards(int pln, int t)
+{
+    for (int i = 0; i < BONUSCOUNT; i++)
+    {
+        int ct = ClearBonusTime[pln][i];
+        
+        if (ct >= 0 && ct <= t)
+        {
+            BonusValues[pln][i]    =  0;
+            ClearBonusTime[pln][i] = -1;
+        }
+    }
+}
+
+
+function void ClearAllRewards(int pln)
+{
+    for (int i = 0; i < BONUSCOUNT; i++)
+    {
+        BonusValues[pln][i]    =  0;
+        ClearBonusTime[pln][i] = -1;
+    }
+}
+
+
+
 script "Score_ResetUntouchable" (void)
 {
     if (!CheckFlag(0, "NODAMAGE"))
