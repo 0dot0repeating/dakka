@@ -11,8 +11,6 @@ script "Dakka_SyncHeldWeapon" enter clientside
     int cpln = ConsolePlayerNumber();
     if (pln != cpln) { terminate; }
     
-    SetHudSize(640, 480, true);
-    
     int lastWepIndex;
     int curWepIndex;
     int i, first = true;
