@@ -119,23 +119,41 @@ AMMO CHANGES:
     and rockets realistically shouldn't leave behind any scrap metal, this isn't
     exactly a realistic mod to begin with, and this change encourages variety.
 
-- Pistol ammo now maxes out at 210 (420 with backpack), and you now get 7 pistol
-    rounds from clips, and 42 from bullet boxes.
+- Pistol ammo now maxes out at 210 (420 with backpack), and you now get 7
+    pistol rounds from clips, and 42 from bullet boxes.
 
-- Shotgun grenades have had their capacity buffed to 30 (60 with a backpack),
-    and have had their pickup and regeneration rates buffed. This is because...
+- Grenades have had their capacity buffed to 30 (60 with a backpack), and
+    they've mostly been shifted over to rocket boxes pickup-wise.
 
 - Gyro shells are gone. The SSG alt-fire uses grenades now.
+
+- Shotguns only give one grenade (none from shotgunners), and SSGs only give two
+    grenades.
 
 - Since the chaingun is gone, so are rain grenades.
 
 - Flamer fuel has also been nerfed heavily. It now has a max ammo count of 40,
-    and you now only get 8 flamer fuel from bullet boxes and 12 from cell packs.
+    and you now only get 6 flamer fuel from bullet boxes and 16 from cell packs.
+    This is mainly because of the afterburn mechanic being added.
+
+- Miniguns only give 4 flamer fuel now (2 from chaingunners).
 
 - You now carry up to 120 rockets (240 with a backpack), get 4 rockets from
     small rocket pickups, and get 20 from rocket boxes. This sounds like a buff,
     but the impaler does far less damage per shot than the rocket launcher did;
     it's actually a significant nerf!
+
+- Ammo regen rates have been tweaked. Numbers are how much ammo is given every
+    time ammo regen is triggered:
+    
+    .50AE (pistols):        300 -> 210
+    Shells:                  60 -> 40
+    Grenades (+ gyro):  15 + 22 -> 16
+    5mm (minigun):          400 -> 500
+    Flamer fuel:             50 -> 32
+    Rockets:                 40 -> 60
+    Cells:                  100 -> 160
+    Scrap:                   80 -> 90
 
 
 GENERAL CHANGES:
