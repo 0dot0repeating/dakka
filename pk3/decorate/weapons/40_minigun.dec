@@ -981,7 +981,7 @@ actor DWep_Minigun: DoomWeapon
         goto Ready
 
       AltNo:
-        DMNG A 0 ACS_NamedExecuteWithResult("Dakka_OutOfAmmo", 1)
+        DMNG A 0 ACS_NamedExecuteWithResult("Dakka_OutOfAmmo", 1, AMMO_FLAMER)
         DMNG A 1 A_WeaponReady(WRF_NOSECONDARY)
         goto Ready
 

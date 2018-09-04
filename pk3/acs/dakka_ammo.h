@@ -67,13 +67,15 @@ script "Dakka_UseAmmo" (int ammoindex, int count, int scrapgive, int scraptype)
     
     if (CheckInventory(ammotype) == 0)
     {
-        ACS_NamedExecuteWithResult("Dakka_OutOfAmmo", -1);
+        ACS_NamedExecuteWithResult("Dakka_OutOfAmmo", -1, -1);
     }
 }
 
-script "Dakka_OutOfAmmo" (int trigger)
+script "Dakka_OutOfAmmo" (int trigger, int ammoindex)
 {
     str checkitem;
+    int t = Timer();
+    int justlow = false;
     
     switch (trigger)
     {
@@ -81,7 +83,11 @@ script "Dakka_OutOfAmmo" (int trigger)
         case 1:  checkitem = "OutOfAmmoTimer_Alt"; break;
     }
     
-    int t = Timer();
+    if (ammoindex != -1)
+    {
+        str ammotype = PKP_KnownAmmo[ammoindex];
+        if (CheckInventory(ammotype) > 0) { justlow = true; }
+    }
     
     if (trigger == -1 || CheckInventory(checkitem) < t)
     {
@@ -98,7 +104,9 @@ script "Dakka_OutOfAmmo" (int trigger)
         SetActivator(newTID);
         Warp(myTID_new, 0,0,24.0, 0, WARPF_NOCHECKPOSITION | WARPF_COPYINTERPOLATION);
         SetPointer(AAPTR_TARGET, myTID_new);
-        if (trigger == -1) { SetActorState(0, "Loud"); }
+        
+        if (justlow)            { SetActorState(0, "LowAmmo"); }
+        else if (trigger == -1) { SetActorState(0, "Loud"); }
         
         Thing_ChangeTID(myTID_new, myTID_old);
     }

@@ -341,7 +341,7 @@ actor DWep_PlasmaLance: DoomWeapon
         goto Ready
 
       AltNo:
-        PLNC F 0 ACS_NamedExecuteWithResult("Dakka_OutOfAmmo", 1)
+        PLNC F 0 ACS_NamedExecuteWithResult("Dakka_OutOfAmmo", 1, AMMO_CELL)
         PLNC F 1 A_WeaponReady(WRF_NOSECONDARY)
         goto Ready
 
