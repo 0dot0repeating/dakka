@@ -314,6 +314,7 @@ actor DWep_Scrappers: DoomWeapon
       AltNo:
         SCPR A 0 A_TakeInventory("ScrapperAtoP")
         SCPR A 0 A_TakeInventory("ScrapperAltTimer")
+        SCPR A 0 ACS_NamedExecuteWithResult("Dakka_OutOfAmmo", 1)
         SCPR A 1 A_WeaponReady(WRF_NOSECONDARY)
         goto Ready
 
