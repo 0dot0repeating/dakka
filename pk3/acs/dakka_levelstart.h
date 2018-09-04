@@ -225,11 +225,11 @@ function void Dakka_StartMode_Ammo(int classNum, int entered, int lostAmmo)
             }
             else if (giveLargeAmmo)
             {
-                GiveInventory(ammoName, PKP_DefaultAmmoCount[i][1]);
+                GiveInventory(ammoName, PKP_DefaultAmmoCount[i][DAMMO_STARTHIGH]);
             }
             else
             {
-                GiveInventory(ammoName, PKP_DefaultAmmoCount[i][0]);
+                GiveInventory(ammoName, PKP_DefaultAmmoCount[i][DAMMO_STARTLOW]);
             }
         }
     }
