@@ -54,46 +54,50 @@ int PKP_KnownAmmo[AMMOCOUNT] =
 // If dakka_startmode_ammo is set to a mode that resets your ammo to default
 //  for weapons you have, it reads the values from here to determine that
 //  default ammo count.
+//
+// Index 0 is default starting ammo.
+// Index 1 is high starting ammo.
+// Index 2 is low ammo, for dakka_cl_noammoclick.
 
-int PKP_DefaultAmmoCount[AMMOCOUNT][2] =
+int PKP_DefaultAmmoCount[AMMOCOUNT][3] =
 {
     // DAKKA (10)
-    {60,  120},            // scrap
-    {70,  210},            // .50AE
-    {16,   60},            // shells
-    {8,    18},            // grenades
-    {160, 400},            // 5mm
-    {15,   24},            // flamer
-    {20,   80},            // rockets
-    {50,  200},            // cells
+    { 60, 120, 36},            // scrap
+    { 70, 210, 14},            // .50AE
+    { 16,  60,  4},            // shells
+    {  8,  18,  4},            // grenades
+    {160, 400, 80},            // 5mm
+    { 15,  24,  9},            // flamer
+    { 20,  80, 12},            // rockets
+    { 50, 200, 40},            // cells
 
     // DOOM (4)
-    {100, 300},            // bullets
-    {20,  60},             // shells
-    {10,  30},             // rockets
-    {80,  240},            // cells
+    {100, 300, 20},            // bullets
+    { 20,  60,  4},             // shells
+    { 10,  30,  4},             // rockets
+    { 80, 240, 40},            // cells
 
     // HERETIC (6)
-    {100, 300},            // wand
-    {100, 300},            // blaster
-    {20,  60},             // crossbow
-    {10,  30},             // phoenix
-    {100, 250},            // hellstaff
-    {50,  100},            // firemace
+    {100, 300,  0},            // wand
+    {100, 300,  0},            // blaster
+    { 20,  60,  0},             // crossbow
+    { 10,  30,  0},             // phoenix
+    {100, 250,  0},            // hellstaff
+    { 50, 100,  0},            // firemace
 
     // HEXEN (2)
-    {100, 200},            // mana 1
-    {50,  100},            // mana 2
+    {100, 200,  0},            // mana 1
+    { 50, 100,  0},            // mana 2
 
     // STRIFE (7)
     //  (this will probably *never* come into play, since strife's one big hub)
-    {100, 300},            // bullets
-    {30,  60},             // electric
-    {5,   15},             // poison
-    {20,  75},             // missiles
-    {6,   24},             // HE
-    {2,   8},              // phosphorus
-    {120, 320},            // energy
+    {100, 300,  0},            // bullets
+    { 30,  60,  0},             // electric
+    {  5,  15,  0},             // poison
+    { 20,  75,  0},             // missiles
+    {  6,  24,  0},             // HE
+    {  2,   8,  0},              // phosphorus
+    {120, 320,  0},            // energy
 };
 
 

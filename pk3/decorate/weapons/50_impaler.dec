@@ -143,7 +143,7 @@ actor DWep_Impaler: DoomWeapon
         goto Ready
 
       AltNo:
-        DKIP A 0 ACS_NamedExecuteWithResult("Dakka_OutOfAmmo", 1, AMMO_ROCKET)
+        DKIP A 0 ACS_NamedExecuteWithResult("Dakka_OutOfAmmo", 1)
         DKIP A 1 A_WeaponReady(WRF_NOSECONDARY)
         goto Ready
 
