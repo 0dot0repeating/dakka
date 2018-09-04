@@ -164,14 +164,14 @@ script "Dakka_Score" (int pointValue, int damagetype)
     TmpBonuses[BS_POINTBLANK]   = points_pointblank;
     TmpBonuses[BS_TELEFRAG]     = points_telefrag;
     
-    int cleartime = Timer() + middle(18, GetUserCVar(pln, "dakka_cl_bonustime"), 175);
+    int cleartime = Timer();
 
     for (i = 0; i < BONUSCOUNT; i++)
     {
         if (TmpBonuses[i] > 0)
         {
-            BonusValues[pln][i]    += TmpBonuses[i];
-            ClearBonusTime[pln][i]  = cleartime;
+            BonusValues[pln][i]  += TmpBonuses[i];
+            BonusSetTime[pln][i]  = cleartime;
         }
     }
 
@@ -192,14 +192,13 @@ script "Dakka_Infighter" (int pointValue)
     {
         if (!PlayerInGame(i)) { continue; }
         
-        int cleartime = bonustime + middle(18, GetUserCVar(i, "dakka_cl_bonustime"), 175);
         Score_ModBothScores(i, points_base + points_infighter);
 
-        BonusValues[i][BS_BASE]        += points_base;
-        BonusValues[i][BS_INFIGHTER]   += points_infighter;
+        BonusValues[i][BS_BASE]      += points_base;
+        BonusValues[i][BS_INFIGHTER] += points_infighter;
 
-        ClearBonusTime[i][BS_BASE]      = cleartime;
-        ClearBonusTime[i][BS_INFIGHTER] = cleartime;
+        BonusSetTime[i][BS_BASE]      = bonustime;
+        BonusSetTime[i][BS_INFIGHTER] = bonustime;
     }
 }
 
@@ -216,13 +215,12 @@ script "Dakka_InfighterSelf" (int pointValue)
     {
         if (!PlayerInGame(i)) { continue; } 
         
-        int cleartime = bonustime + middle(18, GetUserCVar(i, "dakka_cl_bonustime"), 175);
         Score_ModBothScores(i, points_base + points_darwin);
 
-        BonusValues[i][BS_BASE]     += points_base;
-        BonusValues[i][BS_DARWIN]   += points_darwin;
+        BonusValues[i][BS_BASE]   += points_base;
+        BonusValues[i][BS_DARWIN] += points_darwin;
 
-        ClearBonusTime[i][BS_BASE]   = cleartime;
-        ClearBonusTime[i][BS_DARWIN] = cleartime;
+        BonusSetTime[i][BS_BASE]   = bonustime;
+        BonusSetTime[i][BS_DARWIN] = bonustime;
     }
 }
