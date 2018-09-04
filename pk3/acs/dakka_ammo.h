@@ -138,12 +138,15 @@ function str Dakka_NewGunAmmoCheck(str lastgun)
     int gunindex = Weapon_WeaponIndex(newgun);
     if (gunindex == -1) { return newgun; }
     
-    str ammo1      = PKP_Knownguns[gunindex][WEP_AMMO1];
-    str ammo2      = PKP_Knownguns[gunindex][WEP_AMMO2];
+    str ammo1    = PKP_Knownguns[gunindex][WEP_AMMO1];
+    int hasAmmo1 = !stringBlank(ammo1);
     
-    int noAmmo = true;
-    if (!stringBlank(ammo1)) { noAmmo &= CheckInventory(ammo1) == 0; }
-    if (!stringBlank(ammo2)) { noAmmo &= CheckInventory(ammo2) == 0; }
+    str ammo2    = PKP_Knownguns[gunindex][WEP_AMMO2];
+    int hasAmmo2 = !stringBlank(ammo2);
+    
+    int noAmmo = hasAmmo1 | hasAmmo2;
+    if (hasAmmo1) { noAmmo &= CheckInventory(ammo1) == 0; }
+    if (hasAmmo2) { noAmmo &= CheckInventory(ammo2) == 0; }
     
     if (noAmmo) { ACS_NamedExecuteWithResult("Dakka_OutOfAmmo", -1, false, 2); }
     return newgun;
