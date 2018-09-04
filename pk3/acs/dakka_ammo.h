@@ -40,7 +40,6 @@ function void Dakka_GiveScrap(int amount, int type)
 }
 
 
-
 // This is mainly to avoid ammo desyncs online, but also to make sure no scrap is
 // given when you have infinite ammo.
 //
@@ -61,21 +60,34 @@ script "Dakka_UseAmmo" (int ammoindex, int count, int scrapgive, int scraptype)
     
     if (ammoindex == AMMO_PISTOL && GetCVar("dakka_infinitepistol")) { terminate; }
 
-    str ammotype = PKP_KnownAmmo[ammoindex];
+    str ammotype   = PKP_KnownAmmo[ammoindex];
+    int ammoBefore = CheckInventory(ammotype);
+    
     Dakka_GiveScrap(scrapgive, scraptype);
     TakeInventory(ammotype, count);
     
-    if (CheckInventory(ammotype) == 0)
+    int ammoLeft = CheckInventory(ammotype);
+    int lowcount = PKP_DefaultAmmoCount[ammoindex][2];
+    
+    if (ammoLeft == 0)
     {
-        ACS_NamedExecuteWithResult("Dakka_OutOfAmmo", -1, -1);
+        ACS_NamedExecuteWithResult("Dakka_OutOfAmmo", -1, false);
+    }
+    else if (ammoLeft <= lowcount && ammoBefore > lowCount)
+    {
+        ACS_NamedExecuteWithResult("Dakka_OutOfAmmo", -1, true);
     }
 }
 
-script "Dakka_OutOfAmmo" (int trigger, int ammoindex)
+script "Dakka_OutOfAmmo" (int trigger, int justlow)
 {
+    int pln = PlayerNumber();
+    if (pln == -1) { terminate; }
+    
+    int mode = GetUserCVar(pln, "dakka_cl_noammoclick");
+    if (mode <= 0 || (mode <= 1 && justlow)) { terminate; }
+    
     str checkitem;
-    int t = Timer();
-    int justlow = false;
     
     switch (trigger)
     {
@@ -83,11 +95,7 @@ script "Dakka_OutOfAmmo" (int trigger, int ammoindex)
         case 1:  checkitem = "OutOfAmmoTimer_Alt"; break;
     }
     
-    if (ammoindex != -1)
-    {
-        str ammotype = PKP_KnownAmmo[ammoindex];
-        if (CheckInventory(ammotype) > 0) { justlow = true; }
-    }
+    int t = Timer();
     
     if (trigger == -1 || CheckInventory(checkitem) < t)
     {
@@ -105,8 +113,7 @@ script "Dakka_OutOfAmmo" (int trigger, int ammoindex)
         Warp(myTID_new, 0,0,24.0, 0, WARPF_NOCHECKPOSITION | WARPF_COPYINTERPOLATION);
         SetPointer(AAPTR_TARGET, myTID_new);
         
-        if (justlow)            { SetActorState(0, "LowAmmo"); }
-        else if (trigger == -1) { SetActorState(0, "Loud"); }
+        if (justlow) { SetActorState(0, "LowAmmo"); }
         
         Thing_ChangeTID(myTID_new, myTID_old);
     }

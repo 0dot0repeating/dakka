@@ -31,7 +31,7 @@ SOUNDS
 =======
 
 - Fist sounds: stock sounds
-- Pistol: Epic Games, from Unreal Tournament 3 and Unreal Gold
+- Pistol: Epic Games, in Unreal Tournament 3 and Unreal Gold
 - Shotgun primary fire: unknown
 - Shotgun secondary fire: stock sound (I think?)
 - Super shotgun primary fire: Obsidian Software, in Fallout: New Vegas
@@ -49,6 +49,7 @@ SOUNDS
 - Score reward sounds: People Can Fly, in Painkiller
 - Vampirism sounds: People Can Fly, in Painkiller
 - Out-of-ammo click: Streum On Studios, in EYE: Divine Cybermancy
+- Low ammo click: id Software, in Quake 3 Arena
 
 
 

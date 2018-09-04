@@ -120,6 +120,13 @@ OptionValue Dakka_DefenseLevel
      10, "10x tougher"
 }
 
+OptionValue Dakka_NoAmmoClick
+{
+    0, "Off"
+    1, "On"
+    2, "On + low ammo"
+}
+
 OptionValue Dakka_AutoDetonate
 {
     0, "Off"
@@ -271,6 +278,7 @@ OptionMenu "Dakka_UserOptions"
 
     StaticText ""
 
+    Option "Out-of-ammo sound",     "dakka_cl_noammoclick",        "Dakka_NoAmmoClick"
     Option "Grenades auto-explode", "dakka_cl_autodetonate",       "Dakka_AutoDetonate"
     Option "SSG trigger rolling",   "dakka_cl_ssgrollfire",        "OnOff"
     Option "Flamethrower style",    "dakka_cl_flamethrowerstyle",  "Dakka_FlamethrowerStyle"

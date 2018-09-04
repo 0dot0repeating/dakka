@@ -483,7 +483,7 @@ actor DWep_BFG9000: DoomWeapon
         
       
       AltNo:
-        DBFG A 0 ACS_NamedExecuteWithResult("Dakka_OutOfAmmo", 1, AMMO_CELL)
+        DBFG A 0 ACS_NamedExecuteWithResult("Dakka_OutOfAmmo", 1)
         DBFG A 1 A_WeaponReady(WRF_NOSECONDARY)
         goto Ready
       
