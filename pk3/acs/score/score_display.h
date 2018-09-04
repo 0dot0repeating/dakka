@@ -206,27 +206,36 @@ function void Score_DrawBonuses(int pln, int hideScore)
 
     // Check hidescore here so that turning the cvar on mid-game doesn't display
     // any score changes that happened while it was off.
-    if (hideScore || !redisplay) { return; }
+    
+    if (hidescore)
+    {
+        for (i = 0; i < BONUSCOUNT; i++)
+        {
+            HudMessage(s:""; HUDMSG_PLAIN, 24409 + (i*2), 0,0,0,0);
+            HudMessage(s:""; HUDMSG_PLAIN, 24410 + (i*2), 0,0,0,0);
+        }
+        
+        return;
+    }
+
+    if (!redisplay) { return; }
     
     int displaytime = itofdiv(GetUserCVar(pln, "dakka_cl_bonustime"), 35) - 0.5;
+    SetFont("DAKKAFN2");
 
     for (i = 0; i < BONUSCOUNT; i++)
     {
         bonus = SToC_ClientData[pln][S2C_D_BONUSSTART + i];
-
         name  = BonusNames[i];
         color = BonusColors[i];
-        score = bonus;
 
-        if (score <= 0) { continue; }
-
-        offset += 1;
+        if (bonus <= 0) { continue; }
+        
+        offset++;
 
         if (!Tmp_BonusDisplay[i]) { continue; }
 
-        SetFont("DAKKAFN2");
-
-        HudMessage(s:"+", d:score; HUDMSG_FADEOUT | HUDMSG_COLORSTRING, 24409 + (offset * 2), color,
+        HudMessage(s:"+", d:bonus; HUDMSG_FADEOUT | HUDMSG_COLORSTRING, 24409 + (offset * 2), color,
                         455.1, 82.0 + (13.0 * (offset-1)), displaytime, 0.5);
 
         HudMessage(s:name; HUDMSG_FADEOUT | HUDMSG_COLORSTRING, 24410 + (offset * 2), "DScore_White",
