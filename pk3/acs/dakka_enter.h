@@ -25,6 +25,7 @@ script "Dakka_Spawn" (int respawned)
     int curScore, lastScore;
 
     int bfgPtrTID = 0;
+    str lastGun = "";
 
     // DM does its own level start, since it needs to do things every spawn,
     //  and variables like dakka_startmode don't apply.
@@ -102,6 +103,10 @@ script "Dakka_Spawn" (int respawned)
 
         // In dakka_bfg.h
         bfgPtrTID = Dakka_GetNewTarget(bfgPtrTID);
+        
+        // If your gun's low on ammo when you pull it out, make it click.
+        // - In dakka_ammo.h
+        lastGun = Dakka_NewGunAmmoCheck(lastGun);
 
         Score_UpdateClient(pln);
         if (ConsolePlayerNumber() != -1) { Score_Update(pln); }

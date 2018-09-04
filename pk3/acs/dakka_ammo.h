@@ -40,6 +40,7 @@ function void Dakka_GiveScrap(int amount, int type)
 }
 
 
+
 // This is mainly to avoid ammo desyncs online, but also to make sure no scrap is
 // given when you have infinite ammo.
 //
@@ -67,19 +68,21 @@ script "Dakka_UseAmmo" (int ammoindex, int count, int scrapgive, int scraptype)
     TakeInventory(ammotype, count);
     
     int ammoLeft = CheckInventory(ammotype);
-    int lowcount = PKP_DefaultAmmoCount[ammoindex][2];
+    int lowcount = PKP_DefaultAmmoCount[ammoindex][DAMMO_WARNLOW];
     
     if (ammoLeft == 0)
     {
-        ACS_NamedExecuteWithResult("Dakka_OutOfAmmo", -1, false);
+        ACS_NamedExecuteWithResult("Dakka_OutOfAmmo", -1, false, 0);
     }
     else if (ammoLeft <= lowcount && ammoBefore > lowCount)
     {
-        ACS_NamedExecuteWithResult("Dakka_OutOfAmmo", -1, true);
+        ACS_NamedExecuteWithResult("Dakka_OutOfAmmo", -1, true, 1);
     }
 }
 
-script "Dakka_OutOfAmmo" (int trigger, int justlow)
+
+
+script "Dakka_OutOfAmmo" (int trigger, int justlow, int soundtype)
 {
     int pln = PlayerNumber();
     if (pln == -1) { terminate; }
@@ -88,11 +91,19 @@ script "Dakka_OutOfAmmo" (int trigger, int justlow)
     if (mode <= 0 || (mode <= 1 && justlow)) { terminate; }
     
     str checkitem;
+    str state;
     
     switch (trigger)
     {
         default: checkitem = "OutOfAmmoTimer_Pri"; break;
         case 1:  checkitem = "OutOfAmmoTimer_Alt"; break;
+    }
+    
+    switch (soundtype)
+    {
+        default: state = "Spawn";          break;
+        case 1:  state = "LowAmmo";        break;
+        case 2:  state = "LowAmmo_Switch"; break;
     }
     
     int t = Timer();
@@ -112,9 +123,28 @@ script "Dakka_OutOfAmmo" (int trigger, int justlow)
         SetActivator(newTID);
         Warp(myTID_new, 0,0,24.0, 0, WARPF_NOCHECKPOSITION | WARPF_COPYINTERPOLATION);
         SetPointer(AAPTR_TARGET, myTID_new);
-        
-        if (justlow) { SetActorState(0, "LowAmmo"); }
+        SetActorState(0, state);
         
         Thing_ChangeTID(myTID_new, myTID_old);
     }
+}
+
+
+function str Dakka_NewGunAmmoCheck(str lastgun)
+{
+    str newgun = GetWeapon();
+    if (!strcmp(newgun, lastgun)) { return newgun; }
+    
+    int gunindex = Weapon_WeaponIndex(newgun);
+    if (gunindex == -1) { return newgun; }
+    
+    str ammo1      = PKP_Knownguns[gunindex][WEP_AMMO1];
+    str ammo2      = PKP_Knownguns[gunindex][WEP_AMMO2];
+    
+    int noAmmo = true;
+    if (!stringBlank(ammo1)) { noAmmo &= CheckInventory(ammo1) == 0; }
+    if (!stringBlank(ammo2)) { noAmmo &= CheckInventory(ammo2) == 0; }
+    
+    if (noAmmo) { ACS_NamedExecuteWithResult("Dakka_OutOfAmmo", -1, false, 2); }
+    return newgun;
 }

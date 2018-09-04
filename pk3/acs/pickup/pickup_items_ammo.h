@@ -59,6 +59,10 @@ int PKP_KnownAmmo[AMMOCOUNT] =
 // Index 1 is high starting ammo.
 // Index 2 is low ammo, for dakka_cl_noammoclick.
 
+#define DAMMO_STARTLOW      0
+#define DAMMO_STARTHIGH     1
+#define DAMMO_WARNLOW       2
+
 int PKP_DefaultAmmoCount[AMMOCOUNT][3] =
 {
     // DAKKA (10)
