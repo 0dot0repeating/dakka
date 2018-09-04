@@ -39,16 +39,24 @@ function void Score_UpdateClient(int pln)
 }
 
 
+function int GetBonusDisplayTime(int pln)
+{
+    return middle(18, GetUserCVar(pln, "dakka_cl_bonustime"), 175);
+}
+
+
 function void ClearExpiredRewards(int pln, int t)
 {
+    t -= GetBonusDisplayTime(pln);
+    
     for (int i = 0; i < BONUSCOUNT; i++)
     {
-        int ct = ClearBonusTime[pln][i];
+        int ct = BonusSetTime[pln][i];
         
         if (ct >= 0 && ct <= t)
         {
-            BonusValues[pln][i]    =  0;
-            ClearBonusTime[pln][i] = -1;
+            BonusValues[pln][i]  =  0;
+            BonusSetTime[pln][i] = -1;
         }
     }
 }
@@ -59,7 +67,7 @@ function void ClearAllRewards(int pln)
     for (int i = 0; i < BONUSCOUNT; i++)
     {
         BonusValues[pln][i]    =  0;
-        ClearBonusTime[pln][i] = -1;
+        BonusSetTime[pln][i] = -1;
     }
 }
 

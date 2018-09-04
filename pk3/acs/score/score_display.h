@@ -220,7 +220,7 @@ function void Score_DrawBonuses(int pln, int hideScore)
 
     if (!redisplay) { return; }
     
-    int displaytime = itofdiv(GetUserCVar(pln, "dakka_cl_bonustime"), 35) - 0.5;
+    int displaytime = itofdiv(GetBonusDisplayTime(pln), 35) - 0.5;
     SetFont("DAKKAFN2");
 
     for (i = 0; i < BONUSCOUNT; i++)
