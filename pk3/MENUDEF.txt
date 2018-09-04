@@ -171,12 +171,12 @@ OptionValue Dakka_TracerSpeed
 
 OptionValue Dakka_BonusTime
 {
-    18,  "0.5 seconds"
-    35,  "1 second"
-    53,  "1.5 seconds"
-    70,  "2 seconds"
-    88,  "2.5 seconds"
-    105, "3 seconds"
+    35,  "0.5 seconds"
+    53,  "1 second"
+    70,  "1.5 seconds"
+    88,  "2 seconds"
+    105, "2.5 seconds"
+    123, "3 seconds"
 }
 
 OptionValue Dakka_TracerDensity

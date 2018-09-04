@@ -41,7 +41,7 @@ function void Score_UpdateClient(int pln)
 
 function int GetBonusDisplayTime(int pln)
 {
-    return middle(18, GetUserCVar(pln, "dakka_cl_bonustime"), 175);
+    return middle(35, GetUserCVar(pln, "dakka_cl_bonustime"), 193);
 }
 
 
