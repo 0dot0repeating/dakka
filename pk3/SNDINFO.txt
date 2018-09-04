@@ -3,7 +3,12 @@
 ///
 
 dakka/silent                dsempty
-dakka/outofammo             sounds/general/noammo.wav
+
+dakka/lowammo               sounds/general/noammo_q3.ogg
+$limit dakka/lowammo        0
+$rolloff dakka/lowammo      8 64
+
+dakka/outofammo             sounds/general/noammo_eye.wav
 $limit dakka/outofammo      0
 $rolloff dakka/outofammo    8 64
 
