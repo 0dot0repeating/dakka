@@ -19,7 +19,7 @@ function void Score_Update(int pln)
     int points          = SToC_ClientData[pln][S2C_D_SCORE];
     int goalpoints      = SToC_ClientData[pln][S2C_D_GOALSCORE];
     int displayPoints   = SToC_ClientData[pln][S2C_D_DISPLAYSCORE];
-    int hideScore       = GetUserCVar(pln, "dakka_cl_hidescore");
+    int hideScore       = GetUserCVar(pln, "dakka_cl_hidescore") | (GetCVar("screenblocks") == 12);
     
     int rewardTypes = GetCVar("dakka_score_rewardtypes");
     int rewardCount = SToC_ClientData[pln][S2C_D_REWARDCOUNT];
