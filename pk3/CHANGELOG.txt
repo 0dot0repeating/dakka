@@ -83,6 +83,8 @@ SMALLER WEAPON CHANGES:
 
 - All the weapons now bob in a bouncier manner.
 
+- Your guns now go click when they run out of ammo.
+
 - The scrappers now respect pitch better with their spread, and no longer rip
     infinitely. So these no longer annihilate spider masterminds either.
 

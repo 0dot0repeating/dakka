@@ -3,9 +3,13 @@
 ///
 
 dakka/silent                dsempty
+dakka/outofammo             sounds/general/noammo.wav
+$limit dakka/outofammo      0
+$rolloff dakka/outofammo    8 64
+
 dakka/explode               sounds/general/explode.ogg
-$limit dakka/explode        0
 $rolloff dakka/explode      512 2048
+$limit dakka/explode        0
 
 
 

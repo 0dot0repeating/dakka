@@ -214,6 +214,7 @@ actor DWep_SuperShotgun: DoomWeapon
         goto Ready
 
       AltFail:
+        DSSG A 0 ACS_NamedExecuteWithResult("Dakka_OutOfAmmo", 1)
         DSSG A 1 A_WeaponReady(WRF_NOSECONDARY | WRF_ALLOWRELOAD)
         goto Ready
 

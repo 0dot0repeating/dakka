@@ -48,6 +48,7 @@ SOUNDS
 
 - Score reward sounds: People Can Fly, in Painkiller
 - Vampirism sounds: People Can Fly, in Painkiller
+- Out-of-ammo click: Streum On Studios, in EYE: Divine Cybermancy
 
 
 

@@ -98,6 +98,7 @@ actor DWep_Shotgun: DoomWeapon
 
         
       PriFail:
+        DKSG A 0 ACS_NamedExecuteWithResult("Dakka_OutOfAmmo", 0)
         DKSG A 1 A_WeaponReady(WRF_NOPRIMARY)
         goto Ready
 
@@ -169,6 +170,7 @@ actor DWep_Shotgun: DoomWeapon
 
         
       AltFail:
+        DKSG A 0 ACS_NamedExecuteWithResult("Dakka_OutOfAmmo", 1)
         DKSG A 1 A_WeaponReady(WRF_NOSECONDARY)
         goto Ready
 

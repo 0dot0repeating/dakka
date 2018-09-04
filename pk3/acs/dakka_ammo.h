@@ -61,6 +61,45 @@ script "Dakka_UseAmmo" (int ammoindex, int count, int scrapgive, int scraptype)
     
     if (ammoindex == AMMO_PISTOL && GetCVar("dakka_infinitepistol")) { terminate; }
 
+    str ammotype = PKP_KnownAmmo[ammoindex];
     Dakka_GiveScrap(scrapgive, scraptype);
-    TakeInventory(PKP_KnownAmmo[ammoindex], count);
+    TakeInventory(ammotype, count);
+    
+    if (CheckInventory(ammotype) == 0)
+    {
+        ACS_NamedExecuteWithResult("Dakka_OutOfAmmo", -1);
+    }
+}
+
+script "Dakka_OutOfAmmo" (int trigger)
+{
+    str checkitem;
+    
+    switch (trigger)
+    {
+        default: checkitem = "OutOfAmmoTimer_Pri"; break;
+        case 1:  checkitem = "OutOfAmmoTimer_Alt"; break;
+    }
+    
+    int t = Timer();
+    
+    if (trigger == -1 || CheckInventory(checkitem) < t)
+    {
+        SetInventory(checkitem, t + 16);
+        
+        // this looks dumb, but I want to avoid sound slot issues
+        int myTID_old = ActivatorTID();
+        int myTID_new = UniqueTID();
+        Thing_ChangeTID(0, myTID_new);
+        
+        int newTID = UniqueTID();
+        SpawnForced("OutOfAmmoSound", 0,0,0, newTID);
+        
+        SetActivator(newTID);
+        Warp(myTID_new, 0,0,24.0, 0, WARPF_NOCHECKPOSITION | WARPF_COPYINTERPOLATION);
+        SetPointer(AAPTR_TARGET, myTID_new);
+        if (trigger == -1) { SetActorState(0, "Loud"); }
+        
+        Thing_ChangeTID(myTID_new, myTID_old);
+    }
 }

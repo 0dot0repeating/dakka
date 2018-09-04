@@ -110,7 +110,7 @@ actor DWep_Impaler: DoomWeapon
       AltFire:
         DKIP A 0 A_JumpIfInventory("DakkaInfiniteAmmo", 1, 2)
         DKIP A 0 A_JumpIfInventory("DakkaRockets", 3, 1)
-        goto NoAlt
+        goto AltNo
 
         DKIP A 0 A_GunFlash
         DKIP A 0 A_AlertMonsters
@@ -142,7 +142,8 @@ actor DWep_Impaler: DoomWeapon
         DKIP A 3                      A_WeaponReady(WRF_NOBOB)
         goto Ready
 
-      NoAlt:
+      AltNo:
+        DKIP A 0 ACS_NamedExecuteWithResult("Dakka_OutOfAmmo", 1)
         DKIP A 1 A_WeaponReady(WRF_NOSECONDARY)
         goto Ready
 
