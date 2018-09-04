@@ -89,13 +89,9 @@ function void Score_Draw(int curPoints, int goalPoints, int displayPoints, int h
 
     if (noScoreRewards || hideScore)
     {
-        HudMessage(s:""; HUDMSG_PLAIN, 24401, 0,0,0,0);
         HudMessage(s:""; HUDMSG_PLAIN, 24201, 0,0,0,0);
-
-        for (i = 0; i < 100; i++)
-        {
-            HudMessage(s:""; HUDMSG_PLAIN, 24202 + i, 0,0,0,0);
-        }
+        HudMessage(s:""; HUDMSG_PLAIN, 24202, 0,0,0,0);
+        HudMessage(s:""; HUDMSG_PLAIN, 24203, 0,0,0,0);
     }
     else
     {
@@ -115,10 +111,10 @@ function void Score_Draw(int curPoints, int goalPoints, int displayPoints, int h
         SetHudSize(640, 480, 1);
 
         SetFont(barBackground);
-        HudMessage(s:"A"; HUDMSG_PLAIN, 24403, CR_UNTRANSLATED, 520.4, 70.0, 0);
+        HudMessage(s:"A"; HUDMSG_PLAIN, 24203, CR_UNTRANSLATED, 520.4, 70.0, 0);
 
         SetFont("SCOREBKT");
-        HudMessage(s:"A"; HUDMSG_PLAIN, 24401, CR_UNTRANSLATED, 520.4, 70.0, 0);
+        HudMessage(s:"A"; HUDMSG_PLAIN, 24201, CR_UNTRANSLATED, 520.4, 70.0, 0);
         
         if (goalPoints > 0)
         {
@@ -129,7 +125,7 @@ function void Score_Draw(int curPoints, int goalPoints, int displayPoints, int h
             SetHudClipRect(barLeft, 0, barpoints / pointstep, 480);
             
             SetFont(barForeground);
-            HudMessage(s:"A"; HUDMSG_PLAIN, 24402, CR_UNTRANSLATED, 520.4, 70.0, 0);
+            HudMessage(s:"A"; HUDMSG_PLAIN, 24202, CR_UNTRANSLATED, 520.4, 70.0, 0);
             SetHudClipRect(0,0,0,0,0);
         }
     }
