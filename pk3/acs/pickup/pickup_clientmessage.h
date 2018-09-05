@@ -188,7 +188,7 @@ script "Pickup_ShowMessage" (int mdata_index, int data1, int data2) clientside
     message = StrParam(s:message);
 
     // Explicitly *not* a LANGUAGE message.
-    if (strstr(message, "\\$") == 0)
+    if (GetChar(message, 0) == '\\' && GetChar(message, 1) == '$')
     {
         message = sliceString(message, 1, StrLen(message));
     }

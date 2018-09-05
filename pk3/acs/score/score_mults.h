@@ -204,7 +204,7 @@ function int SMult_PointBlank(int mx, int my, int mz, int mradius, int mheight, 
     int pY_closest = middle(mY_closest, safeAdd(py, pradius), safeAdd(py, -pradius));
     int pZ_closest = middle(mZ_closest, safeAdd(pz, pheight), pz);
 
-    int dist = distance(mX_closest, mY_closest, mZ_closest, pX_closest, pY_closest, pZ_closest);
+    int dist = VectorLength(VectorLength(mX_closest - pX_closest, mY_closest - pY_closest), mZ_closest - pZ_closest);
     if (dist < POINTBLANK_DIST) { return POINTBLANK_MULT; }
 
     return 0;

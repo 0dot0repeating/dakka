@@ -90,7 +90,7 @@ script "Dakka_Recoil" (int degrees_raw, int ticsup, int ticsdown) clientside
             switch (upMethod)
             {
                 case RMETHOD_LINEAR:        newPitch  = linear_m * i; break;
-                case RMETHOD_QUADRATIC:     newPitch  = quad_a * pow(i - quad_h, 2) + quad_k; break;
+                case RMETHOD_QUADRATIC:     newPitch  = quad_a * ((i - quad_h) * (i - quad_h)) + quad_k; break;
                 case RMETHOD_SINUSOIDAL:    newPitch  = FixedMul(-cos_a, cos(itof(i) / cos_f)) + cos_a; break;
             }
 
@@ -131,7 +131,7 @@ script "Dakka_Recoil" (int degrees_raw, int ticsup, int ticsdown) clientside
                 switch (downMethod)
                 {
                     case RMETHOD_LINEAR:        newPitch  = linear_m * i; break;
-                    case RMETHOD_QUADRATIC:     newPitch  = quad_a * pow(i - quad_h, 2) + quad_k; break;
+                    case RMETHOD_QUADRATIC:     newPitch  = quad_a * ((i - quad_h) * (i - quad_h)) + quad_k; break;
                     case RMETHOD_SINUSOIDAL:    newPitch  = FixedMul(-cos_a, cos(itof(i) / cos_f)) + cos_a; break;
                 }
 

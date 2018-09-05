@@ -117,7 +117,7 @@ script "Dakka_CheckLanceHit" (int isimpaler)
     int rejY  = adjY - projY;
     int rejZ  = adjZ - projZ;
 
-    int rejectDist = magnitudeThree_f(rejX, rejY, rejZ);
+    int rejectDist = VectorLength(VectorLength(rejX, rejY), rejZ);
 
     int normRejX = FixedDiv(rejX, rejectDist);
     int normRejY = FixedDiv(rejY, rejectDist);
