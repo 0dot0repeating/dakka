@@ -74,7 +74,7 @@ script "Dakka_SoundLooper_Create" (int which)
 
     SetActivator(looperTID);
     SetPointer(AAPTR_TARGET, myTID);
-    Warp(myTID, 0,0,0, 0, WARPF_NOCHECKPOSITION | WARPF_COPYINTERPOLATION | WARPF_COPYVELOCITY);
+    Warp(myTID, 0,0,0, 0, WARPF_NOCHECKPOSITION | WARPF_COPYINTERPOLATION);
     ACS_NamedExecuteWithResult("Dakka_SoundLooper_Follow");
 
     Thing_ChangeTID(myTID, myTID_old);
@@ -189,7 +189,7 @@ script "Dakka_SoundLooper_Follow" (int tid)
         Thing_ChangeTID(0, firerTID);
 
         SetActivator(myTID);
-        Warp(firerTID, 0,0,0, 0, WARPF_NOCHECKPOSITION | WARPF_COPYINTERPOLATION | WARPF_COPYVELOCITY);
+        Warp(firerTID, 0,0,0, 0, WARPF_NOCHECKPOSITION | WARPF_COPYINTERPOLATION);
 
         Thing_ChangeTID(0, myTID_old);
         Thing_ChangeTID(firerTID, firerTID_old);
@@ -244,7 +244,7 @@ script "Dakka_SoundLooper_FollowPlayer" (int pln, int syncPln) clientside
         Thing_ChangeTID(0, firerTID);
 
         SetActivator(myTID);
-        Warp(firerTID, 0,0,0, 0, WARPF_NOCHECKPOSITION | WARPF_COPYINTERPOLATION | WARPF_COPYVELOCITY);
+        Warp(firerTID, 0,0,0, 0, WARPF_NOCHECKPOSITION | WARPF_COPYINTERPOLATION);
 
         Thing_ChangeTID(0, myTID_old);
         Thing_ChangeTID(firerTID, firerTID_old);
@@ -288,7 +288,7 @@ script "Dakka_Follow" (int tid)
         Thing_ChangeTID(0, firerTID);
 
         SetActivator(myTID);
-        Warp(firerTID, 0,0,0, 0, WARPF_NOCHECKPOSITION | WARPF_COPYINTERPOLATION | WARPF_COPYVELOCITY);
+        Warp(firerTID, 0,0,0, 0, WARPF_NOCHECKPOSITION | WARPF_COPYINTERPOLATION);
 
         Thing_ChangeTID(0, myTID_old);
         Thing_ChangeTID(firerTID, firerTID_old);
@@ -325,7 +325,7 @@ script "Dakka_FollowPlayer" (int pln, int syncPln) clientside
         Thing_ChangeTID(0, firerTID);
 
         SetActivator(myTID);
-        Warp(firerTID, 0,0,0, 0, WARPF_NOCHECKPOSITION | WARPF_COPYINTERPOLATION | WARPF_COPYVELOCITY);
+        Warp(firerTID, 0,0,0, 0, WARPF_NOCHECKPOSITION | WARPF_COPYINTERPOLATION);
 
         Thing_ChangeTID(0, myTID_old);
         Thing_ChangeTID(firerTID, firerTID_old);
