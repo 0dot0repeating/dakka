@@ -223,7 +223,7 @@ script "Dakka_Lightning" (void) clientside
         curPointY = Lightning_Points[lightningSlot][i+1][LIGHTNING_Y];
         curPointZ = Lightning_Points[lightningSlot][i+1][LIGHTNING_Z];
 
-        pointDist = distance(lastPointX, lastpointY, lastPointZ, curPointX, curPointY, curPointZ);
+        pointDist = VectorLength(VectorLength(lastPointX - curPointX, lastpointY - curPointY), lastPointZ - curPointZ);
 
         Lightning_Points[lightningSlot][i][LIGHTNING_LEN] = pointDist;
 

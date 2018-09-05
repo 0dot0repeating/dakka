@@ -40,7 +40,7 @@ script "DSSG_ChangeShots" (int amount)
 
 script "DSSG_BothClicked" (void)
 {
-    SetResultValue(keyPressed(BT_ATTACK | BT_ALTATTACK));
+    SetResultValue(inputPressed(BT_ATTACK | BT_ALTATTACK));
 }
 
 script "DSSG_Refire" (void)
@@ -50,7 +50,7 @@ script "DSSG_Refire" (void)
     // This bug was hilarious.
     if (GetCVar("dakka_bug_nossginvcheck")) { canFire = true; }
 
-    int ret = keyPressed_any(BT_ATTACK | BT_ALTATTACK)
+    int ret = inputPressed_any(BT_ATTACK | BT_ALTATTACK)
               && CheckInventory("DakkaSSG_ShotsFired");
 
     SetResultValue(ret && canFire);

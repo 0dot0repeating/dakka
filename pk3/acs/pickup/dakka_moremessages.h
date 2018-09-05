@@ -24,7 +24,7 @@ script "Dakka_MoreMessages" (int index)
     {
         str msg = StrParam(s:MMSG_ExtraMessages[index][i]);
         
-        if (strstr(msg, "\\$") == 0)
+        if (GetChar(msg, 0) == '\\' && GetChar(msg, 1) == '$')
         {
             msg = sliceString(msg, 1, StrLen(msg));
         }

@@ -23,13 +23,13 @@ int Scrap_Batches[SCRAPTYPES][2] =
 // this is a script only because I hit the 256 function limit in ACC
 //  yes, there is actually a 256 function limit
 
-script "Dakka_GiveScrap" (int amount, int type)
+function void Dakka_GiveScrap(int amount, int type)
 {
-    if (amount <= 0) { terminate; }
+    if (amount <= 0) { return; }
     if (type < 0 || type >= SCRAPTYPES)
     {
         Log(s:"\caDakka_GiveScrap\cg was called with out-of-bounds type index ", d:type);
-        terminate;
+        return;
     }
     
     str scrapType  = Scrap_Items[type];
@@ -68,7 +68,7 @@ script "Dakka_UseAmmo" (int ammoindex, int count, int scrapgive, int scraptype)
     str ammotype   = PKP_KnownAmmo[ammoindex];
     int ammoBefore = CheckInventory(ammotype);
     
-    ACS_NamedExecuteWithResult("Dakka_GiveScrap", scrapgive, scraptype);
+    Dakka_GiveScrap(scrapgive, scraptype);
     TakeInventory(ammotype, count);
     
     int ammoLeft = CheckInventory(ammotype);

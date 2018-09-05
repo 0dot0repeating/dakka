@@ -94,12 +94,12 @@ function void Dakka_UpdateTemporaryItems(void)
     int i;
     int pln = PlayerNumber();
 
-    TempChecks[TMP_LEFTFIRE]        = keyDown(BT_ATTACK);
-    TempChecks[TMP_RIGHTFIRE]       = keyDown(BT_ALTATTACK);
-    TempChecks[TMP_LEFTCLICK]       = keyPressed(BT_ATTACK);
-    TempChecks[TMP_RIGHTCLICK]      = keyPressed(BT_ALTATTACK);
-    TempChecks[TMP_LEFTRELEASE]     = keyReleased(BT_ATTACK);
-    TempChecks[TMP_RIGHTRELEASE]    = keyReleased(BT_ALTATTACK);
+    TempChecks[TMP_LEFTFIRE]        = inputDown(BT_ATTACK);
+    TempChecks[TMP_RIGHTFIRE]       = inputDown(BT_ALTATTACK);
+    TempChecks[TMP_LEFTCLICK]       = inputPressed(BT_ATTACK);
+    TempChecks[TMP_RIGHTCLICK]      = inputPressed(BT_ALTATTACK);
+    TempChecks[TMP_LEFTRELEASE]     = inputReleased(BT_ATTACK);
+    TempChecks[TMP_RIGHTRELEASE]    = inputReleased(BT_ALTATTACK);
 
     int classNum = Pickup_ClassNumber(0);
 
