@@ -151,19 +151,40 @@ function str Dakka_NewGunAmmoCheck(str lastgun)
     if (gunindex == -1) { return newgun; }
     
     str ammo1      = PKP_Knownguns[gunindex][WEP_AMMO1];
-    int ammo1Count = CheckInventory(ammo1);
-    int ammo1Index = Ammo_AmmoIndex(ammo1);
-    int ammo1Low   = -1;
-    
     str ammo2      = PKP_Knownguns[gunindex][WEP_AMMO2];
-    int ammo2Count = CheckInventory(ammo2);
-    int ammo2Index = Ammo_AmmoIndex(ammo2);
-    int ammo2Low   = -1;
     
-    if (ammo1Index == -1 && ammo2Index == -1) { return newgun; }
+    if (stringBlank(ammo1) && stringBlank(ammo2)) { return newgun; }
     
-    if (ammo1Index != -1) { ammo1Low = PKP_DefaultAmmoCount[ammo1index][DAMMO_WARNLOW]; }
-    if (ammo2Index != -1) { ammo2Low = PKP_DefaultAmmoCount[ammo2index][DAMMO_WARNLOW]; }
+    int ammo1Index, ammo1Count, ammo1Low;
+    int ammo2Index, ammo2Count, ammo2Low;
+    
+    if (stringBlank(ammo1))
+    {
+        ammo1Count =  0;
+        ammo1Index = -1;
+        ammo1Low   =  0;
+    }
+    else
+    {
+        ammo1Count = CheckInventory(ammo1);
+        ammo1Index = Ammo_AmmoIndex(ammo1);
+        ammo1Low   = cond(ammo1Index == -1, 0x7FFFFFFF, PKP_DefaultAmmoCount[ammo1index][DAMMO_WARNLOW]);
+    }
+    
+    if (stringBlank(ammo2))
+    {
+        ammo2Count =  0;
+        ammo2Index = -1;
+        ammo2Low   =  0;
+    }
+    else
+    {
+        ammo2Count = CheckInventory(ammo2);
+        ammo2Index = Ammo_AmmoIndex(ammo2);
+        ammo2Low   = cond(ammo2Index == -1, 0x7FFFFFFF, PKP_DefaultAmmoCount[ammo2index][DAMMO_WARNLOW]);
+    }
+    
+    Log(s:"\cf(", d:ammo1Count, s:" / ", d:ammo1Low, s:") \ck(", d:ammo2Count, s:" / ", d:ammo2Low, s:")");
     
     if (ammo1Count == 0 && ammo2Count == 0)
     {
