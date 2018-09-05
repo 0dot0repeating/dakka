@@ -89,6 +89,10 @@ int PKP_KnownGuns[WEAPONCOUNT][3] =
     {"Mauler2",                 "EnergyPod",                ""},
 };
 
+// First pair of numbers is primary fire
+// Second pair of numbers is secondary fire
+//
+// First number in a pair is primary ammo, second is secondary ammo
 
 int PKP_WeaponAmmoUsed[WEAPONCOUNT][2][2] = 
 {

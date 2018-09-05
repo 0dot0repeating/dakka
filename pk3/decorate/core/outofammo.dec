@@ -22,12 +22,12 @@ actor OutOfAmmoSound
         stop
         
       LowAmmo_Switch:
-        TNT1 A  4
+        TNT1 A  2
         TNT1 A 18 A_PlaySound("dakka/lowammo", CHAN_ITEM | CHAN_LISTENERZ | CHAN_NOPAUSE)
         stop
         
       NoAmmo_Switch:
-        TNT1 A  4
+        TNT1 A  2
         TNT1 A 18 A_PlaySound("dakka/outofammo", CHAN_ITEM | CHAN_LISTENERZ | CHAN_NOPAUSE)
         stop
         
