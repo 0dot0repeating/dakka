@@ -76,7 +76,7 @@ script "Dakka_UseAmmo" (int ammoindex, int count, int scrapgive, int scraptype)
     
     if (ammoLeft == 0)
     {
-        ACS_NamedExecuteWithResult("Dakka_OutOfAmmo", -1, false, 0);
+        ACS_NamedExecuteWithResult("Dakka_OutOfAmmo", -1, false, 4);
     }
     else if (ammoLeft <= lowcount && ammoBefore > lowCount)
     {
@@ -106,9 +106,10 @@ script "Dakka_OutOfAmmo" (int trigger, int justlow, int soundtype)
     switch (soundtype)
     {
         default: state = "NoAmmo";         break;
-        case 1:  state = "LowAmmo";        break;
+        case 1:  state = "LowAmmo_Loud";   break;
         case 2:  state = "LowAmmo_Switch"; break;
         case 3:  state = "NoAmmo_Switch";  break;
+        case 4:  state = "NoAmmo_Loud";    break;
     }
     
     int t = Timer();
@@ -126,8 +127,10 @@ script "Dakka_OutOfAmmo" (int trigger, int justlow, int soundtype)
         SpawnForced("OutOfAmmoSound", 0,0,0, newTID);
         
         SetActivator(newTID);
-        Warp(myTID_new, 0,0,24.0, 0, WARPF_NOCHECKPOSITION | WARPF_COPYINTERPOLATION);
         SetPointer(AAPTR_TARGET, myTID_new);
+        Warp(myTID_new, 0,0,0, 0, WARPF_NOCHECKPOSITION | WARPF_COPYINTERPOLATION | WARPF_COPYVELOCITY);
+        
+        ACS_NamedExecuteWithResult("Dakka_Follow");
         SetActorState(0, state);
         
         Thing_ChangeTID(myTID_new, myTID_old);
@@ -183,8 +186,6 @@ function str Dakka_NewGunAmmoCheck(str lastgun)
         ammo2Index = Ammo_AmmoIndex(ammo2);
         ammo2Low   = cond(ammo2Index == -1, 0x7FFFFFFF, PKP_DefaultAmmoCount[ammo2index][DAMMO_WARNLOW]);
     }
-    
-    Log(s:"\cf(", d:ammo1Count, s:" / ", d:ammo1Low, s:") \ck(", d:ammo2Count, s:" / ", d:ammo2Low, s:")");
     
     if (ammo1Count == 0 && ammo2Count == 0)
     {

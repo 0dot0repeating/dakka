@@ -145,13 +145,14 @@ function void Dakka_SoundLoopers(void)
 
 
 
-script "Dakka_PlayerNumber" (int ptr)
+script "Dakka_PlayerNumber" (int ptr, int tid)
 {
-    SetActivator(0, ptr);
+    if (tid) { SetActivator(tid); }
+    if (ptr) { SetActivator(0, ptr); }
     SetResultValue(PlayerNumber());
 }
 
-script "Dakka_SoundLooper_Follow" (int tid, int syncPln)
+script "Dakka_SoundLooper_Follow" (int tid)
 {
     if (tid) { SetActivator(tid); }
 
@@ -173,6 +174,8 @@ script "Dakka_SoundLooper_Follow" (int tid, int syncPln)
         SetActivator(0, AAPTR_TARGET);
 
         int pln = PlayerNumber();
+        
+        // first clause gets spectators
         if ((pln > -1 && !PlayerInGame(pln)) || IsWorld())
         {
             StopSound(myTID, CHAN_BODY);
@@ -227,10 +230,92 @@ script "Dakka_SoundLooper_FollowPlayer" (int pln, int syncPln) clientside
 
         ActivatorToPlayer(pln);
 
+        // first clause gets spectators
         if (!PlayerInGame(pln) || IsWorld())
         {
             StopSound(myTID, CHAN_BODY);
             SetActorState(myTID, "Silenced");
+            Thing_ChangeTID(myTID, myTID_old);
+            break;
+        }
+
+        int firerTID_old = ActivatorTID();
+        int firerTID     = UniqueTID();
+        Thing_ChangeTID(0, firerTID);
+
+        SetActivator(myTID);
+        Warp(firerTID, 0,0,0, 0, WARPF_NOCHECKPOSITION | WARPF_COPYINTERPOLATION | WARPF_COPYVELOCITY);
+
+        Thing_ChangeTID(0, myTID_old);
+        Thing_ChangeTID(firerTID, firerTID_old);
+        Delay(1);
+    }
+}
+
+
+script "Dakka_Follow" (int tid)
+{
+    if (tid) { SetActivator(tid); }
+
+    int targetPln = ACS_NamedExecuteWithResult("Dakka_PlayerNumber", AAPTR_TARGET);
+    int justOnce  = false;
+
+    if (IsZandronum && ConsolePlayerNumber() == -1 && targetPln != -1)
+    {
+        ACS_NamedExecuteAlways("Dakka_FollowPlayer", 0, targetPln);
+        terminate;
+    }
+
+    while (!IsWorld())
+    {
+        int myTID_old = ActivatorTID();
+        int myTID     = UniqueTID();
+        Thing_ChangeTID(0, myTID);
+
+        SetActivator(0, AAPTR_TARGET);
+
+        int pln = PlayerNumber();
+        
+        // first clause gets spectators
+        if ((pln > -1 && !PlayerInGame(pln)) || IsWorld())
+        {
+            Thing_ChangeTID(myTID, myTID_old);
+            break;
+        }
+
+        int firerTID_old = ActivatorTID();
+        int firerTID     = UniqueTID();
+        Thing_ChangeTID(0, firerTID);
+
+        SetActivator(myTID);
+        Warp(firerTID, 0,0,0, 0, WARPF_NOCHECKPOSITION | WARPF_COPYINTERPOLATION | WARPF_COPYVELOCITY);
+
+        Thing_ChangeTID(0, myTID_old);
+        Thing_ChangeTID(firerTID, firerTID_old);
+        Delay(1);
+    }
+}
+
+
+script "Dakka_FollowPlayer" (int pln, int syncPln) clientside
+{
+    if (!IsZandronum) { terminate; }
+
+    syncPln--;
+    if (syncPln > -1 && syncPln != ConsolePlayerNumber()) { terminate; }
+    
+
+    while (!IsWorld())
+    {
+        int myTID_old = ActivatorTID();
+        int myTID     = UniqueTID();
+        Thing_ChangeTID(0, myTID);
+
+        ActivatorToPlayer(pln);
+
+        // first clause gets spectators
+        if (!PlayerInGame(pln) || IsWorld())
+        {
             Thing_ChangeTID(myTID, myTID_old);
             break;
         }

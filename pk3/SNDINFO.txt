@@ -6,15 +6,15 @@ dakka/silent                dsempty
 
 dakka/lowammo               sounds/general/noammo_q3.ogg
 $limit dakka/lowammo        0
-$rolloff dakka/lowammo      8 64
+$rolloff dakka/lowammo      8 32
 
 dakka/lowammo_switch        sounds/general/noammo_q2.ogg
 $limit dakka/lowammo        0
-$rolloff dakka/lowammo      8 64
+$rolloff dakka/lowammo      8 32
 
 dakka/outofammo             sounds/general/noammo_eye.wav
 $limit dakka/outofammo      0
-$rolloff dakka/outofammo    8 64
+$rolloff dakka/outofammo    8 32
 
 dakka/explode               sounds/general/explode.ogg
 $rolloff dakka/explode      512 2048
