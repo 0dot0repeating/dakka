@@ -70,7 +70,7 @@ int PKP_DefaultAmmoCount[AMMOCOUNT][3] =
     { 70, 210, 14},            // .50AE
     { 16,  60,  4},            // shells
     {  8,  18,  4},            // grenades
-    {160, 400, 80},            // 5mm
+    {160, 400, 70},            // 5mm
     { 15,  24,  9},            // flamer
     { 20,  80, 12},            // rockets
     { 50, 200, 40},            // cells
