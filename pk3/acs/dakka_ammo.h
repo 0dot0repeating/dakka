@@ -135,6 +135,13 @@ script "Dakka_OutOfAmmo" (int trigger, int justlow, int soundtype)
 }
 
 
+function void Dakka_ClearLowAmmoTimers(void)
+{
+    if (!inputDown(BT_ATTACK))    { SetInventory("OutOfAmmoTimer_Pri", 0); }
+    if (!inputDown(BT_ALTATTACK)) { SetInventory("OutOfAmmoTimer_Alt", 0); }
+}
+
+
 function str Dakka_NewGunAmmoCheck(str lastgun)
 {
     str newgun = GetWeapon();

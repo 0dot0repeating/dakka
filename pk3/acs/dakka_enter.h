@@ -107,6 +107,7 @@ script "Dakka_Spawn" (int respawned)
         // If your gun's low on ammo when you pull it out, make it click.
         // - In dakka_ammo.h
         lastGun = Dakka_NewGunAmmoCheck(lastGun);
+        Dakka_ClearLowAmmoTimers();
 
         Score_UpdateClient(pln);
         if (ConsolePlayerNumber() != -1) { Score_Update(pln); }
