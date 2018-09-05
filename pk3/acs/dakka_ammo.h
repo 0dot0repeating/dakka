@@ -74,7 +74,7 @@ script "Dakka_UseAmmo" (int ammoindex, int count, int scrapgive, int scraptype)
     int ammoLeft = CheckInventory(ammotype);
     int lowcount = PKP_DefaultAmmoCount[ammoindex][DAMMO_WARNLOW];
     
-    if (ammoLeft == 0)
+    if (ammoLeft < count)
     {
         ACS_NamedExecuteWithResult("Dakka_OutOfAmmo", -1, false, 4);
     }
