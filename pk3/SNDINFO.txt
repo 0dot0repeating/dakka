@@ -4,20 +4,17 @@
 
 dakka/silent                dsempty
 
-dakka/lowammo               sounds/general/noammo_q3.ogg
-$limit dakka/lowammo        0
-$rolloff dakka/lowammo      8 32
+dakka/lowammo                   sounds/general/noammo_q3.ogg
+$limit      dakka/lowammo       0
+$rolloff    dakka/lowammo       8 64
 
-dakka/lowammo_switch        sounds/general/noammo_q2.ogg
-$limit dakka/lowammo        0
-$rolloff dakka/lowammo      8 32
-
-dakka/outofammo             sounds/general/noammo_eye.wav
-$limit dakka/outofammo      0
-$rolloff dakka/outofammo    8 32
+dakka/outofammo                 sounds/general/noammo_eye.ogg
+$volume     dakka/outofammo     0.75
+$limit      dakka/outofammo     0
+$rolloff    dakka/outofammo     8 64
 
 dakka/explode               sounds/general/explode.ogg
-$rolloff dakka/explode      512 2048
+$rolloff dakka/explode      512 3072
 $limit dakka/explode        0
 
 
@@ -183,14 +180,14 @@ dakka/grenadeexplode3       sounds/impaler/impaler_explode3.ogg
 
 $random  dakka/grenadeexplode       { dakka/grenadeexplode1 dakka/grenadeexplode2 dakka/grenadeexplode3 }
 $limit   dakka/grenadeexplode       5
-$rolloff dakka/grenadeexplode       512 2048
+$rolloff dakka/grenadeexplode       512 3072
 
 $volume dakka/shotgrenade   0.8
 $volume dakka/grenadeclick  1
 
 $limit   dakka/minigrenadeexplode 8
 $volume  dakka/minigrenadeexplode 0.4
-$rolloff dakka/minigrenadeexplode 512 2048
+$rolloff dakka/minigrenadeexplode 384 2432
 
 
 
@@ -228,7 +225,7 @@ $random dakka/ssgaltexplode { dakka/ssgaltexplode1 dakka/ssgaltexplode2 dakka/ss
 
 $limit   dakka/ssgaltexplode 30
 $volume  dakka/ssgaltexplode 0.2
-$rolloff dakka/ssgaltexplode 512 2048
+$rolloff dakka/ssgaltexplode 384 2432
 
 
 
@@ -299,7 +296,7 @@ dakka/impalerexplode3       sounds/impaler/impaler_explode3.ogg
 
 $random  dakka/impalerexplode       { dakka/impalerexplode1 dakka/impalerexplode2 dakka/impalerexplode3 }
 $limit   dakka/impalerexplode       0
-$rolloff dakka/impalerexplode       512 2048
+$rolloff dakka/impalerexplode       512 3072
 
 dakka/impalerfly            sounds/impaler/impaler_fly.ogg
 $volume  dakka/impalerfly   0.75
@@ -350,6 +347,6 @@ dakka/bfgaltfire            sounds/bfg/bfg_altfire.ogg
 
 dakka/bfgexplode            sounds/bfg/bfg_explode.ogg
 
-$rolloff dakka/bfgexplode   512 2048
+$rolloff dakka/bfgexplode   512 3072
 $volume  dakka/bfgexplode   0.35
 $limit   dakka/bfgexplode   0

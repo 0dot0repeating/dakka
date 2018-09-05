@@ -124,11 +124,11 @@ script "Dakka_OutOfAmmo" (int trigger, int justlow, int soundtype)
         Thing_ChangeTID(0, myTID_new);
         
         int newTID = UniqueTID();
-        SpawnForced("OutOfAmmoSound", 0,0,0, newTID);
+        SpawnSpotForced("OutOfAmmoSound", myTID_new, newTID, 0);
         
         SetActivator(newTID);
         SetPointer(AAPTR_TARGET, myTID_new);
-        Warp(myTID_new, 0,0,0, 0, WARPF_NOCHECKPOSITION | WARPF_COPYINTERPOLATION | WARPF_COPYVELOCITY);
+        Warp(myTID_new, 0,0,0, 0, WARPF_NOCHECKPOSITION | WARPF_COPYINTERPOLATION);
         
         ACS_NamedExecuteWithResult("Dakka_Follow");
         SetActorState(0, state);
