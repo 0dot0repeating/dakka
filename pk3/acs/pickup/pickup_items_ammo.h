@@ -68,8 +68,8 @@ int PKP_DefaultAmmoCount[AMMOCOUNT][3] =
     // DAKKA (10)
     { 60, 120, 36},            // scrap
     { 70, 210, 14},            // .50AE
-    { 16,  60,  4},            // shells
-    {  8,  18,  4},            // grenades
+    { 16,  60,  5},            // shells
+    {  8,  18,  5},            // grenades
     {160, 400, 70},            // 5mm
     { 15,  24,  9},            // flamer
     { 20,  80, 12},            // rockets
