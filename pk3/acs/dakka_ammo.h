@@ -161,6 +161,12 @@ function str Dakka_NewGunAmmoCheck(str lastgun)
     int ammo1Index, ammo1Count, ammo1Low;
     int ammo2Index, ammo2Count, ammo2Low;
     
+    int ammo1Primary   = PKP_WeaponAmmoUsed[gunindex][0][0];
+    int ammo1Secondary = PKP_WeaponAmmoUsed[gunindex][0][1];
+    
+    int ammo2Primary   = PKP_WeaponAmmoUsed[gunindex][1][0];
+    int ammo2Secondary = PKP_WeaponAmmoUsed[gunindex][1][1];
+    
     if (stringBlank(ammo1))
     {
         ammo1Count =  0;
@@ -187,7 +193,8 @@ function str Dakka_NewGunAmmoCheck(str lastgun)
         ammo2Low   = cond(ammo2Index == -1, 0x7FFFFFFF, PKP_DefaultAmmoCount[ammo2index][DAMMO_WARNLOW]);
     }
     
-    if (ammo1Count == 0 && ammo2Count == 0)
+    if ((ammo1Count < ammo1Primary   || ammo2Count < ammo2Primary)
+     && (ammo1Count < ammo1Secondary || ammo2Count < ammo2Secondary))
     {
         ACS_NamedExecuteWithResult("Dakka_OutOfAmmo", -1, false, 3);
     }

@@ -90,6 +90,23 @@ int PKP_KnownGuns[WEAPONCOUNT][3] =
 };
 
 
+int PKP_WeaponAmmoUsed[WEAPONCOUNT][2][2] = 
+{
+    {{0, 0}, { 0, 0}}, // Fists      (no ammo)
+    {{6, 0}, {12, 0}}, // Scrappers  (scrap)
+    {{1, 0}, { 2, 0}}, // Pistols    (.50AE)
+    {{1, 0}, { 0, 1}}, // Shotgun    (shells/grenades)
+    {{2, 0}, { 0, 2}}, // SSG        (shells/grenades)
+    {{1, 0}, { 0, 1}}, // Minigun    (5mm/flamer)
+    {{1, 0}, { 3, 0}}, // Impaler    (rockets)
+    {{1, 0}, { 3, 0}}, // Lancer     (cells)
+    {{1, 0}, {40, 0}}, // BFG9000    (cells)
+    
+    // And I don't care about the non-DAKKA guns, so they can all be 0
+};
+    
+
+
 
 // Copy whatever the Weapon.SelectionOrder for the weapon is into here.
 
