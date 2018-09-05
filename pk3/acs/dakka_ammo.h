@@ -101,9 +101,10 @@ script "Dakka_OutOfAmmo" (int trigger, int justlow, int soundtype)
     
     switch (soundtype)
     {
-        default: state = "Spawn";          break;
+        default: state = "NoAmmo";         break;
         case 1:  state = "LowAmmo";        break;
         case 2:  state = "LowAmmo_Switch"; break;
+        case 3:  state = "NoAmmo_Switch";  break;
     }
     
     int t = Timer();
@@ -138,16 +139,29 @@ function str Dakka_NewGunAmmoCheck(str lastgun)
     int gunindex = Weapon_WeaponIndex(newgun);
     if (gunindex == -1) { return newgun; }
     
-    str ammo1    = PKP_Knownguns[gunindex][WEP_AMMO1];
-    int hasAmmo1 = !stringBlank(ammo1);
+    str ammo1      = PKP_Knownguns[gunindex][WEP_AMMO1];
+    int ammo1Count = CheckInventory(ammo1);
+    int ammo1Index = Ammo_AmmoIndex(ammo1);
+    int ammo1Low   = -1;
     
-    str ammo2    = PKP_Knownguns[gunindex][WEP_AMMO2];
-    int hasAmmo2 = !stringBlank(ammo2);
+    str ammo2      = PKP_Knownguns[gunindex][WEP_AMMO2];
+    int ammo2Count = CheckInventory(ammo2);
+    int ammo2Index = Ammo_AmmoIndex(ammo2);
+    int ammo2Low   = -1;
     
-    int noAmmo = hasAmmo1 | hasAmmo2;
-    if (hasAmmo1) { noAmmo &= CheckInventory(ammo1) == 0; }
-    if (hasAmmo2) { noAmmo &= CheckInventory(ammo2) == 0; }
+    if (ammo1Index == -1 && ammo2Index == -1) { return newgun; }
     
-    if (noAmmo) { ACS_NamedExecuteWithResult("Dakka_OutOfAmmo", -1, false, 2); }
+    if (ammo1Index != -1) { ammo1Low = PKP_DefaultAmmoCount[ammo1index][DAMMO_WARNLOW]; }
+    if (ammo2Index != -1) { ammo2Low = PKP_DefaultAmmoCount[ammo2index][DAMMO_WARNLOW]; }
+    
+    if (ammo1Count == 0 && ammo2Count == 0)
+    {
+        ACS_NamedExecuteWithResult("Dakka_OutOfAmmo", -1, false, 3);
+    }
+    else if (ammo1Count <= ammo1Low && ammo2Count <= ammo2Low)
+    {
+        ACS_NamedExecuteWithResult("Dakka_OutOfAmmo", -1, true, 2);
+    }
+    
     return newgun;
 }
