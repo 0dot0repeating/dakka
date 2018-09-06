@@ -10,7 +10,7 @@ actor DWep_Shotgun: DoomWeapon
     Weapon.AmmoUse1     1
     Weapon.AmmoUse2     1
     Weapon.AmmoGive1    8
-    Weapon.AmmoGive2    1
+    Weapon.AmmoGive2    0
 
     Weapon.BobStyle InverseSmooth
     Weapon.BobSpeed 2.5
