@@ -52,7 +52,7 @@ actor DakkaShells: Ammo
     }
 }
 
-actor DakkaShotGrenades: Ammo
+actor DakkaGrenades: Ammo
 {
     Inventory.PickupMessage "$DAKKA_PK_GRENADE"
     Inventory.Icon "DGRNZ0"

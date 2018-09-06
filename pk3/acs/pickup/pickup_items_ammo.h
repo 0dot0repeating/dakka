@@ -15,7 +15,7 @@ int PKP_KnownAmmo[AMMOCOUNT] =
     "DakkaScrap",
     "DakkaBullet_50AE",     // if this moves, update Dakka_UseAmmo script
     "DakkaShells",
-    "DakkaShotGrenades",
+    "DakkaGrenades",
     "DakkaBullet_5mm",
     "DakkaFlamerFuel",
     "DakkaRockets",
