@@ -67,11 +67,11 @@ int PKP_ReceiveItems[PICKUPCOUNT][CLASSCOUNT][PK_RECEIVECOUNT] =
     },
     {
         {"Shotgun"},
-        {"DWep_Shotgun"},
+        {"DWep_Shotgun", "DakkaGrenades"},
     },
     {
         {"SuperShotgun"},
-        {"DWep_SuperShotgun"},
+        {"DWep_SuperShotgun", "DakkaGrenades"},
     },
     {
         {"Chaingun"},
@@ -169,11 +169,11 @@ int PKP_ReceiveCount[PICKUPCOUNT][CLASSCOUNT][PK_RECEIVECOUNT] =
     },
     {
         {1},
-        {1},
+        {1, 4},
     },
     {
         {1},
-        {1},
+        {1, 4},
     },
     {
         {1},
