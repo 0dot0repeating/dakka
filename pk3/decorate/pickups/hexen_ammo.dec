@@ -40,7 +40,7 @@ actor Pickup_GreenMana: CustomInventory replaces Mana2
         TNT1 A 0 ACS_NamedExecuteWithResult("Dakka_PickedUpAClip", 7, PUAC_GRENADE | PUAC_FLAMER | PUAC_ROCKET | PUAC_CELL)
         TNT1 A 0 A_GiveInventory("DakkaCells",        12)
         TNT1 A 0 A_GiveInventory("DakkaRockets",      3)
-        TNT1 A 0 A_GiveInventory("DakkaShotGrenades", 1)
+        TNT1 A 0 A_GiveInventory("DakkaGrenades", 1)
         TNT1 A 0 A_GiveInventory("DakkaFlamerFuel",   2)
         stop
     }
@@ -64,7 +64,7 @@ actor Pickup_CombinedMana: CustomInventory replaces Mana3
       Pickup:
         TNT1 A 0 ACS_NamedExecuteWithResult("Dakka_PickedUpAClip", 14, PUAC_SHELL | PUAC_GRENADE | PUAC_5MM | PUAC_FLAMER | PUAC_ROCKET | PUAC_CELL)
         TNT1 A 0 A_GiveInventory("DakkaShells",       4)
-        TNT1 A 0 A_GiveInventory("DakkaShotGrenades", 2)
+        TNT1 A 0 A_GiveInventory("DakkaGrenades", 2)
         TNT1 A 0 A_GiveInventory("DakkaBullet_5mm",   30)
         TNT1 A 0 A_GiveInventory("DakkaFlamerFuel",   3)
         TNT1 A 0 A_GiveInventory("DakkaRockets",      4)

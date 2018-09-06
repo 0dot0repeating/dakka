@@ -163,7 +163,7 @@ int AmmoRegen_AmmoTypes[AMMOREGENCOUNT] =
 {
     "DakkaBullet_50AE",
     "DakkaShells",
-    "DakkaShotGrenades",
+    "DakkaGrenades",
 
     "DakkaBullet_5mm",
     "DakkaFlamerFuel",
