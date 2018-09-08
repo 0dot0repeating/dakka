@@ -100,7 +100,7 @@ int Brawler_KnownMelee[KNOWNMELEE][2] =
 {
     {"Fist",        ""},    
     {"Chainsaw",    ""},
-    {"DWep_Fist",   "FistRapid"},
+    {"DWep_Fists",  "FistRapid"},
     {"",            "FistLightStun"},
     {"",            "FistMediumStun"},
     {"",            "FistHeavyStun"},

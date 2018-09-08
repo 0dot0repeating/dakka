@@ -1,6 +1,6 @@
 addkeysection "Dakka weapon binds (optional)" Dakka
 
-addmenukey "Fists"               "use DWep_Fist"
+addmenukey "Fists"               "use DWep_Fists"
 addmenukey "Scrappers"           "use DWep_Scrappers"
 addmenukey "Fists or scrappers"  "pukename Dakka_SwitchWeps 0 1"
 addmenukey "Scrappers or fists"  "pukename Dakka_SwitchWeps 1 0"

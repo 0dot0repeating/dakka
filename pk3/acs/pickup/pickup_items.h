@@ -55,7 +55,7 @@ int PKP_ReceiveItems[PICKUPCOUNT][CLASSCOUNT][PK_RECEIVECOUNT] =
 {
     {
         {"Fist"},
-        {"DWep_Fist"},
+        {"DWep_Fists"},
     },
     {
         {"Chainsaw"},

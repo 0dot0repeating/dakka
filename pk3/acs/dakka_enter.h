@@ -48,7 +48,7 @@ script "Dakka_Spawn" (int respawned)
     while (DakkaEnterLocks[pln] == locknum)
     {
         // Doesn't need its own script
-        if (classNum == Cl_Dakkaguy) { SetInventory("DWep_Fist", 1); }
+        if (classNum == Cl_Dakkaguy) { SetInventory("DWep_Fists", 1); }
         
         int jumpz = JumpZFromHeight(max(0, 32 + GetCVar("dakka_jumpmod")), 1.0);
         if (GetActorProperty(0, APROP_JumpZ) != jumpz)

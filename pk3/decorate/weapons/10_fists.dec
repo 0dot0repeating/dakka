@@ -15,7 +15,7 @@ actor DakkaFist_StepUp:     Counter { Inventory.MaxAmount 3 }
 actor DakkaFist_Release:    Boolean {}
 
 
-actor DWep_Fist: DoomWeapon
+actor DWep_Fists: DoomWeapon
 {
     Tag "Fists"
 

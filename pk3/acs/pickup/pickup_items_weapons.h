@@ -13,7 +13,7 @@ int PKP_KnownGuns[WEAPONCOUNT][3] =
 //  Name                        Ammo 1                      Ammo 2
 //
     // DAKKA (11 weapons)
-    {"DWep_Fist",               "",                         ""},
+    {"DWep_Fists",              "",                         ""},
     {"DWep_Scrappers",          "DakkaScrap",               ""},
     {"DWep_Pistols",            "DakkaBullet_50AE",         "DakkaPistol_ShotsLeft"},
     {"DWep_Shotgun",            "DakkaShells",              "DakkaGrenades"},
@@ -116,7 +116,7 @@ int PKP_WeaponAmmoUsed[WEAPONCOUNT][2][2] =
 
 int PKP_WeaponPriorities[WEAPONCOUNT] =
 {
-    3700,   // DWep_Fist
+    3700,   // DWep_Fists
     1100,   // DWep_Scrappers
     1900,   // DWep_Pistol
     1500,   // DWep_Pistols
