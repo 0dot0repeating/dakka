@@ -143,7 +143,7 @@ StatusBar Normal, fullscreenoffsets, 0.85
 
     InInventory DakkaInAmmoRegen
     {
-        IsSelected DWep_Fist
+        IsSelected DWep_Fists
         {
             DrawImage "HUD_FS12", -104, -32;
             DrawImage "HUD_FS22",  -96, -63;
@@ -222,7 +222,7 @@ StatusBar Normal, fullscreenoffsets, 0.85
     }
     else
     {
-        IsSelected DWep_Fist
+        IsSelected DWep_Fists
         {
             DrawImage "HUD_FS11", -104, -32;
             DrawImage "HUD_FS21",  -96, -63;
@@ -499,7 +499,7 @@ StatusBar Fullscreen, fullscreenoffsets, 0.85
 
     InInventory DakkaInAmmoRegen
     {
-        IsSelected DWep_Fist
+        IsSelected DWep_Fists
         {
             DrawImage "HUD_FS12", -104, -32;
             DrawImage "HUD_FS22",  -96, -63;
@@ -560,7 +560,7 @@ StatusBar Fullscreen, fullscreenoffsets, 0.85
     }
     else
     {
-        IsSelected DWep_Fist
+        IsSelected DWep_Fists
         {
             DrawImage "HUD_FS11", -104, -32;
             DrawImage "HUD_FS21",  -96, -63;
@@ -837,7 +837,7 @@ StatusBar Automap, fullscreenoffsets, 0.85
 
     InInventory DakkaInAmmoRegen
     {
-        IsSelected DWep_Fist
+        IsSelected DWep_Fists
         {
             DrawImage "HUD_FS12", -104, -32;
             DrawImage "HUD_FS22",  -96, -63;
@@ -898,7 +898,7 @@ StatusBar Automap, fullscreenoffsets, 0.85
     }
     else
     {
-        IsSelected DWep_Fist
+        IsSelected DWep_Fists
         {
             DrawImage "HUD_FS11", -104, -32;
             DrawImage "HUD_FS21",  -96, -63;

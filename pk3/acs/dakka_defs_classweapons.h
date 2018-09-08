@@ -40,7 +40,7 @@
 
 str Dakka_ClassWeapons[CLASSWEAPONS][CLASSCOUNT] =
 {
-    {"Fist",            "DWep_Fist"},
+    {"Fist",            "DWep_Fists"},
     {"Chainsaw",        "DWep_Scrappers"},
     {"Pistol",          "DWep_Pistols"},
     {"Shotgun",         "DWep_Shotgun"},
@@ -50,7 +50,7 @@ str Dakka_ClassWeapons[CLASSWEAPONS][CLASSCOUNT] =
     {"PlasmaRifle",     "DWep_PlasmaLance"},
     {"BFG9000",         "DWep_BFG9000"},
 
-    {"Staff",           "DWep_Fist"},
+    {"Staff",           "DWep_Fists"},
     {"Gauntlets",       "DWep_Scrappers"},
     {"GoldWand",        "DWep_Pistols"},
     {"Crossbow",        "DWep_Shotgun"},
@@ -142,7 +142,7 @@ str Dakka_TranslatableGuns_To[TRANSLATE_GUNS][CLASSCOUNT][TRANSLATE_MAXTO] =
 {
     { // Fist2
         {""},
-        {"DWep_Fist"},
+        {"DWep_Fists"},
     },
 
     { // Chainsaw2

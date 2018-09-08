@@ -17,7 +17,7 @@ actor Dakkaguy: PlayerPawn
     Player.HealRadiusType "Health"
 
     Player.StartItem "DWep_Pistols"
-    Player.StartItem "DWep_Fist"
+    Player.StartItem "DWep_Fists"
     Player.StartItem "DakkaBullet_50AE", 70
 
     Player.CrouchSprite "DPLC"
