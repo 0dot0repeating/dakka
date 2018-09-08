@@ -257,6 +257,10 @@ OptionMenu Dakka_ScoreOptions
 OptionMenu "Dakka_UserOptions"
 {
     Title "DAKKA (User options)"
+    
+    Submenu "Weapon bindings", "Dakka_WeaponBinds"
+    
+    StaticText ""
 
     Slider "Recoil factor",         "dakka_cl_recoil",     0, 200, 10, 0
     Slider "Recoil reset factor",   "dakka_cl_recoildown", 0, 100,  5, 0
@@ -288,15 +292,40 @@ OptionMenu "Dakka_UserOptions"
     Option "Less intensive effects","dakka_cl_lesseffects",        "OnOff"
     Option "Dumb pickup messages",  "dakka_cl_moremessages",       "OnOff"
     
-
     StaticText ""
-    StaticText ""
-    StaticText "SSG trigger rolling: By pulling both triggers"
-    StaticText "quickly, you instead use one fire mode twice"
+    StaticText "SSG trigger rolling: By pulling both triggers", 1
+    StaticText "quickly, you instead use one fire mode twice", 1
     StaticText ""
     StaticText "Particle tracers do not work in Zandronum!", 1
 }
 
+
+OptionMenu "Dakka_WeaponBinds"
+{
+    Title "DAKKA (Weapon binds)"
+    
+    StaticText "Take full advantage of the quick swapping!", 1
+    StaticText "These binds only apply when DAKKA is loaded.", 1
+    StaticText ""
+    StaticText "For two-weapon binds, the second weapon is", 1
+    StaticText "used if the first weapon is either in your", 1
+    StaticText "hands, or missing from your inventory.", 1
+    StaticText ""
+    
+    Control "Fists",               "dakka_wep_fists"
+    Control "Scrappers",           "dakka_wep_scrappers"
+    Control "Fists or scrappers",  "dakka_wep_fists_scrappers"
+    Control "Scrappers or fists",  "dakka_wep_scrappers_fists"
+    Control "Pistols",             "dakka_wep_pistols"
+    Control "Shotgun",             "dakka_wep_shotgun"
+    Control "SSG",                 "dakka_wep_ssg"
+    Control "Shotgun or SSG",      "dakka_wep_shotgun_ssg"
+    Control "SSG or shotgun",      "dakka_wep_ssg_shotgun"
+    Control "Minigun",             "dakka_wep_minigun"
+    Control "Impaler",             "dakka_wep_impaler"
+    Control "Lancer",              "dakka_wep_lancer"
+    Control "BFG9000",             "dakka_wep_bfg9000"
+}
 
 
 ListMenu Dakka_Options
