@@ -193,6 +193,7 @@ actor ImpalerMissile: FastProjectile
 
     Decal Scorch
 
+    Obituary "$DAKKA_MP_IMPALER"
     MissileType "ImpalerSmoke"
     MissileHeight 8
 
@@ -247,6 +248,7 @@ actor ImpalerPrimaryHurter
     +EXTREMEDEATH
 
     var int user_damage;
+    Obituary "$DAKKA_MP_IMPALER"
 
     States
     {
@@ -323,6 +325,8 @@ actor ImpalerAltMissile: FastProjectile
     MissileType "ImpalerSmoke"
     MissileHeight 8
     Decal Scorch
+    
+    Obituary "$DAKKA_MP_IMPALER_ALT"
 
     var int user_t;
     var int user_velx;

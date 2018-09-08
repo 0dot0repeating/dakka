@@ -21,6 +21,7 @@ actor DWep_PlasmaLance: DoomWeapon
     Weapon.BobRangeY 0.4
 
     Inventory.PickupMessage "$DAKKA_PK_PLASMALANCE"
+    Obituary "$DAKKA_PK_PLASMALANCE"
 
     +NOALERT
     +ALT_AMMO_OPTIONAL
@@ -573,6 +574,7 @@ actor LanceArcShot: Arc_Base
     +MTHRUSPECIES
 
     Decal "PlasmaScorchBigger"
+    Obituary "$DAKKA_PK_PLASMALANCE_ALT"
 
     // in order: arc index, max depth, damage
     Args 0, 3, 40

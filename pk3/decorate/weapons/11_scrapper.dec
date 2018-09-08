@@ -408,6 +408,7 @@ actor ScrapperShot
     BounceCount 2
 
     Scale 0.3
+    Obituary "$DAKKA_MP_SCRAPPER"
 
     var int user_spawnvelx;
     var int user_spawnvely;
@@ -562,6 +563,7 @@ actor SplitScrap
     BounceCount 2
 
     Scale 0.2
+    Obituary "$DAKKA_MP_SCRAPPER"
 
     var int user_harmlesst;
     var int user_rippert;
@@ -680,6 +682,7 @@ actor ScrapperGrenade
     BounceCount      2
 
     Scale 0.3
+    Obituary "$DAKKA_MP_SCRAPPER"
 
     var int user_spawnvelx;
     var int user_spawnvely;

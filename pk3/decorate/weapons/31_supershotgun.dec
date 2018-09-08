@@ -489,7 +489,7 @@ actor DakkaSSG_Grenade
     BounceFactor 1
 
     ProjectileKickback 100
-    Obituary "$DAKKA_MP_SUPERSHOTGUN_GYRO"
+    Obituary "$DAKKA_MP_SUPERSHOTGUN_ALT"
 
     var int user_spawnvelx;
     var int user_spawnvely;
