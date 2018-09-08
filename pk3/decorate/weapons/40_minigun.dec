@@ -1114,6 +1114,8 @@ actor MinigunBurner
     DamageType "Fire"
     var int user_damage;
     var int user_painfactor; // 3 if directly burning, 15 otherwise
+    
+    Obituary "$DAKKA_MP_MINIGUN_FLAME"
 
     States
     {

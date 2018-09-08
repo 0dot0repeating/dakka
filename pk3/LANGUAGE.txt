@@ -36,39 +36,41 @@ DAKKA_PK_FLAMERFUEL         = "Flamer fuel";
 
 
 DAKKA_PK_FISTS              = "Two hands!";
-DAKKA_MP_FISTS              = "%k smacked down %o.";
-DAKKA_MP_FISTS_SLAM         = "%k smashed %o.";
+DAKKA_MP_FISTS              = "%o wasn't ready for %k's barrage of fists.";
+DAKKA_MP_FISTS_POWER        = "%o was splattered over the walls by %k's fists.";
 
 DAKKA_PK_SCRAPPER           = "Scrappers! Wait, what?";
-DAKKA_MP_SCRAPPER           = "%k scrapped %o.";
+DAKKA_MP_SCRAPPER           = "%o was shown the value of recycling by %k's scrappers.";
 
 DAKKA_PK_PISTOLS            = "Pistols!";
-DAKKA_MP_PISTOLS            = "%k put some holes into %o.";
+DAKKA_MP_PISTOLS            = "%o underestimated %k's pistols.";
 
 DAKKA_PK_SHOTGUN            = "Shotgun!";
-DAKKA_MP_SHOTGUN            = "%k hunted down %o.";
-DAKKA_MP_SHOTGUN_GRENADE    = "%k neutralized %o.";
+DAKKA_MP_SHOTGUN            = "%o's torso was surgically removed by %k's shotgun.";
+DAKKA_MP_SHOTGUN_GRENADE    = "%o caught %k's grenade with %p face.";
+DAKKA_MP_SHOTGUN_GRENADE2   = "%o was caught off guard by %k's fragmenting grenade.";
 
 DAKKA_PK_SUPERSHOTGUN       = "Super shotgun!";
-DAKKA_MP_SUPERSHOTGUN       = "%k snapped %o in half.";
-DAKKA_MP_SUPERSHOTGUN_GYRO  = "%k liquefied %o.";
+DAKKA_MP_SUPERSHOTGUN       = "%o was sent flying by %k's super shotgun.";
+DAKKA_MP_SUPERSHOTGUN_ALT   = "%o was engulfed in %k's blast wave.";
 
 DAKKA_PK_MINIGUN            = "Minigun!";
-DAKKA_MP_MINIGUN            = "%k minced %o.";
-DAKKA_MP_MINIGUN_FLAME      = "%k toasted %o.";
+DAKKA_MP_MINIGUN            = "%o stepped in front of %k's minigun.";
+DAKKA_MP_MINIGUN_FLAME      = "%o was thoroughly cooked by %k's minigun.";
 
 DAKKA_PK_IMPALER            = "Impaler!";
-DAKKA_MP_IMPALER            = "%k impaled %o.";
+DAKKA_MP_IMPALER            = "%o couldn't stand up to the barrage of %k's impaler.";
+DAKKA_MP_IMPALER_ALT        = "%o was splattered all over the room by %k's impaler.";
 
 DAKKA_PK_PLASMALANCE        = "Lancer!";
-DAKKA_MP_PLASMALANCE        = "%k burned a hole through %o.";
+DAKKA_MP_PLASMALANCE        = "%o was nailed by %k's lancer.";
+DAKKA_MP_PLASMALANCE_ALT    = "%o became a conduit for %k's lancer.";
 
 DAKKA_PK_BFG9000            = "\caBig feffin' gun!";
-DAKKA_MP_BFG9000            = "%k annihilated %o.";
-DAKKA_MP_BFG9000_BLAST      = "%k pulverized %o.";
+DAKKA_MP_BFG9000            = "%o was evaporated by the maelstrom of %k's BFG.";
+DAKKA_MP_BFG9000_ALT        = "%o was wiped off the map by %k's BFG.";
 
-OB_MPTELEFRAG               = "%k scrambled %o.";
-OB_RAILGUN                  = "%k punched some holes in %o.";
+OB_MPTELEFRAG               = "%o had his space invaded by %k.";
 
 OB_FRIENDLY1                = "Dammit, %k, that's not a demon!";
 OB_FRIENDLY2                = "%k became the demons.";

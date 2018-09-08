@@ -334,7 +334,7 @@ actor ShotgunMiniGrenade
     Gravity 0.5
     Scale 0.5
 
-    Obituary "$DAKKA_MP_SHOTGUN_GRENADE"
+    Obituary "$DAKKA_MP_SHOTGUN_GRENADE2"
     Decal "BulletScorch"
 
     ProjectileKickback 100

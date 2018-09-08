@@ -26,7 +26,7 @@ actor DWep_BFG9000: DoomWeapon
     +ALT_AMMO_OPTIONAL
 
     Inventory.PickupMessage "$DAKKA_PK_BFG9000"
-    Obituary "$DAKKA_MP_BFG9000SPLASH"
+    Obituary "$DAKKA_MP_BFG9000"
 
     States
     {
@@ -678,7 +678,7 @@ actor BFGHomingShot_Stage1
     +FORCEXYBILLBOARD
 
     DeathSound "dakka/bfgexplode"
-    Obituary "$DAKKA_MP_BFG9000_BLAST"
+    Obituary "$DAKKA_MP_BFG9000_ALT"
 
     var int user_t;
     var int user_hometime;
@@ -719,6 +719,7 @@ actor BFGHomingShot_Stage1
 actor BFGHomingShot_ToStage2
 {
     +SERVERSIDEONLY
+    Obituary "$DAKKA_MP_BFG9000_ALT"
 
     States
     {
@@ -768,7 +769,7 @@ actor BFGHomingShot_Stage2
     +FORCEXYBILLBOARD
 
     DeathSound "dakka/bfgexplode"
-    Obituary "$DAKKA_MP_BFG9000_BLAST"
+    Obituary "$DAKKA_MP_BFG9000_ALT"
 
     var int user_t;
     var int user_angle;
@@ -1026,7 +1027,7 @@ actor BFGMaelstromShot
     +FORCEXYBILLBOARD
 
     DeathSound "dakka/bfgexplode"
-    Obituary "$DAKKA_MP_BFG9000_BLAST"
+    Obituary "$DAKKA_MP_BFG9000"
 
     var int user_t;
 

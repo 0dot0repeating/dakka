@@ -690,6 +690,8 @@ actor FistPowerPunch1: BulletPuff
     Damage 100
     DamageType "FistLightStun"
     ReactionTime 5
+    
+    Obituary "$DAKKA_MP_FISTS_POWER"
 
     States
     {
