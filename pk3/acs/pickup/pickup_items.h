@@ -67,15 +67,15 @@ int PKP_ReceiveItems[PICKUPCOUNT][CLASSCOUNT][PK_RECEIVECOUNT] =
     },
     {
         {"Shotgun"},
-        {"DWep_Shotgun", "DakkaGrenades"},
+        {"DWep_Shotgun"},
     },
     {
         {"SuperShotgun"},
-        {"DWep_SuperShotgun", "DakkaGrenades"},
+        {"DWep_SuperShotgun"},
     },
     {
         {"Chaingun"},
-        {"DWep_Minigun", "DakkaFlamerFuel"},
+        {"DWep_Minigun"},
     },
     {
         {"RocketLauncher"},
@@ -113,7 +113,7 @@ int PKP_ReceiveItems[PICKUPCOUNT][CLASSCOUNT][PK_RECEIVECOUNT] =
     // Skulltag pickups
     { // Minigun
         {"Minigun"},
-        {"DWep_Minigun", "DakkaFlamerFuel"},
+        {"DWep_Minigun"},
     },
     { // Grenade launcher
         {"GrenadeLauncher"},
@@ -170,15 +170,15 @@ int PKP_ReceiveCount[PICKUPCOUNT][CLASSCOUNT][PK_RECEIVECOUNT] =
     },
     {
         {1},
-        {1, 4},
+        {1},
     },
     {
         {1},
-        {1, 4},
+        {1},
     },
     {
         {1},
-        {1, 10},
+        {1},
     },
     {
         {1},
@@ -218,7 +218,7 @@ int PKP_ReceiveCount[PICKUPCOUNT][CLASSCOUNT][PK_RECEIVECOUNT] =
     // Skulltag pickups
     { // Minigun
         {1},
-        {1, 10},
+        {1},
     },
     { // Grenade launcher
         {1},
