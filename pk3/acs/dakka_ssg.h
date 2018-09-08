@@ -1,14 +1,26 @@
 function void SSG_AutoReload(void)
 {
+    if (CheckWeapon("DWep_SuperShotgun")) { return; }
+    
+    int pln = PlayerNumber();
+    if (pln == -1) { return; }
+    
+    int t = AutoReloadCooldowns[pln][0];
+    if (Timer() >= t) { SetInventory("DakkaSSG_ShotsFired", 0); }
+}
+
+
+script "DSSG_CanAutoReload" (void)
+{
     int pln = PlayerNumber();
 
-    // Don't tick down auto reload timer if it's in our hands
-    if (CheckWeapon("DWep_SuperShotgun")) { return; }
-
-    int time = max(0, AutoReloadCooldowns[pln][0] - 1);
-    if (time == 0) { SetInventory("DakkaSSG_ShotsFired", 0); }
-
-    AutoReloadCooldowns[pln][0] = time;
+    if (pln == -1 || CheckInventory("DakkaSSG_ShotsFired") == 0)
+    {
+        SetResultValue(false);
+        terminate;
+    }
+    
+    SetResultValue(Timer() >= AutoReloadCooldowns[pln][0]);
 }
 
 
@@ -17,6 +29,8 @@ script "DSSG_ShotsLeft" (void)
 {
     SetResultValue(SSG_SHOTMAX - CheckInventory("DakkaSSG_ShotsFired"));
 }
+
+
 
 // Only reason this exists is because A_GiveInventory occasionally desyncs
 //  online. This doesn't desync. As often. I think.
@@ -34,14 +48,16 @@ script "DSSG_ChangeShots" (int amount)
     else
     {
         GiveInventory("DakkaSSG_ShotsFired",  amount);
-        AutoReloadCooldowns[pln][0] = 35;
+        AutoReloadCooldowns[pln][0] = Timer() + 35;
     }
 }
+
 
 script "DSSG_BothClicked" (void)
 {
     SetResultValue(inputPressed(BT_ATTACK | BT_ALTATTACK));
 }
+
 
 script "DSSG_Refire" (void)
 {
