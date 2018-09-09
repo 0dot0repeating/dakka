@@ -116,24 +116,34 @@ script "Dakka_OutOfAmmo" (int trigger, int justlow, int soundtype)
     
     if (trigger == -1 || CheckInventory(checkitem) < t)
     {
-        SetInventory(checkitem, t + 16);
+        SetInventory(checkitem, t + 18);
         
-        // this looks dumb, but I want to avoid sound slot issues
-        int myTID_old = ActivatorTID();
-        int myTID_new = UniqueTID();
-        Thing_ChangeTID(0, myTID_new);
-        
-        int newTID = UniqueTID();
-        SpawnSpotForced("OutOfAmmoSound", myTID_new, newTID, 0);
-        
-        SetActivator(newTID);
-        SetPointer(AAPTR_TARGET, myTID_new);
-        Warp(myTID_new, 0,0,0, 0, WARPF_NOCHECKPOSITION | WARPF_COPYINTERPOLATION);
-        
-        ACS_NamedExecuteWithResult("Dakka_Follow");
-        SetActorState(0, state);
-        
-        Thing_ChangeTID(myTID_new, myTID_old);
+        switch (soundtype)
+        {
+          default: // pull trigger, no ammo
+            LocalAmbientSound("dakka/outofammo", 127);
+            break;
+            
+          case 1: // low ammo after shooting
+            LocalAmbientSound("dakka/lowammo", 127);
+            LocalAmbientSound("dakka/lowammo", 82);
+            break;
+            
+          case 2: // low ammo on selected gun
+            Delay(2);
+            LocalAmbientSound("dakka/lowammo", 127);
+            break;
+            
+          case 3: // no ammo for selected gun
+            Delay(2);
+            LocalAmbientSound("dakka/outofammo", 127);
+            break;
+            
+          case 4: // out of ammo after shooting
+            LocalAmbientSound("dakka/outofammo", 127);
+            LocalAmbientSound("dakka/outofammo", 82);
+            break;
+        }
     }
 }
 
