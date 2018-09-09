@@ -77,7 +77,7 @@ int Dakka_ClassWeaponPowers[CLASSWEAPONS][CLASSCOUNT] =
     { 7,  7}, // BFG
 
     { 1,  1}, // staff          (fist)
-    { 3,  1}, // gauntlets      (scrappers)
+    { 3,  5}, // gauntlets      (scrappers)
     { 2,  2}, // wand           (revolvers)
     { 3,  3}, // crossbow       (shotgun)
     { 4,  4}, // blaster        (minigun)
