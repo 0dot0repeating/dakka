@@ -48,7 +48,7 @@ script "DSSG_ChangeShots" (int amount)
     else
     {
         GiveInventory("DakkaSSG_ShotsFired",  amount);
-        AutoReloadCooldowns[pln][0] = Timer() + 35;
+        AutoReloadCooldowns[pln][0] = Timer() + 49;
     }
 }
 
