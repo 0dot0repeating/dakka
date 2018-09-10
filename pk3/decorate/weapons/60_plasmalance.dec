@@ -572,6 +572,7 @@ actor LanceArcShot: Arc_Base
     +PUFFONACTORS
     +BLOODLESSIMPACT
     +MTHRUSPECIES
+    +NOTIMEFREEZE
 
     Decal "PlasmaScorchBigger"
     Obituary "$DAKKA_PK_PLASMALANCE_ALT"
@@ -614,13 +615,15 @@ actor LanceArcShot: Arc_Base
         TNT1 A 0 A_PlaySound("arc/fry")
         TNT1 A 0 A_JumpIf(user_depth == 0, "HitNothing")
         TNT1 AAAAA 0 A_SpawnItemEx("LanceArcSpark", 0,0,0, frandom(-6, 6), 0, frandom(2, 10), frandom(0, 360))
-        TNT1 A 0 A_SpawnItemEx("LanceArcEndSpark")
+        TNT1 A 0 A_ChangeFlag("NOTIMEFREEZE", false)
+        TNT1 A 4 A_SpawnItemEx("LanceArcEndSpark")
         stop
 
       HitNothing:
         TNT1 A 0 A_Explode(args[2], 32, false, false, 32)
         TNT1 AAAAAA 0 A_SpawnItemEx("LanceArcSpark", 0,0,0, frandom(-6, 6), 0, frandom(2, 10), frandom(0, 360))
-        TNT1 A 0 A_SpawnItemEx("LanceArcEndSpark")
+        TNT1 A 0 A_ChangeFlag("NOTIMEFREEZE", false)
+        TNT1 A 4 A_SpawnItemEx("LanceArcEndSpark")
         stop
     }
 }
