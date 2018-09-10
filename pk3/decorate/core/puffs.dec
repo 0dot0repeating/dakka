@@ -72,6 +72,7 @@ actor DakkaPuff: BulletPuff
 
       Trace:
         TNT1 A 0 bright ACS_NamedExecuteWithResult("Dakka_Tracer", TRACE_BULLET, 0, -6)
+        DPUF A 0 bright A_ChangeFlag("NOTIMEFREEZE", 0)
         DPUF AB 4 bright
         goto Melee
 
@@ -81,27 +82,6 @@ actor DakkaPuff: BulletPuff
     }
 }
 
-actor DakkaPuff_Left: DakkaPuff
-{
-    States
-    {
-      Trace:
-        TNT1 A 0 bright ACS_NamedExecuteWithResult("Dakka_Tracer", TRACE_BULLET, -2, -4)
-        DPUF AB 4 bright
-        goto Melee
-    }
-}
-
-actor DakkaPuff_Right: DakkaPuff
-{
-    States
-    {
-      Trace:
-        TNT1 A 0 bright ACS_NamedExecuteWithResult("Dakka_Tracer", TRACE_BULLET,  2, -4)
-        DPUF AB 4 bright
-        goto Melee
-    }
-}
 
 actor DakkaPuff_BigLeft: DakkaPuff
 {
@@ -109,10 +89,12 @@ actor DakkaPuff_BigLeft: DakkaPuff
     {
       Trace:
         TNT1 A 0 bright ACS_NamedExecuteWithResult("Dakka_Tracer", TRACE_BULLET_BIG, -500, -420, true)
+        DPUF A 0 bright A_ChangeFlag("NOTIMEFREEZE", 0)
         DPUF AB 4 bright
         goto Melee
     }
 }
+
 
 actor DakkaPuff_BigRight: DakkaPuff
 {
@@ -120,10 +102,12 @@ actor DakkaPuff_BigRight: DakkaPuff
     {
       Trace:
         TNT1 A 0 bright ACS_NamedExecuteWithResult("Dakka_Tracer", TRACE_BULLET_BIG,  500, -420, true)
+        DPUF A 0 bright A_ChangeFlag("NOTIMEFREEZE", 0)
         DPUF AB 4 bright
         goto Melee
     }
 }
+
 
 actor DakkaPuff_Painless: DakkaPuff
 {
@@ -142,7 +126,6 @@ actor DakkaBulletSpark
     -NOGRAVITY
     +THRUACTORS
     +DOOMBOUNCE
-    +NOTIMEFREEZE
     +FORCEXYBILLBOARD
     +DONTSPLASH
     +NOTRIGGER
@@ -156,7 +139,7 @@ actor DakkaBulletSpark
     States
     {
       Spawn:
-        DPUF A 0
+        TNT1 A 0
         DPUF A 0 ACS_NamedExecuteWithResult("Dakka_LessEffects", true)
         goto Spawn2
 
