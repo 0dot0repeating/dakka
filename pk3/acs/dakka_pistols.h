@@ -38,11 +38,11 @@ script "Dakka_PistolSpread" (int axis)
     
     if (axis == 1) // vertical spread
     {
-        ret = 0.5 + (0.1 * spreadMod);
+        ret = 0.11 * spreadMod;
     }
     else // horizontal spread
     {
-        ret = 0.5 + (0.125 * spreadMod);
+        ret = 0.135 * spreadMod;
     }
     
     //Log(s:cond(axis == 1, "Y", "X"), s:" spread: ", f:ret);
