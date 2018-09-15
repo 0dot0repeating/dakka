@@ -1,8 +1,8 @@
 texture DAKWFAL1    range   DAKWFAL4      tics 8
 texture DLAVFAL1    range   DLAVFAL4      tics 8
+texture DFIRBLU1    range   DFIRBLU2      tics 8
 flat    FDWATER1    range   FDWATER4      tics 8
 flat    DAKLAVA1    range   DAKLAVA4      tics 8
-flat    DFIRBLU1    range   DFIRBLU2      tics 8
 
 texture HUD_AM15
     pic HUD_AM15 tics 6
