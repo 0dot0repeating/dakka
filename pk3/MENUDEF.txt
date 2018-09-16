@@ -24,8 +24,8 @@ OptionValue Dakka_StartMode_Ammo
     1, "Reset ammo (low)"
     2, "Reset ammo (high)"
     3, "Max out ammo"
-    4, "Keep only pistol ammo"
-    5, "Pistol full, rest empty"
+    4, "Pistol ammo only"
+    5, "Custom"
 }
 
 OptionValue Dakka_ScrapperStart
@@ -229,6 +229,7 @@ OptionMenu Dakka_GameOptions
     StaticText ""
     
     Submenu "Score fine-tuning", "Dakka_ScoreOptions"
+    Submenu "Custom start ammo", "Dakka_CustomStartAmmo"
 }
 
 
@@ -252,6 +253,42 @@ OptionMenu Dakka_ScoreOptions
     
     Option "Debug info",                "dakka_debug_score",    "OnOff"
 }
+
+
+OptionMenu Dakka_CustomStartAmmo
+{
+    Title "DAKKA (Custom start ammo)"
+    
+    StaticText "Starting ammo values", 1
+    StaticText "Takes effect when ammo mode is \"custom\"."
+    StaticText "Values below zero mean \"leave alone\"."
+    StaticText ""
+    
+    Slider "Scrap",             "dakka_startammo_scrap",       -12,  480, 12, 0
+    Slider ".50AE (pistols)",   "dakka_startammo_50ae",        -14,  420, 14, 0
+    Slider "Shells",            "dakka_startammo_shells",       -4,  200,  4, 0
+    Slider "Grenades",          "dakka_startammo_grenades",     -2,   60,  2, 0
+    Slider "5mm (minigun)",     "dakka_startammo_5mm",         -20, 1000, 20, 0
+    Slider "Flamer fuel",       "dakka_startammo_flamer",       -4,   80,  4, 0
+    Slider "Rockets",           "dakka_startammo_rockets",      -6,  240,  6, 0
+    Slider "Cells",             "dakka_startammo_cells",       -20,  800, 20, 0
+    
+    StaticText ""
+    StaticText "Ignore weapon requirements", 1
+    StaticText "Normally, ammo for guns you don't have"
+    StaticText "gets taken away entirely."
+    StaticText ""
+    
+    Option "Scrap",             "dakka_startammo_scrap_always",     "OnOff"
+    Option ".50AE (pistols)",   "dakka_startammo_50ae_always",      "OnOff"
+    Option "Shells",            "dakka_startammo_shells_always",    "OnOff"
+    Option "Grenades",          "dakka_startammo_grenades_always",  "OnOff"
+    Option "5mm (minigun)",     "dakka_startammo_5mm_always",       "OnOff"
+    Option "Flamer fuel",       "dakka_startammo_flamer_always",    "OnOff"
+    Option "Rockets",           "dakka_startammo_rockets_always",   "OnOff"
+    Option "Cells",             "dakka_startammo_cells_always",     "OnOff"
+}
+
 
 
 OptionMenu "Dakka_UserOptions"

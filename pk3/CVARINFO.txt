@@ -21,6 +21,23 @@ server int  dakka_score_monsterscalar = 50;
 server int  dakka_score_interval      = 5000;
 server int  dakka_score_rewardtypes   = 0;
 
+server int  dakka_startammo_scrap           = 60;
+server bool dakka_startammo_scrap_always    = false;
+server int  dakka_startammo_50ae            = 70;
+server bool dakka_startammo_50ae_always     = false;
+server int  dakka_startammo_shells          = 16;
+server bool dakka_startammo_shells_always   = false;
+server int  dakka_startammo_grenades        = 8;
+server bool dakka_startammo_grenades_always = false;
+server int  dakka_startammo_5mm             = 160;
+server bool dakka_startammo_5mm_always      = false;
+server int  dakka_startammo_flamer          = 12;
+server bool dakka_startammo_flamer_always   = false;
+server int  dakka_startammo_rockets         = 18;
+server bool dakka_startammo_rockets_always  = false;
+server int  dakka_startammo_cells           = 40;
+server bool dakka_startammo_cells_always    = false;
+
 
 server noarchive bool dakka_bug_nossginvcheck = false;
 server noarchive bool dakka_debug_score       = false;

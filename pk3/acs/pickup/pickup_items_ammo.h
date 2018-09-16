@@ -13,7 +13,7 @@ int PKP_KnownAmmo[AMMOCOUNT] =
 {
     // DAKKA (10)
     "DakkaScrap",
-    "DakkaBullet_50AE",     // if this moves, update Dakka_UseAmmo script
+    "DakkaBullet_50AE",
     "DakkaShells",
     "DakkaGrenades",
     "DakkaBullet_5mm",
@@ -71,21 +71,21 @@ int PKP_DefaultAmmoCount[AMMOCOUNT][3] =
     { 16,  60,  5},            // shells
     {  8,  18,  5},            // grenades
     {160, 400, 70},            // 5mm
-    { 15,  24,  9},            // flamer
-    { 20,  80, 12},            // rockets
-    { 50, 200, 40},            // cells
+    { 12,  24,  9},            // flamer
+    { 18,  60, 12},            // rockets
+    { 40, 200, 40},            // cells
 
     // DOOM (4)
     {100, 300, 20},            // bullets
-    { 20,  60,  4},             // shells
-    { 10,  30,  4},             // rockets
+    { 20,  60,  4},            // shells
+    { 10,  30,  4},            // rockets
     { 80, 240, 40},            // cells
 
     // HERETIC (6)
     {100, 300,  0},            // wand
     {100, 300,  0},            // blaster
-    { 20,  60,  0},             // crossbow
-    { 10,  30,  0},             // phoenix
+    { 20,  60,  0},            // crossbow
+    { 10,  30,  0},            // phoenix
     {100, 250,  0},            // hellstaff
     { 50, 100,  0},            // firemace
 
@@ -96,12 +96,31 @@ int PKP_DefaultAmmoCount[AMMOCOUNT][3] =
     // STRIFE (7)
     //  (this will probably *never* come into play, since strife's one big hub)
     {100, 300,  0},            // bullets
-    { 30,  60,  0},             // electric
-    {  5,  15,  0},             // poison
-    { 20,  75,  0},             // missiles
-    {  6,  24,  0},             // HE
-    {  2,   8,  0},              // phosphorus
+    { 30,  60,  0},            // electric
+    {  5,  15,  0},            // poison
+    { 20,  75,  0},            // missiles
+    {  6,  24,  0},            // HE
+    {  2,   8,  0},            // phosphorus
     {120, 320,  0},            // energy
+};
+
+
+// DAKKA EXTENSION
+// If dakka_startmode_ammo is set to 6, it'll read from these cvars to get the
+//  desired amount of ammo.
+
+str PKP_CustomStartAmmoCVars[AMMOCOUNT][2] =
+{
+    {"dakka_startammo_scrap",    "dakka_startammo_scrap_always"},
+    {"dakka_startammo_50ae",     "dakka_startammo_50ae_always"},
+    {"dakka_startammo_shells",   "dakka_startammo_shells_always"},
+    {"dakka_startammo_grenades", "dakka_startammo_grenades_always"},
+    {"dakka_startammo_5mm",      "dakka_startammo_5mm_always"},
+    {"dakka_startammo_flamer",   "dakka_startammo_flamer_always"},
+    {"dakka_startammo_rockets",  "dakka_startammo_rockets_always"},
+    {"dakka_startammo_cells",    "dakka_startammo_cells_always"},
+    
+    // no one cares about the rest
 };
 
 
