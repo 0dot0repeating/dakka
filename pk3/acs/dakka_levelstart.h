@@ -153,9 +153,10 @@ function void Dakka_StartMode_Ammo(int classNum, int entered, int lostAmmo)
         Start_AmmoToKeep[i] = false;
     }
 
-    int giveLargeAmmo = (startMode == 2);
-    int giveMaxAmmo   = (startMode == 3) || (startMode == 5);
-    int onlyPistols   = (startMode == 4) || (startMode == 5);
+    int giveLargeAmmo = startMode == 2;
+    int giveMaxAmmo   = startMode == 3;
+    int onlyPistols   = startMode == 4;
+    int customValues  = startMode == 5;
 
     // Determine which ammo should be given
     for (i = 0; i < WEAPONCOUNT; i++)
@@ -214,23 +215,28 @@ function void Dakka_StartMode_Ammo(int classNum, int entered, int lostAmmo)
     //  that shouldn't be given
     for (i = 0; i < AMMOCOUNT; i++)
     {
-        int ammoName = PKP_KnownAmmo[i];
-        TakeInventory(ammoName, 0x7FFFFFFF);
-
-        if (Start_AmmoToKeep[i])
+        str ammoName = PKP_KnownAmmo[i];
+        int always     = false;
+        str alwaysCVar = PKP_CustomStartAmmoCVars[i][1];
+        if (customValues && !stringBlank(alwaysCVar)) { always = GetCVar(alwaysCVar); } 
+        
+        SetInventory(ammoName, 0);
+        
+        if (always || Start_AmmoToKeep[i])
         {
-            if (giveMaxAmmo)
+            int newAmount;
+            
+            if (customValues)
             {
-                GiveInventory(ammoName, GetAmmoCapacity(ammoName));
+                str amountCVar = PKP_CustomStartAmmoCVars[i][0];
+                if (stringBlank(amountCVar)) { newAmount = PKP_DefaultAmmoCount[i][DAMMO_STARTLOW]; }
+                else                         { newAmount = GetCVar(amountCVar); }
             }
-            else if (giveLargeAmmo)
-            {
-                GiveInventory(ammoName, PKP_DefaultAmmoCount[i][DAMMO_STARTHIGH]);
-            }
-            else
-            {
-                GiveInventory(ammoName, PKP_DefaultAmmoCount[i][DAMMO_STARTLOW]);
-            }
+            else if (giveMaxAmmo)   { newAmount = GetAmmoCapacity(ammoName); }
+            else if (giveLargeAmmo) { newAmount = PKP_DefaultAmmoCount[i][DAMMO_STARTHIGH]; }
+            else                    { newAmount = PKP_DefaultAmmoCount[i][DAMMO_STARTLOW]; }
+            
+            if (newAmount >= 0) { GiveAmmo(ammoName, newAmount); }
         }
     }
 }
