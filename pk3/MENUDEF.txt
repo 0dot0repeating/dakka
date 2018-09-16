@@ -120,6 +120,12 @@ OptionValue Dakka_DefenseLevel
      10, "10x tougher"
 }
 
+OptionValue Dakka_IgnoreWeaponRequirement
+{
+    0, "Check for weapon"
+    1, "Always reset"
+}
+
 OptionValue Dakka_NoAmmoClick
 {
     0, "Off"
@@ -279,14 +285,14 @@ OptionMenu Dakka_CustomStartAmmo
     StaticText "gets taken away entirely."
     StaticText ""
     
-    Option "Scrap",             "dakka_startammo_scrap_always",     "OnOff"
-    Option ".50AE (pistols)",   "dakka_startammo_50ae_always",      "OnOff"
-    Option "Shells",            "dakka_startammo_shells_always",    "OnOff"
-    Option "Grenades",          "dakka_startammo_grenades_always",  "OnOff"
-    Option "5mm (minigun)",     "dakka_startammo_5mm_always",       "OnOff"
-    Option "Flamer fuel",       "dakka_startammo_flamer_always",    "OnOff"
-    Option "Rockets",           "dakka_startammo_rockets_always",   "OnOff"
-    Option "Cells",             "dakka_startammo_cells_always",     "OnOff"
+    Option "Scrap",             "dakka_startammo_scrap_always",     "Dakka_IgnoreWeaponRequirement"
+    Option ".50AE (pistols)",   "dakka_startammo_50ae_always",      "Dakka_IgnoreWeaponRequirement"
+    Option "Shells",            "dakka_startammo_shells_always",    "Dakka_IgnoreWeaponRequirement"
+    Option "Grenades",          "dakka_startammo_grenades_always",  "Dakka_IgnoreWeaponRequirement"
+    Option "5mm (minigun)",     "dakka_startammo_5mm_always",       "Dakka_IgnoreWeaponRequirement"
+    Option "Flamer fuel",       "dakka_startammo_flamer_always",    "Dakka_IgnoreWeaponRequirement"
+    Option "Rockets",           "dakka_startammo_rockets_always",   "Dakka_IgnoreWeaponRequirement"
+    Option "Cells",             "dakka_startammo_cells_always",     "Dakka_IgnoreWeaponRequirement"
 }
 
 
