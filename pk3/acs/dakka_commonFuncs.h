@@ -352,17 +352,9 @@ function int ToggleInventory(int inv)
 
 function void GiveAmmo(int type, int amount)
 {
-    if (GetCVar("sv_doubleammo"))
-    {
-        int expected = CheckInventory(type) + amount;
-
-        GiveInventory(type, amount);
-        TakeInventory(type, CheckInventory(type) - expected);
-    }
-    else
-    {
-        GiveInventory(type, amount);
-    }
+    int expected = CheckInventory(type) + amount;
+    GiveInventory(type, amount);
+    TakeInventory(type, CheckInventory(type) - expected);
 }
 
 
