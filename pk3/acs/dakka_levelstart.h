@@ -218,9 +218,7 @@ function void Dakka_StartMode_Ammo(int classNum, int entered, int lostAmmo)
         str ammoName = PKP_KnownAmmo[i];
         int always     = false;
         str alwaysCVar = PKP_CustomStartAmmoCVars[i][1];
-        if (customValues && !stringBlank(alwaysCVar)) { always = GetCVar(alwaysCVar); } 
-        
-        SetInventory(ammoName, 0);
+        if (customValues && !stringBlank(alwaysCVar)) { always = GetCVar(alwaysCVar); }
         
         if (always || Start_AmmoToKeep[i])
         {
@@ -236,7 +234,11 @@ function void Dakka_StartMode_Ammo(int classNum, int entered, int lostAmmo)
             else if (giveLargeAmmo) { newAmount = PKP_DefaultAmmoCount[i][DAMMO_STARTHIGH]; }
             else                    { newAmount = PKP_DefaultAmmoCount[i][DAMMO_STARTLOW]; }
             
-            if (newAmount >= 0) { GiveAmmo(ammoName, newAmount); }
+            if (newAmount >= 0) { SetInventory(ammoName, newAmount); }
+        }
+        else
+        {
+            SetInventory(ammoName, 0);
         }
     }
 }
