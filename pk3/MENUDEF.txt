@@ -407,7 +407,7 @@ ListMenu Dakka_Options
         StaticPatch 88, 0, "M_HTIC"
         StaticPatch 40, 10, "M_SKL01"
         StaticPatch 232, 10, "M_SKL00"
-        Position 93, 56
+        Position 98, 56
     }
 
     IfGame(Hexen)
@@ -415,7 +415,7 @@ ListMenu Dakka_Options
         StaticPatch 88, 0, "M_HTIC"
         StaticPatch 37, 80, "FBULB0"
         StaticPatch 278, 80, "FBULA0"
-        Position 93, 56
+        Position 98, 56
     }
 
     //Font "CONFONT", "White"
@@ -442,13 +442,23 @@ ListMenu Dakka_Options
         TextItem "Read This!",   "h", "ReadThisMenu"
     }
 
-    IfGame(Heretic,Hexen)
+    IfGame(Heretic)
     {
         Font "BIGFONT", "Untranslated"
         TextItem "Game Options", "g", "Dakka_GameOptions"
         TextItem "User Options", "u", "Dakka_UserOptions"
 
-        Font "BIGFONT", "Gold"
+        Font "BIGFONT", "Dakka_HereticMenu"
+        TextItem "Read This",    "h", "ReadThisMenu"
+    }
+
+    IfGame(Hexen)
+    {
+        Font "BIGFONT", "Untranslated"
+        TextItem "Game Options", "g", "Dakka_GameOptions"
+        TextItem "User Options", "u", "Dakka_UserOptions"
+
+        Font "BIGFONT", "Dakka_HexenMenu"
         TextItem "Read This",    "h", "ReadThisMenu"
     }
 }
@@ -537,12 +547,23 @@ ListMenu MainMenu
         PatchItem "M_QUITG", "q", "QuitMenu"
     }
 
-    IfGame(Heretic, Hexen)
+    IfGame(Heretic)
     {
         TextItem "$MNU_NEWGAME", "n", "PlayerclassMenu"
         TextItem "$MNU_OPTIONS", "o", "OptionsMenu"
         TextItem "$MNU_GAMEFILES", "g", "GameFilesMenu"
-        Font "BIGFONT", "Gold"
+        Font "BIGFONT", "Dakka_HereticMenu"
+        TextItem "Dakka", "d", "Dakka_Options"
+        Font "BIGFONT", "Untranslated"
+        TextItem "$MNU_QUITGAME", "q", "QuitMenu"
+    }
+
+    IfGame(Hexen)
+    {
+        TextItem "$MNU_NEWGAME", "n", "PlayerclassMenu"
+        TextItem "$MNU_OPTIONS", "o", "OptionsMenu"
+        TextItem "$MNU_GAMEFILES", "g", "GameFilesMenu"
+        Font "BIGFONT", "Dakka_HexenMenu"
         TextItem "Dakka", "d", "Dakka_Options"
         Font "BIGFONT", "Untranslated"
         TextItem "$MNU_QUITGAME", "q", "QuitMenu"
