@@ -359,7 +359,7 @@ OptionMenu "Dakka_UserOptions"
 
 OptionMenu "Dakka_WeaponBinds"
 {
-    Title "DAKKA (Weapon binds)"
+    Title "DAKKA (Weapon bindings)"
     
     StaticText "Take full advantage of the quick swapping!", 1
     StaticText "These binds only apply when DAKKA is loaded.", 1
