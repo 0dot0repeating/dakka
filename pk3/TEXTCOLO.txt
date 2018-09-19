@@ -195,3 +195,19 @@ DTitle_PlasmaLance
 {
     #200A30 #D050FF 0 255
 }
+
+
+Dakka_HereticMenu
+{
+    #402000 #FFD050 0   95
+    #FFD050 #FFFFFF 96  191
+    #FFFFFF #FFFFFF 192 255
+}
+
+
+Dakka_HexenMenu
+{
+    #603000 #FFE060 0    55
+    #FFE060 #FFFFFF 56  127
+    #FFFFFF #FFFFFF 128 255
+}
