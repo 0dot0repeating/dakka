@@ -5,6 +5,7 @@ OptionValue Dakka_StartMode_Health
     2, "100 health + green armor"
     3, "200 health + blue armor"
     4, "Megasphere"
+    5, "Quake (heal up to 50)"
 }
 
 OptionValue Dakka_StartMode_Weapons

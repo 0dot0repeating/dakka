@@ -308,27 +308,36 @@ function void Dakka_StartMode_Health(int classNum, int freshStart, int respawnin
 
     if (startmode == 0) { return; }
 
+    int curHP = GetActorProperty(0, APROP_Health);
     int maxHP = getMaxHealth();
-
-    SetActorProperty(0, APROP_Health, maxHP);
-    TakeInventory("BasicArmor", 0x7FFFFFFF);
 
     switch (startmode)
     {
       default:
+        SetActorProperty(0, APROP_Health, maxHP);
+        TakeInventory("BasicArmor", 0x7FFFFFFF);
         break;
 
       case 2:
+        SetActorProperty(0, APROP_Health, maxHP);
+        TakeInventory("BasicArmor", 0x7FFFFFFF);
         Pickup_DoPickup(It_GreenArmor, classNum, false);
         break;
 
       case 3:
-        GiveInventory("Pickup_Soulsphere", 1);
+        SetActorProperty(0, APROP_Health, maxHP + 100);
+        TakeInventory("BasicArmor", 0x7FFFFFFF);
         Pickup_DoPickup(It_BlueArmor,  classNum, false);
         break;
 
       case 4:
+        SetActorProperty(0, APROP_Health, maxHP);
+        TakeInventory("BasicArmor", 0x7FFFFFFF);
         GiveInventory("Pickup_Megasphere", 1);
+        break;
+      
+      case 5:
+        SetActorProperty(0, APROP_Health, max(50, curHP));
         break;
     }
 }
