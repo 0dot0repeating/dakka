@@ -8,7 +8,6 @@ server int  dakka_defenselevel        = 0;
 server int  dakka_startmode_weapons   = 0;
 server int  dakka_startmode_ammo      = 1;
 server int  dakka_startmode_health    = 1;
-server int  dakka_startmode_scrappers = 0;
 server int  dakka_startmode_backpack  = 0;
 server int  dakka_startmode_score     = 0;
 server bool dakka_ignorehubs          = false;
@@ -37,6 +36,15 @@ server int  dakka_startammo_rockets         = 18;
 server bool dakka_startammo_rockets_always  = false;
 server int  dakka_startammo_cells           = 40;
 server bool dakka_startammo_cells_always    = false;
+
+server int  dakka_startwep_scrappers        = 0;
+server int  dakka_startwep_pistols          = 1;
+server int  dakka_startwep_shotgun          = 0;
+server int  dakka_startwep_supershotgun     = 0;
+server int  dakka_startwep_minigun          = 0;
+server int  dakka_startwep_impaler          = 0;
+server int  dakka_startwep_lancer           = 0;
+server int  dakka_startwep_bfg9000          = 0;
 
 
 server noarchive bool dakka_bug_nossginvcheck = false;
