@@ -292,7 +292,7 @@ OptionMenu Dakka_CustomStartValues
     Slider "Cells",             "dakka_startammo_cells",       -20,  800, 20, 0
     
     StaticText ""
-    StaticText "Do can-use-ammo checks", 1
+    StaticText "Check ammo usability", 1
     StaticText "Normally, you only keep ammo"
     StaticText "that you have a weapon for."
     StaticText ""
