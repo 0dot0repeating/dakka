@@ -38,75 +38,21 @@ function void Dakka_StartMode_Weapons(int classNum, int entered, int lostWeapons
     int startMode = GetCVar("dakka_startmode_weapons");
     if (startMode <= 0) { return; }
 
-    int i, j;
+    int i;
 
     for (i = 0; i < AMMOCOUNT; i++)
     {
         Start_AmmoToKeep[i] = false;
     }
 
-    for (i = 0; i < CLASSWEAPONS; i++)
+    if (startMode == 1)
     {
-        int wepName  = Dakka_ClassWeapons[i][classNum+1];
-        int wepPower = Dakka_ClassWeaponPowers[i][classNum+1];
-        int wepIndex = Weapon_WeaponIndex(wepName);
-
-        // We use this to ignore fist/pistol weapons, as well as the Scrappers.
-        //
-        // But we don't want to take away ammo for them either, that's bad
-        int ignore = Dakka_ClassWep_StartModeIgnore[i][classNum+1];
-
-        if (!ignore)
-        {
-            // Weapon power rating too high
-            if (startMode < wepPower)
-            {
-                TakeInventory(wepName, 0x7FFFFFFF);
-                continue;
-            }
-
-            // If it's not a weapon we recognize, just give it once
-            //  and be done with it
-            if (wepIndex == -1)
-            {
-                GiveInventory(wepName, 1);
-                continue;
-            }
-        }
-
-        int ammo1Name = PKP_KnownGuns[wepIndex][WEP_AMMO1];
-        int ammo2Name = PKP_KnownGuns[wepIndex][WEP_AMMO2];
-
-        int gotAmmo1 = !stringBlank(ammo1Name);
-        int gotAmmo2 = !stringBlank(ammo2Name);
-
-        if (gotAmmo1)
-        {
-            int ammo1Index = Ammo_AmmoIndex(ammo1Name);
-            int ammo1Count = CheckInventory(ammo1Name);
-
-            if (ammo1Index > -1) { Start_AmmoToKeep[ammo1Index] = true; }
-        }
-
-        if (gotAmmo2)
-        {
-            int ammo2Index = Ammo_AmmoIndex(ammo2Name);
-            int ammo2Count = CheckInventory(ammo2Name);
-
-            if (ammo2Index > -1) { Start_AmmoToKeep[ammo2Index] = true; }
-        }
-
-        if (!ignore)
-        {
-            GiveInventory(wepName, 1);
-
-            // Keep ammo constant
-
-            if (gotAmmo1) { TakeInventory(ammo1Name, CheckInventory(ammo1Name) - ammo1Count); }
-            if (gotAmmo2) { TakeInventory(ammo2Name, CheckInventory(ammo2Name) - ammo2Count); }
-        }
+        Dakka_StartMode_CustomWeps(classNum);
     }
-
+    else
+    {
+        Dakka_StartMode_NormalWeps(classNum, startMode);
+    }
 
     // Take away all ammo that we're not set to keep
     for (i = 0; i < AMMOCOUNT; i++)
@@ -114,6 +60,126 @@ function void Dakka_StartMode_Weapons(int classNum, int entered, int lostWeapons
         if (!Start_AmmoToKeep[i])
         {
             TakeInventory(PKP_KnownAmmo[i], 0x7FFFFFFF);
+        }
+    }
+}
+
+
+function void Dakka_StartMode_NormalWeps(int classNum, int startMode)
+{
+    for (int i = 0; i < CLASSWEAPONS; i++)
+    {
+        str wepName  = Dakka_ClassWeapons[i][classNum+1];
+        int wepPower = Dakka_ClassWeaponPowers[i][classNum+1];
+        int wepIndex = Weapon_WeaponIndex(wepName);
+
+        // We use this to ignore the fists (and originally, pistols and scrappers too).
+        // But we don't want to take away ammo for them either, that's bad
+        int ignore = Dakka_ClassWep_StartModeIgnore[i][classNum+1];
+
+        if (!ignore)
+        {
+            if (startMode < wepPower)
+            {
+                TakeInventory(wepName, 0x7FFFFFFF);
+                continue;
+            }
+
+            // Can't do ammo-related stuff with guns we don't recognize
+            if (wepIndex == -1)
+            {
+                GiveInventory(wepName, 1);
+                continue;
+            }
+        }
+
+        str ammo1Name = PKP_KnownGuns[wepIndex][WEP_AMMO1];
+        str ammo2Name = PKP_KnownGuns[wepIndex][WEP_AMMO2];
+
+        int willHaveGun = CheckInventory(wepName) || !ignore;
+        int gotAmmo1    = !stringBlank(ammo1Name);
+        int gotAmmo2    = !stringBlank(ammo2Name);
+
+        if (gotAmmo1)
+        {
+            int ammo1Index = Ammo_AmmoIndex(ammo1Name);
+            int ammo1Count = CheckInventory(ammo1Name);
+
+            if (willHaveGun && ammo1Index > -1) { Start_AmmoToKeep[ammo1Index] = true; }
+        }
+
+        if (gotAmmo2)
+        {
+            int ammo2Index = Ammo_AmmoIndex(ammo2Name);
+            int ammo2Count = CheckInventory(ammo2Name);
+
+            if (willHaveGun && ammo2Index > -1) { Start_AmmoToKeep[ammo2Index] = true; }
+        }
+
+        if (!ignore)
+        {
+            GiveInventory(wepName, 1);
+
+            if (gotAmmo1) { SetInventory(ammo1Name, ammo1Count); }
+            if (gotAmmo2) { SetInventory(ammo2Name, ammo2Count); }
+        }
+    }
+}
+
+
+function void Dakka_StartMode_CustomWeps(int classNum)
+{
+    for (int i = 0; i < CLASSWEAPONS; i++)
+    {
+        str wepName  = Dakka_ClassWeapons[i][classNum+1];
+        int wepIndex = Weapon_WeaponIndex(wepName);
+        
+        // If we don't recognize the weapon, don't do anything with it
+        if (wepIndex == -1) { continue; }
+        
+        str customCVar = PKP_KnownGuns[wepIndex][WEP_STARTCVAR];
+        int customGive = 0;
+
+        if (!stringBlank(customCVar))
+        {
+            customGive = GetCVar(customCVar);
+            
+            if (customGive < 0)
+            {
+                TakeInventory(wepName, 0x7FFFFFFF);
+                continue;
+            }
+        }
+
+        str ammo1Name = PKP_KnownGuns[wepIndex][WEP_AMMO1];
+        str ammo2Name = PKP_KnownGuns[wepIndex][WEP_AMMO2];
+
+        int willHaveGun = CheckInventory(wepName) || (customGive > 0);
+        int gotAmmo1    = !stringBlank(ammo1Name);
+        int gotAmmo2    = !stringBlank(ammo2Name);
+
+        if (gotAmmo1)
+        {
+            int ammo1Index = Ammo_AmmoIndex(ammo1Name);
+            int ammo1Count = CheckInventory(ammo1Name);
+
+            if (willHaveGun && ammo1Index > -1) { Start_AmmoToKeep[ammo1Index] = true; }
+        }
+
+        if (gotAmmo2)
+        {
+            int ammo2Index = Ammo_AmmoIndex(ammo2Name);
+            int ammo2Count = CheckInventory(ammo2Name);
+
+            if (willHaveGun && ammo2Index > -1) { Start_AmmoToKeep[ammo2Index] = true; }
+        }
+
+        if (customGive > 0)
+        {
+            GiveInventory(wepName, 1);
+
+            if (gotAmmo1) { SetInventory(ammo1Name, ammo1Count); }
+            if (gotAmmo2) { SetInventory(ammo2Name, ammo2Count); }
         }
     }
 }
@@ -287,38 +353,6 @@ function void Dakka_StartMode_Health(int classNum, int freshStart, int respawnin
 }
 
 
-
-// Corresponds to dakka_scrapperstart. Should only be called for Dakkaguy.
-function void Dakka_ScrapperStart(int extraScrap, int entered, int lostWeapons)
-{
-    if (!(entered || lostWeapons)) { return; }
-    
-    switch (sign(GetCVar("dakka_startmode_scrappers")))
-    {
-      case -1:
-        TakeInventory("DWep_Scrappers", 0x7FFFFFFF);
-        break;
-      
-      case 1:
-        int scrapBefore = CheckInventory("DakkaScrap");
-        GiveInventory("DWep_Scrappers", 1);
-        int scrapAfter = CheckInventory("DakkaScrap");
-
-        int targetScrap = (scrapBefore + extraScrap) - scrapAfter;
-
-        if (targetScrap < 0)
-        {
-            TakeInventory("DakkaScrap", -targetScrap);
-        }
-        else
-        {
-            GiveAmmo("DakkaScrap", targetScrap);
-        }
-        break;
-    }
-}
-
-
 // Corresponds to dakka_startmode_backpack. 0 means "do nothing",
 //  1 means "give backpack", -1 means "take all backpacks".
 //
@@ -412,8 +446,6 @@ function void Dakka_DoLevelSpawn(int entered, int returning)
 
     int pln       = PlayerNumber();
     int classNum  = Pickup_ClassNumber(0);
-    
-    if (classNum == Cl_Dakkaguy) { Dakka_ScrapperStart(0, freshStart, lostWeapons); }
 
     Dakka_BackpackStart(freshStart, lostEverything);
     Dakka_StartMode_Weapons(classNum, freshStart, lostWeapons);
@@ -470,9 +502,4 @@ function void Dakka_DoDMSpawn(int entered)
     Dakka_StartMode_Weapons(classNum, true, true);
     Dakka_StartMode_Ammo(   classNum, true, true);
     Dakka_StartMode_Health( classNum, true, !entered);
-
-    if (classNum == Cl_Dakkaguy)
-    {
-        Dakka_ScrapperStart(60, entered, true);
-    }
 }

@@ -16,6 +16,7 @@ OptionValue Dakka_StartMode_Weapons
     5, "Up to impaler + SSG"
     6, "Up to lancer"
     7, "Up to BFG"
+    1, "Custom"
 }
 
 OptionValue Dakka_StartMode_Ammo
@@ -26,13 +27,6 @@ OptionValue Dakka_StartMode_Ammo
     3, "Max out ammo"
     4, "Pistol ammo only"
     5, "Custom"
-}
-
-OptionValue Dakka_ScrapperStart
-{
-     -1, "Take on new map"
-      0, "Keep them"
-      1, "Give on new map"
 }
 
 OptionValue Dakka_BackpackStart
@@ -118,6 +112,13 @@ OptionValue Dakka_DefenseLevel
       8, "4x tougher"
       9, "5x tougher"
      10, "10x tougher"
+}
+
+OptionValue Dakka_CustomWep
+{
+   -1, "Take on new map"
+    0, "Leave as is"
+    1, "Give on new map"
 }
 
 OptionValue Dakka_IgnoreWeaponRequirement
@@ -218,7 +219,6 @@ OptionMenu Dakka_GameOptions
     Option "Health+armor mode", "dakka_startmode_health",    "Dakka_StartMode_Health"
     Option "Ammo mode",         "dakka_startmode_ammo",      "Dakka_StartMode_Ammo"
     Option "Weapon mode",       "dakka_startmode_weapons",   "Dakka_StartMode_Weapons"
-    Option "Scrapper mode",     "dakka_startmode_scrappers", "Dakka_ScrapperStart"
     Option "Backpack mode",     "dakka_startmode_backpack",  "Dakka_BackpackStart"
     Option "Score mode",        "dakka_startmode_score",     "Dakka_KeepScore"
     Option "When in a hub",     "dakka_ignorehubs",          "Dakka_IgnoreHubs"
@@ -235,7 +235,7 @@ OptionMenu Dakka_GameOptions
     StaticText ""
     
     Submenu "Score fine-tuning", "Dakka_ScoreOptions"
-    Submenu "Custom start ammo", "Dakka_CustomStartAmmo"
+    Submenu "Custom start options", "Dakka_CustomStartValues"
 }
 
 
@@ -261,11 +261,25 @@ OptionMenu Dakka_ScoreOptions
 }
 
 
-OptionMenu Dakka_CustomStartAmmo
+OptionMenu Dakka_CustomStartValues
 {
-    Title "DAKKA (Custom start ammo)"
+    Title "DAKKA (Custom start options)"
     
-    StaticText "Starting ammo values", 1
+    StaticText "Custom weapon values", 1
+    StaticText "Takes effect when weapon mode is \"custom\"."
+    StaticText ""
+    
+    Option "Scrappers",         "dakka_startwep_scrappers",     "Dakka_CustomWep"
+    Option "Pistols",           "dakka_startwep_pistols",       "Dakka_CustomWep"
+    Option "Shotgun",           "dakka_startwep_shotgun",       "Dakka_CustomWep"
+    Option "Super shotgun",     "dakka_startwep_supershotgun",  "Dakka_CustomWep"
+    Option "Minigun",           "dakka_startwep_minigun",       "Dakka_CustomWep"
+    Option "Impaler",           "dakka_startwep_impaler",       "Dakka_CustomWep"
+    Option "Lancer",            "dakka_startwep_lancer",        "Dakka_CustomWep"
+    Option "BFG9000",           "dakka_startwep_bfg9000",       "Dakka_CustomWep"
+    
+    StaticText ""
+    StaticText "Custom ammo values", 1
     StaticText "Takes effect when ammo mode is \"custom\"."
     StaticText "Values below zero mean \"leave alone\"."
     StaticText ""

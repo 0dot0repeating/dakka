@@ -67,7 +67,7 @@ str Dakka_ClassWeapons[CLASSWEAPONS][CLASSCOUNT] =
 int Dakka_ClassWeaponPowers[CLASSWEAPONS][CLASSCOUNT] =
 {
     { 1,  1}, // fist            / fists
-    { 3,  5}, // chainsaw        / scrappers
+    { 3,  4}, // chainsaw        / scrappers
     { 2,  2}, // pistol          / revolvers
     { 3,  3}, // shotgun
     { 5,  5}, // SSG
@@ -77,7 +77,7 @@ int Dakka_ClassWeaponPowers[CLASSWEAPONS][CLASSCOUNT] =
     { 7,  7}, // BFG
 
     { 1,  1}, // staff          (fist)
-    { 3,  5}, // gauntlets      (scrappers)
+    { 3,  4}, // gauntlets      (scrappers)
     { 2,  2}, // wand           (revolvers)
     { 3,  3}, // crossbow       (shotgun)
     { 4,  4}, // blaster        (minigun)
@@ -93,8 +93,8 @@ int Dakka_ClassWeaponPowers[CLASSWEAPONS][CLASSCOUNT] =
 int Dakka_ClassWep_StartModeIgnore[CLASSWEAPONS][CLASSCOUNT] =
 {
     {true,  true},
-    {false, true},
-    {true,  true},
+    {false, false},
+    {false, false},
     {false, false},
     {false, false},
     {false, false},
@@ -104,7 +104,7 @@ int Dakka_ClassWep_StartModeIgnore[CLASSWEAPONS][CLASSCOUNT] =
 
     {true,  true},
     {false, true},
-    {true,  true},
+    {false, true},
     {false, true},
     {false, true},
     {false, true},

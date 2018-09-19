@@ -1,27 +1,28 @@
 #define WEAPONCOUNT 62
 #define REPLCOUNT   3
 
-#define WEP_NAME    0
-#define WEP_AMMO1   1
-#define WEP_AMMO2   2
+#define WEP_NAME        0
+#define WEP_AMMO1       1
+#define WEP_AMMO2       2
+#define WEP_STARTCVAR   3
 
 
 // This should be fairly self-explanatory.
 
-int PKP_KnownGuns[WEAPONCOUNT][3] =
+int PKP_KnownGuns[WEAPONCOUNT][4] =
 {
-//  Name                        Ammo 1                      Ammo 2
+//  Name                        Ammo 1                      Ammo 2                      CVar (for dakka_startmode_weapons 8)
 //
     // DAKKA (11 weapons)
-    {"DWep_Fists",              "",                         ""},
-    {"DWep_Scrappers",          "DakkaScrap",               ""},
-    {"DWep_Pistols",            "DakkaBullet_50AE",         "DakkaPistol_ShotsLeft"},
-    {"DWep_Shotgun",            "DakkaShells",              "DakkaGrenades"},
-    {"DWep_SuperShotgun",       "DakkaShells",              "DakkaGrenades"},
-    {"DWep_Minigun",            "DakkaBullet_5mm",          "DakkaFlamerFuel"},
-    {"DWep_Impaler",            "DakkaRockets",             ""},
-    {"DWep_PlasmaLance",        "DakkaCells",               ""},
-    {"DWep_BFG9000",            "DakkaCells",               ""},
+    {"DWep_Fists",              "",                         "",                         ""},
+    {"DWep_Scrappers",          "DakkaScrap",               "",                         "dakka_startwep_scrappers"},
+    {"DWep_Pistols",            "DakkaBullet_50AE",         "DakkaPistol_ShotsLeft",    "dakka_startwep_pistols"},
+    {"DWep_Shotgun",            "DakkaShells",              "DakkaGrenades",            "dakka_startwep_shotgun"},
+    {"DWep_SuperShotgun",       "DakkaShells",              "DakkaGrenades",            "dakka_startwep_supershotgun"},
+    {"DWep_Minigun",            "DakkaBullet_5mm",          "DakkaFlamerFuel",          "dakka_startwep_minigun"},
+    {"DWep_Impaler",            "DakkaRockets",             "",                         "dakka_startwep_impaler"},
+    {"DWep_PlasmaLance",        "DakkaCells",               "",                         "dakka_startwep_lancer"},
+    {"DWep_BFG9000",            "DakkaCells",               "",                         "dakka_startwep_bfg9000"},
 
 
     // DOOM (9 weapons)
