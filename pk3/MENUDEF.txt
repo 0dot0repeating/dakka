@@ -265,8 +265,7 @@ OptionMenu Dakka_CustomStartValues
 {
     Title "DAKKA (Custom start options)"
     
-    StaticText "Custom weapon values", 1
-    StaticText "Takes effect when weapon mode is \"custom\"."
+    StaticText "Custom weapon start mode", 1
     StaticText ""
     
     Option "Scrappers",         "dakka_startwep_scrappers",     "Dakka_CustomWep"
@@ -279,8 +278,7 @@ OptionMenu Dakka_CustomStartValues
     Option "BFG9000",           "dakka_startwep_bfg9000",       "Dakka_CustomWep"
     
     StaticText ""
-    StaticText "Custom ammo values", 1
-    StaticText "Takes effect when ammo mode is \"custom\"."
+    StaticText "Custom ammo start mode", 1
     StaticText "Values below zero mean \"leave alone\"."
     StaticText ""
     
