@@ -121,10 +121,10 @@ OptionValue Dakka_CustomWep
     1, "Give on new map"
 }
 
-OptionValue Dakka_IgnoreWeaponRequirement
+OptionValue Dakka_CanUseAmmoCheck
 {
-    0, "Check for weapon"
-    1, "Always reset"
+    0, "Check usability"
+    1, "Don't check"
 }
 
 OptionValue Dakka_NoAmmoClick
@@ -266,7 +266,6 @@ OptionMenu Dakka_CustomStartValues
     Title "DAKKA (Custom start options)"
     
     StaticText "Custom weapon start mode", 1
-    StaticText ""
     
     Option "Scrappers",         "dakka_startwep_scrappers",     "Dakka_CustomWep"
     Option "Pistols",           "dakka_startwep_pistols",       "Dakka_CustomWep"
@@ -279,7 +278,7 @@ OptionMenu Dakka_CustomStartValues
     
     StaticText ""
     StaticText "Custom ammo start mode", 1
-    StaticText "Values below zero mean \"leave alone\"."
+    StaticText "Negative values mean \"leave alone\"."
     StaticText ""
     
     Slider "Scrap",             "dakka_startammo_scrap",       -12,  480, 12, 0
@@ -292,19 +291,19 @@ OptionMenu Dakka_CustomStartValues
     Slider "Cells",             "dakka_startammo_cells",       -20,  800, 20, 0
     
     StaticText ""
-    StaticText "Ignore weapon requirements", 1
-    StaticText "Normally, ammo for guns you don't have"
-    StaticText "gets taken away entirely."
+    StaticText "Do can-use-ammo checks", 1
+    StaticText "Normally, you only keep ammo"
+    StaticText "that you have a weapon for."
     StaticText ""
     
-    Option "Scrap",             "dakka_startammo_scrap_always",     "Dakka_IgnoreWeaponRequirement"
-    Option ".50AE (pistols)",   "dakka_startammo_50ae_always",      "Dakka_IgnoreWeaponRequirement"
-    Option "Shells",            "dakka_startammo_shells_always",    "Dakka_IgnoreWeaponRequirement"
-    Option "Grenades",          "dakka_startammo_grenades_always",  "Dakka_IgnoreWeaponRequirement"
-    Option "5mm (minigun)",     "dakka_startammo_5mm_always",       "Dakka_IgnoreWeaponRequirement"
-    Option "Flamer fuel",       "dakka_startammo_flamer_always",    "Dakka_IgnoreWeaponRequirement"
-    Option "Rockets",           "dakka_startammo_rockets_always",   "Dakka_IgnoreWeaponRequirement"
-    Option "Cells",             "dakka_startammo_cells_always",     "Dakka_IgnoreWeaponRequirement"
+    Option "Scrap",             "dakka_startammo_scrap_always",     "Dakka_CanUseAmmoCheck"
+    Option ".50AE (pistols)",   "dakka_startammo_50ae_always",      "Dakka_CanUseAmmoCheck"
+    Option "Shells",            "dakka_startammo_shells_always",    "Dakka_CanUseAmmoCheck"
+    Option "Grenades",          "dakka_startammo_grenades_always",  "Dakka_CanUseAmmoCheck"
+    Option "5mm (minigun)",     "dakka_startammo_5mm_always",       "Dakka_CanUseAmmoCheck"
+    Option "Flamer fuel",       "dakka_startammo_flamer_always",    "Dakka_CanUseAmmoCheck"
+    Option "Rockets",           "dakka_startammo_rockets_always",   "Dakka_CanUseAmmoCheck"
+    Option "Cells",             "dakka_startammo_cells_always",     "Dakka_CanUseAmmoCheck"
 }
 
 

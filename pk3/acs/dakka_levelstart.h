@@ -1,9 +1,11 @@
 // Weapon start modes:
 //  - 0: do nothing special
-//  - Anything above 0: Any weapon with a power rating at or below the value of
-//      dakka_startmode_weapons is given to you; anything else is taken away
 //
-//      2 is the same as 1 effectively, so that you always have fists and pistols
+//  - 1: use custom weapon start mode (aka. give and take what the server says to
+//       give and take away)
+//
+//  - Anything above 1: Any weapon with a power rating at or below the value of
+//      dakka_startmode_weapons is given to you; anything else is taken away
 //
 // Note that this and dakka_startmode_ammo can only work with weapons defined in
 //  the pickup system.
@@ -16,14 +18,13 @@
 // We look up ammo types the weapon uses in Pickup_KnownGuns
 //  - in pickup/pickup_items_weapons.h
 //
-// If dakka_startmode_weapons > 0 and above, ammo types for any given weapons
-//  are kept, while all other ammo types are cleared out.
+// When ammo is reset with the low, high, or pistol-only method, any ammo that
+//  you can't use with your current weapons gets taken away. If you have 120
+//  rockets on leaving a map, but no impaler to use them in, tough shit I guess,
+//  because they're gone.
 //
-// ex. If you have dakka_startmode_weapons at 4 and you leave with 17 rockets,
-//  you enter the next map with no rockets, since you wouldn't get the rocket
-//  launcher.
-//
-// This can be further modified by dakka_startmode_ammo.
+// When using the "max out ammo" option, this is ignored. You can also choose
+//  whether to ignore this per ammo type when using custom ammo reset values.
 //
 // AMMOCOUNT is in 'pickup/pickup_items_ammo.h'.
 int Start_AmmoToKeep[AMMOCOUNT];
@@ -38,13 +39,6 @@ function void Dakka_StartMode_Weapons(int classNum, int entered, int lostWeapons
     int startMode = GetCVar("dakka_startmode_weapons");
     if (startMode <= 0) { return; }
 
-    int i;
-
-    for (i = 0; i < AMMOCOUNT; i++)
-    {
-        Start_AmmoToKeep[i] = false;
-    }
-
     if (startMode == 1)
     {
         Dakka_StartMode_CustomWeps(classNum);
@@ -52,15 +46,6 @@ function void Dakka_StartMode_Weapons(int classNum, int entered, int lostWeapons
     else
     {
         Dakka_StartMode_NormalWeps(classNum, startMode);
-    }
-
-    // Take away all ammo that we're not set to keep
-    for (i = 0; i < AMMOCOUNT; i++)
-    {
-        if (!Start_AmmoToKeep[i])
-        {
-            TakeInventory(PKP_KnownAmmo[i], 0x7FFFFFFF);
-        }
     }
 }
 
@@ -104,16 +89,12 @@ function void Dakka_StartMode_NormalWeps(int classNum, int startMode)
         {
             int ammo1Index = Ammo_AmmoIndex(ammo1Name);
             int ammo1Count = CheckInventory(ammo1Name);
-
-            if (willHaveGun && ammo1Index > -1) { Start_AmmoToKeep[ammo1Index] = true; }
         }
 
         if (gotAmmo2)
         {
             int ammo2Index = Ammo_AmmoIndex(ammo2Name);
             int ammo2Count = CheckInventory(ammo2Name);
-
-            if (willHaveGun && ammo2Index > -1) { Start_AmmoToKeep[ammo2Index] = true; }
         }
 
         if (!ignore)
@@ -162,16 +143,12 @@ function void Dakka_StartMode_CustomWeps(int classNum)
         {
             int ammo1Index = Ammo_AmmoIndex(ammo1Name);
             int ammo1Count = CheckInventory(ammo1Name);
-
-            if (willHaveGun && ammo1Index > -1) { Start_AmmoToKeep[ammo1Index] = true; }
         }
 
         if (gotAmmo2)
         {
             int ammo2Index = Ammo_AmmoIndex(ammo2Name);
             int ammo2Count = CheckInventory(ammo2Name);
-
-            if (willHaveGun && ammo2Index > -1) { Start_AmmoToKeep[ammo2Index] = true; }
         }
 
         if (customGive > 0)
@@ -225,64 +202,68 @@ function void Dakka_StartMode_Ammo(int classNum, int entered, int lostAmmo)
     int customValues  = startMode == 5;
 
     // Determine which ammo should be given
-    for (i = 0; i < WEAPONCOUNT; i++)
+    if (!giveMaxAmmo)
     {
-        int wepName   = PKP_KnownGuns[i][WEP_NAME];
-
-        // I honestly have no idea why I didn't include this here earlier
-        if (!CheckInventory(wepName)) { continue; }
-
-        // If we're only grabbing pistol start weapons, check power rating
-        if (onlyPistols)
+        for (i = 0; i < WEAPONCOUNT; i++)
         {
-            int j;
-            int isPistol = false;
+            int wepName   = PKP_KnownGuns[i][WEP_NAME];
 
-            // Also we only give a crap about pistol start weapons
-            //  for *our* class
-            for (j = 0; j < CLASSWEAPONS; j++)
+            // I honestly have no idea why I didn't include this here earlier
+            if (!CheckInventory(wepName)) { continue; }
+
+            // If we're only grabbing pistol start weapons, check power rating
+            if (onlyPistols)
             {
-                int startRating = Dakka_ClassWeaponPowers[j][classNum+1];
-                if (startRating > 2) { continue; }
+                int j;
+                int isPistol = false;
 
-                int startWep    = Dakka_ClassWeapons[j][classNum+1];
-
-                if (!stricmp(wepName, startWep))
+                // Also we only give a crap about pistol start weapons
+                //  for *our* class
+                for (j = 0; j < CLASSWEAPONS; j++)
                 {
-                    isPistol = true;
-                    break;
+                    int startRating = Dakka_ClassWeaponPowers[j][classNum+1];
+                    if (startRating > 2) { continue; }
+
+                    int startWep = Dakka_ClassWeapons[j][classNum+1];
+
+                    if (!stricmp(wepName, startWep))
+                    {
+                        isPistol = true;
+                        break;
+                    }
                 }
+
+                // well shit
+                if (!isPistol) { continue; }
             }
 
-            // well shit
-            if (!isPistol) { continue; }
-        }
+            int ammo1Name = PKP_KnownGuns[i][WEP_AMMO1];
+            int ammo2Name = PKP_KnownGuns[i][WEP_AMMO2];
 
-        int ammo1Name = PKP_KnownGuns[i][WEP_AMMO1];
-        int ammo2Name = PKP_KnownGuns[i][WEP_AMMO2];
+            // The stingBlank check's for optimization - if there's no ammo type,
+            //  don't check, as Ammo_AmmoIndex's expensive when called as many
+            //  times as it is here
+            if (!stringBlank(ammo1Name))
+            {
+                int ammo1Index = Ammo_AmmoIndex(ammo1Name);
+                Start_AmmoToKeep[ammo1Index] = true;
+            }
 
-        // The stingBlank check's for optimization - if there's no ammo type,
-        //  don't check, as Ammo_AmmoIndex's expensive when called as many
-        //  times as it is here
-        if (!stringBlank(ammo1Name))
-        {
-            int ammo1Index = Ammo_AmmoIndex(ammo1Name);
-            Start_AmmoToKeep[ammo1Index] = true;
-        }
-
-        if (!stringBlank(ammo2Name))
-        {
-            int ammo2Index = Ammo_AmmoIndex(ammo2Name);
-            Start_AmmoToKeep[ammo2Index] = true;
+            if (!stringBlank(ammo2Name))
+            {
+                int ammo2Index = Ammo_AmmoIndex(ammo2Name);
+                Start_AmmoToKeep[ammo2Index] = true;
+            }
         }
     }
-
+    
     // Now distribute the ammo that should be given, and take the ammo
     //  that shouldn't be given
+    
     for (i = 0; i < AMMOCOUNT; i++)
     {
         str ammoName = PKP_KnownAmmo[i];
-        int always     = false;
+        int always     = giveMaxAmmo;
         str alwaysCVar = PKP_CustomStartAmmoCVars[i][1];
         if (customValues && !stringBlank(alwaysCVar)) { always = GetCVar(alwaysCVar); }
         
