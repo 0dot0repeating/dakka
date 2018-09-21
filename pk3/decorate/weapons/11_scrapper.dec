@@ -282,8 +282,8 @@ actor DWep_Scrappers: DoomWeapon
         RSCP AA 0 A_PlaySound("dakka/scrapperaltfire", CallACS("Dakka_RotateSound"))
         RSCP A 0 ACS_NamedExecuteAlways("Dakka_Recoil", 0, 6, 3, 16)
         RSCP A 0 ACS_NamedExecuteWithResult("Dakka_UseAmmo", AMMO_SCRAP, 12)
-        RSCP A 0 A_FireCustomMissile("ScrapperGrenade", 0, false, -11)
-        RSCP A 0 A_FireCustomMissile("ScrapperGrenade", 0, false,  11)
+        RSCP A 0 A_FireCustomMissile("ScrapperGrenade", 0, false, -11, 0, 0, 5)
+        RSCP A 0 A_FireCustomMissile("ScrapperGrenade", 0, false,  11, 0, 0, 5)
         SCPR B 1 bright A_Light(9)
         SCPR C 1 bright A_Light(8)
         SCPR D 1 bright A_Light(6)
@@ -371,7 +371,7 @@ actor ScrapperShotSpawner
 
 
       SpawnCommon:
-        TNT1 A 0 ACS_NamedExecuteWithResult("Dakka_CalcProjAngle", 25, 1200, 600)
+        TNT1 A 0 ACS_NamedExecuteWithResult("Dakka_CalcProjAngle", 25, random(-1200, 1200), random(300, 1100), true)
         TNT1 A 0 A_SpawnItemEx("ScrapperShot", 0,0,0, user_spawnvelx/65536.0, user_spawnvely/65536.0, user_spawnvelz/65536.0, angle, SXF_ABSOLUTEANGLE | SXF_ABSOLUTEVELOCITY | SXF_TRANSFERPOINTERS)
         TNT1 A 0 A_SetUserVar("user_spawncount", user_spawncount+1)
         TNT1 A 0 A_JumpIf(user_spawncount >= 5, "SpawnEnd")
