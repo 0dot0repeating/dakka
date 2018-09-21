@@ -148,11 +148,11 @@ StatusBar Normal, fullscreenoffsets, 0.85
             DrawImage "HUD_FS12", -104, -32;
             DrawImage "HUD_FS22",  -96, -63;
 
-            InInventory DakkaFistSpeed, 1   { DrawImage "HUD_SB12", -99, -28; }
-            InInventory DakkaFistSpeed, 2   { DrawImage "HUD_SB22", -91, -28; }
-            InInventory DakkaFistSpeed, 4   { DrawImage "HUD_SB32", -83, -28; }
-            InInventory DakkaFistSpeed, 6   { DrawImage "HUD_SB42", -75, -28; }
-            InInventory DakkaFistSpeed, 9   { DrawImage "HUD_SB52", -67, -28; }
+            InInventory DakkaFistSpeed, 2   { DrawImage "HUD_SB12", -99, -28; }
+            InInventory DakkaFistSpeed, 4   { DrawImage "HUD_SB22", -91, -28; }
+            InInventory DakkaFistSpeed, 6   { DrawImage "HUD_SB32", -83, -28; }
+            InInventory DakkaFistSpeed, 8   { DrawImage "HUD_SB42", -75, -28; }
+            InInventory DakkaFistSpeed, 10  { DrawImage "HUD_SB52", -67, -28; }
             InInventory DakkaFistSpeed, 13  { DrawImage "HUD_SB62", -59, -28; }
 
             InInventory DakkaFistAltLevel, 1    { DrawImage "HUD_PB12", -91, -59; }
@@ -227,11 +227,11 @@ StatusBar Normal, fullscreenoffsets, 0.85
             DrawImage "HUD_FS11", -104, -32;
             DrawImage "HUD_FS21",  -96, -63;
 
-            InInventory DakkaFistSpeed, 1   { DrawImage "HUD_SB11", -99, -28; }
-            InInventory DakkaFistSpeed, 2   { DrawImage "HUD_SB21", -91, -28; }
-            InInventory DakkaFistSpeed, 4   { DrawImage "HUD_SB31", -83, -28; }
-            InInventory DakkaFistSpeed, 6   { DrawImage "HUD_SB41", -75, -28; }
-            InInventory DakkaFistSpeed, 9   { DrawImage "HUD_SB51", -67, -28; }
+            InInventory DakkaFistSpeed, 2   { DrawImage "HUD_SB11", -99, -28; }
+            InInventory DakkaFistSpeed, 4   { DrawImage "HUD_SB21", -91, -28; }
+            InInventory DakkaFistSpeed, 6   { DrawImage "HUD_SB31", -83, -28; }
+            InInventory DakkaFistSpeed, 8   { DrawImage "HUD_SB41", -75, -28; }
+            InInventory DakkaFistSpeed, 10  { DrawImage "HUD_SB51", -67, -28; }
             InInventory DakkaFistSpeed, 13  { DrawImage "HUD_SB61", -59, -28; }
 
             InInventory DakkaFistAltLevel, 1    { DrawImage "HUD_PB11", -91, -59; }
@@ -504,11 +504,11 @@ StatusBar Fullscreen, fullscreenoffsets, 0.85
             DrawImage "HUD_FS12", -104, -32;
             DrawImage "HUD_FS22",  -96, -63;
 
-            InInventory DakkaFistSpeed, 1   { DrawImage "HUD_SB12", -99, -28; }
-            InInventory DakkaFistSpeed, 2   { DrawImage "HUD_SB22", -91, -28; }
-            InInventory DakkaFistSpeed, 4   { DrawImage "HUD_SB32", -83, -28; }
-            InInventory DakkaFistSpeed, 6   { DrawImage "HUD_SB42", -75, -28; }
-            InInventory DakkaFistSpeed, 9   { DrawImage "HUD_SB52", -67, -28; }
+            InInventory DakkaFistSpeed, 2   { DrawImage "HUD_SB12", -99, -28; }
+            InInventory DakkaFistSpeed, 4   { DrawImage "HUD_SB22", -91, -28; }
+            InInventory DakkaFistSpeed, 6   { DrawImage "HUD_SB32", -83, -28; }
+            InInventory DakkaFistSpeed, 8   { DrawImage "HUD_SB42", -75, -28; }
+            InInventory DakkaFistSpeed, 10  { DrawImage "HUD_SB52", -67, -28; }
             InInventory DakkaFistSpeed, 13  { DrawImage "HUD_SB62", -59, -28; }
 
             InInventory DakkaFistAltLevel, 1    { DrawImage "HUD_PB12", -91, -59; }
@@ -565,11 +565,11 @@ StatusBar Fullscreen, fullscreenoffsets, 0.85
             DrawImage "HUD_FS11", -104, -32;
             DrawImage "HUD_FS21",  -96, -63;
 
-            InInventory DakkaFistSpeed, 1   { DrawImage "HUD_SB11", -99, -28; }
-            InInventory DakkaFistSpeed, 2   { DrawImage "HUD_SB21", -91, -28; }
-            InInventory DakkaFistSpeed, 4   { DrawImage "HUD_SB31", -83, -28; }
-            InInventory DakkaFistSpeed, 6   { DrawImage "HUD_SB41", -75, -28; }
-            InInventory DakkaFistSpeed, 9   { DrawImage "HUD_SB51", -67, -28; }
+            InInventory DakkaFistSpeed, 2   { DrawImage "HUD_SB11", -99, -28; }
+            InInventory DakkaFistSpeed, 4   { DrawImage "HUD_SB21", -91, -28; }
+            InInventory DakkaFistSpeed, 6   { DrawImage "HUD_SB31", -83, -28; }
+            InInventory DakkaFistSpeed, 8   { DrawImage "HUD_SB41", -75, -28; }
+            InInventory DakkaFistSpeed, 10  { DrawImage "HUD_SB51", -67, -28; }
             InInventory DakkaFistSpeed, 13  { DrawImage "HUD_SB61", -59, -28; }
 
             InInventory DakkaFistAltLevel, 1    { DrawImage "HUD_PB11", -91, -59; }
@@ -842,11 +842,11 @@ StatusBar Automap, fullscreenoffsets, 0.85
             DrawImage "HUD_FS12", -104, -32;
             DrawImage "HUD_FS22",  -96, -63;
 
-            InInventory DakkaFistSpeed, 1   { DrawImage "HUD_SB12", -99, -28; }
-            InInventory DakkaFistSpeed, 2   { DrawImage "HUD_SB22", -91, -28; }
-            InInventory DakkaFistSpeed, 4   { DrawImage "HUD_SB32", -83, -28; }
-            InInventory DakkaFistSpeed, 6   { DrawImage "HUD_SB42", -75, -28; }
-            InInventory DakkaFistSpeed, 9   { DrawImage "HUD_SB52", -67, -28; }
+            InInventory DakkaFistSpeed, 2   { DrawImage "HUD_SB12", -99, -28; }
+            InInventory DakkaFistSpeed, 4   { DrawImage "HUD_SB22", -91, -28; }
+            InInventory DakkaFistSpeed, 6   { DrawImage "HUD_SB32", -83, -28; }
+            InInventory DakkaFistSpeed, 8   { DrawImage "HUD_SB42", -75, -28; }
+            InInventory DakkaFistSpeed, 10  { DrawImage "HUD_SB52", -67, -28; }
             InInventory DakkaFistSpeed, 13  { DrawImage "HUD_SB62", -59, -28; }
 
             InInventory DakkaFistAltLevel, 1    { DrawImage "HUD_PB12", -91, -59; }
@@ -903,11 +903,11 @@ StatusBar Automap, fullscreenoffsets, 0.85
             DrawImage "HUD_FS11", -104, -32;
             DrawImage "HUD_FS21",  -96, -63;
 
-            InInventory DakkaFistSpeed, 1   { DrawImage "HUD_SB11", -99, -28; }
-            InInventory DakkaFistSpeed, 2   { DrawImage "HUD_SB21", -91, -28; }
-            InInventory DakkaFistSpeed, 4   { DrawImage "HUD_SB31", -83, -28; }
-            InInventory DakkaFistSpeed, 6   { DrawImage "HUD_SB41", -75, -28; }
-            InInventory DakkaFistSpeed, 9   { DrawImage "HUD_SB51", -67, -28; }
+            InInventory DakkaFistSpeed, 2   { DrawImage "HUD_SB11", -99, -28; }
+            InInventory DakkaFistSpeed, 4   { DrawImage "HUD_SB21", -91, -28; }
+            InInventory DakkaFistSpeed, 6   { DrawImage "HUD_SB31", -83, -28; }
+            InInventory DakkaFistSpeed, 8   { DrawImage "HUD_SB41", -75, -28; }
+            InInventory DakkaFistSpeed, 10  { DrawImage "HUD_SB51", -67, -28; }
             InInventory DakkaFistSpeed, 13  { DrawImage "HUD_SB61", -59, -28; }
 
             InInventory DakkaFistAltLevel, 1    { DrawImage "HUD_PB11", -91, -59; }
