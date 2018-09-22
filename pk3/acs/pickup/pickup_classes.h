@@ -66,7 +66,7 @@ int DISP_ClassStates[CLASSCOUNT_DEFINED] =
 
 int ClassCheckMethod[CLASSCOUNT_DEFINED] =
 {
-    CLASS_FINDBYNAME,
+    CLASS_FINDBYINV,
 };
 
 
@@ -78,7 +78,7 @@ int ClassCheckMethod[CLASSCOUNT_DEFINED] =
 // And the actual items.
 int ClassCheck_ByInv[CLASSCOUNT_DEFINED][CLASS_INVCHECKCOUNT] =
 {
-    {""},
+    {"DakkaClassItem"},
 };
 
 
