@@ -1,3 +1,5 @@
+actor DakkaClassItem: Boolean {}
+
 actor Dakkaguy: PlayerPawn
 {
     Health 100
@@ -19,6 +21,7 @@ actor Dakkaguy: PlayerPawn
     Player.StartItem "DWep_Pistols"
     Player.StartItem "DWep_Fists"
     Player.StartItem "DakkaBullet_50AE", 70
+    Player.StartItem "DakkaClassItem"
 
     Player.CrouchSprite "DPLC"
 

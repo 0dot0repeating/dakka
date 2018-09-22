@@ -56,7 +56,7 @@ str Dakka_ClassWeapons[CLASSWEAPONS][CLASSCOUNT] =
     {"Crossbow",        "DWep_Shotgun"},
     {"Blaster",         "DWep_Minigun"},
     {"PhoenixRod",      "DWep_Impaler"},
-    {"PhoenisRod",      "DWep_SuperShotgun"},
+    {"PhoenixRod",      "DWep_SuperShotgun"},
     {"SkullRod",        "DWep_PlasmaLance"},
     {"Mace",            "DWep_BFG9000"},
 };
