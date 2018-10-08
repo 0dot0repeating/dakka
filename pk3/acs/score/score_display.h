@@ -43,8 +43,8 @@ function void Score_Update(int pln)
     }
     
     Score_Draw(pln, points, goalpoints, displayPoints, hideScore, noReward, nextIsLife);
+    Score_DrawLives(pln, lives, hideScore);
     Score_DrawBonuses(pln, hideScore);
-    Score_DrawLives(lives, hideScore);
 }
 
 
@@ -71,7 +71,7 @@ function int Score_ScaledCoord(int pos, int range, int padding, int downshift)
 #define SCORE_SCREENY    480
 
 #define BAR_APPROXWIDTH  140
-#define BAR_APPROXHEIGHT 26
+#define BAR_APPROXHEIGHT 40
 
 function void Score_Draw(int pln, int curPoints, int goalPoints, int displayPoints, int hideScore, int noScoreRewards, int nextIsLife)
 {
@@ -84,7 +84,7 @@ function void Score_Draw(int pln, int curPoints, int goalPoints, int displayPoin
     
     int centerX  = Score_ScaledCoord(GetUserCVar(pln, "dakka_cl_scorex"), wideWidth,    BAR_APPROXWIDTH,  widewidth - screenWidth);
     int centerY  = Score_ScaledCoord(GetUserCVar(pln, "dakka_cl_scorey"), screenheight, BAR_APPROXHEIGHT, 0);
-    int centerXf = itof(centerX);
+    int centerXf = setFraction(itof(centerX), 0.4);
 
     
     if (hideScore)
@@ -93,7 +93,7 @@ function void Score_Draw(int pln, int curPoints, int goalPoints, int displayPoin
     }
     else
     {
-        int scoreYf = itof(centerY + 1) + 0.2;
+        int scoreYf = setFraction(itof(centerY + 7), 0.2);
         SetHudSize(screenwidth, screenheight, 1);
         
         SetFont("DAKKAFON");
@@ -123,7 +123,7 @@ function void Score_Draw(int pln, int curPoints, int goalPoints, int displayPoin
         }
 
         
-        int barYf = itof(centerY + 7);
+        int barYf = itof(centerY + 13);
         SetHudSize(screenwidth, screenheight, 1);
 
         SetFont(barBackground);
@@ -150,9 +150,18 @@ function void Score_Draw(int pln, int curPoints, int goalPoints, int displayPoin
 
 #define LIVES_MAXDRAW   10
 
-function void Score_DrawLives(int lives, int hideScore)
+function void Score_DrawLives(int pln, int lives, int hideScore)
 {
     int i;
+    
+    int d = GetUserCVar(pln, "dakka_cl_scorescale");
+    int screenwidth  = Score_ScaleRes(SCORE_SCREENX, d);
+    int screenheight = Score_ScaleRes(SCORE_SCREENY, d);
+    int widewidth    = FixedMul(screenHeight, itofDiv(GetScreenWidth(), GetScreenHeight()));
+    
+    int centerX  = Score_ScaledCoord(GetUserCVar(pln, "dakka_cl_scorex"), wideWidth,    BAR_APPROXWIDTH,  widewidth - screenWidth);
+    int centerY  = Score_ScaledCoord(GetUserCVar(pln, "dakka_cl_scorey"), screenheight, BAR_APPROXHEIGHT, 0);
+    int centerXf = itof(centerX);
     
     if (hideScore)
     {
@@ -164,7 +173,7 @@ function void Score_DrawLives(int lives, int hideScore)
         return;
     }
     
-    SetHudSize(640, 480, 1);
+    SetHudSize(screenwidth, screenheight, 1);
 
     int lifeFont;
 
@@ -181,7 +190,8 @@ function void Score_DrawLives(int lives, int hideScore)
 
     int drawLives = min(LIVES_MAXDRAW, lives);
 
-    int borderLeft = itof(520 - (6 * (drawLives - 1)));
+    int borderLeft = itof(centerX - (6 * (drawLives - 1))) + 0.4;
+    int livesTop   = itof(centerY - 12);
 
     for (i = 0; i < LIVES_MAXDRAW; i++)
     {
@@ -191,7 +201,7 @@ function void Score_DrawLives(int lives, int hideScore)
         }
         else
         {
-            HudMessage(s:"A"; HUDMSG_PLAIN, 25501 + i, CR_UNTRANSLATED, 0.4 + borderLeft + (12.0 * i), 50.2, 0);
+            HudMessage(s:"A"; HUDMSG_PLAIN, 25501 + i, CR_UNTRANSLATED, setFraction(borderLeft + (12.0 * i), 0.4), livesTop, 0);
         }
     }
 }

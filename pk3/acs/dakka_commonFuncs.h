@@ -24,6 +24,13 @@ function int safeAdd(int a, int b)
 }
 
 
+function int setFraction(int num, int frac)
+{
+    if (num < 0) { return (num & 0xFFFF0000) - frac; }
+    return (num & 0xFFFF0000) + frac;
+}
+
+
 // multiply integer by fraction, and avoid overflows
 function int fractionMult(int num, int mult, int div)
 {
