@@ -62,12 +62,12 @@ most important things:
     in front of your fist, and all his buddies next to him.
     
 - The pistols have gotten a complete overhaul! No longer the boring, odd looking
-    Berettas you've been looking at since 1994, but instead sleek, sexy chrome-
-    black hand cannons that do a far better job convincing you to use them! You
-    gotta reload them every now and then now, but the shots hit harder, the guns
-    sound cooler, you can mash the trigger to fire faster, and overall it's just
-    much more fun to use. Who knows, you might actually run out of pistol rounds
-    for a change!
+    Berettas you've been looking at since 1994, but instead sleek, sexy chrome-black
+    hand cannons that do a far better job convincing you to use them! You gotta
+    reload them every now and then now, but the shots hit harder, the guns sound
+    cooler, you can mash the trigger to fire faster, and overall it's just much
+    more fun to use. Who knows, you might actually run out of pistol rounds for
+    a change!
 
 - The chaingun has been completely replaced by the minigun, which now has two
     different fire speeds! By default, the minigun fires at a decent, but not
@@ -99,8 +99,8 @@ most important things:
     Either way, your enemies will die in a maelstrom of plasma, and that's the
     way it should've been from the start.
 
-- The berserk pickup, now vacant due to the minigun changing spots, is now occupied
-    by the **VAMPIRE SPHERE.** Every kill you make grants you health, with more
+- The berserk pickup, vacant since the minigun changed spots, is now occupied by
+    the **VAMPIRE SPHERE.** Every kill you make grants you health, with more
     health being granted for tougher enemies and being low on health yourself.
     Good encouragement to stay in the fight and keep killing demons, don't you think?
 
