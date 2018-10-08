@@ -1,11 +1,4 @@
-#define OSCORE_POINTS       0
-#define OSCORE_GOALPOINTS   1
-#define OSCORE_FIRSTDRAW    2
-#define OSCORE_NOREWARD     3
-#define OSCORE_HIDESCORE    4
-#define OSCORE_NEXTISLIFE   5
-
-int Score_OldVals[6][PLAYERMAX];
+int Score_OldScores[PLAYERMAX];
 
 function void Score_Update(int pln)
 {
@@ -14,6 +7,7 @@ function void Score_Update(int pln)
     int displayPoints   = SToC_ClientData[pln][S2C_D_DISPLAYSCORE];
     int lives           = SToC_ClientData[pln][S2C_D_LIVESLEFT];
     int hideScore       = GetUserCVar(pln, "dakka_cl_hidescore") | (GetCVar("screenblocks") == 12);
+    int hideBonuses     = GetUserCVar(pln, "dakka_cl_hidebonuses") | hideScore;
     
     int rewardTypes = GetCVar("dakka_score_rewardtypes");
     int rewardCount = SToC_ClientData[pln][S2C_D_REWARDCOUNT];
@@ -44,7 +38,7 @@ function void Score_Update(int pln)
     
     Score_Draw(pln, points, goalpoints, displayPoints, hideScore, noReward, nextIsLife);
     Score_DrawLives(pln, lives, hideScore);
-    Score_DrawBonuses(pln, hideScore);
+    Score_DrawBonuses(pln, hideBonuses);
 }
 
 
@@ -161,7 +155,7 @@ function void Score_DrawLives(int pln, int lives, int hideScore)
     
     int centerX  = Score_ScaledCoord(GetUserCVar(pln, "dakka_cl_scorex"), wideWidth,    BAR_APPROXWIDTH,  widewidth - screenWidth);
     int centerY  = Score_ScaledCoord(GetUserCVar(pln, "dakka_cl_scorey"), screenheight, BAR_APPROXHEIGHT, 0);
-    int centerXf = itof(centerX);
+    int centerXf = setFraction(itof(centerX), 0.4);
     
     if (hideScore)
     {
@@ -213,7 +207,18 @@ int Tmp_BonusDisplay[BONUSCOUNT];
 function void Score_DrawBonuses(int pln, int hideScore)
 {
     if (pln < 0 || pln >= PLAYERMAX) { return; }
-    SetHudSize(640, 480, 1);
+    
+    int d = GetUserCVar(pln, "dakka_cl_scorescale");
+    int screenwidth  = Score_ScaleRes(SCORE_SCREENX, d);
+    int screenheight = Score_ScaleRes(SCORE_SCREENY, d);
+    int widewidth    = FixedMul(screenHeight, itofDiv(GetScreenWidth(), GetScreenHeight()));
+    
+    int centerX  = Score_ScaledCoord(GetUserCVar(pln, "dakka_cl_scorex"), wideWidth,    BAR_APPROXWIDTH,  widewidth - screenWidth);
+    int centerY  = Score_ScaledCoord(GetUserCVar(pln, "dakka_cl_scorey"), screenheight, BAR_APPROXHEIGHT, 0);
+    int centerXf = setFraction(itof(centerX), 0.4);
+    int bonusYf  = itof(centerY + 26);
+    
+    SetHudSize(screenwidth, screenheight, 1);
 
     int i, display, score, name, color, offset = 0;
     int redisplay = false;
@@ -262,9 +267,9 @@ function void Score_DrawBonuses(int pln, int hideScore)
         if (!Tmp_BonusDisplay[i]) { continue; }
 
         HudMessage(s:"+", d:bonus; HUDMSG_FADEOUT | HUDMSG_COLORSTRING, 24409 + (offset * 2), color,
-                        455.1, 82.0 + (13.0 * (offset-1)), displaytime, 0.5);
+                        setFraction(centerXf - 55.0, 0.1), bonusYf + (13.0 * (offset-1)), displaytime, 0.5);
 
         HudMessage(s:name; HUDMSG_FADEOUT | HUDMSG_COLORSTRING, 24410 + (offset * 2), "DScore_White",
-                        508.1, 82.0 + (13.0 * (offset-1)), displaytime, 0.5);
+                        setFraction(centerXf - 12.0, 0.1), bonusYf + (13.0 * (offset-1)), displaytime, 0.5);
     }
 }
