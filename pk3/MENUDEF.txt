@@ -315,16 +315,8 @@ OptionMenu "Dakka_UserOptions"
     Title "DAKKA (User options)"
     
     Submenu "Weapon bindings", "Dakka_WeaponBinds"
-
-    StaticText ""
-    StaticText "Affects gameplay", 1
-    
-    Option "No score rewards",      "dakka_cl_noscorerewards",     "OnOff"
-    Option "Grenades auto-explode", "dakka_cl_autodetonate",       "Dakka_AutoDetonate"
-    Option "SSG trigger rolling",   "dakka_cl_ssgrollfire",        "OnOff"
     
     StaticText ""
-    StaticText "Pure preference", 1
 
     Slider "Recoil factor",         "dakka_cl_recoil",     0, 200, 10, 0
     Slider "Recoil reset factor",   "dakka_cl_recoildown", 0, 100,  5, 0
@@ -349,6 +341,12 @@ OptionMenu "Dakka_UserOptions"
     Option "Bonus display time",    "dakka_cl_bonustime",          "Dakka_BonusTime"
 
     StaticText ""
+    
+    Option "No score rewards",      "dakka_cl_noscorerewards",     "OnOff"
+    Option "Grenades auto-explode", "dakka_cl_autodetonate",       "Dakka_AutoDetonate"
+    Option "SSG double tap",        "dakka_cl_ssgrollfire",        "OnOff"
+
+    StaticText ""
 
     Option "Out-of-ammo sound",     "dakka_cl_noammoclick",        "Dakka_NoAmmoClick"
     Option "Flamethrower style",    "dakka_cl_flamethrowerstyle",  "Dakka_FlamethrowerStyle"
@@ -356,8 +354,8 @@ OptionMenu "Dakka_UserOptions"
     Option "Dumb pickup messages",  "dakka_cl_moremessages",       "OnOff"
     
     StaticText ""
-    StaticText "SSG trigger rolling: By pulling both triggers", 1
-    StaticText "quickly, you instead use one fire mode twice", 1
+    StaticText "SSG double tap: Use one fire mode twice,", 1
+    StaticText "by pulling both triggers almost at once", 1
     StaticText ""
     StaticText "Particle tracers do not work in Zandronum!", 1
 }
