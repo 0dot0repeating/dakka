@@ -91,19 +91,25 @@ script "Dakka_CanPistolReload" (int noflag)
 
 script "Dakka_PickedUpAClip" (int count, int check)
 {
+    if (GetCVar("sv_unlimited_pickup"))
+    {
+        GiveInventory("DakkaBullet_50AE", count);
+        SetResultValue(true);
+        terminate;
+    }
+        
     if (CheckInventory("DakkaBullet_50AE") >= GetAmmoCapacity("DakkaBullet_50AE"))
     {
         SetResultValue(false);
         terminate;
-    }
-        
+    }   
     
     if (check)
     {
         int full = true;
         
         if (check & PUAC_SHELL)   { full &= CheckInventory("DakkaShells")       >= GetAmmoCapacity("DakkaShells"); }
-        if (check & PUAC_GRENADE) { full &= CheckInventory("DakkaGrenades") >= GetAmmoCapacity("DakkaGrenades"); }
+        if (check & PUAC_GRENADE) { full &= CheckInventory("DakkaGrenades")     >= GetAmmoCapacity("DakkaGrenades"); }
         if (check & PUAC_5MM)     { full &= CheckInventory("DakkaBullet_5mm")   >= GetAmmoCapacity("DakkaBullet_5mm"); }
         if (check & PUAC_FLAMER)  { full &= CheckInventory("DakkaFlamerFuel")   >= GetAmmoCapacity("DakkaFlamerFuel"); }
         if (check & PUAC_ROCKET)  { full &= CheckInventory("DakkaRockets")      >= GetAmmoCapacity("DakkaRockets"); }
