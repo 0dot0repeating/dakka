@@ -221,7 +221,7 @@ dakka/ssgaltexplode1        sounds/ssg/gyrojet_explode.ogg
 dakka/ssgaltexplode2        sounds/scrapper/scrapperdie.ogg
 dakka/ssgaltexplode3        sounds/scrapper/scrappersplit.ogg
 
-$random dakka/ssgaltexplode { dakka/ssgaltexplode1 dakka/ssgaltexplode2 dakka/ssgaltexplode3 }
+$random dakka/ssgaltexplode { dakka/ssgaltexplode2 dakka/ssgaltexplode3 }
 
 $limit   dakka/ssgaltexplode 30
 $volume  dakka/ssgaltexplode 0.2
