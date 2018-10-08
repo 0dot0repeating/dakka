@@ -53,7 +53,7 @@ function int Score_ScaleRes(int res, int scale)
 function int Score_ScaledCoord(int pos, int range, int padding, int downshift)
 {
     int saferange = range - cond(range > padding, padding, 0);
-    return FixedMul(saferange, itofDiv(middle(0, pos, 10000), 10000)) + ((range - saferange) >> 1) - (downshift >> 1);
+    return FixedMul(saferange, itofDiv(middle(0, pos, 100), 100)) + ((range - saferange) >> 1) - (downshift >> 1);
 }
 
 

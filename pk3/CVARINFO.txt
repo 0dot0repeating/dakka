@@ -63,8 +63,8 @@ user bool dakka_cl_hidebonuses          = false;
 user int  dakka_cl_bonustime            = 35;
 
 user int  dakka_cl_scorescale           = 100;
-user int  dakka_cl_scorex               = 8000;
-user int  dakka_cl_scorey               = 1400;
+user int  dakka_cl_scorex               = 80;
+user int  dakka_cl_scorey               = 14;
 
 user int  dakka_cl_noammoclick          = 2;
 user int  dakka_cl_autodetonate         = 2;
