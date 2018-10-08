@@ -60,11 +60,12 @@ user bool dakka_cl_norecoilinterp       = false;
 user bool dakka_cl_noscorerewards       = false;
 user bool dakka_cl_hidescore            = false;
 user bool dakka_cl_hidebonuses          = false;
+user bool dakka_cl_flashscore           = true;
 user int  dakka_cl_bonustime            = 35;
 
 user int  dakka_cl_scorescale           = 100;
-user int  dakka_cl_scorex               = 80;
-user int  dakka_cl_scorey               = 14;
+user int  dakka_cl_scorex               = 90;
+user int  dakka_cl_scorey               = 15;
 
 user int  dakka_cl_noammoclick          = 2;
 user int  dakka_cl_autodetonate         = 2;

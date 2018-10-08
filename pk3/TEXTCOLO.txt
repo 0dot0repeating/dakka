@@ -116,14 +116,26 @@ DScore_Gold
 
 DScore_White
 {
-    #404040 #606660 0  24
+    #404040 #606060 0  24
     #C0C0C0 #FFFFFF 25 255
+}
+
+DScore_WhiteFlash
+{
+    #707070 #A0A0A0 0  24
+    #FFFFFF #FFFFFF 25 255
 }
 
 DScore_Gold
 {
     #403010 #604020 0  24
     #C0B020 #FFD030 25 255
+}
+
+DScore_GoldFlash
+{
+    #807540 #bfb75f 0  24
+    #fff8b3 #fff7cc 25 255
 }
 
 DScore_Base

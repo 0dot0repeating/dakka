@@ -2,16 +2,18 @@ int Score_OldScores[PLAYERMAX];
 
 function void Score_Update(int pln)
 {
+    int oldPoints       = Score_OldScores[pln] - 1;
     int points          = SToC_ClientData[pln][S2C_D_SCORE];
     int goalpoints      = SToC_ClientData[pln][S2C_D_GOALSCORE];
     int displayPoints   = SToC_ClientData[pln][S2C_D_DISPLAYSCORE];
     int lives           = SToC_ClientData[pln][S2C_D_LIVESLEFT];
     int hideScore       = GetUserCVar(pln, "dakka_cl_hidescore") | (GetCVar("screenblocks") == 12);
-    int hideBonuses     = GetUserCVar(pln, "dakka_cl_hidebonuses") | hideScore;
+    int hideBonuses     = (GetUserCVar(pln, "dakka_cl_bonustime") == 0) | hideScore;
     
     int rewardTypes = GetCVar("dakka_score_rewardtypes");
     int rewardCount = SToC_ClientData[pln][S2C_D_REWARDCOUNT];
     int nextIsLife  = false;
+    int flash       = GetUserCVar(pln, "dakka_cl_flashscore") && (oldPoints >= 0) && (points > oldPoints);
     int noReward    = GetUserCVar(pln, "dakka_cl_noscorerewards");
     
     switch (rewardtypes)
@@ -36,9 +38,11 @@ function void Score_Update(int pln)
         break;
     }
     
-    Score_Draw(pln, points, goalpoints, displayPoints, hideScore, noReward, nextIsLife);
+    Score_Draw(pln, points, goalpoints, displayPoints, hideScore, noReward, nextIsLife, flash);
     Score_DrawLives(pln, lives, hideScore);
     Score_DrawBonuses(pln, hideBonuses);
+    
+    Score_OldScores[pln] = points + 1;
 }
 
 
@@ -67,7 +71,7 @@ function int Score_ScaledCoord(int pos, int range, int padding, int downshift)
 #define BAR_APPROXWIDTH  140
 #define BAR_APPROXHEIGHT 40
 
-function void Score_Draw(int pln, int curPoints, int goalPoints, int displayPoints, int hideScore, int noScoreRewards, int nextIsLife)
+function void Score_Draw(int pln, int curPoints, int goalPoints, int displayPoints, int hideScore, int noScoreRewards, int nextIsLife, int flash)
 {
     int i;
     
@@ -84,6 +88,7 @@ function void Score_Draw(int pln, int curPoints, int goalPoints, int displayPoin
     if (hideScore)
     {
         HudMessage(s:""; HUDMSG_PLAIN, 24200, 0,0,0,0);
+        HudMessage(s:""; HUDMSG_PLAIN, 24199, 0,0,0,0);
     }
     else
     {
@@ -93,6 +98,12 @@ function void Score_Draw(int pln, int curPoints, int goalPoints, int displayPoin
         SetFont("DAKKAFON");
         HudMessage(s:"Score: \c[DScore_Gold]", d:displayPoints;
                     HUDMSG_PLAIN | HUDMSG_COLORSTRING, 24200, "DScore_White", centerXf, scoreYf, 0);
+        
+        if (flash)
+        {
+            HudMessage(s:"Score: \c[DScore_GoldFlash]", d:displayPoints;
+                        HUDMSG_FADEOUT | HUDMSG_COLORSTRING, 24199, "DScore_WhiteFlash", centerXf, scoreYf, 0, 0.15);
+        }
     }
 
     if (noScoreRewards || hideScore)
@@ -100,20 +111,26 @@ function void Score_Draw(int pln, int curPoints, int goalPoints, int displayPoin
         HudMessage(s:""; HUDMSG_PLAIN, 24201, 0,0,0,0);
         HudMessage(s:""; HUDMSG_PLAIN, 24202, 0,0,0,0);
         HudMessage(s:""; HUDMSG_PLAIN, 24203, 0,0,0,0);
+        HudMessage(s:""; HUDMSG_PLAIN, 24204, 0,0,0,0);
+        HudMessage(s:""; HUDMSG_PLAIN, 24205, 0,0,0,0);
     }
     else
     {
-        str barBackground, barForeground;
+        str barBackground, barForeground, flashBackground, flashForeground;
 
         if (nextIsLife)
         {
-            barBackground  = "SCOREBG2";
-            barForeground  = "SCOREBR2";
+            barBackground    = "SCOREBG2";
+            flashBackground  = "SCOREBG4";
+            barForeground    = "SCOREBR2";
+            flashForeground  = "SCOREBR4";
         }
         else
         {
-            barBackground  = "SCOREBG1";
-            barForeground  = "SCOREBR1";
+            barBackground    = "SCOREBG1";
+            flashBackground  = "SCOREBG3";
+            barForeground    = "SCOREBR1";
+            flashForeground  = "SCOREBR3";
         }
 
         
@@ -121,7 +138,13 @@ function void Score_Draw(int pln, int curPoints, int goalPoints, int displayPoin
         SetHudSize(screenwidth, screenheight, 1);
 
         SetFont(barBackground);
-        HudMessage(s:"A"; HUDMSG_PLAIN, 24203, CR_UNTRANSLATED, centerXf, barYf, 0);
+        HudMessage(s:"A"; HUDMSG_PLAIN, 24205, CR_UNTRANSLATED, centerXf, barYf, 0);
+            
+        if (flash)
+        {
+            SetFont(flashBackground);
+            HudMessage(s:"A"; HUDMSG_FADEOUT, 24204, CR_UNTRANSLATED, centerXf, barYf, 0, 0.15);
+        }
 
         SetFont("SCOREBKT");
         HudMessage(s:"A"; HUDMSG_PLAIN, 24201, CR_UNTRANSLATED, centerXf, barYf, 0);
@@ -135,7 +158,14 @@ function void Score_Draw(int pln, int curPoints, int goalPoints, int displayPoin
             SetHudClipRect(barLeft, 0, barpoints / pointstep, screenheight);
             
             SetFont(barForeground);
-            HudMessage(s:"A"; HUDMSG_PLAIN, 24202, CR_UNTRANSLATED, centerXf, barYf, 0);
+            HudMessage(s:"A"; HUDMSG_PLAIN, 24203, CR_UNTRANSLATED, centerXf, barYf, 0);
+            
+            if (flash)
+            {
+                SetFont(flashForeground);
+                HudMessage(s:"A"; HUDMSG_FADEOUT, 24202, CR_UNTRANSLATED, centerXf, barYf, 0, 0.15);
+            }
+            
             SetHudClipRect(0,0,0,0,0);
         }
     }
