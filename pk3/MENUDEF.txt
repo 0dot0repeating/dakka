@@ -156,7 +156,7 @@ OptionValue OffOn
 
 OptionValue Dakka_RecoilMode
 {
-    0, "Flat"
+    0, "Linear"
     1, "Curved"
     2, "Smooth"
 }
@@ -164,8 +164,8 @@ OptionValue Dakka_RecoilMode
 OptionValue Dakka_TracerMode
 {
     0, "Off"
-    1, "On for only me"
-    2, "On for everyone"
+    1, "Only mine"
+    2, "For everyone"
 }
 
 OptionValue Dakka_TracerSpeed
@@ -330,9 +330,14 @@ OptionMenu "Dakka_UserOptions"
     Option "Tracer density",        "dakka_cl_tracerdensity",      "Dakka_TracerDensity"
 
     StaticText ""
+    
+    Slider "Score scale",           "dakka_cl_scorescale", 25, 400, 25, 0
+    Slider "Score position (X)",    "dakka_cl_scorex",     0,  100,  5, 0
+    Slider "Score position (Y)",    "dakka_cl_scorey",     0,  100,  5, 0
 
     Option "No score rewards",      "dakka_cl_noscorerewards",     "OnOff"
     Option "Hide score",            "dakka_cl_hidescore",          "OnOff"
+    Option "Hide bonuses",          "dakka_cl_hidebonuses",        "OnOff"
     Option "Bonus display time",    "dakka_cl_bonustime",          "Dakka_BonusTime"
 
     StaticText ""
