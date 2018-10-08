@@ -335,6 +335,8 @@ OptionMenu "Dakka_UserOptions"
     Slider "Score scale",           "dakka_cl_scorescale", 25, 400, 25, 0
     Slider "Score position (X)",    "dakka_cl_scorex",     0,  100,  5, 0
     Slider "Score position (Y)",    "dakka_cl_scorey",     0,  100,  5, 0
+    
+    StaticText ""
 
     Option "Hide score",            "dakka_cl_hidescore",          "OnOff"
     Option "Flash score on kill",   "dakka_cl_flashscore",         "OnOff"
