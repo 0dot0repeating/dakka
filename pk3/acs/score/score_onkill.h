@@ -40,7 +40,10 @@ script "Dakka_Score" (int pointValue, int damagetype)
     int myTID     = UniqueTID();
     Thing_ChangeTID(0, myTID);
 
-    if (!SetActivatorToTarget(0))
+    SetActivator(0, AAPTR_TARGET);
+    while (CheckFlag(0, "MISSILE")) { SetActivator(0, AAPTR_TARGET); }
+    
+    if (ClassifyActor(0) & ACTOR_WORLD)
     {
         Thing_ChangeTID(myTID, myTID_old);
         terminate;
