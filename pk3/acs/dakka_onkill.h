@@ -1,6 +1,6 @@
 script "Dakka_OnKill" kill
 {
-    if(!CheckFlag(0, "ISMONSTER"))
+    if (!CheckFlag(0, "ISMONSTER"))
     {
         terminate;
     }
@@ -13,5 +13,7 @@ script "Dakka_OnKill" kill
 
     int spawnHP = GetActorProperty(0, APROP_SpawnHealth);
     SetActivator(0, AAPTR_TARGET);
+    
+    while (CheckFlag(0, "MISSILE")) { SetActivator(0, AAPTR_TARGET); }
     ACS_NamedExecuteWithResult("Dakka_VampireHeal", spawnHP);
 }
