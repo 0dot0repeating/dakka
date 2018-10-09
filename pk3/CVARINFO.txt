@@ -64,8 +64,8 @@ user bool dakka_cl_flashscore           = true;
 user int  dakka_cl_bonustime            = 35;
 
 user int  dakka_cl_scorescale           = 100;
-user int  dakka_cl_scorex               = 90;
-user int  dakka_cl_scorey               = 15;
+user int  dakka_cl_scorex               = 85;
+user int  dakka_cl_scorey               = 10;
 
 user int  dakka_cl_noammoclick          = 2;
 user int  dakka_cl_autodetonate         = 2;
