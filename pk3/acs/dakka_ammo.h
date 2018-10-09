@@ -116,7 +116,7 @@ script "Dakka_OutOfAmmo" (int trigger, int justlow, int soundtype)
     
     if (trigger == -1 || CheckInventory(checkitem) < t)
     {
-        SetInventory(checkitem, t + 18);
+        SetInventory(checkitem, t + 16);
         
         switch (soundtype)
         {

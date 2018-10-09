@@ -55,15 +55,15 @@ actor Dakkaguy: PlayerPawn
 
       Pain:
         DPLY G 0 ACS_NamedExecuteWithResult("Score_ResetUntouchable") // in acs/score/score_update.h
-        DPLY G 4 ACS_NamedExecuteWithResult("Score_CheckRevival")     // in acs/score/score_reward.h
-        DPLY G 4 A_Pain
+        DPLY G 2 ACS_NamedExecuteWithResult("Score_CheckRevival")     // in acs/score/score_reward.h
+        DPLY G 6 A_Pain
         goto Spawn
 
       Pain.Slime:
       Pain.Falling:
       Pain.Drowning:
-        DPLY G 4 ACS_NamedExecuteWithResult("Score_CheckRevival")     // in acs/score/score_reward.h
-        DPLY G 4 A_Pain
+        DPLY G 2 ACS_NamedExecuteWithResult("Score_CheckRevival")     // in acs/score/score_reward.h
+        DPLY G 6 A_Pain
         goto Spawn
 
       Death:
