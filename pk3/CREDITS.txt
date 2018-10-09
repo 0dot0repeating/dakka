@@ -44,6 +44,7 @@ SOUNDS
 - Impaler explosions: Streum On Studios, in EYE: Divine Cybermancy
 - Lancer primary fire: MachineGames, in Wolfenstein: New Order
 - Lancer alt-fire: Epic Games, in Unreal Tournament 2004
+- BFG looping energy sound: Epic Games, in Unreal Tournament 3
 - BFG alt-fire: Croteam, in Serious Sam 3
 
 - Score reward sounds: People Can Fly, in Painkiller
