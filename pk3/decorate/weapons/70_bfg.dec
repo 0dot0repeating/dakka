@@ -47,6 +47,7 @@ actor DWep_BFG9000: DoomWeapon
 
       ShutUpAndDeselect:
         DBFG A 0 A_PlaySound("dakka/minigunspindown", CHAN_WEAPON)
+        DBFG C 0 A_PlaySound("dakka/bfgabortcharge", 6)
         DBFG A 0 A_TakeInventory("BFGInMaelstrom")
         goto Deselect2
 
@@ -217,7 +218,8 @@ actor DWep_BFG9000: DoomWeapon
         DBFG B 0 A_TakeInventory("BFGRecoil")
         DBFG B 0 A_TakeInventory("BFGChargingMaelstrom")
         DBFG B 0 A_GiveInventory("BFGInMaelstrom")
-        DBFG B 0 A_PlaySound("dakka/minigunfire_fast", CHAN_WEAPON, 1.0, true)
+        DBFG B 0 A_PlaySound("dakka/minigunfire_fast", CHAN_WEAPON, 0.85, true)
+        DBFG B 0 A_PlaySound("dakka/bfgfireloop2", 6, 0.75, true)
 
       Hold:
         DBFG B 0 A_GunFlash
@@ -335,6 +337,7 @@ actor DWep_BFG9000: DoomWeapon
       FireEnd:
         DBFG C 0 A_Refire("Hold")
         DBFG C 0 A_PlaySound("dakka/minigunspindown", CHAN_WEAPON)
+        DBFG C 0 A_PlaySound("dakka/bfgabortcharge", 6)
         DBFG C 0 A_TakeInventory("BFGInMaelstrom")
         DBFG C 0 A_TakeInventory("BFGRecoil")
 
