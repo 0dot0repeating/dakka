@@ -102,7 +102,7 @@ function void Score_Draw(int pln, int curPoints, int goalPoints, int displayPoin
         if (flash)
         {
             HudMessage(s:"Score: \c[DScore_GoldFlash]", d:displayPoints;
-                        HUDMSG_FADEOUT | HUDMSG_COLORSTRING, 24199, "DScore_WhiteFlash", centerXf, scoreYf, 0, 0.15);
+                        HUDMSG_FADEOUT | HUDMSG_COLORSTRING, 24199, "DScore_WhiteFlash", centerXf, scoreYf, 0.05, 0.15);
         }
     }
 
@@ -143,7 +143,7 @@ function void Score_Draw(int pln, int curPoints, int goalPoints, int displayPoin
         if (flash)
         {
             SetFont(flashBackground);
-            HudMessage(s:"A"; HUDMSG_FADEOUT, 24204, CR_UNTRANSLATED, centerXf, barYf, 0, 0.15);
+            HudMessage(s:"A"; HUDMSG_FADEOUT, 24204, CR_UNTRANSLATED, centerXf, barYf, 0.05, 0.15);
         }
 
         SetFont("SCOREBKT");
@@ -163,7 +163,7 @@ function void Score_Draw(int pln, int curPoints, int goalPoints, int displayPoin
             if (flash)
             {
                 SetFont(flashForeground);
-                HudMessage(s:"A"; HUDMSG_FADEOUT, 24202, CR_UNTRANSLATED, centerXf, barYf, 0, 0.15);
+                HudMessage(s:"A"; HUDMSG_FADEOUT, 24202, CR_UNTRANSLATED, centerXf, barYf, 0.05, 0.15);
             }
             
             SetHudClipRect(0,0,0,0,0);
