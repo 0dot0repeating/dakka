@@ -5,7 +5,7 @@
 
 // This defines how many different data points we should sync between the server
 //  and the clients.
-#define S2C_DATACOUNT   21
+#define S2C_DATACOUNT   22
 
 
 // Constants for identifying which data point we want to modify.
@@ -30,7 +30,10 @@
 // Which reward number are we on?
 #define S2C_D_REWARDCOUNT   6
 
+// What's the last tic we got points on?
+#define S2C_D_GOTPOINTS     7
+
 
 // All of these are bonus values. See acs/score/score_defs.h for what they
 //  correspond to.
-#define S2C_D_BONUSSTART    7
+#define S2C_D_BONUSSTART    8
