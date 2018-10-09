@@ -324,31 +324,31 @@ StatusBar Normal, fullscreenoffsets, 0.85
     InInventory YellowCard
     {
         DrawImage "HUD_YKY1", 8, -79;
-        InInventory YellowSkull { DrawImage "HUD_YKY2", 9,  -94; }
+        InInventory YellowSkull { DrawImage "HUD_YKY2", 10, -94; }
     }
     else
     {
-        InInventory YellowSkull { DrawImage "HUD_YKY2", 9,  -80; }
+        InInventory YellowSkull { DrawImage "HUD_YKY2", 10, -80; }
     }
 
     InInventory RedCard
     {
         DrawImage "HUD_RKY1", 24, -79;
-        InInventory RedSkull { DrawImage "HUD_RKY2", 25,  -94; }
+        InInventory RedSkull { DrawImage "HUD_RKY2", 26, -94; }
     }
     else
     {
-        InInventory RedSkull { DrawImage "HUD_RKY2", 25,  -80; }
+        InInventory RedSkull { DrawImage "HUD_RKY2", 26, -80; }
     }
 
     InInventory BlueCard
     {
         DrawImage "HUD_BKY1", 40, -79;
-        InInventory BlueSkull { DrawImage "HUD_BKY2", 41,  -94; }
+        InInventory BlueSkull { DrawImage "HUD_BKY2", 42, -94; }
     }
     else
     {
-        InInventory BlueSkull { DrawImage "HUD_BKY2", 41,  -80; }
+        InInventory BlueSkull { DrawImage "HUD_BKY2", 42, -80; }
     }
 
     InventoryBarNotVisible
@@ -662,31 +662,31 @@ StatusBar Fullscreen, fullscreenoffsets, 0.85
     InInventory YellowCard
     {
         DrawImage "HUD_YKY1", 8, -79;
-        InInventory YellowSkull { DrawImage "HUD_YKY2", 9,  -94; }
+        InInventory YellowSkull { DrawImage "HUD_YKY2", 10, -94; }
     }
     else
     {
-        InInventory YellowSkull { DrawImage "HUD_YKY2", 9,  -80; }
+        InInventory YellowSkull { DrawImage "HUD_YKY2", 10, -80; }
     }
 
     InInventory RedCard
     {
         DrawImage "HUD_RKY1", 24, -79;
-        InInventory RedSkull { DrawImage "HUD_RKY2", 25,  -94; }
+        InInventory RedSkull { DrawImage "HUD_RKY2", 26, -94; }
     }
     else
     {
-        InInventory RedSkull { DrawImage "HUD_RKY2", 25,  -80; }
+        InInventory RedSkull { DrawImage "HUD_RKY2", 26, -80; }
     }
 
     InInventory BlueCard
     {
         DrawImage "HUD_BKY1", 40, -79;
-        InInventory BlueSkull { DrawImage "HUD_BKY2", 41,  -94; }
+        InInventory BlueSkull { DrawImage "HUD_BKY2", 42, -94; }
     }
     else
     {
-        InInventory BlueSkull { DrawImage "HUD_BKY2", 41,  -80; }
+        InInventory BlueSkull { DrawImage "HUD_BKY2", 42, -80; }
     }
 
     InventoryBarNotVisible
@@ -996,34 +996,35 @@ StatusBar Automap, fullscreenoffsets, 0.85
     IsSelected DWep_PlasmaLance    { DrawImage "FSH_WP63", -128, -42; }
     IsSelected DWep_BFG9000        { DrawImage "FSH_WP73", -120, -42; }
 
+    
     InInventory YellowCard
     {
         DrawImage "HUD_YKY1", 8, -79;
-        InInventory YellowSkull { DrawImage "HUD_YKY2", 9,  -94; }
+        InInventory YellowSkull { DrawImage "HUD_YKY2", 10, -94; }
     }
     else
     {
-        InInventory YellowSkull { DrawImage "HUD_YKY2", 9,  -80; }
+        InInventory YellowSkull { DrawImage "HUD_YKY2", 10, -80; }
     }
 
     InInventory RedCard
     {
         DrawImage "HUD_RKY1", 24, -79;
-        InInventory RedSkull { DrawImage "HUD_RKY2", 25,  -94; }
+        InInventory RedSkull { DrawImage "HUD_RKY2", 26, -94; }
     }
     else
     {
-        InInventory RedSkull { DrawImage "HUD_RKY2", 25,  -80; }
+        InInventory RedSkull { DrawImage "HUD_RKY2", 26, -80; }
     }
 
     InInventory BlueCard
     {
         DrawImage "HUD_BKY1", 40, -79;
-        InInventory BlueSkull { DrawImage "HUD_BKY2", 41,  -94; }
+        InInventory BlueSkull { DrawImage "HUD_BKY2", 42, -94; }
     }
     else
     {
-        InInventory BlueSkull { DrawImage "HUD_BKY2", 41,  -80; }
+        InInventory BlueSkull { DrawImage "HUD_BKY2", 42, -80; }
     }
 
     InventoryBarNotVisible
