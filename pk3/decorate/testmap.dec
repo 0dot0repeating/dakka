@@ -194,6 +194,8 @@ actor DAKKTEST_AssKicker
     +QUICKTORETALIATE
     Health 1
     PainChance 255
+    
+    Obituary "%o fukn had it."
 
     States
     {
