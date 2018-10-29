@@ -105,27 +105,9 @@ function int percFloat(int intg, int frac)
 
 
 
-function int inputUp(int input)
-{
-    if ((~GetPlayerInput(-1, MODINPUT_BUTTONS) & input) == input) { return 1; }
-    return 0;
-}
-
-function int inputUp_any(int input)
-{
-    if (~GetPlayerInput(-1, MODINPUT_BUTTONS) & input) { return 1; }
-    return 0;
-}
-
 function int inputDown(int input)
 {
     if ((GetPlayerInput(-1, MODINPUT_BUTTONS) & input) == input) { return 1; }
-    return 0;
-}
-
-function int inputDown_any(int input)
-{
-    if (GetPlayerInput(-1, MODINPUT_BUTTONS) & input) { return 1; }
     return 0;
 }
 
@@ -157,11 +139,6 @@ function int inputReleased(int input)
     return 0;
 }
 
-function int inputReleased_any(int input)
-{
-    if (inputsReleased() & input) { return 1; }
-    return 0;
-}
 
 
 function int isPrintable(int c)
