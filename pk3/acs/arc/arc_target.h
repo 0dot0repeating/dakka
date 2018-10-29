@@ -47,7 +47,7 @@ function void Arc_GetTarget(int arcType, int arcerTID)
 
     SetActivator(arcerTID);
 
-    // Add 128 to the range as a fudge faster, since A_RadiusGive doesn't check
+    // Add 128 to the range as a fudge factor, since A_RadiusGive doesn't check
     //  the full hitbox, just origins
     SetUserVariable(0, "user_lookrange", INT_ArcData[arcType][ARC_I_RANGE] + 128);
     SetActorState(0, "Arc_Look");
