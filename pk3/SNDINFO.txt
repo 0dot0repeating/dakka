@@ -135,27 +135,10 @@ $volume dakka/scrapperaltfire 0.7
 // PISTOL(S)
 ///
 
-// Same sound, but with a few ms of delay on 1 through 4
-dakka/pistolfire0           sounds/pistols/pistol_fire.ogg
-dakka/pistolfire1           sounds/pistols/pistol_fire1.ogg
-dakka/pistolfire2           sounds/pistols/pistol_fire2.ogg
-dakka/pistolfire3           sounds/pistols/pistol_fire3.ogg
-dakka/pistolfire4           sounds/pistols/pistol_fire4.ogg
-$random dakka/pistolfire    { dakka/pistolfire0 dakka/pistolfire1 dakka/pistolfire2 dakka/pistolfire3 dakka/pistolfire4 }
-
-dakka/pistolaltfire         sounds/pistols/pistol_altfire.ogg
-
-$limit dakka/pistolfire     0
-$limit dakka/pistolaltfire  0
-
-$volume dakka/pistolfire    0.55
-$volume dakka/pistolaltfire 0.65
-
-
-dakka/revolverfire          sounds/revolvers/revolver_fire.ogg
-dakka/revolveraltfire       sounds/revolvers/revolver_altfire.ogg
-$volume dakka/revolverfire      0.85
-$volume dakka/revolveraltfire   0.95
+dakka/pistolfire          sounds/pistols/revolver_fire.ogg
+dakka/pistolaltfire       sounds/pistols/revolver_altfire.ogg
+$volume dakka/pistolfire      0.85
+$volume dakka/pistolaltfire   0.95
 
 
 
