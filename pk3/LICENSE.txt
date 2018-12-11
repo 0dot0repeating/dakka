@@ -1,8 +1,8 @@
 Copyright © 2018 ijon <segfaultsamurai@gmail.com>
 
-This work, and every file within, is free. You can redistribute it and/or modify
-it under the terms of the Do What The Fuck You Want To Public License, Version 2,
-as published by Sam Hocevar, and reproduced in its entirely below.
+This work, and the code within, is free. You can redistribute them and/or modify
+them under the terms of the Do What The Fuck You Want To Public License, Version
+2, as published by Sam Hocevar, and reproduced in its entirely below.
 
 
            DO WHAT THE FUCK YOU WANT TO PUBLIC LICENSE 
