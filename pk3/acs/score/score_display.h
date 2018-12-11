@@ -77,15 +77,20 @@ function void Score_Draw(int pln, int curPoints, int goalPoints, int displayPoin
 {
     int i;
     
-    int d = GetUserCVar(pln, "dakka_cl_scorescale");
+    int d      = GetUserCVar(pln, "dakka_cl_scorescale");
+    int aspect = itofDiv(GetScreenWidth(), GetScreenHeight());
     int screenwidth  = Score_ScaleRes(SCORE_SCREENX, d);
     int screenheight = Score_ScaleRes(SCORE_SCREENY, d);
-    int widewidth    = FixedMul(screenHeight, itofDiv(GetScreenWidth(), GetScreenHeight()));
+    int widewidth    = FixedMul(screenHeight, aspect);
+    
+    // whoever decided that sethudsize should letterbox out to 16:9,
+    //  then stretch past that, is a complete retard
+    int compressRatio = max(1.0, FixedDiv(aspect, 16.0 / 9));
+    screenwidth = FixedMul(screenwidth, compressRatio);
     
     int centerX  = Score_ScaledCoord(GetUserCVar(pln, "dakka_cl_scorex"), wideWidth,    BAR_APPROXWIDTH,  widewidth - screenWidth);
     int centerY  = Score_ScaledCoord(GetUserCVar(pln, "dakka_cl_scorey"), screenheight, BAR_APPROXHEIGHT, 0);
     int centerXf = setFraction(itof(centerX), 0.4);
-
     
     if (hideScore)
     {
@@ -180,10 +185,16 @@ function void Score_DrawLives(int pln, int lives, int hideScore)
 {
     int i;
     
-    int d = GetUserCVar(pln, "dakka_cl_scorescale");
+    int d      = GetUserCVar(pln, "dakka_cl_scorescale");
+    int aspect = itofDiv(GetScreenWidth(), GetScreenHeight());
     int screenwidth  = Score_ScaleRes(SCORE_SCREENX, d);
     int screenheight = Score_ScaleRes(SCORE_SCREENY, d);
-    int widewidth    = FixedMul(screenHeight, itofDiv(GetScreenWidth(), GetScreenHeight()));
+    int widewidth    = FixedMul(screenHeight, aspect);
+    
+    // whoever decided that sethudsize should letterbox out to 16:9,
+    //  then stretch past that, is a complete retard
+    int compressRatio = max(1.0, FixedDiv(aspect, 16.0 / 9));
+    screenwidth = FixedMul(screenwidth, compressRatio);
     
     int centerX  = Score_ScaledCoord(GetUserCVar(pln, "dakka_cl_scorex"), wideWidth,    BAR_APPROXWIDTH,  widewidth - screenWidth);
     int centerY  = Score_ScaledCoord(GetUserCVar(pln, "dakka_cl_scorey"), screenheight, BAR_APPROXHEIGHT, 0);
