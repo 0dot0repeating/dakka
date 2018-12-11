@@ -4,6 +4,16 @@ This work, and the code within, is free. You can redistribute them and/or modify
 them under the terms of the Do What The Fuck You Want To Public License, Version
 2, as published by Sam Hocevar, and reproduced in its entirely below.
 
+In addition to all code, these files are covered by the below license:
+- All files in maps/
+- All files in textures/
+- All files in sprites/scrapper/ except SCPRZ0.png and SPAKA0.png
+- All files in graphics/titlemap/
+- All files in graphics/hud/ except those based on weapon pickup sprites
+- sprites/plasmalance/PLNCZ0.png and all files in graphics/hud/ based on it
+- graphics/SELECTBO.png
+- ARCFONT.bmf
+
 
            DO WHAT THE FUCK YOU WANT TO PUBLIC LICENSE 
                    Version 2, December 2004 
