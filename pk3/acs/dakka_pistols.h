@@ -31,22 +31,23 @@ function void Pistols_CapBulletsLeft(void)
 }
 
 
-script "Dakka_PistolSpread" (int axis)
+script "Dakka_PistolSpread" (int axis, int mult)
 {
     int ret;
     int spreadMod = CheckInventory("DakkaPistolSpread");
+    mult = cond(mult > 0, itofDiv(mult, 100), 1.0);
     
     if (axis == 1) // vertical spread
     {
-        ret = 0.11 * spreadMod;
+        ret = 0.09 * spreadMod;
     }
     else // horizontal spread
     {
-        ret = 0.135 * spreadMod;
+        ret = 0.11 * spreadMod;
     }
     
     //Log(s:cond(axis == 1, "Y", "X"), s:" spread: ", f:ret);
-    SetResultValue(ret);
+    SetResultValue(FixedMul(ret, mult));
 }
 
 
