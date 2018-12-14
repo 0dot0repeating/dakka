@@ -419,6 +419,9 @@ actor ShotNadeTrail
     RenderStyle Add
     Alpha 0.125
     Scale 0.1
+    
+    Radius 0
+    Height 0
 
     States
     {
@@ -452,6 +455,9 @@ actor GrenadeExplosion_Client
     +NOINTERACTION
     +CLIENTSIDEONLY
     +FORCEXYBILLBOARD
+    
+    Radius 0
+    Height 0
 
     RenderStyle Add
 
@@ -504,6 +510,9 @@ actor MiniGrenadeExplosion_Client
     +NOINTERACTION
     +CLIENTSIDEONLY
     +FORCEXYBILLBOARD
+    
+    Radius 0
+    Height 0
 
     RenderStyle Add
     Scale 0.5
@@ -556,6 +565,9 @@ actor MiniGrenadeRingParticle
     +NOINTERACTION
     +CLIENTSIDEONLY
     +FORCEXYBILLBOARD
+    
+    Radius 0
+    Height 0
 
     RenderStyle Add
     Scale 0.5
@@ -621,6 +633,9 @@ actor MiniGrenadeTrailParticle
     +NOINTERACTION
     +CLIENTSIDEONLY
     +FORCEXYBILLBOARD
+    
+    Radius 0
+    Height 0
 
     RenderStyle Add
     Scale 0.2

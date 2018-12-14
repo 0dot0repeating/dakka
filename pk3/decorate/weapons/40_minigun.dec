@@ -1209,7 +1209,7 @@ actor MinigunFlameV
         goto FireDone
 
         TNT1 A 0 A_SpawnItemEx("MinigunOldFlame_LE", 0,0,0, 0,0,0, 0, SXF_ABSOLUTEPOSITION)
-        TNT1 A 0 A_SpawnItemEx("MinigunImpactFlame", frandom(-15,15), 0, frandom(-15,15), frandom(-2,2),0,frandom(0,2), random(0,360))
+        TNT1 A 0 A_SpawnItemEx("MinigunImpactFlame", 0,0,0, frandom(-3,3),0,frandom(-4,6), random(0,360))
         TNT1 A 1 A_SetUserVar("user_t", user_t + 4)
         loop
 
@@ -1294,7 +1294,7 @@ actor MinigunFlameV
         TNT1 A 0 A_JumpIf(user_t < 15, 1)
         goto FireDone
 
-        TNT1 A 0 A_SpawnItemEx("MinigunImpactFlame", frandom(-15,15), 0, frandom(-15,15), frandom(-2,2),0,frandom(0,2), random(0,360))
+        TNT1 A 0 A_SpawnItemEx("MinigunImpactFlame", 0,0,0, frandom(-3,3),0,frandom(-4,6), random(0,360))
         TNT1 A 1 A_SetUserVar("user_t", user_t + 4)
         loop
     }
@@ -1375,6 +1375,9 @@ actor MinigunNewFlame1
     +BLOODLESSIMPACT
     +CLIENTSIDEONLY
     +FORCEXYBILLBOARD
+    
+    Radius 0
+    Height 0
 
     RenderStyle Add
     Scale 0.5
@@ -1423,6 +1426,9 @@ actor MinigunSteam
     +NOINTERACTION
     +CLIENTSIDEONLY
     +FORCEXYBILLBOARD
+    
+    Radius 0
+    Height 0
 
     RenderStyle Add
     Scale 0.7
@@ -1459,6 +1465,9 @@ actor MinigunAfterburnFlame
 {
     +NOINTERACTION
     +CLIENTSIDEONLY
+    
+    Radius 0
+    Height 0
 
     RenderStyle Add
     Alpha 0.8
@@ -1479,6 +1488,9 @@ actor MinigunImpactFlame
 {
     +NOINTERACTION
     +CLIENTSIDEONLY
+    
+    Radius 0
+    Height 0
 
     RenderStyle Add
     Alpha 0.8
@@ -1488,7 +1500,8 @@ actor MinigunImpactFlame
       Spawn:
         DKFR D 0
         DKFR D 0 A_SetScale(frandom(0.2, 0.5))
-        DKFR D 2 bright A_SetScale(scalex + frandom(0.1, 0.3))
+        DKFR D 1 bright A_SetScale(scalex + frandom(0.1, 0.3))
+        DKFR D 1 bright A_ScaleVelocity(0.1)
         DKFR E 0        A_ScaleVelocity(0.8)
         DKFR E 2 bright A_SetScale(scalex + frandom(0.1, 0.3))
         DKFR F 0        A_ScaleVelocity(0.8)
