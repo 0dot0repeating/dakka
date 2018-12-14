@@ -411,12 +411,14 @@ actor ImpalerAltMissile2: ImpalerAltMissile { Speed 90 }
 
 
 
-
 actor ImpalerExplosion_Client
 {
     +NOINTERACTION
     +CLIENTSIDEONLY
     +FORCEXYBILLBOARD
+    
+    Radius 0
+    Height 0
 
     RenderStyle Add
 
@@ -518,6 +520,9 @@ actor ImpalerRingParticle
 
     RenderStyle Add
     Alpha 0.125
+    
+    Radius 0
+    Height 0
 
     States
     {
@@ -535,6 +540,9 @@ actor ImpalerTrailParticle
 
     RenderStyle Add
     Scale 0.35
+    
+    Radius 0
+    Height 0
 
     States
     {
@@ -578,6 +586,9 @@ actor ImpalerBigTrailParticle
 
     RenderStyle Add
     Scale 0.5
+    
+    Radius 0
+    Height 0
 
     States
     {
