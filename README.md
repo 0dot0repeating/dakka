@@ -30,7 +30,7 @@ Early OpenAL implementations in GZDoom will play stereo sounds incorrectly - if
 the super shotgun and minigun sound quiet and muffled compared to the pistols and
 impaler, that's the bug. GZDoom 3.2.5 doesn't exhibit this bug - use that one.
 
-**DOWNLOAD:** http://jinotra.in/downloads/mods/doom/dakka?sort=m
+**DOWNLOAD:** http://jinotra.in/downloads/mods/doom/dakka?sort=M
 
 
 
