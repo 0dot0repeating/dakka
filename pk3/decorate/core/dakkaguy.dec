@@ -12,8 +12,8 @@ actor Dakkaguy: PlayerPawn
     Player.DisplayName "Dakkaguy"
     Player.JumpZ 8
 
-    Player.ForwardMove 1.2
-    Player.SideMove 1.25
+    Player.ForwardMove 0.6,   1.2
+    Player.SideMove    0.625, 1.25
 
     Player.HexenArmor 0, 20, 5, 15, 10
     Player.HealRadiusType "Health"
