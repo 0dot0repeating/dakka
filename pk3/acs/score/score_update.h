@@ -12,7 +12,7 @@ function void Air_UpdateZHeight(void)
     else
     {
         int grav    = GetActorProperty(0, APROP_Gravity);
-        int jumpVel = GetActorVelZ(0) + (grav / 2);
+        int jumpVel = GetActorVelZ(0);
 
         int curMaxHeight = GetActorZ(0) + HeightFromJumpZ(jumpVel, grav);
 
