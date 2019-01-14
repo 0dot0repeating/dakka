@@ -14,6 +14,7 @@ int msgColors[22] =
 };
 
 function int itof(int x) { return x << 16; }
+function int ftoi(int x) { return x >> 16; }
 
 function int safeAdd(int a, int b)
 {
@@ -387,13 +388,43 @@ function int _defaulttid(int def, int alwaysPropagate)
 
 function int HeightFromJumpZ(int jumpz, int gravFactor)
 {
-    if (jumpz < 0) { return 0; }
-    return FixedDiv(FixedMul(jumpz, jumpz), gravFactor << 1);
+    int ret = 0;
+    
+    for (int i = jumpz; i > 0; i -= gravFactor)
+    {
+        ret += jumpz;
+    }
+    
+    return ret;
 }
 
-function int JumpZFromHeight(int height, int gravFactor)
+// ported from quakeaccel
+function int JumpZFromHeight(int h, int g)
 {
-    return FixedSqrt(2 * height * gravFactor);
+    h = itof(h);
+    
+    // ugly hack to nudge the calculations up a bit and get around ACS's loss of precision
+    h += 8;
+    
+    //double baseEstimate = (sqrt(g**2 + (8*g*h)) - g) / 2;
+    int baseEstimate = (FixedSqrt(FixedMul(g, g) + (8 * FixedMul(g, h))) - g) / 2;
+    
+    // round estimate to previous multiple of g (so vz = 0 at the peak tic),
+    //  and figure out how high that gets us
+    //double estimate  = baseEstimate - (baseEstimate % g);
+    //double estHeight = estimate * (estimate + g) / (2 * g);
+    int estimate  = baseEstimate - mod(baseEstimate, g);
+    int estHeight = FixedDiv(FixedMul(estimate, estimate + g), 2 * g);
+    
+    // get the difference from what we want, divide it by the amount of tics
+    //  you spend rising, add it onto the estimate
+    //double estDiff = (h - estHeight);
+    //double estTime = ceil(baseEstimate / g);
+    //estimate += estDiff / estTime;
+    int estDiff = h - estHeight;
+    int estTime = ftoi(FixedDiv(baseEstimate, g) + (1.0 - 1));
+    estimate += estDiff / estTime;
+    return estimate;
 }
 
 
