@@ -83,12 +83,12 @@ int ClassCheck_ByInv[CLASSCOUNT_DEFINED][CLASS_INVCHECKCOUNT] =
 
 
 // This is for FINDBYNAME. Again, adjust down as low as possible.
-#define CLASS_NAMECHECKCOUNT    1
+#define CLASS_NAMECHECKCOUNT    2
 
 // Etc.
 int ClassCheck_ByName[CLASSCOUNT_DEFINED][CLASS_NAMECHECKCOUNT] =
 {
-    {"Dakkaguy"},
+    {"Dakkaguy", "Dakkaguy_QuakeAccel"},
 };
 
 
@@ -96,8 +96,6 @@ int ClassCheck_ByName[CLASSCOUNT_DEFINED][CLASS_NAMECHECKCOUNT] =
 //  specify whatever three arguments you want for it. Script economy go!
 //
 // The first argument passed is always the TID to check.
-//
-// You probably can't use the third argument in Zandronum, so be warned.
 
 int ClassCheck_ByScript[CLASSCOUNT_DEFINED][4] =
 {

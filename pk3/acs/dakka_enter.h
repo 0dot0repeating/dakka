@@ -50,7 +50,7 @@ script "Dakka_Spawn" (int respawned)
         // Doesn't need its own script
         if (classNum == Cl_Dakkaguy) { SetInventory("DWep_Fists", 1); }
         
-        int jumpz = JumpZFromHeight(max(0, 36 + GetCVar("dakka_jumpmod")), 1.0);
+        int jumpz = JumpZFromHeight(max(0, 36 + GetCVar("dakka_jumpmod")), GetActorProperty(0, APROP_Gravity));
         if (GetActorProperty(0, APROP_JumpZ) != jumpz)
         {
             SetActorProperty(0, APROP_JumpZ, jumpz);

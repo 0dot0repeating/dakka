@@ -115,7 +115,21 @@ most important things:
 
 
 
-## COMPATIBILITY PATCHES
+## ADD-ONS AND COMPATIBILITY PATCHES
+
+### Addons
+
+- **[Quake-style movement](http://git.jinotra.in/ijon/dakka/raw/master/addons/dakka_quakemovement.wad) (`dakka_quakemovement`):**
+    Replaces Doom's style of movement with Quake's style of movement. You'll be
+    swifter on your feet, the ground will feel somewhat less slippery, you'll be
+    able to bunnyhop similarly to how you would in Quake 1 (the initial circlejump
+    is different), and you should still be able to maneuver in cramped areas. I
+    would still recommend binding and using your walk key.
+    
+    **HUUH** sound not included, but can be yours for [one easy payment of $9.99!](http://jinotra.in/static/downloads/mods/doom/assorted/HUUH.wad)
+
+
+### Compatibility Patches
 
 - **[ZDoom support](http://git.jinotra.in/ijon/dakka/raw/master/addons/dakka_zdoom.wad) (`dakka_zdoom.wad`):**
     ZDoom lacks an event handler for monsters dying, so you need this patch to hook
@@ -155,7 +169,7 @@ To use any of these patches, load your mods in this order:
 
 - The other maps/monsters in question
 - **DAKKA**
-- The compatibility patch(es)
+- The addon(s)
 
 
 
