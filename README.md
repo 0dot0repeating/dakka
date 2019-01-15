@@ -119,14 +119,17 @@ most important things:
 
 ### Addons
 
-- **[Quake-style movement](http://git.jinotra.in/ijon/dakka/raw/master/addons/dakka_quakemovement.wad) (`dakka_quakemovement`):**
+- **[Quake-style movement](http://git.jinotra.in/ijon/dakka/raw/master/addons/dakka_quakemovement.wad) (`dakka_quakemovement.wad`):**
     Replaces Doom's style of movement with Quake's style of movement. You'll be
     swifter on your feet, the ground will feel somewhat less slippery, you'll be
     able to bunnyhop similarly to how you would in Quake 1 (the initial circlejump
-    is different), and you should still be able to maneuver in cramped areas. I
-    would still recommend binding and using your walk key.
+    is different), and you should still be able to maneuver in cramped areas easily
+    enough. I would still recommend binding and using your walk key for tight spaces,
+    however.
     
-    **HUUH** sound not included, but can be yours for [one easy payment of $9.99!](http://jinotra.in/static/downloads/mods/doom/assorted/HUUH.wad)
+    Requires GZDoom 3.7.0 or newer to function, as it makes use of ZScript and the
+    +NOFRICTION and +NOFRICTIONBOUNCE flags. **HUUH** sound not included, but can
+    be yours for [one easy payment of $9.99!](http://jinotra.in/static/downloads/mods/doom/assorted/HUUH.wad)
 
 
 ### Compatibility Patches
