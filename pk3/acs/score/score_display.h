@@ -1,5 +1,3 @@
-int Score_LastGotPoints[PLAYERMAX];
-
 function void Score_Update(int pln)
 {
     int points          = SToC_ClientData[pln][S2C_D_SCORE];
@@ -9,13 +7,10 @@ function void Score_Update(int pln)
     int hideScore       = GetUserCVar(pln, "dakka_cl_hidescore") | (GetCVar("screenblocks") == 12);
     int hideBonuses     = (GetUserCVar(pln, "dakka_cl_bonustime") == 0) | hideScore;
     
-    int gotPoints       = SToC_ClientData[pln][S2C_D_GOTPOINTS];
-    int lastGotPoints   = Score_LastGotPoints[pln];
-    
     int rewardTypes = GetCVar("dakka_score_rewardtypes");
     int rewardCount = SToC_ClientData[pln][S2C_D_REWARDCOUNT];
     int nextIsLife  = false;
-    int flash       = GetUserCVar(pln, "dakka_cl_flashscore") && (gotPoints > lastGotPoints);
+    int flash       = GetUserCVar(pln, "dakka_cl_flashscore") && SToC_ClientData[pln][S2C_D_GOTPOINTS];;
     int noReward    = GetUserCVar(pln, "dakka_cl_noscorerewards");
     
     switch (rewardtypes)
@@ -43,8 +38,6 @@ function void Score_Update(int pln)
     Score_Draw(pln, points, goalpoints, displayPoints, hideScore, noReward, nextIsLife, flash);
     Score_DrawLives(pln, lives, hideScore);
     Score_DrawBonuses(pln, hideBonuses);
-    
-    Score_LastGotPoints[pln] = gotPoints;
 }
 
 
