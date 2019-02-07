@@ -178,7 +178,7 @@ script "Dakka_Score" (int pointValue, int damagetype)
         }
     }
 
-    Sender_SetData(pln, S2C_D_GOTPOINTS, Timer());
+    SCORE_Updated[pln] = true;
     AddUntouchable(myhp);
     AddKillstreak(myhp);
 }
@@ -204,7 +204,7 @@ script "Dakka_Infighter" (int pointValue)
         BonusSetTime[i][BS_BASE]      = bonustime;
         BonusSetTime[i][BS_INFIGHTER] = bonustime;
         
-        Sender_SetData(i, S2C_D_GOTPOINTS, Timer());
+        SCORE_Updated[i] = true;
     }
 }
 
@@ -229,6 +229,6 @@ script "Dakka_InfighterSelf" (int pointValue)
         BonusSetTime[i][BS_BASE]   = bonustime;
         BonusSetTime[i][BS_DARWIN] = bonustime;
         
-        Sender_SetData(i, S2C_D_GOTPOINTS, Timer());
+        SCORE_Updated[i] = true;
     }
 }

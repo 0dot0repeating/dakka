@@ -81,12 +81,14 @@ int Air_FloorHeight[PLAYERMAX];
 
 world int 22:Score_Thresholds[];
 
+// When true, Score_UpdateClient will tell the player that they got points, then
+// set this to false
+int SCORE_Updated[PLAYERMAX];
 
 // CLASSCOUNT_DEFINED is defined in pickup/pickup_classes.h
-//  This is used for Switcharoo and One Stone: Switcharoo checks it to see if
-//  it applies at all, and One Stone uses it to see if we can rely on last
-//  weapon fire time to actually be updated
-//
+//  Switcharoo checks this value to see if the class actually updates the
+//  appropriate data for this to work
+
 int SCORE_UpdatesSwitcharoo[CLASSCOUNT_DEFINED] =
 {
     true,
