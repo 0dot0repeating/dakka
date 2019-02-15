@@ -291,6 +291,9 @@ $rolloff dakka/impalerfly   1 640
 // LANCER
 ///
 
+dakka/lancerabort           sounds/plasmalance/arc_abort.ogg
+$volume dakka/lancerabort 0.6
+
 dakka/plasmaexplode         sounds/plasmarifle/plasma_explode.ogg
 $limit dakka/plasmaexplode  0
 
