@@ -196,3 +196,9 @@ script "Dakka_ArcSpark" (int ptr)
         SpawnForced("LanceArcMidSpark", spawnX, spawnY, spawnZ);
     }
 }
+
+
+script "Dakka_LancerCharge" (void)
+{
+    SetResultValue(CheckInventory("LancerAltChargeLevel"));
+}
