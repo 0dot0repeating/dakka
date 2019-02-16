@@ -68,8 +68,13 @@ script "Dakka_UseAmmo" (int ammoindex, int count, int scrapgive, int scraptype)
     str ammotype   = PKP_KnownAmmo[ammoindex];
     int ammoBefore = CheckInventory(ammotype);
     
+    // SetInventory is used because of the lancer alt-fire - if you abort the charge,
+    //  it'll give the ammo it used in the charge back, and the checks above will
+    //  still apply, making sure it doesn't give you ammo out of nowhere with
+    //  infinite ammo on
+    
     Dakka_GiveScrap(scrapgive, scraptype);
-    TakeInventory(ammotype, count);
+    SetInventory(ammotype, ammoBefore - count);
     
     int ammoLeft = CheckInventory(ammotype);
     int lowcount = PKP_DefaultAmmoCount[ammoindex][DAMMO_WARNLOW];
