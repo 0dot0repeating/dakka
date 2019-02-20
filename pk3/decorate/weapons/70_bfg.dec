@@ -31,7 +31,16 @@ actor DWep_BFG9000: DoomWeapon
     States
     {
       Select:
+        DBFG A 0 A_JumpIfInventory("BFGNeedsReload", 1, "InstantSelect")
+        goto Select2
+      
+      Select2:
         DBFG AA 0 A_Raise
+        DBFG A 1 A_Raise
+        loop
+      
+      InstantSelect:
+        DBFG AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA 0 A_Raise
         DBFG A 1 A_Raise
         loop
 
@@ -60,7 +69,7 @@ actor DWep_BFG9000: DoomWeapon
       Ready:
         DBFG A 0 A_TakeInventory("BFGChargingMaelstrom")
         DBFG A 0 A_TakeInventory("BFGInMaelstrom")
-        DBFG A 0 A_JumpIfInventory("BFGNeedsReload", 1, "AltReload")
+        DBFG A 0 A_JumpIfInventory("BFGNeedsReload", 1, "ReadyReload")
         goto Ready2
 
       Ready2:
@@ -467,6 +476,34 @@ actor DWep_BFG9000: DoomWeapon
         DBFG C 1 offset(0, 28) A_WeaponReady(WRF_NOFIRE | WRF_NOBOB)
         DBFG C 1 offset(0, 31) A_WeaponReady(WRF_NOFIRE | WRF_NOBOB)
         DBFG C 2 offset(0, 34) A_WeaponReady(WRF_NOFIRE | WRF_NOBOB)
+        DBFG C 4 offset(0, 36) A_WeaponReady(WRF_NOFIRE | WRF_NOBOB)
+        DBFG C 1 offset(0, 35) A_WeaponReady(WRF_NOFIRE | WRF_NOBOB)
+        DBFG C 1 offset(0, 33) A_WeaponReady(WRF_NOFIRE | WRF_NOBOB)
+        DBFG C 2 offset(0, 30) A_WeaponReady(WRF_NOFIRE | WRF_NOBOB)
+        DBFG C 0               A_PlaySound("dakka/ssgclose", 5)
+        DBFG C 0               A_TakeInventory("BFGNeedsReload")
+        DBFG C 1 offset(0, 29) A_WeaponReady(WRF_NOFIRE | WRF_NOBOB)
+        DBFG C 1 offset(0, 27) A_WeaponReady(WRF_NOFIRE | WRF_NOBOB)
+
+        // BEAT 4 (18 tics)
+        DBFG A 1 offset(0, 38) A_WeaponReady(WRF_NOFIRE | WRF_NOBOB)
+        DBFG A 1 offset(0, 37) A_WeaponReady(WRF_NOFIRE | WRF_NOBOB)
+        DBFG A 2 offset(0, 35) A_WeaponReady(WRF_NOFIRE | WRF_NOBOB)
+        DBFG A 2 offset(0, 33) A_WeaponReady(WRF_NOFIRE | WRF_NOBOB)
+        DBFG A 6 offset(0, 32) A_WeaponReady(WRF_NOSECONDARY | WRF_NOBOB)
+        goto Ready
+
+
+      ReadyReload:
+        // BEAT 1 (4 tics)
+        DBFG A 2 offset(0, 66) A_WeaponReady(WRF_NOFIRE | WRF_NOBOB)
+        DBFG A 0               A_PlaySound("dakka/ssgload", 5)
+        DBFG A 2 offset(0, 63) A_WeaponReady(WRF_NOFIRE | WRF_NOBOB)
+
+        // BEAT 3 (14 tics)
+        DBFG C 1 offset(0, 44) A_WeaponReady(WRF_NOFIRE | WRF_NOBOB)
+        DBFG C 1 offset(0, 43) A_WeaponReady(WRF_NOFIRE | WRF_NOBOB)
+        DBFG C 2 offset(0, 42) A_WeaponReady(WRF_NOFIRE | WRF_NOBOB)
         DBFG C 4 offset(0, 36) A_WeaponReady(WRF_NOFIRE | WRF_NOBOB)
         DBFG C 1 offset(0, 35) A_WeaponReady(WRF_NOFIRE | WRF_NOBOB)
         DBFG C 1 offset(0, 33) A_WeaponReady(WRF_NOFIRE | WRF_NOBOB)
