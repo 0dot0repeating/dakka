@@ -28,7 +28,8 @@ Zandronum 3 should run them perfectly well.
 
 Early OpenAL implementations in GZDoom will play stereo sounds incorrectly - if
 the super shotgun and minigun sound quiet and muffled compared to the pistols and
-impaler, that's the bug. GZDoom 3.2.5 doesn't exhibit this bug - use that one.
+impaler, that's the bug. Either update your GZDoom or use one of the versions listed
+below the title image.
 
 **DOWNLOAD:** http://jinotra.in/downloads/mods/doom/dakka?sort=M
 
@@ -147,7 +148,7 @@ most important things:
 
 - **[Ancient Aliens](http://git.jinotra.in/ijon/dakka/raw/master/addons/dakka_aaliens.wad) (`dakka_aaliens.wad`):**
     This adds the gibbed marine and dead lost soul to the score system since
-    Ancient Aliens replaces them with custom enemies, and adjusts their score\
+    Ancient Aliens replaces them with custom enemies, and adjusts their score
     values upwards to match their increased danger.
     
     - **[ZDoom support](http://git.jinotra.in/ijon/dakka/raw/master/addons/dakka_aaliens_zdoom.wad) (`dakka_aaliens_zdoom.wad`):**
