@@ -66,6 +66,7 @@ function void Dakka_StartMode_NormalWeps(int classNum, int startMode)
         {
             if (startMode < wepPower)
             {
+                if (CheckWeapon(wepName)) { SetWeapon("DWep_Pistols"); }
                 TakeInventory(wepName, 0x7FFFFFFF);
                 continue;
             }
@@ -127,6 +128,7 @@ function void Dakka_StartMode_CustomWeps(int classNum)
             
             if (customGive < 0)
             {
+                if (CheckWeapon(wepName)) { SetWeapon("DWep_Pistols"); }
                 TakeInventory(wepName, 0x7FFFFFFF);
                 continue;
             }
