@@ -1,101 +1,100 @@
 // OPEN scripts run in the opposite order they were defined.
-// that's fucking dumb.
+// except sometimes they don't?
+// yeah I don't fucking know, it's dumb and I hate it
 
 script "Dakka_Open_Client" open clientside
 {
-    if (IsServer || GameType() == GAME_TITLE_MAP) { terminate; }
+    if (IsServer || GameType() == GAME_TITLE_MAP || GameType() == GAME_SINGLE_PLAYER) { terminate; }
 
     int cpln = ConsolePlayerNumber();
+    IsServer = true;
 
     //CSender_ForceSendAll(cpln);
     
-    if (!IsServer)
+    int monmin   = GetCVar("dakka_score_monstermin");
+    int monmax   = GetCVar("dakka_score_monstermax");
+    int monscale = GetCVar("dakka_score_monsterscalar");
+    int interval = GetCVar("dakka_score_interval");
+    int rewards  = GetCVar("dakka_score_rewardtypes");
+    
+    str message = "";
+    int harderOrEasier = 0;
+    
+    if (monmin != 140 || monmax != 800 || monscale != 50)
     {
-        int monmin   = GetCVar("dakka_score_monstermin");
-        int monmax   = GetCVar("dakka_score_monstermax");
-        int monscale = GetCVar("dakka_score_monsterscalar");
-        int interval = GetCVar("dakka_score_interval");
-        int rewards  = GetCVar("dakka_score_rewardtypes");
+        int moncount    = GetLevelInfo(LEVELINFO_TOTAL_MONSTERS);
         
-        str message = "";
-        int harderOrEasier = 0;
+        int serverCount  = middle(monmin, moncount, monmax);
+        int defaultCount = middle(140,    moncount, 800);
         
-        if (monmin != 140 || monmax != 800 || monscale != 50)
+        int serverScalar  = FixedMul(serverCount, itofDiv(monscale, 100));
+        int defaultScalar = FixedMul(defaultCount, 0.5);
+        
+        harderOrEasier = sign(serverScalar - defaultScalar);
+        
+        if (monmin != 140)
         {
-            int moncount    = GetLevelInfo(LEVELINFO_TOTAL_MONSTERS);
-            
-            int serverCount  = middle(monmin, moncount, monmax);
-            int defaultCount = middle(140,    moncount, 800);
-            
-            int serverScalar  = FixedMul(serverCount, itofDiv(monscale, 100));
-            int defaultScalar = FixedMul(defaultCount, 0.5);
-            
-            harderOrEasier = sign(serverScalar - defaultScalar);
-            
-            if (monmin != 140)
-            {
-                message = StrParam(s:"- The minimum monster count has been ", s:cond(monmin > 140, "\caraised\c-", "\cdlowered\c-"), s:" to ", d:monmin, s:" for scoring purposes.\n");
-            }
-            
-            if (monmax != 800)
-            {
-                message = StrParam(s:message, s:"- The maximum monster count has been ", s:cond(monmax > 800, "\caraised\c-", "\cdlowered\c-"), s:" to ", d:monmax, s:" for scoring purposes.\n");
-            }
-            
-            if (monscale != 50)
-            {
-                message = StrParam(s:message, s:"- The monster count scalar has been ", s:cond(monscale > 50, "\caraised\c-", "\cdlowered\c-"), s:" to ", d:monscale, s:"%.\n");
-            }
+            message = StrParam(s:"- The minimum monster count has been ", s:cond(monmin > 140, "\caraised\c-", "\cdlowered\c-"), s:" to ", d:monmin, s:" for scoring purposes.\n");
         }
         
-        if (interval != 5000)
+        if (monmax != 800)
         {
-            message = StrParam(s:message, s:"- Rewards fall on multiples of ", d:interval, s:".\n");
+            message = StrParam(s:message, s:"- The maximum monster count has been ", s:cond(monmax > 800, "\caraised\c-", "\cdlowered\c-"), s:" to ", d:monmax, s:" for scoring purposes.\n");
         }
         
-        switch (rewards)
+        if (monscale != 50)
         {
-          default:
+            message = StrParam(s:message, s:"- The monster count scalar has been ", s:cond(monscale > 50, "\caraised\c-", "\cdlowered\c-"), s:" to ", d:monscale, s:"%.\n");
+        }
+    }
+    
+    if (interval != 5000)
+    {
+        message = StrParam(s:message, s:"- Rewards fall on multiples of ", d:interval, s:".\n");
+    }
+    
+    switch (rewards)
+    {
+      default:
+        break;
+      
+      case 1:
+        message = StrParam(s:message, s:"- Your first reward is an extra life, rather than ammo regen.\n");
+        break;
+      
+      case 2:
+        message = StrParam(s:message, s:"- Extra lives are disabled.\n");
+        break;
+      
+      case 3:
+        message = StrParam(s:message, s:"- Ammo regen is disabled.\n");
+        break;
+      
+      case 4:
+        message = StrParam(s:message, s:"- Score rewards are disabled.\n");
+        break;
+    }
+    
+    if (!stringBlank(message))
+    {
+        SetHudSize(480, 360, true);
+        HudMessage(s:"\nChanges to scoring:\n\n", s:message;
+            HUDMSG_FADEOUT | HUDMSG_LOG, -19293, CR_WHITE, 240.4, 80.0, 4.0, 0.5);
+        
+        HudMessage(s:"This server changes how scores work (details in console).";
+            HUDMSG_FADEOUT, -19293, CR_WHITE, 240.4, 80.0, 3.0, 0.5);
+            
+        switch (harderOrEasier)
+        {
+          case -1:
+            HudMessage(s:"(You'll need \cdfewer\c- points than normal)";
+                HUDMSG_FADEOUT, -19294, CR_WHITE, 240.4, 94.0, 3.0, 0.5);
             break;
-          
+            
           case 1:
-            message = StrParam(s:message, s:"- Your first reward is an extra life, rather than ammo regen.\n");
+            HudMessage(s:"(You'll need \camore\c- points than normal)";
+                HUDMSG_FADEOUT, -19294, CR_WHITE, 240.4, 94.0, 3.0, 0.5);
             break;
-          
-          case 2:
-            message = StrParam(s:message, s:"- Extra lives are disabled.\n");
-            break;
-          
-          case 3:
-            message = StrParam(s:message, s:"- Ammo regen is disabled.\n");
-            break;
-          
-          case 4:
-            message = StrParam(s:message, s:"- Score rewards are disabled.\n");
-            break;
-        }
-        
-        if (!stringBlank(message))
-        {
-            SetHudSize(480, 360, true);
-            HudMessage(s:"\nChanges to scoring:\n\n", s:message;
-                HUDMSG_FADEOUT | HUDMSG_LOG, -19293, CR_WHITE, 240.4, 80.0, 4.0, 0.5);
-            
-            HudMessage(s:"This server changes how scores work (details in console).";
-                HUDMSG_FADEOUT, -19293, CR_WHITE, 240.4, 80.0, 3.0, 0.5);
-                
-            switch (harderOrEasier)
-            {
-              case -1:
-                HudMessage(s:"(You'll need \cdfewer\c- points than normal)";
-                    HUDMSG_FADEOUT, -19294, CR_WHITE, 240.4, 94.0, 3.0, 0.5);
-                break;
-                
-              case 1:
-                HudMessage(s:"(You'll need \camore\c- points than normal)";
-                    HUDMSG_FADEOUT, -19294, CR_WHITE, 240.4, 94.0, 3.0, 0.5);
-                break;
-            }
         }
     }
 
@@ -150,8 +149,8 @@ script "Dakka_Open" open
     if (GameType() == GAME_TITLE_MAP) { terminate; }
 
     // Absorbed this from the PICKUP_OPEN script.
-    Pickup_IsZandronum(); // side effect sets IsZandronum
     IsServer = true;
+    Pickup_IsZandronum(); // side effect sets IsZandronum
 
     // In score/score_levelstart.h
     Score_CalcMapPoints();
