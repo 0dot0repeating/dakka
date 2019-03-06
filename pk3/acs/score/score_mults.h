@@ -221,7 +221,7 @@ function int SMult_Untouchable(int myhp)
         GiveInventory("DakkaUntouchableStacks", 1 + (myhp / UNTOUCHABLE_KILLBOOST_HPDIVISOR));
         int multKills = min(CheckInventory("DakkaUntouchableStacks"), UNTOUCHABLE_MAXKILLS);
 
-        return multKills * UNTOUCHABLE_MULT;
+        return (UNTOUCHABLE_MAXMULT * multKills) / UNTOUCHABLE_MAXKILLS;
     }
 
     return 0;
