@@ -801,6 +801,7 @@ actor BFGHomingShot_Stage2
     +EXTREMEDEATH
     +FORCERADIUSDMG
     +SKYEXPLODE
+    +BLOODLESSIMPACT
 
     Renderstyle Add
     Alpha 0.75
@@ -1059,6 +1060,7 @@ actor BFGMaelstromShot
     +EXTREMEDEATH
     +FORCERADIUSDMG
     +SKYEXPLODE
+    +BLOODLESSIMPACT
 
     Renderstyle Add
     Alpha 0.75
