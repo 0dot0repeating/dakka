@@ -226,9 +226,9 @@ script "PWeapon_Switch" (int wepIndex) clientside
 
     if (doswitch)
     { 
-        if (Pickup_IsZandronum() && (PlayerNumber() == ConsolePlayerNumber()))
+        if (Pickup_IsZandronum() && !IsServer)
         {
-            RequestScriptPuke("Dakka_SwitchingTo", wepIndex);
+            NamedRequestScriptPuke("Dakka_SwitchingTo", wepIndex);
         }
         else
         {
