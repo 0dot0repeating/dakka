@@ -11,17 +11,22 @@
 
 // Debug functions
 
-script "Score_GiveRewards" (int rewardCount)
+script "Score_Debug_GivePoints" (int points)
+{
+    Score_ModBothScores(PlayerNumber(), points);
+}
+
+script "Score_Debug_GiveRewards" (int rewardCount)
 {
     Score_ModScore(PlayerNumber(), Score_Thresholds[ST_FULLHEAL] * max(rewardCount, 0));
 }
 
-script "Score_GiveLives" (int lifeCount)
+script "Score_Debug_GiveLives" (int lifeCount)
 {
     Score_ModExtraLives(PlayerNumber(), lifeCount);
 }
 
-script "Score_GiveRegen" (int regenCount)
+script "Score_Debug_GiveRegen" (int regenCount)
 {
     Score_ModRegenTimer(PlayerNumber(), regenCount);
 }

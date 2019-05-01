@@ -101,7 +101,7 @@ script "Dakka_Open_Client" open clientside
     while (true)
     {
         // In score/score_display.h
-        Score_Update(cpln);
+        Score_UpdateDisplay(cpln);
 
         // Debug shit
         /*
@@ -198,7 +198,7 @@ script "Dakka_Open" open
                     
                     for (j = 0; j < toSyncTo_count; j++)
                     {
-                        int pln_to = PlayerSync[PSYNC_SYNCTO][i];
+                        int pln_to = PlayerSync[PSYNC_SYNCTO][j];
                         ACS_NamedExecuteWithResult("Dakka_SoundLooper_FollowSync", pln_to, pln_for);
                     }
                 }

@@ -110,7 +110,7 @@ script "Dakka_Spawn" (int respawned)
         Dakka_ClearLowAmmoTimers();
 
         Score_UpdateClient(pln);
-        if (ConsolePlayerNumber() != -1) { Score_Update(pln); }
+        if (ConsolePlayerNumber() != -1) { Score_UpdateDisplay(pln); }
 
         Delay(1);
     }
