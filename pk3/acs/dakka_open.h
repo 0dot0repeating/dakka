@@ -14,7 +14,7 @@ script "Dakka_Open_Client" open clientside
     int monmin   = GetCVar("dakka_score_monstermin");
     int monmax   = GetCVar("dakka_score_monstermax");
     int monscale = GetCVar("dakka_score_monsterscalar");
-    int interval = GetCVar("dakka_score_interval");
+    int interval = max(GetCVar("dakka_score_interval"), 1);
     int rewards  = GetCVar("dakka_score_rewardtypes");
     
     str message = "";
