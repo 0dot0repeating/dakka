@@ -1,4 +1,4 @@
-function void Score_Update(int pln)
+function void Score_UpdateDisplay(int pln)
 {
     int points          = SToC_ClientData[pln][S2C_D_SCORE];
     int goalpoints      = SToC_ClientData[pln][S2C_D_GOALSCORE];
@@ -10,7 +10,7 @@ function void Score_Update(int pln)
     int rewardTypes = GetCVar("dakka_score_rewardtypes");
     int rewardCount = SToC_ClientData[pln][S2C_D_REWARDCOUNT];
     int nextIsLife  = false;
-    int flash       = GetUserCVar(pln, "dakka_cl_flashscore") && SToC_ClientData[pln][S2C_D_GOTPOINTS];;
+    int flash       = GetUserCVar(pln, "dakka_cl_flashscore") && SToC_ClientData[pln][S2C_D_GOTPOINTS];
     int noReward    = GetUserCVar(pln, "dakka_cl_noscorerewards");
     
     switch (rewardtypes)
@@ -56,12 +56,9 @@ function int Score_ScaledCoord(int pos, int range, int padding, int downshift)
 }
 
 
-#define BARSTEPS        120
-#define BAROFFSET       ((BARSTEPS / 2) << 16)
-#define BARINCREMENT    12
-
 #define SCORE_SCREENX    640
 #define SCORE_SCREENY    480
+#define SCORE_BARWIDTH   120
 
 #define BAR_APPROXWIDTH  140
 #define BAR_APPROXHEIGHT 40
@@ -151,11 +148,11 @@ function void Score_Draw(int pln, int curPoints, int goalPoints, int displayPoin
         
         if (goalPoints > 0)
         {
-            int pointstep = goalPoints / BARSTEPS;
-            int barpoints = curPoints % goalPoints;
+            int barPoints = curPoints % goalPoints;
+            int barWidth  = (SCORE_BARWIDTH * barPoints) / goalPoints; 
+            int barLeft   = centerX - (SCORE_BARWIDTH / 2);
             
-            int barLeft = centerX - (BARSTEPS / 2);
-            SetHudClipRect(barLeft, 0, barpoints / pointstep, screenheight);
+            SetHudClipRect(barLeft, 0, barWidth, screenheight);
             
             SetFont(barForeground);
             HudMessage(s:"A"; HUDMSG_PLAIN, 24203, CR_UNTRANSLATED, centerXf, barYf, 0);

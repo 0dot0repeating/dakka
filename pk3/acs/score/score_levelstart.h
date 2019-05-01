@@ -90,7 +90,7 @@ function void Score_CalcMapPoints(void)
     int monsterMin    = GetCVar("dakka_score_monstermin");
     int monsterMax    = GetCVar("dakka_score_monstermax");
     int monsterScalar = itofDiv(GetCVar("dakka_score_monsterscalar"), 100);
-    int scoreInterval = GetCVar("dakka_score_interval");
+    int scoreInterval = max(GetCVar("dakka_score_interval"), 1);
 
     // Controls for low and high monster counts
     int fullHealMult   = monsterScalar * middle(monsterMin, totalMons, monsterMax);
