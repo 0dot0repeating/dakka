@@ -37,7 +37,7 @@ below the title image.
 
 ## HOW TO GET A GIT BUILD
 
-**[Visual instructions](http://jinotra.in/static/downloads/dakkaVids/how2dakkaGit.webm)**
+**[Visual instructions](http://jinotra.in/static/downloads/dakkaVids/how2dakkaGit.mp4)**
 
 Above the latest-commit bar, on the very right, there's a download icon.
 
