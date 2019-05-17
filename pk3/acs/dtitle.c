@@ -1,6 +1,6 @@
 #library "dakka_titlemap"
 
-#include "zcommon.acs"
+#include "zcommon/zcommon.h"
 #include "dakka_commonFuncs.h"
 
 
