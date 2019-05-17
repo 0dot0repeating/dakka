@@ -99,6 +99,7 @@ script "Dakka_Spawn" (int respawned)
         
         // In dakka_ssg.h and dakka_bfg.h
         SSG_AutoReload();
+        SSG_QueueReload();
         BFG_AutoReload();
 
         // In dakka_bfg.h
