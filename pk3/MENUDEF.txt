@@ -142,6 +142,13 @@ OptionValue Dakka_AutoDetonate
     2, "On"
 }
 
+OptionValue Dakka_FullerAuto
+{
+    0, "Fire + Alt-fire"
+    1, "Fire + Zoom"
+    2, "Fire + Reload"
+}
+
 OptionValue Dakka_FlamethrowerStyle
 {
     0, "New"
@@ -346,6 +353,7 @@ OptionMenu "Dakka_UserOptions"
     
     Option "No score rewards",      "dakka_cl_noscorerewards",     "OnOff"
     Option "Grenades auto-explode", "dakka_cl_autodetonate",       "Dakka_AutoDetonate"
+    Option "Minigun RPM boost",     "dakka_cl_fullerautostyle",    "Dakka_FullerAuto"
     Option "SSG double tap",        "dakka_cl_ssgrollfire",        "OnOff"
 
     StaticText ""

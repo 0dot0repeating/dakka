@@ -1,4 +1,4 @@
-#define TMPITEM_COUNT       27
+#define TMPITEM_COUNT       28
 
 #define TMP_LEFTFIRE        0
 #define TMP_RIGHTFIRE       1
@@ -33,6 +33,7 @@
 #define TMP_GOTBACKPACK     25
 
 #define TMP_SSG_ROLLFIRE    26
+#define TMP_MINIGUN_FASTER  27
 
 int TempChecks[TMPITEM_COUNT];
 
@@ -65,6 +66,7 @@ int TempItems[TMPITEM_COUNT] =
     "HUD_Armor25",
     "GotBackpackItem",
     "DakkaSSG_RollFire",
+    "DakkaMinigun_FireFast",
 };
 
 
@@ -233,9 +235,22 @@ function void Dakka_UpdateTemporaryItems(void)
     }
 
     TempChecks[TMP_GOTBACKPACK]  = hasBackpack;
-
     TempChecks[TMP_SSG_ROLLFIRE] = GetUserCVar(pln, "dakka_cl_ssgrollfire");
-
+    
+    switch (GetUserCVar(pln, "dakka_cl_fullerautostyle"))
+    {
+      default:
+        TempChecks[TMP_MINIGUN_FASTER] = TempChecks[TMP_RIGHTFIRE];
+        break;
+      
+      case 1:
+        TempChecks[TMP_MINIGUN_FASTER] = inputDown(BT_ZOOM);
+        break;
+      
+      case 2:
+        TempChecks[TMP_MINIGUN_FASTER] = inputDown(BT_RELOAD);
+        break;
+    }
 
     for (i = 0; i < TMPITEM_COUNT; i++)
     {
