@@ -98,18 +98,11 @@ actor HealthUnder50:    Boolean {}
 actor HealthOver100:    Boolean {}
 actor HealthOver200:    Boolean {}
 
-actor AbnormalAmmo1:    Boolean {}
 actor Ammo1Under25:     Boolean {}
 actor Ammo1Empty:       Boolean {}
 
-actor AbnormalAmmo2:    Boolean {}
 actor Ammo2Under25:     Boolean {}
 actor Ammo2Empty:       Boolean {}
-
-actor GotScrapper:      Boolean {}
-actor GotBackpackItem:  Boolean {}
-
-actor HUD_IsDakkaguy:   Boolean {}
 
 actor HUD_Armor25:      Boolean {}
 actor HUD_Armor50:      Boolean {}
@@ -123,9 +116,6 @@ actor HUD_SilverArmor:  Boolean {}
 actor HUD_GoldArmor:    Boolean {}
 actor HUD_TanArmor:     Boolean {}
 actor HUD_RedArmor:     Boolean {}
-
-actor HUD_AnyDoomKeys:  Boolean {}
-actor HUD_AnyCardKeys:  Boolean {}
 
 // Multiple vampire heal scripts could be running at once, hence being a counter
 actor HUD_VampireFlash1: Counter { +INTERHUBSTRIP }
