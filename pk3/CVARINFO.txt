@@ -70,6 +70,7 @@ user int  dakka_cl_scorey               = 10;
 user int  dakka_cl_noammoclick          = 2;
 user int  dakka_cl_autodetonate         = 2;
 user bool dakka_cl_ssgrollfire          = false;
+user int  dakka_cl_fullerautostyle      = 0;
 user int  dakka_cl_flamethrowerstyle    = 0;
 
 user bool dakka_cl_lesseffects          = false;
