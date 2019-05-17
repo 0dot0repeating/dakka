@@ -2,6 +2,7 @@ actor DakkaSSG_ShotsFired:        Counter { +INTERHUBSTRIP }  // fite me
 actor DakkaSSG_RollFire:          Boolean {}
 actor DakkaSSG_OutOfSelect:       Boolean {}
 actor DakkaSSG_AutoReloadCounter: Counter {}
+actor DakkaSSG_ReloadQueue:       Counter { Inventory.MaxAmount 3 }
 
 actor DWep_SuperShotgun: DoomWeapon
 {
@@ -124,12 +125,13 @@ actor DWep_SuperShotgun: DoomWeapon
         DSSG A 0 bright                 A_CheckReload
         DSSG A 0 bright                 A_JumpIf(CallACS("DSSG_Refire") == 1, "Fire_Roll")
         DSSG A 0 bright                 A_JumpIf(CallACS("DSSG_ShotsLeft") < 1, "ReloadSequence")
-        DSSG A 1 bright offset(0, 44)   A_WeaponReady(WRF_NOFIRE | WRF_NOBOB)
+        DSSG A 0 bright                 A_JumpIfInventory("DakkaSSG_ReloadQueue", 1, "ManualReloadCheck")
+        DSSG A 1 bright offset(0, 44)   A_WeaponReady(WRF_NOFIRE | WRF_NOBOB | WRF_ALLOWRELOAD)
 
         DSSG A 0 bright                 A_JumpIf(CallACS("DSSG_Refire") == 1, "RefireCheckMain")
-        DSSG A 1 bright offset(0, 37)   A_WeaponReady(WRF_NOFIRE | WRF_NOBOB)
+        DSSG A 1 bright offset(0, 37)   A_WeaponReady(WRF_NOFIRE | WRF_NOBOB | WRF_ALLOWRELOAD)
         DSSG A 0 bright                 A_JumpIf(CallACS("DSSG_Refire") == 1, "RefireCheckMain")
-        DSSG A 1 bright                 A_WeaponReady(WRF_NOFIRE | WRF_NOBOB)
+        DSSG A 1 bright                 A_WeaponReady(WRF_NOFIRE | WRF_NOBOB | WRF_ALLOWRELOAD)
 
         DSSG A 0 bright                 A_JumpIf(CallACS("DSSG_Refire") == 1, "RefireCheckMain")
         DSSG A 1 bright offset(0, 34)   A_WeaponReady(WRF_NOFIRE | WRF_NOBOB | WRF_ALLOWRELOAD)
@@ -172,15 +174,16 @@ actor DWep_SuperShotgun: DoomWeapon
         DSSG A 0 bright                 A_CheckReload
         DSSG A 1 bright                 A_JumpIf(CallACS("DSSG_Refire") == 1, "Fire_Roll")
         DSSG A 0 bright                 A_JumpIf(CallACS("DSSG_ShotsLeft") < 1, "ReloadSequence")
-        DSSG A 1 bright offset(0, 52)   A_WeaponReady(WRF_NOFIRE | WRF_NOBOB)
+        DSSG A 0 bright                 A_JumpIfInventory("DakkaSSG_ReloadQueue", 1, "ManualReloadCheck")
+        DSSG A 1 bright offset(0, 52)   A_WeaponReady(WRF_NOFIRE | WRF_NOBOB | WRF_ALLOWRELOAD)
 
         DSSG A 0 bright                 A_JumpIf(CallACS("DSSG_Refire") == 1, "RefireCheckMain")
-        DSSG A 1 bright offset(0, 49)   A_WeaponReady(WRF_NOFIRE | WRF_NOBOB)
+        DSSG A 1 bright offset(0, 49)   A_WeaponReady(WRF_NOFIRE | WRF_NOBOB | WRF_ALLOWRELOAD)
         DSSG A 0 bright                 A_JumpIf(CallACS("DSSG_Refire") == 1, "RefireCheckMain")
-        DSSG A 1 bright offset(0, 46)   A_WeaponReady(WRF_NOFIRE | WRF_NOBOB)
+        DSSG A 1 bright offset(0, 46)   A_WeaponReady(WRF_NOFIRE | WRF_NOBOB | WRF_ALLOWRELOAD)
 
         DSSG A 0 bright                 A_JumpIf(CallACS("DSSG_Refire") == 1, "RefireCheckMain")
-        DSSG A 1 bright offset(0, 40)   A_WeaponReady(WRF_NOFIRE | WRF_NOBOB)
+        DSSG A 1 bright offset(0, 40)   A_WeaponReady(WRF_NOFIRE | WRF_NOBOB | WRF_ALLOWRELOAD)
         DSSG A 0 bright                 A_JumpIf(CallACS("DSSG_Refire") == 1, "RefireCheckMain")
         DSSG A 1 bright offset(0, 35)   A_WeaponReady(WRF_NOBOB | WRF_ALLOWRELOAD)
 
@@ -218,12 +221,13 @@ actor DWep_SuperShotgun: DoomWeapon
         DSSG A 0 bright                 A_CheckReload
         DSSG A 0 bright                 A_JumpIf(CallACS("DSSG_Refire") == 1, "AltFire_Roll")
         DSSG A 0 bright                 A_JumpIf(CallACS("DSSG_ShotsLeft") < 1, "ReloadSequence")
-        DSSG A 1 bright offset(0, 44)   A_WeaponReady(WRF_NOFIRE | WRF_NOBOB)
+        DSSG A 0 bright                 A_JumpIfInventory("DakkaSSG_ReloadQueue", 1, "ManualReloadCheck")
+        DSSG A 1 bright offset(0, 44)   A_WeaponReady(WRF_NOFIRE | WRF_NOBOB | WRF_ALLOWRELOAD)
 
         DSSG A 0 bright                 A_JumpIf(CallACS("DSSG_Refire") == 1, "RefireCheckAlt")
-        DSSG A 1 bright offset(0, 37)   A_WeaponReady(WRF_NOFIRE | WRF_NOBOB)
+        DSSG A 1 bright offset(0, 37)   A_WeaponReady(WRF_NOFIRE | WRF_NOBOB | WRF_ALLOWRELOAD)
         DSSG A 0 bright                 A_JumpIf(CallACS("DSSG_Refire") == 1, "RefireCheckAlt")
-        DSSG A 1 bright                 A_WeaponReady(WRF_NOFIRE | WRF_NOBOB)
+        DSSG A 1 bright                 A_WeaponReady(WRF_NOFIRE | WRF_NOBOB | WRF_ALLOWRELOAD)
 
         DSSG A 0 bright                 A_JumpIf(CallACS("DSSG_Refire") == 1, "RefireCheckAlt")
         DSSG A 1 bright offset(0, 34)   A_WeaponReady(WRF_NOFIRE | WRF_NOBOB | WRF_ALLOWRELOAD)

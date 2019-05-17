@@ -10,6 +10,19 @@ function void SSG_AutoReload(void)
 }
 
 
+function void SSG_QueueReload(void)
+{
+    if (inputDown(BT_RELOAD))
+    {
+        SetInventory("DakkaSSG_ReloadQueue", 3);
+    }
+    else
+    {
+        TakeInventory("DakkaSSG_ReloadQueue", 1);
+    }
+}
+
+
 script "DSSG_CanAutoReload" (void)
 {
     int pln = PlayerNumber();
