@@ -85,8 +85,8 @@
 // Punch the things.
 #include "dakka_fists.h"
 
-// Mainly for revolver accuracy.
-#include "Dakka_Pistols.h"
+// Handles pistol accuracy, auto-reloading, and the pistol ammo you get from non-bullet pickups.
+#include "dakka_pistols.h"
 
 // This is how the sticky grenades for the shotgun and SSG stick.
 #include "dakka_stickynade.h"
