@@ -1,5 +1,5 @@
 #library "scoremon"
-#include "zcommon.acs"
+#include "zcommon/zcommon.h"
 
 #define MONTYPES 19
 

@@ -1,5 +1,5 @@
 #library "arc"
-#include "zcommon.acs"
+#include "zcommon/zcommon.h"
 #include "dakka_commonFuncs.h"
 
 /*

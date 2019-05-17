@@ -1,5 +1,5 @@
 #library "dtestmap"
-#include "zcommon.acs"
+#include "zcommon/zcommon.h"
 
 // superceded in DAKKTEST itself, but here to avoid unknown script errors
 script "DAKKTEST_ReportDamage" (void)
