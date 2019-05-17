@@ -1,4 +1,4 @@
-#define TMPITEM_COUNT       28
+#define TMPITEM_COUNT       24
 
 #define TMP_LEFTFIRE        0
 #define TMP_RIGHTFIRE       1
@@ -7,33 +7,28 @@
 #define TMP_LEFTRELEASE     4
 #define TMP_RIGHTRELEASE    5
 #define TMP_INFINITEAMMO    6
-#define TMP_DAKKACLASS      7
 
-#define TMP_ABNORMALHEALTH  8
-#define TMP_HEALTH300       9
-#define TMP_HEALTH200       10
-#define TMP_HEALTH50        11
-#define TMP_HEALTH25        12
-#define TMP_HEALTH0         13
+#define TMP_ABNORMALHEALTH  7
+#define TMP_HEALTH300       8
+#define TMP_HEALTH200       9
+#define TMP_HEALTH50        10
+#define TMP_HEALTH25        11
+#define TMP_HEALTH0         12
 
-#define TMP_AMMO1_ABNORMAL  14
-#define TMP_AMMO1_25        15
-#define TMP_AMMO1_0         16
+#define TMP_AMMO1_25        13
+#define TMP_AMMO1_0         14
 
-#define TMP_AMMO2_ABNORMAL  17
-#define TMP_AMMO2_25        18
-#define TMP_AMMO2_0         19
+#define TMP_AMMO2_25        15
+#define TMP_AMMO2_0         16
 
-#define TMP_KNOWNARMOR      20
-#define TMP_ARMOR100        21
-#define TMP_ARMOR75         22
-#define TMP_ARMOR50         23
-#define TMP_ARMOR25         24
+#define TMP_KNOWNARMOR      17
+#define TMP_ARMOR100        18
+#define TMP_ARMOR75         19
+#define TMP_ARMOR50         20
+#define TMP_ARMOR25         21
 
-#define TMP_GOTBACKPACK     25
-
-#define TMP_SSG_ROLLFIRE    26
-#define TMP_MINIGUN_FASTER  27
+#define TMP_SSG_ROLLFIRE    22
+#define TMP_MINIGUN_FASTER  23
 
 int TempChecks[TMPITEM_COUNT];
 
@@ -46,17 +41,14 @@ int TempItems[TMPITEM_COUNT] =
     "MainReleased",
     "AltReleased",
     "DakkaInfiniteAmmo",
-    "HUD_IsDakkaguy",
     "AbnormalHealth",
     "HealthOver200",
     "HealthOver100",
     "HealthUnder50",
     "HealthUnder25",
     "HealthUnder0",
-    "AbnormalAmmo1",
     "Ammo1Under25",
     "Ammo1Empty",
-    "AbnormalAmmo2",
     "Ammo2Under25",
     "Ammo2Empty",
     "HUD_KnownArmor",
@@ -64,7 +56,6 @@ int TempItems[TMPITEM_COUNT] =
     "HUD_Armor75",
     "HUD_Armor50",
     "HUD_Armor25",
-    "GotBackpackItem",
     "DakkaSSG_RollFire",
     "DakkaMinigun_FireFast",
 };
@@ -103,12 +94,7 @@ function void Dakka_UpdateTemporaryItems(void)
     TempChecks[TMP_LEFTRELEASE]     = inputReleased(BT_ATTACK);
     TempChecks[TMP_RIGHTRELEASE]    = inputReleased(BT_ALTATTACK);
 
-    int classNum = Pickup_ClassNumber(0);
-
     TempChecks[TMP_INFINITEAMMO]    = HasInfiniteAmmo();
-    TempChecks[TMP_DAKKACLASS]      = classNum == Cl_Dakkaguy;
-
-
 
     int health = GetActorProperty(0, APROP_Health);
 
@@ -186,7 +172,6 @@ function void Dakka_UpdateTemporaryItems(void)
 
     if (!hasAmmo1)
     {
-        TempChecks[TMP_AMMO1_ABNORMAL]  = false;
         TempChecks[TMP_AMMO1_25]        = false;
         TempChecks[TMP_AMMO1_0]         = false;
     }
@@ -197,14 +182,12 @@ function void Dakka_UpdateTemporaryItems(void)
         int ammo1Percent = itof(ammo1Cur) / ammo1Max;
 
         // note: 1 is actually 1.0 / 65536, do not get confused
-        TempChecks[TMP_AMMO1_ABNORMAL]  = ammo1Percent < 0.25;
         TempChecks[TMP_AMMO1_25]        = middle(1, ammo1Percent, 0.25 - 1) == ammo1Percent;
         TempChecks[TMP_AMMO1_0]         = ammo1Percent <= 0;
     }
 
     if (!hasAmmo2)
     {
-        TempChecks[TMP_AMMO2_ABNORMAL]  = false;
         TempChecks[TMP_AMMO2_25]        = false;
         TempChecks[TMP_AMMO2_0]         = false;
     }
@@ -215,26 +198,10 @@ function void Dakka_UpdateTemporaryItems(void)
         int ammo2Percent = itof(ammo2Cur) / ammo2Max;
 
         // note: 1 is actually 1.0 / 65536, do not get confused
-        TempChecks[TMP_AMMO2_ABNORMAL]  = ammo2Percent < 0.25;
         TempChecks[TMP_AMMO2_25]        = middle(1, ammo2Percent, 0.25 - 1) == ammo2Percent;
         TempChecks[TMP_AMMO2_0]         = ammo2Percent <= 0;
     }
 
-
-    // Backpack check - backpack items in dakka_const.h
-
-    int hasBackpack = false;
-
-    for (i = 0; i < BACKPACKCOUNT; i++)
-    {
-        if (CheckInventory(Dakka_BackpackItems[i]))
-        {
-            hasBackpack = true;
-            break;
-        }
-    }
-
-    TempChecks[TMP_GOTBACKPACK]  = hasBackpack;
     TempChecks[TMP_SSG_ROLLFIRE] = GetUserCVar(pln, "dakka_cl_ssgrollfire");
     
     switch (GetUserCVar(pln, "dakka_cl_fullerautostyle"))
