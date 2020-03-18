@@ -3,6 +3,7 @@ server bool dakka_infinitepistol      = false;
 server int  dakka_shotgun2ssg         = 0;
 server int  dakka_powerlevel          = 0;
 server int  dakka_defenselevel        = 0;
+server int  dakka_vanillahealtharmor  = 0;
 
 
 server int  dakka_startmode_weapons   = 0;

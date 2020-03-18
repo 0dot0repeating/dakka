@@ -327,9 +327,10 @@ function void Dakka_StartMode_Health(int classNum, int freshStart, int respawnin
         break;
 
       case 3:
-        SetActorProperty(0, APROP_Health, maxHP + 100);
+        SetActorProperty(0, APROP_Health, maxHP);
         TakeInventory("BasicArmor", 0x7FFFFFFF);
         Pickup_DoPickup(It_BlueArmor,  classNum, false);
+        GiveInventory("Pickup_Soulsphere", 1);
         break;
 
       case 4:

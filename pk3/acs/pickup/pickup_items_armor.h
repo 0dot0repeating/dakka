@@ -1,4 +1,4 @@
-#define ARMORCOUNT 12
+#define ARMORCOUNT 13
 
 int PKP_KnownArmors[ARMORCOUNT] =
 {
@@ -15,6 +15,7 @@ int PKP_KnownArmors[ARMORCOUNT] =
     "Dakka_GreenArmor",
     "Dakka_BlueArmor",
     "Dakka_ArmorBonus",
+    "Dakka_ArmorBonusCapped",
 };
 
 // See AMODE_* for comparison modes.
@@ -108,5 +109,6 @@ int PKP_ArmorData[ARMORCOUNT][5] =
     {AMODE_PROTECTION,  ATYPE_QUAKE2,       1,      150,    0.33335},
     {AMODE_PROTECTION,  ATYPE_QUAKE2,       1,      300,    0.5},
     {AMODE_PROTECTION,  ATYPE_ADDTOHIGHEST, 2,      300,    0.33335},
+    {AMODE_PROTECTION,  ATYPE_ADDTOHIGHEST, 2,      200,    0.33335},
 };
 

@@ -3,7 +3,7 @@
 
 // This is, quite simply, the amount of pickup types that this ACS is equipped
 //  to handle.
-#define PICKUPCOUNT     22
+#define PICKUPCOUNT     24
 
 
 // How many items can you get from each pickup?
@@ -37,6 +37,9 @@
 #define It_Hexen_MeshArmor      19
 #define It_Hexen_Shield         20
 #define It_Hexen_Bracers        21
+
+#define It_GreenArmorVanilla    22
+#define It_BlueArmorVanilla     23
 
 // Here, you have the items that each pickup will give you. Each pickup can give
 //  as many as PK_RECEIVECOUNT items.
@@ -148,6 +151,16 @@ int PKP_ReceiveItems[PICKUPCOUNT][CLASSCOUNT][PK_RECEIVECOUNT] =
         {"Dakka_ArmorBonus"},
         {"Dakka_ArmorBonus"},
     },
+
+
+    {
+        {"GreenArmor"},
+        {"GreenArmor"},
+    },
+    {
+        {"BlueArmor"},
+        {"BlueArmor"},
+    },
 };
 
 
@@ -255,6 +268,17 @@ int PKP_ReceiveCount[PICKUPCOUNT][CLASSCOUNT][PK_RECEIVECOUNT] =
         {50},
         {50},
     },
+
+
+    // Armor (dakka_vanillahealtharmor on)
+    {
+        {1},
+        {1},
+    },
+    {
+        {1},
+        {1},
+    },
 };
 
 
@@ -337,6 +361,40 @@ int PKP_AlwaysPickup[PICKUPCOUNT][CLASSCOUNT] =
         false,
     },
     { // BFG10k
+        false,
+        false,
+    },
+
+
+    // Hexen armor items
+    {
+        false,
+        false,
+    },
+    {
+        false,
+        false,
+    },
+    {
+        false,
+        false,
+    },
+    {
+        false,
+        false,
+    },
+    {
+        false,
+        false,
+    },
+
+
+    // Armor (dakka_vanillahealtharmor on)
+    {
+        false,
+        false,
+    },
+    {
         false,
         false,
     },

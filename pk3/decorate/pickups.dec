@@ -25,6 +25,9 @@ const int It_Hexen_MeshArmor      = 19;
 const int It_Hexen_Shield         = 20;
 const int It_Hexen_Bracers        = 21;
 
+const int It_GreenArmorVanilla    = 22;
+const int It_BlueArmorVanilla     = 23;
+
 
 #include "decorate/pickups/doom_weapons.dec"
 #include "decorate/pickups/doom_ammo.dec"

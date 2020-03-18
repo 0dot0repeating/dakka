@@ -4,6 +4,12 @@ actor Dakka_OneHealth: Health
     Inventory.MaxAmount 300
 }
 
+actor Dakka_OneHealthVanilla: Health
+{
+    Inventory.Amount 1
+    Inventory.MaxAmount 200
+}
+
 actor Pickup_HealthBonus: CustomInventory replaces HealthBonus
 {
     +ALWAYSPICKUP
@@ -16,8 +22,19 @@ actor Pickup_HealthBonus: CustomInventory replaces HealthBonus
         loop
 
       Pickup:
+        TNT1 A 0 A_JumpIf(CallACS("Dakka_VanillaHealthArmor") >  1, "VanillaHeal")
+        TNT1 A 0 A_JumpIf(CallACS("Dakka_VanillaHealthArmor") == 1, "CappedHeal")
         TNT1 A 0 A_JumpIf(health >= 200, "Heal300")
         TNT1 A 0 A_JumpIf(health >= 100, "Heal200")
+        TNT1 A 0 A_JumpIf(health >= 50,  "Heal100")
+        goto Heal50
+      
+      VanillaHeal:
+        TNT1 A 0 A_GiveInventory("Dakka_OneHealthVanilla", 1)
+        stop
+      
+      CappedHeal:
+        TNT1 A 0 A_JumpIf(health >= 100, "Heal200Vanilla")
         TNT1 A 0 A_JumpIf(health >= 50,  "Heal100")
         goto Heal50
 
@@ -28,6 +45,10 @@ actor Pickup_HealthBonus: CustomInventory replaces HealthBonus
       Heal200:
         TNT1 A 0 A_GiveInventory("Dakka_OneHealth", 2)
         stop
+      
+      Heal200Vanilla:
+        TNT1 A 0 A_GiveInventory("Dakka_OneHealthVanilla", 2)
+        stop
 
       Heal100:
         TNT1 A 0 A_GiveInventory("Dakka_OneHealth", 3)
@@ -36,6 +57,7 @@ actor Pickup_HealthBonus: CustomInventory replaces HealthBonus
       Heal50:
         TNT1 A 0 A_GiveInventory("Dakka_OneHealth", 4)
         stop
+      
     }
 }
 
@@ -67,7 +89,12 @@ actor Pickup_Soulsphere: CustomInventory replaces Soulsphere
         loop
 
       Pickup:
+        TNT1 A 0 A_JumpIf(CallACS("Dakka_VanillaHealthArmor") > 0, "VanillaHeal")
         TNT1 AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA 0 A_GiveInventory("Dakka_SoulsphereHealth")
+        stop
+      
+      VanillaHeal:
+        TNT1 A 0 A_GiveInventory("Dakka_OneHealthVanilla", 100)
         stop
     }
 }

@@ -100,6 +100,16 @@ int PKP_Messages[PICKUPCOUNT][CLASSCOUNT] =
         "",
         "",
     },
+
+
+    {
+        "$GOTARMOR",
+        "$DAKKA_PK_GREENARMOR",
+    },
+    {
+        "$GOTMEGA",
+        "$DAKKA_PK_BLUEARMOR",
+    },
 };
 
 
@@ -216,6 +226,17 @@ int PKP_PickupFlashes[PICKUPCOUNT][CLASSCOUNT][5] =
         {0,0,0,0,0},
         {0,0,0,0,0},
     },
+
+    
+    // Armor
+    {
+        {255, 255, 64, 0.15, 0.15},
+        {255, 255, 64, 0.15, 0.15},
+    },
+    {
+        {255, 255, 64, 0.15, 0.15},
+        {255, 255, 64, 0.15, 0.15},
+    },
 };
 
 
@@ -320,5 +341,16 @@ int PKP_PickupSounds[PICKUPCOUNT][CLASSCOUNT] =
     {
         "",
         "",
+    },
+
+
+    // Armor
+    {
+        "misc/i_pkup",
+        "misc/i_pkup",
+    },
+    {
+        "misc/i_pkup",
+        "misc/i_pkup",
     },
 };
