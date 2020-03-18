@@ -1,12 +1,11 @@
-// OH MY GAWD SCRIPTING CRAP I CAN'T FUCKIN EVEN
-
+// Scripted pickups: because it wasn't complicated enough.
 
 // Now, not every pickup's gonna be scripted - most of them won't be -
 //  so instead of having something like this for every single item for every
 //  single class, we'll instead define whether a pickup should be scripted on
 //  a case by case basis.
 
-#define PK_SCRIPTEDCOUNT    1
+#define PK_SCRIPTEDCOUNT    3
 
 // Row 0 indicates which item index this is for.
 #define PK_S_ITEMNUM        0
@@ -39,12 +38,16 @@
 
 int PKP_ScriptedPickups[PK_SCRIPTEDCOUNT][8] =
 {
-    {It_Shotgun,     Cl_Dakkaguy, 494, 0, 0, 0, true, true}, // pickup/dakka_wepdisplay.h
+    {It_Shotgun,     Cl_Dakkaguy, 0,    0, 0, 0, true, true}, // pickup/dakka_wepdisplay.h
+    {It_GreenArmor,  Cl_Dakkaguy, 0,    It_GreenArmor, It_GreenArmorVanilla, 0, true, true},
+    {It_BlueArmor,   Cl_Dakkaguy, 0,    It_BlueArmor,  It_BlueArmorVanilla,  0, true, true},
 };
 
 int PKP_PickupNamed[PK_SCRIPTEDCOUNT] =
 {
     "Dakka_WepPickup",
+    "Dakka_Pickup_VanillaArmor",
+    "Dakka_Pickup_VanillaArmor",
 };
 
 

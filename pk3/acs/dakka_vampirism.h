@@ -71,7 +71,14 @@ script "Dakka_VampireHeal" (int monHealth)
     }
 
     int netHeal   = min(maxHeal, baseHeal + (monHealth / healDivisor));
-    int newHealth = min(myMaxHealth + 200, myHealth + netHeal);
+    int newHealth = myHealth + netHeal;
+    
+    if (GetCVar("dakka_vanillahealtharmor") > 0) { newHealth = min(newHealth, myMaxHealth + 100); }
+    else                                         { newHealth = min(newHealth, myMaxHealth + 200); }
+    
+    // never *lose* health from vampirism, that's awful
+    newHealth = max(newHealth, myHealth);
+    
     SetActorProperty(0, APROP_Health, newHealth);
     FadeRange(255, 192, 192, 0.08, 255, 64, 64, 0, 0.3);
 

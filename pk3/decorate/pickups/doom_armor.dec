@@ -1,4 +1,30 @@
-// Armor bonus in decorate/core/armor.dec
+actor Pickup_ArmorBonus: CustomInventory replaces ArmorBonus
+{
+    +ALWAYSPICKUP
+    Inventory.PickupMessage "$DAKKA_PK_ARMORBONUS"
+
+    States
+    {
+      Spawn:
+        BON2 ABCDCB 6
+        loop
+      
+      Pickup:
+        TNT1 A 0 A_JumpIf(CallACS("Dakka_VanillaHealthArmor") >  1, "VanillaArmor")
+        TNT1 A 0 A_JumpIf(CallACS("Dakka_VanillaHealthArmor") == 1, "CappedArmor")
+        TNT1 A 0 A_GiveInventory("Dakka_ArmorBonus", 1)
+        stop
+      
+      CappedArmor:
+        TNT1 A 0 A_GiveInventory("Dakka_ArmorBonusCapped", 1)
+        stop
+      
+      VanillaArmor:
+        TNT1 A 0 A_GiveInventory("ArmorBonus", 1)
+        stop
+    }
+}
+
 
 // Since this uses special armor merging behavior,
 // it's gonna remain as a pickup script for now
@@ -51,8 +77,14 @@ actor Pickup_Megasphere: CustomInventory replaces Megasphere
         loop
 
       Pickup:
+        TNT1 A 0 A_JumpIf(CallACS("Dakka_VanillaHealthArmor") > 0, "VanillaHeal")
         TNT1 A 0 A_GiveInventory("Dakka_OneHealth", 300)
         TNT1 A 0 A_GiveInventory("Dakka_BlueArmor")
+        stop
+      
+      VanillaHeal:
+        TNT1 A 0 A_GiveInventory("Dakka_OneHealthVanilla", 200)
+        TNT1 A 0 A_GiveInventory("BlueArmor")
         stop
     }
 }

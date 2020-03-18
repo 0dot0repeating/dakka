@@ -32,7 +32,7 @@ actor Dakka_BlueArmor: BasicArmorPickup
     }
 }
 
-actor Dakka_ArmorBonus: BasicArmorBonus replaces ArmorBonus
+actor Dakka_ArmorBonus: BasicArmorBonus
 {
     Inventory.PickupMessage "$DAKKA_PK_ARMORBONUS"
     Inventory.Icon "BON2A0"
@@ -40,6 +40,23 @@ actor Dakka_ArmorBonus: BasicArmorBonus replaces ArmorBonus
     Armor.SavePercent 33.335
     Armor.SaveAmount 2
     Armor.MaxSaveAmount 300
+
+    States
+    {
+      Spawn:
+        BON2 ABCDCB 6
+        loop
+    }
+}
+
+actor Dakka_ArmorBonusCapped: BasicArmorBonus
+{
+    Inventory.PickupMessage "$DAKKA_PK_ARMORBONUS"
+    Inventory.Icon "BON2A0"
+
+    Armor.SavePercent 33.335
+    Armor.SaveAmount 2
+    Armor.MaxSaveAmount 200
 
     States
     {

@@ -438,10 +438,12 @@ int GameHeaders[GAMEHEADERCOUNT] =
 };
 
 
-#define DUMBTIPCOUNT 93
+#define DUMBTIPCOUNT 95
 
 int DumbTips[DUMBTIPCOUNT] =
 {
+    "In just 30 days, you too could lose 30 days guaranteed!",
+    "This message space wasn't bought out by \chPEPSI \cgMAX\c-, and there is no reason to crack open a cold can of refreshing 0 calorie \chPEPSI \cgMAX\c- whatsoever.\n\nIf you believe otherwise, that is entirely on you.",
     "When all you have is a minigun, everything starts looking like something that miniguns are good for. Which is everything.",
     "Balance is for chumps.",
     "ru \caDKAKGUY\c- n u mstu \caFGITH THE DMOENS\c- whi \caPOWEFRL WEAPONS\c- leki the \caSHTONGY OF SUEPR\c- to averge \caTHE WLROD\n\ngo now \caDAKAKGYU\c- and svu \caHRMUINTY\c-",
@@ -460,11 +462,11 @@ int DumbTips[DUMBTIPCOUNT] =
     "No wang for you.",
     "Roll to fondle yourself.",
     "What are you gonna do, stab me?",
-    "To defeat the Cyberdemon, shoot at it until it dies.",
+    "To defeat the Cyberdemon, ask it how its day has been. No one ever does that, and the gesture will touch whatever it has that you can call a heart.\n\nThen shoot it until it dies.",
     "Is there insurance against getting played like a damn fiddle?",
     "Hey, chaingun! The hell with respect!",
-    "Dakka's guns work by one rule: would it be cool if they worked like that? If no, then they don't work like that.",
-    "If a tree falls in the woods and no one is around to hear it, it should've had LifeAlert.",
+    "Shooting is always the answer. Anyone who says otherwise is a liar, and that's a problem that needs solving.",
+    "If a tree falls in the forest and no one is around to hear it, it should've had LifeAlert.",
     "You are huge! That means you're worth a lot of points!",
     "If you are reading this message, that means you are reading this message.",
     "Now with 100% more percentages!",
@@ -472,16 +474,16 @@ int DumbTips[DUMBTIPCOUNT] =
     "Only you can prevent the world from being plunged balls-deep into an asspocalypse! Do your part today! Join the Buttpain Army!",
     "RIP Cyberrunner 2013-2013 - it was too fast for Doom",
     "In the beginning were the words, and the words were \"fucking hacker il report u\".",
-    "The year is 2047. The cybernetic revolution is full force. Cyborgs walk the street, and while some still give them trouble, the majority simply regard it as everyday life. Man and machine have conjoined inseparably, and even as transcendence nears us, The Space Pirate has still not seen an update.",
+    "The year is 2047. The cybernetic revolution is full force. Cyborgs walk the street, and while some still give them trouble, the majority simply regard it as everyday life. Man and machine have conjoined inseparably, and even as transcendence nears us, The Space Pirate has still not seen an update.", // it's 2020, only 27 years to go
     "That one marine spinning forever is both the solution to our energy troubles, and the reason the demons invaded. It's canon now.",
     "\"All you had to do was not punch an astronaut.\"\n\n\"Sometimes it's hard not to punch an astronaut...\"",
     "Soylent pink is made of demons! \caDEMONS!",
     "Do not pet the cacodemon.",
-    "The UAC should build a wall to keep the demons out! And then make Hell pay for it!",
+    "Do you enjoy violence? Of course you do; it's a part of you. And who are you to deny your own nature?",
     "Insert coin to continue.",
     "Welcome to die!",
-    "Those demon bastards are gonna pay for screwing up my vacation.",
-    "Just because you can't cram four shells into a double-barreled shotgun and have it actually work doesn't mean I won't try anyway.",
+    "Those demonic bastards are gonna pay for screwing up my vacation.",
+    "Seriously, don't think about how the SSG works.\n\nI said don't!\n\nStop it!",
     "As it turns out, the demons were in your heart all along.\n\nThat's probably a bad thing.",
     "Stay awhile and listen!",
     "Greetings, mortal. Are you ready to die?",
@@ -500,9 +502,9 @@ int DumbTips[DUMBTIPCOUNT] =
     "\caWIZARDS!\c- NO SENSE OF RIGHT OR WRONG!",
     "whoops you fucked up and now you're dead + stupid\n\n\nidiot",
     "Sweet christmas! Big-mouthed floating thingies! It's always something!",
-    "Once fusion reactors become sustainable, how long until someone cooks their pizza bagels with one? My guess is \"ten minutes\".",
+    "Okay yeah the surface of the Sun is pretty hot, but have you tried biting into a freshly-microwaved pizza bagel?",
     "Man, it's actually pretty difficult to think of new messages for this. Oh wait, that's a message right there! How convenient!",
-    "You'd think this was a title map for some adventure game or something! But nope, it's a weapon mod. Damn.",
+    "Yeah, this title map has nothing to do with the rest of the mod. Don't tell anyone.",
     "Guns don't kill people. Lag kills people.",
     "I love the power glove. It's so bad.",
     "Y'know, in all likelihood, you probably couldn't have prevented this.",
@@ -518,7 +520,7 @@ int DumbTips[DUMBTIPCOUNT] =
     "Where is the brouzouf? I was told there'd be brouzouf!",
     "Are you lost? Or have you already been lost since the very beginning?",
     "The only accident I fear will be your head falling into a vat of acid with me wearing your fucking moron face as a party mask.",
-    "When will rocket jumping be included at the Olympics? It's a valid sport!",
+    "When will rocket jumping be included at the Olympics? And don't give me the \"100% casualty rate\" excuse!",
     "\caHOW TO SURVIVE A NUCLEAR APOCALYPSE:\nStep 1 - Don't get hit.\nStep 2 - don't get blown up.\nStep 3 - make sure to get plenty of water.",
     "Oh, right. The murders.",
     "The sign lied! This ride isn't wild at all! I want off!",

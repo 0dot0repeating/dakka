@@ -115,6 +115,13 @@ OptionValue Dakka_DefenseLevel
      10, "10x tougher"
 }
 
+OptionValue Dakka_VanillaHealthArmor
+{
+    0, "Off"
+    1, "On (strong bonuses)"
+    2, "On (vanilla bonuses)"
+}
+
 OptionValue Dakka_CustomWep
 {
    -1, "Take on new map"
@@ -221,6 +228,7 @@ OptionMenu Dakka_GameOptions
     Option "Damage multiplier",     "dakka_powerlevel",           "Dakka_PowerLevel"
     Option "Defense multiplier",    "dakka_defenselevel",         "Dakka_DefenseLevel"
     Option "Score rewards",         "dakka_score_rewardtypes",    "Dakka_RewardTypes"
+    Option "Vanilla Health/armor",  "dakka_vanillahealtharmor",   "Dakka_VanillaHealthArmor"
 
     StaticText ""
     StaticText "Level start options", 1

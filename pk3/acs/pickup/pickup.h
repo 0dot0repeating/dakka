@@ -140,9 +140,9 @@
 #include "pickup_display.h"
 #include "pickup_daemon.h"
 
-#include "dakka_vispulse.h"
 #include "dakka_wepdisplay.h"
 #include "dakka_moremessages.h"
+#include "dakka_vanillaarmor.h"
 
 // This is such a tiny script, it's a complete waste making a file for it. So
 //  here it is.
