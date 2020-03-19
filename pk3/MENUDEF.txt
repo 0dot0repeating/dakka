@@ -228,7 +228,7 @@ OptionMenu Dakka_GameOptions
     Option "Damage multiplier",     "dakka_powerlevel",           "Dakka_PowerLevel"
     Option "Defense multiplier",    "dakka_defenselevel",         "Dakka_DefenseLevel"
     Option "Score rewards",         "dakka_score_rewardtypes",    "Dakka_RewardTypes"
-    Option "Vanilla Health/armor",  "dakka_vanillahealtharmor",   "Dakka_VanillaHealthArmor"
+    Option "Vanilla health/armor",  "dakka_vanillahealtharmor",   "Dakka_VanillaHealthArmor"
 
     StaticText ""
     StaticText "Level start options", 1
