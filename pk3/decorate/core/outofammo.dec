@@ -1,2 +1,0 @@
-actor OutOfAmmoTimer_Pri: Counter { Inventory.InterHubAmount 0 }
-actor OutOfAmmoTimer_Alt: Counter { Inventory.InterHubAmount 0 }

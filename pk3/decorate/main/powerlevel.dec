@@ -1,0 +1,48 @@
+actor DakkaPowerLevel_-11: PowerDamage { Powerup.Duration 0x7FFFFFFF    DamageFactor "Barrel", 1     DamageFactor "Fire", 1     DamageFactor "normal", 0.1    }
+actor DakkaPowerLevel_-10: PowerDamage { Powerup.Duration 0x7FFFFFFF    DamageFactor "Barrel", 1     DamageFactor "Fire", 1     DamageFactor "normal", 0.2    }
+actor DakkaPowerLevel_-9:  PowerDamage { Powerup.Duration 0x7FFFFFFF    DamageFactor "Barrel", 1     DamageFactor "Fire", 1     DamageFactor "normal", 0.25   }
+actor DakkaPowerLevel_-8:  PowerDamage { Powerup.Duration 0x7FFFFFFF    DamageFactor "Barrel", 1     DamageFactor "Fire", 1     DamageFactor "normal", 0.3333 }
+actor DakkaPowerLevel_-7:  PowerDamage { Powerup.Duration 0x7FFFFFFF    DamageFactor "Barrel", 1     DamageFactor "Fire", 1     DamageFactor "normal", 0.4    }
+actor DakkaPowerLevel_-6:  PowerDamage { Powerup.Duration 0x7FFFFFFF    DamageFactor "Barrel", 1     DamageFactor "Fire", 1     DamageFactor "normal", 0.5    }
+actor DakkaPowerLevel_-5:  PowerDamage { Powerup.Duration 0x7FFFFFFF    DamageFactor "Barrel", 1     DamageFactor "Fire", 1     DamageFactor "normal", 0.6    }
+actor DakkaPowerLevel_-4:  PowerDamage { Powerup.Duration 0x7FFFFFFF    DamageFactor "Barrel", 1     DamageFactor "Fire", 1     DamageFactor "normal", 0.6667 }
+actor DakkaPowerLevel_-3:  PowerDamage { Powerup.Duration 0x7FFFFFFF    DamageFactor "Barrel", 1     DamageFactor "Fire", 1     DamageFactor "normal", 0.75   }
+actor DakkaPowerLevel_-2:  PowerDamage { Powerup.Duration 0x7FFFFFFF    DamageFactor "Barrel", 1     DamageFactor "Fire", 1     DamageFactor "normal", 0.8    }
+actor DakkaPowerLevel_-1:  PowerDamage { Powerup.Duration 0x7FFFFFFF    DamageFactor "Barrel", 1     DamageFactor "Fire", 1     DamageFactor "normal", 0.909  }
+
+actor DakkaPowerLevel_1:  PowerDamage  { Powerup.Duration 0x7FFFFFFF    DamageFactor "Barrel", 1     DamageFactor "Fire", 1     DamageFactor "normal", 1.1    }
+actor DakkaPowerLevel_2:  PowerDamage  { Powerup.Duration 0x7FFFFFFF    DamageFactor "Barrel", 1     DamageFactor "Fire", 1     DamageFactor "normal", 1.25   }
+actor DakkaPowerLevel_3:  PowerDamage  { Powerup.Duration 0x7FFFFFFF    DamageFactor "Barrel", 1     DamageFactor "Fire", 1     DamageFactor "normal", 1.3333 }
+actor DakkaPowerLevel_4:  PowerDamage  { Powerup.Duration 0x7FFFFFFF    DamageFactor "Barrel", 1     DamageFactor "Fire", 1     DamageFactor "normal", 1.5    }
+actor DakkaPowerLevel_5:  PowerDamage  { Powerup.Duration 0x7FFFFFFF    DamageFactor "Barrel", 1     DamageFactor "Fire", 1     DamageFactor "normal", 1.6667 }
+actor DakkaPowerLevel_6:  PowerDamage  { Powerup.Duration 0x7FFFFFFF    DamageFactor "Barrel", 1     DamageFactor "Fire", 1     DamageFactor "normal", 1.75   }
+actor DakkaPowerLevel_7:  PowerDamage  { Powerup.Duration 0x7FFFFFFF    DamageFactor "Barrel", 1     DamageFactor "Fire", 1     DamageFactor "normal", 2      }
+actor DakkaPowerLevel_8:  PowerDamage  { Powerup.Duration 0x7FFFFFFF    DamageFactor "Barrel", 1     DamageFactor "Fire", 1     DamageFactor "normal", 2.5    }
+actor DakkaPowerLevel_9:  PowerDamage  { Powerup.Duration 0x7FFFFFFF    DamageFactor "Barrel", 1     DamageFactor "Fire", 1     DamageFactor "normal", 3      }
+actor DakkaPowerLevel_10: PowerDamage  { Powerup.Duration 0x7FFFFFFF    DamageFactor "Barrel", 1     DamageFactor "Fire", 1     DamageFactor "normal", 4      }
+actor DakkaPowerLevel_11: PowerDamage  { Powerup.Duration 0x7FFFFFFF    DamageFactor "Barrel", 1     DamageFactor "Fire", 1     DamageFactor "normal", 5      }
+
+
+actor DakkaDefenseLevel_-12: PowerProtection { Powerup.Duration 0x7FFFFFFF    DamageFactor "Slime", 1     DamageFactor "normal", 5      } // 0.2
+actor DakkaDefenseLevel_-11: PowerProtection { Powerup.Duration 0x7FFFFFFF    DamageFactor "Slime", 1     DamageFactor "normal", 4      } // 0.25
+actor DakkaDefenseLevel_-10: PowerProtection { Powerup.Duration 0x7FFFFFFF    DamageFactor "Slime", 1     DamageFactor "normal", 3      } // 0.333...
+actor DakkaDefenseLevel_-9:  PowerProtection { Powerup.Duration 0x7FFFFFFF    DamageFactor "Slime", 1     DamageFactor "normal", 2.5    } // 0.4
+actor DakkaDefenseLevel_-8:  PowerProtection { Powerup.Duration 0x7FFFFFFF    DamageFactor "Slime", 1     DamageFactor "normal", 2      } // 0.5
+actor DakkaDefenseLevel_-7:  PowerProtection { Powerup.Duration 0x7FFFFFFF    DamageFactor "Slime", 1     DamageFactor "normal", 1.75   } // 0.571428...
+actor DakkaDefenseLevel_-6:  PowerProtection { Powerup.Duration 0x7FFFFFFF    DamageFactor "Slime", 1     DamageFactor "normal", 1.6667 } // 0.6
+actor DakkaDefenseLevel_-5:  PowerProtection { Powerup.Duration 0x7FFFFFFF    DamageFactor "Slime", 1     DamageFactor "normal", 1.5    } // 0.666...
+actor DakkaDefenseLevel_-4:  PowerProtection { Powerup.Duration 0x7FFFFFFF    DamageFactor "Slime", 1     DamageFactor "normal", 1.3333 } // 0.75
+actor DakkaDefenseLevel_-3:  PowerProtection { Powerup.Duration 0x7FFFFFFF    DamageFactor "Slime", 1     DamageFactor "normal", 1.25   } // 0.8
+actor DakkaDefenseLevel_-2:  PowerProtection { Powerup.Duration 0x7FFFFFFF    DamageFactor "Slime", 1     DamageFactor "normal", 1.2    } // 0.8333...
+actor DakkaDefenseLevel_-1:  PowerProtection { Powerup.Duration 0x7FFFFFFF    DamageFactor "Slime", 1     DamageFactor "normal", 1.1    } // 0.9090...
+
+actor DakkaDefenseLevel_1:  PowerProtection  { Powerup.Duration 0x7FFFFFFF    DamageFactor "Slime", 1     DamageFactor "normal", 0.909  } // 1.1
+actor DakkaDefenseLevel_2:  PowerProtection  { Powerup.Duration 0x7FFFFFFF    DamageFactor "Slime", 1     DamageFactor "normal", 0.8    } // 1.25
+actor DakkaDefenseLevel_3:  PowerProtection  { Powerup.Duration 0x7FFFFFFF    DamageFactor "Slime", 1     DamageFactor "normal", 0.75   } // 1.333...
+actor DakkaDefenseLevel_4:  PowerProtection  { Powerup.Duration 0x7FFFFFFF    DamageFactor "Slime", 1     DamageFactor "normal", 0.6667 } // 1.5
+actor DakkaDefenseLevel_5:  PowerProtection  { Powerup.Duration 0x7FFFFFFF    DamageFactor "Slime", 1     DamageFactor "normal", 0.6    } // 1.666...
+actor DakkaDefenseLevel_6:  PowerProtection  { Powerup.Duration 0x7FFFFFFF    DamageFactor "Slime", 1     DamageFactor "normal", 0.5    } // 2
+actor DakkaDefenseLevel_7:  PowerProtection  { Powerup.Duration 0x7FFFFFFF    DamageFactor "Slime", 1     DamageFactor "normal", 0.333  } // 3
+actor DakkaDefenseLevel_8:  PowerProtection  { Powerup.Duration 0x7FFFFFFF    DamageFactor "Slime", 1     DamageFactor "normal", 0.25   } // 4
+actor DakkaDefenseLevel_9:  PowerProtection  { Powerup.Duration 0x7FFFFFFF    DamageFactor "Slime", 1     DamageFactor "normal", 0.2    } // 5
+actor DakkaDefenseLevel_10: PowerProtection  { Powerup.Duration 0x7FFFFFFF    DamageFactor "Slime", 1     DamageFactor "normal", 0.1    } // 10
