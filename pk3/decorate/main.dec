@@ -1,0 +1,17 @@
+#include "decorate/main/constants.dec"
+#include "decorate/main/baseitems.dec"
+#include "decorate/main/ammo.dec"
+#include "decorate/main/pickups.dec"
+#include "decorate/main/arc.dec"
+
+#include "decorate/main/dakkaguy.dec"
+#include "decorate/main/puffs.dec"
+
+#include "decorate/main/armor.dec"
+#include "decorate/main/vampiresphere.dec"
+
+#include "decorate/main/scorestuff.dec"
+#include "decorate/main/powerlevel.dec"
+#include "decorate/main/barrel.dec"
+
+#include "decorate/main/skulltag_dummies.dec"

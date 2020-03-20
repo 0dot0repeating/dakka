@@ -1,0 +1,12 @@
+actor DamageTypedBarrel: ExplosiveBarrel replaces ExplosiveBarrel
+{
+    States
+    {
+      Death:
+        // necessary because the engine uses an actor's damagetype field to keep track
+        //  what damage type damaged it
+        // hacky as shit, but haha zdoom
+        BEXP A 0 bright A_SetDamageType("Barrel")
+        goto Super::Death
+    }
+}

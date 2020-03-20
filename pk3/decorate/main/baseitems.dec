@@ -89,6 +89,10 @@ actor DakkaShotgunTracker:  Counter {}
 // Used in script 494 (pickup/dakka_wepdisplay.h).
 actor DPickup_SecondWepState:   Boolean {}
 
+// Used to space out out-of-ammo click sounds when holding a trigger.
+actor OutOfAmmoTimer_Pri: Counter { Inventory.InterHubAmount 0 }
+actor OutOfAmmoTimer_Alt: Counter { Inventory.InterHubAmount 0 }
+
 
 // HUD shit
 actor AbnormalHealth:   Boolean {}
