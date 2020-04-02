@@ -2,9 +2,10 @@ function void Air_UpdateZHeight(void)
 {
     int pln = PlayerNumber();
 
-    int ground = onGround(0);
+    int ground  = onGround(0);
+    int inWater = GetActorProperty(0, APROP_WaterLevel) > 0;
 
-    if (ground)
+    if (ground || inWater)
     {
         Air_FloorHeight[pln]    = GetActorZ(0);
         Air_JumpHeight[pln]     = 0;
