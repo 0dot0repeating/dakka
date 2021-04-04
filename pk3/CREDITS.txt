@@ -53,6 +53,17 @@ SOUNDS
 - Low ammo click: id Software, in Quake 3 Arena
 
 
+MUSIC
+======
+
+TITLEMAP music:
+- strain 6-14: https://modarchive.org/index.php?request=view_by_moduleid&query=131166
+- tranze_seven: https://modarchive.org/index.php?request=view_by_moduleid&query=64180
+- Zagorochoria: https://modarchive.org/index.php?request=view_by_moduleid&query=63502
+
+DAKKTEST music:
+- sine ride: https://modarchive.org/index.php?request=view_by_moduleid&query=153909
+
 
 OTHER STUFF
 ============
