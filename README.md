@@ -31,7 +31,8 @@ the super shotgun and minigun sound quiet and muffled compared to the pistols an
 impaler, that's the bug. Either update your GZDoom or use one of the versions listed
 below the title image.
 
-**DOWNLOAD:** http://jinotra.in/downloads/mods/doom/dakka?sort=M
+**DOWNLOAD:** http://jinotra.in/downloads/mods/doom/dakka?sort=M  
+(or check the releases, might be there too)
 
 
 
@@ -179,12 +180,4 @@ To use any of these patches, load your mods in this order:
 
 ## Are you *ever* going to release this?
 
-Probably not. This mod is really just "Doom the way I like to play it", and while
-it's nice that other people have stumbled upon this mod and enjoy it, I feel no
-pressing desire to release this mod to the wider Doom community - that I'm not a
-part of anymore anyway, outside of /doom/ to some degree (who already knows about
-this mod).
-
-Anyway, this mod's pretty much done, besides some minor tweaking here and there.
-And thanks to targeting the last version of ZDoom, I doubt this mod will become
-unplayable any time soon. So, uh... go play some DAKKA.
+i bumped the version number to v1.0, does that count
